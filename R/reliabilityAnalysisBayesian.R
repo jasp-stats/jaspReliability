@@ -1,8 +1,6 @@
 reliabilityBayesian <- function(jaspResults, dataset, options) {
 
-  # sink("~/Downloads/log_Bay.txt")
-  # on.exit(sink(NULL))
-  
+
 	dataset <- .BayesianReliabilityReadData(dataset, options)
 
 	.BayesianReliabilityCheckErrors(dataset, options)
@@ -15,7 +13,6 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 	.BayesianReliabilityPosteriorPlot(      jaspResults, model, options)
 	.BayesianReliabilityPosteriorPredictive(jaspResults, model, options)
 	.BayesianReliabilityIfItemPlot(         jaspResults, model, options)
-	# .BayesianReliabilityConvergenceTable(   jaspResults, model, options)
 	.BayesianReliabilityTracePlot(          jaspResults, model, options)
 	  
 
@@ -52,7 +49,6 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
   # order to show in JASP : check that again when more or different estimators are included
   derivedOptions[["order"]] <- c(5, 1, 2, 3, 4, 6, 7, 8)
-  # derivedOptions[["order_item"]] <- c(5, 1, 2, 3, 4, 6, 7, 8)
 
   return(derivedOptions)
 }
@@ -95,10 +91,6 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
       dataset <- as.matrix(dataset) # fails for string factors!
       if (length(options[["reverseScaledItems"]]) > 0L) {
-        # nvar <- length(variables)
-        # key <- rep(1, nvar)
-        # key[match(.v(unlist(options[["reverseScaledItems"]])), nvar)] <- -1
-        # dataset <- dataset %*% diag(key, nvar, nvar) # seems to be not working
         cols <- match(unlist(options[["reverseScaledItems"]]), .unv(colnames(dataset)))
         total <- min(dataset, na.rm = T) + max(dataset, na.rm = T)
         dataset[ ,cols] = total - dataset[ ,cols]
@@ -339,11 +331,6 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   if (!is.null(model[["error"]]))
     scaleTable$setError(model[["error"]])
   
-  # 	# error message for NA in output, but is it necessary?
-  #   if (any(is.na(unlist(relyFit$Bayes$cred))) || any(is.na(unlist(relyFit$Bayes$est)))) {
-  #     scaleTable$setError("NAs in results produced")
-  #   }
-  
   if (!is.null(model[["footnote"]]))
     scaleTable$addFootnote(model[["footnote"]])
   
@@ -364,15 +351,12 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
   # fixes issue that unchecking the scale coefficient box, does not uncheck the item-dropped coefficient box:
   for (i in 1:5) {
-    # if (!is.null(derivedOptions[["selectedEstimators"]])) {
       if (!derivedOptions[["selectedEstimators"]][i]) {
         derivedOptions[["itemDroppedSelected"]][i] <- derivedOptions[["selectedEstimators"]][i]
       }
-    # }
   }
   
   itemDroppedSelected <- derivedOptions[["itemDroppedSelected"]]
-  # order <- derivedOptions[["order_item"]]
   overTitles <- format(derivedOptions[["namesEstimators"]][["tables_item"]], digits = 3, drop0trailing = T)
   overTitles <- paste0(overTitles, " (if item dropped)")
   
@@ -576,7 +560,6 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 	nmsObjs   <- derivedOptions[["namesEstimators"]][["tables"]]
 
 	relyFit  <- model[["relyFit"]]
-	# probably better to do this once directly after computation!
 	scaleCri <- model[["cri"]][["scaleCri"]]
 	n.item <- dim(relyFit$Bayes$covsamp)[3]
 	prior <- priors[[as.character(n.item)]][order] ##### change this when more estimators are included!!!
@@ -686,35 +669,13 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 	}
 	
 	if (priorTrue) {
-	  # g <- g + ggplot2::geom_hline(yintercept = 1)
 	  g <- g + ggplot2::geom_line(data = datPrior, mapping = ggplot2::aes(x = x, y = y),
 	                              linetype = "dashed", size = .85) +
 	           ggplot2::scale_x_continuous(name = nms, breaks = xBreaks, expand = xExpand,
 	                                       limits = c(min(xBreaks), max(xBreaks)))
-            # ggplot2::scale_x_continuous(name = nms, expand = xExpand,
-            #                   limits = c(min(xBreaks), max(xBreaks)))
-	  
-
 	  
 	}
 
-	# if (!is.null(cutoffs)) {
-	#   cut1_peak <- d$y[findInterval(cutoffs[1], d$x)]
-	#   cut2_peak <- d$y[findInterval(cutoffs[2], d$x)]
-	#   if (length(cut1_peak) != 0 & findInterval(cutoffs[1], d$x) != 2^10) {
-	#     g <- g +
-	#       ggplot2::geom_segment(ggplot2::aes(x = cutoffs[1], y = 0, xend = cutoffs[1], yend = cut1_peak), 
-	#                             color = "grey60", linetype = 1, alpha = .5, size = .3) +
-	#       ggplot2::geom_line(size = .85)
-	#     
-	#   } 
-	#   if (length(cut2_peak) != 0 & findInterval(cutoffs[2], d$x) != 2^10) {
-	#     g <- g +
-	#       ggplot2::geom_segment(ggplot2::aes(x = cutoffs[2], y = 0, xend = cutoffs[2], yend = cut2_peak), 
-	#                           color = "grey60", linetype = 1, alpha = .5, size = .3) +
-	#       ggplot2::geom_line(size = .85)
-	#   }
-	# }
 	
 
 
@@ -843,17 +804,13 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   g <- ggplot2::ggplot(dat, ggplot2::aes(x = value, y = var, fill = colos)) +
     ggridges::stat_density_ridges(quantile_lines = T, quantiles = c(lower, 0.5, upper),
                                   alpha = .85, show.legend = F, scale = 1) +
-    # ggplot2::theme_linedraw() +
     ggplot2::theme(strip.background = ggplot2::element_rect(fill = "white"),
                    strip.text = ggplot2::element_text(colour = "black")) +
     ggplot2::ylab("Item Dropped") +
     ggplot2::xlab(nms) +
     ggplot2::scale_fill_grey() +
     ggplot2::scale_y_discrete(expand = ggplot2::expand_scale(mult = c(0.1, 0.25)))  
-    # ggplot2::scale_y_discrete(expand = ggplot2::expand_scale(add = c(0.25, 1.5))) 
-    # ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, vjust = 4, size = 20),
-    #                axis.title = ggplot2::element_text(size = 16),
-    #                axis.text = ggplot2::element_text(size = 12))
+
   
   
   return(JASPgraphs::themeJasp(g))
@@ -894,13 +851,6 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       ggplot2::geom_line(ggplot2::aes(x = number, y = eigen_sim_up), colour = "grey", linetype = 2) +
       ggplot2::geom_line() +
       ggplot2::geom_point() +
-      # ggplot2::geom_segment(ggplot2::aes(x = k/2.5, y = leg_pos, xend = k/2.5*1.1, yend = leg_pos), size = .4) +
-      # ggplot2::geom_segment(ggplot2::aes(x = k/2.5, y = leg_pos*.9, xend = k/2.5*1.1, yend = leg_pos*.9), size = .4,
-      #              colour = "gray", linetype = 2) +
-      # ggplot2::annotate(geom = "text", x = k/2.5, y = leg_pos, 
-      #                   label = "data set covariance matrix", hjust = -.2) +
-      # ggplot2::annotate(geom = "text", x = k/2.5, y = leg_pos*.9, 
-      #                   label = "model implied covariance matrix", hjust = -.164) +
       ggplot2::scale_y_continuous(name = "Eigenvalue", breaks = yBreaks, limits = range(yBreaks)) +
       ggplot2::xlab("Factors")
     
@@ -941,8 +891,6 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   
   relyFit  <- model[["relyFit"]]
   
-  # xlim <- JASPgraphs::getPrettyAxisBreaks(c(0, (options[["noSamples"]] - options[["noBurnin"]]) * 
-  #                                             options[["noChains"]] / options[["noThin"]]))
   xlim <- (options[["noSamples"]] - options[["noBurnin"]]) / options[["noThin"]]
   if (!is.null(relyFit)) {
     for (i in indices) {

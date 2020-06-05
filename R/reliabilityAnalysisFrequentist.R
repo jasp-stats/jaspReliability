@@ -1,7 +1,5 @@
 reliabilityFrequentist <- function(jaspResults, dataset, options) {
 
-    # sink("~/Downloads/log_freq.txt")
-    # on.exit(sink(NULL))
 
   dataset <- .frequentistReliabilityReadData(dataset, options)
   
@@ -87,10 +85,6 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
       
       dataset <- as.matrix(dataset) # fails for string factors!
       if (length(options[["reverseScaledItems"]]) > 0L) {
-        # nvar <- length(variables)
-        # key <- rep(1, nvar)
-        # key[match(.v(unlist(options[["reverseScaledItems"]])), nvar)] <- -1
-        # dataset <- dataset %*% diag(key, nvar, nvar) # this seems like it does not work
         cols <- match(unlist(options[["reverseScaledItems"]]), .unv(colnames(dataset)))
         total <- min(dataset, na.rm = T) + max(dataset, na.rm = T)
         dataset[ ,cols] = total - dataset[ ,cols]
@@ -222,7 +216,6 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         
         ops <- .BayesianReliabilityDerivedOptions(options)
         order <- ops[["order"]]
-        # relyFit[["freq"]][["boot"]] <- relyFit[["freq"]][["boot"]][order]
         relyFit[["freq"]][["est"]] <- relyFit[["freq"]][["est"]][order]
         relyFit[["freq"]][["ifitem"]] <- relyFit[["freq"]][["ifitem"]][order]
         
@@ -488,11 +481,6 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   if (!is.null(model[["error"]]))
     scaleTableF$setError(model[["error"]])
   
-  # # error message for NAs in output
-  # if (any(is.na(unlist(relyFit$freq$cred))) || any(is.na(unlist(relyFit$freq$est)))) {
-  #   scaleTable$setError("NAs in results produced")
-  # }
-  
   if (!is.null(model[["footnote"]]))
     scaleTableF$addFootnote(model[["footnote"]])
   
@@ -512,11 +500,9 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   derivedOptions <- model[["derivedOptions"]]
   # fixes issue that unchecking the scale coefficient box, does not uncheck the item-dropped coefficient box:
   for (i in 1:5) { 
-    # if (!is.null(derivedOptions[["selectedEstimatorsF"]])) {
     if (!derivedOptions[["selectedEstimatorsF"]][i]) {
       derivedOptions[["itemDroppedSelectedF"]][i] <- derivedOptions[["selectedEstimatorsF"]][i]
     }
-    # }
   }
   itemDroppedSelectedF <- derivedOptions[["itemDroppedSelectedF"]]
   # order <- derivedOptions[["order_item"]]
