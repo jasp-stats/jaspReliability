@@ -127,10 +127,10 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       
       if (any(is.na(dataset))) {
         if (!is.null(relyFit[["miss_pairwise"]])) {
-          model[["footnote"]] <- paste0(model[["footnote"]], "Using pairwise complete cases. ")
+          model[["footnote"]] <- paste0(gettext(model[["footnote"]], "Using pairwise complete cases. "))
         } else {
-          model[["footnote"]] <- paste0(model[["footnote"]], "Using ", nrow(dataset), 
-                                        " complete cases. ")
+          model[["footnote"]] <- paste0(gettext(model[["footnote"]], "Using ", nrow(dataset), 
+                                        " complete cases. "))
         }
       }
 
@@ -194,8 +194,6 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
         jaspResults[["modelObj"]] <- stateObj
       }
     }
-  } else {
-    print("model from state")
   }
 
 	if (is.null(model[["error"]])) {
@@ -249,9 +247,9 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 	  return()
 	} else {
 	  hasSchar <- if (sidx == 1L) "" else "s"
-	  footnote <- sprintf("The following item%s correlated negatively with the scale: %s",
+	  footnote <- gettextf("The following item%s correlated negatively with the scale: %s",
 	                      hasSchar, paste0(variables[idx], collapse = ", "))
-	  footnote <- paste0(footnote, ". ")
+	  footnote <- paste0(gettext(footnote, ". "))
 	  return(footnote)
 	}
 
@@ -262,22 +260,21 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 .BayesianReliabilityScaleTable <- function(jaspResults, model, options) {
   
   if (!is.null(jaspResults[["scaleTable"]])) {
-    print("jaspResults[['scaleTable']] from state")
     return()
   }
   
-  scaleTable <- createJaspTable("Bayesian Scale Reliability Statistics")
+  scaleTable <- createJaspTable(gettext("Bayesian Scale Reliability Statistics"))
   scaleTable$dependOn(options = c("variables", "mcDonaldScale", "alphaScale", "guttman2Scale",  "guttman6Scale",
                                   "glbScale", "reverseScaledItems", "credibleIntervalValueScale", "noSamples", "noBurnin",
                                   "noChains", "noThin", "setSeed", "seedValue",
                                   "averageInterItemCor", "meanScale", "sdScale", "missingValues", "rHat"))
   
-  intervalLow <- sprintf("%s%% CI",
+  intervalLow <- gettextf("%s%% CI",
                          format(100*options[["credibleIntervalValueScale"]], digits = 3, drop0trailing = TRUE))
-  intervalUp <- sprintf("%s%% CI",
+  intervalUp <- gettextf("%s%% CI",
                         format(100*options[["credibleIntervalValueScale"]], digits = 3, drop0trailing = TRUE))
-  intervalLow <- paste0(intervalLow, " lower bound")
-  intervalUp <- paste0(intervalUp, " upper bound")
+  intervalLow <- gettext(paste0(intervalLow, " lower bound"))
+  intervalUp <- gettext(paste0(intervalUp, " upper bound"))
   
   scaleTable$addColumnInfo(name = "estimate", title = "Estimate", type = "string")
   
@@ -316,7 +313,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
     scaleTable$setData(allData)
     
     if (!is.null(model[["footnote"]]))
-      scaleTable$addFootnote(model[["footnote"]])
+      scaleTable$addFootnote(gettext(model[["footnote"]]))
     
   } else if (sum(selected) > 0L) {
     
@@ -326,13 +323,13 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
     
     nvar <- length(options[["variables"]])
     if (nvar > 0L && nvar < 3L)
-      scaleTable$addFootnote("Please enter at least 3 variables to do an analysis.")
+      scaleTable$addFootnote(gettext("Please enter at least 3 variables to do an analysis."))
   }
   if (!is.null(model[["error"]]))
     scaleTable$setError(model[["error"]])
   
   if (!is.null(model[["footnote"]]))
-    scaleTable$addFootnote(model[["footnote"]])
+    scaleTable$addFootnote(gettext(model[["footnote"]]))
   
   jaspResults[["scaleTable"]] <- scaleTable
   scaleTable$position = 1
@@ -343,7 +340,6 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 .BayesianReliabilityItemTable <- function(jaspResults, model, options) {
   
 	if (!is.null(jaspResults[["itemTable"]]) || !any(model[["derivedOptions"]][["itemDroppedSelected"]])) {
-	  print("jaspResults[['hasItemTable']] from state or not wanted")
 		return()
 	}
 
@@ -358,10 +354,10 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   
   itemDroppedSelected <- derivedOptions[["itemDroppedSelected"]]
   overTitles <- format(derivedOptions[["namesEstimators"]][["tables_item"]], digits = 3, drop0trailing = T)
-  overTitles <- paste0(overTitles, " (if item dropped)")
+  overTitles <- gettext(paste0(overTitles, " (if item dropped)"))
   
   cred <- format(100*options[["credibleIntervalValueItem"]], digits = 3, drop0trailing = TRUE)
-  itemTable <- createJaspTable("Bayesian Individual Item Reliability Statistics")
+  itemTable <- createJaspTable(gettext("Bayesian Individual Item Reliability Statistics"))
   itemTable$dependOn(options = c("variables",
                                  "mcDonaldScale", "alphaScale", "guttman2Scale",  "guttman6Scale", "glbScale", 
                                  "averageInterItemCor", "meanScale", "sdScale",
@@ -379,11 +375,11 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
     if (estimators[i] %in% coefficients) {
       if (estimators[i] == "Item-rest correlation") { # no item deleted for item rest cor
         itemTable$addColumnInfo(name = paste0("postMean", i), title = "Posterior Mean", type = "number", 
-                                overtitle = "Item-rest correlation")
+                                overtitle = gettext("Item-rest correlation"))
         itemTable$addColumnInfo(name = paste0("lower", i), title = paste0("Lower ", cred, "%"), type = "number", 
-                                overtitle = "Item-rest correlation")
+                                overtitle = gettext("Item-rest correlation"))
         itemTable$addColumnInfo(name = paste0("upper", i), title = paste0("Upper ", cred, "%"), type = "number", 
-                                overtitle = "Item-rest correlation")
+                                overtitle = gettext("Item-rest correlation"))
       } else {
         itemTable$addColumnInfo(name = paste0("postMean", i), title = "Posterior Mean", type = "number", 
                                 overtitle = overTitles[i])
@@ -427,12 +423,11 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 .BayesianReliabilityProbTable <- function(jaspResults, model, options) {
 
   if (!is.null(jaspResults[["probTable"]]) || !options[["probTable"]]) {
-    print("jaspResults[['probTable']] from state or not wanted")
 		return()
   }
 
   probTable <- createJaspTable(
-    sprintf("Probability that Reliability Statistic is Larger than %.2f and Smaller than %.2f", 
+    gettextf("Probability that Reliability Statistic is Larger than %.2f and Smaller than %.2f", 
             options[["probTableValueLow"]], options[["probTableValueHigh"]]))
   probTable$dependOn(options = c("variables", "mcDonaldScale", "alphaScale", "guttman2Scale", "guttman6Scale",
                                  "glbScale", "reverseScaledItems", "probTableValueLow", "probTable",
@@ -487,51 +482,6 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 }
 
 
-.BayesianReliabilityConvergenceTable <- function(jaspResults, model, options) {
-  
-  if (!is.null(jaspResults[["convTable"]]) || !options[["rHat"]]) {
-    print("jaspResults[['convTable']] from state or not wanted")
-    return()
-  }
-  convTable <- createJaspTable(
-    sprintf("Convergence Diagnostics"))
-  convTable$dependOn(options = c("variables", "mcDonaldScale", "alphaScale", "guttman2Scale", "guttman6Scale",
-                                 "glbScale", "reverseScaledItems", "rHat", "missingValues", "noSamples", "noBurnin", 
-                                 "noChains", "noThin", "setSeed", "seedValue"))
-  convTable$addColumnInfo(name = "statistic", title = "Statistic",   type = "string")
-  convTable$addColumnInfo(name = "rhat",     title = "R-hat", type = "number")
-  
-  relyFit <- model[["relyFit"]]
-  derivedOptions <- model[["derivedOptions"]]
-  order    <- derivedOptions[["order"]]
-  order <- order[1:(length(order)-3)] # dont need avgCor, mean and sd 
-  opts     <- derivedOptions[["namesEstimators"]][["tables"]]
-  selected <- derivedOptions[["selectedEstimatorsPlots"]]
-  idxSelected <- which(selected)
-  
-  if (!is.null(relyFit)) {
-    rhat <- numeric(sum(selected))
-    z <- 1
-    for (i in idxSelected) {
-      tmp <- lapply(as.data.frame(t(relyFit[["Bayes"]][["chains"]][[i]])), coda::mcmc)
-      rhat[z] <- coda::gelman.diag(coda::as.mcmc.list(tmp))[["psrf"]][, 1]
-      z <- z+1
-    }
-    df <- data.frame(statistic = opts[idxSelected], rhat = rhat)
-    convTable$setData(df)
-  } else if (sum(selected) > 0) {
-    convTable[["statistic"]] <- opts[idxSelected]
-  }
-  jaspResults[["convTable"]] <- convTable
-  convTable$position = 4
-  
-  return()
-}
-
-
-
-
-
 # -------------------------------------------- plots ---------------------------------
 .BayesianReliabilityPosteriorPlot <- function(jaspResults, model, options) {
 
@@ -540,16 +490,13 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
   plotContainer <- jaspResults[["plotContainer"]]
   if (is.null(plotContainer)) {
-    print("Plotcontainer remade")
-    plotContainer <- createJaspContainer("Posterior Plots")
+    plotContainer <- createJaspContainer(gettext("Posterior Plots"))
     plotContainer$dependOn(options = c("variables", "reverseScaledItems", "plotPosterior", "shadePlots",
                                        "probTable", "probTableValueLow", "probTableValueHigh", "fixXRange", 
                                        "dispPrior", "noSamples", "noBurnin", "noChains", "noThin",
                                        "credibleIntervalValueScale","alphaScale", "guttman2Scale", "guttman6Scale", 
                                        "glbScale", "mcDonaldScale", "missingValues", "setSeed", "seedValue"))
     jaspResults[["plotContainer"]] <- plotContainer
-  } else {
-    print("Plotcontainer from state")
   }
 
 	derivedOptions <- model[["derivedOptions"]]
@@ -583,9 +530,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 	      plotObj$position <- i
 	      plotContainer[[nmsObjs[i]]] <- plotObj
 
-	    } else {
-	      print(sprintf("plotContainer[[%s]] from state", nmsObjs[i]))
-	    }
+	    } 
 	  }
 	} else if (length(indices) > 0) {
 	  for (i in indices) {
@@ -652,14 +597,11 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 		ggplot2::geom_line(size = .85) +
 		ggplot2::geom_errorbarh(data = datCri, mapping = ggplot2::aes(xmin = xmin, xmax = xmax, y = y),
 		                        height = height, inherit.aes = FALSE) +
-		# ggrepel::geom_text_repel(data = datTxt, mapping = ggplot2::aes(x = x, y = y, label = label), 
-	  #                          inherit.aes = FALSE, segment.alpha = 0) +
 	ggplot2::geom_text(data = datTxt, mapping = ggplot2::aes(x = x, y = y, label = label), inherit.aes = FALSE, 
 	                   size = 5) +
-	ggplot2::scale_y_continuous(name = "Density", breaks = yBreaks, limits = range(yBreaks)) +
-	ggplot2::scale_x_continuous(name = nms, breaks = (xBreaks), expand = xExpand)
-# ggplot2::scale_x_continuous(name = nms, expand = xExpand)
-	
+	ggplot2::scale_y_continuous(name = gettext("Density"), breaks = yBreaks, limits = range(yBreaks)) +
+	ggplot2::scale_x_continuous(name = gettext(nms), breaks = (xBreaks), expand = xExpand)
+
 	
 	if (!is.null(shade)) {
 	  datFilter <- datDens[datDens[["x"]] >= shade[1] & datDens[["x"]] <= shade[2], ]
@@ -671,7 +613,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 	if (priorTrue) {
 	  g <- g + ggplot2::geom_line(data = datPrior, mapping = ggplot2::aes(x = x, y = y),
 	                              linetype = "dashed", size = .85) +
-	           ggplot2::scale_x_continuous(name = nms, breaks = xBreaks, expand = xExpand,
+	           ggplot2::scale_x_continuous(name = gettext(nms), breaks = xBreaks, expand = xExpand,
 	                                       limits = c(min(xBreaks), max(xBreaks)))
 	  
 	}
@@ -691,15 +633,12 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   
   plotContainerItem <- jaspResults[["plotContainerItem"]]
   if (is.null(plotContainerItem)) {
-    print("Plotcontainer remade")
-    plotContainerItem <- createJaspContainer("If Item Dropped Posterior Plots")
+    plotContainerItem <- createJaspContainer(gettext("If Item Dropped Posterior Plots"))
     plotContainerItem$dependOn(options = c("variables", "plotItem", "noSamples", "noBurnin", "noChains", "noThin",
                                            "credibleIntervalValueItem", "orderType", "orderItem",
                                            "reverseScaledItems", "missingValues", "setSeed", "seedValue"))
     jaspResults[["plotContainerItem"]] <- plotContainerItem
-  } else {
-    print("Plotcontainer from state")
-  }
+  } 
   
   derivedOptions <- model[["derivedOptions"]]
   order     <- derivedOptions[["order"]]
@@ -723,9 +662,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
         plotObjItem$position <- i
         plotContainerItem[[nmsObjs[i]]] <- plotObjItem
         
-      } else {
-        print(sprintf("plotContainerItem[[%s]] from state", nmsObjs[i]))
-      }
+      } 
     }
   } else if (length(indices) > 0) {
     for (i in indices) {
@@ -806,8 +743,8 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
                                   alpha = .85, show.legend = F, scale = 1) +
     ggplot2::theme(strip.background = ggplot2::element_rect(fill = "white"),
                    strip.text = ggplot2::element_text(colour = "black")) +
-    ggplot2::ylab("Item Dropped") +
-    ggplot2::xlab(nms) +
+    ggplot2::ylab(gettext("Item Dropped")) +
+    ggplot2::xlab(gettext(nms)) +
     ggplot2::scale_fill_grey() +
     ggplot2::scale_y_discrete(expand = ggplot2::expand_scale(mult = c(0.1, 0.25)))  
 
@@ -851,8 +788,8 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       ggplot2::geom_line(ggplot2::aes(x = number, y = eigen_sim_up), colour = "grey", linetype = 2) +
       ggplot2::geom_line() +
       ggplot2::geom_point() +
-      ggplot2::scale_y_continuous(name = "Eigenvalue", breaks = yBreaks, limits = range(yBreaks)) +
-      ggplot2::xlab("Factors")
+      ggplot2::scale_y_continuous(name = gettext("Eigenvalue"), breaks = yBreaks, limits = range(yBreaks)) +
+      ggplot2::xlab(gettext("Factors"))
     
     g <- JASPgraphs::themeJasp(g)
   }
@@ -872,15 +809,12 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   
   plotContainerTP <- jaspResults[["plotContainerTP"]]
   if (is.null(plotContainerTP)) {
-    print("PlotcontainerTP remade")
-    plotContainerTP <- createJaspContainer("Convergence Traceplot")
+    plotContainerTP <- createJaspContainer(gettext("Convergence Traceplot"))
     plotContainerTP$dependOn(options = c("variables", "tracePlot", "noSamples", "noBurnin", "noChains", "noThin",
                                          "missingValues", "reverseScaledItems", "setSeed", "seedValue"))
     jaspResults[["plotContainerTP"]] <- plotContainerTP
     
-  } else {
-    print("PlotcontainerTP from state")
-  }
+  } 
   
   derivedOptions <- model[["derivedOptions"]]
   order     <- derivedOptions[["order"]]
@@ -902,9 +836,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
         plotObjTP$position <- i
         plotContainerTP[[nmsObjs[i]]] <- plotObjTP
         
-      } else {
-        print(sprintf("plotContainerTP[[%s]] from state", nmsObjs[i]))
-      }
+      } 
     }
   } else if (length(indices) > 0) {
     for (i in indices) {
@@ -938,15 +870,14 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   
   g <- ggplot2::ggplot(dat, ggplot2::aes(x = Iterations, y = Value, colour = chain)) +
     ggplot2::geom_line(size = .3) +
-    ggplot2::ylab(nms) +
-    # ggplot2::scale_colour_grey() +
-    ggplot2::scale_x_continuous(name = "Iterations", breaks = xBreaks)
+    ggplot2::ylab(gettext(nms)) +
+    ggplot2::scale_x_continuous(name = gettext("Iterations"), breaks = xBreaks)
 
   return(JASPgraphs::themeJasp(g))
   
 }
 
-.numformat <- function(val) { sub("^(-?)0.", "\\1.", sprintf("%.2f", val)) }
+.numformat <- function(val) { sub("^(-?)0.", "\\1.", gettextf("%.2f", val)) }
 
 
 

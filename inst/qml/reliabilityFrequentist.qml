@@ -161,7 +161,7 @@ Form
             enabled:  mcdonaldf.checked
           }
           RadioButtonGroup {
-            title: qsTr("")
+            title: qsTr("Interval")
             name: "omegaInterval"
             RadioButton{
             
