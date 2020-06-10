@@ -99,13 +99,12 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         if (options[["missingValuesf"]] == "excludeCasesPairwise") {
           missing <- "pairwise"
           use.cases <- "pairwise.complete.obs"
-          model[["footnote"]] <- paste0(gettext(model[["footnote"]], "Using pairwise complete cases. "))
+          model[["footnote"]] <- gettextf("%s Using pairwise complete cases. ", model[["footnote"]])
         } else {
           pos <- which(is.na(dataset), arr.ind = T)[, 1]
           dataset <- dataset[-pos, ] 
           use.cases <- "complete.obs"
-          model[["footnote"]] <- paste0(gettext(model[["footnote"]], "Using ", nrow(dataset), 
-                                        " complete cases. "))
+          model[["footnote"]] <- gettextf("%s Using %1.f complete cases. ", model[["footnote"]], nrow(dataset))
         }
       } else {
         use.cases <- "everything"
@@ -393,9 +392,8 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
     return()
   } else {
     hasSchar <- if (sidx == 1L) "" else "s"
-    footnote <- gettextf("The following item%s correlated negatively with the scale: %s",
+    footnote <- gettextf("The following item%s correlated negatively with the scale: %s. ",
                         hasSchar, paste0(variables[idx], collapse = ", "))
-    footnote <- paste0(gettext(footnote, ". "))
     return(footnote)
   }
 }
@@ -422,8 +420,8 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
                            format(100*options[["confidenceIntervalValue"]], digits = 3, drop0trailing = TRUE))
     intervalUp <- gettextf("%s%% CI",
                           format(100*options[["confidenceIntervalValue"]], digits = 3, drop0trailing = TRUE))
-    intervalLow <- gettext(paste0(intervalLow, " lower bound"))
-    intervalUp <- gettext(paste0(intervalUp, " upper bound"))
+    intervalLow <- gettextf("%s lower bound", intervalLow)
+    intervalUp <- gettextf("%s upper bound", intervalUp)
   }
 
   scaleTableF$addColumnInfo(name = "estimate", title = "Estimate", type = "string")
@@ -436,9 +434,8 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   idxSelected <- which(selected)
 
   if (options[["mcDonaldScalef"]] & !is.null(relyFit[["freq"]][["omega.error"]])) {
-    model[["footnote"]] <- paste0(gettext(model[["footnote"]], 
-                                          "McDonald's \u03C9 estimation method switched to PFA because the CFA
-                                          did not find a solution. "))
+    model[["footnote"]] <- gettextf("%sMcDonald's \u03C9 estimation method switched to PFA because the CFA
+                                          did not find a solution. ", model[["footnote"]])
   }
 
   if (!is.null(relyFit)) {
@@ -571,9 +568,9 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         value = NA_real_
       )
       if (!is.null(relyFit[["freq"]][["omega.error"]])) {
-          fitTable$addFootnote(paste0(gettext("Fit measures cannot be displayed because the McDonald's \u03C9 
+          fitTable$addFootnote(gettext("Fit measures cannot be displayed because the McDonald's \u03C9 
                                                estimation method switched 
-                                               to PFA as the CFA did not find a solution.")))
+                                               to PFA as the CFA did not find a solution."))
       }
     } else {
       opts <- c("Chi-Square", "df", "p.value", "RMSEA", "Lower CI RMSEA", "Upper CI RMSEA", "SRMR")

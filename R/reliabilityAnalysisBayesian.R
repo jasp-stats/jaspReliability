@@ -127,10 +127,9 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       
       if (any(is.na(dataset))) {
         if (!is.null(relyFit[["miss_pairwise"]])) {
-          model[["footnote"]] <- paste0(gettext(model[["footnote"]], "Using pairwise complete cases. "))
+          model[["footnote"]] <- gettextf("%s Using pairwise complete cases. ", model[["footnote"]])
         } else {
-          model[["footnote"]] <- paste0(gettext(model[["footnote"]], "Using ", nrow(dataset), 
-                                        " complete cases. "))
+          model[["footnote"]] <- gettextf("%s Using %1.f complete cases. ", model[["footnote"]], nrow(dataset))
         }
       }
 
@@ -247,9 +246,8 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 	  return()
 	} else {
 	  hasSchar <- if (sidx == 1L) "" else "s"
-	  footnote <- gettextf("The following item%s correlated negatively with the scale: %s",
-	                      hasSchar, paste0(variables[idx], collapse = ", "))
-	  footnote <- paste0(gettext(footnote, ". "))
+	  footnote <- gettextf("The following item%s correlated negatively with the scale: %s. ",
+	                       hasSchar, paste0(variables[idx], collapse = ", "))
 	  return(footnote)
 	}
 
@@ -273,8 +271,8 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
                          format(100*options[["credibleIntervalValueScale"]], digits = 3, drop0trailing = TRUE))
   intervalUp <- gettextf("%s%% CI",
                         format(100*options[["credibleIntervalValueScale"]], digits = 3, drop0trailing = TRUE))
-  intervalLow <- gettext(paste0(intervalLow, " lower bound"))
-  intervalUp <- gettext(paste0(intervalUp, " upper bound"))
+  intervalLow <- gettextf("%s lower bound", intervalLow)
+  intervalUp <- gettextf("%s upper bound", intervalUp)
   
   scaleTable$addColumnInfo(name = "estimate", title = "Estimate", type = "string")
   
@@ -354,7 +352,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   
   itemDroppedSelected <- derivedOptions[["itemDroppedSelected"]]
   overTitles <- format(derivedOptions[["namesEstimators"]][["tables_item"]], digits = 3, drop0trailing = T)
-  overTitles <- gettext(paste0(overTitles, " (if item dropped)"))
+  overTitles <- gettextf("%s (if item dropped)", overTitles)
   
   cred <- format(100*options[["credibleIntervalValueItem"]], digits = 3, drop0trailing = TRUE)
   itemTable <- createJaspTable(gettext("Bayesian Individual Item Reliability Statistics"))
