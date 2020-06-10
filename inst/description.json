@@ -1,15 +1,16 @@
 {
 	"moduleDescription" :
 	{
+		"name" : 					"Reliability",
 		"title" : 					"Reliability",
-		"description": 			"TODO",
+		"description": 				"TODO",
 		"version":					"0.1",
-		"author":						"Julius M. Pfadt, Don van den Bergh & Eric-Jan Wagenmakers",
+		"author":					"Julius M. Pfadt, Don van den Bergh & Eric-Jan Wagenmakers",
 		"maintainer":				"Julius M. Pfadt <julius.pfadt@gmail.com>",
 		"website":					"https://github.com/juliuspf/Reliability",
 		"license":					"GPL (>= 2)",
 		"icon":     				"reliability_icon_classic.svg",
-		"requiresDataset": 	true
+		"requiresDataset": 			true
 	},
 
 	"requiredPackages":	[{"package":"Rdpack"}, 
@@ -24,7 +25,7 @@
 		},
 	  {
 			"title"   : "Single-Test Reliability Analysis",
-			"qml"     : "reliabilityFrequentist.qml",
+			"qml"     : "ReliabilityFrequentist.qml",
 			"function": "reliabilityFrequentist"
 		},
 		{
@@ -35,8 +36,9 @@
 			"icon":		"reliability_icon_bayesian.svg"
 		},
 		{
+			"menu"    : "Single-Test Reliability Analysis",
 			"title"   : "Bayesian Single-Test Reliability Analysis",
-			"qml"     : "reliabilityBayesian.qml",
+			"qml"     : "ReliabilityBayesian.qml",
 			"function": "reliabilityBayesian"
 		}
 	]
