@@ -1,6 +1,7 @@
 reliabilityBayesian <- function(jaspResults, dataset, options) {
 
-
+  sink("~/Downloads/log_Bay.txt")
+  on.exit(sink(NULL))
 	dataset <- .BayesianReliabilityReadData(dataset, options)
 
 	.BayesianReliabilityCheckErrors(dataset, options)
@@ -293,7 +294,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
     for (i in idxSelected) {
       scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
       if (options[["rHat"]]) {
-        if (names(idxSelected[i]) == "meanScale" || names(idxSelected[i]) == "sdScale") {
+        if (opts[i] == "mean" || opts[i] == "sd") {
           rhat <- NA_real_
         } else {
           tmp <- lapply(as.data.frame(t(relyFit[["Bayes"]][["chains"]][[i]])), coda::mcmc)
