@@ -1,6 +1,7 @@
 reliabilityFrequentist <- function(jaspResults, dataset, options) {
 
-
+  sink("~/Downloads/log_freq.txt")
+  on.exit(sink(NULL))
   dataset <- .frequentistReliabilityReadData(dataset, options)
   
   .frequentistReliabilityCheckErrors(dataset, options)
@@ -98,7 +99,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
       model[["obs"]] <- nrow(dataset)
       
       model[["footnote"]] <- .frequentistReliabilityCheckLoadings(dataset, variables)
-      
+      print(.frequentistReliabilityCheckLoadings(dataset, variables))
       if (any(is.na(dataset))) {
         if (options[["missingValuesf"]] == "excludeCasesPairwise") {
           missing <- "pairwise"
@@ -394,7 +395,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
     idx <- prin[["loadings"]] < 0
     sidx <- sum(idx)
     if (sidx == 0) {
-      return()
+      return("")
     } else {
       hasSchar <- if (sidx == 1L) "" else "s"
       footnote <- gettextf("The following item%s correlated negatively with the scale: %s. ",
@@ -402,7 +403,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
       return(footnote)
     }
   } else {
-    return()
+    return("")
   }
 }
 
@@ -419,8 +420,9 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
     scaleTableF$dependOn(options = c("variables", "reverseScaledItems"))
     scaleTableF$addColumnInfo(name = "estimate", title = "Estimate", type = "string")
     nvar <- length(options[["variables"]])
-    if (nvar > 0L && nvar < 3L)
+    if (nvar > 0L && nvar < 3L){
       scaleTableF$addFootnote(gettext("Please enter at least 3 variables to do an analysis."))
+    }
     jaspResults[["scaleTableF"]] <- scaleTableF
     scaleTableF$position <- 1
     return()
@@ -450,10 +452,12 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   order    <- derivedOptions[["order"]]
   selected <- derivedOptions[["selectedEstimatorsF"]]
   idxSelected <- which(selected)
-
+  
   if (options[["mcDonaldScalef"]] & !is.null(relyFit[["freq"]][["omega.error"]])) {
+    print(model[["footnote"]])
     model[["footnote"]] <- gettextf("%sMcDonald's \u03C9 estimation method switched to PFA because the CFA
                                           did not find a solution. ", model[["footnote"]])
+    print(model[["footnote"]])
   }
 
   if (!is.null(relyFit)) {
@@ -480,7 +484,6 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
     
     if (!is.null(model[["footnote"]]))
       scaleTableF$addFootnote(gettext(model[["footnote"]]))
-    
   } else if (sum(selected) > 0L) {
     
     for (i in idxSelected) {

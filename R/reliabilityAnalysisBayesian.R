@@ -249,7 +249,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
     idx <- prin[["loadings"]] < 0
     sidx <- sum(idx)
     if (sidx == 0) {
-      return()
+      return("")
     } else {
       hasSchar <- if (sidx == 1L) "" else "s"
       footnote <- gettextf("The following item%s correlated negatively with the scale: %s. ",
@@ -257,8 +257,8 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       return(footnote)
     }
   } else {
-    return()
-  }
+    return("")  
+    }
 }
 
 
