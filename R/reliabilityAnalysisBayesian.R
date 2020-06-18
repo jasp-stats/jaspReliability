@@ -148,7 +148,6 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       
       # get rid of multiple chains, first save the chains:
       relyFit$Bayes$chains <- relyFit$Bayes$samp
-      print(relyFit$Bayes$chains$Bayes_omega)
       relyFit$Bayes$samp <- lapply(relyFit$Bayes$chains, .chainSmoker)
 
       # mean and sd
@@ -318,9 +317,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
           rhat <- NA_real_
         } else {
           tmp <- lapply(as.data.frame(t(relyFit[["Bayes"]][["chains"]][[i]])), coda::mcmc)
-          print(tmp)
           rhat <- coda::gelman.diag(coda::as.mcmc.list(tmp))[["psrf"]][, 1]
-          print(rhat)
         }
         newData <- data.frame(est = c(unlist(relyFit$Bayes$est[[i]], use.names = F), 
                                       unlist(model[["cri"]][["scaleCri"]][[i]], use.names = F), 
