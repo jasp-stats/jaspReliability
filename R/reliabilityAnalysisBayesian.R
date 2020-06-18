@@ -467,17 +467,18 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 	idxSelected  <- which(selected)
 
 
-	n.item <- dim(relyFit$Bayes$covsamp)[3]
-	prior <- Bayesrel:::priors[[as.character(n.item)]] 
-	prior <- prior[order]
-  end <- length(prior[[1]][["x"]])
-  poslow <- end - sum(prior[[1]][["x"]] > options[["probTableValueLow"]]) 
-  poshigh <- end - sum(prior[[1]][["x"]] > options[["probTableValueHigh"]]) 
-  # since the priors are only available in density form, the prior probability for the estimator being larger than
-  # a cutoff is given by caculating the relative probability of the density from the cutoff to 1.
-  # maybe check this with someone though
-  
+
 	if (!is.null(relyFit)) {
+	  n.item <- dim(relyFit$Bayes$covsamp)[3]
+	  prior <- Bayesrel:::priors[[as.character(n.item)]] 
+	  prior <- prior[order]
+	  end <- length(prior[[1]][["x"]])
+	  poslow <- end - sum(prior[[1]][["x"]] > options[["probTableValueLow"]]) 
+	  poshigh <- end - sum(prior[[1]][["x"]] > options[["probTableValueHigh"]]) 
+	  # since the priors are only available in density form, the prior probability for the estimator being larger than
+	  # a cutoff is given by caculating the relative probability of the density from the cutoff to 1.
+	  # maybe check this with someone though
+	  
     probsPost <- numeric(sum(selected))
     probsPrior <- numeric(sum(selected))
     z <- 1
@@ -527,8 +528,6 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
 	relyFit  <- model[["relyFit"]]
 	scaleCri <- model[["cri"]][["scaleCri"]]
-	n.item <- dim(relyFit$Bayes$covsamp)[3]
-	prior <- Bayesrel:::priors[[as.character(n.item)]][order] ##### change this when more estimators are included!!!
 
 
 	if (options[["shadePlots"]] && options[["probTable"]]) {
@@ -539,6 +538,9 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
 
 	if (!is.null(relyFit)) {
+	  n.item <- dim(relyFit$Bayes$covsamp)[3]
+	  prior <- Bayesrel:::priors[[as.character(n.item)]][order] ##### change this when more estimators are included!!!
+	  
 	  for (i in indices) {
 	    if (is.null(plotContainer[[nmsObjs[i]]])) {
 
