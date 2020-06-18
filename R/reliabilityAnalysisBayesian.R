@@ -99,8 +99,8 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       dataset <- as.matrix(dataset) # fails for string factors!
       if (length(options[["reverseScaledItems"]]) > 0L) {
         cols <- match(unlist(options[["reverseScaledItems"]]), .unv(colnames(dataset)))
-        total <- min(dataset, na.rm = T) + max(dataset, na.rm = T)
-        dataset[ ,cols] = total - dataset[ ,cols]
+        total <- apply(as.matrix(dataset[, cols]), 2, min) + apply(as.matrix(dataset[, cols]), 2, max)
+        dataset[ ,cols] = matrix(rep(total, nrow(dataset)), nrow(dataset), length(cols), byrow=T) - dataset[ ,cols]
       }
       
       missing <- "none" 
