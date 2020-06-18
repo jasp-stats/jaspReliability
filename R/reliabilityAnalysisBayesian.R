@@ -632,7 +632,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 	if (priorTrue) {
 	  g <- g + ggplot2::geom_line(data = datPrior, mapping = ggplot2::aes(x = x, y = y),
 	                              linetype = "dashed", size = .85) +
-	           ggplot2::scale_x_continuous(name = gettext(nms), breaks = xBreaks, expand = xExpand,
+	           ggplot2::scale_x_continuous(name = nms, breaks = xBreaks, expand = xExpand,
 	                                       limits = c(min(xBreaks), max(xBreaks)))
 	  
 	}
