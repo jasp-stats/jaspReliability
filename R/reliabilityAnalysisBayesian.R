@@ -80,6 +80,12 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
 # estimate reliability ----
 .BayesianReliabilityMainResults <- function(jaspResults, dataset, options) {
+  if (!options[["mcDonaldScale"]] & !options[["alphaScale"]] & !options[["guttman2Scale"]]
+      & !options[["guttman6Scale"]] & !options[["glbScale"]] & !options[["averageInterItemCor"]]
+      & !options[["meanScale"]] & !options[["sdScale"]]) {
+
+    return()
+  }
   
   model <- jaspResults[["modelObj"]]$object
   relyFit <- model[["relyFit"]]
@@ -238,26 +244,38 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
 
 .BayesianReliabilityCheckLoadings <- function(dataset, variables) {
-
-	prin <- psych::principal(dataset)
-	idx <- prin[["loadings"]] < 0
-	sidx <- sum(idx)
-	if (sidx == 0) {
-	  return()
-	} else {
-	  hasSchar <- if (sidx == 1L) "" else "s"
-	  footnote <- gettextf("The following item%s correlated negatively with the scale: %s. ",
-	                       hasSchar, paste0(variables[idx], collapse = ", "))
-	  return(footnote)
-	}
-
+  if (ncol(dataset > 2)) {
+    prin <- psych::principal(dataset)
+    idx <- prin[["loadings"]] < 0
+    sidx <- sum(idx)
+    if (sidx == 0) {
+      return()
+    } else {
+      hasSchar <- if (sidx == 1L) "" else "s"
+      footnote <- gettextf("The following item%s correlated negatively with the scale: %s. ",
+                           hasSchar, paste0(variables[idx], collapse = ", "))
+      return(footnote)
+    }
+  } else {
+    return()
+  }
 }
 
 
 # ----------------------------- tables ------------------------------------
 .BayesianReliabilityScaleTable <- function(jaspResults, model, options) {
   
-  if (!is.null(jaspResults[["scaleTable"]])) {
+  if ((!options[["mcDonaldScale"]] & !options[["alphaScale"]] & !options[["guttman2Scale"]] 
+       & !options[["guttman6Scale"]] & !options[["glbScale"]] & !options[["averageInterItemCor"]]
+       & !options[["meanScale"]] & !options[["sdScale"]])) {
+    scaleTable <- createJaspTable(gettext("Bayesian Scale Reliability Statistics"))
+    scaleTable$dependOn(options = c("variables", "reverseScaledItems"))
+    scaleTable$addColumnInfo(name = "estimate", title = "Estimate", type = "string")
+    nvar <- length(options[["variables"]])
+    if (nvar > 0L && nvar < 3L)
+      scaleTable$addFootnote(gettext("Please enter at least 3 variables to do an analysis."))
+    jaspResults[["scaleTable"]] <- scaleTable
+    scaleTable$position <- 1
     return()
   }
   

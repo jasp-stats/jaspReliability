@@ -20,9 +20,9 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   # order of appearance in Bayesrel
   derivedOptions <- list(
     selectedEstimatorsF  = unlist(options[c("mcDonaldScalef","alphaScalef", "guttman2Scalef", "guttman6Scalef", 
-                                            "glbScalef", "averageInterItemCor", "meanScale", "sdScale")]),
+                                            "glbScalef", "averageInterItemCorf", "meanScalef", "sdScalef")]),
     itemDroppedSelectedF = unlist(options[c("mcDonaldItemf", "alphaItemf", "guttman2Itemf", "guttman6Itemf",
-                                            "glbItemf", "itemRestCor", "meanItem", "sdItem")]),
+                                            "glbItemf", "itemRestCorf", "meanItemf", "sdItemf")]),
     namesEstimators     = list(
       tables = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6", 
                  "Greatest Lower Bound", "Average interitem correlation", "mean", "sd"),
@@ -70,7 +70,11 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
 # estimate reliability ----
 # maybe in the future it would be easier to have one function for every estimator...
 .frequentistReliabilityMainResults <- function(jaspResults, dataset, options) {
-  
+  if (!options[["mcDonaldScalef"]] & !options[["alphaScalef"]] & !options[["guttman2Scalef"]]
+      & !options[["guttman6Scalef"]] & !options[["glbScalef"]] & !options[["averageInterItemCorf"]]
+      & !options[["meanScalef"]] & !options[["sdScalef"]]) {
+    return()
+  }
   model <- jaspResults[["modelObj"]]$object
   relyFit <- model[["relyFit"]]
   if (is.null(model)) {
@@ -385,16 +389,20 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
 
 .frequentistReliabilityCheckLoadings <- function(dataset, variables) {
   
-  prin <- psych::principal(dataset)
-  idx <- prin[["loadings"]] < 0
-  sidx <- sum(idx)
-  if (sidx == 0) {
-    return()
+  if (ncol(dataset > 2)) {
+    prin <- psych::principal(dataset)
+    idx <- prin[["loadings"]] < 0
+    sidx <- sum(idx)
+    if (sidx == 0) {
+      return()
+    } else {
+      hasSchar <- if (sidx == 1L) "" else "s"
+      footnote <- gettextf("The following item%s correlated negatively with the scale: %s. ",
+                           hasSchar, paste0(variables[idx], collapse = ", "))
+      return(footnote)
+    }
   } else {
-    hasSchar <- if (sidx == 1L) "" else "s"
-    footnote <- gettextf("The following item%s correlated negatively with the scale: %s. ",
-                        hasSchar, paste0(variables[idx], collapse = ", "))
-    return(footnote)
+    return()
   }
 }
 
@@ -404,14 +412,24 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
 
 .frequentistReliabilityScaleTable <- function(jaspResults, model, options) {
   
-  if (!is.null(jaspResults[["scaleTableF"]])) {
+  if ((!options[["mcDonaldScalef"]] & !options[["alphaScalef"]] & !options[["guttman2Scalef"]] 
+       & !options[["guttman6Scalef"]] & !options[["glbScalef"]] & !options[["averageInterItemCorf"]]
+       & !options[["meanScalef"]] & !options[["sdScalef"]])) {
+    scaleTableF <- createJaspTable(gettext("Frequentist Scale Reliability Statistics"))
+    scaleTableF$dependOn(options = c("variables", "reverseScaledItems"))
+    scaleTableF$addColumnInfo(name = "estimate", title = "Estimate", type = "string")
+    nvar <- length(options[["variables"]])
+    if (nvar > 0L && nvar < 3L)
+      scaleTableF$addFootnote(gettext("Please enter at least 3 variables to do an analysis."))
+    jaspResults[["scaleTableF"]] <- scaleTableF
+    scaleTableF$position <- 1
     return()
   }
 
   scaleTableF <- createJaspTable(gettext("Frequentist Scale Reliability Statistics"))
   scaleTableF$dependOn(options = c("variables", "mcDonaldScalef", "alphaScalef", "guttman2Scalef", "guttman6Scalef",
                                    "glbScalef", "reverseScaledItems", "confidenceIntervalValue", "noSamplesf", 
-                                   "averageInterItemCor", "meanScale", "sdScale", "missingValuesf", "omegaEst", 
+                                   "averageInterItemCorf", "meanScalef", "sdScalef", "missingValuesf", "omegaEst", 
                                    "alphaMethod", "alphaInterval", "omegaInterval", "bootType", 
                                    "setSeed", "seedValue", "intervalOn"))
   
@@ -506,9 +524,9 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   itemTableF <- createJaspTable(gettext("Frequentist Individual Item Reliability Statistics"))
   itemTableF$dependOn(options = c("variables",
                                   "mcDonaldScalef", "alphaScalef", "guttman2Scalef", "guttman6Scalef", "glbScalef", 
-                                  "averageInterItemCor", "meanScale", "sdScale",
+                                  "averageInterItemCorf", "meanScalef", "sdScalef",
                                   "mcDonaldItemf",  "alphaItemf",  "guttman2Itemf", "guttman6Itemf", "glbItemf",
-                                  "reverseScaledItems", "meanItem", "sdItem", "itemRestCor", "missingValuesf", 
+                                  "reverseScaledItems", "meanItemf", "sdItemf", "itemRestCorf", "missingValuesf", 
                                   "omegaEst", "alphaMethod", "setSeed", "seedValue"))
   itemTableF$addColumnInfo(name = "variable", title = "Item", type = "string")
   
