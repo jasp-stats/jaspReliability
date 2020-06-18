@@ -1,7 +1,5 @@
 reliabilityBayesian <- function(jaspResults, dataset, options) {
 
-  sink("~/Downloads/log_Bay.txt")
-  on.exit(sink(NULL))
 	dataset <- .BayesianReliabilityReadData(dataset, options)
 
 	.BayesianReliabilityCheckErrors(dataset, options)
