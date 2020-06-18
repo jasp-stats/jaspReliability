@@ -82,8 +82,16 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   if (!options[["mcDonaldScale"]] & !options[["alphaScale"]] & !options[["guttman2Scale"]]
       & !options[["guttman6Scale"]] & !options[["glbScale"]] & !options[["averageInterItemCor"]]
       & !options[["meanScale"]] & !options[["sdScale"]]) {
-
-    return()
+    variables <- options[["variables"]]
+    dataset <- as.matrix(dataset) # fails for string factors!
+    if (length(options[["reverseScaledItems"]]) > 0L) {
+      cols <- match(unlist(options[["reverseScaledItems"]]), .unv(colnames(dataset)))
+      total <- apply(as.matrix(dataset[, cols]), 2, min) + apply(as.matrix(dataset[, cols]), 2, max)
+      dataset[ ,cols] = matrix(rep(total, nrow(dataset)), nrow(dataset), length(cols), byrow=T) - dataset[ ,cols]
+    }
+    model <- list()
+    model[["footnote"]] <- .BayesianReliabilityCheckLoadings(dataset, variables)
+    return(model)
   }
   
   model <- jaspResults[["modelObj"]]$object
@@ -274,6 +282,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
     nvar <- length(options[["variables"]])
     if (nvar > 0L && nvar < 3L)
       scaleTable$addFootnote(gettext("Please enter at least 3 variables to do an analysis."))
+    scaleTable$addFootnote(gettextf("%s", model[["footnote"]]))
     jaspResults[["scaleTable"]] <- scaleTable
     scaleTable$position <- 1
     return()

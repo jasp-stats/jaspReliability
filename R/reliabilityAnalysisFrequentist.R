@@ -73,7 +73,16 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   if (!options[["mcDonaldScalef"]] & !options[["alphaScalef"]] & !options[["guttman2Scalef"]]
       & !options[["guttman6Scalef"]] & !options[["glbScalef"]] & !options[["averageInterItemCorf"]]
       & !options[["meanScalef"]] & !options[["sdScalef"]]) {
-    return()
+    variables <- options[["variables"]]
+    dataset <- as.matrix(dataset) # fails for string factors!
+    if (length(options[["reverseScaledItems"]]) > 0L) {
+      cols <- match(unlist(options[["reverseScaledItems"]]), .unv(colnames(dataset)))
+      total <- apply(as.matrix(dataset[, cols]), 2, min) + apply(as.matrix(dataset[, cols]), 2, max)
+      dataset[ ,cols] = matrix(rep(total, nrow(dataset)), nrow(dataset), length(cols), byrow=T) - dataset[ ,cols]
+    }
+    model <- list()
+    model[["footnote"]] <- .frequentistReliabilityCheckLoadings(dataset, variables)
+    return(model)
   }
   model <- jaspResults[["modelObj"]]$object
   relyFit <- model[["relyFit"]]
@@ -421,6 +430,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
     if (nvar > 0L && nvar < 3L){
       scaleTableF$addFootnote(gettext("Please enter at least 3 variables to do an analysis."))
     }
+    scaleTableF$addFootnote(gettextf("%s", model[["footnote"]]))
     jaspResults[["scaleTableF"]] <- scaleTableF
     scaleTableF$position <- 1
     return()
