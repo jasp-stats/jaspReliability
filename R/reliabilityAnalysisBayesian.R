@@ -617,7 +617,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 	ggplot2::geom_text(data = datTxt, mapping = ggplot2::aes(x = x, y = y, label = label), inherit.aes = FALSE, 
 	                   size = 5) +
 	ggplot2::scale_y_continuous(name = gettext("Density"), breaks = yBreaks, limits = range(yBreaks)) +
-	ggplot2::scale_x_continuous(name = gettext(nms), breaks = (xBreaks), expand = xExpand)
+	ggplot2::scale_x_continuous(name = nms, breaks = (xBreaks), expand = xExpand)
 
 	
 	if (!is.null(shade)) {
@@ -761,7 +761,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
     ggplot2::theme(strip.background = ggplot2::element_rect(fill = "white"),
                    strip.text = ggplot2::element_text(colour = "black")) +
     ggplot2::ylab(gettext("Item Dropped")) +
-    ggplot2::xlab(gettext(nms)) +
+    ggplot2::xlab(nms) +
     ggplot2::scale_fill_grey() +
     ggplot2::scale_y_discrete(expand = ggplot2::expand_scale(mult = c(0.1, 0.25)))  
 
@@ -887,7 +887,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   
   g <- ggplot2::ggplot(dat, ggplot2::aes(x = Iterations, y = Value, colour = chain)) +
     ggplot2::geom_line(size = .3) +
-    ggplot2::ylab(gettext(nms)) +
+    ggplot2::ylab(nms) +
     ggplot2::scale_x_continuous(name = gettext("Iterations"), breaks = xBreaks)
 
   return(JASPgraphs::themeJasp(g))
