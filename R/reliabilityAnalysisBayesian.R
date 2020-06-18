@@ -1,6 +1,7 @@
 reliabilityBayesian <- function(jaspResults, dataset, options) {
 
-
+  sink("~/Downloads/log_Bay.txt")
+  on.exit(sink(NULL))
 	dataset <- .BayesianReliabilityReadData(dataset, options)
 
 	.BayesianReliabilityCheckErrors(dataset, options)
@@ -147,6 +148,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       
       # get rid of multiple chains, first save the chains:
       relyFit$Bayes$chains <- relyFit$Bayes$samp
+      print(relyFit$Bayes$chains$Bayes_omega)
       relyFit$Bayes$samp <- lapply(relyFit$Bayes$chains, .chainSmoker)
 
       # mean and sd
@@ -174,6 +176,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       ops <- .BayesianReliabilityDerivedOptions(options)
       order <- ops[["order"]]
       relyFit[["Bayes"]][["samp"]] <- relyFit[["Bayes"]][["samp"]][order]
+      relyFit[["Bayes"]][["chains"]] <- relyFit[["Bayes"]][["chains"]][order]
       relyFit[["Bayes"]][["est"]] <- relyFit[["Bayes"]][["est"]][order]
       
       relyFit[["Bayes"]][["ifitem"]][["samp"]] <- relyFit[["Bayes"]][["ifitem"]][["samp"]][order]
@@ -315,7 +318,9 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
           rhat <- NA_real_
         } else {
           tmp <- lapply(as.data.frame(t(relyFit[["Bayes"]][["chains"]][[i]])), coda::mcmc)
+          print(tmp)
           rhat <- coda::gelman.diag(coda::as.mcmc.list(tmp))[["psrf"]][, 1]
+          print(rhat)
         }
         newData <- data.frame(est = c(unlist(relyFit$Bayes$est[[i]], use.names = F), 
                                       unlist(model[["cri"]][["scaleCri"]][[i]], use.names = F), 

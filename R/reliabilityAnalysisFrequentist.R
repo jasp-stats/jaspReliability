@@ -1,7 +1,6 @@
 reliabilityFrequentist <- function(jaspResults, dataset, options) {
 
-  sink("~/Downloads/log_freq.txt")
-  on.exit(sink(NULL))
+
   dataset <- .frequentistReliabilityReadData(dataset, options)
   
   .frequentistReliabilityCheckErrors(dataset, options)
@@ -99,7 +98,6 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
       model[["obs"]] <- nrow(dataset)
       
       model[["footnote"]] <- .frequentistReliabilityCheckLoadings(dataset, variables)
-      print(.frequentistReliabilityCheckLoadings(dataset, variables))
       if (any(is.na(dataset))) {
         if (options[["missingValuesf"]] == "excludeCasesPairwise") {
           missing <- "pairwise"
@@ -454,10 +452,8 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   idxSelected <- which(selected)
   
   if (options[["mcDonaldScalef"]] & !is.null(relyFit[["freq"]][["omega.error"]])) {
-    print(model[["footnote"]])
     model[["footnote"]] <- gettextf("%sMcDonald's \u03C9 estimation method switched to PFA because the CFA
                                           did not find a solution. ", model[["footnote"]])
-    print(model[["footnote"]])
   }
 
   if (!is.null(relyFit)) {
