@@ -1,8 +1,10 @@
 reliabilityBayesian <- function(jaspResults, dataset, options) {
+  
 
-	dataset <- .BayesianReliabilityReadData(dataset, options)
+  
+	dataset <- .reliabilityReadData(dataset, options)
 
-	.BayesianReliabilityCheckErrors(dataset, options)
+	.reliabilityCheckErrors(dataset, options)
   
 	model <- .BayesianReliabilityMainResults(jaspResults, dataset, options)
 
@@ -52,7 +54,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   return(derivedOptions)
 }
 
-.BayesianReliabilityReadData <- function(dataset, options) {
+.reliabilityReadData <- function(dataset, options) {
 
   variables <- unlist(options[["variables"]])
 	if (is.null(dataset)) {
@@ -61,10 +63,10 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   return(dataset)
 }
 
-.BayesianReliabilityCheckErrors <- function(dataset, options) {
+.reliabilityCheckErrors <- function(dataset, options) {
 
   .hasErrors(dataset = dataset, perform = "run",
-             type = c("infinity", "variance", "observations"),
+             type = c("infinity", "variance", "observations", "varCovData"),
              observations.amount = " < 3",
              custom = .checkEigen,
              exitAnalysisIfErrors = TRUE)
@@ -77,6 +79,23 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   }
 }
 
+.reliabilityCheckLoadings <- function(dataset, variables) {
+  if (ncol(dataset > 2)) {
+    prin <- psych::principal(dataset)
+    idx <- prin[["loadings"]] < 0
+    sidx <- sum(idx)
+    if (sidx == 0) {
+      return("")
+    } else {
+      footnote <- .footnoteNegativeCorrelation(variables, idx)
+      return(footnote)
+    }
+  } else {
+    return("")  
+  }
+}
+
+
 # estimate reliability ----
 .BayesianReliabilityMainResults <- function(jaspResults, dataset, options) {
   if (!options[["mcDonaldScale"]] && !options[["alphaScale"]] && !options[["guttman2Scale"]]
@@ -87,7 +106,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       dataset <- .reverseScoreItems(dataset, options)
     }
     model <- list()
-    model[["footnote"]] <- .BayesianReliabilityCheckLoadings(dataset, variables)
+    model[["footnote"]] <- .reliabilityCheckLoadings(dataset, variables)
     return(model)
   }
   
@@ -116,7 +135,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
           options[["missings"]] <- "complete.obs"
           }
       }
-      model[["footnote"]] <- .BayesianReliabilityCheckLoadings(dataset, variables)
+      model[["footnote"]] <- .reliabilityCheckLoadings(dataset, variables)
       
       chains <- options[["noChains"]]
       samples <- options[["noSamples"]]
@@ -245,25 +264,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 }
 
 
-.BayesianReliabilityCheckLoadings <- function(dataset, variables) {
-  if (ncol(dataset > 2)) {
-    prin <- psych::principal(dataset)
-    idx <- prin[["loadings"]] < 0
-    sidx <- sum(idx)
-    if (sidx == 0) {
-      return("")
-    } else {
-      hasSchar <- if (sidx == 1L) "" else "s"
-      footnote <- sprintf(ngettext(length(variables[idx]),
-                                   "The following item correlated negatively with the scale: %s. ",
-                                   "The following items correlated negatively with the scale: %s. "),
-                          paste(variables[idx], collapse = ", "))
-      return(footnote)
-    }
-  } else {
-    return("")  
-    }
-}
+
 
 
 # ----------------------------- tables ------------------------------------
@@ -632,7 +633,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
 	
 	if (!is.null(shade)) {
-	  datFilter <- datDens[datDens[["x"]] >= shade[1] && datDens[["x"]] <= shade[2], ]
+	  datFilter <- datDens[datDens[["x"]] >= shade[1] & datDens[["x"]] <= shade[2], ]
 	  g <- g + ggplot2::geom_ribbon(data = datFilter, mapping = ggplot2::aes(ymin = 0, ymax = y), 
 	                                fill = "grey", alpha = 0.95) +
 	           ggplot2::geom_line(size = .85)
@@ -886,7 +887,8 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 .BayesianReliabilityMakeTracePlot <- function(relyFit, i, nms, xlim) {
   
   dd <- relyFit$Bayes$chains[[i]]
-  xBreaks <- pretty(1:length(dd[1, ]), n=4)
+  xBreaks <- JASPgraphs::getPrettyAxisBreaks(c(0, length(dd[1, ])))
+
   
   dv <- cbind(dd[1, ], 1, seq(1, ncol(dd))) 
   for (j in 2:nrow(dd)) {
@@ -900,6 +902,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
     ggplot2::geom_line(size = .3) +
     ggplot2::ylab(nms) +
     ggplot2::scale_x_continuous(name = gettext("Iterations"), breaks = xBreaks)
+
 
   return(JASPgraphs::themeJasp(g))
   
@@ -971,3 +974,10 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   return(dataset)
 }
 
+.footnoteNegativeCorrelation <- function(variables, idx) {
+  footnote <- sprintf(ngettext(length(variables[idx]),
+                               "The following item correlated negatively with the scale: %s. ",
+                               "The following items correlated negatively with the scale: %s. "),
+                      paste(variables[idx], collapse = ", "))
+}
+  
