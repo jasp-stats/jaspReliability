@@ -859,7 +859,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
     for (i in indices) {
       if (is.null(plotContainerTP[[nmsObjs[i]]])) {
         
-        p <- .BayesianReliabilityMakeTracePlot(relyFit, i, nmsLabs[[i]], xlim)
+        p <- .BayesianReliabilityMakeTracePlot(relyFit, i, nmsLabs[[i]])
         plotObjTP <- createJaspPlot(plot = p, title = nmsObjs[i], width = 400)
         plotObjTP$dependOn(options = names(indices[i]))
         plotObjTP$position <- i
@@ -884,12 +884,11 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 }
 
 
-.BayesianReliabilityMakeTracePlot <- function(relyFit, i, nms, xlim) {
+.BayesianReliabilityMakeTracePlot <- function(relyFit, i, nms) {
   
   dd <- relyFit$Bayes$chains[[i]]
-  xBreaks <- JASPgraphs::getPrettyAxisBreaks(c(0, length(dd[1, ])))
+  xBreaks <- JASPgraphs::getPrettyAxisBreaks(c(0, length(dd[1, ])+50))
 
-  
   dv <- cbind(dd[1, ], 1, seq(1, ncol(dd))) 
   for (j in 2:nrow(dd)) {
     dv <- rbind(dv, cbind(dd[j, ], j, seq(1, ncol(dd))))

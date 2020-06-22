@@ -588,7 +588,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
 
 
   jaspResults[["fitTable"]] <- fitTable
-  fitTableF$position <- 3
+  fitTable$position <- 3
   
 }
 
