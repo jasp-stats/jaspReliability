@@ -2,7 +2,7 @@ Package: DevelopmentModule
 Type: Package
 Title: Reliability Module for JASP
 Version: 0.1
-Date: 2020-06-22
+Date: 2020-06-24
 Author: Julius M. Pfadt, Don van den Bergh & Eric-Jan Wagenmakers
 Website: https://github.com/juliuspf/Reliability
 Maintainer: Julius M. Pfadt <julius.pfadt@gmail.com>
