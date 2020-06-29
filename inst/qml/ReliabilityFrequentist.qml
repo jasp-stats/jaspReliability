@@ -62,37 +62,37 @@ Form
 
 			CheckBox 
 			{    
-				id:     	mcdonald
-				name:   	"mcDonaldScale"	
+				id:     	mcdonaldf
+				name:   	"mcDonaldScale"
 				label:  	qsTr("McDonald's ω")         
 				checked: 	true
 			}
 			
 			CheckBox 
 			{     
-				name: 	"alphaScale";				
+				name: 	"alphaScale";
 				label: 	qsTr("Cronbach's α");         
-				id: 	cronbach 
+				id: 	cronbachf 
 			}
 
 			CheckBox 
 			{     
-				id: 	guttman2       	          
-				name: 	"guttman2Scale";			
+				id: 	guttman2f       	          
+				name: 	"guttman2Scale";
 				label: 	qsTr("Guttman's λ2");         
 			}
 
 			CheckBox 
 			{     
-				id: 	guttman6       	          
-				name: 	"guttman6Scale";			
+				id: 	guttman6f       	          
+				name: 	"guttman6Scale";
 				label: 	qsTr("Guttman's λ6");         
 			}
 
 			CheckBox 
 			{     
-				id: 	glb      	              
-				name: 	"glbScale";				  
+				id: 	glbf      	              
+				name: 	"glbScale";
 				label: 	qsTr("Greatest lower bound"); 
 			}
 
@@ -108,37 +108,37 @@ Form
 
 			CheckBox 
 			{ 
-				name: 		"mcDonaldItem";				
+				name: 		"mcDonaldItem";
 				label: 		qsTr("McDonald's ω  (if item dropped)");	        
-				enabled: 	mcdonald.checked 
+				enabled: 	mcdonaldf.checked 
 			}
 
 			CheckBox 
 			{ 
-				name: 		"alphaItem";				
+				name: 		"alphaItem";
 				label: 		qsTr("Cronbach's α (if item dropped)");	     
-				enabled: 	cronbach.checked 
+				enabled: 	cronbachf.checked 
 			}
 
 			CheckBox 
 			{ 
-				name: 		"guttman2Item";			
+				name: 		"guttman2Item";
 				label: 		qsTr("Guttman's λ2 (if item dropped)");	       
-				enabled: 	guttman2.checked  
+				enabled: 	guttman2f.checked  
 			}
 
 			CheckBox 
 			{ 
-				name: 		"guttman6Item";			
+				name: 		"guttman6Item";
 				label: 		qsTr("Guttman's λ6 (if item dropped)");	       
-				enabled: 	guttman6.checked  
+				enabled: 	guttman6f.checked  
 			}
 			
 			CheckBox 
 			{ 
-				name: 		"glbItem";     		
+				name: 		"glbItem";
 				label: 		qsTr("Greatest lower bound (if item dropped)");	
-				enabled: 	glb.checked     
+				enabled: 	glbf.checked     
 			}    
 			
 			CheckBox { name: "itemRestCor";	label: qsTr("Item-rest correlation")		}

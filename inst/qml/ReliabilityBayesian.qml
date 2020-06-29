@@ -31,8 +31,8 @@ Form
   		
 		AssignedVariablesList 	
 		{ 
-			name: 			    "variables"
-			title: 			    qsTr("Variables")
+			name: 			"variables"
+			title: 			qsTr("Variables")
 			allowedColumns: ["scale", "ordinal"]
 		}
   	}
@@ -47,9 +47,9 @@ Form
 
     		CIField 
     		{      
-				name: 			  "credibleIntervalValueScale";   
-				label: 			  qsTr("Credible interval");
-				defaultValue: 95
+				name: 			"credibleIntervalValueScale";   
+				label: 			qsTr("Credible interval");
+				defaultValue: 	95
     		}
 
     		CheckBox 
@@ -70,35 +70,35 @@ Form
 
 			CheckBox 
 			{     
-				id: 	  cronbach   		      
+				id: 	cronbach   		      
 				name: 	"alphaScale";				
 				label: 	qsTr("Cronbach's α");         
 			}
 			
 			CheckBox 
 			{     
-				id: 	  guttman2      
+				id: 	guttman2      
 				name: 	"guttman2Scale";			
 				label: 	qsTr("Guttman's λ2");        
 			}
 			
 			CheckBox 
 			{     
-				id: 	  guttman6      
+				id: 	guttman6      
 				name: 	"guttman6Scale";			
 				label: 	qsTr("Guttman's λ6");        
 			}
 			
 			CheckBox 
 			{     
-				id: 	  glb      	              
+				id: 	glb      	              
 				name: 	"glbScale";				  
 				label: 	qsTr("Greatest lower bound"); 
 			}
 
 			CheckBox { name: "averageInterItemCor";	label: qsTr("Average interitem correlation")	}
-			CheckBox { name: "meanScale";			      label: qsTr("Mean")								}
-			CheckBox { name: "sdScale";				      label: qsTr("Standard deviation")				}
+			CheckBox { name: "meanScale";			label: qsTr("Mean")								}
+			CheckBox { name: "sdScale";				label: qsTr("Standard deviation")				}
         
     	}
            
@@ -108,14 +108,14 @@ Form
 
     		CIField 
     		{      
-				name: 			  "credibleIntervalValueItem";   
-				label: 			  qsTr("Credible interval");
-				defaultValue: 95
+				name: 			"credibleIntervalValueItem";   
+				label: 			qsTr("Credible interval");
+				defaultValue: 	95
     		}
 
     		CheckBox 
     		{ 
-				id: 		  mcdonaldItem
+				id: 		mcdonaldItem
 				name: 		"mcDonaldItem";				
 				label: 		qsTr("McDonald's ω  (if item dropped)");	        
 				enabled: 	mcdonald.checked 
@@ -123,7 +123,7 @@ Form
     		
 			CheckBox 
     		{ 
-				id: 		  cronbachItem
+				id: 		cronbachItem
 				name: 		"alphaItem";					
 				label: 		qsTr("Cronbach's α (if item dropped)");	        
 				enabled: 	cronbach.checked 
@@ -131,7 +131,7 @@ Form
     		
 			CheckBox 
     		{ 
-				id: 		  lambda2Item
+				id: 		lambda2Item
 				name: 		"guttman2Item";				
 				label: 		qsTr("Guttman's λ2 (if item dropped)");	        
 				enabled: 	guttman2.checked  
@@ -139,7 +139,7 @@ Form
 
     		CheckBox 
     		{ 
-          	id: 		  lambda6item
+          		id: 		lambda6item
     		  	name: 		"guttman6Item";				
     		  	label: 		qsTr("Guttman's λ6 (if item dropped)");	        
     		  	enabled: 	guttman6.checked  
@@ -147,7 +147,7 @@ Form
 
 			CheckBox 
 			{ 
-				id: 		  glbItem
+				id: 		glbItem
 				name: 		"glbItem";     				
 				label: 		qsTr("Greatest lower bound (if item dropped)");	
 				enabled: 	glb.checked    
@@ -155,7 +155,7 @@ Form
 
 			CheckBox 
 			{ 
-				id: 		  plotItem
+				id: 		plotItem
 				name: 		"plotItem";     				
 				label: 		qsTr("If item dropped plot");	
 				enabled: 	mcdonaldItem.checked || cronbachItem.checked || lambda2Item.checked || glbItem.checked;
@@ -171,16 +171,16 @@ Form
 						title: 	""
 						name: 	"orderType"
 						
-						RadioButton { value: "orderItemMean"; label: qsTr("Order items by mean");			checked: true	}
+						RadioButton { value: "orderItemMean"; 	label: qsTr("Order items by mean");			checked: true	}
 						RadioButton { value: "orderItemKL"; 	label: qsTr("Order items by KL-divergence")					}
 						RadioButton { value: "orderItemKS"; 	label: qsTr("Order items by KS-distance")					}
 					}
 				}
 			}
         
-			CheckBox { name: "itemRestCor";		label: qsTr("Item-rest correlation")			}
-			CheckBox { name: "meanItem";			label: qsTr("Mean")								}
-			CheckBox { name: "sdItem";				label: qsTr("Standard deviation")				}
+			CheckBox { name: "itemRestCor";						label: qsTr("Item-rest correlation")			}
+			CheckBox { name: "meanItem";						label: qsTr("Mean")								}
+			CheckBox { name: "sdItem";							label: qsTr("Standard deviation")				}
     	}
 
       Group
@@ -207,41 +207,41 @@ Form
 
 		Group
         {
-        CheckBox 
-  			  { 
-  				id:                 probTable
-  				name:               "probTable"; 
-  				label:              qsTr("Probability for:")
-  				childrenOnSameRow:  true
-  				
-  				RowLayout 
-          {
-            DoubleField
-    				{
-    					name: 			  "probTableValueLow"
-    					label: 	      qsTr("")
-    					defaultValue: 0.70
-    					min: 			    0
-    					max: 			    1
-    					decimals: 		2
-    					fieldWidth: 	40
-    				}
-    				Label 
+			CheckBox 
             {
-              text: qsTr("< Reliability <")
+                id:                 probTable
+                name:               "probTable";
+                label:              qsTr("Probability for:")
+                childrenOnSameRow:  true
+
+                RowLayout
+                {
+                    DoubleField
+                    {
+                        name:           "probTableValueLow"
+                        label:          qsTr("")
+                        defaultValue:   0.70
+                        min:            0
+                        max:            1
+                        decimals:       2
+                        fieldWidth:     40
+                    }
+
+                    Label
+                    {   text: qsTr("< Reliability <")   }
+
+                    DoubleField
+                    {
+                        name:           "probTableValueHigh"
+                        label:          qsTr("")
+                        defaultValue:   .90
+                        min:            0
+                        max:            1
+                        decimals:       2
+                        fieldWidth:     40
+                    }
+                }
             }
-    				DoubleField
-    				{
-    					name: 			  "probTableValueHigh"
-    					label:        qsTr("")
-    					defaultValue: .90
-    					min: 			    0
-    					max: 			    1
-    					decimals: 		2
-    					fieldWidth: 	40
-    				}
-  				}
-  			}
 
 			Item
 			{
@@ -271,42 +271,42 @@ Form
 			
 			IntegerField
 			{
-				name: 			  "noSamples"
-				label: 			  qsTr("No. samples")
-				defaultValue: 1000
+				name: 			"noSamples"
+				label: 			qsTr("No. samples")
+				defaultValue: 	1000
 				fieldWidth: 	100
-				min: 			    100
-				max: 			    1e7
+				min: 			100
+				max: 			1e7
 			}
 			
 			IntegerField
 			{
-				name: 			  "noBurnin"
-				label: 			  qsTr("No. burnin samples")
-				defaultValue: 50
+				name: 			"noBurnin"
+				label: 			qsTr("No. burnin samples")
+				defaultValue: 	50
 				fieldWidth: 	100
-				min: 			    20
-				max: 			    1e6
+				min: 			20
+				max: 			1e6
 			}
 			
 			IntegerField
 			{
-				name: 			  "noThin"
-				label: 			  qsTr("Thinning")
-				defaultValue: 1
+				name: 			"noThin"
+				label: 			qsTr("Thinning")
+				defaultValue: 	1
 				fieldWidth: 	100
-				min: 			    1
-				max: 			    1e3
+				min: 			1
+				max: 			1e3
 			}
 			
 			IntegerField
 			{
-				name: 			  "noChains"
-				label: 			  qsTr("No. chains")
-				defaultValue: 3
+				name: 			"noChains"
+				label: 			qsTr("No. chains")
+				defaultValue: 	3
 				fieldWidth: 	100
-				min: 			    2
-				max: 			    100
+				min: 			2
+				max: 			100
 			}
 		}
 		
@@ -314,7 +314,7 @@ Form
 		{
 			title: qsTr("Diagnostics")
 			
-			CheckBox {	name: "rHat";		    label: qsTr("R-hat");		}
+			CheckBox {	name: "rHat";		label: qsTr("R-hat");		}
 			CheckBox {	name: "tracePlot";	label: qsTr("Traceplots");	}
 		}
 
@@ -324,18 +324,18 @@ Form
      
 			CheckBox 
 			{
-				name: 				      "setSeed"
-				label: 				      qsTr("Set seed")
+				name: 				"setSeed"
+				label: 				qsTr("Set seed")
 				childrenOnSameRow: 	true
 				
 				IntegerField
 				{
-					name: 			  "seedValue"
-					label: 			  ""
-					defaultValue: 1234
+					name: 			"seedValue"
+					label: 			""
+					defaultValue: 	1234
 					fieldWidth: 	100
-					min: 			    1
-					max: 			    1e9
+					min: 			1
+					max: 			1e9
 				}
 			}
 		}
