@@ -1,5 +1,6 @@
 reliabilityFrequentist <- function(jaspResults, dataset, options) {
 
+
   
   dataset <- .reliabilityReadData(dataset, options)
   .reliabilityCheckErrors(dataset, options)
@@ -144,12 +145,13 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
                                          missing = missing, callback = progressbarTick))
           
           relyFit$freq$est$freq_alpha <- Bayesrel:::applyalpha(model[["dat_cov"]])
-          p <- ncol(dataset)
-          Ctmp <- array(0, c(p, p - 1, p - 1))
-          for (i in 1:p){
-            Ctmp[i, , ] <- model[["dat_cov"]][-i, -i]
-          }
+          relyFit[["freq"]][["est"]] <- relyFit[["freq"]][["est"]][5, 1, 2, 3, 4]
+            
+          Ctmp <- .itemDeletedM(model[["dat_cov"]])
+          
           relyFit$freq$ifitem$alpha <- apply(Ctmp, 1, Bayesrel:::applyalpha)
+          relyFit[["freq"]][["ifitem"]] <- relyFit[["freq"]][["ifitem"]][c(5, 1, 2, 3, 4)]
+          
           
           if (!alphaAna) { # when standardized alpha, but bootstrapped alpha interval:
             cors <- array(0, c(options[["noSamples"]], p, p))
@@ -157,15 +159,12 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
               cors[i, , ] <- .cov2cor.callback(relyFit$freq$covsamp[i, , ], progressbarTick)
             }
             relyFit$freq$boot$alpha <- apply(cors, 1, Bayesrel:::applyalpha)
-            if (omegaAna && is.null(relyFit[["freq"]][["omega.error"]])) {
+            if (length(relyFit[["freq"]][["boot"]] == 4))
               relyFit[["freq"]][["boot"]] <- relyFit[["freq"]][["boot"]][c(4, 1, 2, 3)]
-            } else {
+            else if (length(relyFit[["freq"]][["boot"]] == 5))
               relyFit[["freq"]][["boot"]] <- relyFit[["freq"]][["boot"]][c(5, 1, 2, 3, 4)]
-            }
+            
           }
-          
-          relyFit[["freq"]][["est"]] <- relyFit[["freq"]][["est"]][c(5, 1, 2, 3, 4)]
-          relyFit[["freq"]][["ifitem"]] <- relyFit[["freq"]][["ifitem"]][c(5, 1, 2, 3, 4)]
           
         } else { # alpha unstandardized
           model[["dat_cov"]] <- Bayesrel:::make_symmetric(cov(dataset, use = use.cases))
@@ -176,8 +175,9 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
                                          omega.int.analytic = omegaAna,
                                          para.boot = para,
                                          missing = missing, callback = progressbarTick))
+          
         }
-
+        
         # first the scale statistics
         cordat <- cor(dataset, use = use.cases)
         relyFit$freq$est$avg_cor <- mean(cordat[lower.tri(cordat)])
@@ -203,6 +203,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         order <- ops[["order"]]
         relyFit[["freq"]][["est"]] <- relyFit[["freq"]][["est"]][order]
         relyFit[["freq"]][["ifitem"]] <- relyFit[["freq"]][["ifitem"]][order]
+        
         
         # ------------------------ only point estimates, no intervals: ---------------------------
       } else { 
@@ -620,4 +621,13 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   return(om)
 }
 
+
+.itemDeletedM <- function(cc) {
+  p <- ncol(cc)
+  Ctmp <- array(0, c(p, p - 1, p - 1))
+  for (i in 1:p){
+    Ctmp[i, , ] <- cc[-i, -i]
+  }
+  return(Ctmp)
+}
 
