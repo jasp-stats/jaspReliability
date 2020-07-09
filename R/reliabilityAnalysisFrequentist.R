@@ -1,6 +1,7 @@
 reliabilityFrequentist <- function(jaspResults, dataset, options) {
 
-
+  sink("~/Downloads/log_freq.txt")
+  on.exit(sink(NULL))
   
   dataset <- .reliabilityReadData(dataset, options)
   .reliabilityCheckErrors(dataset, options)
@@ -145,7 +146,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
                                          missing = missing, callback = progressbarTick))
           
           relyFit$freq$est$freq_alpha <- Bayesrel:::applyalpha(model[["dat_cov"]])
-          relyFit[["freq"]][["est"]] <- relyFit[["freq"]][["est"]][5, 1, 2, 3, 4]
+          relyFit[["freq"]][["est"]] <- relyFit[["freq"]][["est"]][c(5, 1, 2, 3, 4)]
             
           Ctmp <- .itemDeletedM(model[["dat_cov"]])
           
@@ -159,9 +160,9 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
               cors[i, , ] <- .cov2cor.callback(relyFit$freq$covsamp[i, , ], progressbarTick)
             }
             relyFit$freq$boot$alpha <- apply(cors, 1, Bayesrel:::applyalpha)
-            if (length(relyFit[["freq"]][["boot"]] == 4))
+            if (length(relyFit[["freq"]][["boot"]]) == 4)
               relyFit[["freq"]][["boot"]] <- relyFit[["freq"]][["boot"]][c(4, 1, 2, 3)]
-            else if (length(relyFit[["freq"]][["boot"]] == 5))
+            else if (length(relyFit[["freq"]][["boot"]]) == 5)
               relyFit[["freq"]][["boot"]] <- relyFit[["freq"]][["boot"]][c(5, 1, 2, 3, 4)]
             
           }
@@ -203,7 +204,6 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         order <- ops[["order"]]
         relyFit[["freq"]][["est"]] <- relyFit[["freq"]][["est"]][order]
         relyFit[["freq"]][["ifitem"]] <- relyFit[["freq"]][["ifitem"]][order]
-        
         
         # ------------------------ only point estimates, no intervals: ---------------------------
       } else { 
@@ -277,7 +277,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         relyFit$freq$ifitem$mean <- colMeans(dataset, na.rm = T)
         relyFit$freq$ifitem$sd <- apply(dataset, 2, sd, na.rm = T)  
       }
-
+      
       
       
       # Consider stripping some of the contents of relyFit to reduce memory load
@@ -306,10 +306,9 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
     if (options[["intervalOn"]]) {
       cfiState <- jaspResults[["cfiObj"]]$object
       if (is.null(cfiState) && !is.null(relyFit)) {
-        
         scaleCfi <- .frequentistReliabilityCalcCfi(relyFit[["freq"]][["boot"]],             
                                                    options[["confidenceIntervalValue"]])
-        
+
         # alpha int is analytical, not from the boot sample, so:
         if (options[["alphaInterval"]] == "alphaAnalytic") {
           
@@ -345,7 +344,6 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         jaspCfiState <- createJaspState(cfiState)
         jaspCfiState$dependOn(options = "confidenceIntervalValue", optionsFromObject = jaspResults[["modelObj"]])
         jaspResults[["cfiObj"]] <- jaspCfiState
-        
       }
       model[["cfi"]] <- cfiState
       progressbarTick()
@@ -365,13 +363,14 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   
   cfi <- vector("list", length(boot))
   names(cfi) <- names(boot)
-  
   for (nm in names(boot)) {
-    if (any(is.na(boot[[nm]]))) {
+    if (nm == "mean" | nm == "sd")
       cfi[[nm]] <- c(NA_real_, NA_real_)
-    } else {
-      cfi[[nm]] <- quantile(boot[[nm]], prob = c((1-cfiValue)/2, 1-(1-cfiValue)/2))
-    }
+    else if (all(is.na(boot[[nm]])))
+      cfi[[nm]] <- c(NaN, NaN)
+    else 
+      cfi[[nm]] <- quantile(boot[[nm]], prob = c((1-cfiValue)/2, 1-(1-cfiValue)/2), na.rm = T)
+    
     names(cfi[[nm]]) <- c("lower", "upper")
   }
   return(cfi)
@@ -440,13 +439,24 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
 
   if (!is.null(relyFit)) {
     if (options[["intervalOn"]]) {
+      addSingularFootnote <- FALSE
       for (i in idxSelected) {
         scaleTable$addColumnInfo(name = paste0("est", i), title = gettext(opts[i]), type = "number")
         newData <- data.frame(est = c(unlist(relyFit$freq$est[[i]], use.names = F), 
                                       unlist(model[["cfi"]][["scaleCfi"]][[i]], use.names = F)))
         colnames(newData) <- paste0(colnames(newData), i)
         allData <- cbind(allData, newData)
+        
+        # produce footnote for coefficients that are prone to fail with singular matrices, such as lambda6 and omega
+        if (is.nan(model[["cfi"]][["scaleCfi"]][[i]])) 
+          addSingularFootnote <- TRUE
       }
+      if (addSingularFootnote) {
+        model[["footnote"]] <- gettextf("%s Some confidence intervals could not be computed because 
+                                        out of the bootstrapped matrices non were invertible. ",
+                                        model[["footnote"]])
+      }
+
     } else {
       for (i in idxSelected) {
         scaleTable$addColumnInfo(name = paste0("est", i), title = gettext(opts[i]), type = "number")
