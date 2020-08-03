@@ -5,17 +5,14 @@ Description
 {
 	name		: "Reliability"
 	title		: qsTr("Reliability")
-	description	: qsTr("This module offers the standard Frequentist and Bayesian Reliability analyses.")
-	icon		: "reliability_icon_classic.svg"
-	version		: "0.13.1"
+	description	: qsTr("This module offers Reliability analyses.")
+	version		: "0.1"
 	author		: "Julius M. Pfadt, Don van den Bergh & Eric-Jan Wagenmakers"
 	maintainer	: "Julius M. Pfadt <julius.pfadt@gmail.com>"
-	website		: "jasp-stats.org"
+	website		: "https://github.com/jasp-stats/Reliability"
 	license		: "GPL (>= 2)"
-	
-	Package	{ name: "Rdpack" 						}
-	Package	{ name: "Bayesrel" 						}
-	Package	{ name: "Rcsdp";	version: "0.1.57"; 	}
+	icon		: "reliability_icon_classic.svg"
+
 
 	GroupTitle
 	{
@@ -25,9 +22,9 @@ Description
 
 	Analysis
 	{
-		title	: qsTr("Single-Test Reliability Analysis")
-		qml     : "ReliabilityFrequentist.qml"
-		func	: "reliabilityFrequentist"
+		title:	qsTr("Single-Test Reliability Analysis")
+		qml: 	"ReliabilityFrequentist.qml"
+		func: 	"reliabilityFrequentist"
 	}
 
 	Separator {}
@@ -40,9 +37,9 @@ Description
 
 	Analysis
 	{
-		menu : qsTr("Single-Test Reliability Analysis")
-		title: qsTr("Bayesian Single-Test Reliability Analysis")
-		qml  : "ReliabilityBayesian.qml"
-		func : "reliabilityBayesian"
+		menu: 	qsTr("Single-Test Reliability Analysis")
+		title: 	qsTr("Bayesian Single-Test Reliability Analysis")
+		qml: 	"ReliabilityBayesian.qml"
+		func: 	"reliabilityBayesian"
 	}
 }
