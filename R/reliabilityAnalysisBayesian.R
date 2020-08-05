@@ -180,7 +180,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       
       # get rid of multiple chains, first save the chains:
       relyFit[["Bayes"]][["chains"]] <- relyFit[["Bayes"]][["samp"]]
-      relyFit[["Bayes"]][["samp"]] <- lapply(relyFit[["Bayes"]][["chains"]], .chainSmoker)
+      relyFit[["Bayes"]][["samp"]] <- lapply(relyFit[["Bayes"]][["chains"]], as.vector)
 
       # mean and sd
       relyFit[["Bayes"]][["samp"]][["mean"]] <- NA_real_
@@ -190,7 +190,8 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       
       # get rid of multiple chains, first save the chains:
       relyFit[["Bayes"]][["ifitem"]][["chains"]] <- relyFit[["Bayes"]][["ifitem"]][["samp"]]
-      relyFit[["Bayes"]][["ifitem"]][["samp"]] <- lapply(relyFit[["Bayes"]][["ifitem"]][["chains"]], .chainSmoker)
+      relyFit[["Bayes"]][["ifitem"]][["samp"]] <- lapply(relyFit[["Bayes"]][["ifitem"]][["chains"]], 
+                                                         function(x) apply(x, 3, as.vector))
 
       # now the item statistics
       relyFit[["Bayes"]][["ifitem"]][["samp"]][["ircor"]] <- .reliabilityItemRestCor(dataset, options[["noSamples"]], options[["noBurnin"]], 
@@ -988,16 +989,6 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 .KLD.statistic <- function(x, y) {
   t <- LaplacesDemon::KLD(x, y)
   t$sum.KLD.py.px
-}
-
-.chainSmoker <- function(A) {
-  d <- dim(A)
-  if (length(d) == 2) {
-    Av <- as.vector(A)
-  } else {
-    Av <- apply(A, seq(3, length(d), 1), as.vector)
-  }
-  return(coda::mcmc(Av))
 }
 
 .cov2cor.callback <- function(C, callback) {
