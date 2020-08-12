@@ -619,11 +619,11 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
 
 
-  xBreaks <- JASPgraphs::getPrettyAxisBreaks(datDens$x)
+  xBreaks <- jaspGraphs::getPrettyAxisBreaks(datDens$x)
 
   # max height posterior is at 90% of plot area; remainder is for credible interval
   ymax <- max(d$y) / .9
-  yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(0, ymax))
+  yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(0, ymax))
   ymax <- max(yBreaks)
   scaleCriRound <- round(scaleCri[[i]], 3)
   datCri <- data.frame(xmin = scaleCriRound[1L], xmax = scaleCriRound[2L], y = .925 * ymax)
@@ -692,7 +692,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
 
 
-  return(JASPgraphs::themeJasp(g))
+  return(jaspGraphs::themeJasp(g))
 
 }
 
@@ -819,7 +819,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
   
   
-  return(JASPgraphs::themeJasp(g))
+  return(jaspGraphs::themeJasp(g))
   
 }
 
@@ -848,7 +848,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
     eframe$eigen_sim_low <- apply(ee_impl, 2, quantile, prob = .025)
     eframe$eigen_sim_up<- apply(ee_impl, 2, quantile, prob = .975)
     leg_pos <- (max(eframe$eigen_value) + min(eframe$eigen_value)) * .75
-    yBreaks <- JASPgraphs::getPrettyAxisBreaks(c(0, max(eframe$eigen_sim_up)))
+    yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(0, max(eframe$eigen_sim_up)))
     
     
     g <- ggplot2::ggplot(eframe, mapping = ggplot2::aes(x = number, y = eigen_value)) +
@@ -860,7 +860,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       ggplot2::scale_y_continuous(name = gettext("Eigenvalue"), breaks = yBreaks, limits = range(yBreaks)) +
       ggplot2::xlab(gettext("Factors"))
     
-    g <- JASPgraphs::themeJasp(g)
+    g <- jaspGraphs::themeJasp(g)
   }
   plot <- createJaspPlot(plot = g, title = "Posterior Predictive Check Omega", width = 400)
   plot$dependOn(options = c("variables", "reverseScaledItems", "noSamples", "noBurnin", "noChains", "noThin",
@@ -925,7 +925,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 .BayesianReliabilityMakeTracePlot <- function(relyFit, i, nms) {
   
   dd <- relyFit[["Bayes"]][["chains"]][[i]]
-  xBreaks <- JASPgraphs::getPrettyAxisBreaks(c(0, length(dd[1, ])))
+  xBreaks <- jaspGraphs::getPrettyAxisBreaks(c(0, length(dd[1, ])))
 
   dv <- cbind(dd[1, ], 1, seq(1, ncol(dd))) 
   for (j in 2:nrow(dd)) {
@@ -943,7 +943,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
                                 expand = ggplot2::expand_scale(mult = c(0.05, 0.1)))
 
 
-  return(JASPgraphs::themeJasp(g))
+  return(jaspGraphs::themeJasp(g))
   
 }
 
