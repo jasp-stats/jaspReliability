@@ -3,7 +3,7 @@ import JASP.Module 	1.0
 
 Description
 {
-	name		: "Reliability"
+	name		: "jaspReliability"
 	title		: qsTr("Reliability")
 	description	: qsTr("This module offers Reliability analyses.")
 	version		: "0.1"
