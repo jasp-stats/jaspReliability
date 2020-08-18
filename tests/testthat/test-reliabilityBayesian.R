@@ -3,6 +3,8 @@ options$alphaItem <- TRUE
 options$alphaScale <- TRUE
 options$averageInterItemCor <- TRUE
 options$credibleIntervalValueItem <- 0.9
+options$dispPrior <- TRUE
+options$fixXRange <- TRUE
 options$glbItem <- TRUE
 options$glbScale <- TRUE
 options$guttman2Item <- TRUE
@@ -14,6 +16,10 @@ options$mcDonaldItem <- TRUE
 options$meanItem <- TRUE
 options$meanScale <- TRUE
 options$noSamples <- 200
+options$orderItem <- TRUE
+options$orderType <- "orderItemKS"
+options$plotItem <- TRUE
+options$plotPosterior <- TRUE
 options$probTable <- TRUE
 options$probTableValueHigh <- 0.3
 options$probTableValueLow <- 0.1
@@ -22,6 +28,7 @@ options$reverseScaledItems <- "debMiss30"
 options$sdItem <- TRUE
 options$sdScale <- TRUE
 options$setSeed <- TRUE
+options$shadePlots <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss30")
 set.seed(1)
 results <- runAnalysis("reliabilityBayesian", "debug.csv", options)
@@ -59,6 +66,66 @@ test_that("Bayesian Individual Item Reliability Statistics table results match",
                                       15.9882068024571, 24.0657052758223, 0.589811814300273, 0.570258196480784,
                                       0.610285976634783, 0.629418255267226, 0.701113938910745, 0.338540231176324,
                                       "debMiss30"))
+})
+
+test_that("Cronbach's α plot matches", {
+  plotName <- results[["results"]][["plotContainer"]][["collection"]][["plotContainer_Cronbach's α"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "cronbach-s-α-scale", dir="reliabilityBayesian")
+})
+
+test_that("Greatest Lower Bound plot matches", {
+  plotName <- results[["results"]][["plotContainer"]][["collection"]][["plotContainer_Greatest Lower Bound"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "greatest-lower-bound-scale", dir="reliabilityBayesian")
+})
+
+test_that("Guttman's λ2 plot matches", {
+  plotName <- results[["results"]][["plotContainer"]][["collection"]][["plotContainer_Guttman's λ2"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "guttman-s-λ2-scale", dir="reliabilityBayesian")
+})
+
+test_that("Guttman's λ6 plot matches", {
+  plotName <- results[["results"]][["plotContainer"]][["collection"]][["plotContainer_Guttman's λ6"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "guttman-s-λ6-scale", dir="reliabilityBayesian")
+})
+
+test_that("McDonald's ω plot matches", {
+  plotName <- results[["results"]][["plotContainer"]][["collection"]][["plotContainer_McDonald's ω"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "mcdonald-s-ω-scale", dir="reliabilityBayesian")
+})
+
+test_that("Cronbach's α plot matches", {
+  plotName <- results[["results"]][["plotContainerItem"]][["collection"]][["plotContainerItem_Cronbach's α"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "cronbach-s-α-item", dir="reliabilityBayesian")
+})
+
+test_that("Greatest Lower Bound plot matches", {
+  plotName <- results[["results"]][["plotContainerItem"]][["collection"]][["plotContainerItem_Greatest Lower Bound"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "greatest-lower-bound-item", dir="reliabilityBayesian")
+})
+
+test_that("Guttman's λ2 plot matches", {
+  plotName <- results[["results"]][["plotContainerItem"]][["collection"]][["plotContainerItem_Guttman's λ2"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "guttman-s-λ2-item", dir="reliabilityBayesian")
+})
+
+test_that("Guttman's λ6 plot matches", {
+  plotName <- results[["results"]][["plotContainerItem"]][["collection"]][["plotContainerItem_Guttman's λ6"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "guttman-s-λ6-item", dir="reliabilityBayesian")
+})
+
+test_that("McDonald's ω plot matches", {
+  plotName <- results[["results"]][["plotContainerItem"]][["collection"]][["plotContainerItem_McDonald's ω"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "mcdonald-s-ω-item", dir="reliabilityBayesian")
 })
 
 test_that("Probability that Reliability Statistic is Larger than 0.10 and Smaller than 0.30 table results match", {
