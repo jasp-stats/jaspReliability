@@ -1,11 +1,11 @@
 Package: jaspReliability
 Type: Package
 Title: Reliability Module for JASP
-Version: 0.1
-Date: 2020-06-17
+Version: 0.1.0
+Date: 2020-08-18
 Author: Julius M. Pfadt, Don van den Bergh & Eric-Jan Wagenmakers
-Website: https://github.com/juliuspf/Reliability
+Website: https://github.com/jasp-stats/Reliability
 Maintainer: Julius M. Pfadt <julius.pfadt@gmail.com>
-Description: TODO
+Description: This module offers Reliability analyses.
 License: GPL (>= 2)
-Imports: Rdpack, Bayesrel, Rcsdp (>= 0.1.57)
+RoxygenNote: 7.1.1
