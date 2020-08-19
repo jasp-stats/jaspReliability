@@ -17,7 +17,7 @@ options$meanItem <- TRUE
 options$meanScale <- TRUE
 options$noSamples <- 200
 options$orderItem <- TRUE
-options$orderType <- "orderItemKS"
+options$orderType <- "orderItemKL"
 options$plotItem <- TRUE
 options$plotPosterior <- TRUE
 options$probTable <- TRUE
@@ -32,7 +32,7 @@ options$shadePlots <- TRUE
 options$tracePlot <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss30")
 set.seed(1)
-results <- runAnalysis("reliabilityBayesian", "debug.csv", options)
+results <- runAnalysis("reliabilityBayesian", "test.csv", options)
 
 
 test_that("Bayesian Individual Item Reliability Statistics table results match", {

@@ -20,7 +20,7 @@ options$sdScale <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
 set.seed(1)
-results <- runAnalysis("reliabilityFrequentist", "debug.csv", options)
+results <- runAnalysis("reliabilityFrequentist", "test.csv", options)
 
 
 test_that("Fit Measures of Single Factor Model Fit table results match for main options", {
@@ -79,7 +79,7 @@ options$sdScale <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "debMiss30")
 set.seed(1)
-results <- runAnalysis("reliabilityFrequentist", "debug.csv", options)
+results <- runAnalysis("reliabilityFrequentist", "test.csv", options)
 
 
 test_that("Frequentist Individual Item Reliability Statistics table results match for special options", {
