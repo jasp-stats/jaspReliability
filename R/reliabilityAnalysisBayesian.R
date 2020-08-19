@@ -708,11 +708,19 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
     plotContainerItem <- createJaspContainer(gettext("If Item Dropped Posterior Plots"))
     plotContainerItem$dependOn(options = c("variables", "plotItem", "noSamples", "noBurnin", "noChains", "noThin",
                                            "credibleIntervalValueItem", "orderType", "orderItem",
-                                           "reverseScaledItems", "missingValues", "setSeed", "seedValue"))
+                                           "reverseScaledItems", "missingValues", "setSeed", "seedValue", 
+                                           "alphaScale", "guttman2Scale", "guttman6Scale", 
+                                           "glbScale", "mcDonaldScale"))
     jaspResults[["plotContainerItem"]] <- plotContainerItem
   } 
   
   derivedOptions <- model[["derivedOptions"]]
+  # fixes issue that unchecking the scale coefficient box, does not uncheck the item-dropped coefficient box:
+  for (i in 1:5) {
+    if (!derivedOptions[["selectedEstimators"]][i]) {
+      derivedOptions[["itemDroppedSelectedItem"]][i] <- derivedOptions[["selectedEstimators"]][i]
+    }
+  }
   indices   <- which(derivedOptions[["itemDroppedSelectedItem"]])
   nmsLabs   <- derivedOptions[["namesEstimators"]][["plots"]]
   nmsObjs   <- derivedOptions[["namesEstimators"]][["tables_item"]]
