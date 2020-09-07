@@ -2,10 +2,11 @@
 
 os: osx
 language: r
-r: 3.6.3
-r_github_packages: jasp-stats/jaspTools
+r: 3.6.1
 before_install: 
   - "git clone --branch=MacOS-Original https://github.com/jasp-stats/jasp-required-files.git ~/pkgs"
+install:
+  - RScript -e ".libPaths(c(.libPaths(), '~/pkgs')); install.packages('remotes'); remotes::install_github('jasp-stats/jaspTools', upgrade = 'never')"
 script:
   - R < tests/testthat.R --no-save
 env:
