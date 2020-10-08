@@ -677,6 +677,8 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
   if (!is.null(shade)) {
     datFilter <- datDens[datDens[["x"]] >= shade[1] & datDens[["x"]] <= shade[2], ]
+    if (length(datFilter$x) == 0)
+      datFilter <- data.frame(x=0, y=0)
     g <- g + ggplot2::geom_ribbon(data = datFilter, mapping = ggplot2::aes(ymin = 0, ymax = y), 
                                   fill = "grey", alpha = 0.95) +
       ggplot2::geom_line(size = .85)
