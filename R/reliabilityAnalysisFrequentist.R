@@ -1,6 +1,8 @@
 reliabilityFrequentist <- function(jaspResults, dataset, options) {
   
-  
+  # sink("~/Downloads/log.txt")
+  # on.exit(sink(NULL))
+
   dataset <- .reliabilityReadData(dataset, options)
   .reliabilityCheckErrors(dataset, options)
   
@@ -328,6 +330,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         # omega cfa analytic interval:
         if (is.null(relyFit[["freq"]][["omega.pfa"]]) && (options[["omegaInterval"]] == "omegaAnalytic")) { 
           fit <- relyFit[["freq"]][["fit.object"]]
+
           params <- lavaan::parameterestimates(fit, level = options[["confidenceIntervalValue"]])
           om_low <- params$ci.lower[params$lhs=="omega"]
           om_up <- params$ci.upper[params$lhs=="omega"]
