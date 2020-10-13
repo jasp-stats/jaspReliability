@@ -84,6 +84,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   .hasErrors(dataset = dataset, options = options, perform = "run",
              type = c("infinity", "variance", "observations", "varCovData"),
              observations.amount = " < 3",
+             varCovData.corFun = function(x) cor(x, use = "pairwise.complete.obs"),
              custom = .checkInverse,
              exitAnalysisIfErrors = TRUE)
   
