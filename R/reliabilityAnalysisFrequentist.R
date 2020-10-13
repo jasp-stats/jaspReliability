@@ -435,8 +435,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   idxSelected <- which(selected)
   
   if (options[["mcDonaldScale"]] && !is.null(relyFit[["freq"]][["omega.error"]])) {
-    model[["footnote"]] <- gettextf("%sMcDonald's \u03C9 estimation method switched to PFA because the CFA 
-                                    did not find a solution. ", model[["footnote"]])
+    model[["footnote"]] <- gettextf("%sMcDonald's %s estimation method switched to PFA because the CFA did not find a solution. ", model[["footnote"]], "\u03C9")
   }
 
   if (!is.null(relyFit)) {
