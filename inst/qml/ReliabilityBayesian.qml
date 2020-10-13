@@ -261,7 +261,7 @@ Form
 			}
 		}
 	}
-      
+
 	Section
 	{
 		title: qsTr("Convergence")
@@ -272,35 +272,35 @@ Form
 			
 			IntegerField
 			{
-                id:             noSamples
+				id:				noSamples
 				name: 			"noSamples"
 				label: 			qsTr("No. samples")
 				defaultValue: 	1000
 				fieldWidth: 	100
-                min: 			parseFloat(noBurnin.value) + parseFloat(noThin.value) + 1
-                max: 			1e7
+				min: 			parseFloat(noBurnin.value) + parseFloat(noThin.value) + 1
+				max: 			1e7
 			}
 			
 			IntegerField
 			{
-                id:             noBurnin
+				id:				noBurnin
 				name: 			"noBurnin"
 				label: 			qsTr("No. burnin samples")
 				defaultValue: 	50
 				fieldWidth: 	100
-                min: 			1
-                max:            1e7
+				min: 			1
+				max:			1e7
 			}
 			
 			IntegerField
 			{
-                id:             noThin
+				id:				noThin
 				name: 			"noThin"
 				label: 			qsTr("Thinning")
 				defaultValue: 	1
 				fieldWidth: 	100
 				min: 			1
-                max: 			1e7
+				max: 			1e7
 			}
 			
 			IntegerField
