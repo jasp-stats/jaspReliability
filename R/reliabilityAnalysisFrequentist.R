@@ -435,7 +435,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   idxSelected <- which(selected)
   
   if (options[["mcDonaldScale"]] && !is.null(relyFit[["freq"]][["omega.error"]])) {
-    model[["footnote"]] <- gettextf("%sMcDonald's \u03C9 estimation method switched to PFA because the CFA
+    model[["footnote"]] <- gettextf("%sMcDonald's \u03C9 estimation method switched to PFA because the CFA 
                                     did not find a solution. ", model[["footnote"]])
   }
 
@@ -452,7 +452,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         allData <- cbind(allData, newData)
         
         # produce footnote for coefficients that are prone to fail with singular matrices, such as lambda6 and omega
-        if (is.nan(model[["cfi"]][["scaleCfi"]][[i]])) 
+        if (any(is.nan(model[["cfi"]][["scaleCfi"]][[i]])))
           addSingularFootnote <- TRUE
       }
       if (addSingularFootnote) {
