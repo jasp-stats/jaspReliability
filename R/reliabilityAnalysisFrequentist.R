@@ -166,7 +166,6 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
                                          missing = missing, callback = progressbarTick))
           
         }
-        relyFit[["data"]] <- NULL
         
         # first the scale statistics
         cordat <- cor(dataset, use = use.cases)
@@ -294,8 +293,10 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
       }
       
       
+      # free some memory
+      relyFit[["data"]] <- NULL
+      relyFit[["freq"]][["covsamp"]] <- NULL
       
-      # Consider stripping some of the contents of relyFit to reduce memory load
       if (inherits(relyFit, "try-error")) {
         
         model[["error"]] <- paste(gettext("The analysis crashed with the following error message:\n", relyFit))
