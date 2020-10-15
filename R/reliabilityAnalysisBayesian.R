@@ -175,13 +175,15 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
       
       # add the scale info
-      corsamp <- apply(relyFit[["Bayes"]][["covsamp"]], c(1, 2), .cov2cor.callback, progressbarTick)
-      relyFit[["Bayes"]][["samp"]][["avg_cor"]] <- coda::mcmc(apply(corsamp, c(2, 3), function(x) mean(x[x!=1])))
+      relyFit[["Bayes"]][["samp"]][["avg_cor"]] <- matrix(0, dim(relyFit[["Bayes"]][["covsamp"]])[1], dim(relyFit[["Bayes"]][["covsamp"]])[2])
+      for (i in 1:dim(relyFit[["Bayes"]][["covsamp"]])[1]) {
+        for (j in 1:dim(relyFit[["Bayes"]][["covsamp"]])[2]) {
+          corm <- .cov2cor.callback(relyFit[["Bayes"]][["covsamp"]][i, j, , ], progressbarTick)
+          relyFit[["Bayes"]][["samp"]][["avg_cor"]][i, j] <- mean(corm[corm!=1])
+        }
+      }
+      relyFit[["Bayes"]][["samp"]][["avg_cor"]] <- coda::mcmc(relyFit[["Bayes"]][["samp"]][["avg_cor"]])
       relyFit[["Bayes"]][["est"]][["avg_cor"]] <- mean(relyFit[["Bayes"]][["samp"]][["avg_cor"]])
-      
-      # get rid of multiple chains, first save the chains:
-      relyFit[["Bayes"]][["chains"]] <- relyFit[["Bayes"]][["samp"]]
-      relyFit[["Bayes"]][["samp"]] <- lapply(relyFit[["Bayes"]][["chains"]], as.vector)
 
       # mean and sd
       relyFit[["Bayes"]][["samp"]][["mean"]] <- NA_real_
@@ -189,16 +191,12 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       relyFit[["Bayes"]][["samp"]][["sd"]] <- NA_real_
       relyFit[["Bayes"]][["est"]][["sd"]] <- sd(colMeans(dataset, na.rm = T))
       
-      # get rid of multiple chains, first save the chains:
-      relyFit[["Bayes"]][["ifitem"]][["chains"]] <- relyFit[["Bayes"]][["ifitem"]][["samp"]]
-      relyFit[["Bayes"]][["ifitem"]][["samp"]] <- lapply(relyFit[["Bayes"]][["ifitem"]][["chains"]], 
-                                                         function(x) apply(x, 3, as.vector))
 
       # now the item statistics
       relyFit[["Bayes"]][["ifitem"]][["samp"]][["ircor"]] <- .reliabilityItemRestCor(dataset, options[["noSamples"]], options[["noBurnin"]], 
                                                                  options[["noThin"]], options[["noChains"]], missing, 
                                                                  callback = progressbarTick)
-      relyFit[["Bayes"]][["ifitem"]][["est"]][["ircor"]] <- apply(relyFit[["Bayes"]][["ifitem"]][["samp"]][["ircor"]], 2, mean)
+      relyFit[["Bayes"]][["ifitem"]][["est"]][["ircor"]] <- apply(relyFit[["Bayes"]][["ifitem"]][["samp"]][["ircor"]], 3, mean)
       
       # mean and sd
       relyFit[["Bayes"]][["ifitem"]][["est"]][["mean"]] <- colMeans(dataset, na.rm = T)
@@ -212,13 +210,20 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
                      "avg_cor", "mean", "sd")
       order_end <- match(order_est, names_est)
       relyFit[["Bayes"]][["samp"]] <- relyFit[["Bayes"]][["samp"]][order_end]
-      relyFit[["Bayes"]][["chains"]] <- relyFit[["Bayes"]][["chains"]][order_end]
       relyFit[["Bayes"]][["est"]] <- relyFit[["Bayes"]][["est"]][order_end]
       
       relyFit[["Bayes"]][["ifitem"]][["samp"]] <- relyFit[["Bayes"]][["ifitem"]][["samp"]][order_end]
       relyFit[["Bayes"]][["ifitem"]][["est"]] <- relyFit[["Bayes"]][["ifitem"]][["est"]][order_end]
       
-
+      relyFit[["n.item"]] <- p
+      
+      # free some memory
+      relyFit[["Bayes"]][["covsamp"]] <- NULL
+      relyFit[["data"]] <- NULL
+      relyFit[["Bayes"]][["data_mis_samp_cov"]] <- NULL
+      relyFit[["Bayes"]][["data_mis_samp_fm"]] <- NULL
+      
+      
       # Consider stripping some of the contents of relyFit to reduce memory load
       if (inherits(relyFit, "try-error")) {
 
@@ -275,12 +280,20 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   names(cri) <- names(samps)
   
   for (nm in names(samps)) {
-    if (anyNA(samps[[nm]])) {
+    
+    if (length(dim(samps[[nm]])) == 3) {
+      samp_tmp <- apply(samps[[nm]], 3, as.vector)
+    } else {
+      samp_tmp <- as.vector(samps[[nm]])
+    }
+    
+    if (anyNA(samp_tmp)) {
       cri[[nm]] <- c(NA_real_, NA_real_)
     } else {
-      cri[[nm]] <- coda::HPDinterval(coda::mcmc(samps[[nm]]), prob = criValue)
+      cri[[nm]] <- coda::HPDinterval(coda::mcmc(samp_tmp), prob = criValue)
     }
   }
+
   return(cri)
 }
 
@@ -344,7 +357,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
         if (opts[i] == "mean" || opts[i] == "sd") {
           rhat <- NA_real_
         } else {
-          tmp <- lapply(as.data.frame(t(relyFit[["Bayes"]][["chains"]][[i]])), coda::mcmc)
+          tmp <- lapply(as.data.frame(t(relyFit[["Bayes"]][["samp"]][[i]])), coda::mcmc)
           rhat <- coda::gelman.diag(coda::as.mcmc.list(tmp))[["psrf"]][, 1]
         }
         newData <- data.frame(est = c(unlist(relyFit[["Bayes"]][["est"]][[i]], use.names = F), 
@@ -505,9 +518,8 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   idxSelected  <- which(selected)
 
 
-
   if (!is.null(relyFit)) {
-    n.item <- dim(relyFit[["Bayes"]][["covsamp"]])[3]
+    n.item <- relyFit[["n.item"]]
     prior <- Bayesrel:::priors[[as.character(n.item)]] 
     prior <- prior[order_end]
     end <- length(prior[[1]][["x"]])
@@ -521,8 +533,9 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
     probsPrior <- numeric(sum(selected))
     z <- 1
     for (i in idxSelected) {
-      probsPost[z] <- mean(relyFit[["Bayes"]][["samp"]][[i]] > options[["probTableValueLow"]]) -
-                      mean(relyFit[["Bayes"]][["samp"]][[i]] > options[["probTableValueHigh"]])
+      samp_tmp <- as.vector(relyFit[["Bayes"]][["samp"]][[i]])
+      probsPost[z] <- mean(samp_tmp > options[["probTableValueLow"]]) -
+                      mean(samp_tmp > options[["probTableValueHigh"]])
       probsPrior[z] <- sum(prior[[i]][["y"]][poslow:end]) / sum(prior[[i]][["y"]]) - 
                        sum(prior[[i]][["y"]][poshigh:end]) / sum(prior[[i]][["y"]])
       z <- z+1 # very bulky thing to do here
@@ -575,7 +588,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
 
   if (!is.null(relyFit)) {
-    n.item <- dim(relyFit[["Bayes"]][["covsamp"]])[3]
+    n.item <- relyFit[["n.item"]]
     prior <- Bayesrel:::priors[[as.character(n.item)]][order_end] ##### change this when more estimators are included!!!
     
       for (i in indices) {
@@ -611,10 +624,11 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
   # TODO: consider precomputing all densities (maybe with kernsmooth?) and reducing memory that way
   pr <- priorSample[[i]]
+  samp_tmp <- as.vector(relyFit[["Bayes"]][["samp"]][[i]])
   if (fixXRange) {
-    d <- stats::density(relyFit[["Bayes"]][["samp"]][[i]], from = 0, to = 1, n = 2^10)
+    d <- stats::density(samp_tmp, from = 0, to = 1, n = 2^10)
   } else {
-    d <- stats::density(relyFit[["Bayes"]][["samp"]][[i]], n = 2^10)
+    d <- stats::density(samp_tmp, n = 2^10)
   }
   datDens <- data.frame(x = d$x, y = d$y)
   datPrior <- data.frame(x = pr$x, y = pr$y)
@@ -765,12 +779,14 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   lower <- (1-int)/2
   upper <- int + (1-int)/2
 
-  dat <- data.frame(as.matrix(unlist(relyFit[["Bayes"]][["samp"]][[j]])), row.names =  NULL)
+  samp_tmp <- as.vector(relyFit[["Bayes"]][["samp"]][[j]])
+  dat <- data.frame(as.matrix(samp_tmp), row.names =  NULL)
   names(dat) <- "value"
   dat$colos <- "1"
   dat$var <- "original"
   
-  dat_del <- t(as.matrix(as.data.frame(relyFit[["Bayes"]][["ifitem"]][["samp"]][[j]])))
+  item_tmp <- apply(relyFit[["Bayes"]][["ifitem"]][["samp"]][[j]], 3, as.vector)
+  dat_del <- t(as.matrix(as.data.frame(item_tmp)))
   names <- (variables)
 
   for (i in n_row:1){
@@ -798,8 +814,8 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       est[n_row + 1, ] <- 1
       colnames(est) <- "value"
       est$name <- c(names, "original")
-      samps <- relyFit[["Bayes"]][["ifitem"]][["samp"]][[j]]
-      og_samp <- relyFit[["Bayes"]][["samp"]][[j]]
+      samps <- item_tmp
+      og_samp <- samp_tmp
       dists <- apply(samps, 2, .KLD.statistic, y = og_samp) # kl divergence
       dists[length(dists)+1] <- 0
       est <- est[order(dists), ]
@@ -810,8 +826,8 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       est[n_row + 1, ] <- 1
       colnames(est) <- "value"
       est$name <- c(names, "original")
-      samps <- relyFit[["Bayes"]][["ifitem"]][["samp"]][[j]]
-      og_samp <- relyFit[["Bayes"]][["samp"]][[j]]
+      samps <- item_tmp
+      og_samp <- samp_tmp
       dists <- apply(samps, 2, .ks.test.statistic, y = og_samp) # ks distance
       dists[length(dists)+1] <- 0
       est <- est[order(dists), ]
@@ -936,7 +952,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
 .BayesianReliabilityMakeTracePlot <- function(relyFit, i, nms) {
   
-  dd <- relyFit[["Bayes"]][["chains"]][[i]]
+  dd <- relyFit[["Bayes"]][["samp"]][[i]]
   xBreaks <- jaspGraphs::getPrettyAxisBreaks(c(0, length(dd[1, ])))
 
   dv <- cbind(dd[1, ], 1, seq(1, ncol(dd))) 
@@ -966,14 +982,13 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 # ----- some other functions -----------------
 .reliabilityItemRestCor <- function(dataset, n.iter, n.burnin, thin, n.chains, missing, callback) {
 
-  help_dat <- array(0, c(ncol(dataset), nrow(dataset), 2))
-  
+  ircor_samp <- array(0, c(n.chains, length(seq(1, n.iter-n.burnin, thin)), ncol(dataset)))
   for (i in 1:ncol(dataset)) {
-    help_dat[i, , ] <- cbind(dataset[, i], rowMeans(dataset[, -i], na.rm = T))
+    help_dat <- cbind(dataset[, i], rowMeans(dataset[, -i], na.rm = T))
+    ircor_samp[, , i] <- .WishartCorTransform(help_dat, n.iter = n.iter, n.burnin = n.burnin, thin = thin,
+                                              n.chains = n.chains, missing = missing, callback = callback)
   }
   
-  ircor_samp <- apply(help_dat, 1, .WishartCorTransform, n.iter = n.iter, n.burnin = n.burnin, thin = thin,
-                      n.chains = n.chains, missing = missing, callback = callback)
   return(ircor_samp)
 }
 

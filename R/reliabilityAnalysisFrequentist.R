@@ -166,7 +166,6 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
                                          missing = missing, callback = progressbarTick))
           
         }
-        relyFit[["data"]] <- NULL
         
         # first the scale statistics
         cordat <- cor(dataset, use = use.cases)
@@ -203,6 +202,10 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
                        "ircor", "mean", "sd")
         new_order_item <- match(order_item, names_item)
         relyFit[["freq"]][["ifitem"]] <- relyFit[["freq"]][["ifitem"]][new_order_item]
+        
+        # free some memory
+        relyFit[["freq"]][["covsamp"]] <- NULL
+        relyFit[["data"]] <- NULL
         
         # ------------------------ only point estimates, no intervals: ---------------------------
       } else { 
