@@ -294,7 +294,6 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         relyFit[["freq"]][["ifitem"]][["sd"]] <- apply(dataset, 2, sd, na.rm = TRUE)
       }
 
-
       # free some memory
       relyFit[["data"]] <- NULL
       relyFit[["freq"]][["covsamp"]] <- NULL
