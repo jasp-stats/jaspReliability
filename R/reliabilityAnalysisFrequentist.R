@@ -166,6 +166,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
                                          missing = missing, callback = progressbarTick))
           
         }
+        relyFit[["data"]] <- NULL
         
         # first the scale statistics
         cordat <- cor(dataset, use = use.cases)
