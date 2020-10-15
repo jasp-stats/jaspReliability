@@ -142,17 +142,17 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
           
           relyFit[["freq"]][["est"]][["freq_alpha"]] <- Bayesrel:::applyalpha(model[["dat_cov"]])
 
-          Ctmp <- .itemDeletedM(model[["dat_cov"]])
+          relyFit[["freq"]][["ifitem"]][["alpha"]] <- numeric(p)
+          for (i in 1:p){
+            relyFit[["freq"]][["ifitem"]][["alpha"]][i] <- Bayesrel:::applyalpha(model[["dat_cov"]][-i, -i])
+          }
           
-          relyFit[["freq"]][["ifitem"]][["alpha"]] <- apply(Ctmp, 1, Bayesrel:::applyalpha)
-          
-          if (!alphaAna) { # when standardized alpha, but bootstrapped alpha interval:
-            cors <- array(0, c(options[["noSamples"]], p, p))
+          # when standardized alpha, but bootstrapped alpha interval:
+          if (!alphaAna) { 
+            relyFit[["freq"]][["boot"]][["alpha"]] <- numeric(options[["noSamples"]])
             for (i in 1:options[["noSamples"]]) {
-              cors[i, , ] <- .cov2cor.callback(relyFit[["freq"]][["covsamp"]][i, , ], progressbarTick)
+              relyFit[["freq"]][["boot"]][["alpha"]][i] <- Bayesrel:::applyalpha(.cov2cor.callback(relyFit[["freq"]][["covsamp"]][i, , ], progressbarTick))
             }
-            relyFit[["freq"]][["boot"]][["alpha"]] <- apply(cors, 1, Bayesrel:::applyalpha)
-            
           }
           
         } else { # alpha unstandardized
@@ -166,6 +166,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
                                          missing = missing, callback = progressbarTick))
           
         }
+        relyFit[["data"]] <- NULL
         
         # first the scale statistics
         cordat <- cor(dataset, use = use.cases)
@@ -173,15 +174,17 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         relyFit[["freq"]][["est"]][["mean"]] <- mean(rowMeans(dataset, na.rm = T))
         relyFit[["freq"]][["est"]][["sd"]] <- sd(colMeans(dataset, na.rm = T))
         
-        corsamp <- apply(relyFit[["freq"]][["covsamp"]], c(1), .cov2cor.callback, progressbarTick)
-        relyFit[["freq"]][["boot"]][["avg_cor"]] <- apply(corsamp, 2, function(x) mean(x[x!=1]))
+        relyFit[["freq"]][["boot"]][["avg_cor"]] <- numeric(options[["noSamples"]])
+        for (i in 1:options[["noSamples"]]) {
+          corm <- .cov2cor.callback(relyFit[["freq"]][["covsamp"]][i, , ], progressbarTick)
+          relyFit[["freq"]][["boot"]][["avg_cor"]][i] <- mean(corm[corm!=1])
+        }
         relyFit[["freq"]][["boot"]][["mean"]] <- c(NA_real_, NA_real_)
         relyFit[["freq"]][["boot"]][["sd"]] <- c(NA_real_, NA_real_)
         
         
         # now the item statistics
-        relyFit[["freq"]][["ifitem"]][["ircor"]] <- NULL
-        
+        relyFit[["freq"]][["ifitem"]][["ircor"]] <- numeric(p)
         for (i in 1:ncol(dataset)) {
           relyFit[["freq"]][["ifitem"]][["ircor"]][i] <- cor(dataset[, i], rowMeans(dataset[, -i], na.rm = T), use = use.cases)
         }
@@ -378,7 +381,6 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   }
   return(cfi)
 }
-
 
 
 
@@ -628,15 +630,5 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   out <- Bayesrel:::omegaFreqData(data, pairwise = F)
   om <- out[["omega"]]
   return(om)
-}
-
-
-.itemDeletedM <- function(cc) {
-  p <- ncol(cc)
-  Ctmp <- array(0, c(p, p - 1, p - 1))
-  for (i in 1:p){
-    Ctmp[i, , ] <- cc[-i, -i]
-  }
-  return(Ctmp)
 }
 
