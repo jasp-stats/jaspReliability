@@ -158,11 +158,9 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
           }
       }
       
-      chains <- options[["noChains"]]
-      samples <- options[["noSamples"]]
       p <- ncol(dataset)
-      startProgressbar((chains*samples)*7 # cov sampling + every coefficient (also avg_cor)
-                       + (chains*samples)*6*p) # every coefficient for if item samples (also item_rest_cor)
+      startProgressbar((options[["noChains"]]*options[["noSamples"]])*7 # cov sampling + every coefficient (also avg_cor)
+                       + (options[["noChains"]]*options[["noSamples"]])*6*p) # every coefficient for if item samples (also item_rest_cor)
       
       if (options[["setSeed"]]) {
         set.seed(options[["seedValue"]])
@@ -175,12 +173,13 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
       
       # add the scale info
-      relyFit[["Bayes"]][["samp"]][["avg_cor"]] <- matrix(0, dim(relyFit[["Bayes"]][["covsamp"]])[1], dim(relyFit[["Bayes"]][["covsamp"]])[2])
-      for (i in 1:dim(relyFit[["Bayes"]][["covsamp"]])[1]) {
-        for (j in 1:dim(relyFit[["Bayes"]][["covsamp"]])[2]) {
+      relyFit[["Bayes"]][["samp"]][["avg_cor"]] <- matrix(0, nrow(relyFit[["Bayes"]][["covsamp"]]), ncol(relyFit[["Bayes"]][["covsamp"]]))
+      lowerTriangleIndex = which(lower.tri(relyFit[["Bayes"]][["covsamp"]][1, 1, , ]))
+      for (i in 1:nrow(relyFit[["Bayes"]][["covsamp"]])) {
+        for (j in 1:ncol(relyFit[["Bayes"]][["covsamp"]])) {
+          
           corm <- .cov2cor.callback(relyFit[["Bayes"]][["covsamp"]][i, j, , ], progressbarTick)
-          relyFit[["Bayes"]][["samp"]][["avg_cor"]][i, j] <- mean(corm[corm!=1])
-        }
+          relyFit[["Bayes"]][["samp"]][["avg_cor"]][i, j] <- mean(corm[lowerTriangleIndex])        }
       }
       relyFit[["Bayes"]][["samp"]][["avg_cor"]] <- coda::mcmc(relyFit[["Bayes"]][["samp"]][["avg_cor"]])
       relyFit[["Bayes"]][["est"]][["avg_cor"]] <- mean(relyFit[["Bayes"]][["samp"]][["avg_cor"]])
@@ -224,7 +223,6 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
       relyFit[["Bayes"]][["data_mis_samp_fm"]] <- NULL
       
       
-      # Consider stripping some of the contents of relyFit to reduce memory load
       if (inherits(relyFit, "try-error")) {
 
         model[["error"]] <- paste("The analysis crashed with the following error message:\n", relyFit)
@@ -999,7 +997,7 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   if (missing == "pairwise") {pairwise <- TRUE}
   tmp_cov <- Bayesrel:::covSamp(x, n.iter, n.burnin, thin, n.chains, pairwise, callback)$cov_mat
   tmp_cor <- apply(tmp_cov, c(1, 2), cov2cor)
-  out <- apply(tmp_cor, c(2, 3), function(x) mean(x[x!=1]))
+  out <- tmp_cor[2, , ]
   callback()
   return(out)
 }
