@@ -1,6 +1,6 @@
 reliabilityFrequentist <- function(jaspResults, dataset, options) {
   
-  
+
   dataset <- .reliabilityReadData(dataset, options)
   .reliabilityCheckErrors(dataset, options)
   
@@ -142,17 +142,17 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
           
           relyFit[["freq"]][["est"]][["freq_alpha"]] <- Bayesrel:::applyalpha(model[["dat_cov"]])
 
-          Ctmp <- .itemDeletedM(model[["dat_cov"]])
+          relyFit[["freq"]][["ifitem"]][["alpha"]] <- numeric(p)
+          for (i in 1:p){
+            relyFit[["freq"]][["ifitem"]][["alpha"]][i] <- Bayesrel:::applyalpha(model[["dat_cov"]][-i, -i])
+          }
           
-          relyFit[["freq"]][["ifitem"]][["alpha"]] <- apply(Ctmp, 1, Bayesrel:::applyalpha)
-          
-          if (!alphaAna) { # when standardized alpha, but bootstrapped alpha interval:
-            cors <- array(0, c(options[["noSamples"]], p, p))
+          # when standardized alpha, but bootstrapped alpha interval:
+          if (!alphaAna) { 
+            relyFit[["freq"]][["boot"]][["alpha"]] <- numeric(options[["noSamples"]])
             for (i in 1:options[["noSamples"]]) {
-              cors[i, , ] <- .cov2cor.callback(relyFit[["freq"]][["covsamp"]][i, , ], progressbarTick)
+              relyFit[["freq"]][["boot"]][["alpha"]][i] <- Bayesrel:::applyalpha(.cov2cor.callback(relyFit[["freq"]][["covsamp"]][i, , ], progressbarTick))
             }
-            relyFit[["freq"]][["boot"]][["alpha"]] <- apply(cors, 1, Bayesrel:::applyalpha)
-            
           }
           
         } else { # alpha unstandardized
@@ -173,15 +173,17 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         relyFit[["freq"]][["est"]][["mean"]] <- mean(rowMeans(dataset, na.rm = T))
         relyFit[["freq"]][["est"]][["sd"]] <- sd(colMeans(dataset, na.rm = T))
         
-        corsamp <- apply(relyFit[["freq"]][["covsamp"]], c(1), .cov2cor.callback, progressbarTick)
-        relyFit[["freq"]][["boot"]][["avg_cor"]] <- apply(corsamp, 2, function(x) mean(x[x!=1]))
+        relyFit[["freq"]][["boot"]][["avg_cor"]] <- numeric(options[["noSamples"]])
+        for (i in 1:options[["noSamples"]]) {
+          corm <- .cov2cor.callback(relyFit[["freq"]][["covsamp"]][i, , ], progressbarTick)
+          relyFit[["freq"]][["boot"]][["avg_cor"]][i] <- mean(corm[corm!=1])
+        }
         relyFit[["freq"]][["boot"]][["mean"]] <- c(NA_real_, NA_real_)
         relyFit[["freq"]][["boot"]][["sd"]] <- c(NA_real_, NA_real_)
         
         
         # now the item statistics
-        relyFit[["freq"]][["ifitem"]][["ircor"]] <- NULL
-        
+        relyFit[["freq"]][["ifitem"]][["ircor"]] <- numeric(p)
         for (i in 1:ncol(dataset)) {
           relyFit[["freq"]][["ifitem"]][["ircor"]][i] <- cor(dataset[, i], rowMeans(dataset[, -i], na.rm = T), use = use.cases)
         }
@@ -201,6 +203,10 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         new_order_item <- match(order_item, names_item)
         relyFit[["freq"]][["ifitem"]] <- relyFit[["freq"]][["ifitem"]][new_order_item]
         
+        # free some memory
+        relyFit[["freq"]][["covsamp"]] <- NULL
+        relyFit[["data"]] <- NULL
+        
         # ------------------------ only point estimates, no intervals: ---------------------------
       } else { 
         relyFit <- list()
@@ -208,10 +214,8 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         cordat <- cor(dataset, use = use.cases)
         p <- ncol(dataset)
         Cvtmp <- array(0, c(p, p - 1, p - 1))
-        Dtmp <- array(0, c(p, nrow(dataset), p - 1))
         for (i in 1:p){
           Cvtmp[i, , ] <- cv[-i, -i]
-          Dtmp[i, , ] <- as.matrix(dataset[, -i])
         }
         
         if (options[["omegaEst"]] == "pfa") {
@@ -221,37 +225,51 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
           if (use.cases == "pairwise.complete.obs") {
             omega <- Bayesrel:::omegaFreqData(dataset, interval=.95, omega.int.analytic = T, pairwise = T)
             omega.est <- omega[["omega"]]
-            relyFit[["freq"]][["omega.fit"]] <- omega[["indices"]]
-            omega.item <- apply(Dtmp, 1, Bayesrel:::applyomega_cfa_data, interval = .95, pairwise = T)
-            if (any(is.na(omega))) {
+            if (is.na(omega.est)) {
               omega.est <- Bayesrel:::applyomega_pfa(cv)
               relyFit[["freq"]][["omega.error"]] <- TRUE
-              omega.item <- apply(Cvtmp, 1, Bayesrel:::applyomega_pfa)
             }
+            
+            relyFit[["freq"]][["omega.fit"]] <- omega[["indices"]]
+            
+            omega.item <- numeric(p)
+            for (i in 1:p) {
+              omega.item[i] <- Bayesrel:::applyomega_cfa_data(as.matrix(dataset[, -i]), interval = .95, pairwise = T)
+              if (is.na(omega.item[i])) {
+                omega.item <- apply(Cvtmp, 1, Bayesrel:::applyomega_pfa)
+                relyFit[["freq"]][["omega.item.error"]] <- TRUE
+                break
+              }
+            }
+            
+
           } else {
             omega <- Bayesrel:::omegaFreqData(dataset, interval=.95, omega.int.analytic = T, pairwise = F)
             omega.est <- omega[["omega"]]
-            relyFit[["freq"]][["omega.fit"]] <- omega[["indices"]]
-            omega.item <- apply(Dtmp, 1, Bayesrel:::applyomega_cfa_data, interval = .95, pairwise = F)
-            if (any(is.na(omega))) {
+            if (is.na(omega.est)) {
               omega.est <- Bayesrel:::applyomega_pfa(cv)
               relyFit[["freq"]][["omega.error"]] <- TRUE
-              omega.item <- apply(Cvtmp, 1, Bayesrel:::applyomega_pfa)
             }
-            if (any(is.na(omega.item))) {
-              relyFit[["freq"]][["omega.item.error"]] <- TRUE
-              omega.item <- apply(Cvtmp, 1, Bayesrel:::applyomega_pfa)
+            relyFit[["freq"]][["omega.fit"]] <- omega[["indices"]]
+            
+            omega.item <- numeric(p)
+            for (i in 1:p) {
+              omega.item[i] <- Bayesrel:::applyomega_cfa_data(as.matrix(dataset[, -i]), interval = .95, pairwise = F)
+              if (is.na(omega.item[i])) {
+                omega.item <- apply(Cvtmp, 1, Bayesrel:::applyomega_pfa)
+                relyFit[["freq"]][["omega.item.error"]] <- TRUE
+                break
+              }
             }
           }
         }
         if (options[["alphaMethod"]] == "alphaStand") {
           ca <- Bayesrel:::make_symmetric(cov2cor(cv))
           alpha <- Bayesrel:::applyalpha(ca)
-          Crtmp <- array(0, c(p, p - 1, p - 1))
+          alpha.item <- numeric(p)
           for (i in 1:p){
-            Crtmp[i, , ] <- ca[-i, -i]
+            alpha.item <- Bayesrel:::applyalpha(ca[-i, -i])
           }
-          alpha.item <- apply(Crtmp, 1, Bayesrel:::applyalpha)
         } else {
           alpha <- Bayesrel:::applyalpha(cv)
           alpha.item <- apply(Cvtmp, 1, Bayesrel:::applyalpha)
@@ -316,6 +334,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         # omega cfa analytic interval:
         if (is.null(relyFit[["freq"]][["omega.pfa"]]) && (options[["omegaInterval"]] == "omegaAnalytic")) { 
           fit <- relyFit[["freq"]][["fit.object"]]
+
           params <- lavaan::parameterestimates(fit, level = options[["confidenceIntervalValue"]])
           om_low <- params$ci.lower[params$lhs=="omega"]
           om_up <- params$ci.upper[params$lhs=="omega"]
@@ -365,7 +384,6 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   }
   return(cfi)
 }
-
 
 
 
@@ -439,7 +457,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
         allData <- cbind(allData, newData)
         
         # produce footnote for coefficients that are prone to fail with singular matrices, such as lambda6 and omega
-        if (is.nan(model[["cfi"]][["scaleCfi"]][[i]])) 
+        if (any(is.nan(model[["cfi"]][["scaleCfi"]][[i]])))
           addSingularFootnote <- TRUE
       }
       if (addSingularFootnote) {
@@ -615,15 +633,5 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   out <- Bayesrel:::omegaFreqData(data, pairwise = F)
   om <- out[["omega"]]
   return(om)
-}
-
-
-.itemDeletedM <- function(cc) {
-  p <- ncol(cc)
-  Ctmp <- array(0, c(p, p - 1, p - 1))
-  for (i in 1:p){
-    Ctmp[i, , ] <- cc[-i, -i]
-  }
-  return(Ctmp)
 }
 
