@@ -1,6 +1,6 @@
 reliabilityFrequentist <- function(jaspResults, dataset, options) {
   
-
+  
   dataset <- .reliabilityReadData(dataset, options)
   .reliabilityCheckErrors(dataset, options)
   
@@ -139,7 +139,6 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
                                          omega.int.analytic = omegaAna,
                                          para.boot = para,
                                          missing = missing, callback = progressbarTick))
-          
           relyFit[["freq"]][["est"]][["freq_alpha"]] <- Bayesrel:::applyalpha(model[["dat_cov"]])
 
           relyFit[["freq"]][["ifitem"]][["alpha"]] <- numeric(p)
@@ -331,7 +330,6 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
           names(alphaCfi) <- c("lower", "upper")
           scaleCfi[["alpha"]] <- alphaCfi
         }
-        
         
         # omega cfa analytic interval:
         if (is.null(relyFit[["freq"]][["omega.pfa"]]) && (options[["omegaInterval"]] == "omegaAnalytic")) { 
