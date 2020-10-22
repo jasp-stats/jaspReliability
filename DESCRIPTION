@@ -8,3 +8,19 @@ Website: https://github.com/jasp-stats/Reliability
 Maintainer: Julius M. Pfadt <julius.pfadt@gmail.com>
 Description: This module offers Reliability analyses.
 License: GPL (>= 2)
+Encoding: UTF-8
+Imports:
+  Bayesrel (>= 0.6.5.6),
+  coda,
+  ggplot2,
+  ggridges,
+  jaspBase,
+  jaspGraphs,
+  LaplacesDemon,
+  lavaan,
+  MASS,
+  psych
+Remotes:
+  juliuspf/Bayesrel,
+  jasp-stats/jaspBase,
+  jasp-stats/jaspGraphs
