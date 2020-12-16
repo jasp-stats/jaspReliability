@@ -26,6 +26,12 @@ Description
 		qml: 	"ReliabilityFrequentist.qml"
 		func: 	"reliabilityFrequentist"
 	}
+	Analysis
+	{
+		title:	qsTr("Intraclass Correlation")
+		qml: 	"IntraclassCorrelation.qml"
+		func: 	"IntraclassCorrelation"
+	}
 
 	Separator {}
 
