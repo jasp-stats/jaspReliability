@@ -27,16 +27,16 @@ Form
   	{
   		height: 300
 
-  		AvailableVariablesList { name: "allVariablesList" }		
-  		
-		AssignedVariablesList 	
-		{ 
+  		AvailableVariablesList { name: "allVariablesList" }
+
+		AssignedVariablesList
+		{
 			name: 			"variables"
 			title: 			qsTr("Variables")
 			allowedColumns: ["scale", "ordinal"]
 		}
   	}
-	
+
 	Section
 	{
 		title: 	qsTr("Single-Test Reliability")
@@ -45,102 +45,102 @@ Form
 		{
 			title: qsTr("Scale Statistics")
 
-			CheckBox 
+			CheckBox
 			{
 				name: 				"intervalOn"
 				label:				qsTr("Confidence Interval")
 				checked: 			true
 				childrenOnSameRow: 	true
 
-				CIField 
-				{      
-					name: 		"confidenceIntervalValue";   
+				CIField
+				{
+					name: 		"confidenceIntervalValue";
 					label: 		"";
 					defaultValue: 95;
 				}
 			}
 
-			CheckBox 
-			{    
+			CheckBox
+			{
 				id:     	mcdonald
 				name:   	"mcDonaldScale"
-				label:  	qsTr("McDonald's ω")         
+				label:  	qsTr("McDonald's ω")
 				checked: 	true
 			}
-			
-			CheckBox 
+
+			CheckBox
 			{
 				id: 	cronbach
 				name: 	"alphaScale";
-				label: 	qsTr("Cronbach's α");         
+				label: 	qsTr("Cronbach's α");
 			}
 
-			CheckBox 
-			{     
+			CheckBox
+			{
 				id: 	guttman2
 				name: 	"guttman2Scale";
-				label: 	qsTr("Guttman's λ2");         
+				label: 	qsTr("Guttman's λ2");
 			}
 
-			CheckBox 
-			{     
+			CheckBox
+			{
 				id: 	guttman6
 				name: 	"guttman6Scale";
-				label: 	qsTr("Guttman's λ6");         
+				label: 	qsTr("Guttman's λ6");
 			}
 
-			CheckBox 
-			{     
+			CheckBox
+			{
 				id: 	glb
 				name: 	"glbScale";
-				label: 	qsTr("Greatest lower bound"); 
+				label: 	qsTr("Greatest lower bound");
 			}
 
 			CheckBox { name: "averageInterItemCor";	label: qsTr("Average interitem correlation")}
 			CheckBox { name: "meanScale";			label: qsTr("Mean")							}
 			CheckBox { name: "sdScale";				label: qsTr("Standard deviation")			}
-			
+
 		}
-		
+
 		Group
 		{
 			title: qsTr("Individual Item Statistics")
 
-			CheckBox 
-			{ 
+			CheckBox
+			{
 				name: 		"mcDonaldItem";
-				label: 		qsTr("McDonald's ω  (if item dropped)");	        
+				label: 		qsTr("McDonald's ω  (if item dropped)");
 				enabled: 	mcdonald.checked
 			}
 
-			CheckBox 
-			{ 
+			CheckBox
+			{
 				name: 		"alphaItem";
-				label: 		qsTr("Cronbach's α (if item dropped)");	     
+				label: 		qsTr("Cronbach's α (if item dropped)");
 				enabled: 	cronbach.checked
 			}
 
-			CheckBox 
-			{ 
+			CheckBox
+			{
 				name: 		"guttman2Item";
-				label: 		qsTr("Guttman's λ2 (if item dropped)");	       
+				label: 		qsTr("Guttman's λ2 (if item dropped)");
 				enabled: 	guttman2.checked
 			}
 
-			CheckBox 
-			{ 
+			CheckBox
+			{
 				name: 		"guttman6Item";
-				label: 		qsTr("Guttman's λ6 (if item dropped)");	       
+				label: 		qsTr("Guttman's λ6 (if item dropped)");
 				enabled: 	guttman6.checked
 			}
-			
-			CheckBox 
-			{ 
+
+			CheckBox
+			{
 				name: 		"glbItem";
-				label: 		qsTr("Greatest lower bound (if item dropped)");	
+				label: 		qsTr("Greatest lower bound (if item dropped)");
 				enabled: 	glb.checked
-			}    
-			
+			}
+
 			CheckBox { name: "itemRestCor";	label: qsTr("Item-rest correlation")		}
 			CheckBox { name: "meanItem";	label: qsTr("Mean")							}
 			CheckBox { name: "sdItem";		label: qsTr("Standard deviation")			}
@@ -150,7 +150,7 @@ Form
 	Section
 	{
 		title: qsTr("Reverse-Scaled Items")
-		
+
 		VariablesForm
 		{
 			height: 150
@@ -159,24 +159,24 @@ Form
 			AssignedVariablesList 	{ name: "reverseScaledItems"; 	title: qsTr("Reverse-Scaled Items") }
 		}
 	}
-	
+
 	Section
 	{
 		title: qsTr("Advanced Options")
 
-		RadioButtonGroup 
+		RadioButtonGroup
 		{
 				title: 	qsTr("Missing Values")
 				name: 	"missingValues"
 
 				RadioButton { value: "excludeCasesPairwise"; label: qsTr("Exclude cases pairwise"); checked: true}
 				RadioButton { value: "excludeCasesListwise"; label: qsTr("Exclude cases listwise")}
-		} 
-		
-	Group 
+		}
+
+	Group
 	{
 			title: qsTr("Bootstrap")
-			
+
 			IntegerField
 			{
 				name: 			"noSamples"
@@ -186,25 +186,25 @@ Form
 				min: 			100
 				max: 			1e7
 			}
-			
-			RadioButtonGroup 
+
+			RadioButtonGroup
 			{
 				title:	""
 				name: 	"bootType"
 
-				RadioButton {value: "bootNonpara"; label: qsTr("Non-parametric bootstrap"); checked: true}
+				RadioButton {value: "bootNonPara"; label: qsTr("Non-parametric bootstrap"); checked: true}
 				RadioButton {value: "bootPara"; label: qsTr("Parametric bootstrap")}
 			}
 
-		}    
+		}
 
-		RadioButtonGroup 
+		RadioButtonGroup
 		{
 			title: 		qsTr("McDonald's ω Estimation")
 			name: 		"omegaEst"
 			enabled: 	mcdonald.checked
 
-			RadioButton 
+			RadioButton
 			{
 				value: 		"cfa"
 				label: 		qsTr("CFA")
@@ -216,83 +216,83 @@ Form
 						label: 		qsTr("Single Factor Model Fit")
 					}
 
-					RadioButtonGroup 
+					RadioButtonGroup
 					{
 						title: 	qsTr("Interval")
 						name: 	"omegaInterval"
 
 						RadioButton
 						{
-						
+
 							value: 		"omegaAnalytic"
 							label: 		qsTr("Analytic interval")
 							checked: 	true
 						}
-						
+
 						RadioButton
 						{
-							value: 	"omegaBoot"	
+							value: 	"omegaBoot"
 							label: 	qsTr("Bootstrapped interval")
 						}
 					}
 				}
 				RadioButton { value: "pfa"; label: qsTr("PFA")}
 		}
-		
+
 		Group
 		{
 			title: 		qsTr("Cronbach's α Estimation")
 			enabled: 	cronbach.checked
-			
-			RadioButtonGroup 
+
+			RadioButtonGroup
 			{
 				title:	""
 				name: 	"alphaMethod"
-				
+
 				RadioButton
 				{
-					value:   	"alphaUnstand"	
-					label:   	qsTr("Unstandardized")         
+					value:   	"alphaUnstand"
+					label:   	qsTr("Unstandardized")
 					checked:	true
 				}
-					
+
 				RadioButton
 				{
-					value:  	"alphaStand"	
-					label:  	qsTr("Standardized")         
+					value:  	"alphaStand"
+					label:  	qsTr("Standardized")
 				}
 			}
-			
-			RadioButtonGroup 
+
+			RadioButtonGroup
 			{
 				title: 	qsTr("Interval")
 				name: 	"alphaInterval"
 
 				RadioButton
 				{
-					value:  	"alphaAnalytic"	
-					label:  	qsTr("Analytic interval")         
+					value:  	"alphaAnalytic"
+					label:  	qsTr("Analytic interval")
 					checked: 	true
 				}
 
 				RadioButton
 				{
-					value: 	"alphaBoot"	
-					label:  	qsTr("Bootstrapped interval")         
+					value: 	"alphaBoot"
+					label:  	qsTr("Bootstrapped interval")
 				}
 			}
 		}
-		
-		Group 
+
+		Group
 		{
 			title: qsTr("Repeatability")
 
-			CheckBox 
+			CheckBox
 			{
 				name: 				"setSeed"
 				label: 				qsTr("Set seed")
 				childrenOnSameRow: 	true
-				
+
 				IntegerField
 				{
 					name: 			"seedValue"
@@ -304,5 +304,5 @@ Form
 				}
 			}
 		}
-	}         
+	}
 }
