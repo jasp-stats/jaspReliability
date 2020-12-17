@@ -5,8 +5,8 @@
 #   # is alpha even checked?
 #   if (options[["alphaScale"]]) {
 #
-#     if (!is.null(jaspResults[["stateContainer"]][["alphaObj"]]$object))
-#       return(jaspResults[["stateContainer"]][["alphaObj"]]$object)
+#     if (!is.null(.getStateContainer(jaspResults)[["alphaObj"]]$object))
+#       return(.getStateContainer(jaspResults)[["alphaObj"]]$object)
 #
 #     # alpha unstandardized
 #     if (options[["alphaMethod"]] == "alphaUnstand") {
@@ -76,10 +76,10 @@
 #       }
 #     }
 #
-#     if (!is.null(jaspResults[["stateContainer"]])) {
+#     if (!is.null(.getStateContainer(jaspResults))) {
 #       alphaObject <- createJaspState(out)
 #       # alphaObject$dependOn(...)
-#       jaspResults[["stateContainer"]][["alphaObj"]] <- alphaObject
+#       .getStateContainer(jaspResults)[["alphaObj"]] <- alphaObject
 #     }
 #   }
 #
@@ -88,15 +88,15 @@
 
 
 .reliabilityFrequentistGuttman2 <- function(jaspResults, dataset, options, model) {
+  
+  if (!is.null(.getStateContainer(jaspResults)[["guttman2Obj"]]$object))
+      return(.getStateContainer(jaspResults)[["guttman2Obj"]]$object)
+  
   out <- model[["guttman2"]]
   if (is.null(out))
     out <- list()
   # is coefficient even checked?
   if (options[["guttman2Scale"]]) {
-
-    if (!is.null(jaspResults[["stateContainer"]][["guttman2Obj"]]$object))
-      return(jaspResults[["stateContainer"]][["guttman2Obj"]]$object)
-
 
     out[["est"]] <- Bayesrel:::applyalpha(model[["data_cov"]])
 
@@ -115,11 +115,8 @@
       out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applylambda2)
     }
 
-    if (!is.null(jaspResults[["stateContainer"]])) {
-      guttman2Object <- createJaspState(out)
-      # guttman2Object$dependOn(...)
-      jaspResults[["stateContainer"]][["guttman2Obj"]] <- guttman2Object
-    }
+    stateContainer <- .getStateContainer(jaspResults)
+    stateContainer[["guttman2Obj"]] <- createJaspState(out)
   }
   return(out)
 }

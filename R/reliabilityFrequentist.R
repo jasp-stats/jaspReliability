@@ -51,8 +51,8 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
 
 .reliabilityFrequentistPreCalc <- function(jaspResults, dataset, options) {
 
-  if (!is.null(jaspResults[["stateContainer"]][["modelObj"]]$object))
-    return(jaspResults[["stateContainer"]][["modelObj"]]$object)
+  if (!is.null(.getStateContainer(jaspResults)[["modelObj"]]$object))
+    return(.getStateContainer(jaspResults)[["modelObj"]]$object)
 
   derivedOptions <- .reliabilityFrequentistDerivedOptions(options)
 
@@ -143,16 +143,8 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
     model[["itemDroppedCovs"]] <- Ctmp
   }
 
-  if (is.null(jaspResults[["stateContainer"]])) {
-    jaspResults[["stateContainer"]] <- createJaspContainer()
-    jaspResults[["stateContainer"]]$dependOn(
-      options = c("variables", "reverseScaledItems", "noSamples", "missingValues", "bootType",
-                  "setSeed", "seedValue", "intervalOn")
-    )
-  }
-
-  modelState <- createJaspState(model)
-  jaspResults[["stateContainer"]] <- modelState
+  stateContainer <- .getStateContainer(jaspResults)
+  stateContainer[["modelObj"]] <- createJaspState(model)
 
   return(model)
 }

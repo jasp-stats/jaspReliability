@@ -63,3 +63,14 @@
   dataset_rev[ ,cols] <- matrix(rep(total, nrow(dataset)), nrow(dataset), length(cols), byrow=T) - dataset[ ,cols]
   return(dataset_rev)
 }
+
+.getStateContainer <- function(jaspResults) {
+  if (!is.null(jaspResults[["stateContainer"]]))
+    return(jaspResults[["stateContainer"]])
+
+  jaspResults[["stateContainer"]] <- createJaspContainer(dependencies=c("variables", "reverseScaledItems", "noSamples", "missingValues", "bootType",
+                  "setSeed", "seedValue", "intervalOn")
+    )
+
+    return(jaspResults[["stateContainer"]])
+}
