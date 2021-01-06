@@ -1,0 +1,499 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: en_US\n"
+"X-Source-Language: American English\n"
+"X-Qt-Contexts: true\n"
+
+#, fuzzy
+msgctxt "Description|"
+msgid "Reliability"
+msgstr "Fiabilidad"
+
+#, fuzzy
+msgctxt "Description|"
+msgid "This module offers Reliability analyses."
+msgstr "Este módulo ofrece análisis de confiabilidad."
+
+#, fuzzy
+msgctxt "Description|"
+msgid "Classical"
+msgstr "Clásico"
+
+#, fuzzy
+msgctxt "Description|"
+msgid "Single-Test Reliability Analysis"
+msgstr "Análisis de confiabilidad de una sola prueba"
+
+#, fuzzy
+msgctxt "Description|"
+msgid "Intraclass Correlation"
+msgstr "Correlación parcial"
+
+#, fuzzy
+msgctxt "Description|"
+msgid "Bayesian"
+msgstr "Bayesiano"
+
+#, fuzzy
+msgctxt "Description|"
+msgid "Bayesian Single-Test Reliability Analysis"
+msgstr "Análisis bayesiano de confiabilidad de prueba única"
+
+#, fuzzy
+msgctxt "IntraclassCorrelation|"
+msgid "Variables"
+msgstr "Variables"
+
+#, fuzzy
+msgctxt "IntraclassCorrelation|"
+msgid "Intraclass Correlation Coefficients"
+msgstr "Coeficiente de correlación muestral"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Variables"
+msgstr "Variables"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Single-Test Reliability"
+msgstr "Fiabilidad de prueba única"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Scale Statistics"
+msgstr "Estadísticas de escala"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Credible interval"
+msgstr "Intervalo creíble"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "McDonald's ω"
+msgstr "McDonald's ω"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Posterior predictive check"
+msgstr "Control predictivo posterior"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Cronbach's α"
+msgstr "Α de Cronbach"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ2"
+msgstr "Λ2 de Guttman"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ6"
+msgstr "Λ6 de Guttman"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Greatest lower bound"
+msgstr "Mayor límite inferior"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Average interitem correlation"
+msgstr "Correlación media entre elementos"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Mean"
+msgstr "Media"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Standard deviation"
+msgstr "Desviación Estándar"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Individual Item Statistics"
+msgstr "Estadísticas de artículos individuales"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr "McDonald's ω (si se cayó el artículo)"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Cronbach's α (if item dropped)"
+msgstr "Α de Cronbach (si el elemento cayó)"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ2 (if item dropped)"
+msgstr "Λ2 de Guttman (si se cae el elemento)"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ6 (if item dropped)"
+msgstr "Λ6 de Guttman (si se cae el elemento)"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Greatest lower bound (if item dropped)"
+msgstr "Límite inferior máximo (si el elemento se cayó)"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "If item dropped plot"
+msgstr "Si el elemento se cayó, trazar"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Order items"
+msgstr "Encargar artículos"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Order items by mean"
+msgstr "Ordenar artículos por media"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Order items by KL-divergence"
+msgstr "Pedir artículos por divergencia KL"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Order items by KS-distance"
+msgstr "Pedir artículos por distancia KS"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Item-rest correlation"
+msgstr "Correlación ítem-resto"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Plot Posteriors"
+msgstr "Trazar posteriores"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Fix range to 0-1"
+msgstr "Fijar rango a 0-1"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Display Priors"
+msgstr "Mostrar prioritarios"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Probability for:"
+msgstr "Probabilidad para:"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "< Reliability <"
+msgstr "<Fiabilidad <"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Shade posterior region in plot"
+msgstr "Sombrear la región posterior en la parcela"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Convergence"
+msgstr "Convergencia"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "MCMC parameters"
+msgstr "Parámetros de MCMC"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "No. samples"
+msgstr "No muestras"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "No. burnin samples"
+msgstr "No. de muestras quemadas"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Thinning"
+msgstr "Adelgazamiento"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "No. chains"
+msgstr "No cadenas"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Diagnostics"
+msgstr "Diagnóstico"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "R-hat"
+msgstr "R-sombrero"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Traceplots"
+msgstr "Traceplots"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Repeatability"
+msgstr "Repetibilidad"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Set seed"
+msgstr "Establecer semilla"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Reverse-Scaled Items"
+msgstr "Elementos de escala inversa"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Normal-Scaled Items"
+msgstr "Elementos de escala normal"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Missing Data Handling"
+msgstr "Manejo de datos faltantes"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Missing Values"
+msgstr "Valores faltantes"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Exclude cases pairwise"
+msgstr "Excluir casos por pares"
+
+#, fuzzy
+msgctxt "ReliabilityBayesian|"
+msgid "Exclude cases listwise"
+msgstr "Excluir casos según la lista"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Variables"
+msgstr "Variables"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Single-Test Reliability"
+msgstr "Fiabilidad de prueba única"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Scale Statistics"
+msgstr "Estadísticas de escala"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Confidence Interval"
+msgstr "Intervalo de confianza"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "McDonald's ω"
+msgstr "McDonald's ω"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Cronbach's α"
+msgstr "Α de Cronbach"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ2"
+msgstr "Λ2 de Guttman"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ6"
+msgstr "Λ6 de Guttman"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Greatest lower bound"
+msgstr "Mayor límite inferior"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Average interitem correlation"
+msgstr "Correlación media entre elementos"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Mean"
+msgstr "Media"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Standard deviation"
+msgstr "Desviación Estándar"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Individual Item Statistics"
+msgstr "Estadísticas de artículos individuales"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr "McDonald's ω (si se cayó el artículo)"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Cronbach's α (if item dropped)"
+msgstr "Α de Cronbach (si el elemento cayó)"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ2 (if item dropped)"
+msgstr "Λ2 de Guttman (si se cae el elemento)"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ6 (if item dropped)"
+msgstr "Λ6 de Guttman (si se cae el elemento)"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Greatest lower bound (if item dropped)"
+msgstr "Límite inferior máximo (si el elemento se cayó)"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Item-rest correlation"
+msgstr "Correlación ítem-resto"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Reverse-Scaled Items"
+msgstr "Elementos de escala inversa"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Normal-Scaled Items"
+msgstr "Elementos de escala normal"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Advanced Options"
+msgstr "Opciones avanzadas"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Missing Values"
+msgstr "Valores faltantes"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Exclude cases pairwise"
+msgstr "Excluir casos por pares"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Exclude cases listwise"
+msgstr "Excluir casos según la lista"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Bootstrap"
+msgstr "Oreja"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "No. of bootstrap samples"
+msgstr "No. de muestras de bootstrap"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Non-parametric bootstrap"
+msgstr "Bootstrap no paramétrico"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Parametric bootstrap"
+msgstr "Bootstrap paramétrico"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "McDonald's ω Estimation"
+msgstr "Estimación de McDonald's ω"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "CFA"
+msgstr "CFA"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Single Factor Model Fit"
+msgstr "Ajuste de modelo de factor único"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Interval"
+msgstr "Intervalo"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Analytic interval"
+msgstr "Intervalo analítico"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Bootstrapped interval"
+msgstr "Intervalo de arranque"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "PFA"
+msgstr "PFA"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Cronbach's α Estimation"
+msgstr "Estimación α de Cronbach"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Unstandardized"
+msgstr "No estandarizado"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Standardized"
+msgstr "Estandarizado"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Repeatability"
+msgstr "Repetibilidad"
+
+#, fuzzy
+msgctxt "ReliabilityFrequentist|"
+msgid "Set seed"
+msgstr "Establecer semilla"

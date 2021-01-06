@@ -1,0 +1,404 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: en_US\n"
+"X-Source-Language: American English\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Description|"
+msgid "Reliability"
+msgstr "Reliabilität"
+
+msgctxt "Description|"
+msgid "This module offers Reliability analyses."
+msgstr "Dieses Modul bietet Reliabilitätsanalysen."
+
+msgctxt "Description|"
+msgid "Classical"
+msgstr "Klassisch"
+
+msgctxt "Description|"
+msgid "Single-Test Reliability Analysis"
+msgstr "Einzeltest-Reliabilitätsanalyse"
+
+#, fuzzy
+msgctxt "Description|"
+msgid "Intraclass Correlation"
+msgstr "Partialkorrelation"
+
+msgctxt "Description|"
+msgid "Bayesian"
+msgstr "Bayesianisch"
+
+msgctxt "Description|"
+msgid "Bayesian Single-Test Reliability Analysis"
+msgstr "Bayessche Einzeltest-Reliabilitätsanalyse"
+
+#, fuzzy
+msgctxt "IntraclassCorrelation|"
+msgid "Variables"
+msgstr "Variablen"
+
+#, fuzzy
+msgctxt "IntraclassCorrelation|"
+msgid "Intraclass Correlation Coefficients"
+msgstr "Stichproben-Korrelationskoeffizient"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Variables"
+msgstr "Variablen"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Single-Test Reliability"
+msgstr "Einzeltest-Reliabilität"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Scale Statistics"
+msgstr "Skala-Statistiken"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Credible interval"
+msgstr "Glaubwürdigkeitsintervall"
+
+msgctxt "ReliabilityBayesian|"
+msgid "McDonald's ω"
+msgstr "McDonalds ω"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Posterior predictive check"
+msgstr "Posterior-Vorhersage-Kontrolle"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Cronbach's α"
+msgstr "Cronbachs α"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ2"
+msgstr "Guttmans λ2"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ6"
+msgstr "Guttmans λ6"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Greatest lower bound"
+msgstr "Größte Untergrenze"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Average interitem correlation"
+msgstr "Gemiddelde inter-item correlatie"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Mean"
+msgstr "Mittelwert"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Standard deviation"
+msgstr "Standardabweichung"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Individual Item Statistics"
+msgstr "Individuelle Item-Statistiken"
+
+msgctxt "ReliabilityBayesian|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr "McDonalds ω (falls Item gelöscht)"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Cronbach's α (if item dropped)"
+msgstr "Cronbachs α (falls Item gelöscht)"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ2 (if item dropped)"
+msgstr "Guttmans λ2 (falls als Item gelöscht)"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ6 (if item dropped)"
+msgstr "Guttmans λ6 (falls Item gelöscht)"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Greatest lower bound (if item dropped)"
+msgstr "Größte Untergrenze (falls Item gelöscht)"
+
+msgctxt "ReliabilityBayesian|"
+msgid "If item dropped plot"
+msgstr "Abbildung, falls Item gelöscht"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Order items"
+msgstr "Items sortieren"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Order items by mean"
+msgstr "Sortiere Items nach Mittelwert"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Order items by KL-divergence"
+msgstr "Sortiere Items nach KL-Divergenz"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Order items by KS-distance"
+msgstr "Sortiere Items nach KS-Distanz"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Item-rest correlation"
+msgstr "Item-Rest Korrelation"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Plot Posteriors"
+msgstr "Posterior-Abbildung"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Fix range to 0-1"
+msgstr "Bereich auf 0-1 fixieren"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Display Priors"
+msgstr "Prior anzeigen"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Probability for:"
+msgstr "Wahrscheinlichkeit für:"
+
+msgctxt "ReliabilityBayesian|"
+msgid "< Reliability <"
+msgstr "< Reliabilität <"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Shade posterior region in plot"
+msgstr "Posterior-Region in Abbildung markieren"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Convergence"
+msgstr "Konvergenz"
+
+msgctxt "ReliabilityBayesian|"
+msgid "MCMC parameters"
+msgstr "MCMC-Parameter"
+
+msgctxt "ReliabilityBayesian|"
+msgid "No. samples"
+msgstr "Stichprobenumfang"
+
+msgctxt "ReliabilityBayesian|"
+msgid "No. burnin samples"
+msgstr "Stichprobenumfang Aufwärmphase"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Thinning"
+msgstr "Ausdünnung"
+
+msgctxt "ReliabilityBayesian|"
+msgid "No. chains"
+msgstr "Anzahl Ketten"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Diagnostics"
+msgstr "Diagnostiken"
+
+msgctxt "ReliabilityBayesian|"
+msgid "R-hat"
+msgstr "R-Dach"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Traceplots"
+msgstr "Verlaufsdiagramme"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Repeatability"
+msgstr "Reproduzierbarkeit"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Set seed"
+msgstr "Startwert für Zufallszahlen setzen"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Reverse-Scaled Items"
+msgstr "Umgekehrt kodierte Items"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Normal-Scaled Items"
+msgstr "Normal kodierte Items"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Missing Data Handling"
+msgstr "Umgang mit fehlenden Werten"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Missing Values"
+msgstr "Fehlende Werte"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Exclude cases pairwise"
+msgstr "Fälle paarweise ausschließen"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Exclude cases listwise"
+msgstr "Fälle zeilenweise ausschließen"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Variables"
+msgstr "Variablen"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Single-Test Reliability"
+msgstr "Einzeltest-Reliabilität"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Scale Statistics"
+msgstr "Skala-Statistiken"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Confidence Interval"
+msgstr "Konfidenzintervall"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "McDonald's ω"
+msgstr "McDonald's ω"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Cronbach's α"
+msgstr "Cronbachs α"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ2"
+msgstr "Guttmans λ2"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ6"
+msgstr "Guttmans λ6"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Greatest lower bound"
+msgstr "Größte Untergrenze"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Average interitem correlation"
+msgstr "Mittlere Inter-Item Korrelation"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Mean"
+msgstr "Mittelwert"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Standard deviation"
+msgstr "Standardabweichung"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Individual Item Statistics"
+msgstr "Individuelle Item-Statistiken"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr "McDonalds ω (falls Item gelöscht)"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Cronbach's α (if item dropped)"
+msgstr "Cronbachs α (falls Item gelöscht)"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ2 (if item dropped)"
+msgstr "Guttmans λ2 (falls Item gelöscht)"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ6 (if item dropped)"
+msgstr "Guttmans λ6 (falls Item gelöscht)"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Greatest lower bound (if item dropped)"
+msgstr "Größe Untergrenze (falls Item gelöscht)"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Item-rest correlation"
+msgstr "Item-Rest Korrelation"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Reverse-Scaled Items"
+msgstr "Umgekehrt kodierte Items"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Normal-Scaled Items"
+msgstr "Normal kodierte Items"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Advanced Options"
+msgstr "Weitere Optionen"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Missing Values"
+msgstr "Fehlende Werte"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Exclude cases pairwise"
+msgstr "Fälle paarweise ausschließen"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Exclude cases listwise"
+msgstr "Fälle zeilenweise ausschließen"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Bootstrap"
+msgstr "Bootstrap"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "No. of bootstrap samples"
+msgstr "Bootstrap-Stichprobenumfang"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Non-parametric bootstrap"
+msgstr "Nichtparametrischer Bootstrap"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Parametric bootstrap"
+msgstr "Parametrischer Bootstrap"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "McDonald's ω Estimation"
+msgstr "McDonalds ω Schätzung"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "CFA"
+msgstr "CFA"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Single Factor Model Fit"
+msgstr "Einzelfaktor-Modell-Anpassung"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Interval"
+msgstr "Intervall"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Analytic interval"
+msgstr "Analytisches Intervall"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Bootstrapped interval"
+msgstr "Bootstrap-Intervall"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "PFA"
+msgstr "PFA"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Cronbach's α Estimation"
+msgstr "Cronbachs α Schätzung"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Unstandardized"
+msgstr "Unstandardisiert"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Standardized"
+msgstr "Standardisiert"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Repeatability"
+msgstr "Reproduzierbarkeit"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Set seed"
+msgstr "Startwert für Zufallszahlen setzen"

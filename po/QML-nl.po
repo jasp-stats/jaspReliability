@@ -1,0 +1,404 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: en_US\n"
+"X-Source-Language: American English\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Description|"
+msgid "Reliability"
+msgstr "Betrouwbaarheid"
+
+msgctxt "Description|"
+msgid "This module offers Reliability analyses."
+msgstr "Deze module biedt de Betrouwbaarheidsanalyses."
+
+msgctxt "Description|"
+msgid "Classical"
+msgstr "Klassiek"
+
+msgctxt "Description|"
+msgid "Single-Test Reliability Analysis"
+msgstr "Enkelvoudige Toets Betrouwbaarheidsanalyse"
+
+#, fuzzy
+msgctxt "Description|"
+msgid "Intraclass Correlation"
+msgstr "Partiële Correlatie"
+
+msgctxt "Description|"
+msgid "Bayesian"
+msgstr "Bayesiaans"
+
+msgctxt "Description|"
+msgid "Bayesian Single-Test Reliability Analysis"
+msgstr "Bayesiaanse Enkelvoudige Toets Betrouwbaarheidsanalyse"
+
+#, fuzzy
+msgctxt "IntraclassCorrelation|"
+msgid "Variables"
+msgstr "Variabelen"
+
+#, fuzzy
+msgctxt "IntraclassCorrelation|"
+msgid "Intraclass Correlation Coefficients"
+msgstr "Steekproef Correlatiecoëfficiënt"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Variables"
+msgstr "Variabelen"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Single-Test Reliability"
+msgstr "Enkelvoudige Toets Betrouwbaarheid"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Scale Statistics"
+msgstr "Schaalstatistieken"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Credible interval"
+msgstr "Geloofwaardigheidsinterval"
+
+msgctxt "ReliabilityBayesian|"
+msgid "McDonald's ω"
+msgstr "McDonald's ω"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Posterior predictive check"
+msgstr "Posterior voorspellende verificatie"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Cronbach's α"
+msgstr "Cronbach's α"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ2"
+msgstr "Guttman's λ2"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ6"
+msgstr "Guttman's λ6"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Greatest lower bound"
+msgstr "Grootste ondergrens"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Average interitem correlation"
+msgstr "Gemiddelde inter-item correlatie"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Mean"
+msgstr "Gemiddelde"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Standard deviation"
+msgstr "Standaardafwijking"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Individual Item Statistics"
+msgstr "Individuele Itemstatistieken"
+
+msgctxt "ReliabilityBayesian|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr "McDonald's ω  (als item is verwijderd)"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Cronbach's α (if item dropped)"
+msgstr "Cronbach's α (als item is verwijderd)"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ2 (if item dropped)"
+msgstr "Guttman's λ2 (als item is verwijderd)"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ6 (if item dropped)"
+msgstr "Guttman's λ6 (als item is verwijderd)"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Greatest lower bound (if item dropped)"
+msgstr "Grootste ondergrens (als item is verwijderd)"
+
+msgctxt "ReliabilityBayesian|"
+msgid "If item dropped plot"
+msgstr "Als item is verwijderd"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Order items"
+msgstr "Rangschik items"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Order items by mean"
+msgstr "Rangschik items naar gemiddelde"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Order items by KL-divergence"
+msgstr "Rangschik items naar KL-divergentie"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Order items by KS-distance"
+msgstr "Rangschik items naar KS-afstand"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Item-rest correlation"
+msgstr "Item-rest correlatie"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Plot Posteriors"
+msgstr "Grafiek Posteriors"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Fix range to 0-1"
+msgstr "Zet bereik vast op 0-1"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Display Priors"
+msgstr "Toon Priors"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Probability for:"
+msgstr "Kans op:"
+
+msgctxt "ReliabilityBayesian|"
+msgid "< Reliability <"
+msgstr "< Betrouwbaarheid <"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Shade posterior region in plot"
+msgstr "Markeer posterior gebied in grafiek"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Convergence"
+msgstr "Convergentie"
+
+msgctxt "ReliabilityBayesian|"
+msgid "MCMC parameters"
+msgstr "MCMC parameters"
+
+msgctxt "ReliabilityBayesian|"
+msgid "No. samples"
+msgstr "Aantal steekproeven"
+
+msgctxt "ReliabilityBayesian|"
+msgid "No. burnin samples"
+msgstr "Aantal opwarmsteekproeven"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Thinning"
+msgstr "Uitdunnen"
+
+msgctxt "ReliabilityBayesian|"
+msgid "No. chains"
+msgstr "Aantal ketens"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Diagnostics"
+msgstr "Diagnostieken"
+
+msgctxt "ReliabilityBayesian|"
+msgid "R-hat"
+msgstr "R-dakje"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Traceplots"
+msgstr "Spoordiagrammen"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Repeatability"
+msgstr "Herhaalbaarheid"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Set seed"
+msgstr "Gebruik toevalsgenerator beginwaarde"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Reverse-Scaled Items"
+msgstr "Omgekeerd Geschaalde Items"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Normal-Scaled Items"
+msgstr "Normaal Geschaalde Items"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Missing Data Handling"
+msgstr "Ontbrekende Gegevensbehandeling"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Missing Values"
+msgstr "Missende Waarden"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Exclude cases pairwise"
+msgstr "Sluit waarnemingen paarsgewijs uit"
+
+msgctxt "ReliabilityBayesian|"
+msgid "Exclude cases listwise"
+msgstr "Sluit waarnemingen uit per lijst"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Variables"
+msgstr "Variabelen"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Single-Test Reliability"
+msgstr "Enkelvoudige Toets Betrouwbaarheid"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Scale Statistics"
+msgstr "Schaalstatistieken"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Confidence Interval"
+msgstr "Betrouwbaarheidsinterval"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "McDonald's ω"
+msgstr "McDonald's ω"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Cronbach's α"
+msgstr "Cronbach's α"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ2"
+msgstr "Guttman's λ2"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ6"
+msgstr "Guttman's λ6"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Greatest lower bound"
+msgstr "Grootste ondergrens"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Average interitem correlation"
+msgstr "Gemiddelde inter-item correlatie"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Mean"
+msgstr "Gemiddelde"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Standard deviation"
+msgstr "Standaardafwijking"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Individual Item Statistics"
+msgstr "Individuele Itemstatistieken"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr "McDonald's ω  (als item is verwijderd)"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Cronbach's α (if item dropped)"
+msgstr "Cronbach's α (als item is verwijderd)"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ2 (if item dropped)"
+msgstr "Guttman's λ2 (als item is verwijderd)"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ6 (if item dropped)"
+msgstr "Guttman's λ6 (als item is verwijderd)"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Greatest lower bound (if item dropped)"
+msgstr "Grootste ondergrens (als item is verwijderd)"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Item-rest correlation"
+msgstr "Item-rest correlatie"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Reverse-Scaled Items"
+msgstr "Omgekeerd Geschaalde Items"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Normal-Scaled Items"
+msgstr "Normaal Geschaalde Items"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Advanced Options"
+msgstr "Geavanceerde Opties"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Missing Values"
+msgstr "Ontbrekende Waarden"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Exclude cases pairwise"
+msgstr "Sluit waarnemingen paarsgewijs uit"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Exclude cases listwise"
+msgstr "Sluit waarnemingen uit per lijst"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Bootstrap"
+msgstr "Bootstrap"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "No. of bootstrap samples"
+msgstr "Aantal bootstrap steekproeven"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Non-parametric bootstrap"
+msgstr "Niet-parametrische bootstrap"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Parametric bootstrap"
+msgstr "Parametrische bootstrap"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "McDonald's ω Estimation"
+msgstr "McDonald's ω Schatting"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "CFA"
+msgstr "CFA"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Single Factor Model Fit"
+msgstr "Enkele Factor Model Passing"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Interval"
+msgstr "Interval"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Analytic interval"
+msgstr "Analytisch interval"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Bootstrapped interval"
+msgstr "Bootstrap interval"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "PFA"
+msgstr "PFA"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Cronbach's α Estimation"
+msgstr "Cronbach's α Schatting"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Unstandardized"
+msgstr "Niet gestandaardiseerd"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Standardized"
+msgstr "Gestandaardiseerd"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Repeatability"
+msgstr "Herhaalbaarheid"
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Set seed"
+msgstr "Gebruik toevalsgenerator beginwaarde"
