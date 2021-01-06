@@ -1,0 +1,184 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: R 3.6.1\n"
+"Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
+"POT-Creation-Date: 2021-01-05 09:39\n"
+"PO-Revision-Date: 2020-12-02 21:29+0000\n"
+"Last-Translator: JASP Stats <F.A.M.Meerhoff@uva.nl>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/jasp-engine/"
+"nl/>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
+"X-Generator: Weblate 4.4-dev\n"
+
+msgid "Greatest Lower Bound"
+msgstr "Hoogste Ondergrens"
+
+msgid "Item-rest correlation"
+msgstr "Item-rest correlatie"
+
+msgid "mean"
+msgstr "gemiddelde"
+
+msgid "sd"
+msgstr "sd"
+
+msgid "The covariance matrix of the data is not invertible"
+msgstr "De covariantiematrix van de gegevens is niet inverteerbaar"
+
+msgid "%s Of the observations, pairwise complete cases were used."
+msgstr "%s Alleen paarsgewijze volledige observaties zijn gebruikt."
+
+msgid "%s Of the observations, %1.f complete cases were used."
+msgstr "%s alleen de volledige observaties van %1.f zijn gebruikt."
+
+msgid "Bayesian Scale Reliability Statistics"
+msgstr "Bayesiaanse Schaal Validiteitsstatistieken"
+
+msgid "Estimate"
+msgstr "Schatting"
+
+msgid "%s%% CI"
+msgstr "%s%% BI"
+
+msgid "%s lower bound"
+msgstr "%s ondergrens"
+
+msgid "%s upper bound"
+msgstr "%s bovengrens"
+
+msgid "Please enter at least 3 variables to do an analysis. %s"
+msgstr "Geef a.u.b. minstens 3 variabelen op. %s"
+
+msgid "Please enter at least 3 variables to do an analysis."
+msgstr "Geef a.u.b. minstens 3 variabelen op."
+
+msgid "%s (if item dropped)"
+msgstr "%s (als item wordt weggelaten)"
+
+msgid "Bayesian Individual Item Reliability Statistics"
+msgstr "Bayesiaanse Individuele Item Validiteitsstatistieken"
+
+msgid "Item"
+msgstr "Item"
+
+msgid "Posterior Mean"
+msgstr "Posterior Gemiddelde"
+
+msgid "Lower %s%% CI"
+msgstr "Onder %s%% BI"
+
+msgid "Upper %s%% CI"
+msgstr "Boven %s%% BI"
+
+msgid ""
+"Probability that Reliability Statistic is Larger than %.2f and Smaller than "
+"%.2f"
+msgstr ""
+"De kans dat de Validiteitsstatistiek Groter is dan %.2f and Kleiner is dan "
+"%.2f"
+
+msgid "Probability"
+msgstr "Kansverdeling"
+
+msgid "Statistic"
+msgstr "Statistiek"
+
+msgid "Prior"
+msgstr "Prior"
+
+msgid "Posterior"
+msgstr "Posterior"
+
+msgid "Posterior Plots"
+msgstr "Posterior Grafieken"
+
+msgid "Density"
+msgstr "Dichtheid"
+
+msgid "If Item Dropped Posterior Plots"
+msgstr "Als Item Wordt Weggelaten Posterior Grafiek"
+
+msgid "Item Dropped"
+msgstr "Item Wordt Weggelaten"
+
+msgid "Eigenvalue"
+msgstr "Eigenwaarde"
+
+msgid "Factors"
+msgstr "Factoren"
+
+msgid "Convergence Traceplot"
+msgstr "Convergentie Spoordiagram"
+
+msgid "Iterations"
+msgstr "Iteraties"
+
+msgid "%.2f"
+msgstr "%.2f"
+
+msgid "The analysis crashed with the following error message:"
+msgstr "De analyse is onderbroken met de volgende foutmelding:"
+
+msgid "Frequentist Scale Reliability Statistics"
+msgstr "Frequentistische Schaal Validiteitsstatistieken"
+
+msgid "Point estimate"
+msgstr "Puntschatting"
+
+msgid ""
+"%1$sMcDonald's %2$s estimation method switched to PFA because the CFA\n"
+"                                    did not find a solution."
+msgstr ""
+"%1$sMcDonald's %2$s schattingsmethode is overgeschakeld op PFA omdat de CFA\n"
+"                                          geen oplossing vond."
+
+msgid ""
+"%s Some confidence intervals could not be computed because none of the "
+"bootstrapped covariance matrices were invertible."
+msgstr ""
+"%s Sommige betrouwbaarheidsintervallen konden niet worden berekend omdat "
+"geen van de bootstrap covariantie matrices inverteerbaar was."
+
+msgid "If item dropped"
+msgstr "Als item wordt weggelaten"
+
+msgid "Frequentist Individual Item Reliability Statistics"
+msgstr "Frequentistische Individuele Item Validiteitsstatistieken"
+
+msgid ""
+"McDonald's %s estimation method for item-dropped statistics switched to PFA "
+"because the CFA did not find a solution."
+msgstr ""
+"McDonald's %s schattingsmethode voor item-weggelaten statistiek is "
+"omgeschakeld naar PFA omdat de CFA geen oplossing vond."
+
+msgid "Fit Measures of Single Factor Model Fit"
+msgstr "Pasmaat van Enkele Factor Model passing"
+
+msgid "Fit Measure"
+msgstr "Pasmaat"
+
+msgid "Value"
+msgstr "Waarde"
+
+msgid ""
+"Fit measures cannot be displayed because the McDonald's %s estimation method "
+"switched to PFA as the CFA did not find a solution."
+msgstr ""
+"De pasmaat kan niet worden getoond omdat de schattingsmethode voor "
+"McDonald's %s veranderd is naar PFA, want de CFA leidde niet tot een "
+"oplossing."
+
+msgid "The following item correlated negatively with the scale: %s. "
+msgid_plural "The following items correlated negatively with the scale: %s. "
+msgstr[0] "De volgende item is negatief gecorreleerd met: %s. "
+msgstr[1] "De volgende items zijn negatief gecorreleerd met: %s. "
+
+msgid "The following item was reverse scaled: %s. "
+msgid_plural "The following items were reverse scaled: %s. "
+msgstr[0] "De volgende item is omgekeerd geschaald: %s. "
+msgstr[1] "De volgende items zijn omgekeerd geschaald: %s. "
