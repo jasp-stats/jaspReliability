@@ -51,6 +51,7 @@ Form
 				label:				qsTr("Confidence Interval")
 				checked: 			true
 				childrenOnSameRow: 	true
+				id:					interval
 
 				CIField
 				{
@@ -62,8 +63,8 @@ Form
 
 			CheckBox
 			{
-				id:     	mcdonald
-				name:   	"mcDonaldScale"
+				id:     	omega
+				name:   	"omegaScale"
 				label:  	qsTr("McDonald's ω")
 				checked: 	true
 			}
@@ -77,15 +78,15 @@ Form
 
 			CheckBox
 			{
-				id: 	guttman2
-				name: 	"guttman2Scale";
+				id: 	lambda2
+				name: 	"lambda2Scale";
 				label: 	qsTr("Guttman's λ2");
 			}
 
 			CheckBox
 			{
-				id: 	guttman6
-				name: 	"guttman6Scale";
+				id: 	lambda6
+				name: 	"lambda6Scale";
 				label: 	qsTr("Guttman's λ6");
 			}
 
@@ -97,8 +98,34 @@ Form
 			}
 
 			CheckBox { name: "averageInterItemCor";	label: qsTr("Average interitem correlation")}
-			CheckBox { name: "meanScale";			label: qsTr("Mean")							}
-			CheckBox { name: "sdScale";				label: qsTr("Standard deviation")			}
+			CheckBox
+			{
+				name: "meanScale"
+				label: qsTr("Mean")
+
+				RadioButtonGroup
+				{
+						title: 	qsTr("")
+						name: 	"meanMethod"
+
+						RadioButton { value: "sumScores"; label: qsTr("of sum scores"); checked: true}
+						RadioButton { value: "meanScores"; label: qsTr("of mean scores")}
+				}
+			}
+			CheckBox
+			{
+				name: "sdScale"
+				label: qsTr("Standard deviation")
+
+				RadioButtonGroup
+				{
+						title: 	qsTr("")
+						name: 	"sdMethod"
+
+						RadioButton { value: "sumScores"; label: qsTr("of sum scores"); checked: true}
+						RadioButton { value: "meanScores"; label: qsTr("of mean scores")}
+				}
+			}
 
 		}
 
@@ -108,9 +135,9 @@ Form
 
 			CheckBox
 			{
-				name: 		"mcDonaldItem";
+				name: 		"omegaItem";
 				label: 		qsTr("McDonald's ω  (if item dropped)");
-				enabled: 	mcdonald.checked
+				enabled: 	omega.checked
 			}
 
 			CheckBox
@@ -122,16 +149,16 @@ Form
 
 			CheckBox
 			{
-				name: 		"guttman2Item";
+				name: 		"lambda2Item";
 				label: 		qsTr("Guttman's λ2 (if item dropped)");
-				enabled: 	guttman2.checked
+				enabled: 	lambda2.checked
 			}
 
 			CheckBox
 			{
-				name: 		"guttman6Item";
+				name: 		"lambda6Item";
 				label: 		qsTr("Guttman's λ6 (if item dropped)");
-				enabled: 	guttman6.checked
+				enabled: 	lambda6.checked
 			}
 
 			CheckBox
@@ -142,8 +169,8 @@ Form
 			}
 
 			CheckBox { name: "itemRestCor";	label: qsTr("Item-rest correlation")		}
-			CheckBox { name: "meanItem";	label: qsTr("Mean")							}
-			CheckBox { name: "sdItem";		label: qsTr("Standard deviation")			}
+			CheckBox { name: "itemMean";	label: qsTr("Mean")							}
+			CheckBox { name: "itemSd";		label: qsTr("Standard deviation")			}
 		}
 	}
 
@@ -189,11 +216,12 @@ Form
 
 			RadioButtonGroup
 			{
-				title:	""
-				name: 	"bootType"
+				title:		""
+				name:		"bootType"
+				enabled:	interval.checked
 
-				RadioButton {value: "bootNonPara"; label: qsTr("Non-parametric bootstrap"); checked: true}
-				RadioButton {value: "bootPara"; label: qsTr("Parametric bootstrap")}
+				RadioButton {value: "nonPara"; label: qsTr("Non-parametric bootstrap"); checked: true}
+				RadioButton {value: "para"; label: qsTr("Parametric bootstrap")}
 			}
 
 		}
@@ -202,7 +230,7 @@ Form
 		{
 			title: 		qsTr("McDonald's ω Estimation")
 			name: 		"omegaEst"
-			enabled: 	mcdonald.checked
+			enabled: 	omega.checked
 
 			RadioButton
 			{
@@ -218,8 +246,9 @@ Form
 
 					RadioButtonGroup
 					{
-						title: 	qsTr("Interval")
-						name: 	"omegaInterval"
+						title:		qsTr("Interval")
+						name:		"omegaInterval"
+						enabled:	interval.checked
 
 						RadioButton
 						{
@@ -265,8 +294,9 @@ Form
 
 			RadioButtonGroup
 			{
-				title: 	qsTr("Interval")
-				name: 	"alphaInterval"
+				title:		qsTr("Interval")
+				name:		"alphaInterval"
+				enabled:	interval.checked
 
 				RadioButton
 				{

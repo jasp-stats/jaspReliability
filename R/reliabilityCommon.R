@@ -1,6 +1,6 @@
 
 
-.reliabilityReadData <- function(dataset, options) {
+.readData <- function(dataset, options) {
 
   variables <- unlist(options[["variables"]])
   if (is.null(dataset)) {
@@ -9,7 +9,7 @@
   return(dataset)
 }
 
-.reliabilityCheckErrors <- function(dataset, options) {
+.checkErrors <- function(dataset, options) {
 
   # check for existing inverse
   .checkInverse <- function() {
@@ -38,7 +38,7 @@
 }
 
 
-.reliabilityCheckLoadings <- function(dataset, variables) {
+.checkLoadings <- function(dataset, variables) {
   if (ncol(dataset > 2)) {
     prin <- psych::principal(dataset)
     idx <- prin[["loadings"]] < 0
@@ -68,9 +68,19 @@
   if (!is.null(jaspResults[["stateContainer"]]))
     return(jaspResults[["stateContainer"]])
 
-  jaspResults[["stateContainer"]] <- createJaspContainer(dependencies=c("variables", "reverseScaledItems", "noSamples", "missingValues", "bootType",
-                  "setSeed", "seedValue", "intervalOn")
+  jaspResults[["stateContainer"]] <- createJaspContainer(dependencies=c("variables", "reverseScaledItems", "noSamples",
+                                                                        "missingValues", "bootType","setSeed",
+                                                                        "seedValue", "intervalOn",
+                                                                        "omegaScale", "alphaScale", "lambda2Scale",
+                                                                        "lambda6Scale", "glbScale",
+                                                                        "averageInterItemCor", "omegaInterval",
+                                                                        "alphaInterval")
     )
 
     return(jaspResults[["stateContainer"]])
+}
+
+.cov2cor.callback <- function(C, callback) {
+  callback()
+  return(cov2cor(C))
 }

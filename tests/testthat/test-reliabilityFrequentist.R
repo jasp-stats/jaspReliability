@@ -1,6 +1,7 @@
 options <- analysisOptions("reliabilityFrequentist")
 options$alphaItem <- TRUE
 options$alphaScale <- TRUE
+options$omegaEst <- "pfa"
 options$averageInterItemCor <- TRUE
 options$confidenceIntervalValue <- 0.9
 options$fitMeasures <- TRUE
@@ -60,6 +61,7 @@ options$alphaInterval <- "alphaBoot"
 options$alphaItem <- TRUE
 options$alphaMethod <- "alphaStand"
 options$alphaScale <- TRUE
+options$omegaEst <- "pfa"
 options$averageInterItemCor <- TRUE
 options$bootType <- "bootPara"
 options$glbItem <- TRUE
