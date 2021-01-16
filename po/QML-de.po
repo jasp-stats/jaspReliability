@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-01-17 18:32+0000\n"
+"Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/de/>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.5-dev\n"
 "X-Language: en_US\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -24,10 +30,9 @@ msgctxt "Description|"
 msgid "Single-Test Reliability Analysis"
 msgstr "Einzeltest-Reliabilitätsanalyse"
 
-#, fuzzy
 msgctxt "Description|"
 msgid "Intraclass Correlation"
-msgstr "Partialkorrelation"
+msgstr "Intraklassen-Korrelation"
 
 msgctxt "Description|"
 msgid "Bayesian"
@@ -37,15 +42,13 @@ msgctxt "Description|"
 msgid "Bayesian Single-Test Reliability Analysis"
 msgstr "Bayessche Einzeltest-Reliabilitätsanalyse"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Variables"
 msgstr "Variablen"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Intraclass Correlation Coefficients"
-msgstr "Stichproben-Korrelationskoeffizient"
+msgstr "Intraklassen-Korrelationskoeffizienten"
 
 msgctxt "ReliabilityBayesian|"
 msgid "Variables"
