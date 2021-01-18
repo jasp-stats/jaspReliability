@@ -1,8 +1,8 @@
 
 .frequentistPreCalc <- function(jaspResults, dataset, options) {
 
-  if (!is.null(.getStateContainer(jaspResults)[["modelObj"]]$object))
-    return(.getStateContainer(jaspResults)[["modelObj"]]$object)
+  if (!is.null(.getStateContainerF(jaspResults)[["modelObj"]]$object))
+    return(.getStateContainerF(jaspResults)[["modelObj"]]$object)
 
   derivedOptions <- .frequentistDerivedOptions(options)
 
@@ -101,15 +101,15 @@
   }
   model[["itemsDropped"]] <- .unv(colnames(dataset))
 
-  stateContainer <- .getStateContainer(jaspResults)
+  stateContainer <- .getStateContainerF(jaspResults)
   stateContainer[["modelObj"]] <- createJaspState(model)
 
   return(model)
 }
 
 .frequentistItemDroppedMats <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainer(jaspResults)[["itemDroppedObj"]]$object))
-    return(.getStateContainer(jaspResults)[["itemDroppedObj"]]$object)
+  if (!is.null(.getStateContainerF(jaspResults)[["itemDroppedObj"]]$object))
+    return(.getStateContainerF(jaspResults)[["itemDroppedObj"]]$object)
 
   out <- model[["itemsDroppedCovs"]]
   if (is.null(out) && is.null(model[["empty"]])) {
@@ -124,7 +124,7 @@
       out <- Ctmp
     }
 
-    stateContainer <- .getStateContainer(jaspResults)
+    stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["itemDroppedObj"]] <- createJaspState(out, dependencies = c("omegaItem", "alphaItem", "lambda2Item",
                                                                                 "lambda6Item", "glbItem"))
   }

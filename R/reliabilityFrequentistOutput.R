@@ -2,10 +2,11 @@
 
 .frequentistScaleTable <- function(jaspResults, model, options) {
 
-  if (!is.null(.getStateContainer(jaspResults)[["scaleTable"]]$object))
+  if (!is.null(.getStateContainerF(jaspResults)[["scaleTable"]]$object))
       return()
 
   scaleTable <- createJaspTable(gettext("Frequentist Scale Reliability Statistics"))
+  scaleTable$dependOn(options = c("omegaScale", "alphaScale", "lambda2Scale", "lambda6Scale", "glbScale"))
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
 
   if (options[["intervalOn"]]) {
@@ -20,21 +21,6 @@
     allData <- data.frame(estimate = c(gettext("Point estimate")))
   }
 
-  # if no coefficients selected:
-  if (!is.null(model[["empty"]])) {
-    scaleTable$setData(allData)
-    nvar <- length(options[["variables"]])
-    # if (nvar > 0L && nvar < 3L)
-    #   scaleTable$addFootnote(gettextf("Please enter at least 3 variables to do an analysis. %s", model[["footnote"]]))
-    # else
-    #
-    scaleTable$addFootnote(model[["footnote"]])
-    scaleTable$position <- 1
-    stateContainer <- .getStateContainer(jaspResults)
-    stateContainer[["scaleTable"]] <- scaleTable
-    return()
-  }
-
   derivedOptions <- model[["derivedOptions"]]
   opts     <- derivedOptions[["namesEstimators"]][["tables"]]
   selected <- derivedOptions[["selectedEstimators"]]
@@ -42,51 +28,54 @@
   # match names from model object with the names from selected coefficients to find their index:
   idMatchedNames <- which(!is.na(charmatch(names(model), names(selected[idxSelected]))))
 
-  if (is.null(model[["empty"]])) {
-    if (options[["intervalOn"]]) {
-      z <- 1
+  # if no coefficients selected:
+  if (!is.null(model[["empty"]])) {
+    scaleTable$setData(allData)
+    nvar <- length(options[["variables"]])
+    if (sum(selected) > 0L && nvar < 3) {
       for (i in idxSelected) {
         scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
-        newData <- data.frame(est = c(unlist(model[[idMatchedNames[z]]][["est"]], use.names = F),
-                                      unlist(model[[idMatchedNames[z]]][["conf"]], use.names = F)))
-        colnames(newData) <- paste0(colnames(newData), i)
-        allData <- cbind(allData, newData)
-        z <- z+1
-      }
-    } else {
-      z <- 1
-      for (i in idxSelected) {
-        scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
-        newData <- data.frame(est = c(unlist(model[[idMatchedNames[z]]][["est"]], use.names = F)))
-        colnames(newData) <- paste0(colnames(newData), i)
-        allData <- cbind(allData, newData)
-        z <- z+1
       }
     }
+    scaleTable$addFootnote(model[["footnote"]])
+    scaleTable$position <- 1
+    stateContainerF <- .getStateContainerF(jaspResults)
+    stateContainerF[["scaleTable"]] <- scaleTable
+    return()
+  }
 
-    scaleTable$setData(allData)
-
-  } else if (sum(selected) > 0L) {
-
+  if (options[["intervalOn"]]) {
+    z <- 1
     for (i in idxSelected) {
       scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
+      newData <- data.frame(est = c(unlist(model[[idMatchedNames[z]]][["est"]], use.names = F),
+                                    unlist(model[[idMatchedNames[z]]][["conf"]], use.names = F)))
+      colnames(newData) <- paste0(colnames(newData), i)
+      allData <- cbind(allData, newData)
+      z <- z+1
     }
-    nvar <- length(options[["variables"]])
-    # if (nvar > 0L && nvar < 3L){
-    #   scaleTable$addFootnote(gettext("Please enter at least 3 variables to do an analysis."))
-    # }
-
+  } else {
+    z <- 1
+    for (i in idxSelected) {
+      scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
+      newData <- data.frame(est = c(unlist(model[[idMatchedNames[z]]][["est"]], use.names = F)))
+      colnames(newData) <- paste0(colnames(newData), i)
+      allData <- cbind(allData, newData)
+      z <- z+1
+    }
   }
-  if (!is.null(model[["error"]]))
-    scaleTable$setError(model[["error"]])
+
+  scaleTable$setData(allData)
+
+  # if (!is.null(model[["error"]]))
+  #   scaleTable$setError(model[["error"]])
 
   if (!is.null(model[["footnote"]]))
     scaleTable$addFootnote(model[["footnote"]])
 
-  scaleTable$dependOn(options = c("omegaScale", "alphaScale", "lambda2Scale", "lambda6Scale", "glbScale"))
   scaleTable$position <- 1
-  stateContainer <- .getStateContainer(jaspResults)
-  stateContainer[["scaleTable"]] <- scaleTable
+  stateContainerF <- .getStateContainerF(jaspResults)
+  stateContainerF[["scaleTable"]] <- scaleTable
 
   return()
 }
@@ -95,7 +84,7 @@
 
 .frequentistItemTable <- function(jaspResults, model, options) {
 
-  if (!is.null(.getStateContainer(jaspResults)[["itemTable"]]$object) ||
+  if (!is.null(.getStateContainerF(jaspResults)[["itemTable"]]$object) ||
       !any(model[["derivedOptions"]][["itemDroppedSelected"]]))
     return()
 
@@ -109,6 +98,7 @@
   }
 
   itemTable <- createJaspTable(gettext("Frequentist Individual Item Reliability Statistics"))
+  itemTable$dependOn(options = c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item", "glbItem"))
   itemTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
 
   itemDroppedSelected <- derivedOptions[["itemDroppedSelected"]]
@@ -157,10 +147,9 @@
     }
   }
 
-  itemTable$dependOn(options = c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item", "glbItem"))
   itemTable$position <- 2
-  stateContainer <- .getStateContainer(jaspResults)
-  stateContainer[["itemTable"]] <- itemTable
+  stateContainerF <- .getStateContainerF(jaspResults)
+  stateContainerF[["itemTable"]] <- itemTable
 
   return()
 }
@@ -168,9 +157,9 @@
 
 
 # once the package is updated check this again and apply:
-.freqentistSingleFactorFitTable <- function(jaspResults, model, options) {
+.frequentistSingleFactorFitTable <- function(jaspResults, model, options) {
 
-  if (!is.null(.getStateContainer(jaspResults)[["fitTable"]]$object) || is.null(model[["omega"]][["omegaFit"]]) ||
+  if (!is.null(.getStateContainerF(jaspResults)[["fitTable"]]$object) || is.null(model[["omega"]][["omegaFit"]]) ||
       !options[["fitMeasures"]])
     return()
 
@@ -192,8 +181,8 @@
   fitTable$dependOn(options = c("variables", "mcDonaldScale", "reverseScaledItems", "fitMeasures", "missingValues",
                                 "omegaEst"))
   fitTable$position <- 3
-  stateContainer <- .getStateContainer(jaspResults)
-  stateContainer[["fitTable"]] <- fitTable
+  stateContainerF <- .getStateContainerF(jaspResults)
+  stateContainerF[["fitTable"]] <- fitTable
 
   return()
 

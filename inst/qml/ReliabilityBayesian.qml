@@ -70,7 +70,7 @@ Form
 
 			CheckBox
 			{
-				id: 	cronbach
+				id: 	alpha
 				name: 	"alphaScale";
 				label: 	qsTr("Cronbach's α");
 			}
@@ -97,9 +97,34 @@ Form
 			}
 
 			CheckBox { name: "averageInterItemCor";	label: qsTr("Average interitem correlation")	}
-			CheckBox { name: "meanScale";			label: qsTr("Mean")								}
-			CheckBox { name: "sdScale";				label: qsTr("Standard deviation")				}
+			CheckBox
+			{
+				name: "meanScale"
+				label: qsTr("Mean")
 
+				RadioButtonGroup
+				{
+						title: 	qsTr("")
+						name: 	"meanMethod"
+
+						RadioButton { value: "sumScores"; label: qsTr("of sum scores"); checked: true}
+						RadioButton { value: "meanScores"; label: qsTr("of mean scores")}
+				}
+			}
+			CheckBox
+			{
+				name: "sdScale"
+				label: qsTr("Standard deviation")
+
+				RadioButtonGroup
+				{
+						title: 	qsTr("")
+						name: 	"sdMethod"
+
+						RadioButton { value: "sumScores"; label: qsTr("of sum scores"); checked: true}
+						RadioButton { value: "meanScores"; label: qsTr("of mean scores")}
+				}
+			}
     	}
 
     	Group
@@ -123,10 +148,10 @@ Form
 
 			CheckBox
     		{
-				id: 		cronbachItem
+				id: 		alphaItem
 				name: 		"alphaItem";
 				label: 		qsTr("Cronbach's α (if item dropped)");
-				enabled: 	cronbach.checked
+				enabled: 	alpha.checked
 			}
 
 			CheckBox
@@ -158,7 +183,7 @@ Form
 				id: 		plotItem
 				name: 		"plotItem";
 				label: 		qsTr("If item dropped plot");
-				enabled: 	omegaItem.checked || cronbachItem.checked || lambda2Item.checked || glbItem.checked;
+				enabled: 	omegaItem.checked || alphaItem.checked || lambda2Item.checked || glbItem.checked;
 
 				CheckBox
 				{
@@ -179,8 +204,8 @@ Form
 			}
 
 			CheckBox { name: "itemRestCor";						label: qsTr("Item-rest correlation")			}
-			CheckBox { name: "meanItem";						label: qsTr("Mean")								}
-			CheckBox { name: "sdItem";							label: qsTr("Standard deviation")				}
+			CheckBox { name: "itemMean";						label: qsTr("Mean")								}
+			CheckBox { name: "itemSd";							label: qsTr("Standard deviation")				}
     	}
 
       Group
@@ -189,6 +214,7 @@ Form
 			{
 				name: 	"plotPosterior";
 				label: 	qsTr("Plot Posteriors");
+				id:		postPlot
 
 				CheckBox
 				{
@@ -255,7 +281,7 @@ Form
 					name:		"shadePlots";
 					indent:		true
 					label:		qsTr("Shade posterior region in plot");
-					enabled:	probTable.checked
+					enabled:	probTable.checked & postPlot.checked
 					x:			Theme.subOptionOffset
 				}
 			}

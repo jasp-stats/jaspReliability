@@ -64,11 +64,11 @@
   return(dataset_rev)
 }
 
-.getStateContainer <- function(jaspResults) {
-  if (!is.null(jaspResults[["stateContainer"]]))
-    return(jaspResults[["stateContainer"]])
+.getStateContainerF <- function(jaspResults) {
+  if (!is.null(jaspResults[["stateContainerF"]]))
+    return(jaspResults[["stateContainerF"]])
 
-  jaspResults[["stateContainer"]] <- createJaspContainer(dependencies=c("variables", "reverseScaledItems", "noSamples",
+  jaspResults[["stateContainerF"]] <- createJaspContainer(dependencies=c("variables", "reverseScaledItems", "noSamples",
                                                                         "missingValues", "bootType","setSeed",
                                                                         "seedValue", "intervalOn",
                                                                         "omegaScale", "alphaScale", "lambda2Scale",
@@ -77,10 +77,74 @@
                                                                         "alphaInterval")
     )
 
-    return(jaspResults[["stateContainer"]])
+    return(jaspResults[["stateContainerF"]])
+}
+
+.getStateContainerB <- function(jaspResults) {
+  if (!is.null(jaspResults[["stateContainerB"]]))
+    return(jaspResults[["stateContainerB"]])
+
+  jaspResults[["stateContainerB"]] <- createJaspContainer(dependencies=c("variables", "reverseScaledItems", "noSamples",
+                                                                         "noBurnin", "noThin", "noChains",
+                                                                         "missingValues","setSeed", "seedValue",
+                                                                         "omegaScale", "alphaScale", "lambda2Scale",
+                                                                         "lambda6Scale", "glbScale",
+                                                                         "averageInterItemCor", "missingValues")
+  )
+
+  return(jaspResults[["stateContainerB"]])
 }
 
 .cov2cor.callback <- function(C, callback) {
   callback()
   return(cov2cor(C))
+}
+
+# calculate the kublack leibler distance between two samples
+.KLD.statistic <- function(x, y) {
+  # transform the samples to PDFs:
+  xdf <- .get_approx_density(x)
+  ydf <- .get_approx_density(y)
+
+  xx <- seq(0, 1, length.out = 1e4)
+  t <- LaplacesDemon::KLD(xdf(xx), ydf(xx))
+  t$sum.KLD.py.px
+}
+
+# calculate the kolomogorov smirnov distances between some samples and the original sample
+.ks.test.statistic <- function(x, y) {
+  t <- stats::ks.test(x, y)
+  t$statistic
+}
+
+# konvert empirical samples to cumulative density functions
+.get_approx_density <- function(x) {
+  d <- density(x, n = 2^12)
+  f <- approxfun(d$x, d$y, yleft = 0, yright = 0)
+  c <- integrate(f, 0, 1)$value
+  return(
+    function(x) {
+      return(f(x) / c)
+    }
+  )
+}
+
+.itemRestCor <- function(dataset, n.iter, n.burnin, thin, n.chains, missing, callback) {
+
+  ircor_samp <- array(0, c(n.chains, length(seq(1, n.iter-n.burnin, thin)), ncol(dataset)))
+  for (i in 1:ncol(dataset)) {
+    help_dat <- cbind(dataset[, i], rowMeans(dataset[, -i], na.rm = T))
+    ircor_samp[, , i] <- .WishartCorTransform(help_dat, n.iter = n.iter, n.burnin = n.burnin, thin = thin,
+                                              n.chains = n.chains, missing = missing, callback = callback)
+  }
+
+  return(ircor_samp)
+}
+
+.WishartCorTransform <- function(x, n.iter, n.burnin, thin, n.chains, missing, callback) {
+  tmp_cov <- Bayesrel:::covSamp(x, n.iter, n.burnin, thin, n.chains, pairwise = missing, callback)$cov_mat
+  tmp_cor <- apply(tmp_cov, c(1, 2), cov2cor)
+  out <- tmp_cor[2, , ]
+  callback()
+  return(out)
 }

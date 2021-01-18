@@ -1,25 +1,36 @@
 
 
-reliabilityBayesian<- function(jaspResults, dataset, options) {
+reliabilityBayesian <- function(jaspResults, dataset, options) {
 
-  sink(file="~/Downloads/log.txt")
-  on.exit(sink(NULL))
+  # sink(file="~/Downloads/logbay.txt")
+  # on.exit(sink(NULL))
 
   dataset <- .readData(dataset, options)
   .checkErrors(dataset, options)
 
   model <- .BayesianPreCalc(jaspResults, dataset, options)
+  options <- .scaleItemBoxAlign(options)
+  model[["itemDroppedCovs"]] <- .BayesianItemDroppedMats(jaspResults, dataset, options, model)
+  model[["derivedOptions"]] <- .BayesianDerivedOptions(options)
+  model[["omega"]] <- .BayesianOmega(jaspResults, dataset, options, model)
   model[["alpha"]] <- .BayesianAlpha(jaspResults, dataset, options, model)
-  # lambda2 <- .reliabilityFrequentistLambda2(jaspResults, dataset, options)
-  # lambda6 <- .reliabilityFrequentistLambda6(jaspResults, dataset, options)
-  # glb <- .reliabilityFrequentistGlb(jaspResults, dataset, options)
-  # omega <- .reliabilityFrequentistOmega(jaspResults, dataset, options)
-  # scaleStats <- .reliabilityFrequentistScaleStats(jaspResults, dataset, options)
+  model[["lambda2"]] <- .BayesianLambda2(jaspResults, dataset, options, model)
+  model[["lambda6"]] <- .BayesianLambda6(jaspResults, dataset, options, model)
+  model[["glb"]] <- .BayesianGlb(jaspResults, dataset, options, model)
+  model[["average"]] <- .BayesianAverageCor(jaspResults, dataset, options, model)
+  model[["mean"]] <- .BayesianMean(jaspResults, dataset, options, model)
+  model[["sd"]] <- .BayesianStdDev(jaspResults, dataset, options, model)
+  model[["itemRestCor"]] <- .BayesianItemRestCor(jaspResults, dataset, options, model)
+  model[["itemMean"]] <- .BayesianItemMean(jaspResults, dataset, options, model)
+  model[["itemSd"]] <- .BayesianItemSd(jaspResults, dataset, options, model)
 
-
-  # .frequentistReliabilityScaleTable(         jaspResults, model, options)
-  # .frequentistReliabilityItemTable(          jaspResults, model, options)
-  # .freqentistReliabilitySingleFactorFitTable(jaspResults, model, options)
+  .BayesianScaleTable(         jaspResults, model, options)
+  .BayesianItemTable(          jaspResults, model, options)
+  .BayesianProbTable(          jaspResults, model, options)
+  .BayesianPosteriorPlot(      jaspResults, model, options)
+  .BayesianIfItemPlot(         jaspResults, model, options)
+  .BayesianPosteriorPredictive(jaspResults, model, options)
+  .BayesianTracePlot(          jaspResults, model, options)
 
   return()
 
@@ -34,7 +45,7 @@ reliabilityBayesian<- function(jaspResults, dataset, options) {
     selectedEstimatorsPlots  = unlist(options[c("omegaScale", "alphaScale", "lambda2Scale", "lambda6Scale",
                                                 "glbScale")]),
     itemDroppedSelected = unlist(options[c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item","glbItem",
-                                           "itemRestCor", "meanItem", "sdItem")]),
+                                           "itemRestCor", "itemMean", "itemSd")]),
     itemDroppedSelectedItem = unlist(options[c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item",
                                                "glbItem")]),
 
@@ -48,17 +59,10 @@ reliabilityBayesian<- function(jaspResults, dataset, options) {
       plots = list(expression("McDonald's"~omega), expression("Cronbach\'s"~alpha), expression("Guttman's"~lambda[2]),
                    expression("Guttman's"~lambda[6]), gettext("Greatest Lower Bound")),
       plotsNoGreek = c("omega", "alpha", "lambda2", "lambda6", "glb")
-    ),
-
-    order_end = c(5, 1, 2, 3, 4) # order for plots and such, put omega to the front
+    )
 
   )
   return(derivedOptions)
 }
 
-
-.BayesianPreCalc <- function(jaspResults, dataset, options) {
-
-
-}
 

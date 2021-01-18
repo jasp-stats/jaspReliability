@@ -1,6 +1,9 @@
 
 reliabilityFrequentist <- function(jaspResults, dataset, options) {
 
+  # sink(file="~/Downloads/logfreq.txt")
+  # on.exit(sink(NULL))
+
   dataset <- .readData(dataset, options)
   .checkErrors(dataset, options)
 
@@ -21,7 +24,7 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
 
   .frequentistScaleTable(         jaspResults, model, options)
   .frequentistItemTable(          jaspResults, model, options)
-  .freqentistSingleFactorFitTable(jaspResults, model, options)
+  .frequentistSingleFactorFitTable(jaspResults, model, options)
 
   return()
 
@@ -29,7 +32,6 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
 
 .frequentistDerivedOptions <- function(options) {
 
-  # order of appearance in Bayesrel
   derivedOptions <- list(
     selectedEstimators  = unlist(options[c("omegaScale","alphaScale", "lambda2Scale", "lambda6Scale",
                                             "glbScale", "averageInterItemCor", "meanScale", "sdScale")]),
