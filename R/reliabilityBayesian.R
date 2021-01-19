@@ -8,6 +8,12 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
   dataset <- .readData(dataset, options)
   .checkErrors(dataset, options)
 
+  if (length(options[["reverseScaledItems"]]) > 0L) {
+    dataset <- .reverseScoreItems(dataset, options)
+  }
+
+
+
   model <- .BayesianPreCalc(jaspResults, dataset, options)
   options <- .scaleItemBoxAlign(options)
   model[["itemDroppedCovs"]] <- .BayesianItemDroppedMats(jaspResults, dataset, options, model)

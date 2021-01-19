@@ -341,6 +341,7 @@ return()
         plotContainerTP[[nmsObjsNoGreek[i]]] <- plotObjTP
 
       }
+      z <- z+1
     }
 
     plotContainerTP$position <- 7

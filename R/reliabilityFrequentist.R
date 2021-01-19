@@ -7,6 +7,10 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   dataset <- .readData(dataset, options)
   .checkErrors(dataset, options)
 
+  if (length(options[["reverseScaledItems"]]) > 0L) {
+    dataset <- .reverseScoreItems(dataset, options)
+  }
+
   model <- .frequentistPreCalc(jaspResults, dataset, options)
   model[["itemDroppedCovs"]] <- .frequentistItemDroppedMats(jaspResults, dataset, options, model)
   model[["derivedOptions"]] <- .frequentistDerivedOptions(options)

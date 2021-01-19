@@ -125,7 +125,7 @@
 
 
     } else { # alpha standardized
-      ccor <- cov2cor(model[["data_cov"]])
+      ccor <- model[["data_cor"]]
       out[["est"]] <- Bayesrel:::applyalpha(ccor)
 
       # do we need an interval estimate?
@@ -299,40 +299,6 @@
 }
 
 
-
-.frequentistAverageCor <- function(jaspResults, dataset, options, model) {
-
-  if (!is.null(.getStateContainerF(jaspResults)[["avgObj"]]$object))
-    return(.getStateContainerF(jaspResults)[["avgObj"]]$object)
-
-  out <- model[["avgCor"]]
-  if (is.null(out))
-    out <- list()
-  # is coefficient even checked?
-  if (options[["averageInterItemCor"]] && is.null(model[["empty"]])) {
-    ciValue <- options[["confidenceIntervalValue"]]
-
-    out[["est"]] <- mean(cov2cor(model[["data_cov"]]))
-
-    if (options[["intervalOn"]]) {
-
-      if (is.null(out[["sampCov"]])) {
-        startProgressbar(options[["noSamples"]])
-        out[["sampCov"]] <- numeric(options[["noSamples"]])
-        for (i in 1:options[["noSamples"]]) {
-          corm <- .cov2cor.callback(model[["bootsamp"]][i, , ], progressbarTick)
-          out[["sampCov"]][i] <- mean(corm[lower.tri(corm)])
-        }
-      }
-      out[["conf"]] <- quantile(out[["sampCov"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
-    }
-    stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["avgObj"]] <- createJaspState(out, dependencies = c("averageInterItemCor"))
-  }
-  return(out)
-}
-
-
 .frequentistAverageCor <- function(jaspResults, dataset, options, model) {
 
   if (!is.null(.getStateContainerF(jaspResults)[["avgObj"]]$object))
@@ -345,7 +311,7 @@
   if (options[["averageInterItemCor"]] && is.null(model[["empty"]])) {
     ciValue <- options[["confidenceIntervalValue"]]
 
-    out[["est"]] <- mean(cov2cor(model[["data_cov"]])[lower.tri(model[["data_cov"]])])
+    out[["est"]] <- mean(model[["data_cor"]][lower.tri(model[["data_cor"]])])
 
     if (options[["intervalOn"]]) {
 

@@ -6,16 +6,17 @@ options$confidenceIntervalValue <- 0.9
 options$fitMeasures <- TRUE
 options$glbItem <- TRUE
 options$glbScale <- TRUE
-options$guttman2Item <- TRUE
-options$guttman2Scale <- TRUE
-options$guttman6Item <- TRUE
-options$guttman6Scale <- TRUE
+options$lambda2Item <- TRUE
+options$lambda2Scale <- TRUE
+options$lambda6Item <- TRUE
+options$lambda6Scale <- TRUE
 options$itemRestCor <- TRUE
-options$mcDonaldItem <- TRUE
-options$meanItem <- TRUE
+options$omegaItem <- TRUE
+options$omegaEst <- "pfa"
+options$itemMean <- TRUE
 options$meanScale <- TRUE
 options$noSamples <- 300
-options$sdItem <- TRUE
+options$itemSd <- TRUE
 options$sdScale <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
@@ -23,14 +24,14 @@ set.seed(1)
 results <- runAnalysis("reliabilityFrequentist", "test.csv", options)
 
 
-test_that("Fit Measures of Single Factor Model Fit table results match for main options", {
-  table <- results[["results"]][["fitTable"]][["data"]]
-  jaspTools::expect_equal_tables(table,
-                                 list("", ""))
-})
+# test_that("Fit Measures of Single Factor Model Fit table results match for main options", {
+#   table <- results[["results"]][["fitTable"]][["data"]]
+#   jaspTools::expect_equal_tables(table,
+#                                  list("", ""))
+# })
 
 test_that("Frequentist Individual Item Reliability Statistics table results match for main options", {
-  table <- results[["results"]][["itemTable"]][["data"]]
+  table <- results[["results"]][["stateContainerF"]][["collection"]][["stateContainerF_itemTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list(0.55175372583945, 0.484048636403245, 0.525547257736439, 0.552088397696874,
                                       0.560933950469576, 0.133621852799609, -0.18874858754, 1.05841360919316,
@@ -44,10 +45,10 @@ test_that("Frequentist Individual Item Reliability Statistics table results matc
 })
 
 test_that("Frequentist Scale Reliability Statistics table results match for main options", {
-  table <- results[["results"]][["scaleTable"]][["data"]]
+  table <- results[["results"]][["stateContainerF"]][["collection"]][["stateContainerF_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list(0.525637056655304, 0.448585203881531, 0.490572327059451, 0.516365401424283,
-                                      0.567466299403832, 0.191748160936288, 0.7333720390425, 1.51568528273943,
+                                      0.567466299403832, 0.191748160936288, 2.93348815617, 2.79198402042951,
                                       "Point estimate", 0.403771687499446, 0.279137827611668, 0.359901964004142,
                                       0.396402831936408, 0.459081486688799, 0.0950770018748302, "",
                                       "", "90% CI lower bound", 0.626298737852679, 0.586595705707241,
@@ -61,20 +62,23 @@ options$alphaItem <- TRUE
 options$alphaMethod <- "alphaStand"
 options$alphaScale <- TRUE
 options$averageInterItemCor <- TRUE
-options$bootType <- "bootPara"
+options$bootType <- "para"
 options$glbItem <- TRUE
 options$glbScale <- TRUE
-options$guttman2Item <- TRUE
-options$guttman2Scale <- TRUE
-options$guttman6Item <- TRUE
-options$guttman6Scale <- TRUE
+options$lambda2Item <- TRUE
+options$lambda2Scale <- TRUE
+options$lambda6Item <- TRUE
+options$lambda6Scale <- TRUE
 options$itemRestCor <- TRUE
-options$mcDonaldItem <- TRUE
-options$meanItem <- TRUE
+options$omegaItem <- TRUE
+options$omegaEst <- "pfa"
+options$itemMean <- TRUE
 options$meanScale <- TRUE
+options$meanMethod <- "meanScores"
+options$sdMethod <- "meanScores"
 options$noSamples <- 300
 options$reverseScaledItems <- "debMiss30"
-options$sdItem <- TRUE
+options$itemSd <- TRUE
 options$sdScale <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "debMiss30")
@@ -83,13 +87,13 @@ results <- runAnalysis("reliabilityFrequentist", "test.csv", options)
 
 
 test_that("Frequentist Individual Item Reliability Statistics table results match for special options", {
-  table <- results[["results"]][["itemTable"]][["data"]]
+  table <- results[["results"]][["stateContainerF"]][["collection"]][["stateContainerF_itemTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.0192598705478672, 0.498142461253454, 0.0162871794638591, 0.529785814609134,
+                                 list(0.0192598705478672, 0.499115899922193, 0.0162871794638591, 0.529785814609134,
                                       0.0265192931578479, 0.197671423943988, -0.18874858754, 1.05841360919316,
-                                      "contNormal", 0.0309308512589049, 0.184853444016974, 0.02887162264849,
+                                      "contNormal", 0.0309308512589049, 0.173583399426978, 0.02887162264849,
                                       0.142434129645294, 0.0490584701419857, 0.180747669167931, 0.05254867287,
-                                      1.01183864387684, "contcor1", 0.0466790689222427, 0.332754536370897,
+                                      1.01183864387684, "contcor1", 0.0466790689222427, 0.325209102320569,
                                       0.0377062864873144, 0.252472824196733, 0.0611690101495298, 0.0513962438424752,
                                       0.06968807084, 1.0041493380131, "contcor2", 0.671633441261486,
                                       0.542545781005174, 0.600687137005109, 0.558313196445623, 0.685678770613101,
@@ -98,10 +102,10 @@ test_that("Frequentist Individual Item Reliability Statistics table results matc
 })
 
 test_that("Frequentist Scale Reliability Statistics table results match for special options", {
-  table <- results[["results"]][["scaleTable"]][["data"]]
+  table <- results[["results"]][["stateContainerF"]][["collection"]][["stateContainerF_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.0471510241880036, 0.477845698575834, 0.0392336793613145, 0.517855238417142,
-                                      0.0684849632061072, 0.184127369413486, 2.764059782725, 8.00605828917035,
+                                 list(0.0471510241880036, 0.474438267321141, 0.0392336793613145, 0.517855238417142,
+                                      0.0684849632061072, 0.184127369413486, 2.764059782725, 5.48120849970767,
                                       "Point estimate", 0.00702485789714698, 0.293267132435948, 0.00476660616888555,
                                       0.394302611317106, 0.0149501819485526, 0.0939902180995729, "",
                                       "", "95% CI lower bound", 0.115136402927549, 0.615996053946591,

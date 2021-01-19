@@ -10,9 +10,9 @@
   # what if no coefficient boxes are checked?
   if(!any(derivedOptions[["selectedEstimators"]]) & !any(derivedOptions[["itemDroppedSelected"]])) {
     variables <- options[["variables"]]
-    if (length(options[["reverseScaledItems"]]) > 0L) {
-      dataset <- .reverseScoreItems(dataset, options)
-    }
+    # if (length(options[["reverseScaledItems"]]) > 0L) {
+    #   dataset <- .reverseScoreItems(dataset, options)
+    # }
     empty <-  T
     model <- list(empty = empty)
     model[["footnote"]] <- .checkLoadings(dataset, variables)
@@ -51,10 +51,10 @@
       model[["pairwise"]] <- FALSE
     }
 
-    # check for inverse scored items
-    if (length(options[["reverseScaledItems"]]) > 0L) {
-      dataset <- .reverseScoreItems(dataset, options)
-    }
+    # # check for inverse scored items
+    # if (length(options[["reverseScaledItems"]]) > 0L) {
+    #   dataset <- .reverseScoreItems(dataset, options)
+    # }
 
     cc <- cov(dataset, use = model[["use.cases"]])
     model[["data_cov"]] <- cc

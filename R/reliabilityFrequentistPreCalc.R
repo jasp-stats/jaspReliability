@@ -9,9 +9,9 @@
   # what if no coefficient boxes are checked?
   if(!any(derivedOptions[["selectedEstimators"]]) & !any(derivedOptions[["itemDroppedSelected"]])) {
     variables <- options[["variables"]]
-    if (length(options[["reverseScaledItems"]]) > 0L) {
-      dataset <- .reverseScoreItems(dataset, options)
-    }
+    # if (length(options[["reverseScaledItems"]]) > 0L) {
+    #   dataset <- .reverseScoreItems(dataset, options)
+    # }
     empty <-  T
     model <- list(empty = empty)
     model[["footnote"]] <- .checkLoadings(dataset, variables)
@@ -50,13 +50,14 @@
       model[["pairwise"]] <- FALSE
     }
 
-    # check for inverse scored items
-    if (length(options[["reverseScaledItems"]]) > 0L) {
-      dataset <- .reverseScoreItems(dataset, options)
-    }
+    # # check for inverse scored items
+    # if (length(options[["reverseScaledItems"]]) > 0L) {
+    #   dataset <- .reverseScoreItems(dataset, options)
+    # }
     p <- ncol(dataset); n <- nrow(dataset)
     cc <- cov(dataset, use = model[["use.cases"]])
     model[["data_cov"]] <- cc
+    model[["data_cor"]] <- cor(dataset, use = model[["use.cases"]])
 
     # check if any items correlate negatively with the scale
     model[["footnote"]] <- .checkLoadings(dataset, options[["variables"]])
@@ -75,12 +76,14 @@
         options[["averageInterItemCor"]]
       )
   ) {
-    if (options[["setSeed"]])
-      set.seed(options[["seedValue"]])
+
 
     boot_cov <- array(0, c(options[["noSamples"]], p, p))
 
     startProgressbar(options[["noSamples"]])
+
+    if (options[["setSeed"]])
+      set.seed(options[["seedValue"]])
 
     if (options[["bootType"]] == "para") {
       model[["parametric"]] <- TRUE
@@ -113,7 +116,7 @@
 
   out <- model[["itemsDroppedCovs"]]
   if (is.null(out) && is.null(model[["empty"]])) {
-    cc <- cov(dataset, use = model[["use.cases"]])
+    cc <- model[["data_cov"]]
     p <- ncol(dataset)
     if (options[["omegaItem"]] || options[["alphaItem"]] || options[["lambda2Item"]] ||
          options[["lambda6Item"]] || options[["glbItem"]]) {
