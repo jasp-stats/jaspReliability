@@ -2,8 +2,11 @@
 
 .BayesianPreCalc <- function(jaspResults, dataset, options) {
 
-  if (!is.null(.getStateContainerB(jaspResults)[["modelObj"]]$object))
-    return(.getStateContainerB(jaspResults)[["modelObj"]]$object)
+  if (!is.null(.getStateContainerB(jaspResults)[["modelObj"]]$object)) {
+    if (!is.null(.getStateContainerB(jaspResults)[["modelObj"]]$object$gibbsSamp))
+      return(.getStateContainerB(jaspResults)[["modelObj"]]$object)
+  }
+
 
   derivedOptions <- .BayesianDerivedOptions(options)
 
@@ -114,9 +117,9 @@
     return(.getStateContainerB(jaspResults)[["itemDroppedObj"]]$object)
 
   out <- model[["itemDroppedCovs"]]
-  if (is.null(model[["empty"]]) && is.null(out)) {
-    if (options[["alphaItem"]] || options[["lambda2Item"]] ||
-        options[["lambda6Item"]] || options[["glbItem"]]) {
+  if (is.null(out)) {
+    if (is.null(model[["empty"]]) &&
+        (options[["alphaItem"]] || options[["lambda2Item"]] || options[["lambda6Item"]] || options[["glbItem"]])) {
       cc <- model[["gibbsSamp"]]
       p <- ncol(dataset)
       out <- array(0, c(options[["noChains"]],

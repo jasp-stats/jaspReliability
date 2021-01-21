@@ -6,7 +6,8 @@
       return()
 
   scaleTable <- createJaspTable(gettext("Frequentist Scale Reliability Statistics"))
-  scaleTable$dependOn(options = c("omegaScale", "alphaScale", "lambda2Scale", "lambda6Scale", "glbScale"))
+  scaleTable$dependOn(options = c("omegaScale", "alphaScale", "lambda2Scale", "lambda6Scale", "glbScale",
+                                  "averageInterItemCor", "meanScale", "sdScale", "meanMethod", "sdMethod"))
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
 
   if (options[["intervalOn"]]) {
@@ -98,7 +99,8 @@
   }
 
   itemTable <- createJaspTable(gettext("Frequentist Individual Item Reliability Statistics"))
-  itemTable$dependOn(options = c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item", "glbItem"))
+  itemTable$dependOn(options = c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item", "glbItem",
+                                 "itemMean", "itemRestCor", "itemSd"))
   itemTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
 
   itemDroppedSelected <- derivedOptions[["itemDroppedSelected"]]
@@ -178,8 +180,8 @@
   # if (!is.null(model[["error"]]))
   #   fitTable$setError(model[["error"]])
 
-  fitTable$dependOn(options = c("variables", "mcDonaldScale", "reverseScaledItems", "fitMeasures", "missingValues",
-                                "omegaEst"))
+  fitTable$dependOn(options = c("variables", "omegaScale", "reverseScaledItems", "fitMeasures", "missingValues",
+                                "omegaMethod"))
   fitTable$position <- 3
   stateContainerF <- .getStateContainerF(jaspResults)
   stateContainerF[["fitTable"]] <- fitTable

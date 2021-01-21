@@ -1,9 +1,9 @@
 
-.frequentistOmega <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerF(jaspResults)[["omegaObj"]]$object))
-    return(.getStateContainerF(jaspResults)[["omegaObj"]]$object)
+.frequentistOmegaScale <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerF(jaspResults)[["omegaScaleObj"]]$object))
+    return(.getStateContainerF(jaspResults)[["omegaScaleObj"]]$object)
 
-  out <- model[["omega"]]
+  out <- model[["omegaScale"]]
   if (is.null(out))
     out <- list()
 
@@ -11,12 +11,11 @@
 
     ciValue <- options[["confidenceIntervalValue"]]
 
-    if (options[["omegaEst"]] == "cfa") {
+    if (options[["omegaMethod"]] == "cfa") {
       omegaO <- Bayesrel:::omegaFreqData(dataset, interval = ciValue, omega.int.analytic = T,
                                          pairwise = model[["pairwise"]])
       if (is.na(omegaO[["omega"]])) {
-        # out[["omegaFit"]] <- NA
-        .quitAnalysis("Omega calculation with CFA failed. \n Try changing to PFA in 'Advanced Options'") # a proper error needs to appear here
+        .quitAnalysis("Omega calculation with CFA failed. \n Try changing to PFA in 'Advanced Options'")
       } else {
         out[["omegaFit"]] <- omegaO[["indices"]]
         out[["est"]] <- omegaO[["omega"]]
@@ -38,18 +37,6 @@
           }
         }
       }
-      # do we have to compute item dropped values
-      if (options[["omegaItem"]]) {
-        if (is.null(out[["itemDropped"]])) {
-          out[["itemDropped"]] <- numeric(ncol(dataset))
-          for (i in 1:ncol(dataset)) {
-            out[["itemDropped"]][i] <- Bayesrel:::applyomega_cfa_data(dataset[, -i], interval = ciValue,
-                                                                      pairwise = model[["pairwise"]])
-          }
-        }
-        if (anyNA(out[["itemDropped"]]))
-          .quitAnalysis("Omega item dropped statistics with CFA failed")
-      }
 
     } else { # omega with pfa
       out[["est"]] <- Bayesrel:::applyomega_pfa(model[["data_cov"]])
@@ -58,38 +45,67 @@
       }
 
       if (options[["intervalOn"]]) {
-        if (is.null(out[["sampCov"]])) {
+        if (is.null(out[["samp"]])) {
           startProgressbar(options[["noSamples"]])
-          out[["sampCov"]] <- apply(model[["bootsamp"]], 1, Bayesrel:::applyomega_pfa, callback = progressbarTick)
+          out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applyomega_pfa, callback = progressbarTick)
         }
-        if (anyNA(out[["sampCov"]]))
+        if (anyNA(out[["samp"]]))
           .quitAnalysis("Omega interval calculation with PFA failed")
-        out[["conf"]] <- quantile(out[["sampCov"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
+        out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
       }
+    }
+
+    stateContainerF <- .getStateContainerF(jaspResults)
+    stateContainerF[["omegaScaleObj"]] <- createJaspState(out, dependencies = c("omegaScale", "omegaMethod", "omegaInterval"))
+  }
+
+  return(out)
+}
+
+.frequentistOmegaItem <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerF(jaspResults)[["omegaItemObj"]]$object))
+    return(.getStateContainerF(jaspResults)[["omegaItemObj"]]$object)
+
+  out <- model[["omegaItem"]]
+  if (is.null(out))
+    out <- list()
+
+  if (options[["omegaItem"]] && !is.null(model[["omegaScale"]])) {
+
+    if (options[["omegaMethod"]] == "cfa") {
 
       # do we have to compute item dropped values
-      if (options[["omegaItem"]]) {
+        if (is.null(out[["itemDropped"]])) {
+          out[["itemDropped"]] <- numeric(ncol(dataset))
+          for (i in 1:ncol(dataset)) {
+            out[["itemDropped"]][i] <- Bayesrel:::applyomega_cfa_data(dataset[, -i], interval = .95,
+                                                                      pairwise = model[["pairwise"]])
+          }
+        }
+        if (anyNA(out[["itemDropped"]]))
+          .quitAnalysis("Omega item dropped statistics with CFA failed")
+
+      } else { # omega with pfa
+      # do we have to compute item dropped values
         if (is.null(out[["itemDropped"]]))
           out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applyomega_pfa)
         if (anyNA(out[["itemDropped"]]))
           .quitAnalysis("Omega item dropped statistics with PFA failed")
       }
-    }
 
     stateContainerF <- .getStateContainerF(jaspResults)
-    stateContainerF[["omegaObj"]] <- createJaspState(out, dependencies = c("omegaScale", "omegaItem", "omegaEst",
-                                                                           "omegaInterval"))
+    stateContainerF[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "omegaMethod"))
   }
 
   return(out)
 }
 
 
-.frequentistAlpha <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerF(jaspResults)[["alphaObj"]]$object))
-    return(.getStateContainerF(jaspResults)[["alphaObj"]]$object)
+.frequentistAlphaScale <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerF(jaspResults)[["alphaScaleObj"]]$object))
+    return(.getStateContainerF(jaspResults)[["alphaScaleObj"]]$object)
 
-  out <- model[["alpha"]]
+  out <- model[["alphaScale"]]
   if (is.null(out))
     out <- list()
 
@@ -109,20 +125,13 @@
           out[["conf"]] <- Bayesrel:::ciAlpha(1 - ciValue, nrow(dataset), model[["data_cov"]])
 
         } else {
-          if (is.null(out[["sampCov"]])) {
+          if (is.null(out[["samp"]])) {
             startProgressbar(options[["noSamples"]])
-            out[["sampCov"]] <- apply(model[["bootsamp"]], 1, Bayesrel:::applyalpha, callback = progressbarTick)
+            out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applyalpha, callback = progressbarTick)
           }
-          out[["conf"]] <- quantile(out[["sampCov"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
+          out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
         }
       }
-
-      # do we have to compute item dropped values
-      if (options[["alphaItem"]]) {
-        if (is.null(out[["itemDropped"]]))
-          out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applyalpha)
-      }
-
 
     } else { # alpha standardized
       ccor <- model[["data_cor"]]
@@ -141,38 +150,60 @@
           if (is.null(out[["sampCor"]])) {
             out[["sampCor"]] <- numeric(options[["noSamples"]])
             for (i in 1:options[["noSamples"]]) {
-              out[["sampCor"]][i] <- Bayesrel:::applyalpha(cov2cor(model[["bootsamp"]][i, ,]))
+              out[["sampCor"]][i] <- Bayesrel:::applyalpha(cov2cor(model[["bootSamp"]][i, ,]))
             }
           }
           out[["conf"]] <- quantile(out[["sampCor"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm=T)
 
         }
       }
+    }
 
+    stateContainer <- .getStateContainerF(jaspResults)
+    stateContainer[["alphaScaleObj"]] <- createJaspState(out,
+                                                         dependencies = c("alphaScale", "alphaMethod", "alphaInterval"))
+  }
+  return(out)
+}
+
+.frequentistAlphaItem <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerF(jaspResults)[["alphaItemObj"]]$object))
+    return(.getStateContainerF(jaspResults)[["alphaItemObj"]]$object)
+
+  out <- model[["alphaItem"]]
+  if (is.null(out))
+    out <- list()
+
+  if (options[["alphaItem"]] && !is.null(model[["alphaScale"]])) {
+
+    if (options[["alphaMethod"]] == "alphaUnstand") { # alpha unstandardized
       # do we have to compute item dropped values
-      if (options[["alphaItem"]]) {
-        if (is.null(out[["itemDropped"]])) {
-          out[["itemDropped"]] <- numeric(ncol(dataset))
-          for (i in 1:ncol(dataset)){
-            out[["itemDropped"]][i] <- Bayesrel:::applyalpha(ccor[-i, -i])
-          }
+      if (is.null(out[["itemDropped"]]))
+        out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applyalpha)
+
+    } else { # alpha standardized
+      ccor <- model[["data_cor"]]
+      if (is.null(out[["itemDropped"]])) {
+        out[["itemDropped"]] <- numeric(ncol(dataset))
+        for (i in 1:ncol(dataset)){
+          out[["itemDropped"]][i] <- Bayesrel:::applyalpha(ccor[-i, -i])
         }
       }
     }
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["alphaObj"]] <- createJaspState(out, dependencies = c("alphaScale", "alphaItem", "alphaMethod"))
+    stateContainer[["alphaItemObj"]] <- createJaspState(out, dependencies = c("alphaItem", "alphaMethod"))
   }
   return(out)
 }
 
 
-.frequentistLambda2 <- function(jaspResults, dataset, options, model) {
+.frequentistLambda2Scale <- function(jaspResults, dataset, options, model) {
 
-  if (!is.null(.getStateContainerF(jaspResults)[["lambda2Obj"]]$object))
-      return(.getStateContainerF(jaspResults)[["lambda2Obj"]]$object)
+  if (!is.null(.getStateContainerF(jaspResults)[["lambda2ScaleObj"]]$object))
+      return(.getStateContainerF(jaspResults)[["lambda2ScaleObj"]]$object)
 
-  out <- model[["lambda2"]]
+  out <- model[["lambda2Scale"]]
   if (is.null(out))
     out <- list()
   # is coefficient even checked?
@@ -185,33 +216,47 @@
 
       ciValue <- options[["confidenceIntervalValue"]]
 
-      if (is.null(out[["sampCov"]])) {
+      if (is.null(out[["samp"]])) {
         startProgressbar(options[["noSamples"]])
-        out[["sampCov"]] <- apply(model[["bootsamp"]], 1, Bayesrel:::applylambda2, callback = progressbarTick)
+        out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applylambda2, callback = progressbarTick)
       }
-      out[["conf"]] <- quantile(out[["sampCov"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
+      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
 
     }
+    stateContainer <- .getStateContainerF(jaspResults)
+    stateContainer[["lambda2ScaleObj"]] <- createJaspState(out, dependencies = c("lambda2Scale"))
+  }
+  return(out)
+}
 
-    # do we have to compute item dropped values
-    if (options[["lambda2Item"]]) {
-      if (is.null(out[["itemDropped"]]))
-        out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applylambda2)
-    }
+.frequentistLambda2Item <- function(jaspResults, dataset, options, model) {
+
+  if (!is.null(.getStateContainerF(jaspResults)[["lambda2ItemObj"]]$object))
+    return(.getStateContainerF(jaspResults)[["lambda2ItemObj"]]$object)
+
+  out <- model[["lambda2Item"]]
+  if (is.null(out))
+    out <- list()
+  # is coefficient even checked?
+  if (options[["lambda2Item"]]  && !is.null(model[["lambda2Scale"]])) {
+
+    if (is.null(out[["itemDropped"]]))
+      out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applylambda2)
+
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["lambda2Obj"]] <- createJaspState(out, dependencies = c("lambda2Scale", "lambda2Item"))
+    stateContainer[["lambda2ItemObj"]] <- createJaspState(out, dependencies = c("lambda2Item"))
   }
   return(out)
 }
 
 
-.frequentistLambda6 <- function(jaspResults, dataset, options, model) {
+.frequentistLambda6Scale <- function(jaspResults, dataset, options, model) {
 
-  if (!is.null(.getStateContainerF(jaspResults)[["lambda6Obj"]]$object))
-    return(.getStateContainerF(jaspResults)[["lambda6Obj"]]$object)
+  if (!is.null(.getStateContainerF(jaspResults)[["lambda6ScaleObj"]]$object))
+    return(.getStateContainerF(jaspResults)[["lambda6ScaleObj"]]$object)
 
-  out <- model[["lambda6"]]
+  out <- model[["lambda6Scale"]]
   if (is.null(out))
     out <- list()
   # is coefficient even checked?
@@ -226,74 +271,101 @@
 
       ciValue <- options[["confidenceIntervalValue"]]
 
-      if (is.null(out[["sampCov"]])) {
+      if (is.null(out[["samp"]])) {
         startProgressbar(options[["noSamples"]])
-        out[["sampCov"]] <- apply(model[["bootsamp"]], 1, Bayesrel:::applylambda6, callback = progressbarTick)
+        out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applylambda6, callback = progressbarTick)
       }
 
-      if (sum(!is.na(out[["sampCov"]])) < 3)
+      if (sum(!is.na(out[["samp"]])) < 3)
         .quitAnalysis("Lambda6 interval calculation failed because some bootstrapped covariance matrix are not invertible")
 
-      out[["conf"]] <- quantile(out[["sampCov"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
+      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
 
-    }
-
-    # do we have to compute item dropped values
-    if (options[["lambda6Item"]]) {
-      if (is.null(out[["itemDropped"]]))
-        out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applylambda6)
-      if (anyNA(out[["itemDropped"]]))
-        .quitAnalysis("Lambda6 item dropped statistics failed because some bootstrapped covariance matrix are not invertible")
     }
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["lambda6Obj"]] <- createJaspState(out, dependencies = c("lambda6Scale", "lambda6Item"))
+    stateContainer[["lambda6ScaleObj"]] <- createJaspState(out, dependencies = c("lambda6Scale"))
+  }
+  return(out)
+}
+
+.frequentistLambda6Item <- function(jaspResults, dataset, options, model) {
+
+  if (!is.null(.getStateContainerF(jaspResults)[["lambda6ItemObj"]]$object))
+    return(.getStateContainerF(jaspResults)[["lambda6ItemObj"]]$object)
+
+  out <- model[["lambda6Item"]]
+  if (is.null(out))
+    out <- list()
+  # is coefficient even checked?
+  if (options[["lambda6Item"]]  && !is.null(model[["lambda6Scale"]])) {
+
+    if (is.null(out[["itemDropped"]]))
+      out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applylambda6)
+    if (anyNA(out[["itemDropped"]]))
+      .quitAnalysis("Lambda6 item dropped statistics failed because some bootstrapped covariance matrix are not invertible")
+
+    stateContainer <- .getStateContainerF(jaspResults)
+    stateContainer[["lambda6ItemObj"]] <- createJaspState(out, dependencies = c("lambda6Item"))
   }
   return(out)
 }
 
 
 # check the error handling of the glb !!!!!!!!
-.frequentistGlb <- function(jaspResults, dataset, options, model) {
+.frequentistGlbScale <- function(jaspResults, dataset, options, model) {
 
-  if (!is.null(.getStateContainerF(jaspResults)[["glbObj"]]$object))
-    return(.getStateContainerF(jaspResults)[["glbObj"]]$object)
+  if (!is.null(.getStateContainerF(jaspResults)[["glbScaleObj"]]$object))
+    return(.getStateContainerF(jaspResults)[["glbScaleObj"]]$object)
 
-  out <- model[["glb"]]
+  out <- model[["glbScale"]]
   if (is.null(out))
     out <- list()
   # is coefficient even checked?
   if (options[["glbScale"]]  && is.null(model[["empty"]])) {
 
     out[["est"]] <- Bayesrel:::glbOnArray(model[["data_cov"]])
-    # if (is.na(out[["est"]]))
-    #   .quitAnalysis("glb calculation failed because the data covariance matrix is not invertible")
+    # out[["est"]] <- Bayesrel:::glbOnArray_custom(model[["data_cov"]])
+
 
     # do we need an interval estimate?
     if (options[["intervalOn"]]) {
-
       ciValue <- options[["confidenceIntervalValue"]]
-
-      if (is.null(out[["sampCov"]])) {
+      if (is.null(out[["samp"]])) {
         # startProgressbar(options[["noSamples"]])
-        out[["sampCov"]] <- Bayesrel:::glbOnArray(model[["bootsamp"]])
+        out[["samp"]] <- Bayesrel:::glbOnArray(model[["bootSamp"]])
+        # out[["samp"]] <- Bayesrel:::glbOnArray_custom(model[["bootSamp"]])
+
       }
-
-      # if (sum(!is.na(out[["sampCov"]])) < 3)
-      #   .quitAnalysis("glb interval calculation failed because some bootstrapped covariance matrix are not invertible")
-      out[["conf"]] <- quantile(out[["sampCov"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
-    }
-
-    # do we have to compute item dropped values
-    if (options[["glbItem"]]) {
-      if (is.null(out[["itemDropped"]]))
-        out[["itemDropped"]] <- Bayesrel:::glbOnArray(model[["itemDroppedCovs"]])
-      # if (anyNA(out[["itemDropped"]]))
-      #   .quitAnalysis("glb item dropped statistics failed because some bootstrapped covariance matrix are not invertible")
+      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
     }
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["glbObj"]] <- createJaspState(out, dependencies = c("glbScale", "glbItem"))
+    stateContainer[["glbScaleObj"]] <- createJaspState(out, dependencies = c("glbScale"))
+  }
+  return(out)
+}
+
+# check the error handling of the glb !!!!!!!!
+.frequentistGlbItem <- function(jaspResults, dataset, options, model) {
+
+  if (!is.null(.getStateContainerF(jaspResults)[["glbItemObj"]]$object))
+    return(.getStateContainerF(jaspResults)[["glbItemObj"]]$object)
+
+  out <- model[["glbItem"]]
+  if (is.null(out))
+    out <- list()
+  # is coefficient even checked?
+  if (options[["glbItem"]]  && !is.null(model[["glbScale"]])) {
+
+    # do we have to compute item dropped values
+    if (is.null(out[["itemDropped"]]))
+      out[["itemDropped"]] <- Bayesrel:::glbOnArray(model[["itemDroppedCovs"]])
+      # out[["itemDropped"]] <- Bayesrel:::glbOnArray_custom(model[["itemDroppedCovs"]])
+
+
+    stateContainer <- .getStateContainerF(jaspResults)
+    stateContainer[["glbItemObj"]] <- createJaspState(out, dependencies = c("glbItem"))
   }
   return(out)
 }
@@ -315,15 +387,15 @@
 
     if (options[["intervalOn"]]) {
 
-      if (is.null(out[["sampCov"]])) {
+      if (is.null(out[["samp"]])) {
         startProgressbar(options[["noSamples"]])
-        out[["sampCov"]] <- numeric(options[["noSamples"]])
+        out[["samp"]] <- numeric(options[["noSamples"]])
         for (i in 1:options[["noSamples"]]) {
-          corm <- .cov2cor.callback(model[["bootsamp"]][i, , ], progressbarTick)
-          out[["sampCov"]][i] <- mean(corm[lower.tri(corm)])
+          corm <- .cov2cor.callback(model[["bootSamp"]][i, , ], progressbarTick)
+          out[["samp"]][i] <- mean(corm[lower.tri(corm)])
         }
       }
-      out[["conf"]] <- quantile(out[["sampCov"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
+      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
     }
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["avgObj"]] <- createJaspState(out, dependencies = c("averageInterItemCor"))

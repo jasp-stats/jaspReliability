@@ -8,7 +8,8 @@
 
   plotContainer <- createJaspContainer(gettext("Posterior Plots"))
   plotContainer$dependOn(options = c("plotPosterior", "shadePlots", "probTable", "probTableValueLow",
-                                     "probTableValueHigh", "fixXRange", "dispPrior", "credibleIntervalValueScale"))
+                                     "probTableValueHigh", "fixXRange", "dispPrior", "credibleIntervalValueScale",
+                                     "alphaScale", "omegaScale", "lambda2Scale", "lambda6Scale", "glbScale"))
 
   derivedOptions <- model[["derivedOptions"]]
   selected <- derivedOptions[["selectedEstimatorsPlots"]]
@@ -26,6 +27,9 @@
   if (options[["plotPosterior"]] && is.null(model[["empty"]])) {
     n.item <- model[["k"]]
     priors <- Bayesrel:::priors[[as.character(n.item)]]
+    # the prior names dont match the model names, thus rename the priors in their original order
+    names(priors) <- c("alphaScale", "lambda2Scale", "lambda6Scale", "glbScale", "omegaScale")
+
     z <- 1
     for (i in indices) {
       if (is.null(plotContainer[[nmsObjsNoGreek[i]]])) {
@@ -148,7 +152,8 @@
 
   plotContainerItem <- createJaspContainer(gettext("If Item Dropped Posterior Plots"))
   plotContainerItem$dependOn(options = c("variables", "plotItem",
-                                         "credibleIntervalValueItem", "orderType", "orderItem"))
+                                         "credibleIntervalValueItem", "orderType", "orderItem",
+                                         "omegaItem", "alphaItem", "lambda2Item", "lambda6Item", "glbItem"))
 
   derivedOptions <- model[["derivedOptions"]]
   # fixes issue that unchecking the scale coefficient box, does not uncheck the item-dropped coefficient box:
@@ -172,11 +177,15 @@
     ordering <- NULL
   }
 
+
   if (is.null(model[["empty"]]) && options[["plotItem"]]) {
     z <- 1
     for (i in indices) {
       if (is.null(plotContainerItem[[nmsObjsNoGreek[i]]])) {
-        p <- .makeIfItemPlot(model[[idMatchedNames[z]]], nmsLabs[[i]],
+
+        # use the coefficient item object in the model list, and the object directly before it,
+        # which is always the corresponding scale object
+        p <- .makeIfItemPlot(model[[idMatchedNames[z]]], model[[idMatchedNames[z]-1]], nmsLabs[[i]],
                                                 options[["credibleIntervalValueItem"]],
                                                 ordering = ordering, model[["itemsDropped"]])
         plotObjItem <- createJaspPlot(plot = p, title = nmsObjs[i], width = 400)
@@ -195,18 +204,18 @@
   return()
 }
 
-.makeIfItemPlot <- function(coefList, nms, int, ordering, variables) {
+.makeIfItemPlot <- function(coefItem, coefScale, nms, int, ordering, variables) {
   n_row <- length(variables)
   lower <- (1-int)/2
   upper <- int + (1-int)/2
 
-  samp_tmp <- as.vector(coefList[["samp"]])
+  samp_tmp <- as.vector(coefScale[["samp"]])
   dat <- data.frame(as.matrix(samp_tmp), row.names =  NULL)
   names(dat) <- "value"
   dat$colos <- "1"
   dat$var <- "original"
 
-  item_tmp <- apply(coefList[["itemSamp"]], 3, as.vector)
+  item_tmp <- apply(coefItem[["itemSamp"]], 3, as.vector)
   dat_del <- t(as.matrix(as.data.frame(item_tmp)))
   names <- decodeColNames(variables)
 
@@ -220,13 +229,13 @@
   dat$var <- factor(dat$var, levels = unique(dat$var))
 
   if (!is.null(ordering)) {
-    est <- as.data.frame(coefList[["itemEst"]])
+    est <- as.data.frame(coefItem[["itemEst"]])
     est[n_row + 1, ] <- 1
     colnames(est) <- "value"
     est$name <- c(names, "original")
 
     if (ordering == "orderItemMean") {
-      dists <- abs(coefList[["est"]] - coefList[["itemEst"]])
+      dists <- abs(coefScale[["est"]] - coefItem[["itemEst"]])
       dists[length(dists)+1] <- 0
       est <- est[order(dists, decreasing = F), ]
       dat$var <- factor(dat$var, levels = c(est$name))
@@ -299,7 +308,7 @@
     g <- jaspGraphs::themeJasp(g)
 
     plot <- createJaspPlot(plot = g, title = "Posterior Predictive Check Omega", width = 350)
-    plot$dependOn(options = c("dispPPC"))
+    plot$dependOn(options = c("dispPPC", "omegaScale"))
 
     plot$position <- 6
     stateContainerB <- .getStateContainerB(jaspResults)
@@ -319,7 +328,8 @@ return()
   if (is.null(model[["empty"]]) && options[["tracePlot"]]) {
 
     plotContainerTP <- createJaspContainer(gettext("Convergence Traceplot"))
-    plotContainerTP$dependOn(options = c("tracePlot"))
+    plotContainerTP$dependOn(options = c("tracePlot", "alphaScale", "omegaScale", "lambda2Scale", "lambda6Scale",
+                                         "glbScale"))
 
     derivedOptions <- model[["derivedOptions"]]
     selected <- derivedOptions[["selectedEstimatorsPlots"]]

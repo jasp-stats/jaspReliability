@@ -1,11 +1,11 @@
 
 
 
-.BayesianOmega <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["omegaObj"]]$object))
-    return(.getStateContainerB(jaspResults)[["omegaObj"]]$object)
+.BayesianOmegaScale <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["omegaScaleObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["omegaScaleObj"]]$object)
 
-  out <- model[["omega"]]
+  out <- model[["omegaScale"]]
   if (is.null(out))
     out <- list()
 
@@ -26,31 +26,45 @@
     out[["est"]] <- mean(out[["samp"]])
     out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
 
-    # do we have to compute item dropped values
-    if (options[["omegaItem"]]) {
-      ciValueItem <- options[["credibleIntervalValueItem"]]
+    stateContainerB <- .getStateContainerB(jaspResults)
+    stateContainerB[["omegaScaleObj"]] <- createJaspState(out, dependencies = c("omegaScale"))
+  }
 
-      if (is.null(out[["itemSamp"]])) {
-        startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
+  return(out)
+}
 
-        dataset <- scale(dataset, scale = F)
-        out[["itemSamp"]] <- array(0,
-                                   c(options[["noChains"]],
-                                     length(seq(1, options[["noSamples"]]-options[["noBurnin"]], options[["noThin"]])),
-                                     ncol(dataset)))
-        for (i in 1:ncol(dataset)) {
-          out[["itemSamp"]][, , i] <- Bayesrel:::omegaSampler(dataset[-i, -i],
-                                                   options[["noSamples"]], options[["noBurnin"]], options[["noThin"]],
-                                                   options[["noChains"]], model[["pairwise"]], progressbarTick)$omega
-        }
+.BayesianOmegaItem <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["omegaItemObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["omegaItemObj"]]$object)
+
+  out <- model[["omegaItem"]]
+  if (is.null(out))
+    out <- list()
+
+  if (options[["omegaItem"]] && !is.null(model[["omegaScale"]])) {
+
+    ciValueItem <- options[["credibleIntervalValueItem"]]
+
+    if (is.null(out[["itemSamp"]])) {
+      startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
+
+      dataset <- scale(dataset, scale = F)
+      out[["itemSamp"]] <- array(0,
+                                 c(options[["noChains"]],
+                                   length(seq(1, options[["noSamples"]]-options[["noBurnin"]], options[["noThin"]])),
+                                   ncol(dataset)))
+      for (i in 1:ncol(dataset)) {
+        out[["itemSamp"]][, , i] <- Bayesrel:::omegaSampler(dataset[-i, -i],
+                                                            options[["noSamples"]], options[["noBurnin"]], options[["noThin"]],
+                                                            options[["noChains"]], model[["pairwise"]], progressbarTick)$omega
       }
-      out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
-      out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
-                                             prob = ciValueItem)
-      }
+    }
+    out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
+    out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
+                                           prob = ciValueItem)
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["omegaObj"]] <- createJaspState(out, dependencies = c("omegaScale", "omegaItem"))
+    stateContainerB[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem"))
   }
 
   return(out)
@@ -58,15 +72,15 @@
 
 
 
-.BayesianAlpha <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["alphaObj"]]$object))
-    return(.getStateContainerB(jaspResults)[["alphaObj"]]$object)
+.BayesianAlphaScale <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["alphaScaleObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["alphaScaleObj"]]$object)
 
-  out <- model[["alpha"]]
+  out <- model[["alphaScale"]]
   if (is.null(out))
     out <- list()
 
-  if (options[["alphaScale"]] && !is.null(model[["gibbsSamp"]])) {
+  if (options[["alphaScale"]] && is.null(model[["empty"]])) {
 
     ciValue <- options[["credibleIntervalValueScale"]]
 
@@ -76,23 +90,37 @@
     }
     out[["est"]] <- mean(out[["samp"]])
     out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
-    # do we have to compute item dropped values
-    if (options[["alphaItem"]] && !is.null(model[["itemDroppedCovs"]])) {
-      ciValueItem <- options[["credibleIntervalValueItem"]]
-
-      if (is.null(out[["itemSamp"]])) {
-        startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
-
-        out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::applyalpha, progressbarTick)
-
-      }
-      out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
-      out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
-                                             prob = ciValueItem)
-    }
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["alphaObj"]] <- createJaspState(out, dependencies = c("alphaItem"))
+    stateContainerB[["alphaScaleObj"]] <- createJaspState(out, dependencies = c("alphaScale"))
+  }
+
+  return(out)
+}
+
+.BayesianAlphaItem <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["alphaItemObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["alphaItemObj"]]$object)
+
+  out <- model[["alphaItem"]]
+  if (is.null(out))
+    out <- list()
+
+  if (options[["alphaItem"]] && !is.null(model[["alphaScale"]])) {
+    ciValueItem <- options[["credibleIntervalValueItem"]]
+
+    if (is.null(out[["itemSamp"]])) {
+      startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
+
+      out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::applyalpha, progressbarTick)
+
+    }
+    out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
+    out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
+                                           prob = ciValueItem)
+
+    stateContainerB <- .getStateContainerB(jaspResults)
+    stateContainerB[["alphaItemObj"]] <- createJaspState(out, dependencies = c("alphaItem"))
   }
 
   return(out)
@@ -100,15 +128,15 @@
 
 
 
-.BayesianLambda2 <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["lambda2Obj"]]$object))
-    return(.getStateContainerB(jaspResults)[["lambda2Obj"]]$object)
+.BayesianLambda2Scale <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["lambda2ScaleObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["lambda2ScaleObj"]]$object)
 
-  out <- model[["lambda2"]]
+  out <- model[["lambda2Scale"]]
   if (is.null(out))
     out <- list()
 
-  if (options[["lambda2Scale"]] && !is.null(model[["gibbsSamp"]])) {
+  if (options[["lambda2Scale"]] && is.null(model[["empty"]])) {
 
     ciValue <- options[["credibleIntervalValueScale"]]
 
@@ -118,23 +146,37 @@
     }
     out[["est"]] <- mean(out[["samp"]])
     out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
-    # do we have to compute item dropped values
-    if (options[["lambda2Item"]] && !is.null(model[["itemDroppedCovs"]])) {
-      ciValueItem <- options[["credibleIntervalValueItem"]]
-
-      if (is.null(out[["itemSamp"]])) {
-        startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
-
-        out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::applylambda2, progressbarTick)
-
-      }
-      out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
-      out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
-                                             prob = ciValueItem)
-    }
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["lambda2Obj"]] <- createJaspState(out, dependencies = c("lambda2Item"))
+    stateContainerB[["lambda2ScaleObj"]] <- createJaspState(out, dependencies = c("lambda2Scale"))
+  }
+
+  return(out)
+}
+
+.BayesianLambda2Item <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["lambda2ItemObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["lambda2ItemObj"]]$object)
+
+  out <- model[["lambda2Item"]]
+  if (is.null(out))
+    out <- list()
+
+  if (options[["lambda2Item"]] && !is.null(model[["lambda2Scale"]])) {
+    ciValueItem <- options[["credibleIntervalValueItem"]]
+
+    if (is.null(out[["itemSamp"]])) {
+      startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
+      out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::applylambda2, progressbarTick)
+
+    }
+    out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
+    out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
+                                           prob = ciValueItem)
+
+
+    stateContainerB <- .getStateContainerB(jaspResults)
+    stateContainerB[["lambda2ItemObj"]] <- createJaspState(out, dependencies = c("lambda2Item"))
   }
 
   return(out)
@@ -142,17 +184,15 @@
 
 
 
+.BayesianLambda6Scale <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["lambda6ScaleObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["lambda6ScaleObj"]]$object)
 
-.BayesianLambda6 <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["lambda6Obj"]]$object))
-    return(.getStateContainerB(jaspResults)[["lambda6Obj"]]$object)
-
-  out <- model[["lambda6"]]
+  out <- model[["lambda6Scale"]]
   if (is.null(out))
     out <- list()
 
-  if (options[["lambda6Scale"]] && !is.null(model[["gibbsSamp"]])) {
-
+  if (options[["lambda6Scale"]] && is.null(model[["empty"]])) {
     ciValue <- options[["credibleIntervalValueScale"]]
 
     if (is.null(out[["samp"]])) {
@@ -161,23 +201,37 @@
     }
     out[["est"]] <- mean(out[["samp"]])
     out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
-    # do we have to compute item dropped values
-    if (options[["lambda6Item"]] && !is.null(model[["itemDroppedCovs"]])) {
-      ciValueItem <- options[["credibleIntervalValueItem"]]
-
-      if (is.null(out[["itemSamp"]])) {
-        startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
-
-        out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::applylambda6, progressbarTick)
-
-      }
-      out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
-      out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
-                                             prob = ciValueItem)
-    }
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["lambda6Obj"]] <- createJaspState(out, dependencies = c("lambda6Item"))
+    stateContainerB[["lambda6ScaleObj"]] <- createJaspState(out, dependencies = c("lambda6Scale"))
+  }
+
+  return(out)
+}
+
+.BayesianLambda6Item <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["lambda6ItemObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["lambda6ItemObj"]]$object)
+
+  out <- model[["lambda6Item"]]
+  if (is.null(out))
+    out <- list()
+
+  if (options[["lambda6Item"]] && !is.null(model[["lambda6Scale"]])) {
+    ciValueItem <- options[["credibleIntervalValueItem"]]
+
+    if (is.null(out[["itemSamp"]])) {
+      startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
+
+      out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::applylambda6, progressbarTick)
+
+    }
+    out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
+    out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
+                                           prob = ciValueItem)
+
+    stateContainerB <- .getStateContainerB(jaspResults)
+    stateContainerB[["lambda6ItemObj"]] <- createJaspState(out, dependencies = c("lambda6Item"))
   }
 
   return(out)
@@ -185,15 +239,15 @@
 
 
 
-.BayesianGlb <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["glbObj"]]$object))
-    return(.getStateContainerB(jaspResults)[["glbObj"]]$object)
+.BayesianGlbScale <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["glbScaleObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["glbScaleObj"]]$object)
 
-  out <- model[["glb"]]
+  out <- model[["glbScale"]]
   if (is.null(out))
     out <- list()
 
-  if (options[["glbScale"]] && !is.null(model[["gibbsSamp"]])) {
+  if (options[["glbScale"]] && is.null(model[["empty"]])) {
 
     ciValue <- options[["credibleIntervalValueScale"]]
 
@@ -204,25 +258,37 @@
     }
     out[["est"]] <- mean(out[["samp"]])
     out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
-    # do we have to compute item dropped values
-    if (options[["glbItem"]] && !is.null(model[["itemDroppedCovs"]])) {
-      ciValueItem <- options[["credibleIntervalValueItem"]]
-
-      if (is.null(out[["itemSamp"]])) {
-        # startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
-
-        out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::glbOnArray)
-
-        # out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::glbOnArray_custom)
-
-      }
-      out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
-      out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
-                                             prob = ciValueItem)
-    }
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["glbObj"]] <- createJaspState(out, dependencies = c("glbItem"))
+    stateContainerB[["glbObj"]] <- createJaspState(out, dependencies = c("glbScale"))
+  }
+
+  return(out)
+}
+
+.BayesianGlbItem <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["glbItemObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["glbItemObj"]]$object)
+
+  out <- model[["glbItem"]]
+  if (is.null(out))
+    out <- list()
+
+  if (options[["glbItem"]] && !is.null(model[["glbScale"]])) {
+    ciValueItem <- options[["credibleIntervalValueItem"]]
+
+    if (is.null(out[["itemSamp"]])) {
+      # startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
+      out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::glbOnArray)
+      # out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::glbOnArray_custom)
+
+    }
+    out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
+    out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
+                                             prob = ciValueItem)
+
+    stateContainerB <- .getStateContainerB(jaspResults)
+    stateContainerB[["glbItemObj"]] <- createJaspState(out, dependencies = c("glbItem"))
   }
 
   return(out)

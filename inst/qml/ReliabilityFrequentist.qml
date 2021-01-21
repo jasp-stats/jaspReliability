@@ -229,7 +229,7 @@ Form
 		RadioButtonGroup
 		{
 			title: 		qsTr("McDonald's ω Estimation")
-			name: 		"omegaEst"
+			name: 		"omegaMethod"
 			enabled: 	omega.checked
 
 			RadioButton

@@ -12,13 +12,20 @@ reliabilityFrequentist <- function(jaspResults, dataset, options) {
   }
 
   model <- .frequentistPreCalc(jaspResults, dataset, options)
+
   model[["itemDroppedCovs"]] <- .frequentistItemDroppedMats(jaspResults, dataset, options, model)
   model[["derivedOptions"]] <- .frequentistDerivedOptions(options)
-  model[["omega"]] <- .frequentistOmega(jaspResults, dataset, options, model)
-  model[["alpha"]] <- .frequentistAlpha(jaspResults, dataset, options, model)
-  model[["lambda2"]] <- .frequentistLambda2(jaspResults, dataset, options, model)
-  model[["lambda6"]] <- .frequentistLambda6(jaspResults, dataset, options, model)
-  model[["glb"]] <- .frequentistGlb(jaspResults, dataset, options, model)
+  model[["omegaScale"]] <- .frequentistOmegaScale(jaspResults, dataset, options, model)
+  model[["omegaItem"]] <- .frequentistOmegaItem(jaspResults, dataset, options, model)
+  model[["alphaScale"]] <- .frequentistAlphaScale(jaspResults, dataset, options, model)
+  model[["alphaItem"]] <- .frequentistAlphaItem(jaspResults, dataset, options, model)
+  model[["lambda2Scale"]] <- .frequentistLambda2Scale(jaspResults, dataset, options, model)
+  model[["lambda2Item"]] <- .frequentistLambda2Item(jaspResults, dataset, options, model)
+  model[["lambda6Scale"]] <- .frequentistLambda6Scale(jaspResults, dataset, options, model)
+  model[["lambda6Item"]] <- .frequentistLambda6Item(jaspResults, dataset, options, model)
+  model[["glbScale"]] <- .frequentistGlbScale(jaspResults, dataset, options, model)
+  model[["glbItem"]] <- .frequentistGlbItem(jaspResults, dataset, options, model)
+
   model[["average"]] <- .frequentistAverageCor(jaspResults, dataset, options, model)
   model[["mean"]] <- .frequentistMean(jaspResults, dataset, options, model)
   model[["sd"]] <- .frequentistStdDev(jaspResults, dataset, options, model)

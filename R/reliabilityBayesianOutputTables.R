@@ -6,7 +6,9 @@
     return()
 
   scaleTable <- createJaspTable(gettext("Bayesian Scale Reliability Statistics"))
-  scaleTable$dependOn(options = c("credibleIntervalValueScale","meanScale", "sdScale", "rHat"))
+  scaleTable$dependOn(options = c("credibleIntervalValueScale","meanScale", "sdScale", "rHat",
+                                  "alphaScale", "omegaScale", "lambda2Scale", "lambda6Scale", "glbScale",
+                                  "averageInterItemCor", "meanMethod", "sdMethod"))
 
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
   intervalLow <- gettextf("%s%% CI",
@@ -69,10 +71,6 @@
   }
   scaleTable$setData(allData)
 
-  # if (!is.null(model[["error"]]))
-  #   scaleTable$setError(model[["error"]])
-  #
-
   if (!is.null(model[["footnote"]]))
     scaleTable$addFootnote(model[["footnote"]])
 
@@ -104,6 +102,7 @@
 
   cred <- format(100*options[["credibleIntervalValueItem"]], digits = 3, drop0trailing = TRUE)
   itemTable <- createJaspTable(gettext("Bayesian Individual Item Reliability Statistics"))
+
   itemTable$dependOn(options = c("omegaItem",  "alphaItem",  "lambda2Item",  "lambda6Item", "glbItem",
                                  "credibleIntervalValueItem", "itemRestCor", "itemMean", "itemSd"))
 
@@ -215,6 +214,9 @@
 
     probsPost <- numeric(sum(selected))
     probsPrior <- numeric(sum(selected))
+
+    # the prior names dont match the model names, thus rename the priors in their original order
+    names(priors) <- c("alphaScale", "lambda2Scale", "lambda6Scale", "glbScale", "omegaScale")
 
     for (i in 1:length(idxSelected)) {
       samp_tmp <- as.vector(model[[idMatchedNames[i]]][["samp"]])

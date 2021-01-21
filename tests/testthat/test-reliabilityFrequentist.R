@@ -12,7 +12,7 @@ options$lambda6Item <- TRUE
 options$lambda6Scale <- TRUE
 options$itemRestCor <- TRUE
 options$omegaItem <- TRUE
-options$omegaEst <- "pfa"
+options$omegaMethod <- "pfa"
 options$itemMean <- TRUE
 options$meanScale <- TRUE
 options$noSamples <- 300
@@ -71,7 +71,7 @@ options$lambda6Item <- TRUE
 options$lambda6Scale <- TRUE
 options$itemRestCor <- TRUE
 options$omegaItem <- TRUE
-options$omegaEst <- "pfa"
+options$omegaMethod <- "pfa"
 options$itemMean <- TRUE
 options$meanScale <- TRUE
 options$meanMethod <- "meanScores"

@@ -1,8 +1,12 @@
 
 .frequentistPreCalc <- function(jaspResults, dataset, options) {
 
-  if (!is.null(.getStateContainerF(jaspResults)[["modelObj"]]$object))
-    return(.getStateContainerF(jaspResults)[["modelObj"]]$object)
+  if (!is.null(.getStateContainerF(jaspResults)[["modelObj"]]$object)) {
+    if (!is.null(.getStateContainerF(jaspResults)[["modelObj"]]$object$bootSamp))
+      return(.getStateContainerF(jaspResults)[["modelObj"]]$object)
+  }
+
+
 
   derivedOptions <- .frequentistDerivedOptions(options)
 
@@ -64,11 +68,10 @@
   }
 
   # check if interval is checked and bootstrapped covariance sample has to be generated
-  if (is.null(model[["bootsamp"]]) &&
+  if (is.null(model[["bootSamp"]]) &&
       options[["intervalOn"]] &&
       (
-        (options[["omegaScale"]] && options[["omegaEst"]] == "pfa") ||
-        (options[["omegaScale"]] && options[["omegaEst"]] == "cfa" && options[["omegaInterval"]] == "omegaBoot") ||
+        (options[["omegaScale"]] && options[["omegaMethod"]] == "pfa") ||
         (options[["alphaScale"]] && !(options[["alphaInterval"]] == "alphaAnalytic")) ||
         options[["lambda2Scale"]] ||
         options[["lambda6Scale"]] ||
@@ -100,7 +103,7 @@
         progressbarTick()
       }
     }
-    model[["bootsamp"]] <- boot_cov
+    model[["bootSamp"]] <- boot_cov
   }
   model[["itemsDropped"]] <- .unv(colnames(dataset))
 

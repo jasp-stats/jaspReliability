@@ -10,19 +10,24 @@ reliabilityBayesian <- function(jaspResults, dataset, options) {
 
   if (length(options[["reverseScaledItems"]]) > 0L) {
     dataset <- .reverseScoreItems(dataset, options)
-  }
-
+  } # inquire why putting this before .checkErrors leads sometimes to failures
 
 
   model <- .BayesianPreCalc(jaspResults, dataset, options)
   options <- .scaleItemBoxAlign(options)
   model[["itemDroppedCovs"]] <- .BayesianItemDroppedMats(jaspResults, dataset, options, model)
   model[["derivedOptions"]] <- .BayesianDerivedOptions(options)
-  model[["omega"]] <- .BayesianOmega(jaspResults, dataset, options, model)
-  model[["alpha"]] <- .BayesianAlpha(jaspResults, dataset, options, model)
-  model[["lambda2"]] <- .BayesianLambda2(jaspResults, dataset, options, model)
-  model[["lambda6"]] <- .BayesianLambda6(jaspResults, dataset, options, model)
-  model[["glb"]] <- .BayesianGlb(jaspResults, dataset, options, model)
+  model[["omegaScale"]] <- .BayesianOmegaScale(jaspResults, dataset, options, model)
+  model[["omegaItem"]] <- .BayesianOmegaItem(jaspResults, dataset, options, model)
+  model[["alphaScale"]] <- .BayesianAlphaScale(jaspResults, dataset, options, model)
+  model[["alphaItem"]] <- .BayesianAlphaItem(jaspResults, dataset, options, model)
+  model[["lambda2Scale"]] <- .BayesianLambda2Scale(jaspResults, dataset, options, model)
+  model[["lambda2Item"]] <- .BayesianLambda2Item(jaspResults, dataset, options, model)
+  model[["lambda6Scale"]] <- .BayesianLambda6Scale(jaspResults, dataset, options, model)
+  model[["lambda6Item"]] <- .BayesianLambda6Item(jaspResults, dataset, options, model)
+  model[["glbScale"]] <- .BayesianGlbScale(jaspResults, dataset, options, model)
+  model[["glbItem"]] <- .BayesianGlbItem(jaspResults, dataset, options, model)
+
   model[["average"]] <- .BayesianAverageCor(jaspResults, dataset, options, model)
   model[["mean"]] <- .BayesianMean(jaspResults, dataset, options, model)
   model[["sd"]] <- .BayesianStdDev(jaspResults, dataset, options, model)
