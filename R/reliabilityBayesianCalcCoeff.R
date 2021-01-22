@@ -253,8 +253,8 @@
 
     if (is.null(out[["samp"]])) {
       # startProgressbar(options[["noSamples"]] * options[["noChains"]])
-      out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::glbOnArray))
-      # out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::glbOnArray_custom))
+      # out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::glbOnArray))
+      out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::glbOnArray_custom))
     }
     out[["est"]] <- mean(out[["samp"]])
     out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
@@ -279,8 +279,8 @@
 
     if (is.null(out[["itemSamp"]])) {
       # startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
-      out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::glbOnArray)
-      # out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::glbOnArray_custom)
+      # out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::glbOnArray)
+      out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::glbOnArray_custom)
 
     }
     out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)

@@ -2,8 +2,6 @@
 
 reliabilityBayesian <- function(jaspResults, dataset, options) {
 
-  # sink(file="~/Downloads/logbay.txt")
-  # on.exit(sink(NULL))
 
   dataset <- .readData(dataset, options)
   .checkErrors(dataset, options)

@@ -1,8 +1,6 @@
 
 reliabilityFrequentist <- function(jaspResults, dataset, options) {
 
-  # sink(file="~/Downloads/logfreq.txt")
-  # on.exit(sink(NULL))
 
   dataset <- .readData(dataset, options)
   .checkErrors(dataset, options)
