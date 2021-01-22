@@ -1,4 +1,4 @@
-options <- analysisOptions("reliabilityBayesian")
+options <- analysisOptions("reliabilityUniDimBayesian")
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss30")
 options$alphaScale <- TRUE
 options$lambda2Scale <- TRUE
@@ -34,7 +34,7 @@ options$setSeed <- TRUE
 options$reverseScaledItems <- "debMiss30"
 options$orderType <- "orderItemKL"
 set.seed(1)
-results <- runAnalysis("reliabilityBayesian", "test.csv", options)
+results <- runAnalysis("reliabilityUniDimBayesian", "test.csv", options)
 
 test_that("Bayesian Individual Item Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_itemTable"]][["data"]]
@@ -73,91 +73,91 @@ test_that("Bayesian Individual Item Reliability Statistics table results match",
 test_that("Cronbach's alpha scale plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainer"]][["collection"]][["stateContainerB_plotContainer_alpha"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "alpha-scale", dir="reliabilityBayesian")
+  jaspTools::expect_equal_plots(testPlot, "alpha-scale", dir="uniDimBayesian")
 })
 
 test_that("Greatest Lower Bound scale plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainer"]][["collection"]][["stateContainerB_plotContainer_glb"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "greatest-lower-bound-scale", dir="reliabilityBayesian")
+  jaspTools::expect_equal_plots(testPlot, "greatest-lower-bound-scale", dir="uniDimBayesian")
 })
 
 test_that("lambda's lambda2 scale plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainer"]][["collection"]][["stateContainerB_plotContainer_lambda2"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "lambda2-scale", dir="reliabilityBayesian")
+  jaspTools::expect_equal_plots(testPlot, "lambda2-scale", dir="uniDimBayesian")
 })
 
 test_that("lambda's lambda6 scale plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainer"]][["collection"]][["stateContainerB_plotContainer_lambda6"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "lambda6-scale", dir="reliabilityBayesian")
+  jaspTools::expect_equal_plots(testPlot, "lambda6-scale", dir="uniDimBayesian")
 })
 
 test_that("McDonald's omega scale plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainer"]][["collection"]][["stateContainerB_plotContainer_omega"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "omega-scale", dir="reliabilityBayesian")
+  jaspTools::expect_equal_plots(testPlot, "omega-scale", dir="uniDimBayesian")
 })
 
 test_that("Cronbach's alpha item plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainerItem"]][["collection"]][["stateContainerB_plotContainerItem_alpha"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "alpha-item", dir="reliabilityBayesian")
+  jaspTools::expect_equal_plots(testPlot, "alpha-item", dir="uniDimBayesian")
 })
 
 test_that("Greatest Lower Bound item plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainerItem"]][["collection"]][["stateContainerB_plotContainerItem_glb"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "greatest-lower-bound-item", dir="reliabilityBayesian")
+  jaspTools::expect_equal_plots(testPlot, "greatest-lower-bound-item", dir="uniDimBayesian")
 })
 
 test_that("Guttman's lambda2 item plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainerItem"]][["collection"]][["stateContainerB_plotContainerItem_lambda2"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "lambda2-item", dir="reliabilityBayesian")
+  jaspTools::expect_equal_plots(testPlot, "lambda2-item", dir="uniDimBayesian")
 })
 
 test_that("Guttman's lambda6 item plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainerItem"]][["collection"]][["stateContainerB_plotContainerItem_lambda6"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "lambda6-item", dir="reliabilityBayesian")
+  jaspTools::expect_equal_plots(testPlot, "lambda6-item", dir="uniDimBayesian")
 })
 
 test_that("McDonald's omega item plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainerItem"]][["collection"]][["stateContainerB_plotContainerItem_omega"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "omega-item", dir="reliabilityBayesian")
+  jaspTools::expect_equal_plots(testPlot, "omega-item", dir="uniDimBayesian")
 })
 
 test_that("Cronbach's alpha traceplot plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainerTP"]][["collection"]][["stateContainerB_plotContainerTP_alpha"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "alpha-tp", dir="reliabilityBayesian")
+  jaspTools::expect_equal_plots(testPlot, "alpha-tp", dir="uniDimBayesian")
 })
 
 test_that("Greatest Lower Bound traceplot plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainerTP"]][["collection"]][["stateContainerB_plotContainerTP_glb"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "greatest-lower-bound-tp", dir="reliabilityBayesian")
+  jaspTools::expect_equal_plots(testPlot, "greatest-lower-bound-tp", dir="uniDimBayesian")
 })
 
 test_that("Guttman's lambda2 traceplot plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainerTP"]][["collection"]][["stateContainerB_plotContainerTP_lambda2"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "lambda2-tp", dir="reliabilityBayesian")
+  jaspTools::expect_equal_plots(testPlot, "lambda2-tp", dir="uniDimBayesian")
 })
 
 test_that("Guttman's lambda6 traceplot plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainerTP"]][["collection"]][["stateContainerB_plotContainerTP_lambda6"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "lambda6-tp", dir="reliabilityBayesian")
+  jaspTools::expect_equal_plots(testPlot, "lambda6-tp", dir="uniDimBayesian")
 })
 
 test_that("McDonald's omega traceplot plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainerTP"]][["collection"]][["stateContainerB_plotContainerTP_omega"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "omega-tp", dir="reliabilityBayesian")
+  jaspTools::expect_equal_plots(testPlot, "omega-tp", dir="uniDimBayesian")
 })
 
 test_that("Probability that Reliability Statistic is Larger than 0.10 and Smaller than 0.30 table results match", {

@@ -1,6 +1,6 @@
 
 
-reliabilityBayesian <- function(jaspResults, dataset, options) {
+reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
 
 
   dataset <- .readData(dataset, options)
