@@ -1,0 +1,399 @@
+msgid ""
+msgstr ""
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Description|"
+msgid "Reliability"
+msgstr ""
+
+msgctxt "Description|"
+msgid "This module offers Reliability analyses."
+msgstr ""
+
+msgctxt "Description|"
+msgid "Classical"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Single-Test Reliability Analysis"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Intraclass Correlation"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Bayesian"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Bayesian Single-Test Reliability Analysis"
+msgstr ""
+
+msgctxt "IntraclassCorrelation|"
+msgid "Variables"
+msgstr ""
+
+msgctxt "IntraclassCorrelation|"
+msgid "Intraclass Correlation Coefficients"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Variables"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Single-Test Reliability"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Scale Statistics"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Credible interval"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "McDonald's ω"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Posterior predictive check"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Cronbach's α"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ2"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ6"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Greatest lower bound"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Average interitem correlation"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Mean"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Standard deviation"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Individual Item Statistics"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Cronbach's α (if item dropped)"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ2 (if item dropped)"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Guttman's λ6 (if item dropped)"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Greatest lower bound (if item dropped)"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "If item dropped plot"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Order items"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Order items by mean"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Order items by KL-divergence"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Order items by KS-distance"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Item-rest correlation"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Plot Posteriors"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Fix range to 0-1"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Display Priors"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Probability for:"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "< Reliability <"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Shade posterior region in plot"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Convergence"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "MCMC parameters"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "No. samples"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "No. burnin samples"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Thinning"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "No. chains"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Diagnostics"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "R-hat"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Traceplots"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Repeatability"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Set seed"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Reverse-Scaled Items"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Normal-Scaled Items"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Missing Data Handling"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Missing Values"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Exclude cases pairwise"
+msgstr ""
+
+msgctxt "ReliabilityBayesian|"
+msgid "Exclude cases listwise"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Variables"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Single-Test Reliability"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Scale Statistics"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Confidence Interval"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "McDonald's ω"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Cronbach's α"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ2"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ6"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Greatest lower bound"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Average interitem correlation"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Mean"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Standard deviation"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Individual Item Statistics"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Cronbach's α (if item dropped)"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ2 (if item dropped)"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Guttman's λ6 (if item dropped)"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Greatest lower bound (if item dropped)"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Item-rest correlation"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Reverse-Scaled Items"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Normal-Scaled Items"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Advanced Options"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Missing Values"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Exclude cases pairwise"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Exclude cases listwise"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Bootstrap"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "No. of bootstrap samples"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Non-parametric bootstrap"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Parametric bootstrap"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "McDonald's ω Estimation"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "CFA"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Single Factor Model Fit"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Interval"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Analytic interval"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Bootstrapped interval"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "PFA"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Cronbach's α Estimation"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Unstandardized"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Standardized"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Repeatability"
+msgstr ""
+
+msgctxt "ReliabilityFrequentist|"
+msgid "Set seed"
+msgstr ""
