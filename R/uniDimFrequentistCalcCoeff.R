@@ -324,8 +324,8 @@
   # is coefficient even checked?
   if (options[["glbScale"]]  && is.null(model[["empty"]])) {
 
-    out[["est"]] <- Bayesrel:::glbOnArray(model[["data_cov"]])
-    # out[["est"]] <- Bayesrel:::glbOnArray_custom(model[["data_cov"]])
+    # out[["est"]] <- Bayesrel:::glbOnArray(model[["data_cov"]])
+    out[["est"]] <- Bayesrel:::glbOnArray_custom(model[["data_cov"]])
 
 
     # do we need an interval estimate?
@@ -333,8 +333,8 @@
       ciValue <- options[["confidenceIntervalValue"]]
       if (is.null(out[["samp"]])) {
         # startProgressbar(options[["noSamples"]])
-        out[["samp"]] <- Bayesrel:::glbOnArray(model[["bootSamp"]])
-        # out[["samp"]] <- Bayesrel:::glbOnArray_custom(model[["bootSamp"]])
+        # out[["samp"]] <- Bayesrel:::glbOnArray(model[["bootSamp"]])
+        out[["samp"]] <- Bayesrel:::glbOnArray_custom(model[["bootSamp"]])
 
       }
       out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
@@ -360,8 +360,8 @@
 
     # do we have to compute item dropped values
     if (is.null(out[["itemDropped"]]))
-      out[["itemDropped"]] <- Bayesrel:::glbOnArray(model[["itemDroppedCovs"]])
-      # out[["itemDropped"]] <- c(Bayesrel:::glbOnArray_custom(model[["itemDroppedCovs"]]))
+      # out[["itemDropped"]] <- Bayesrel:::glbOnArray(model[["itemDroppedCovs"]])
+      out[["itemDropped"]] <- c(Bayesrel:::glbOnArray_custom(model[["itemDroppedCovs"]]))
 
 
     stateContainer <- .getStateContainerF(jaspResults)
