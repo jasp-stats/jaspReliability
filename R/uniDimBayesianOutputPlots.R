@@ -279,10 +279,10 @@
   if (!is.null(.getStateContainerB(jaspResults)[["omegaPPC"]]$object))
     return()
 
-  if (!is.null(model[["omega"]]) && options[["dispPPC"]] && options[["omegaScale"]]) {
+  if (!is.null(model[["omegaScale"]]) && options[["dispPPC"]] && options[["omegaScale"]]) {
 
-    ll <- model[["omega"]][["loadings"]]
-    rr <- model[["omega"]][["residuals"]]
+    ll <- model[["omegaScale"]][["loadings"]]
+    rr <- model[["omegaScale"]][["residuals"]]
     cimpl <- ll %*% t(ll) + diag(rr)
     cobs <- model[["data_cov"]]
     k <- ncol(cobs)
