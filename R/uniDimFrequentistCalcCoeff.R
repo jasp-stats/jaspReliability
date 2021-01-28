@@ -12,6 +12,11 @@
     ciValue <- options[["confidenceIntervalValue"]]
 
     if (options[["omegaMethod"]] == "cfa") {
+      if (anyNA(dataset) && !model[["pairwise"]]) {
+        pos <- which(is.na(dataset), arr.ind = TRUE)[, 1]
+        dataset <- dataset[-pos, ]
+      }
+      dataset <- scale(dataset, scale = F)
       omegaO <- Bayesrel:::omegaFreqData(dataset, interval = ciValue, omega.int.analytic = T,
                                          pairwise = model[["pairwise"]])
       if (is.na(omegaO[["omega"]])) {
@@ -73,7 +78,11 @@
   if (options[["omegaItem"]] && !is.null(model[["omegaScale"]])) {
 
     if (options[["omegaMethod"]] == "cfa") {
-
+      if (anyNA(dataset) && !model[["pairwise"]]) {
+        pos <- which(is.na(dataset), arr.ind = TRUE)[, 1]
+        dataset <- dataset[-pos, ]
+      }
+      dataset <- scale(dataset, scale = F)
       # do we have to compute item dropped values
         if (is.null(out[["itemDropped"]])) {
           out[["itemDropped"]] <- numeric(ncol(dataset))
@@ -122,7 +131,7 @@
 
         # should the interval be analytic
         if (options[["alphaInterval"]] == "alphaAnalytic") {
-          out[["conf"]] <- Bayesrel:::ciAlpha(1 - ciValue, nrow(dataset), model[["data_cov"]])
+          out[["conf"]] <- Bayesrel:::ciAlpha(1 - ciValue, model[["n"]], model[["data_cov"]])
 
         } else {
           if (is.null(out[["samp"]])) {
@@ -143,7 +152,7 @@
 
         # should the interval be analytic
         if (options[["alphaInterval"]] == "alphaAnalytic") {
-          out[["conf"]] <- Bayesrel:::ciAlpha(1 - ciValue, nrow(dataset), ccor)
+          out[["conf"]] <- Bayesrel:::ciAlpha(1 - ciValue, model[["n"]], ccor)
 
         } else {
 
@@ -184,8 +193,8 @@
     } else { # alpha standardized
       ccor <- model[["data_cor"]]
       if (is.null(out[["itemDropped"]])) {
-        out[["itemDropped"]] <- numeric(ncol(dataset))
-        for (i in 1:ncol(dataset)){
+        out[["itemDropped"]] <- numeric(model[["k"]])
+        for (i in 1:model[["k"]]){
           out[["itemDropped"]][i] <- Bayesrel:::applyalpha(ccor[-i, -i])
         }
       }

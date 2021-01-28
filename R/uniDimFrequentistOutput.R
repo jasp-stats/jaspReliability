@@ -161,7 +161,7 @@
 # once the package is updated check this again and apply:
 .frequentistSingleFactorFitTable <- function(jaspResults, model, options) {
 
-  if (!is.null(.getStateContainerF(jaspResults)[["fitTable"]]$object) || is.null(model[["omega"]][["omegaFit"]]) ||
+  if (!is.null(.getStateContainerF(jaspResults)[["fitTable"]]$object) || is.null(model[["omegaScale"]][["omegaFit"]]) ||
       !options[["fitMeasures"]])
     return()
 
@@ -173,7 +173,7 @@
   opts <- c("Chi-Square", "df", "p.value", "RMSEA", "Lower CI RMSEA", "Upper CI RMSEA", "SRMR")
   allData <- data.frame(
     measure = opts,
-    value = as.vector(model[["omega"]][["omegaFit"]])
+    value = as.vector(model[["omegaScale"]][["omegaFit"]])
   )
   fitTable$setData(allData)
 

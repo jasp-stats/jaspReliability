@@ -58,7 +58,9 @@
     # if (length(options[["reverseScaledItems"]]) > 0L) {
     #   dataset <- .reverseScoreItems(dataset, options)
     # }
-    p <- ncol(dataset); n <- nrow(dataset)
+    k <- ncol(dataset); n <- nrow(dataset)
+    model[["k"]] <- ncol(dataset)
+    model[["n"]] <- nrow(dataset)
     cc <- cov(dataset, use = model[["use.cases"]])
     model[["data_cov"]] <- cc
     model[["data_cor"]] <- cor(dataset, use = model[["use.cases"]])
@@ -81,7 +83,7 @@
   ) {
 
 
-    boot_cov <- array(0, c(options[["noSamples"]], p, p))
+    boot_cov <- array(0, c(options[["noSamples"]], k, k))
 
     startProgressbar(options[["noSamples"]])
 
@@ -120,11 +122,11 @@
   out <- model[["itemsDroppedCovs"]]
   if (is.null(out) && is.null(model[["empty"]])) {
     cc <- model[["data_cov"]]
-    p <- ncol(dataset)
+    k <- model[["k"]]
     if (options[["omegaItem"]] || options[["alphaItem"]] || options[["lambda2Item"]] ||
          options[["lambda6Item"]] || options[["glbItem"]]) {
-      Ctmp <- array(0, c(p, p - 1, p - 1))
-      for (i in 1:p){
+      Ctmp <- array(0, c(k, k - 1, k - 1))
+      for (i in 1:k){
         Ctmp[i, , ] <- cc[-i, -i]
       }
       out <- Ctmp
