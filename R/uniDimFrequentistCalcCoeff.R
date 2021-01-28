@@ -32,6 +32,8 @@
         } else {
           omegaboot <- out[["omegaBoot"]]
           if (is.null(omegaboot)) {
+            if (options[["setSeed"]])
+              set.seed(options[["seedValue"]])
             omegaboot <- Bayesrel:::omegaFreqData(dataset, interval = ciValue, omega.int.analytic = F,
                                                   pairwise = model[["pairwise"]], parametric = model[["parametric"]])
           }

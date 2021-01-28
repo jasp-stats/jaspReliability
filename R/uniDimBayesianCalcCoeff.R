@@ -15,11 +15,16 @@
 
     if (is.null(out[["samp"]])) {
       startProgressbar(options[["noSamples"]] * options[["noChains"]])
+
       if (anyNA(dataset) && !model[["pairwise"]]) { # omega needs its own missing handling, at least for listwise
         pos <- which(is.na(dataset), arr.ind = TRUE)[, 1]
         dataset <- dataset[-pos, ]
       }
+
       dataset <- scale(dataset, scale = F)
+
+      if (options[["setSeed"]])
+        set.seed(options[["seedValue"]])
 
       tmp_out <- Bayesrel:::omegaSampler(dataset, options[["noSamples"]], options[["noBurnin"]],
                                                options[["noThin"]], options[["noChains"]],
@@ -58,6 +63,9 @@
         dataset <- dataset[-pos, ]
       }
       dataset <- scale(dataset, scale = F)
+      if (options[["setSeed"]])
+        set.seed(options[["seedValue"]])
+
       out[["itemSamp"]] <- array(0,
                                  c(options[["noChains"]],
                                    length(seq(1, options[["noSamples"]]-options[["noBurnin"]], options[["noThin"]])),
@@ -413,6 +421,8 @@
         dataset <- dataset[-pos, ]
       }
       # dataset <- scale(dataset, scale = F)
+      if (options[["setSeed"]])
+        set.seed(options[["seedValue"]])
       out[["itemSamp"]] <- .itemRestCor(dataset, options[["noSamples"]], options[["noBurnin"]],
                               options[["noThin"]], options[["noChains"]], model[["pairwise"]],
                               callback = progressbarTick)

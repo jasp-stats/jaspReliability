@@ -39,7 +39,7 @@ Form
 
   	Section
     {
-    	title: qsTr("Single-Test Reliability")
+    	title: qsTr("Analysis")
 
 		Group
     	{
