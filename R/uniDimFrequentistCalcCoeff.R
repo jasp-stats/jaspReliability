@@ -61,7 +61,9 @@
     }
 
     stateContainerF <- .getStateContainerF(jaspResults)
-    stateContainerF[["omegaScaleObj"]] <- createJaspState(out, dependencies = c("omegaScale", "omegaMethod", "omegaInterval"))
+    stateContainerF[["omegaScaleObj"]] <- createJaspState(out,
+                                                          dependencies = c("omegaScale", "omegaMethod",
+                                                                           "omegaInterval", "confidenceIntervalValue"))
   }
 
   return(out)
@@ -170,7 +172,8 @@
 
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["alphaScaleObj"]] <- createJaspState(out,
-                                                         dependencies = c("alphaScale", "alphaMethod", "alphaInterval"))
+                                                         dependencies = c("alphaScale", "alphaMethod",
+                                                                          "alphaInterval", "confidenceIntervalValue"))
   }
   return(out)
 }
@@ -233,7 +236,8 @@
 
     }
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["lambda2ScaleObj"]] <- createJaspState(out, dependencies = c("lambda2Scale"))
+    stateContainer[["lambda2ScaleObj"]] <- createJaspState(out,
+                                                           dependencies = c("lambda2Scale", "confidenceIntervalValue"))
   }
   return(out)
 }
@@ -293,7 +297,8 @@
     }
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["lambda6ScaleObj"]] <- createJaspState(out, dependencies = c("lambda6Scale"))
+    stateContainer[["lambda6ScaleObj"]] <- createJaspState(out,
+                                                           dependencies = c("lambda6Scale", "confidenceIntervalValue"))
   }
   return(out)
 }
@@ -350,7 +355,8 @@
     }
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["glbScaleObj"]] <- createJaspState(out, dependencies = c("glbScale"))
+    stateContainer[["glbScaleObj"]] <- createJaspState(out,
+                                                       dependencies = c("glbScale", "confidenceIntervalValue"))
   }
   return(out)
 }
@@ -407,7 +413,8 @@
       out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
     }
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["avgObj"]] <- createJaspState(out, dependencies = c("averageInterItemCor"))
+    stateContainer[["avgObj"]] <- createJaspState(out,
+                                                  dependencies = c("averageInterItemCor", "confidenceIntervalValue"))
   }
   return(out)
 }

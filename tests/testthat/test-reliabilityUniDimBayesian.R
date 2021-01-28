@@ -82,13 +82,13 @@ test_that("Greatest Lower Bound scale plot matches", {
   jaspTools::expect_equal_plots(testPlot, "greatest-lower-bound-scale", dir="uniDimBayesian")
 })
 
-test_that("lambda's lambda2 scale plot matches", {
+test_that("Guttman's lambda2 scale plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainer"]][["collection"]][["stateContainerB_plotContainer_lambda2"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "lambda2-scale", dir="uniDimBayesian")
 })
 
-test_that("lambda's lambda6 scale plot matches", {
+test_that("Guttman's lambda6 scale plot matches", {
   plotName <- results[["results"]][["stateContainerB"]][["collection"]][["stateContainerB_plotContainer"]][["collection"]][["stateContainerB_plotContainer_lambda6"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "lambda6-scale", dir="uniDimBayesian")

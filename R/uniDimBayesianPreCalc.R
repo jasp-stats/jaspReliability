@@ -68,14 +68,14 @@
     model[["footnote"]] <- .checkLoadings(dataset, options[["variables"]])
   }
 
+  if (options[["setSeed"]])
+    set.seed(options[["seedValue"]])
+
   # check if posterior cov sample already exists and any of the relevant coefficients are checked
   if (is.null(model[["gibbsSamp"]]) &&
       (options[["alphaScale"]] || options[["lambda2Scale"]] || options[["lambda6Scale"]] || options[["glbScale"]] ||
        options[["averageInterItemCor"]])
       ) {
-
-    if (options[["setSeed"]])
-      set.seed(options[["seedValue"]])
 
     startProgressbar(options[["noSamples"]] * options[["noChains"]])
     dataset <- scale(dataset, scale = F)

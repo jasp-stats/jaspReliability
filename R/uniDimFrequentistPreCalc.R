@@ -69,6 +69,9 @@
     model[["footnote"]] <- .checkLoadings(dataset, options[["variables"]])
   }
 
+  if (options[["setSeed"]])
+    set.seed(options[["seedValue"]])
+
   # check if interval is checked and bootstrapped covariance sample has to be generated
   if (is.null(model[["bootSamp"]]) &&
       options[["intervalOn"]] &&
@@ -86,9 +89,6 @@
     boot_cov <- array(0, c(options[["noSamples"]], k, k))
 
     startProgressbar(options[["noSamples"]])
-
-    if (options[["setSeed"]])
-      set.seed(options[["seedValue"]])
 
     if (options[["bootType"]] == "para") {
       model[["parametric"]] <- TRUE

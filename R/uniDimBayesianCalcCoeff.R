@@ -20,6 +20,7 @@
         dataset <- dataset[-pos, ]
       }
       dataset <- scale(dataset, scale = F)
+
       tmp_out <- Bayesrel:::omegaSampler(dataset, options[["noSamples"]], options[["noBurnin"]],
                                                options[["noThin"]], options[["noChains"]],
                                                model[["pairwise"]], progressbarTick)
@@ -31,7 +32,8 @@
     out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["omegaScaleObj"]] <- createJaspState(out, dependencies = c("omegaScale"))
+    stateContainerB[["omegaScaleObj"]] <- createJaspState(out,
+                                                          dependencies = c("omegaScale", "credibleIntervalValueScale"))
   }
 
   return(out)
@@ -60,6 +62,7 @@
                                  c(options[["noChains"]],
                                    length(seq(1, options[["noSamples"]]-options[["noBurnin"]], options[["noThin"]])),
                                    ncol(dataset)))
+
       for (i in 1:ncol(dataset)) {
         out[["itemSamp"]][, , i] <- Bayesrel:::omegaSampler(dataset[-i, -i],
                                                             options[["noSamples"]], options[["noBurnin"]], options[["noThin"]],
@@ -71,7 +74,7 @@
                                            prob = ciValueItem)
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem"))
+    stateContainerB[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "credibleIntervalValueItem"))
   }
 
   return(out)
@@ -99,7 +102,8 @@
     out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["alphaScaleObj"]] <- createJaspState(out, dependencies = c("alphaScale"))
+    stateContainerB[["alphaScaleObj"]] <- createJaspState(out,
+                                                          dependencies = c("alphaScale", "credibleIntervalValueScale"))
   }
 
   return(out)
@@ -127,7 +131,8 @@
                                            prob = ciValueItem)
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["alphaItemObj"]] <- createJaspState(out, dependencies = c("alphaItem"))
+    stateContainerB[["alphaItemObj"]] <- createJaspState(out,
+                                                         dependencies = c("alphaItem", "credibleIntervalValueItem"))
   }
 
   return(out)
@@ -155,7 +160,8 @@
     out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["lambda2ScaleObj"]] <- createJaspState(out, dependencies = c("lambda2Scale"))
+    stateContainerB[["lambda2ScaleObj"]] <- createJaspState(out,
+                                                            dependencies = c("lambda2Scale", "credibleIntervalValueScale"))
   }
 
   return(out)
@@ -183,7 +189,8 @@
 
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["lambda2ItemObj"]] <- createJaspState(out, dependencies = c("lambda2Item"))
+    stateContainerB[["lambda2ItemObj"]] <- createJaspState(out,
+                                                           dependencies = c("lambda2Item", "credibleIntervalValueItem"))
   }
 
   return(out)
@@ -210,7 +217,8 @@
     out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["lambda6ScaleObj"]] <- createJaspState(out, dependencies = c("lambda6Scale"))
+    stateContainerB[["lambda6ScaleObj"]] <- createJaspState(out,
+                                                            dependencies = c("lambda6Scale","credibleIntervalValueScale"))
   }
 
   return(out)
@@ -238,7 +246,8 @@
                                            prob = ciValueItem)
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["lambda6ItemObj"]] <- createJaspState(out, dependencies = c("lambda6Item"))
+    stateContainerB[["lambda6ItemObj"]] <- createJaspState(out,
+                                                           dependencies = c("lambda6Item", "credibleIntervalValueItem"))
   }
 
   return(out)
@@ -267,7 +276,8 @@
     out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["glbObj"]] <- createJaspState(out, dependencies = c("glbScale"))
+    stateContainerB[["glbObj"]] <- createJaspState(out,
+                                                   dependencies = c("glbScale", "credibleIntervalValueScale"))
   }
 
   return(out)
@@ -295,7 +305,8 @@
                                              prob = ciValueItem)
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["glbItemObj"]] <- createJaspState(out, dependencies = c("glbItem"))
+    stateContainerB[["glbItemObj"]] <- createJaspState(out,
+                                                       dependencies = c("glbItem", "credibleIntervalValueItem"))
   }
 
   return(out)
@@ -334,7 +345,8 @@
 
 
     stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["avgCorObj"]] <- createJaspState(out)
+    stateContainerB[["avgCorObj"]] <- createJaspState(out,
+                                                      dependencies = c("averageItemItemCor", "credibleIntervalValueScale"))
   }
 
   return(out)
@@ -400,7 +412,7 @@
         pos <- which(is.na(dataset), arr.ind = TRUE)[, 1]
         dataset <- dataset[-pos, ]
       }
-      dataset <- scale(dataset, scale = F)
+      # dataset <- scale(dataset, scale = F)
       out[["itemSamp"]] <- .itemRestCor(dataset, options[["noSamples"]], options[["noBurnin"]],
                               options[["noThin"]], options[["noChains"]], model[["pairwise"]],
                               callback = progressbarTick)
@@ -411,7 +423,8 @@
                                            prob = ciValueItem)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["itemRestObj"]] <- createJaspState(out, dependencies = c("itemRestCor"))
+    stateContainer[["itemRestObj"]] <- createJaspState(out,
+                                                       dependencies = c("itemRestCor", "credibleIntervalValueItem"))
   }
 
   return(out)
