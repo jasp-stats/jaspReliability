@@ -91,12 +91,12 @@
 
   derivedOptions <- model[["derivedOptions"]]
 
-  # fixes issue that unchecking the scale coefficient box, does not uncheck the item-dropped coefficient box:
-  for (i in 1:5) {
-    if (!derivedOptions[["selectedEstimators"]][i]) {
-      derivedOptions[["itemDroppedSelected"]][i] <- derivedOptions[["selectedEstimators"]][i]
-    }
-  }
+  # # fixes issue that unchecking the scale coefficient box, does not uncheck the item-dropped coefficient box:
+  # for (i in 1:5) {
+  #   if (!derivedOptions[["selectedEstimators"]][i]) {
+  #     derivedOptions[["itemDroppedSelected"]][i] <- derivedOptions[["selectedEstimators"]][i]
+  #   }
+  # }
 
   itemTable <- createJaspTable(gettext("Frequentist Individual Item Reliability Statistics"))
   itemTable$dependOn(options = c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item", "glbItem",

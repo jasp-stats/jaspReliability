@@ -93,24 +93,6 @@
   return(model)
 }
 
-# change options when scale box is unchecked
-.scaleItemBoxAlign <- function(options) {
-  opts <- options
-  if(!options[["omegaScale"]])
-    opts[["omegaItem"]] <- F
-  if(!options[["alphaScale"]])
-    opts[["alphaItem"]] <- F
-  if(!options[["lambda2Scale"]])
-    opts[["lambda2Item"]] <- F
-  if(!options[["lambda6Scale"]])
-    opts[["lambda6Item"]] <- F
-  if(!options[["glbScale"]])
-    opts[["glbItem"]] <- F
-
-  return(opts)
-
-}
-
 
 .BayesianItemDroppedMats <- function(jaspResults, dataset, options, model) {
   if (!is.null(.getStateContainerB(jaspResults)[["itemDroppedObj"]]$object))

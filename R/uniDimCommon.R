@@ -29,10 +29,9 @@
   }
 
   .hasErrors(dataset = dataset, options = options, perform = "run",
-             type = c("infinity", "variance", "observations", "varCovData"),
+             type = c("infinity", "variance", "observations"),
              observations.amount = " < 3",
              varCovData.corFun = function(x) cor(x, use = "pairwise.complete.obs"),
-             custom = .checkInverse,
              exitAnalysisIfErrors = TRUE)
 
 }
@@ -117,4 +116,23 @@
   out <- tmp_cor[2, , ]
   callback()
   return(out)
+}
+
+
+# change options when scale box is unchecked
+.scaleItemBoxAlign <- function(options) {
+  opts <- options
+  if(!options[["omegaScale"]])
+    opts[["omegaItem"]] <- F
+  if(!options[["alphaScale"]])
+    opts[["alphaItem"]] <- F
+  if(!options[["lambda2Scale"]])
+    opts[["lambda2Item"]] <- F
+  if(!options[["lambda6Scale"]])
+    opts[["lambda6Item"]] <- F
+  if(!options[["glbScale"]])
+    opts[["glbItem"]] <- F
+
+  return(opts)
+
 }

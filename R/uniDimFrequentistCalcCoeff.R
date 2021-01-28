@@ -277,7 +277,7 @@
 
     out[["est"]] <- Bayesrel:::applylambda6(model[["data_cov"]])
     if (is.na(out[["est"]]))
-      .quitAnalysis("Lambda6 calculation failed because the data covariance matrix is not invertible")
+      .quitAnalysis("Lambda6 calculation failed")
 
     # do we need an interval estimate?
     if (options[["intervalOn"]]) {
@@ -290,7 +290,7 @@
       }
 
       if (sum(!is.na(out[["samp"]])) < 3)
-        .quitAnalysis("Lambda6 interval calculation failed because some bootstrapped covariance matrix are not invertible")
+        .quitAnalysis("Lambda6 interval calculation failed")
 
       out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
 
@@ -317,7 +317,7 @@
     if (is.null(out[["itemDropped"]]))
       out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applylambda6)
     if (anyNA(out[["itemDropped"]]))
-      .quitAnalysis("Lambda6 item dropped statistics failed because some bootstrapped covariance matrix are not invertible")
+      .quitAnalysis("Lambda6 item dropped statistics failed")
 
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["lambda6ItemObj"]] <- createJaspState(out, dependencies = c("lambda6Item"))
