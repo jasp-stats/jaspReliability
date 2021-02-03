@@ -58,3 +58,17 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
   return(derivedOptions)
 }
 
+
+.getStateContainerF <- function(jaspResults) {
+  if (!is.null(jaspResults[["stateContainerF"]]))
+    return(jaspResults[["stateContainerF"]])
+
+  jaspResults[["stateContainerF"]] <- createJaspContainer(dependencies=c("variables", "reverseScaledItems", "noSamples",
+                                                                         "missingValues", "bootType","setSeed",
+                                                                         "seed", "intervalOn")
+  )
+
+  return(jaspResults[["stateContainerF"]])
+}
+
+

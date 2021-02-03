@@ -11,12 +11,12 @@
   derivedOptions <- .BayesianDerivedOptions(options)
 
   # what if no coefficient boxes are checked?
-  if(!any(derivedOptions[["selectedEstimators"]]) & !any(derivedOptions[["itemDroppedSelected"]])) {
+  if(!any(derivedOptions[["selectedEstimators"]]) && !any(derivedOptions[["itemDroppedSelected"]])) {
     variables <- options[["variables"]]
     # if (length(options[["reverseScaledItems"]]) > 0L) {
     #   dataset <- .reverseScoreItems(dataset, options)
     # }
-    empty <-  T
+    empty <-  TRUE
     model <- list(empty = empty)
     model[["footnote"]] <- .checkLoadings(dataset, variables)
     return(model)
@@ -24,7 +24,7 @@
 
   # what if too few variables are entered:
   if (length(options[["variables"]]) < 3) {
-    empty <-  T
+    empty <-  TRUE
     model <- list(empty = empty)
     model[["footnote"]] <- gettext("Please enter at least 3 Variables to do an analysis")
     return(model)
@@ -42,8 +42,6 @@
         model[["footnote"]] <- gettextf("%s Of the observations, pairwise complete cases were used. ",
                                         model[["footnote"]])
       } else {
-        pos <- which(is.na(dataset), arr.ind = TRUE)[, 1]
-        dataset <- dataset[-pos, ]
         model[["use.cases"]] <- "complete.obs"
         model[["pairwise"]] <- FALSE
         model[["footnote"]] <- gettextf("%s Of the observations, %1.f complete cases were used. ",
@@ -68,8 +66,7 @@
     model[["footnote"]] <- .checkLoadings(dataset, options[["variables"]])
   }
 
-  if (options[["setSeed"]])
-    set.seed(options[["seedValue"]])
+  jaspBase::.setSeedJASP(options)
 
   # check if posterior cov sample already exists and any of the relevant coefficients are checked
   if (is.null(model[["gibbsSamp"]]) &&
@@ -78,7 +75,7 @@
       ) {
 
     startProgressbar(options[["noSamples"]] * options[["noChains"]])
-    dataset <- scale(dataset, scale = F)
+    dataset <- scale(dataset, scale = FALSE)
     model[["gibbsSamp"]] <- Bayesrel:::covSamp(dataset, options[["noSamples"]], options[["noBurnin"]],
                                                options[["noThin"]], options[["noChains"]],
                                                model[["pairwise"]], progressbarTick)$cov_mat

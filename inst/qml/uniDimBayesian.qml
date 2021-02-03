@@ -23,77 +23,75 @@ import JASP.Widgets		1.0
 
 Form
 {
-  	VariablesForm
-  	{
-  		height: 300
-
-  		AvailableVariablesList { name: "allVariablesList" }
-
+	VariablesForm
+	{
+		height: 300
+		AvailableVariablesList { name: "allVariablesList" }
 		AssignedVariablesList
 		{
-			name: 			"variables"
-			title: 			qsTr("Variables")
-			allowedColumns: ["scale", "ordinal"]
+			name:			"variables"
+			title:			qsTr("Variables")
+			allowedColumns:	["scale", "ordinal"]
 		}
-  	}
+	}
 
-  	Section
-    {
-    	title: qsTr("Analysis")
+	Section
+	{
+		title: qsTr("Analysis")
 
 		Group
-    	{
-    		title: qsTr("Scale Statistics")
+		{
+			title: qsTr("Scale Statistics")
 
-    		CIField
-    		{
-				name: 			"credibleIntervalValueScale";
-				label: 			qsTr("Credible interval");
-				defaultValue: 	95
-    		}
+			CIField
+			{
+				name:			"credibleIntervalValueScale";
+				label:			qsTr("Credible interval");
+				defaultValue:	95
+			}
 
-    		CheckBox
-    		{
-				id:     	omega
-				name: 		"omegaScale"
-				label:  	qsTr("McDonald's ω")
-				checked: 	true
+			CheckBox
+			{
+				id:			omega
+				name:		"omegaScale"
+				label:		qsTr("McDonald's ω")
+				checked:	true
 
 				CheckBox
 				{
-					name:   	"dispPPC"
-					label:  	qsTr("Posterior predictive check");
-					enabled: 	omega.checked
+					name:		"dispPPC"
+					label:		qsTr("Posterior predictive check");
+					enabled:	omega.checked
 				}
 
-    		}
-
-			CheckBox
-			{
-				id: 	alpha
-				name: 	"alphaScale";
-				label: 	qsTr("Cronbach's α");
 			}
 
 			CheckBox
 			{
-				id: 	lambda2
-				name: 	"lambda2Scale";
-				label: 	qsTr("Guttman's λ2");
+				id:		alpha
+				name:	"alphaScale";
+				label:	qsTr("Cronbach's α");
 			}
 
 			CheckBox
 			{
-				id: 	lambda6
-				name: 	"lambda6Scale";
-				label: 	qsTr("Guttman's λ6");
+				id:		lambda2
+				name:	"lambda2Scale";
+				label:	qsTr("Guttman's λ2");
 			}
 
 			CheckBox
 			{
-				id: 	glb
-				name: 	"glbScale";
-				label: 	qsTr("Greatest lower bound");
+				id:		lambda6
+				name:	"lambda6Scale";
+				label:	qsTr("Guttman's λ6");
+			}
+
+			CheckBox
+			{
+				id:		glb
+				name:	"glbScale";
+				label:	qsTr("Greatest lower bound");
 			}
 
 			CheckBox { name: "averageInterItemCor";	label: qsTr("Average interitem correlation")	}
@@ -113,8 +111,8 @@ Form
 			}
 			CheckBox
 			{
-				name: "sdScale"
-				label: qsTr("Standard deviation")
+				name:	"sdScale"
+				label:	qsTr("Standard deviation")
 
 				RadioButtonGroup
 				{
@@ -125,29 +123,29 @@ Form
 						RadioButton { value: "meanScores"; label: qsTr("of mean scores")}
 				}
 			}
-    	}
+		}
 
-    	Group
-    	{
-    		title: qsTr("Individual Item Statistics")
+		Group
+		{
+			title: qsTr("Individual Item Statistics")
 
-    		CIField
-    		{
+			CIField
+			{
 				name: 			"credibleIntervalValueItem";
 				label: 			qsTr("Credible interval");
 				defaultValue: 	95
-    		}
+			}
 
-    		CheckBox
-    		{
+			CheckBox
+			{
 				id: 		omegaItem
 				name: 		"omegaItem";
 				label: 		qsTr("McDonald's ω  (if item dropped)");
 				enabled: 	omega.checked
-    		}
+			}
 
 			CheckBox
-    		{
+			{
 				id: 		alphaItem
 				name: 		"alphaItem";
 				label: 		qsTr("Cronbach's α (if item dropped)");
@@ -155,20 +153,20 @@ Form
 			}
 
 			CheckBox
-    		{
+			{
 				id: 		lambda2Item
 				name: 		"lambda2Item";
 				label: 		qsTr("Guttman's λ2 (if item dropped)");
 				enabled: 	lambda2.checked
 			}
 
-    		CheckBox
-    		{
-          		id: 		lambda6item
-    		  	name: 		"lambda6Item";
-    		  	label: 		qsTr("Guttman's λ6 (if item dropped)");
-    		  	enabled: 	lambda6.checked
-    		}
+			CheckBox
+			{
+				id: 		lambda6item
+				name: 		"lambda6Item"
+				label: 		qsTr("Guttman's λ6 (if item dropped)");
+				enabled: 	lambda6.checked
+			}
 
 			CheckBox
 			{
@@ -206,10 +204,10 @@ Form
 			CheckBox { name: "itemRestCor";						label: qsTr("Item-rest correlation")			}
 			CheckBox { name: "itemMean";						label: qsTr("Mean")								}
 			CheckBox { name: "itemSd";							label: qsTr("Standard deviation")				}
-    	}
+		}
 
-      Group
-      {
+		Group
+		{
 			CheckBox
 			{
 				name: 	"plotPosterior";
@@ -272,7 +270,7 @@ Form
 
 			Item
 			{
-				width:  shadePlots.width + Theme.subOptionOffset
+				width:	shadePlots.width + Theme.subOptionOffset
 				height: shadePlots.height
 
 				CheckBox
@@ -360,7 +358,7 @@ Form
 
 				IntegerField
 				{
-					name: 			"seedValue"
+					name: 			"seed"
 					label: 			""
 					defaultValue: 	1234
 					fieldWidth: 	100
@@ -396,5 +394,5 @@ Form
 			RadioButton { value: "excludeCasesPairwise"; label: qsTr("Exclude cases pairwise"); checked: true}
 			RadioButton { value: "excludeCasesListwise"; label: qsTr("Exclude cases listwise")}
 		}
-    }
+	}
 }

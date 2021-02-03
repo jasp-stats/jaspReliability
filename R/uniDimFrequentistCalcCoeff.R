@@ -12,12 +12,9 @@
     ciValue <- options[["confidenceIntervalValue"]]
 
     if (options[["omegaMethod"]] == "cfa") {
-      if (anyNA(dataset) && !model[["pairwise"]]) {
-        pos <- which(is.na(dataset), arr.ind = TRUE)[, 1]
-        dataset <- dataset[-pos, ]
-      }
-      dataset <- scale(dataset, scale = F)
-      omegaO <- Bayesrel:::omegaFreqData(dataset, interval = ciValue, omega.int.analytic = T,
+
+      dataset <- scale(dataset, scale = FALSE)
+      omegaO <- Bayesrel:::omegaFreqData(dataset, interval = ciValue, omega.int.analytic = TRUE,
                                          pairwise = model[["pairwise"]])
       if (is.na(omegaO[["omega"]])) {
         .quitAnalysis("Omega calculation with CFA failed. \n Try changing to PFA in 'Advanced Options'")
@@ -32,9 +29,8 @@
         } else {
           omegaboot <- out[["omegaBoot"]]
           if (is.null(omegaboot)) {
-            if (options[["setSeed"]])
-              set.seed(options[["seedValue"]])
-            omegaboot <- Bayesrel:::omegaFreqData(dataset, interval = ciValue, omega.int.analytic = F,
+            jaspBase::.setSeedJASP(options)
+            omegaboot <- Bayesrel:::omegaFreqData(dataset, interval = ciValue, omega.int.analytic = FALSE,
                                                   pairwise = model[["pairwise"]], parametric = model[["parametric"]])
           }
           if (is.na(omegaboot[["omega_lower"]]) || is.na(omegaboot[["omega_upper"]])) {
@@ -82,11 +78,8 @@
   if (options[["omegaItem"]] && !is.null(model[["omegaScale"]])) {
 
     if (options[["omegaMethod"]] == "cfa") {
-      if (anyNA(dataset) && !model[["pairwise"]]) {
-        pos <- which(is.na(dataset), arr.ind = TRUE)[, 1]
-        dataset <- dataset[-pos, ]
-      }
-      dataset <- scale(dataset, scale = F)
+
+      dataset <- scale(dataset, scale = FALSE)
       # do we have to compute item dropped values
         if (is.null(out[["itemDropped"]])) {
           out[["itemDropped"]] <- numeric(ncol(dataset))
@@ -166,7 +159,7 @@
               out[["sampCor"]][i] <- Bayesrel:::applyalpha(cov2cor(model[["bootSamp"]][i, ,]))
             }
           }
-          out[["conf"]] <- quantile(out[["sampCor"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm=T)
+          out[["conf"]] <- quantile(out[["sampCor"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
 
         }
       }
@@ -429,10 +422,10 @@
   if (is.null(out))
     out <- list()
   if (options[["meanScale"]] && is.null(model[["empty"]])) {
-    if (options[["meanMethod"]] == "sumScores")
-      out[["est"]] <- mean(rowSums(dataset, na.rm = T))
+    out[["est"]] <- if (options[["meanMethod"]] == "sumScores")
+      mean(rowSums(dataset, na.rm = TRUE))
     else
-      out[["est"]] <- mean(rowMeans(dataset, na.rm = T))
+      mean(rowMeans(dataset, na.rm = TRUE))
 
     if (options[["intervalOn"]])
       out[["conf"]] <- c(NA_real_, NA_real_)
@@ -450,10 +443,10 @@
   if (is.null(out))
     out <- list()
   if (options[["sdScale"]] && is.null(model[["empty"]])) {
-    if (options[["sdMethod"]] == "sumScores")
-      out[["est"]] <- sd(rowSums(dataset, na.rm = T))
+    out[["est"]] <- if (options[["sdMethod"]] == "sumScores")
+      sd(rowSums(dataset, na.rm = TRUE))
     else
-      out[["est"]] <- sd(rowMeans(dataset, na.rm = T))
+      sd(rowMeans(dataset, na.rm = TRUE))
 
     if (options[["intervalOn"]])
       out[["conf"]] <- c(NA_real_, NA_real_)
@@ -475,7 +468,7 @@
   if (options[["itemRestCor"]]  && is.null(model[["empty"]])) {
     out[["itemDropped"]] <- numeric(ncol(dataset))
     for (i in 1:ncol(dataset)) {
-      out[["itemDropped"]][i] <- cor(dataset[, i], rowMeans(dataset[, -i], na.rm = T), use = model[["use.cases"]])
+      out[["itemDropped"]][i] <- cor(dataset[, i], rowMeans(dataset[, -i], na.rm = TRUE), use = model[["use.cases"]])
     }
 
     stateContainer <- .getStateContainerF(jaspResults)
@@ -493,10 +486,7 @@
     out <- list()
   # is box even checked?
   if (options[["itemMean"]]  && is.null(model[["empty"]])) {
-    out[["itemDropped"]] <- numeric(ncol(dataset))
-    for (i in 1:ncol(dataset)) {
-      out[["itemDropped"]][i] <- mean(dataset[, i], na.rm = T)
-    }
+    out[["itemDropped"]] <- colMeans(dataset, na.rm = TRUE)
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["itemMeanObj"]] <- createJaspState(out, dependencies = c("itemMean"))
   }
@@ -512,7 +502,8 @@
     out <- list()
   # is box even checked?
   if (options[["itemSd"]]  && is.null(model[["empty"]])) {
-    out[["itemDropped"]] <- apply(dataset, 2, sd, na.rm = T)
+
+    out[["itemDropped"]] <- apply(dataset, 2, sd, na.rm = TRUE)
 
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["itemSdObj"]] <- createJaspState(out, dependencies = c("itemSd"))

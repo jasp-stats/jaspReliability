@@ -1,6 +1,5 @@
 
 
-# -------------------------------------------- plots ---------------------------------
 .BayesianPosteriorPlot <- function(jaspResults, model, options) {
 
   if (!is.null(.getStateContainerB(jaspResults)[["plotContainer"]]$object))

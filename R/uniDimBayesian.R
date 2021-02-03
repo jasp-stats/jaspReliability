@@ -75,3 +75,29 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
 }
 
 
+.getStateContainerB <- function(jaspResults) {
+  if (!is.null(jaspResults[["stateContainerB"]]))
+    return(jaspResults[["stateContainerB"]])
+
+  jaspResults[["stateContainerB"]] <- createJaspContainer(dependencies=c("variables", "reverseScaledItems", "noSamples",
+                                                                         "noBurnin", "noThin", "noChains",
+                                                                         "missingValues","setSeed", "seed")
+  )
+
+  return(jaspResults[["stateContainerB"]])
+}
+
+.summarizePosterior <- function(samples, ciValue) {
+
+  if (length(dim(samples)) == 3L) {
+    return(list(
+      rowMeans(aperm(samples, rev(seq_along(dim(samples))))), # faster than apply(samples, 3, mean)
+      coda::HPDinterval(coda::mcmc(apply(samples, 3, as.vector)), prob = ciValue)
+    ))
+  } else {
+    return(list(
+      mean(samples),
+      coda::HPDinterval(coda::mcmc(as.vector(samples)), prob = ciValue)
+    ))
+  }
+}

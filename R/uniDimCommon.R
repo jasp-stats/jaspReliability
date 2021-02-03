@@ -4,7 +4,10 @@
 
   variables <- unlist(options[["variables"]])
   if (is.null(dataset)) {
-    dataset <- .readDataSetToEnd(columns.as.numeric = variables, columns.as.factor = NULL, exclude.na.listwise = NULL)
+    if (options[["missingValues"]] == "excludeCasesListwise")
+      dataset <- .readDataSetToEnd(columns.as.numeric = variables, columns.as.factor = NULL, exclude.na.listwise = TRUE)
+    else
+      dataset <- .readDataSetToEnd(columns.as.numeric = variables, columns.as.factor = NULL, exclude.na.listwise = NULL)
   }
   return(dataset)
 }
@@ -45,7 +48,7 @@
     if (sidx == 0) {
       footnote <- ""
     } else {
-      footnote <- sprintf(ngettext(length(variables[idx]),
+      footnote <- sprintf(ngettext(sidx,
                                    "The following item correlated negatively with the scale: %s. ",
                                    "The following items correlated negatively with the scale: %s. "),
                           paste(variables[idx], collapse = ", "))

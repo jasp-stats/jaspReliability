@@ -16,15 +16,9 @@
     if (is.null(out[["samp"]])) {
       startProgressbar(options[["noSamples"]] * options[["noChains"]])
 
-      if (anyNA(dataset) && !model[["pairwise"]]) { # omega needs its own missing handling, at least for listwise
-        pos <- which(is.na(dataset), arr.ind = TRUE)[, 1]
-        dataset <- dataset[-pos, ]
-      }
+      dataset <- scale(dataset, scale = FALSE)
 
-      dataset <- scale(dataset, scale = F)
-
-      if (options[["setSeed"]])
-        set.seed(options[["seedValue"]])
+      jaspBase::.setSeedJASP(options)
 
       tmp_out <- Bayesrel:::omegaSampler(dataset, options[["noSamples"]], options[["noBurnin"]],
                                                options[["noThin"]], options[["noChains"]],
@@ -33,8 +27,8 @@
       out[["loadings"]] <- apply(tmp_out$lambda, 3, mean)
       out[["residuals"]] <- apply(tmp_out$psi, 3, mean)
     }
-    out[["est"]] <- mean(out[["samp"]])
-    out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
+
+    out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["omegaScaleObj"]] <- createJaspState(out,
@@ -58,13 +52,9 @@
 
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
-      if (anyNA(dataset) && !model[["pairwise"]]) { # omega needs its own missing handling, at least for listwise
-        pos <- which(is.na(dataset), arr.ind = TRUE)[, 1]
-        dataset <- dataset[-pos, ]
-      }
-      dataset <- scale(dataset, scale = F)
-      if (options[["setSeed"]])
-        set.seed(options[["seedValue"]])
+
+      dataset <- scale(dataset, scale = FALSE)
+      jaspBase::.setSeedJASP(options)
 
       out[["itemSamp"]] <- array(0,
                                  c(options[["noChains"]],
@@ -77,9 +67,7 @@
                                                             options[["noChains"]], model[["pairwise"]], progressbarTick)$omega
       }
     }
-    out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
-    out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
-                                           prob = ciValueItem)
+    out[c("itemEst", "itemCred")] <- .summarizePosterior(out[["itemSamp"]], ciValueItem)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "credibleIntervalValueItem"))
@@ -106,8 +94,7 @@
       startProgressbar(options[["noSamples"]] * options[["noChains"]])
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applyalpha, progressbarTick))
     }
-    out[["est"]] <- mean(out[["samp"]])
-    out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
+    out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["alphaScaleObj"]] <- createJaspState(out,
@@ -134,9 +121,7 @@
       out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::applyalpha, progressbarTick)
 
     }
-    out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
-    out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
-                                           prob = ciValueItem)
+    out[c("itemEst", "itemCred")] <- .summarizePosterior(out[["itemSamp"]], ciValueItem)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["alphaItemObj"]] <- createJaspState(out,
@@ -164,8 +149,7 @@
       startProgressbar(options[["noSamples"]] * options[["noChains"]])
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applylambda2, progressbarTick))
     }
-    out[["est"]] <- mean(out[["samp"]])
-    out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
+    out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["lambda2ScaleObj"]] <- createJaspState(out,
@@ -191,10 +175,7 @@
       out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::applylambda2, progressbarTick)
 
     }
-    out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
-    out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
-                                           prob = ciValueItem)
-
+    out[c("itemEst", "itemCred")] <- .summarizePosterior(out[["itemSamp"]], ciValueItem)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["lambda2ItemObj"]] <- createJaspState(out,
@@ -221,8 +202,7 @@
       startProgressbar(options[["noSamples"]] * options[["noChains"]])
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applylambda6, progressbarTick))
     }
-    out[["est"]] <- mean(out[["samp"]])
-    out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
+    out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["lambda6ScaleObj"]] <- createJaspState(out,
@@ -249,9 +229,7 @@
       out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::applylambda6, progressbarTick)
 
     }
-    out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
-    out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
-                                           prob = ciValueItem)
+    out[c("itemEst", "itemCred")] <- .summarizePosterior(out[["itemSamp"]], ciValueItem)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["lambda6ItemObj"]] <- createJaspState(out,
@@ -280,8 +258,7 @@
       # out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::glbOnArray))
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::glbOnArray_custom))
     }
-    out[["est"]] <- mean(out[["samp"]])
-    out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
+    out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["glbObj"]] <- createJaspState(out,
@@ -308,9 +285,7 @@
       out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::glbOnArray_custom)
 
     }
-    out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
-    out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
-                                             prob = ciValueItem)
+    out[c("itemEst", "itemCred")] <- .summarizePosterior(out[["itemSamp"]], ciValueItem)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["glbItemObj"]] <- createJaspState(out,
@@ -348,9 +323,7 @@
       out[["samp"]] <- coda::mcmc(out[["samp"]])
 
     }
-    out[["est"]] <- mean(out[["samp"]])
-    out[["cred"]] <- coda::HPDinterval(coda::mcmc(as.vector(out[["samp"]])), prob = ciValue)
-
+    out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["avgCorObj"]] <- createJaspState(out,
@@ -369,10 +342,10 @@
   if (is.null(out))
     out <- list()
   if (options[["meanScale"]] && is.null(model[["empty"]])) {
-    if (options[["meanMethod"]] == "sumScores")
-      out[["est"]] <- mean(rowSums(dataset, na.rm = T))
+    out[["est"]] <- if (options[["meanMethod"]] == "sumScores")
+      mean(rowSums(dataset, na.rm = TRUE))
     else
-      out[["est"]] <- mean(rowMeans(dataset, na.rm = T))
+      mean(rowMeans(dataset, na.rm = TRUE))
 
     out[["cred"]] <- c(NA_real_, NA_real_)
     stateContainer <- .getStateContainerB(jaspResults)
@@ -389,10 +362,10 @@
   if (is.null(out))
     out <- list()
   if (options[["sdScale"]] && is.null(model[["empty"]])) {
-    if (options[["sdMethod"]] == "sumScores")
-      out[["est"]] <- sd(rowSums(dataset, na.rm = T))
+    out[["est"]] <- if (options[["sdMethod"]] == "sumScores")
+      sd(rowSums(dataset, na.rm = TRUE))
     else
-      out[["est"]] <- sd(rowMeans(dataset, na.rm = T))
+      sd(rowMeans(dataset, na.rm = TRUE))
 
     out[["cred"]] <- c(NA_real_, NA_real_)
     stateContainer <- .getStateContainerB(jaspResults)
@@ -416,21 +389,14 @@
 
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
-      if (anyNA(dataset) && !model[["pairwise"]]) { # item rest cor needs its own missing handling, at least for listwise
-        pos <- which(is.na(dataset), arr.ind = TRUE)[, 1]
-        dataset <- dataset[-pos, ]
-      }
+
       # dataset <- scale(dataset, scale = F)
-      if (options[["setSeed"]])
-        set.seed(options[["seedValue"]])
+      jaspBase::.setSeedJASP(options)
       out[["itemSamp"]] <- .itemRestCor(dataset, options[["noSamples"]], options[["noBurnin"]],
                               options[["noThin"]], options[["noChains"]], model[["pairwise"]],
                               callback = progressbarTick)
     }
-
-    out[["itemEst"]] <- apply(out[["itemSamp"]], 3, mean)
-    out[["itemCred"]] <- coda::HPDinterval(coda::mcmc(apply(out[["itemSamp"]], 3, as.vector)),
-                                           prob = ciValueItem)
+    out[c("itemEst", "itemCred")] <- .summarizePosterior(out[["itemSamp"]], ciValueItem)
 
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["itemRestObj"]] <- createJaspState(out,
@@ -449,10 +415,9 @@
     out <- list()
   # is box even checked?
   if (options[["itemMean"]] && is.null(model[["empty"]])) {
-    out[["itemEst"]] <- numeric(ncol(dataset))
-    for (i in 1:ncol(dataset)) {
-      out[["itemEst"]][i] <- mean(dataset[, i], na.rm = T)
-    }
+
+    out[["itemEst"]] <- colMeans(dataset, na.rm = TRUE)
+
     out[["itemCred"]] <- matrix(NA_real_, ncol(dataset), 2)
 
     stateContainer <- .getStateContainerB(jaspResults)

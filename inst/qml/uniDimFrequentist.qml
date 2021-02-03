@@ -24,10 +24,10 @@ import JASP.Widgets 	1.0
 Form
 {
 	VariablesForm
-  	{
-  		height: 300
+	{
+		height: 300
 
-  		AvailableVariablesList { name: "allVariablesList" }
+		AvailableVariablesList { name: "allVariablesList" }
 
 		AssignedVariablesList
 		{
@@ -35,7 +35,7 @@ Form
 			title: 			qsTr("Variables")
 			allowedColumns: ["scale", "ordinal"]
 		}
-  	}
+	}
 
 	Section
 	{
@@ -55,18 +55,18 @@ Form
 
 				CIField
 				{
-					name: 		"confidenceIntervalValue";
-					label: 		"";
-					defaultValue: 95;
+					name:			"confidenceIntervalValue";
+					label:			"";
+					defaultValue:	95;
 				}
 			}
 
 			CheckBox
 			{
-				id:     	omega
-				name:   	"omegaScale"
-				label:  	qsTr("McDonald's ω")
-				checked: 	true
+				id:			omega
+				name:		"omegaScale"
+				label:		qsTr("McDonald's ω")
+				checked:	true
 			}
 
 			CheckBox
@@ -280,15 +280,15 @@ Form
 
 				RadioButton
 				{
-					value:   	"alphaUnstand"
-					label:   	qsTr("Unstandardized")
+					value:		"alphaUnstand"
+					label:		qsTr("Unstandardized")
 					checked:	true
 				}
 
 				RadioButton
 				{
-					value:  	"alphaStand"
-					label:  	qsTr("Standardized")
+					value:	"alphaStand"
+					label:	qsTr("Standardized")
 				}
 			}
 
@@ -300,15 +300,15 @@ Form
 
 				RadioButton
 				{
-					value:  	"alphaAnalytic"
-					label:  	qsTr("Analytic interval")
-					checked: 	true
+					value:		"alphaAnalytic"
+					label:		qsTr("Analytic interval")
+					checked:	true
 				}
 
 				RadioButton
 				{
 					value: 	"alphaBoot"
-					label:  	qsTr("Bootstrapped interval")
+					label: 	qsTr("Bootstrapped interval")
 				}
 			}
 		}
@@ -325,7 +325,7 @@ Form
 
 				IntegerField
 				{
-					name: 			"seedValue"
+					name: 			"seed"
 					label: 			""
 					defaultValue: 	1234
 					fieldWidth: 	100
