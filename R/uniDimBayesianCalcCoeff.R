@@ -14,7 +14,7 @@
     ciValue <- options[["credibleIntervalValueScale"]]
 
     if (is.null(out[["samp"]])) {
-      startProgressbar(options[["noSamples"]] * options[["noChains"]])
+      startProgressbar(model[["progressbarLength"]])
 
       dataset <- scale(dataset, scale = FALSE)
 
@@ -51,7 +51,7 @@
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
-      startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
+      startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
       dataset <- scale(dataset, scale = FALSE)
       jaspBase::.setSeedJASP(options)
@@ -91,7 +91,7 @@
     ciValue <- options[["credibleIntervalValueScale"]]
 
     if (is.null(out[["samp"]])) {
-      startProgressbar(options[["noSamples"]] * options[["noChains"]])
+      startProgressbar(model[["progressbarLength"]])
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applyalpha, progressbarTick))
     }
     out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
@@ -116,7 +116,7 @@
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
-      startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
+      startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
       out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::applyalpha, progressbarTick)
 
@@ -146,7 +146,7 @@
     ciValue <- options[["credibleIntervalValueScale"]]
 
     if (is.null(out[["samp"]])) {
-      startProgressbar(options[["noSamples"]] * options[["noChains"]])
+      startProgressbar(model[["progressbarLength"]])
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applylambda2, progressbarTick))
     }
     out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
@@ -171,7 +171,7 @@
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
-      startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
+      startProgressbar(model[["progressbarLength"]] * ncol(dataset))
       out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::applylambda2, progressbarTick)
 
     }
@@ -199,7 +199,7 @@
     ciValue <- options[["credibleIntervalValueScale"]]
 
     if (is.null(out[["samp"]])) {
-      startProgressbar(options[["noSamples"]] * options[["noChains"]])
+      startProgressbar(model[["progressbarLength"]])
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applylambda6, progressbarTick))
     }
     out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
@@ -224,7 +224,7 @@
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
-      startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
+      startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
       out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::applylambda6, progressbarTick)
 
@@ -254,9 +254,9 @@
     ciValue <- options[["credibleIntervalValueScale"]]
 
     if (is.null(out[["samp"]])) {
-      # startProgressbar(options[["noSamples"]] * options[["noChains"]])
-      # out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::glbOnArray))
-      out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::glbOnArray_custom))
+      startProgressbar(model[["progressbarLength"]] %/% 500 + 1)
+      out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::glbOnArray_custom,
+                                        callback = progressbarTick))
     }
     out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
 
@@ -280,9 +280,9 @@
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
-      # startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
-      # out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::glbOnArray)
-      out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::glbOnArray_custom)
+      startProgressbar((model[["progressbarLength"]] %/% 500 + 1) * ncol(dataset))
+      out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::glbOnArray_custom,
+                                 callback = progressbarTick)
 
     }
     out[c("itemEst", "itemCred")] <- .summarizePosterior(out[["itemSamp"]], ciValueItem)
@@ -310,7 +310,7 @@
     ciValue <- options[["credibleIntervalValueScale"]]
 
     if (is.null(out[["samp"]])) {
-      startProgressbar(options[["noSamples"]] * options[["noChains"]])
+      startProgressbar(model[["progressbarLength"]])
       out[["samp"]] <- matrix(0, nrow(model[["gibbsSamp"]]), ncol(model[["gibbsSamp"]]))
       lowerTriangleIndex = which(lower.tri(model[["gibbsSamp"]][1, 1, , ]))
       for (i in 1:nrow(model[["gibbsSamp"]])) {
@@ -388,7 +388,7 @@
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
-      startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
+      startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
       # dataset <- scale(dataset, scale = F)
       jaspBase::.setSeedJASP(options)

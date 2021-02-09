@@ -333,7 +333,6 @@
   # is coefficient even checked?
   if (options[["glbScale"]]  && is.null(model[["empty"]])) {
 
-    # out[["est"]] <- Bayesrel:::glbOnArray(model[["data_cov"]])
     out[["est"]] <- Bayesrel:::glbOnArray_custom(model[["data_cov"]])
 
 
@@ -341,8 +340,7 @@
     if (options[["intervalOn"]]) {
       ciValue <- options[["confidenceIntervalValue"]]
       if (is.null(out[["samp"]])) {
-        # startProgressbar(options[["noSamples"]])
-        # out[["samp"]] <- Bayesrel:::glbOnArray(model[["bootSamp"]])
+        startProgressbar(options[["noSamples"]] %/% 500 + 1)
         out[["samp"]] <- Bayesrel:::glbOnArray_custom(model[["bootSamp"]])
 
       }
@@ -370,7 +368,6 @@
 
     # do we have to compute item dropped values
     if (is.null(out[["itemDropped"]]))
-      # out[["itemDropped"]] <- Bayesrel:::glbOnArray(model[["itemDroppedCovs"]])
       out[["itemDropped"]] <- c(Bayesrel:::glbOnArray_custom(model[["itemDroppedCovs"]]))
 
 
