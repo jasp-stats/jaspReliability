@@ -1,4 +1,5 @@
 import(jaspBase)
 export(reliabilityFrequentist)
+export(RaterAgreement)
 export(reliabilityBayesian)
 export(IntraclassCorrelation)

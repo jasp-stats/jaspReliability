@@ -1,8 +1,8 @@
-IntraclassCorrelation <- function(jaspResults, dataset, options) {
+RaterAgreement <- function(jaspResults, dataset, options) {
 
   dataset <- .reliabilityReadData(dataset, options)
 
-  if (ncol(dataset) > 2) {
+  if (ncol(dataset) >= 2) {
     jaspResults[["table"]] <- handleIntraclassCorrelation(dataset, options)
   } else {
     # TODO: message to select data?

@@ -28,9 +28,9 @@ Description
 	}
 	Analysis
 	{
-		title:	qsTr("Intraclass Correlation")
-		qml: 	"IntraclassCorrelation.qml"
-		func: 	"IntraclassCorrelation"
+		title:	qsTr("Rater Agreement")
+		qml: 	"RaterAgreement.qml"
+		func: 	"RaterAgreement"
 	}
 
 	Separator {}
