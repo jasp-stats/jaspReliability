@@ -30,6 +30,14 @@ RaterAgreement <- function(jaspResults, dataset, options) {
 
 .handleIntraclassCorrelation <- function (dataset, options) {
 
+  # Check for errors using JASPs internal convenience function
+  .hasErrors(
+    dataset = dataset,
+    type = c("infinity", "negativeValues", "observations", "varCovData"),
+    observations.amount = c("< 3"),
+    exitAnalysisIfErrors = TRUE
+  )
+
   # Get the ICC type e.g. "ICC1k"
   type <- toupper(options["iccType"])
   if (options[["iccRatingAverage"]]) {
