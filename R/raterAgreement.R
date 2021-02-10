@@ -1,9 +1,26 @@
+#
+# Copyright (C) 2021 University of Amsterdam
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
 RaterAgreement <- function(jaspResults, dataset, options) {
 
   dataset <- .reliabilityReadData(dataset, options)
 
   if (ncol(dataset) >= 2) {
-    jaspResults[["table"]] <- handleIntraclassCorrelation(dataset, options)
+    jaspResults[["table"]] <- .handleIntraclassCorrelation(dataset, options)
   } else {
     # TODO: message to select data?
   }
@@ -11,7 +28,7 @@ RaterAgreement <- function(jaspResults, dataset, options) {
   return()
 }
 
-handleIntraclassCorrelation <- function (dataset, options) {
+.handleIntraclassCorrelation <- function (dataset, options) {
 
   # Get the ICC type e.g. "ICC1k"
   type <- toupper(options["iccType"])
@@ -43,10 +60,24 @@ handleIntraclassCorrelation <- function (dataset, options) {
   icc <- icc[, cols]
 
   jaspTable <- createJaspTable(title = gettext("Intraclass Correlation"))
-  jaspTable$dependOn(options = c("variables", "intervalOn", "confidenceIntervalValue", "iccType", "iccRatingAverage"))
+  jaspTable$dependOn(
+    options = c(
+      "variables",
+      "intervalOn",
+      "confidenceIntervalValue",
+      "iccType",
+      "iccRatingAverage"
+    )
+  )
   # jaspTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
   jaspTable$setData(icc)
-  jaspTable$addFootnote(gettextf("%s subjects and %s judges. ICC type as referenced by Shrout & Fleiss (1979).", full_results$n.obs, full_results$n.judge))
+  jaspTable$addFootnote(
+    gettextf(
+      "%s subjects and %s judges. ICC type as referenced by Shrout & Fleiss (1979).",
+      full_results$n.obs,
+      full_results$n.judge
+    )
+  )
 
   return(jaspTable)
 }
