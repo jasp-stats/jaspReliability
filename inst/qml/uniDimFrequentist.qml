@@ -71,7 +71,7 @@ Form
 
 			CheckBox
 			{
-				id: 	cronbach
+				id: 	alpha
 				name: 	"alphaScale";
 				label: 	qsTr("Cronbach's α");
 			}
@@ -144,7 +144,7 @@ Form
 			{
 				name: 		"alphaItem";
 				label: 		qsTr("Cronbach's α (if item dropped)");
-				enabled: 	cronbach.checked
+				enabled: 	alpha.checked
 			}
 
 			CheckBox
@@ -271,7 +271,7 @@ Form
 		Group
 		{
 			title: 		qsTr("Cronbach's α Estimation")
-			enabled: 	cronbach.checked
+			enabled: 	alpha.checked
 
 			RadioButtonGroup
 			{
