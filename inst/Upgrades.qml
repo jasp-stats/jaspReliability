@@ -7,8 +7,8 @@ Upgrades
 	{
 			functionName: 		"reliabilityFrequentist"
 			newFunctionName:	"reliabilityUniDimFrequentist"
-			fromVersion:		"0.1"
-			toVersion:			"0.2"
+			fromVersion:		"0.14.2"
+			toVersion:			"0.15"
 
 			ChangeRename
 			{
@@ -71,8 +71,8 @@ Upgrades
 		{
 			functionName: 		"reliabilityBayesian"
 			newFunctionName:	"reliabilityUniDimBayesian"
-			fromVersion:		"0.1"
-			toVersion:			"0.2"
+			fromVersion:		"0.14.2"
+			toVersion:			"0.15"
 
 			ChangeRename
 			{
