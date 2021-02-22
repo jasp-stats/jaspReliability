@@ -220,8 +220,8 @@ Form
 				name:		"bootType"
 				enabled:	interval.checked
 
-				RadioButton {value: "nonPara"; label: qsTr("Non-parametric bootstrap"); checked: true}
-				RadioButton {value: "para"; label: qsTr("Parametric bootstrap")}
+				RadioButton {value: "nonParametric"; label: qsTr("Non-parametric bootstrap"); checked: true}
+				RadioButton {value: "parametric"; label: qsTr("Parametric bootstrap")}
 			}
 
 		}

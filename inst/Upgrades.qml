@@ -7,7 +7,7 @@ Upgrades
 	{
 			functionName: 		"reliabilityFrequentist"
 			newFunctionName:	"reliabilityUniDimFrequentist"
-			fromVersion:		"0.14.2"
+			fromVersion:		"0.14.3"
 			toVersion:			"0.15"
 
 			ChangeRename
@@ -53,7 +53,7 @@ Upgrades
 			ChangeJS
 			{
 				name:		"bootType"
-				jsFunction:	function(options) { return options["bootType"] === "bootNonpara" ? "nonPara" : "para"; }
+				jsFunction:	function(options) { return options["bootType"] === "bootNonpara" ? "nonParametric" : "parametric"; }
 			}
 			ChangeRename
 			{
@@ -71,7 +71,7 @@ Upgrades
 		{
 			functionName: 		"reliabilityBayesian"
 			newFunctionName:	"reliabilityUniDimBayesian"
-			fromVersion:		"0.14.2"
+			fromVersion:		"0.14.3"
 			toVersion:			"0.15"
 
 			ChangeRename

@@ -278,7 +278,7 @@
   if (!is.null(.getStateContainerB(jaspResults)[["omegaPPC"]]$object))
     return()
 
-  if (!is.null(model[["omegaScale"]]) && options[["dispPPC"]] && options[["omegaScale"]]) {
+  if (options[["dispPPC"]] && options[["omegaScale"]] && is.null(model[["empty"]])) {
 
     ll <- model[["omegaScale"]][["loadings"]]
     rr <- model[["omegaScale"]][["residuals"]]

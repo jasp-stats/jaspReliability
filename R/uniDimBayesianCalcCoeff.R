@@ -46,7 +46,7 @@
   if (is.null(out))
     out <- list()
 
-  if (options[["omegaItem"]] && !is.null(model[["omegaScale"]])) {
+  if (options[["omegaItem"]] && is.null(model[["empty"]])) {
 
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
@@ -112,7 +112,7 @@
   if (is.null(out))
     out <- list()
 
-  if (options[["alphaItem"]] && !is.null(model[["alphaScale"]])) {
+  if (options[["alphaItem"]] && is.null(model[["empty"]])) {
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
@@ -167,7 +167,8 @@
   if (is.null(out))
     out <- list()
 
-  if (options[["lambda2Item"]] && !is.null(model[["lambda2Scale"]])) {
+  if (options[["lambda2Item"]] && is.null(model[["empty"]])) {
+
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
@@ -220,7 +221,8 @@
   if (is.null(out))
     out <- list()
 
-  if (options[["lambda6Item"]] && !is.null(model[["lambda6Scale"]])) {
+  if (options[["lambda6Item"]] && is.null(model[["empty"]])) {
+
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
@@ -276,7 +278,7 @@
   if (is.null(out))
     out <- list()
 
-  if (options[["glbItem"]] && !is.null(model[["glbScale"]])) {
+  if (options[["glbItem"]] && is.null(model[["empty"]])) {
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {

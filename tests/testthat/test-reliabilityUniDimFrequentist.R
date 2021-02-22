@@ -62,7 +62,7 @@ options$alphaItem <- TRUE
 options$alphaMethod <- "alphaStand"
 options$alphaScale <- TRUE
 options$averageInterItemCor <- TRUE
-options$bootType <- "para"
+options$bootType <- "parametric"
 options$glbItem <- TRUE
 options$glbScale <- TRUE
 options$lambda2Item <- TRUE
@@ -112,3 +112,32 @@ test_that("Frequentist Scale Reliability Statistics table results match for spec
                                       0.0878218264568898, 0.635557616289631, 0.216185154128633, 0.286242462411683,
                                       "", "", "95% CI upper bound"))
 })
+
+
+
+test_that("Frequentist omega results match for CFA with bootstrapping", {
+  options <- analysisOptions("reliabilityUniDimFrequentist")
+  options$fitMeasures <- TRUE
+  options$noSamples <- 100
+  options$omegaInterval <- "omegaBoot"
+  options$bootType <- "parametric"
+  options$omegaMethod <- "cfa"
+  options$setSeed <- TRUE
+  options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
+  set.seed(1)
+  results <- runAnalysis("reliabilityUniDimFrequentist", "asrm.csv", options)
+
+  table <- results[["results"]][["stateContainerF"]][["collection"]][["stateContainerF_fitTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list("Chi-Square", 12.024392497134, "df", 5, "p.value", 0.0344550712893985,
+                                      "RMSEA", 0.134206046112551, "Lower CI RMSEA", 0.0336507286803164,
+                                      "Upper CI RMSEA", 0.233336447395263, "SRMR", 0.0587540735919212
+                                 ))
+
+  table <- results[["results"]][["stateContainerF"]][["collection"]][["stateContainerF_scaleTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.791961648541524, "Point estimate", 0.730146577285974, "95% CI lower bound",
+                                      0.829534826132814, "95% CI upper bound"))
+})
+
+

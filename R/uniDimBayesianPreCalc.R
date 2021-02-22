@@ -79,10 +79,10 @@
     model[["gibbsSamp"]] <- Bayesrel:::covSamp(dataset, options[["noSamples"]], options[["noBurnin"]],
                                                options[["noThin"]], options[["noChains"]],
                                                model[["pairwise"]], progressbarTick)$cov_mat
-    model[["progressbarLength"]] <- options[["noChains"]] *
-      length(seq(1, options[["noSamples"]] - options[["noBurnin"]], options[["noThin"]]))
 
   }
+  model[["progressbarLength"]] <- options[["noChains"]] *
+    length(seq(1, options[["noSamples"]] - options[["noBurnin"]], options[["noThin"]]))
 
   model[["itemsDropped"]] <- .unv(colnames(dataset))
 

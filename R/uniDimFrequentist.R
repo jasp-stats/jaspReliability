@@ -1,7 +1,6 @@
 
 reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
 
-
   dataset <- .readData(dataset, options)
   .checkErrors(dataset, options)
 

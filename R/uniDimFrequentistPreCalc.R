@@ -87,7 +87,7 @@
 
     startProgressbar(options[["noSamples"]])
 
-    if (options[["bootType"]] == "para") {
+    if (options[["bootType"]] == "parametric") {
       model[["parametric"]] <- TRUE
       for (i in 1:options[["noSamples"]]) {
         boot_data <- MASS::mvrnorm(n, colMeans(dataset, na.rm = T), cc)

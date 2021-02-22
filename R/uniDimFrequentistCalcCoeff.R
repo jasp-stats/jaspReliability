@@ -27,11 +27,15 @@
         if (options[["omegaInterval"]] == "omegaAnalytic") {
           out[["conf"]] <- c(omegaO$omega_lower, omegaO$omega_upper)
         } else {
+
+          parametric <- options[["bootType"]] == "parametric"
+
           omegaboot <- out[["omegaBoot"]]
           if (is.null(omegaboot)) {
             jaspBase::.setSeedJASP(options)
             omegaboot <- Bayesrel:::omegaFreqData(dataset, interval = ciValue, omega.int.analytic = FALSE,
-                                                  pairwise = model[["pairwise"]], parametric = model[["parametric"]])
+                                                  pairwise = model[["pairwise"]], parametric = parametric,
+                                                  n.boot = options[["noSamples"]])
           }
           if (is.na(omegaboot[["omega_lower"]]) || is.na(omegaboot[["omega_upper"]])) {
             .quitAnalysis("Omega bootstrapped interval calculation with CFA failed. \n Try changing to PFA in 'Advanced Options'")
@@ -75,7 +79,7 @@
   if (is.null(out))
     out <- list()
 
-  if (options[["omegaItem"]] && !is.null(model[["omegaScale"]])) {
+  if (options[["omegaItem"]] && is.null(model[["empty"]])) {
 
     if (options[["omegaMethod"]] == "cfa") {
 
@@ -181,7 +185,7 @@
   if (is.null(out))
     out <- list()
 
-  if (options[["alphaItem"]] && !is.null(model[["alphaScale"]])) {
+  if (options[["alphaItem"]] && is.null(model[["empty"]])) {
 
     if (options[["alphaMethod"]] == "alphaUnstand") { # alpha unstandardized
       # do we have to compute item dropped values
@@ -246,7 +250,7 @@
   if (is.null(out))
     out <- list()
   # is coefficient even checked?
-  if (options[["lambda2Item"]]  && !is.null(model[["lambda2Scale"]])) {
+  if (options[["lambda2Item"]]  && is.null(model[["empty"]])) {
 
     if (is.null(out[["itemDropped"]]))
       out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applylambda2)
@@ -307,7 +311,7 @@
   if (is.null(out))
     out <- list()
   # is coefficient even checked?
-  if (options[["lambda6Item"]]  && !is.null(model[["lambda6Scale"]])) {
+  if (options[["lambda6Item"]]  && is.null(model[["empty"]])) {
 
     if (is.null(out[["itemDropped"]]))
       out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applylambda6)
@@ -364,7 +368,7 @@
   if (is.null(out))
     out <- list()
   # is coefficient even checked?
-  if (options[["glbItem"]]  && !is.null(model[["glbScale"]])) {
+  if (options[["glbItem"]]  && is.null(model[["empty"]])) {
 
     # do we have to compute item dropped values
     if (is.null(out[["itemDropped"]]))

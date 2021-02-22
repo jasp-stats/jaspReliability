@@ -86,8 +86,9 @@
 .frequentistItemTable <- function(jaspResults, model, options) {
 
   if (!is.null(.getStateContainerF(jaspResults)[["itemTable"]]$object) ||
-      !any(model[["derivedOptions"]][["itemDroppedSelected"]]))
+      !any(model[["derivedOptions"]][["itemDroppedSelected"]])) {
     return()
+  }
 
   derivedOptions <- model[["derivedOptions"]]
 
@@ -100,7 +101,11 @@
 
   itemTable <- createJaspTable(gettext("Frequentist Individual Item Reliability Statistics"))
   itemTable$dependOn(options = c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item", "glbItem",
-                                 "itemMean", "itemRestCor", "itemSd"))
+                                 "itemMean", "itemRestCor", "itemSd",
+                                 "omegaScale", "alphaScale", "lambda2Scale", "lambda6Scale", "glbScale"))
+  # adding the scale options fixes a bug, where the item table would remain displayed
+  # after one had checked a scale coefficient box and the item coefficient box and then unchecked the scale coeff box
+
   itemTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
 
   itemDroppedSelected <- derivedOptions[["itemDroppedSelected"]]
