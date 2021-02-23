@@ -38,8 +38,8 @@ IntraclassCorrelation <- function(jaspResults, dataset, options) {
   # Check for errors using JASPs internal convenience function
   .hasErrors(
     dataset = dataset,
-    type = c("infinity", "negativeValues", "observations"),
-    observations.amount = c("< 3"),
+    type = c("infinity", "observations"),
+    observations.amount = c("< 2"),
     exitAnalysisIfErrors = TRUE
   )
 
