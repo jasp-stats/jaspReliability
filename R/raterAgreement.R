@@ -98,7 +98,6 @@ if (options[["intervalOn"]] {
 
     # Round all numeric columns
     numeric_columns <- unlist(lapply(icc, is.numeric))
-    icc[ , numeric_columns] <- round(icc[ , numeric_columns], digits = 3)
 
     # Only report relevant columns
     cols <- c("type", "ICC")

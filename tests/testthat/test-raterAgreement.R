@@ -24,7 +24,7 @@ test_that("Intraclass Correlation 1 table results are unchanged", {
   table <- results[["results"]][["table"]][["data"]]
   jaspTools::expect_equal_tables(
     table,
-    list(0.166, -0.097, "ICC1", 0.643)
+    list(0.165742286184985, -0.0967218809492438, "ICC1,1", 0.64339874385296)
   )
 })
 
@@ -36,7 +36,7 @@ test_that("Intraclass Correlation 2 table results are unchanged", {
   table <- results[["results"]][["table"]][["data"]]
   jaspTools::expect_equal_tables(
     table,
-    list(0.29, 0.043, "ICC2", 0.691)
+    list(0.28976419371026, 0.0429013074043754, "ICC2,1", 0.691071005905065)
   )
 })
 
@@ -48,7 +48,7 @@ test_that("Intraclass Correlation 3 table results are unchanged", {
   table <- results[["results"]][["table"]][["data"]]
   jaspTools::expect_equal_tables(
     table,
-    list(0.715, 0.412, "ICC3", 0.926)
+    list(0.714841511511933, 0.411835299105756, "ICC3,1", 0.925833056596294)
   )
 })
 
@@ -60,7 +60,7 @@ test_that("Intraclass Correlation 1k table results are unchanged", {
   table <- results[["results"]][["table"]][["data"]]
   jaspTools::expect_equal_tables(
     table,
-    list(0.443, -0.545, "ICC1k", 0.878)
+    list(0.442798057590153, -0.54503916, "ICC1,k", 0.878301237198259)
   )
 })
 
@@ -72,7 +72,7 @@ test_that("Intraclass Correlation 2k table results are unchanged", {
   table <- results[["results"]][["table"]][["data"]]
   jaspTools::expect_equal_tables(
     table,
-    list(0.62, 0.152, "ICC2k", 0.899)
+    list(0.620051021729246, 0.15203742, "ICC2,k", 0.899476869219885)
   )
 })
 
@@ -84,7 +84,7 @@ test_that("Intraclass Correlation 3k table results are unchanged", {
   table <- results[["results"]][["table"]][["data"]]
   jaspTools::expect_equal_tables(
     table,
-    list(0.909, 0.737, "ICC3k", 0.98)
+    list(0.909315864654189, 0.7368986135979, "ICC3,k", 0.980366125822908)
   )
 })
 
