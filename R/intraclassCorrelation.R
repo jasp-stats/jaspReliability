@@ -28,7 +28,7 @@ IntraclassCorrelation <- function(jaspResults, dataset, options) {
 .intraclassCorrelationReadData <- function(dataset, options) {
   variables <- unlist(options[["variables"]])
   if (is.null(dataset)) {
-    dataset <- .readDataSetToEnd(columns.as.numeric = variables, columns.as.factor = NULL, exclude.na.listwise = NULL)
+    dataset <- .readDataSetToEnd(columns.as.numeric = variables)
   }
   return(dataset)
 }
