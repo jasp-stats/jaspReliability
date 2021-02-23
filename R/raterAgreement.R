@@ -46,22 +46,24 @@ RaterAgreement <- function(jaspResults, dataset, options) {
   # Create the JASP Table
   jaspTable <- createJaspTable(title = gettext("Intraclass Correlation"))
   jaspTable$addColumnInfo(name = "type", title = gettext("Type"), type = "string")
-  jaspTable$addColumnInfo(name = "ICC", title = gettext("Estimate"), type = "number")
+  jaspTable$addColumnInfo(name = "ICC", title = gettext("Point Estimate"), type = "number")
   formattedCIPercent <- format(
     100 * options[["confidenceIntervalValue"]],
     digits = 3,
     drop0trailing = TRUE
   )
+if (options[["intervalOn"]] {
   jaspTable$addColumnInfo(
     name = "lower bound",
-    title = gettextf("lower %s%% CI", formattedCIPercent),
+    title = gettextf("Lower %s%% CI", formattedCIPercent),
     type = "number"
   )
   jaspTable$addColumnInfo(
     name = "upper bound",
-    title = gettextf("upper %s%% CI", formattedCIPercent),
+    title = gettextf("Upper %s%% CI", formattedCIPercent),
     type = "number"
   )
+  }
   jaspTable$dependOn(
     options = c(
       "variables",
@@ -79,6 +81,8 @@ RaterAgreement <- function(jaspResults, dataset, options) {
     type <- toupper(options["iccType"])
     if (options[["iccRatingAverage"]]) {
       type <- paste0(type, "k")
+    } else {
+      type <- paste0(type, ",1")
     }
 
     # Compute the ICC
@@ -87,7 +91,7 @@ RaterAgreement <- function(jaspResults, dataset, options) {
       alpha = 1 - options[["confidenceIntervalValue"]]
     )
     icc_results <- full_results$results
-
+    icc_results$type <- c("ICC1,1", "ICC2,1", "ICC3,1", "ICC1,k", "ICC2,k", "ICC3,k")
     # Select correct ICC
     icc <- icc_results[icc_results$type == type, ]
     rownames(icc) <- NULL
@@ -108,7 +112,7 @@ RaterAgreement <- function(jaspResults, dataset, options) {
     jaspTable$setData(icc)
     jaspTable$addFootnote(
       gettextf(
-        "%s subjects and %s judges. ICC type as referenced by Shrout & Fleiss (1979).",
+        "%s subjects and %s judges/measurements. ICC type as referenced by Shrout & Fleiss (1979).",
         full_results$n.obs,
         full_results$n.judge
       )

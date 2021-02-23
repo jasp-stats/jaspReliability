@@ -59,14 +59,14 @@ Form
 				RadioButton
 				{
 					value:   	"icc2"
-					label:  	qsTr("the same set of randomly selected raters")
+					label:  	qsTr("the same set of randomly selected raters/tests")
 					checked: 	false
 				}
 
 				RadioButton
 				{
 					value:   	"icc3"
-					label:  	qsTr("the same fixed set of raters")
+					label:  	qsTr("the same fixed set of raters/tests")
 					checked: 	false
 				}
 			}
