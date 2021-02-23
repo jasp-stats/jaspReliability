@@ -15,9 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-RaterAgreement <- function(jaspResults, dataset, options) {
+IntraclassCorrelation <- function(jaspResults, dataset, options) {
 
-  dataset <- .raterAgreementReadData(dataset, options)
+  dataset <- .intraclassCorrelationReadData(dataset, options)
 
   jaspResults[["table"]] <- .handleIntraclassCorrelation(dataset, options)
 
@@ -25,7 +25,7 @@ RaterAgreement <- function(jaspResults, dataset, options) {
 }
 
 # Read in the dataset (copied from .reliabilityReadData)
-.raterAgreementReadData <- function(dataset, options) {
+.intraclassCorrelationReadData <- function(dataset, options) {
   variables <- unlist(options[["variables"]])
   if (is.null(dataset)) {
     dataset <- .readDataSetToEnd(columns.as.numeric = variables, columns.as.factor = NULL, exclude.na.listwise = NULL)
