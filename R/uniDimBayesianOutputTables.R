@@ -53,9 +53,10 @@
                                   unlist(model[[nm]][["cred"]], use.names = FALSE)))
 
     if (options[["rHat"]]) {
-      if (opts[i] == "meanScale" || opts[i] == "sdScale") {
+      if (opts[i] == "mean" || opts[i] == "sd") {
         rhat <- NA_real_
       } else {
+        # browser()
         tmp <- lapply(as.data.frame(t(model[[nm]][["samp"]])), coda::mcmc)
         rhat <- coda::gelman.diag(coda::as.mcmc.list(tmp))[["psrf"]][, 1]
       }

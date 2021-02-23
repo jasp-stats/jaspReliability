@@ -120,24 +120,25 @@ test_that("Frequentist omega results match for CFA with bootstrapping", {
   options$fitMeasures <- TRUE
   options$noSamples <- 100
   options$omegaInterval <- "omegaBoot"
+  options$missingValues <- "excludeCasesListwise"
   options$bootType <- "parametric"
   options$omegaMethod <- "cfa"
   options$setSeed <- TRUE
   options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
   set.seed(1)
-  results <- runAnalysis("reliabilityUniDimFrequentist", "asrm.csv", options)
+  results <- runAnalysis("reliabilityUniDimFrequentist", "asrm_mis.csv", options)
 
   table <- results[["results"]][["stateContainerF"]][["collection"]][["stateContainerF_fitTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list("Chi-Square", 12.024392497134, "df", 5, "p.value", 0.0344550712893985,
-                                      "RMSEA", 0.134206046112551, "Lower CI RMSEA", 0.0336507286803164,
-                                      "Upper CI RMSEA", 0.233336447395263, "SRMR", 0.0587540735919212
+                                 list("Chi-Square", 12.788508304247, "df", 5, "p.value", 0.0254433712709828,
+                                      "RMSEA", 0.15724319758923, "Lower CI RMSEA", 0.0507316506074521,
+                                      "Upper CI RMSEA", 0.266560548199575, "SRMR", 0.0708026289801857
                                  ))
 
   table <- results[["results"]][["stateContainerF"]][["collection"]][["stateContainerF_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.791961648541524, "Point estimate", 0.730146577285974, "95% CI lower bound",
-                                      0.829534826132814, "95% CI upper bound"))
+                                 list(0.791710063361508, "Point estimate", 0.713290360179145, "95% CI lower bound",
+                                      0.824420567218228, "95% CI upper bound"))
 })
 
 
