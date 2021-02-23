@@ -52,17 +52,18 @@ RaterAgreement <- function(jaspResults, dataset, options) {
     digits = 3,
     drop0trailing = TRUE
   )
-if (options[["intervalOn"]] {
-  jaspTable$addColumnInfo(
-    name = "lower bound",
-    title = gettextf("Lower %s%% CI", formattedCIPercent),
-    type = "number"
-  )
-  jaspTable$addColumnInfo(
-    name = "upper bound",
-    title = gettextf("Upper %s%% CI", formattedCIPercent),
-    type = "number"
-  )
+
+  if (options[["intervalOn"]]) {
+    jaspTable$addColumnInfo(
+      name = "lower bound",
+      title = gettextf("Lower %s%% CI", formattedCIPercent),
+      type = "number"
+    )
+    jaspTable$addColumnInfo(
+      name = "upper bound",
+      title = gettextf("Upper %s%% CI", formattedCIPercent),
+      type = "number"
+    )
   }
   jaspTable$dependOn(
     options = c(
@@ -95,9 +96,6 @@ if (options[["intervalOn"]] {
     # Select correct ICC
     icc <- icc_results[icc_results$type == type, ]
     rownames(icc) <- NULL
-
-    # Round all numeric columns
-    numeric_columns <- unlist(lapply(icc, is.numeric))
 
     # Only report relevant columns
     cols <- c("type", "ICC")
