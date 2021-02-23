@@ -4,13 +4,14 @@
 
   variables <- unlist(options[["variables"]])
   if (is.null(dataset)) {
-    if (options[["missingValues"]] == "excludeCasesListwise")
-      dataset <- .readDataSetToEnd(columns.as.numeric = variables, columns.as.factor = NULL, exclude.na.listwise = TRUE)
-    else
-      dataset <- .readDataSetToEnd(columns.as.numeric = variables, columns.as.factor = NULL, exclude.na.listwise = NULL)
+    dataset <- .readDataSetToEnd(
+      columns.as.numeric  = variables,
+      exclude.na.listwise = if (options[["missingValues"]] == "excludeCasesListwise") variables else NULL
+      )
   }
   return(dataset)
 }
+
 
 .checkErrors <- function(dataset, options) {
 
@@ -24,7 +25,7 @@
         else if (options[["missingValues"]] == "excludeCasesListwise")
           use.cases <- "complete.obs"
       }
-      if (isTryError(try(solve(cov(dataset, use = use.cases)),silent=TRUE))) {
+      if (isTryError(try(solve(cov(dataset, use = use.cases)),silent = TRUE))) {
         return(gettext("The covariance matrix of the data is not invertible"))
       }
     }
@@ -54,15 +55,16 @@
                           paste(variables[idx], collapse = ", "))
     }
   } else {
-    return("Please enter at least 3 Variables to do an analysis")
+    return(.atLeast3Variables())
   }
 }
 
 .reverseScoreItems <- function(dataset, options) {
   dataset_rev <- as.matrix(dataset) # fails for string factors!
   cols <- match(unlist(options[["reverseScaledItems"]]), .unv(colnames(dataset)))
-  total <- apply(as.matrix(dataset[, cols]), 2, min, na.rm = T) + apply(as.matrix(dataset[, cols]), 2, max, na.rm = T)
-  dataset_rev[ ,cols] <- matrix(rep(total, nrow(dataset)), nrow(dataset), length(cols), byrow=T) - dataset[ ,cols]
+  total <- apply(as.matrix(dataset[, cols]), 2, min, na.rm = TRUE) +
+    apply(as.matrix(dataset[, cols]), 2, max, na.rm = TRUE)
+  dataset_rev[ ,cols] <- matrix(rep(total, nrow(dataset)), nrow(dataset), length(cols), byrow = TRUE) - dataset[ ,cols]
   return(dataset_rev)
 }
 
@@ -105,7 +107,7 @@
 
   ircor_samp <- array(0, c(n.chains, length(seq(1, n.iter-n.burnin, thin)), ncol(dataset)))
   for (i in 1:ncol(dataset)) {
-    help_dat <- cbind(dataset[, i], rowMeans(dataset[, -i], na.rm = T))
+    help_dat <- cbind(dataset[, i], rowMeans(dataset[, -i], na.rm = TRUE))
     ircor_samp[, , i] <- .WishartCorTransform(help_dat, n.iter = n.iter, n.burnin = n.burnin, thin = thin,
                                               n.chains = n.chains, missing = missing, callback = callback)
   }
@@ -126,16 +128,28 @@
 .scaleItemBoxAlign <- function(options) {
   opts <- options
   if(!options[["omegaScale"]])
-    opts[["omegaItem"]] <- F
+    opts[["omegaItem"]] <- FALSE
   if(!options[["alphaScale"]])
-    opts[["alphaItem"]] <- F
+    opts[["alphaItem"]] <- FALSE
   if(!options[["lambda2Scale"]])
-    opts[["lambda2Item"]] <- F
+    opts[["lambda2Item"]] <- FALSE
   if(!options[["lambda6Scale"]])
-    opts[["lambda6Item"]] <- F
+    opts[["lambda6Item"]] <- FALSE
   if(!options[["glbScale"]])
-    opts[["glbItem"]] <- F
+    opts[["glbItem"]] <- FALSE
 
   return(opts)
 
+}
+
+.addFootnoteReverseScaledItems <- function(options) {
+  out <- sprintf(ngettext(length(options[["reverseScaledItems"]]),
+                   "The following item was reverse scaled: %s. ",
+                   "The following items were reverse scaled: %s. "),
+          paste(options[["reverseScaledItems"]], collapse = ", "))
+  return(out)
+}
+
+.atLeast3Variables <- function() {
+  return(gettext("Please enter at least 3 variables to do an analysis"))
 }

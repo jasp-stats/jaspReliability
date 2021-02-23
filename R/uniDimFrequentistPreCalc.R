@@ -26,7 +26,7 @@
   if (length(options[["variables"]]) < 3) {
     empty <-  TRUE
     model <- list(empty = empty)
-    model[["footnote"]] <- gettext("Please enter at least 3 Variables to do an analysis")
+    model[["footnote"]] <- .atLeast3Variables()
     return(model)
   }
 
@@ -90,7 +90,7 @@
     if (options[["bootType"]] == "parametric") {
       model[["parametric"]] <- TRUE
       for (i in 1:options[["noSamples"]]) {
-        boot_data <- MASS::mvrnorm(n, colMeans(dataset, na.rm = T), cc)
+        boot_data <- MASS::mvrnorm(n, colMeans(dataset, na.rm = TRUE), cc)
         boot_cov[i, , ] <- cov(boot_data)
         progressbarTick()
       }

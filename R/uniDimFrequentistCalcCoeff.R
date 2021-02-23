@@ -387,7 +387,7 @@
   if (!is.null(.getStateContainerF(jaspResults)[["avgObj"]]$object))
     return(.getStateContainerF(jaspResults)[["avgObj"]]$object)
 
-  out <- model[["average"]]
+  out <- model[["averageInterItemCor"]]
   if (is.null(out))
     out <- list()
   # is coefficient even checked?
@@ -419,7 +419,7 @@
   if (!is.null(.getStateContainerF(jaspResults)[["meanObj"]]$object))
     return(.getStateContainerF(jaspResults)[["meanObj"]]$object)
 
-  out <- model[["mean"]]
+  out <- model[["meanScale"]]
   if (is.null(out))
     out <- list()
   if (options[["meanScale"]] && is.null(model[["empty"]])) {
@@ -440,7 +440,7 @@
   if (!is.null(.getStateContainerF(jaspResults)[["sdObj"]]$object))
     return(.getStateContainerF(jaspResults)[["sdObj"]]$object)
 
-  out <- model[["sd"]]
+  out <- model[["sdScale"]]
   if (is.null(out))
     out <- list()
   if (options[["sdScale"]] && is.null(model[["empty"]])) {

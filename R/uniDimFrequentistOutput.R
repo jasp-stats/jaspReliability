@@ -26,8 +26,6 @@
   opts     <- derivedOptions[["namesEstimators"]][["tables"]]
   selected <- derivedOptions[["selectedEstimators"]]
   idxSelected <- which(selected)
-  # match names from model object with the names from selected coefficients to find their index:
-  idMatchedNames <- which(!is.na(charmatch(names(model), names(selected[idxSelected]))))
 
   # if no coefficients selected:
   if (!is.null(model[["empty"]])) {
@@ -46,23 +44,25 @@
   }
 
   if (options[["intervalOn"]]) {
-    z <- 1
-    for (i in idxSelected) {
+    for (j in seq_along(idxSelected)) {
+      i <- idxSelected[j]
+      nm <- names(idxSelected[j])
+
       scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
-      newData <- data.frame(est = c(unlist(model[[idMatchedNames[z]]][["est"]], use.names = F),
-                                    unlist(model[[idMatchedNames[z]]][["conf"]], use.names = F)))
+      newData <- data.frame(est = c(unlist(model[[nm]][["est"]], use.names = FALSE),
+                                    unlist(model[[nm]][["conf"]], use.names = FALSE)))
       colnames(newData) <- paste0(colnames(newData), i)
       allData <- cbind(allData, newData)
-      z <- z+1
     }
   } else {
-    z <- 1
-    for (i in idxSelected) {
+    for (j in seq_along(idxSelected)) {
+      i <- idxSelected[j]
+      nm <- names(idxSelected[j])
+
       scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
-      newData <- data.frame(est = c(unlist(model[[idMatchedNames[z]]][["est"]], use.names = F)))
+      newData <- data.frame(est = c(unlist(model[[nm]][["est"]], use.names = FALSE)))
       colnames(newData) <- paste0(colnames(newData), i)
       allData <- cbind(allData, newData)
-      z <- z+1
     }
   }
 
@@ -92,13 +92,6 @@
 
   derivedOptions <- model[["derivedOptions"]]
 
-  # # fixes issue that unchecking the scale coefficient box, does not uncheck the item-dropped coefficient box:
-  # for (i in 1:5) {
-  #   if (!derivedOptions[["selectedEstimators"]][i]) {
-  #     derivedOptions[["itemDroppedSelected"]][i] <- derivedOptions[["selectedEstimators"]][i]
-  #   }
-  # }
-
   itemTable <- createJaspTable(gettext("Frequentist Individual Item Reliability Statistics"))
   itemTable$dependOn(options = c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item", "glbItem",
                                  "itemMean", "itemRestCor", "itemSd",
@@ -108,13 +101,12 @@
 
   itemTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
 
-  itemDroppedSelected <- derivedOptions[["itemDroppedSelected"]]
+  selected <- derivedOptions[["itemDroppedSelected"]]
   coefficientsTable <- derivedOptions[["namesEstimators"]][["tables_item"]]
   overTitle <- gettext("If item dropped")
-
-  idxSelected <- which(itemDroppedSelected)
+  idxSelected <- which(selected)
   coefficients <- derivedOptions[["namesEstimators"]][["coefficients"]]
-  idMatchedNames <- which(!is.na(charmatch(names(model), names(itemDroppedSelected[idxSelected]))))
+
 
   for (i in idxSelected) {
     if (coefficientsTable[i] %in% coefficients) {
@@ -127,30 +119,25 @@
 
   if (is.null(model[["empty"]])) {
     tb <- data.frame(variable = model[["itemsDropped"]])
-    z <- 1
-    for (i in idxSelected) {
-      newtb <- cbind(pointEst = model[[idMatchedNames[z]]][["itemDropped"]])
+
+    for (j in seq_along(idxSelected)) {
+      i <- idxSelected[j]
+      nm <- names(idxSelected[j])
+      newtb <- cbind(pointEst = model[[nm]][["itemDropped"]])
       colnames(newtb) <- paste0(colnames(newtb), i)
       tb <- cbind(tb, newtb)
-      z <- z+1
     }
     itemTable$setData(tb)
 
     if (!is.null(unlist(options[["reverseScaledItems"]]))) {
-      itemTable$addFootnote(sprintf(ngettext(length(options[["reverseScaledItems"]]),
-                                             "The following item was reverse scaled: %s. ",
-                                             "The following items were reverse scaled: %s. "),
-                                    paste(options[["reverseScaledItems"]], collapse = ", ")))
+      itemTable$addFootnote(.addFootnoteReverseScaledItems(options))
     }
 
   } else if (length(model[["itemsDropped"]]) > 0) {
     itemTable[["variables"]] <- model[["itemsDropped"]]
 
     if (!is.null(unlist(options[["reverseScaledItems"]]))) {
-      itemTable$addFootnote(sprintf(ngettext(length(options[["reverseScaledItems"]]),
-                                             "The following item was reverse scaled: %s. ",
-                                             "The following items were reverse scaled: %s. "),
-                                    paste(options[["reverseScaledItems"]], collapse = ", ")))
+      itemTable$addFootnote(.addFootnoteReverseScaledItems(options))
     }
   }
 

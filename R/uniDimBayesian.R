@@ -2,7 +2,6 @@
 
 reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
 
-
   dataset <- .readData(dataset, options)
   .checkErrors(dataset, options)
 
@@ -26,9 +25,9 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
   model[["glbScale"]] <- .BayesianGlbScale(jaspResults, dataset, options, model)
   model[["glbItem"]] <- .BayesianGlbItem(jaspResults, dataset, options, model)
 
-  model[["average"]] <- .BayesianAverageCor(jaspResults, dataset, options, model)
-  model[["mean"]] <- .BayesianMean(jaspResults, dataset, options, model)
-  model[["sd"]] <- .BayesianStdDev(jaspResults, dataset, options, model)
+  model[["averageInterItemCor"]] <- .BayesianAverageCor(jaspResults, dataset, options, model)
+  model[["meanScale"]] <- .BayesianMean(jaspResults, dataset, options, model)
+  model[["sdScale"]] <- .BayesianStdDev(jaspResults, dataset, options, model)
   model[["itemRestCor"]] <- .BayesianItemRestCor(jaspResults, dataset, options, model)
   model[["itemMean"]] <- .BayesianItemMean(jaspResults, dataset, options, model)
   model[["itemSd"]] <- .BayesianItemSd(jaspResults, dataset, options, model)

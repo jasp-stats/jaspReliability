@@ -12,11 +12,10 @@
 
   derivedOptions <- model[["derivedOptions"]]
   selected <- derivedOptions[["selectedEstimatorsPlots"]]
-  indices   <- which(selected)
+  idxSelected   <- which(selected)
   nmsLabs   <- derivedOptions[["namesEstimators"]][["plots"]]
   nmsObjs   <- derivedOptions[["namesEstimators"]][["tables"]]
   nmsObjsNoGreek   <- derivedOptions[["namesEstimators"]][["plotsNoGreek"]]
-  idMatchedNames <- which(!is.na(charmatch(names(model), names(selected[indices]))))
 
   if (options[["shadePlots"]] && options[["probTable"]])
     shadePlots <- c(options[["probTableValueLow"]], options[["probTableValueHigh"]])
@@ -29,20 +28,21 @@
     # the prior names dont match the model names, thus rename the priors in their original order
     names(priors) <- c("alphaScale", "lambda2Scale", "lambda6Scale", "glbScale", "omegaScale")
 
-    z <- 1
-    for (i in indices) {
+    for (j in seq_along(idxSelected)) {
+      i <- idxSelected[j]
+      nm <- names(idxSelected[j])
+
       if (is.null(plotContainer[[nmsObjsNoGreek[i]]])) {
-        prior <- priors[[grep(names(model)[idMatchedNames[z]], names(priors))]]
-        p <- .makeSinglePosteriorPlot(model[[idMatchedNames[z]]], nmsLabs[[i]],
+        prior <- priors[[nm]]
+        p <- .makeSinglePosteriorPlot(model[[nm]], nmsLabs[[i]],
                                                          options[["fixXRange"]], shadePlots,
                                                          options[["dispPrior"]], prior)
         plotObj <- createJaspPlot(plot = p, title = nmsObjs[i])
-        plotObj$dependOn(options = names(indices[i]))
+        plotObj$dependOn(options = names(idxSelected[i]))
         plotObj$position <- i
         plotContainer[[nmsObjsNoGreek[i]]] <- plotObj
 
       }
-      z <-  z+1
     }
     plotContainer$position <- 4
     stateContainerB <- .getStateContainerB(jaspResults)
@@ -155,20 +155,12 @@
                                          "omegaItem", "alphaItem", "lambda2Item", "lambda6Item", "glbItem"))
 
   derivedOptions <- model[["derivedOptions"]]
-  # fixes issue that unchecking the scale coefficient box, does not uncheck the item-dropped coefficient box:
-  for (i in 1:5) {
-    if (!derivedOptions[["selectedEstimators"]][i]) {
-      derivedOptions[["itemDroppedSelectedItem"]][i] <- derivedOptions[["selectedEstimators"]][i]
-    }
-  }
 
   selected <- derivedOptions[["itemDroppedSelectedItem"]]
-  indices   <- which(selected)
+  idxSelected   <- which(selected)
   nmsLabs   <- derivedOptions[["namesEstimators"]][["plots"]]
   nmsObjs   <- derivedOptions[["namesEstimators"]][["tables_item"]]
   nmsObjsNoGreek   <- derivedOptions[["namesEstimators"]][["plotsNoGreek"]]
-  idMatchedNames <- which(!is.na(charmatch(names(model), names(selected[indices]))))
-
 
   if (options[["orderItem"]]) {
     ordering <- options[["orderType"]]
@@ -178,22 +170,24 @@
 
 
   if (is.null(model[["empty"]]) && options[["plotItem"]]) {
-    z <- 1
-    for (i in indices) {
+    for (j in seq_along(idxSelected)) {
+      i <- idxSelected[j]
+      nm <- names(idxSelected[j])
+
       if (is.null(plotContainerItem[[nmsObjsNoGreek[i]]])) {
 
         # use the coefficient item object in the model list, and the object directly before it,
         # which is always the corresponding scale object
-        p <- .makeIfItemPlot(model[[idMatchedNames[z]]], model[[idMatchedNames[z]-1]], nmsLabs[[i]],
+        prevNumber <- which(names(model) == nm) - 1
+        p <- .makeIfItemPlot(model[[nm]], model[[prevNumber]], nmsLabs[[i]],
                                                 options[["credibleIntervalValueItem"]],
                                                 ordering = ordering, model[["itemsDropped"]])
         plotObjItem <- createJaspPlot(plot = p, title = nmsObjs[i], width = 400)
-        plotObjItem$dependOn(options = names(indices[i]))
+        plotObjItem$dependOn(options = names(idxSelected[i]))
         plotObjItem$position <- i
         plotContainerItem[[nmsObjsNoGreek[i]]] <- plotObjItem
 
       }
-      z <- z+1
     }
     plotContainerItem$position <- 5
     stateContainerB <- .getStateContainerB(jaspResults)
@@ -236,7 +230,7 @@
     if (ordering == "orderItemMean") {
       dists <- abs(coefScale[["est"]] - coefItem[["itemEst"]])
       dists[length(dists)+1] <- 0
-      est <- est[order(dists, decreasing = F), ]
+      est <- est[order(dists, decreasing = FALSE), ]
       dat$var <- factor(dat$var, levels = c(est$name))
 
     } else if (ordering == "orderItemKL") {
@@ -258,8 +252,8 @@
   }
 
   g <- ggplot2::ggplot(dat, ggplot2::aes(x = value, y = var, fill = colos)) +
-    ggridges::stat_density_ridges(quantile_lines = T, quantiles = c(lower, 0.5, upper),
-                                  alpha = .85, show.legend = F, scale = 1) +
+    ggridges::stat_density_ridges(quantile_lines = TRUE, quantiles = c(lower, 0.5, upper),
+                                  alpha = .85, show.legend = FALSE, scale = 1) +
     ggplot2::theme(strip.background = ggplot2::element_rect(fill = "white"),
                    strip.text = ggplot2::element_text(colour = "black")) +
     ggplot2::ylab(gettext("Item Dropped")) +
@@ -289,10 +283,10 @@
     ee_impl <- matrix(0, 1e3, k)
     for (i in 1:1e3) {
       dtmp <- MASS::mvrnorm(model[["n"]], rep(0, k), cimpl)
-      ee_impl[i, ] <- eigen(cov(dtmp))$values
+      ee_impl[i, ] <- eigen(cov(dtmp), only.values = TRUE)$values
     }
     eframe$eigen_sim_low <- apply(ee_impl, 2, quantile, prob = .025)
-    eframe$eigen_sim_up<- apply(ee_impl, 2, quantile, prob = .975)
+    eframe$eigen_sim_up <- apply(ee_impl, 2, quantile, prob = .975)
     leg_pos <- (max(eframe$eigen_value) + min(eframe$eigen_value)) * .75
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(0, max(eframe$eigen_sim_up)))
 
@@ -332,25 +326,26 @@ return()
 
     derivedOptions <- model[["derivedOptions"]]
     selected <- derivedOptions[["selectedEstimatorsPlots"]]
-    indices   <- which(selected)
+    idxSelected   <- which(selected)
     nmsLabs   <- derivedOptions[["namesEstimators"]][["plots"]]
     nmsObjs   <- derivedOptions[["namesEstimators"]][["tables"]]
     nmsObjsNoGreek   <- derivedOptions[["namesEstimators"]][["plotsNoGreek"]]
-    idMatchedNames <- which(!is.na(charmatch(names(model), names(selected[indices]))))
+    idMatched <- match(names(idxSelected), names(model))
 
     xlim <- (options[["noSamples"]] - options[["noBurnin"]]) / options[["noThin"]]
-    z <- 1
-    for (i in indices) {
+    for (j in seq_along(idxSelected)) {
+      i <- idxSelected[j]
+      nm <- names(idxSelected[j])
+
       if (is.null(plotContainerTP[[nmsObjsNoGreek[i]]])) {
 
-        p <- .makeTracePlot(model[[idMatchedNames[z]]], nmsLabs[[i]])
+        p <- .makeTracePlot(model[[nm]], nmsLabs[[i]])
         plotObjTP <- createJaspPlot(plot = p, title = nmsObjs[i], width = 400)
-        plotObjTP$dependOn(options = names(indices[i]))
+        plotObjTP$dependOn(options = names(idxSelected[i]))
         plotObjTP$position <- i
         plotContainerTP[[nmsObjsNoGreek[i]]] <- plotObjTP
 
       }
-      z <- z+1
     }
 
     plotContainerTP$position <- 7

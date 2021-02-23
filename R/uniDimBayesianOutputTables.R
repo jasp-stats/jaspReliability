@@ -28,8 +28,6 @@
   opts     <- derivedOptions[["namesEstimators"]][["tables"]]
   selected <- derivedOptions[["selectedEstimators"]]
   idxSelected <- which(selected)
-  # match names from model object with the names from selected coefficients to find their index:
-  idMatchedNames <- which(!is.na(charmatch(names(model), names(selected[idxSelected]))))
 
   if (!is.null(model[["empty"]])) {
     scaleTable$setData(allData)
@@ -46,29 +44,27 @@
     return()
   }
 
-  z <- 1
-  for (i in idxSelected) {
+  for (j in seq_along(idxSelected)) {
+    i <- idxSelected[j]
+    nm <- names(idxSelected[j])
 
     scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
+    newData <- data.frame(est = c(unlist(model[[nm]][["est"]], use.names = FALSE),
+                                  unlist(model[[nm]][["cred"]], use.names = FALSE)))
 
     if (options[["rHat"]]) {
-      if (opts[i] == "mean" || opts[i] == "sd") {
+      if (opts[i] == "meanScale" || opts[i] == "sdScale") {
         rhat <- NA_real_
       } else {
-        tmp <- lapply(as.data.frame(t(model[[idMatchedNames[z]]][["samp"]])), coda::mcmc)
+        tmp <- lapply(as.data.frame(t(model[[nm]][["samp"]])), coda::mcmc)
         rhat <- coda::gelman.diag(coda::as.mcmc.list(tmp))[["psrf"]][, 1]
       }
-      newData <- data.frame(est = c(unlist(model[[idMatchedNames[z]]][["est"]], use.names = F),
-                                    unlist(model[[idMatchedNames[z]]][["cred"]], use.names = F),
-                                    rhat))
-    } else {
-      newData <- data.frame(est = c(unlist(model[[idMatchedNames[z]]][["est"]], use.names = F),
-                                    unlist(model[[idMatchedNames[z]]][["cred"]], use.names = F)))
+      newData <- rbind(newData, rhat)
     }
     colnames(newData) <- paste0(colnames(newData), i)
     allData <- cbind(allData, newData)
-    z <- z+1
   }
+
   scaleTable$setData(allData)
 
   if (!is.null(model[["footnote"]]))
@@ -90,14 +86,7 @@
 
   derivedOptions <- model[["derivedOptions"]]
 
-  # # fixes issue that unchecking the scale coefficient box, does not uncheck the item-dropped coefficient box:
-  # for (i in 1:5) {
-  #   if (!derivedOptions[["selectedEstimators"]][i]) {
-  #     derivedOptions[["itemDroppedSelected"]][i] <- derivedOptions[["selectedEstimators"]][i]
-  #   }
-  # }
-
-  overTitles <- format(derivedOptions[["namesEstimators"]][["tables_item"]], digits = 3, drop0trailing = T)
+  overTitles <- format(derivedOptions[["namesEstimators"]][["tables_item"]], digits = 3, drop0trailing = TRUE)
   overTitles <- gettextf("%s (if item dropped)", overTitles)
 
   cred <- format(100*options[["credibleIntervalValueItem"]], digits = 3, drop0trailing = TRUE)
@@ -109,11 +98,10 @@
 
   itemTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
 
-  itemDroppedSelected <- derivedOptions[["itemDroppedSelected"]]
-  idxSelected <- which(itemDroppedSelected)
+  selected <- derivedOptions[["itemDroppedSelected"]]
+  idxSelected <- which(selected)
   estimators <- derivedOptions[["namesEstimators"]][["tables_item"]]
   coefficients <- derivedOptions[["namesEstimators"]][["coefficients"]]
-  idMatchedNames <- which(!is.na(charmatch(names(model), names(itemDroppedSelected[idxSelected]))))
 
   for (i in idxSelected) {
     if (estimators[i] %in% coefficients) {
@@ -139,34 +127,29 @@
 
   if (is.null(model[["empty"]])) {
     tb <- data.frame(variable = model[["itemsDropped"]])
-    z <- 1
-    for (i in idxSelected) {
+    for (j in seq_along(idxSelected)) {
+      i <- idxSelected[j]
+      nm <- names(idxSelected[j])
+
       if (i %in% c(1:6)) { # check this when more estimators are included !!!!!!!!!!!!!!!!!!!!!
-        newtb <- cbind(postMean = model[[idMatchedNames[z]]][["itemEst"]], model[[idMatchedNames[z]]][["itemCred"]])
+        newtb <- cbind(postMean = model[[nm]][["itemEst"]], model[[nm]][["itemCred"]])
       } else {
-        newtb <- cbind(postMean = model[[idMatchedNames[z]]][["itemEst"]])
+        newtb <- cbind(postMean = model[[nm]][["itemEst"]])
       }
       colnames(newtb) <- paste0(colnames(newtb), i)
       tb <- cbind(tb, newtb)
-      z <- z+1
     }
     itemTable$setData(tb)
 
     if (!is.null(unlist(options[["reverseScaledItems"]]))) {
-      itemTable$addFootnote(sprintf(ngettext(length(options[["reverseScaledItems"]]),
-                                             "The following item was reverse scaled: %s. ",
-                                             "The following items were reverse scaled: %s. "),
-                                    paste(options[["reverseScaledItems"]], collapse = ", ")))
+      itemTable$addFootnote(.addFootnoteReverseScaledItems(options))
     }
 
   } else if (length(model[["itemsDropped"]]) > 0) {
     itemTable[["variable"]] <- model[["itemsDropped"]]
 
     if (!is.null(unlist(options[["reverseScaledItems"]]))) {
-      itemTable$addFootnote(sprintf(ngettext(length(options[["reverseScaledItems"]]),
-                                             "The following item was reverse scaled: %s. ",
-                                             "The following items were reverse scaled: %s. "),
-                                    paste(options[["reverseScaledItems"]], collapse = ", ")))
+      itemTable$addFootnote(.addFootnoteReverseScaledItems(options))
     }
   }
 
@@ -200,7 +183,6 @@
   opts     <- derivedOptions[["namesEstimators"]][["tables"]]
   selected <- derivedOptions[["selectedEstimatorsPlots"]]
   idxSelected  <- which(selected)
-  idMatchedNames <- which(!is.na(charmatch(names(model), names(selected[idxSelected]))))
 
   if (options[["probTable"]] && is.null(model[["empty"]])) {
 
@@ -220,13 +202,15 @@
     names(priors) <- c("alphaScale", "lambda2Scale", "lambda6Scale", "glbScale", "omegaScale")
 
     for (i in 1:length(idxSelected)) {
-      samp_tmp <- as.vector(model[[idMatchedNames[i]]][["samp"]])
-      zz <- grep(names(model)[idMatchedNames[i]], names(priors)) # match the names in the model list to the names in the prior list
+        nm <- names(idxSelected[i])
+      samp_tmp <- as.vector(model[[nm]][["samp"]])
       probsPost[i] <- mean(samp_tmp > options[["probTableValueLow"]]) -
         mean(samp_tmp > options[["probTableValueHigh"]])
-      probsPrior[i] <- sum(priors[[zz]][["y"]][poslow:end]) / sum(priors[[zz]][["y"]]) -
-        sum(priors[[zz]][["y"]][poshigh:end]) / sum(priors[[zz]][["y"]])
+      probsPrior[i] <- sum(priors[[nm]][["y"]][poslow:end]) / sum(priors[[nm]][["y"]]) -
+        sum(priors[[nm]][["y"]][poshigh:end]) / sum(priors[[nm]][["y"]])
+
     }
+
     df <- data.frame(statistic = opts[idxSelected], prior = probsPrior, posterior = probsPost)
     probTable$setData(df)
 

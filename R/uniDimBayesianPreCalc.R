@@ -26,7 +26,7 @@
   if (length(options[["variables"]]) < 3) {
     empty <-  TRUE
     model <- list(empty = empty)
-    model[["footnote"]] <- gettext("Please enter at least 3 Variables to do an analysis")
+    model[["footnote"]] <- .atLeast3Variables()
     return(model)
   }
 

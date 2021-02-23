@@ -23,9 +23,9 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
   model[["glbScale"]] <- .frequentistGlbScale(jaspResults, dataset, options, model)
   model[["glbItem"]] <- .frequentistGlbItem(jaspResults, dataset, options, model)
 
-  model[["average"]] <- .frequentistAverageCor(jaspResults, dataset, options, model)
-  model[["mean"]] <- .frequentistMean(jaspResults, dataset, options, model)
-  model[["sd"]] <- .frequentistStdDev(jaspResults, dataset, options, model)
+  model[["averageInterItemCor"]] <- .frequentistAverageCor(jaspResults, dataset, options, model)
+  model[["meanScale"]] <- .frequentistMean(jaspResults, dataset, options, model)
+  model[["sdScale"]] <- .frequentistStdDev(jaspResults, dataset, options, model)
   model[["itemRestCor"]] <- .frequentistItemRestCor(jaspResults, dataset, options, model)
   model[["itemMean"]] <- .frequentistItemMean(jaspResults, dataset, options, model)
   model[["itemSd"]] <- .frequentistItemSd(jaspResults, dataset, options, model)

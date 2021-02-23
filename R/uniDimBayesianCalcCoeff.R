@@ -1,6 +1,4 @@
 
-
-
 .BayesianOmegaScale <- function(jaspResults, dataset, options, model) {
   if (!is.null(.getStateContainerB(jaspResults)[["omegaScaleObj"]]$object))
     return(.getStateContainerB(jaspResults)[["omegaScaleObj"]]$object)
@@ -438,7 +436,7 @@
   # is box even checked?
   if (options[["itemSd"]] && is.null(model[["empty"]])) {
 
-    out[["itemEst"]] <- apply(dataset, 2, sd, na.rm = T)
+    out[["itemEst"]] <- apply(dataset, 2, sd, na.rm = TRUE)
     out[["itemCred"]] <- matrix(NA_real_, ncol(dataset), 2)
 
     stateContainer <- .getStateContainerB(jaspResults)
