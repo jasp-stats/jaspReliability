@@ -37,61 +37,56 @@ Form
 		}
 	}
 
-	Section
+	Group
 	{
-		title: 	qsTr("Intraclass Correlation")
 
-		Group
+		RadioButtonGroup
 		{
+			title: qsTr("Each subject is rated by...")
+			name: "iccType"
 
-			RadioButtonGroup
+			RadioButton
 			{
-				title: qsTr("Each subject is rated by...")
-				name: "iccType"
-
-				RadioButton
-				{
-					value:   	"icc1"
-					label:  	qsTr("a different rater (randomly selected)")
-					checked: 	true
-				}
-
-				RadioButton
-				{
-					value:   	"icc2"
-					label:  	qsTr("the same set of randomly selected raters/tests")
-					checked: 	false
-				}
-
-				RadioButton
-				{
-					value:   	"icc3"
-					label:  	qsTr("the same fixed set of raters/tests")
-					checked: 	false
-				}
+				value:   	"icc1"
+				label:  	qsTr("a different rater (randomly selected)")
+				checked: 	true
 			}
 
-			CheckBox
+			RadioButton
 			{
-				name:   	"iccRatingAverage"
-				label:  	qsTr("Ratings are averaged")
+				value:   	"icc2"
+				label:  	qsTr("the same set of randomly selected raters/tests")
+				checked: 	false
+			}
+
+			RadioButton
+			{
+				value:   	"icc3"
+				label:  	qsTr("the same fixed set of raters/tests")
 				checked: 	false
 			}
 		}
 
-		CheckBox 
+		CheckBox
 		{
-			name: 				"intervalOn"
-			label:				qsTr("Confidence Interval")
-			checked: 			true
-			childrenOnSameRow: 	true
+			name:   	"iccRatingAverage"
+			label:  	qsTr("Ratings are averaged")
+			checked: 	false
+		}
+	}
 
-			CIField 
-			{      
-				name: 		"confidenceIntervalValue";   
-				label: 		"";
-				defaultValue: 95;
-			}
+	CheckBox 
+	{
+		name: 				"intervalOn"
+		label:				qsTr("Confidence Interval")
+		checked: 			true
+		childrenOnSameRow: 	true
+
+		CIField 
+		{      
+			name: 		"confidenceIntervalValue";   
+			label: 		"";
+			defaultValue: 95;
 		}
 	}
 }
