@@ -81,7 +81,7 @@ IntraclassCorrelation <- function(jaspResults, dataset, options) {
     # Get the ICC type e.g. "ICC1k"
     type <- toupper(options["iccType"])
     if (options[["iccRatingAverage"]]) {
-      type <- paste0(type, "k")
+      type <- paste0(type, ",k")
     } else {
       type <- paste0(type, ",1")
     }
