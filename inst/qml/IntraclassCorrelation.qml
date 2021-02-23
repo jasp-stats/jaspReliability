@@ -37,9 +37,56 @@ Form
 		}
 	}
 
-	Section
+	Group
 	{
-		title: 	qsTr("Intraclass Correlation Coefficients")
 
+		RadioButtonGroup
+		{
+			title: qsTr("Each subject is rated by...")
+			name: "iccType"
+
+			RadioButton
+			{
+				value:   	"icc1"
+				label:  	qsTr("a different rater (randomly selected)")
+				checked: 	true
+			}
+
+			RadioButton
+			{
+				value:   	"icc2"
+				label:  	qsTr("the same set of randomly selected raters/tests")
+				checked: 	false
+			}
+
+			RadioButton
+			{
+				value:   	"icc3"
+				label:  	qsTr("the same fixed set of raters/tests")
+				checked: 	false
+			}
+		}
+
+		CheckBox
+		{
+			name:   	"iccRatingAverage"
+			label:  	qsTr("Ratings are averaged")
+			checked: 	false
+		}
+	}
+
+	CheckBox 
+	{
+		name: 				"intervalOn"
+		label:				qsTr("Confidence Interval")
+		checked: 			true
+		childrenOnSameRow: 	true
+
+		CIField 
+		{      
+			name: 		"confidenceIntervalValue";   
+			label: 		"";
+			defaultValue: 95;
+		}
 	}
 }
