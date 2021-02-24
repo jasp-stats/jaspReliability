@@ -1,5 +1,4 @@
 options <- analysisOptions("IntraclassCorrelation")
-
 # ==== Ensure results are unchanged on JASP debug data ====
 
 # Set options
