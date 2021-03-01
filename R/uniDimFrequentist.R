@@ -2,11 +2,14 @@
 reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
 
   dataset <- .readData(dataset, options)
-  .checkErrors(dataset, options)
 
   if (length(options[["reverseScaledItems"]]) > 0L) {
     dataset <- .reverseScoreItems(dataset, options)
   }
+
+  .checkErrors(dataset, options)
+
+
 
   model <- .frequentistPreCalc(jaspResults, dataset, options)
   options <- .scaleItemBoxAlign(options)

@@ -15,27 +15,30 @@
 
 .checkErrors <- function(dataset, options) {
 
-  # check for existing inverse
-  .checkInverse <- function() {
-    if (length(options[["variables"]]) > 2) {
-      use.cases <- "everything"
-      if (anyNA(dataset)) {
-        if (options[["missingValues"]] == "excludeCasesPairwise")
-          use.cases <- "pairwise.complete.obs"
-        else if (options[["missingValues"]] == "excludeCasesListwise")
-          use.cases <- "complete.obs"
-      }
-      if (isTryError(try(solve(cov(dataset, use = use.cases)),silent = TRUE))) {
-        return(gettext("The covariance matrix of the data is not invertible"))
-      }
-    }
-    return(NULL)
-  }
+  # # check for existing inverse
+  # .checkInverse <- function() {
+  #   if (length(options[["variables"]]) > 2) {
+  #     use.cases <- "everything"
+  #     if (anyNA(dataset)) {
+  #       if (options[["missingValues"]] == "excludeCasesPairwise")
+  #         use.cases <- "pairwise.complete.obs"
+  #       else if (options[["missingValues"]] == "excludeCasesListwise")
+  #         use.cases <- "complete.obs"
+  #     }
+  #     if (isTryError(try(solve(cov(dataset, use = use.cases)),silent = TRUE))) {
+  #       return(gettext("The covariance matrix of the data is not invertible"))
+  #     }
+  #   }
+  #   return(NULL)
+  # }
 
-  .hasErrors(dataset = dataset, options = options, perform = "run",
+  .hasErrors(dataset = dataset,
              type = c("infinity", "variance", "observations"),
              observations.amount = " < 3",
-             varCovData.corFun = function(x) cor(x, use = "pairwise.complete.obs"),
+             infinity.target = options$variables,
+             variance.target = options$variables,
+             observations.target = options$variables,
+             # varCovData.corFun = function(x) cor(x, use = "pairwise.complete.obs"),
              exitAnalysisIfErrors = TRUE)
 
 }
@@ -152,4 +155,8 @@
 
 .atLeast3Variables <- function() {
   return(gettext("Please enter at least 3 variables to do an analysis"))
+}
+
+.is.empty <- function(model) {
+  !is.null(model[["empty"]])
 }

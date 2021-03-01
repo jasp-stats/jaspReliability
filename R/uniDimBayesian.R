@@ -3,11 +3,13 @@
 reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
 
   dataset <- .readData(dataset, options)
-  .checkErrors(dataset, options)
 
   if (length(options[["reverseScaledItems"]]) > 0L) {
     dataset <- .reverseScoreItems(dataset, options)
-  } # inquire why putting this before .checkErrors leads sometimes to failures
+  }
+
+  .checkErrors(dataset, options)
+
 
 
   model <- .BayesianPreCalc(jaspResults, dataset, options)

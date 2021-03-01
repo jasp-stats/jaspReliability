@@ -11,12 +11,10 @@
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
 
   if (options[["intervalOn"]]) {
-    intervalLow <- gettextf("%s%% CI",
-                            format(100*options[["confidenceIntervalValue"]], digits = 3, drop0trailing = TRUE))
-    intervalUp <- gettextf("%s%% CI",
-                           format(100*options[["confidenceIntervalValue"]], digits = 3, drop0trailing = TRUE))
-    intervalLow <- gettextf("%s lower bound", intervalLow)
-    intervalUp <- gettextf("%s upper bound", intervalUp)
+    interval <- gettextf("%s%% CI",
+                         format(100*options[["confidenceIntervalValue"]], digits = 3, drop0trailing = TRUE))
+    intervalLow <- gettextf("%s lower bound", interval)
+    intervalUp <- gettextf("%s upper bound", interval)
     allData <- data.frame(estimate = c(gettext("Point estimate"), intervalLow, intervalUp))
   } else {
     allData <- data.frame(estimate = c(gettext("Point estimate")))
@@ -28,14 +26,14 @@
   idxSelected <- which(selected)
 
   # if no coefficients selected:
-  if (!is.null(model[["empty"]])) {
+  if (.is.empty(model)) {
     scaleTable$setData(allData)
     nvar <- length(options[["variables"]])
-    if (sum(selected) > 0L && nvar < 3) {
-      for (i in idxSelected) {
-        scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
-      }
+
+    for (i in idxSelected) {
+      scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
     }
+
     scaleTable$addFootnote(model[["footnote"]])
     scaleTable$position <- 1
     stateContainerF <- .getStateContainerF(jaspResults)
