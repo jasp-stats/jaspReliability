@@ -67,8 +67,9 @@
   cols <- match(unlist(options[["reverseScaledItems"]]), .unv(colnames(dataset)))
   total <- apply(as.matrix(dataset[, cols]), 2, min, na.rm = TRUE) +
     apply(as.matrix(dataset[, cols]), 2, max, na.rm = TRUE)
-  dataset_rev[ ,cols] <- matrix(rep(total, nrow(dataset)), nrow(dataset), length(cols), byrow = TRUE) - dataset[ ,cols]
-  return(dataset_rev)
+  dataset_rev[ ,cols] <- matrix(rep(total, nrow(dataset)), nrow(dataset), length(cols), byrow = TRUE) -
+    as.matrix(dataset[ ,cols])
+  return(as.data.frame(dataset_rev))
 }
 
 

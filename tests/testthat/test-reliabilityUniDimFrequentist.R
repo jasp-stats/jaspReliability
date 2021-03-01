@@ -24,12 +24,6 @@ set.seed(1)
 results <- runAnalysis("reliabilityUniDimFrequentist", "test.csv", options)
 
 
-# test_that("Fit Measures of Single Factor Model Fit table results match for main options", {
-#   table <- results[["results"]][["fitTable"]][["data"]]
-#   jaspTools::expect_equal_tables(table,
-#                                  list("", ""))
-# })
-
 test_that("Frequentist Individual Item Reliability Statistics table results match for main options", {
   table <- results[["results"]][["stateContainerF"]][["collection"]][["stateContainerF_itemTable"]][["data"]]
   jaspTools::expect_equal_tables(table,

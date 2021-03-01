@@ -10,7 +10,6 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
   .checkErrors(dataset, options)
 
 
-
   model <- .frequentistPreCalc(jaspResults, dataset, options)
   options <- .scaleItemBoxAlign(options)
   model[["itemDroppedCovs"]] <- .frequentistItemDroppedMats(jaspResults, dataset, options, model)
