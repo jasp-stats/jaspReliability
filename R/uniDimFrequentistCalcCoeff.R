@@ -58,7 +58,7 @@
         }
         if (anyNA(out[["samp"]]))
           .quitAnalysis("Omega interval calculation with PFA failed")
-        out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
+        out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
       }
     }
 
@@ -231,7 +231,7 @@
         startProgressbar(options[["noSamples"]])
         out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applylambda2, callback = progressbarTick)
       }
-      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
+      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
 
     }
     stateContainer <- .getStateContainerF(jaspResults)
@@ -291,7 +291,7 @@
       if (sum(!is.na(out[["samp"]])) < 3)
         .quitAnalysis("Lambda6 interval calculation failed")
 
-      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
+      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
 
     }
 
@@ -348,7 +348,7 @@
         out[["samp"]] <- Bayesrel:::glbOnArray_custom(model[["bootSamp"]])
 
       }
-      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
+      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
     }
 
     stateContainer <- .getStateContainerF(jaspResults)
@@ -406,7 +406,7 @@
           out[["samp"]][i] <- mean(corm[lower.tri(corm)])
         }
       }
-      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
+      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
     }
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["avgObj"]] <- createJaspState(out,
@@ -423,13 +423,21 @@
   if (is.null(out))
     out <- list()
   if (options[["meanScale"]] && is.null(model[["empty"]])) {
-    out[["est"]] <- if (options[["meanMethod"]] == "sumScores")
-      mean(rowSums(dataset, na.rm = TRUE))
-    else
-      mean(rowMeans(dataset, na.rm = TRUE))
+    ciValue <- options[["confidenceIntervalValue"]]
 
-    if (options[["intervalOn"]])
-      out[["conf"]] <- c(NA_real_, NA_real_)
+    if (options[["meanMethod"]] == "sumScores") {
+      out[["est"]] <- mean(rowSums(dataset, na.rm = TRUE))
+      sdmean <- sd(rowSums(dataset, na.rm = TRUE))
+    } else {
+      out[["est"]] <- mean(rowMeans(dataset, na.rm = TRUE))
+      sdmean <- sd(rowMeans(dataset, na.rm = TRUE))
+    }
+
+    if (options[["intervalOn"]]) {
+      zz <- qnorm(1-(1-ciValue)/2)
+      out[["conf"]] <- c(out[["est"]] - zz*(sdmean/sqrt(model[["n"]])),
+                         out[["est"]] + zz*(sdmean/sqrt(model[["n"]])))
+    }
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["meanObj"]] <- createJaspState(out, dependencies = c("meanScale", "meanMethod"))
   }
@@ -444,13 +452,18 @@
   if (is.null(out))
     out <- list()
   if (options[["sdScale"]] && is.null(model[["empty"]])) {
+    ciValue <- options[["confidenceIntervalValue"]]
+
     out[["est"]] <- if (options[["sdMethod"]] == "sumScores")
       sd(rowSums(dataset, na.rm = TRUE))
     else
       sd(rowMeans(dataset, na.rm = TRUE))
 
     if (options[["intervalOn"]])
-      out[["conf"]] <- c(NA_real_, NA_real_)
+      chiValueLow <- qchisq(1-(1-ciValue)/2, df = model[["n"]]-1)
+      chiValueHigh <- qchisq((1-ciValue)/2, df = model[["n"]]-1)
+      out[["conf"]] <- c(sqrt(((model[["n"]]-1) * out[["est"]]^2) / chiValueLow),
+                         sqrt(((model[["n"]]-1) * out[["est"]]^2) / chiValueHigh))
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["sdObj"]] <- createJaspState(out, dependencies = c("sdScale", "sdMethod"))
   }

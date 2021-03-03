@@ -38,16 +38,16 @@ test_that("Frequentist Individual Item Reliability Statistics table results matc
                                       0.139002685382132, 3, 1.4213381090374, "facFive"))
 })
 
-test_that("Frequentist Scale Reliability Statistics table results match for main options", {
+test_that("Frequentist Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainerF"]][["collection"]][["stateContainerF_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.525637056655304, 0.448585203881531, 0.490572327059451, 0.516365401424283,
+                                 list(0.525637056655306, 0.448585203881531, 0.490572327059451, 0.516365401424283,
                                       0.567466299403832, 0.191748160936288, 2.93348815617, 2.79198402042951,
-                                      "Point estimate", 0.403771687499446, 0.279137827611668, 0.359901964004142,
-                                      0.396402831936408, 0.459081486688799, 0.0950770018748302, "",
-                                      "", "90% CI lower bound", 0.626298737852679, 0.586595705707241,
+                                      "Point estimate", 0.403771687499453, 0.279137827611668, 0.359901964004142,
+                                      0.396402831936408, 0.459081486688799, 0.0950770018748302, 2.4742476519306,
+                                      2.50253823732555, "90% CI lower bound", 0.626298737852686, 0.586595705707241,
                                       0.60076050080959, 0.628395738756313, 0.685340010046143, 0.28002617012781,
-                                      "", "", "90% CI upper bound"))
+                                      3.3927286604094, 3.16486028196314, "90% CI upper bound"))
 })
 
 options <- analysisOptions("reliabilityUniDimFrequentist")
@@ -98,13 +98,13 @@ test_that("Frequentist Individual Item Reliability Statistics table results matc
 test_that("Frequentist Scale Reliability Statistics table results match for special options", {
   table <- results[["results"]][["stateContainerF"]][["collection"]][["stateContainerF_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.0471510241880036, 0.474438267321141, 0.0392336793613145, 0.517855238417142,
-                                      0.0684849632061072, 0.184127369413486, 2.764059782725, 5.48120849970767,
-                                      "Point estimate", 0.00702485789714698, 0.293267132435948, 0.00476660616888555,
-                                      0.394302611317106, 0.0149501819485526, 0.0939902180995729, "",
-                                      "", "95% CI lower bound", 0.115136402927549, 0.615996053946591,
-                                      0.0878218264568898, 0.635557616289631, 0.216185154128633, 0.286242462411683,
-                                      "", "", "95% CI upper bound"))
+                                 list(0.0471510241880039, 0.474438267321141, 0.0392336793613145, 0.517855238417142,
+                                      0.0684849632061198, 0.184127369413486, 2.764059782725, 5.48120849970767,
+                                      "Point estimate", 0.00702485789714729, 0.293267132435948, 0.00476660616888555,
+                                      0.394302611317106, 0.0149501819485384, 0.0939902180995729, 1.68976265760681,
+                                      4.81253858382921, "95% CI lower bound", 0.11513640292755, 0.61599605394659,
+                                      0.0878218264568898, 0.635557616289631, 0.216185154128616, 0.286242462411683,
+                                      3.83835690784319, 6.36738428322095, "95% CI upper bound"))
 })
 
 
