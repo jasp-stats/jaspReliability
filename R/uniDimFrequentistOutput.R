@@ -6,6 +6,7 @@
       return()
 
   scaleTable <- createJaspTable(gettext("Frequentist Scale Reliability Statistics"))
+
   scaleTable$dependOn(options = c("omegaScale", "alphaScale", "lambda2Scale", "lambda6Scale", "glbScale",
                                   "averageInterItemCor", "meanScale", "sdScale", "meanMethod", "sdMethod"))
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
@@ -20,10 +21,24 @@
     allData <- data.frame(estimate = c(gettext("Point estimate")))
   }
 
+  scaleTable$position <- 1
+  stateContainerF <- .getStateContainerF(jaspResults)
+  stateContainerF[["scaleTable"]] <- scaleTable
+
+  if (!is.null(model[["omegaScale"]][["error"]])) {
+    scaleTable$setError(model[["omegaScale"]][["error"]])
+    return()
+  }
+  if (!is.null(model[["lambda6Scale"]][["error"]])) {
+    scaleTable$setError(model[["lambda6Scale"]][["error"]])
+    return()
+  }
+
   derivedOptions <- model[["derivedOptions"]]
   opts     <- derivedOptions[["namesEstimators"]][["tables"]]
   selected <- derivedOptions[["selectedEstimators"]]
   idxSelected <- which(selected)
+
 
   # if no coefficients selected:
   if (.is.empty(model)) {
@@ -66,15 +81,8 @@
 
   scaleTable$setData(allData)
 
-  # if (!is.null(model[["error"]]))
-  #   scaleTable$setError(model[["error"]])
-
   if (!is.null(model[["footnote"]]))
     scaleTable$addFootnote(model[["footnote"]])
-
-  scaleTable$position <- 1
-  stateContainerF <- .getStateContainerF(jaspResults)
-  stateContainerF[["scaleTable"]] <- scaleTable
 
   return()
 }
@@ -98,6 +106,19 @@
   # after one had checked a scale coefficient box and the item coefficient box and then unchecked the scale coeff box
 
   itemTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
+
+  itemTable$position <- 2
+  stateContainerF <- .getStateContainerF(jaspResults)
+  stateContainerF[["itemTable"]] <- itemTable
+
+  if (!is.null(model[["omegaItem"]][["error"]])) {
+    itemTable$setError(model[["omegaItem"]][["error"]])
+    return()
+  }
+  if (!is.null(model[["lambda6Item"]][["error"]])) {
+    itemTable$setError(model[["lambda6Item"]][["error"]])
+    return()
+  }
 
   selected <- derivedOptions[["itemDroppedSelected"]]
   coefficientsTable <- derivedOptions[["namesEstimators"]][["tables_item"]]
@@ -138,10 +159,6 @@
       itemTable$addFootnote(.addFootnoteReverseScaledItems(options))
     }
   }
-
-  itemTable$position <- 2
-  stateContainerF <- .getStateContainerF(jaspResults)
-  stateContainerF[["itemTable"]] <- itemTable
 
   return()
 }

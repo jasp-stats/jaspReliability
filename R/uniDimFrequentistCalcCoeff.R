@@ -17,30 +17,32 @@
       omegaO <- Bayesrel:::omegaFreqData(dataset, interval = ciValue, omega.int.analytic = TRUE,
                                          pairwise = model[["pairwise"]])
       if (is.na(omegaO[["omega"]])) {
-        .quitAnalysis("Omega calculation with CFA failed. \n Try changing to PFA in 'Advanced Options'")
+        out[["error"]] <- gettext("Omega calculation with CFA failed. Try changing to PFA in Advanced Options")
       } else {
         out[["omegaFit"]] <- omegaO[["indices"]]
         out[["est"]] <- omegaO[["omega"]]
-      }
 
-      if (options[["intervalOn"]]) {
-        if (options[["omegaInterval"]] == "omegaAnalytic") {
-          out[["conf"]] <- c(omegaO$omega_lower, omegaO$omega_upper)
-        } else {
+        if (options[["intervalOn"]]) {
 
-          parametric <- options[["bootType"]] == "parametric"
-
-          omegaboot <- out[["omegaBoot"]]
-          if (is.null(omegaboot)) {
-            jaspBase::.setSeedJASP(options)
-            omegaboot <- Bayesrel:::omegaFreqData(dataset, interval = ciValue, omega.int.analytic = FALSE,
-                                                  pairwise = model[["pairwise"]], parametric = parametric,
-                                                  n.boot = options[["noSamples"]])
-          }
-          if (is.na(omegaboot[["omega_lower"]]) || is.na(omegaboot[["omega_upper"]])) {
-            .quitAnalysis("Omega bootstrapped interval calculation with CFA failed. \n Try changing to PFA in 'Advanced Options'")
+          if (options[["omegaInterval"]] == "omegaAnalytic") {
+            out[["conf"]] <- c(omegaO$omega_lower, omegaO$omega_upper)
           } else {
-            out[["conf"]] <- c(omegaboot[["omega_lower"]], omegaboot[["omega_upper"]])
+
+            parametric <- options[["bootType"]] == "parametric"
+
+            omegaboot <- out[["omegaBoot"]]
+            if (is.null(omegaboot)) {
+              jaspBase::.setSeedJASP(options)
+              omegaboot <- Bayesrel:::omegaFreqData(dataset, interval = ciValue, omega.int.analytic = FALSE,
+                                                    pairwise = model[["pairwise"]], parametric = parametric,
+                                                    n.boot = options[["noSamples"]])
+            }
+            if (is.na(omegaboot[["omega_lower"]]) || is.na(omegaboot[["omega_upper"]])) {
+              out[["error"]] <- gettext("Omega bootstrapped interval calculation with CFA failed.
+                                          \n Try changing to PFA in 'Advanced Options'")
+            } else {
+              out[["conf"]] <- c(omegaboot[["omega_lower"]], omegaboot[["omega_upper"]])
+            }
           }
         }
       }
@@ -48,17 +50,18 @@
     } else { # omega with pfa
       out[["est"]] <- Bayesrel:::applyomega_pfa(model[["data_cov"]])
       if (is.na(out[["est"]])) {
-        .quitAnalysis("Omega calculation with PFA failed")
-      }
-
-      if (options[["intervalOn"]]) {
-        if (is.null(out[["samp"]])) {
-          startProgressbar(options[["noSamples"]])
-          out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applyomega_pfa, callback = progressbarTick)
+        out[["error"]] <- gettext("Omega calculation with PFA failed")
+      } else {
+        if (options[["intervalOn"]]) {
+          if (is.null(out[["samp"]])) {
+            startProgressbar(options[["noSamples"]])
+            out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applyomega_pfa, callback = progressbarTick)
+          }
+          if (anyNA(out[["samp"]]))
+            out[["error"]] <- gettext("Omega interval calculation with PFA failed")
+          else
+            out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
         }
-        if (anyNA(out[["samp"]]))
-          .quitAnalysis("Omega interval calculation with PFA failed")
-        out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
       }
     }
 
@@ -93,14 +96,15 @@
           }
         }
         if (anyNA(out[["itemDropped"]]))
-          .quitAnalysis("Omega item dropped statistics with CFA failed")
+          out[["error"]] <- gettext("Omega item dropped statistics with CFA failed")
 
       } else { # omega with pfa
       # do we have to compute item dropped values
         if (is.null(out[["itemDropped"]]))
           out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applyomega_pfa)
         if (anyNA(out[["itemDropped"]]))
-          .quitAnalysis("Omega item dropped statistics with PFA failed")
+          out[["error"]] <- gettext("Omega item dropped statistics with CFA failed")
+
       }
 
     stateContainerF <- .getStateContainerF(jaspResults)
@@ -275,24 +279,25 @@
   if (options[["lambda6Scale"]]  && is.null(model[["empty"]])) {
 
     out[["est"]] <- Bayesrel:::applylambda6(model[["data_cov"]])
-    if (is.na(out[["est"]]))
-      .quitAnalysis("Lambda6 calculation failed")
+    if (is.na(out[["est"]])) {
+      out[["error"]] <- gettext("Lambda6 calculation failed")
+    } else {
+      # do we need an interval estimate?
+      if (options[["intervalOn"]]) {
 
-    # do we need an interval estimate?
-    if (options[["intervalOn"]]) {
+        ciValue <- options[["confidenceIntervalValue"]]
 
-      ciValue <- options[["confidenceIntervalValue"]]
+        if (is.null(out[["samp"]])) {
+          startProgressbar(options[["noSamples"]])
+          out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applylambda6, callback = progressbarTick)
+        }
 
-      if (is.null(out[["samp"]])) {
-        startProgressbar(options[["noSamples"]])
-        out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applylambda6, callback = progressbarTick)
+        if (sum(!is.na(out[["samp"]])) < 3)
+          out[["error"]] <- gettext("Lambda6 interval calculation failed")
+        else
+          out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
+
       }
-
-      if (sum(!is.na(out[["samp"]])) < 3)
-        .quitAnalysis("Lambda6 interval calculation failed")
-
-      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
-
     }
 
     stateContainer <- .getStateContainerF(jaspResults)
@@ -316,7 +321,7 @@
     if (is.null(out[["itemDropped"]]))
       out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applylambda6)
     if (anyNA(out[["itemDropped"]]))
-      .quitAnalysis("Lambda6 item dropped statistics failed")
+      out[["error"]] <- gettext("Lambda6 item dropped statistics failed")
 
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["lambda6ItemObj"]] <- createJaspState(out, dependencies = c("lambda6Item"))
