@@ -3,6 +3,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: en_US\n"
+"X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
@@ -33,13 +36,39 @@ msgctxt "Description|"
 msgid "Bayesian Single-Test Reliability Analysis"
 msgstr ""
 
+#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Variables"
+msgstr "Variáveis"
+
+msgctxt "IntraclassCorrelation|"
+msgid "Each subject is rated by..."
 msgstr ""
 
+msgctxt "IntraclassCorrelation|"
+msgid "a different rater (randomly selected)"
+msgstr ""
+
+msgctxt "IntraclassCorrelation|"
+msgid "the same set of randomly selected raters/tests"
+msgstr ""
+
+msgctxt "IntraclassCorrelation|"
+msgid "the same fixed set of raters/tests"
+msgstr ""
+
+msgctxt "IntraclassCorrelation|"
+msgid "Ratings are averaged"
+msgstr ""
+
+msgctxt "IntraclassCorrelation|"
+msgid "Confidence Interval"
+msgstr ""
+
+#, fuzzy
 msgctxt "ReliabilityBayesian|"
 msgid "Variables"
-msgstr ""
+msgstr "Variáveis"
 
 msgctxt "ReliabilityBayesian|"
 msgid "Single-Test Reliability"
@@ -49,9 +78,10 @@ msgctxt "ReliabilityBayesian|"
 msgid "Scale Statistics"
 msgstr ""
 
+#, fuzzy
 msgctxt "ReliabilityBayesian|"
 msgid "Credible interval"
-msgstr ""
+msgstr "Intervalo de credibilidade"
 
 msgctxt "ReliabilityBayesian|"
 msgid "McDonald's ω"
@@ -169,9 +199,10 @@ msgctxt "ReliabilityBayesian|"
 msgid "MCMC parameters"
 msgstr ""
 
+#, fuzzy
 msgctxt "ReliabilityBayesian|"
 msgid "No. samples"
-msgstr ""
+msgstr "No. de amostras"
 
 msgctxt "ReliabilityBayesian|"
 msgid "No. burnin samples"
@@ -229,9 +260,10 @@ msgctxt "ReliabilityBayesian|"
 msgid "Exclude cases listwise"
 msgstr ""
 
+#, fuzzy
 msgctxt "ReliabilityFrequentist|"
 msgid "Variables"
-msgstr ""
+msgstr "Variáveis"
 
 msgctxt "ReliabilityFrequentist|"
 msgid "Single-Test Reliability"
@@ -329,9 +361,10 @@ msgctxt "ReliabilityFrequentist|"
 msgid "Exclude cases listwise"
 msgstr ""
 
+#, fuzzy
 msgctxt "ReliabilityFrequentist|"
 msgid "Bootstrap"
-msgstr ""
+msgstr "Bootstrap"
 
 msgctxt "ReliabilityFrequentist|"
 msgid "No. of bootstrap samples"
@@ -391,28 +424,4 @@ msgstr ""
 
 msgctxt "ReliabilityFrequentist|"
 msgid "Set seed"
-msgstr ""
-
-msgctxt "IntraclassCorrelation|"
-msgid "Each subject is rated by..."
-msgstr ""
-
-msgctxt "IntraclassCorrelation|"
-msgid "a different rater (randomly selected)"
-msgstr ""
-
-msgctxt "IntraclassCorrelation|"
-msgid "the same set of randomly selected raters/tests"
-msgstr ""
-
-msgctxt "IntraclassCorrelation|"
-msgid "the same fixed set of raters/tests"
-msgstr ""
-
-msgctxt "IntraclassCorrelation|"
-msgid "Ratings are averaged"
-msgstr ""
-
-msgctxt "IntraclassCorrelation|"
-msgid "Confidence Interval"
 msgstr ""

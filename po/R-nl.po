@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-01-05 09:39\n"
+"POT-Creation-Date: 2021-03-06 15:52\n"
 "PO-Revision-Date: 2020-12-02 21:29+0000\n"
 "Last-Translator: JASP Stats <F.A.M.Meerhoff@uva.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/jasp-engine/"
@@ -13,6 +13,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
 "X-Generator: Weblate 4.4-dev\n"
+
+#, fuzzy
+msgid "Intraclass Correlation"
+msgstr "Item-rest correlatie"
+
+msgid "Type"
+msgstr ""
+
+#, fuzzy
+msgid "Point Estimate"
+msgstr "Puntschatting"
+
+msgid "Lower %s%% CI"
+msgstr "Onder %s%% BI"
+
+msgid "Upper %s%% CI"
+msgstr "Boven %s%% BI"
+
+msgid ""
+"%s subjects and %s judges/measurements. ICC type as referenced by Shrout & "
+"Fleiss (1979)."
+msgstr ""
+
+msgid "Please select at least 2 columns"
+msgstr ""
 
 msgid "Greatest Lower Bound"
 msgstr "Hoogste Ondergrens"
@@ -67,12 +92,6 @@ msgstr "Item"
 
 msgid "Posterior Mean"
 msgstr "Posterior Gemiddelde"
-
-msgid "Lower %s%% CI"
-msgstr "Onder %s%% BI"
-
-msgid "Upper %s%% CI"
-msgstr "Boven %s%% BI"
 
 msgid ""
 "Probability that Reliability Statistic is Larger than %.2f and Smaller than "

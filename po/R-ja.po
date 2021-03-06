@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
-"POT-Creation-Date: 2021-01-05 09:39\n"
+"POT-Creation-Date: 2021-03-06 15:52\n"
 "PO-Revision-Date: 2021-02-10 07:50+0000\n"
 "Last-Translator: Koji Kosugi <kosugitti@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -12,6 +12,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.5-dev\n"
+
+msgid "Intraclass Correlation"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+#, fuzzy
+msgid "Point Estimate"
+msgstr "推定"
+
+msgid "Lower %s%% CI"
+msgstr ""
+
+msgid "Upper %s%% CI"
+msgstr ""
+
+msgid ""
+"%s subjects and %s judges/measurements. ICC type as referenced by Shrout & "
+"Fleiss (1979)."
+msgstr ""
+
+msgid "Please select at least 2 columns"
+msgstr ""
 
 msgid "Greatest Lower Bound"
 msgstr ""
@@ -67,13 +91,9 @@ msgstr ""
 msgid "Posterior Mean"
 msgstr ""
 
-msgid "Lower %s%% CI"
-msgstr ""
-
-msgid "Upper %s%% CI"
-msgstr ""
-
-msgid "Probability that Reliability Statistic is Larger than %.2f and Smaller than %.2f"
+msgid ""
+"Probability that Reliability Statistic is Larger than %.2f and Smaller than "
+"%.2f"
 msgstr ""
 
 msgid "Probability"
@@ -124,10 +144,14 @@ msgstr ""
 msgid "Point estimate"
 msgstr ""
 
-msgid "%1$sMcDonald's %2$s estimation method switched to PFA because the CFA\n                                    did not find a solution."
+msgid ""
+"%1$sMcDonald's %2$s estimation method switched to PFA because the CFA\n"
+"                                    did not find a solution."
 msgstr ""
 
-msgid "%s Some confidence intervals could not be computed because none of the bootstrapped covariance matrices were invertible."
+msgid ""
+"%s Some confidence intervals could not be computed because none of the "
+"bootstrapped covariance matrices were invertible."
 msgstr ""
 
 msgid "If item dropped"
@@ -136,7 +160,9 @@ msgstr ""
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr ""
 
-msgid "McDonald's %s estimation method for item-dropped statistics switched to PFA because the CFA did not find a solution."
+msgid ""
+"McDonald's %s estimation method for item-dropped statistics switched to PFA "
+"because the CFA did not find a solution."
 msgstr ""
 
 msgid "Fit Measures of Single Factor Model Fit"
@@ -148,7 +174,9 @@ msgstr ""
 msgid "Value"
 msgstr "値"
 
-msgid "Fit measures cannot be displayed because the McDonald's %s estimation method switched to PFA as the CFA did not find a solution."
+msgid ""
+"Fit measures cannot be displayed because the McDonald's %s estimation method "
+"switched to PFA as the CFA did not find a solution."
 msgstr ""
 
 msgid "The following item correlated negatively with the scale: %s. "

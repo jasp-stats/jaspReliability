@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: jaspReliability 0.1.0\n"
-"POT-Creation-Date: 2021-01-05 09:39\n"
+"Project-Id-Version: jaspReliability 0.15.0\n"
+"POT-Creation-Date: 2021-03-06 15:52\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9,6 +9,27 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+
+msgid "Intraclass Correlation"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Point Estimate"
+msgstr ""
+
+msgid "Lower %s%% CI"
+msgstr ""
+
+msgid "Upper %s%% CI"
+msgstr ""
+
+msgid "%s subjects and %s judges/measurements. ICC type as referenced by Shrout & Fleiss (1979)."
+msgstr ""
+
+msgid "Please select at least 2 columns"
+msgstr ""
 
 msgid "Greatest Lower Bound"
 msgstr ""
@@ -62,12 +83,6 @@ msgid "Item"
 msgstr ""
 
 msgid "Posterior Mean"
-msgstr ""
-
-msgid "Lower %s%% CI"
-msgstr ""
-
-msgid "Upper %s%% CI"
 msgstr ""
 
 msgid "Probability that Reliability Statistic is Larger than %.2f and Smaller than %.2f"
