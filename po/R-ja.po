@@ -1,0 +1,160 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: jaspReliability 0.1.0\n"
+"POT-Creation-Date: 2021-01-05 09:39\n"
+"PO-Revision-Date: 2021-02-10 07:50+0000\n"
+"Last-Translator: Koji Kosugi <kosugitti@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-r/ja/>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.5-dev\n"
+
+msgid "Greatest Lower Bound"
+msgstr ""
+
+msgid "Item-rest correlation"
+msgstr ""
+
+msgid "mean"
+msgstr ""
+
+msgid "sd"
+msgstr ""
+
+msgid "The covariance matrix of the data is not invertible"
+msgstr ""
+
+msgid "%s Of the observations, pairwise complete cases were used."
+msgstr ""
+
+msgid "%s Of the observations, %1.f complete cases were used."
+msgstr ""
+
+msgid "Bayesian Scale Reliability Statistics"
+msgstr ""
+
+msgid "Estimate"
+msgstr "推定"
+
+msgid "%s%% CI"
+msgstr ""
+
+msgid "%s lower bound"
+msgstr ""
+
+msgid "%s upper bound"
+msgstr ""
+
+msgid "Please enter at least 3 variables to do an analysis. %s"
+msgstr ""
+
+msgid "Please enter at least 3 variables to do an analysis."
+msgstr ""
+
+msgid "%s (if item dropped)"
+msgstr ""
+
+msgid "Bayesian Individual Item Reliability Statistics"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Posterior Mean"
+msgstr ""
+
+msgid "Lower %s%% CI"
+msgstr ""
+
+msgid "Upper %s%% CI"
+msgstr ""
+
+msgid "Probability that Reliability Statistic is Larger than %.2f and Smaller than %.2f"
+msgstr ""
+
+msgid "Probability"
+msgstr ""
+
+msgid "Statistic"
+msgstr "統計"
+
+msgid "Prior"
+msgstr ""
+
+msgid "Posterior"
+msgstr "事後分布"
+
+msgid "Posterior Plots"
+msgstr ""
+
+msgid "Density"
+msgstr "密度"
+
+msgid "If Item Dropped Posterior Plots"
+msgstr ""
+
+msgid "Item Dropped"
+msgstr ""
+
+msgid "Eigenvalue"
+msgstr ""
+
+msgid "Factors"
+msgstr ""
+
+msgid "Convergence Traceplot"
+msgstr ""
+
+msgid "Iterations"
+msgstr ""
+
+msgid "%.2f"
+msgstr ""
+
+msgid "The analysis crashed with the following error message:"
+msgstr ""
+
+msgid "Frequentist Scale Reliability Statistics"
+msgstr ""
+
+msgid "Point estimate"
+msgstr ""
+
+msgid "%1$sMcDonald's %2$s estimation method switched to PFA because the CFA\n                                    did not find a solution."
+msgstr ""
+
+msgid "%s Some confidence intervals could not be computed because none of the bootstrapped covariance matrices were invertible."
+msgstr ""
+
+msgid "If item dropped"
+msgstr ""
+
+msgid "Frequentist Individual Item Reliability Statistics"
+msgstr ""
+
+msgid "McDonald's %s estimation method for item-dropped statistics switched to PFA because the CFA did not find a solution."
+msgstr ""
+
+msgid "Fit Measures of Single Factor Model Fit"
+msgstr ""
+
+msgid "Fit Measure"
+msgstr ""
+
+msgid "Value"
+msgstr "値"
+
+msgid "Fit measures cannot be displayed because the McDonald's %s estimation method switched to PFA as the CFA did not find a solution."
+msgstr ""
+
+msgid "The following item correlated negatively with the scale: %s. "
+msgid_plural "The following items correlated negatively with the scale: %s. "
+msgstr[0] ""
+
+msgid "The following item was reverse scaled: %s. "
+msgid_plural "The following items were reverse scaled: %s. "
+msgstr[0] ""
