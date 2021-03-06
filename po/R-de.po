@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-01-05 09:39\n"
+"POT-Creation-Date: 2021-03-06 15:52\n"
 "PO-Revision-Date: 2021-02-17 10:50+0000\n"
 "Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -13,6 +13,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
 "X-Generator: Weblate 4.5\n"
+
+#, fuzzy
+msgid "Intraclass Correlation"
+msgstr "Item-Rest-Korrelation"
+
+msgid "Type"
+msgstr ""
+
+#, fuzzy
+msgid "Point Estimate"
+msgstr "Punktschätzung"
+
+msgid "Lower %s%% CI"
+msgstr "Untere %s%% GI"
+
+msgid "Upper %s%% CI"
+msgstr "Obere %s%% GI"
+
+msgid ""
+"%s subjects and %s judges/measurements. ICC type as referenced by Shrout & "
+"Fleiss (1979)."
+msgstr ""
+
+msgid "Please select at least 2 columns"
+msgstr ""
 
 msgid "Greatest Lower Bound"
 msgstr "Größte Untergrenze"
@@ -30,7 +55,8 @@ msgid "The covariance matrix of the data is not invertible"
 msgstr "Die Kovarianzmatrix der Daten ist nicht invertierbar"
 
 msgid "%s Of the observations, pairwise complete cases were used."
-msgstr "%s der Beobachtungen, es wurden paarweise vollständige Fälle verwendet."
+msgstr ""
+"%s der Beobachtungen, es wurden paarweise vollständige Fälle verwendet."
 
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr "%s der Beobachtungen, es wurden %1.f vollständige Fälle verwendet."
@@ -67,12 +93,6 @@ msgstr "Item"
 
 msgid "Posterior Mean"
 msgstr "Posterior Mittelwert"
-
-msgid "Lower %s%% CI"
-msgstr "Untere %s%% GI"
-
-msgid "Upper %s%% CI"
-msgstr "Obere %s%% GI"
 
 msgid ""
 "Probability that Reliability Statistic is Larger than %.2f and Smaller than "

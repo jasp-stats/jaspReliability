@@ -1,23 +1,31 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: JASP 0.9.2\n"
+"Project-Id-Version: R 3.6.1\n"
+"Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-03-06 15:52\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: es\n"
+"PO-Revision-Date: 2020-12-02 21:29+0000\n"
+"Last-Translator: JASP Stats <b.boutin@uva.nl>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
+"jaspReliability/pt/>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: en_US\n"
+"X-Source-Language: American English\n"
+"X-Qt-Contexts: true\n"
 
 msgid "Intraclass Correlation"
 msgstr ""
 
+#, fuzzy
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
+#, fuzzy
 msgid "Point Estimate"
-msgstr ""
+msgstr "Estimativas"
 
 msgid "Lower %s%% CI"
 msgstr ""
@@ -36,14 +44,17 @@ msgstr ""
 msgid "Greatest Lower Bound"
 msgstr ""
 
+#, fuzzy
 msgid "Item-rest correlation"
-msgstr ""
+msgstr "Covariâncias / correlações ajustadas"
 
+#, fuzzy
 msgid "mean"
-msgstr ""
+msgstr "média:"
 
+#, fuzzy
 msgid "sd"
-msgstr ""
+msgstr "padrão:"
 
 msgid "The covariance matrix of the data is not invertible"
 msgstr ""
@@ -57,17 +68,20 @@ msgstr ""
 msgid "Bayesian Scale Reliability Statistics"
 msgstr ""
 
+#, fuzzy
 msgid "Estimate"
-msgstr ""
+msgstr "Estimativas"
 
 msgid "%s%% CI"
 msgstr ""
 
+#, fuzzy
 msgid "%s lower bound"
-msgstr ""
+msgstr "limite inferior:"
 
+#, fuzzy
 msgid "%s upper bound"
-msgstr ""
+msgstr "limite superior:"
 
 msgid "Please enter at least 3 variables to do an analysis. %s"
 msgstr ""
@@ -75,8 +89,9 @@ msgstr ""
 msgid "Please enter at least 3 variables to do an analysis."
 msgstr ""
 
+#, fuzzy
 msgid "%s (if item dropped)"
-msgstr ""
+msgstr "McDonald's  (se o item for excluído)"
 
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr ""
@@ -84,8 +99,9 @@ msgstr ""
 msgid "Item"
 msgstr ""
 
+#, fuzzy
 msgid "Posterior Mean"
-msgstr ""
+msgstr "Amostras posteriores"
 
 msgid ""
 "Probability that Reliability Statistic is Larger than %.2f and Smaller than "
@@ -95,17 +111,21 @@ msgstr ""
 msgid "Probability"
 msgstr ""
 
+#, fuzzy
 msgid "Statistic"
-msgstr ""
+msgstr "Estatísticas"
 
+#, fuzzy
 msgid "Prior"
-msgstr ""
+msgstr "Anterior"
 
+#, fuzzy
 msgid "Posterior"
-msgstr ""
+msgstr "RÂ² Posterior"
 
+#, fuzzy
 msgid "Posterior Plots"
-msgstr ""
+msgstr "Amostras posteriores"
 
 msgid "Density"
 msgstr ""
@@ -119,14 +139,16 @@ msgstr ""
 msgid "Eigenvalue"
 msgstr ""
 
+#, fuzzy
 msgid "Factors"
-msgstr ""
+msgstr "Fatores"
 
 msgid "Convergence Traceplot"
 msgstr ""
 
+#, fuzzy
 msgid "Iterations"
-msgstr ""
+msgstr "Citação:"
 
 msgid "%.2f"
 msgstr ""
@@ -137,8 +159,9 @@ msgstr ""
 msgid "Frequentist Scale Reliability Statistics"
 msgstr ""
 
+#, fuzzy
 msgid "Point estimate"
-msgstr ""
+msgstr "Estimativas"
 
 msgid ""
 "%1$sMcDonald's %2$s estimation method switched to PFA because the CFA\n"
@@ -164,11 +187,13 @@ msgstr ""
 msgid "Fit Measures of Single Factor Model Fit"
 msgstr ""
 
+#, fuzzy
 msgid "Fit Measure"
-msgstr ""
+msgstr "Medidas Adicionais de Ajuste"
 
+#, fuzzy
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 msgid ""
 "Fit measures cannot be displayed because the McDonald's %s estimation method "

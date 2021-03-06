@@ -42,11 +42,6 @@ msgctxt "IntraclassCorrelation|"
 msgid "Variables"
 msgstr "Variabelen"
 
-#, fuzzy
-msgctxt "IntraclassCorrelation|"
-msgid "Intraclass Correlation Coefficients"
-msgstr "Steekproef Correlatiecoëfficiënt"
-
 msgctxt "ReliabilityBayesian|"
 msgid "Variables"
 msgstr "Variabelen"
@@ -402,3 +397,28 @@ msgstr "Herhaalbaarheid"
 msgctxt "ReliabilityFrequentist|"
 msgid "Set seed"
 msgstr "Gebruik toevalsgenerator beginwaarde"
+
+msgctxt "IntraclassCorrelation|"
+msgid "Each subject is rated by..."
+msgstr ""
+
+msgctxt "IntraclassCorrelation|"
+msgid "a different rater (randomly selected)"
+msgstr ""
+
+msgctxt "IntraclassCorrelation|"
+msgid "the same set of randomly selected raters/tests"
+msgstr ""
+
+msgctxt "IntraclassCorrelation|"
+msgid "the same fixed set of raters/tests"
+msgstr ""
+
+msgctxt "IntraclassCorrelation|"
+msgid "Ratings are averaged"
+msgstr ""
+
+#, fuzzy
+msgctxt "IntraclassCorrelation|"
+msgid "Confidence Interval"
+msgstr "Betrouwbaarheidsinterval"
