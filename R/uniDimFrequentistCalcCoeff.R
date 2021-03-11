@@ -84,6 +84,11 @@
 
   if (options[["omegaItem"]] && is.null(model[["empty"]])) {
 
+    if (ncol(dataset) == 2) {
+      out[["itemDropped"]] <- c(NA_real_, NA_real_)
+      return(out)
+    }
+
     if (options[["omegaMethod"]] == "cfa") {
 
       dataset <- scale(dataset, scale = FALSE)
@@ -191,6 +196,11 @@
 
   if (options[["alphaItem"]] && is.null(model[["empty"]])) {
 
+    if (ncol(dataset) == 2) {
+      out[["itemDropped"]] <- c(NA_real_, NA_real_)
+      return(out)
+    }
+
     if (options[["alphaMethod"]] == "alphaUnstand") { # alpha unstandardized
       # do we have to compute item dropped values
       if (is.null(out[["itemDropped"]]))
@@ -256,6 +266,11 @@
   # is coefficient even checked?
   if (options[["lambda2Item"]]  && is.null(model[["empty"]])) {
 
+    if (ncol(dataset) == 2) {
+      out[["itemDropped"]] <- c(NA_real_, NA_real_)
+      return(out)
+    }
+
     if (is.null(out[["itemDropped"]]))
       out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applylambda2)
 
@@ -318,6 +333,11 @@
   # is coefficient even checked?
   if (options[["lambda6Item"]]  && is.null(model[["empty"]])) {
 
+    if (ncol(dataset) == 2) {
+      out[["itemDropped"]] <- c(NA_real_, NA_real_)
+      return(out)
+    }
+
     if (is.null(out[["itemDropped"]]))
       out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applylambda6)
     if (anyNA(out[["itemDropped"]]))
@@ -374,6 +394,11 @@
     out <- list()
   # is coefficient even checked?
   if (options[["glbItem"]]  && is.null(model[["empty"]])) {
+
+    if (ncol(dataset) == 2) {
+      out[["itemDropped"]] <- c(NA_real_, NA_real_)
+      return(out)
+    }
 
     # do we have to compute item dropped values
     if (is.null(out[["itemDropped"]]))
@@ -487,7 +512,7 @@
   if (options[["itemRestCor"]]  && is.null(model[["empty"]])) {
     out[["itemDropped"]] <- numeric(ncol(dataset))
     for (i in 1:ncol(dataset)) {
-      out[["itemDropped"]][i] <- cor(dataset[, i], rowMeans(dataset[, -i], na.rm = TRUE), use = model[["use.cases"]])
+      out[["itemDropped"]][i] <- cor(as.matrix(dataset[, i]), rowMeans(as.matrix(dataset[, -i]), na.rm = TRUE), use = model[["use.cases"]])
     }
 
     stateContainer <- .getStateContainerF(jaspResults)

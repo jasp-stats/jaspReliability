@@ -22,11 +22,13 @@
     return(model)
   }
 
+
   # what if too few variables are entered:
-  if (length(options[["variables"]]) < 3) {
+  if (length(options[["variables"]]) < 2) {
     empty <-  TRUE
     model <- list(empty = empty)
-    model[["footnote"]] <- .atLeast3Variables()
+    model[["footnote"]] <- .atLeast2Variables()
+    model[["itemsDropped"]] <- .unv(colnames(dataset))
     return(model)
   }
 
@@ -34,6 +36,11 @@
 
   if (is.null(model)) {
     model <- list()
+
+    # what if exactly two variables are entered:
+    if (length(options[["variables"]]) == 2)
+      model[["twoItems"]] <- TRUE
+
     # check for missings and determine the missing handling
     if (anyNA(dataset)) {
       if (options[["missingValues"]] == "excludeCasesPairwise") {
@@ -52,10 +59,6 @@
       model[["pairwise"]] <- FALSE
     }
 
-    # # check for inverse scored items
-    # if (length(options[["reverseScaledItems"]]) > 0L) {
-    #   dataset <- .reverseScoreItems(dataset, options)
-    # }
     k <- ncol(dataset); n <- nrow(dataset)
     model[["k"]] <- ncol(dataset)
     model[["n"]] <- nrow(dataset)
@@ -104,7 +107,9 @@
     }
     model[["bootSamp"]] <- boot_cov
   }
+
   model[["itemsDropped"]] <- .unv(colnames(dataset))
+
 
   stateContainer <- .getStateContainerF(jaspResults)
   stateContainer[["modelObj"]] <- createJaspState(model)
@@ -117,7 +122,7 @@
     return(.getStateContainerF(jaspResults)[["itemDroppedObj"]]$object)
 
   out <- model[["itemsDroppedCovs"]]
-  if (is.null(out) && is.null(model[["empty"]])) {
+  if (is.null(out) && is.null(model[["empty"]]) && ncol(dataset) > 2) {
     cc <- model[["data_cov"]]
     k <- model[["k"]]
     if (options[["omegaItem"]] || options[["alphaItem"]] || options[["lambda2Item"]] ||

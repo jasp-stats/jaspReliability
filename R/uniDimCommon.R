@@ -45,7 +45,7 @@
 
 
 .checkLoadings <- function(dataset, variables) {
-  if (ncol(dataset > 2)) {
+  if (ncol(dataset >= 2)) {
     prin <- psych::principal(dataset)
     idx <- prin[["loadings"]] < 0
     sidx <- sum(idx)
@@ -58,7 +58,7 @@
                           paste(variables[idx], collapse = ", "))
     }
   } else {
-    return(.atLeast3Variables())
+    return(.atLeast2Variables())
   }
 }
 
@@ -154,8 +154,8 @@
   return(out)
 }
 
-.atLeast3Variables <- function() {
-  return(gettext("Please enter at least 3 variables to do an analysis"))
+.atLeast2Variables <- function() {
+  return(gettext("Please enter at least 2 variables to do an analysis"))
 }
 
 .is.empty <- function(model) {

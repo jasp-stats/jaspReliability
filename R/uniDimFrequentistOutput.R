@@ -126,16 +126,25 @@
   idxSelected <- which(selected)
   coefficients <- derivedOptions[["namesEstimators"]][["coefficients"]]
 
+  footnote <- ""
 
+  if (length(model[["itemsDropped"]]) > 0) {
+    itemTable[["variable"]] <- model[["itemsDropped"]]
+
+    if (!is.null(unlist(options[["reverseScaledItems"]])))
+      footnote <- .addFootnoteReverseScaledItems(options)
+  }
+
+  twoItemProblem <- FALSE
   for (i in idxSelected) {
     if (coefficientsTable[i] %in% coefficients) {
       itemTable$addColumnInfo(name = paste0("pointEst", i), title = coefficientsTable[i], type = "number",
                               overtitle = overTitle)
+      twoItemProblem <- TRUE
     } else {
       itemTable$addColumnInfo(name = paste0("pointEst", i), title = coefficientsTable[i], type = "number")
     }
   }
-
   if (is.null(model[["empty"]])) {
     tb <- data.frame(variable = model[["itemsDropped"]])
 
@@ -148,17 +157,11 @@
     }
     itemTable$setData(tb)
 
-    if (!is.null(unlist(options[["reverseScaledItems"]]))) {
-      itemTable$addFootnote(.addFootnoteReverseScaledItems(options))
-    }
-
-  } else if (length(model[["itemsDropped"]]) > 0) {
-    itemTable[["variables"]] <- model[["itemsDropped"]]
-
-    if (!is.null(unlist(options[["reverseScaledItems"]]))) {
-      itemTable$addFootnote(.addFootnoteReverseScaledItems(options))
-    }
+    if (!is.null(model[["twoItems"]]) && twoItemProblem)
+      footnote <- gettextf("%s Please enter at least 3 variables for the if item dropped statistics.", footnote)
   }
+
+  itemTable$addFootnote(footnote)
 
   return()
 }
