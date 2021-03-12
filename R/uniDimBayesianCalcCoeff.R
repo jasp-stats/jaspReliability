@@ -46,6 +46,13 @@
 
   if (options[["omegaItem"]] && is.null(model[["empty"]])) {
 
+    if (ncol(dataset) == 2) {
+      out[["itemEst"]] <- c(NA_real_, NA_real_)
+      out[["itemCred"]] <- matrix(NA_real_, 2, 2)
+      colnames(out[["itemCred"]]) <- c("lower", "upper")
+      return(out)
+    }
+
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
@@ -66,7 +73,6 @@
       }
     }
     out[c("itemEst", "itemCred")] <- .summarizePosterior(out[["itemSamp"]], ciValueItem)
-
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "credibleIntervalValueItem"))
   }
@@ -111,6 +117,13 @@
     out <- list()
 
   if (options[["alphaItem"]] && is.null(model[["empty"]])) {
+    if (ncol(dataset) == 2) {
+      out[["itemEst"]] <- c(NA_real_, NA_real_)
+      out[["itemCred"]] <- matrix(NA_real_, 2, 2)
+      colnames(out[["itemCred"]]) <- c("lower", "upper")
+
+      return(out)
+    }
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
@@ -166,7 +179,13 @@
     out <- list()
 
   if (options[["lambda2Item"]] && is.null(model[["empty"]])) {
+    if (ncol(dataset) == 2) {
+      out[["itemEst"]] <- c(NA_real_, NA_real_)
+      out[["itemCred"]] <- matrix(NA_real_, 2, 2)
+      colnames(out[["itemCred"]]) <- c("lower", "upper")
 
+      return(out)
+    }
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
@@ -220,7 +239,13 @@
     out <- list()
 
   if (options[["lambda6Item"]] && is.null(model[["empty"]])) {
+    if (ncol(dataset) == 2) {
+      out[["itemEst"]] <- c(NA_real_, NA_real_)
+      out[["itemCred"]] <- matrix(NA_real_, 2, 2)
+      colnames(out[["itemCred"]]) <- c("lower", "upper")
 
+      return(out)
+    }
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
@@ -277,6 +302,13 @@
     out <- list()
 
   if (options[["glbItem"]] && is.null(model[["empty"]])) {
+    if (ncol(dataset) == 2) {
+      out[["itemEst"]] <- c(NA_real_, NA_real_)
+      out[["itemCred"]] <- matrix(NA_real_, 2, 2)
+      colnames(out[["itemCred"]]) <- c("lower", "upper")
+
+      return(out)
+    }
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {

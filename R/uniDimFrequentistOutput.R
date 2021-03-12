@@ -50,9 +50,6 @@
     }
 
     scaleTable$addFootnote(model[["footnote"]])
-    scaleTable$position <- 1
-    stateContainerF <- .getStateContainerF(jaspResults)
-    stateContainerF[["scaleTable"]] <- scaleTable
     return()
   }
 
@@ -145,6 +142,7 @@
       itemTable$addColumnInfo(name = paste0("pointEst", i), title = coefficientsTable[i], type = "number")
     }
   }
+
   if (is.null(model[["empty"]])) {
     tb <- data.frame(variable = model[["itemsDropped"]])
 

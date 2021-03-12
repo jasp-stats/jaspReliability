@@ -267,7 +267,7 @@
 
 
 
-.BayesianPosteriorPredictive <- function(jaspResults, model, options) {
+.omegaPosteriorPredictive <- function(jaspResults, model, options) {
 
   if (!is.null(.getStateContainerB(jaspResults)[["omegaPPC"]]$object))
     return()
@@ -295,8 +295,9 @@
       ggplot2::geom_point() +
       ggplot2::xlim(c(1, k)) +
       ggplot2::scale_y_continuous(name = gettext("Eigenvalue"), breaks = yBreaks, limits = range(yBreaks)) +
-      ggplot2::xlab(gettext("Eigenvalue No.")) +
-      ggplot2::scale_x_continuous(expand = ggplot2::expand_scale(mult = c(.1, .1)))
+      ggplot2::scale_x_continuous(name = gettext("Eigenvalue No."),
+                                  breaks = seq(1, k),
+                                  expand = ggplot2::expand_scale(mult = c(.1, .1)))
 
     g <- jaspGraphs::themeJasp(g)
 

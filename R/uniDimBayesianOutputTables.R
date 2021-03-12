@@ -11,6 +11,11 @@
                                   "averageInterItemCor", "meanMethod", "sdMethod"))
 
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
+
+  scaleTable$position <- 1
+  stateContainerB <- .getStateContainerB(jaspResults)
+  stateContainerB[["scaleTable"]] <- scaleTable
+
   interval <- gettextf("%s%% CI",
                        format(100*options[["credibleIntervalValueScale"]], digits = 3, drop0trailing = TRUE))
   intervalLow <- gettextf("%s lower bound", interval)
@@ -27,17 +32,14 @@
   selected <- derivedOptions[["selectedEstimators"]]
   idxSelected <- which(selected)
 
+  for (i in idxSelected) {
+    scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
+  }
+
   if (.is.empty(model)) {
     scaleTable$setData(allData)
     nvar <- length(options[["variables"]])
-    for (i in idxSelected) {
-      scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
-    }
-
     scaleTable$addFootnote(model[["footnote"]])
-    scaleTable$position <- 1
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["scaleTable"]] <- scaleTable
     return()
   }
 
@@ -45,7 +47,6 @@
     i <- idxSelected[j]
     nm <- names(idxSelected[j])
 
-    scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
     newData <- data.frame(est = c(unlist(model[[nm]][["est"]], use.names = FALSE),
                                   unlist(model[[nm]][["cred"]], use.names = FALSE)))
 
@@ -68,9 +69,7 @@
   if (!is.null(model[["footnote"]]))
     scaleTable$addFootnote(model[["footnote"]])
 
-  scaleTable$position <- 1
-  stateContainerB <- .getStateContainerB(jaspResults)
-  stateContainerB[["scaleTable"]] <- scaleTable
+
 
   return()
 }
@@ -84,10 +83,6 @@
 
   derivedOptions <- model[["derivedOptions"]]
 
-  overTitles <- format(derivedOptions[["namesEstimators"]][["tables_item"]], digits = 3, drop0trailing = TRUE)
-  overTitles <- gettextf("%s (if item dropped)", overTitles)
-
-  cred <- format(100*options[["credibleIntervalValueItem"]], digits = 3, drop0trailing = TRUE)
   itemTable <- createJaspTable(gettext("Bayesian Individual Item Reliability Statistics"))
 
   itemTable$dependOn(options = c("omegaItem",  "alphaItem",  "lambda2Item",  "lambda6Item", "glbItem",
@@ -96,11 +91,27 @@
 
   itemTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
 
+  itemTable$position <- 2
+  stateContainerB <- .getStateContainerB(jaspResults)
+  stateContainerB[["itemTable"]] <- itemTable
+
+  overTitles <- format(derivedOptions[["namesEstimators"]][["tables_item"]], digits = 3, drop0trailing = TRUE)
+  overTitles <- gettextf("%s (if item dropped)", overTitles)
+  cred <- format(100*options[["credibleIntervalValueItem"]], digits = 3, drop0trailing = TRUE)
+
   selected <- derivedOptions[["itemDroppedSelected"]]
   idxSelected <- which(selected)
   estimators <- derivedOptions[["namesEstimators"]][["tables_item"]]
   coefficients <- derivedOptions[["namesEstimators"]][["coefficients"]]
 
+
+  itemTable[["variable"]] <- model[["itemsDropped"]]
+  footnote <- ""
+  if (!is.null(unlist(options[["reverseScaledItems"]])))
+    footnote <- .addFootnoteReverseScaledItems(options)
+
+
+  twoItemProblem <- FALSE
   for (i in idxSelected) {
     if (estimators[i] %in% coefficients) {
       if (estimators[i] == "Item-rest correlation") { # no item deleted for item rest cor
@@ -117,6 +128,7 @@
                                 overtitle = overTitles[i])
         itemTable$addColumnInfo(name = paste0("upper", i), title = gettextf("Upper %s%% CI", cred), type = "number",
                                 overtitle = overTitles[i])
+        twoItemProblem <- TRUE
       }
     } else {
       itemTable$addColumnInfo(name = paste0("postMean", i), title = estimators[i], type = "number")
@@ -124,7 +136,9 @@
   }
 
   if (is.null(model[["empty"]])) {
+
     tb <- data.frame(variable = model[["itemsDropped"]])
+
     for (j in seq_along(idxSelected)) {
       i <- idxSelected[j]
       nm <- names(idxSelected[j])
@@ -139,22 +153,11 @@
     }
     itemTable$setData(tb)
 
-    if (!is.null(unlist(options[["reverseScaledItems"]]))) {
-      itemTable$addFootnote(.addFootnoteReverseScaledItems(options))
-    }
-
-  } else if (length(model[["itemsDropped"]]) > 0) {
-    itemTable[["variable"]] <- model[["itemsDropped"]]
-
-    if (!is.null(unlist(options[["reverseScaledItems"]]))) {
-      itemTable$addFootnote(.addFootnoteReverseScaledItems(options))
-    }
+    if (!is.null(model[["twoItems"]]) && twoItemProblem)
+      footnote <- gettextf("%s Please enter at least 3 variables for the if item dropped statistics.", footnote)
   }
 
-
-  itemTable$position <- 2
-  stateContainerB <- .getStateContainerB(jaspResults)
-  stateContainerB[["itemTable"]] <- itemTable
+  itemTable$addFootnote(footnote)
 
   return()
 }

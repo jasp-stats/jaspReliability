@@ -13,9 +13,6 @@
   # what if no coefficient boxes are checked?
   if(!any(derivedOptions[["selectedEstimators"]]) && !any(derivedOptions[["itemDroppedSelected"]])) {
     variables <- options[["variables"]]
-    # if (length(options[["reverseScaledItems"]]) > 0L) {
-    #   dataset <- .reverseScoreItems(dataset, options)
-    # }
     empty <-  TRUE
     model <- list(empty = empty)
     model[["footnote"]] <- .checkLoadings(dataset, variables)
@@ -125,8 +122,8 @@
   if (is.null(out) && is.null(model[["empty"]]) && ncol(dataset) > 2) {
     cc <- model[["data_cov"]]
     k <- model[["k"]]
-    if (options[["omegaItem"]] || options[["alphaItem"]] || options[["lambda2Item"]] ||
-         options[["lambda6Item"]] || options[["glbItem"]]) {
+    if ((options[["omegaItem"]] && options[["omegaMethod"]] == "pfa") ||
+        options[["alphaItem"]] || options[["lambda2Item"]] || options[["lambda6Item"]] || options[["glbItem"]]) {
       Ctmp <- array(0, c(k, k - 1, k - 1))
       for (i in 1:k){
         Ctmp[i, , ] <- cc[-i, -i]

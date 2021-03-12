@@ -39,9 +39,8 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
   .BayesianProbTable(          jaspResults, model, options)
   .BayesianPosteriorPlot(      jaspResults, model, options)
   .BayesianIfItemPlot(         jaspResults, model, options)
-  .BayesianPosteriorPredictive(jaspResults, model, options)
+  .omegaPosteriorPredictive(jaspResults, model, options)
   .BayesianTracePlot(          jaspResults, model, options)
-
   return()
 
 }

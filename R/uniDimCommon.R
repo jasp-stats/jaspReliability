@@ -111,7 +111,7 @@
 
   ircor_samp <- array(0, c(n.chains, length(seq(1, n.iter-n.burnin, thin)), ncol(dataset)))
   for (i in 1:ncol(dataset)) {
-    help_dat <- cbind(dataset[, i], rowMeans(dataset[, -i], na.rm = TRUE))
+    help_dat <- cbind(as.matrix(dataset[, i]), rowMeans(as.matrix(dataset[, -i]), na.rm = TRUE))
     ircor_samp[, , i] <- .WishartCorTransform(help_dat, n.iter = n.iter, n.burnin = n.burnin, thin = thin,
                                               n.chains = n.chains, missing = missing, callback = callback)
   }

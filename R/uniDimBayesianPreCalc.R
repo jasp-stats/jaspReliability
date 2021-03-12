@@ -13,20 +13,19 @@
   # what if no coefficient boxes are checked?
   if(!any(derivedOptions[["selectedEstimators"]]) && !any(derivedOptions[["itemDroppedSelected"]])) {
     variables <- options[["variables"]]
-    # if (length(options[["reverseScaledItems"]]) > 0L) {
-    #   dataset <- .reverseScoreItems(dataset, options)
-    # }
     empty <-  TRUE
     model <- list(empty = empty)
     model[["footnote"]] <- .checkLoadings(dataset, variables)
     return(model)
   }
 
+
   # what if too few variables are entered:
-  if (length(options[["variables"]]) < 3) {
+  if (length(options[["variables"]]) < 2) {
     empty <-  TRUE
     model <- list(empty = empty)
-    model[["footnote"]] <- .atLeast3Variables()
+    model[["footnote"]] <- .atLeast2Variables()
+    model[["itemsDropped"]] <- .unv(colnames(dataset))
     return(model)
   }
 
@@ -34,6 +33,11 @@
 
   if (is.null(model)) {
     model <- list()
+
+    # what if exactly two variables are entered:
+    if (length(options[["variables"]]) == 2)
+      model[["twoItems"]] <- TRUE
+
     # check for missings and determine the missing handling
     if (anyNA(dataset)) {
       if (options[["missingValues"]] == "excludeCasesPairwise") {
@@ -51,11 +55,6 @@
       model[["use.cases"]] <- "everything"
       model[["pairwise"]] <- FALSE
     }
-
-    # # check for inverse scored items
-    # if (length(options[["reverseScaledItems"]]) > 0L) {
-    #   dataset <- .reverseScoreItems(dataset, options)
-    # }
 
     cc <- cov(dataset, use = model[["use.cases"]])
     model[["data_cov"]] <- cc
@@ -98,23 +97,22 @@
     return(.getStateContainerB(jaspResults)[["itemDroppedObj"]]$object)
 
   out <- model[["itemDroppedCovs"]]
-  if (is.null(out)) {
-    if (is.null(model[["empty"]]) &&
+  if (is.null(out) && is.null(model[["empty"]]) && (ncol(dataset) > 2) &&
         (options[["alphaItem"]] || options[["lambda2Item"]] || options[["lambda6Item"]] || options[["glbItem"]])) {
-      cc <- model[["gibbsSamp"]]
-      p <- ncol(dataset)
-      out <- array(0, c(options[["noChains"]],
-                         length(seq(1, options[["noSamples"]] - options[["noBurnin"]], options[["noThin"]])),
-                         p, p - 1, p - 1))
-      for (i in 1:p){
-        out[, , i, , ] <- cc[ , , -i, -i]
-      }
+    cc <- model[["gibbsSamp"]]
+    p <- ncol(dataset)
+    out <- array(0, c(options[["noChains"]],
+                       length(seq(1, options[["noSamples"]] - options[["noBurnin"]], options[["noThin"]])),
+                       p, p - 1, p - 1))
+    for (i in 1:p){
+      out[, , i, , ] <- cc[ , , -i, -i]
     }
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["itemDroppedObj"]] <- createJaspState(out, dependencies = c("alphaItem", "lambda2Item",
-                                                                                "lambda6Item", "glbItem"))
+                                                                                   "lambda6Item", "glbItem"))
   }
+
   return(out)
 }
 
