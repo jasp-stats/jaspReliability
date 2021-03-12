@@ -188,27 +188,39 @@
   if (options[["probTable"]] && is.null(model[["empty"]])) {
 
     n.item <- model[["k"]]
-    priors <- Bayesrel:::priors[[as.character(n.item)]]
-    end <- length(priors[[1]][["x"]])
-    poslow <- end - sum(priors[[1]][["x"]] > options[["probTableValueLow"]])
-    poshigh <- end - sum(priors[[1]][["x"]] > options[["probTableValueHigh"]])
+    if (n.item < 3 || n.item > 50) {
+      noPriorSaved <- TRUE
+    } else {
+      priors <- Bayesrel:::priors[[as.character(n.item)]]
+      # the prior names dont match the model names, thus rename the priors in their original order
+      names(priors) <- c("alphaScale", "lambda2Scale", "lambda6Scale", "glbScale", "omegaScale")
+      noPriorSaved <- FALSE
+    }
+
+    end <- 512
+    xx <- seq(0, 1, length.out = 512)
+    poslow <- end - sum(xx > options[["probTableValueLow"]])
+    poshigh <- end - sum(xx > options[["probTableValueHigh"]])
     # since the priors are only available in density form, the prior probability for the estimator being larger than
     # a cutoff is given by calculating the relative probability of the density from the cutoff to 1.
     # check this with R package
-
     probsPost <- numeric(sum(selected))
     probsPrior <- numeric(sum(selected))
-
-    # the prior names dont match the model names, thus rename the priors in their original order
-    names(priors) <- c("alphaScale", "lambda2Scale", "lambda6Scale", "glbScale", "omegaScale")
 
     for (i in 1:length(idxSelected)) {
         nm <- names(idxSelected[i])
       samp_tmp <- as.vector(model[[nm]][["samp"]])
       probsPost[i] <- mean(samp_tmp > options[["probTableValueLow"]]) -
         mean(samp_tmp > options[["probTableValueHigh"]])
-      probsPrior[i] <- sum(priors[[nm]][["y"]][poslow:end]) / sum(priors[[nm]][["y"]]) -
-        sum(priors[[nm]][["y"]][poshigh:end]) / sum(priors[[nm]][["y"]])
+
+      if (noPriorSaved) {
+        startProgressbar(4e3)
+        prior <- .samplePrior(n.item, nm, progressbarTick)
+      } else {
+        prior <- priors[[nm]]
+      }
+      probsPrior[i] <- sum(prior[["y"]][poslow:end]) / sum(prior[["y"]]) -
+        sum(prior[["y"]][poshigh:end]) / sum(prior[["y"]])
 
     }
 
