@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
 "POT-Creation-Date: 2021-03-06 15:52\n"
-"PO-Revision-Date: 2021-02-10 07:50+0000\n"
-"Last-Translator: Koji Kosugi <kosugitti@gmail.com>\n"
+"PO-Revision-Date: 2021-03-12 02:20+0000\n"
+"Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/ja/>\n"
 "Language: ja\n"
@@ -11,23 +11,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.5-dev\n"
+"X-Generator: Weblate 4.5.2-dev\n"
 
 msgid "Intraclass Correlation"
-msgstr ""
+msgstr "級内相関"
 
 msgid "Type"
-msgstr ""
+msgstr "型"
 
-#, fuzzy
 msgid "Point Estimate"
-msgstr "推定"
+msgstr "点推定"
 
 msgid "Lower %s%% CI"
-msgstr ""
+msgstr "下側 %s%% CI"
 
 msgid "Upper %s%% CI"
-msgstr ""
+msgstr "上側 %s%% CI"
 
 msgid ""
 "%s subjects and %s judges/measurements. ICC type as referenced by Shrout & "
@@ -35,19 +34,19 @@ msgid ""
 msgstr ""
 
 msgid "Please select at least 2 columns"
-msgstr ""
+msgstr "少なくとも2列選択してください"
 
 msgid "Greatest Lower Bound"
-msgstr ""
+msgstr "最大下界"
 
 msgid "Item-rest correlation"
 msgstr ""
 
 msgid "mean"
-msgstr ""
+msgstr "平均"
 
 msgid "sd"
-msgstr ""
+msgstr "標準偏差"
 
 msgid "The covariance matrix of the data is not invertible"
 msgstr ""
