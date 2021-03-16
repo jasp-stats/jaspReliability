@@ -62,6 +62,8 @@
     cc <- cov(dataset, use = model[["use.cases"]])
     model[["data_cov"]] <- cc
     model[["data_cor"]] <- cor(dataset, use = model[["use.cases"]])
+    model[["itemsDropped"]] <- .unv(colnames(dataset))
+
 
     # check if any items correlate negatively with the scale
     model[["footnote"]] <- .checkLoadings(dataset, options[["variables"]])
@@ -105,36 +107,9 @@
     model[["bootSamp"]] <- boot_cov
   }
 
-  model[["itemsDropped"]] <- .unv(colnames(dataset))
-
-
   stateContainer <- .getStateContainerF(jaspResults)
   stateContainer[["modelObj"]] <- createJaspState(model)
 
   return(model)
-}
-
-.frequentistItemDroppedMats <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerF(jaspResults)[["itemDroppedObj"]]$object))
-    return(.getStateContainerF(jaspResults)[["itemDroppedObj"]]$object)
-
-  out <- model[["itemsDroppedCovs"]]
-  if (is.null(out) && is.null(model[["empty"]]) && ncol(dataset) > 2) {
-    cc <- model[["data_cov"]]
-    k <- model[["k"]]
-    if ((options[["omegaItem"]] && options[["omegaMethod"]] == "pfa") ||
-        options[["alphaItem"]] || options[["lambda2Item"]] || options[["lambda6Item"]] || options[["glbItem"]]) {
-      Ctmp <- array(0, c(k, k - 1, k - 1))
-      for (i in 1:k){
-        Ctmp[i, , ] <- cc[-i, -i]
-      }
-      out <- Ctmp
-    }
-
-    stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["itemDroppedObj"]] <- createJaspState(out, dependencies = c("omegaItem", "alphaItem", "lambda2Item",
-                                                                                "lambda6Item", "glbItem"))
-  }
-  return(out)
 }
 

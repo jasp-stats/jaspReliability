@@ -91,28 +91,3 @@
   return(model)
 }
 
-
-.BayesianItemDroppedMats <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["itemDroppedObj"]]$object))
-    return(.getStateContainerB(jaspResults)[["itemDroppedObj"]]$object)
-
-  out <- model[["itemDroppedCovs"]]
-  if (is.null(out) && is.null(model[["empty"]]) && (ncol(dataset) > 2) &&
-        (options[["alphaItem"]] || options[["lambda2Item"]] || options[["lambda6Item"]] || options[["glbItem"]])) {
-    cc <- model[["gibbsSamp"]]
-    p <- ncol(dataset)
-    out <- array(0, c(options[["noChains"]],
-                       length(seq(1, options[["noSamples"]] - options[["noBurnin"]], options[["noThin"]])),
-                       p, p - 1, p - 1))
-    for (i in 1:p){
-      out[, , i, , ] <- cc[ , , -i, -i]
-    }
-
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["itemDroppedObj"]] <- createJaspState(out, dependencies = c("alphaItem", "lambda2Item",
-                                                                                   "lambda6Item", "glbItem"))
-  }
-
-  return(out)
-}
-

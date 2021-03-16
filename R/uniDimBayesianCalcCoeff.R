@@ -12,7 +12,7 @@
     ciValue <- options[["credibleIntervalValueScale"]]
 
     if (is.null(out[["samp"]])) {
-      startProgressbar(model[["progressbarLength"]])
+      startProgressbar(options[["noSamples"]] * options[["noChains"]])
 
       dataset <- scale(dataset, scale = FALSE)
 
@@ -26,7 +26,7 @@
       out[["residuals"]] <- apply(tmp_out$psi, 3, mean)
     }
 
-    out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
+    out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["omegaScaleObj"]] <- createJaspState(out,
@@ -56,23 +56,26 @@
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
-      startProgressbar(model[["progressbarLength"]] * ncol(dataset))
+      startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
 
       dataset <- scale(dataset, scale = FALSE)
       jaspBase::.setSeedJASP(options)
 
-      out[["itemSamp"]] <- array(0,
-                                 c(options[["noChains"]],
-                                   length(seq(1, options[["noSamples"]]-options[["noBurnin"]], options[["noThin"]])),
-                                   ncol(dataset)))
+      out[["itemSamp"]] <- array(0, c(options[["noChains"]],
+                        length(seq(1, options[["noSamples"]]-options[["noBurnin"]], options[["noThin"]])),
+                        ncol(dataset)))
 
       for (i in 1:ncol(dataset)) {
         out[["itemSamp"]][, , i] <- Bayesrel:::omegaSampler(dataset[-i, -i],
                                                             options[["noSamples"]], options[["noBurnin"]], options[["noThin"]],
                                                             options[["noChains"]], model[["pairwise"]], progressbarTick)$omega
       }
+      dd <- dim(out[["itemSamp"]])
+      out[["itemSamp"]] <- matrix(out[["itemSamp"]], dd[1]*dd[2], ncol(dataset))
+
     }
-    out[c("itemEst", "itemCred")] <- .summarizePosterior(out[["itemSamp"]], ciValueItem)
+    out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
+
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "credibleIntervalValueItem"))
   }
@@ -98,7 +101,7 @@
       startProgressbar(model[["progressbarLength"]])
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applyalpha, progressbarTick))
     }
-    out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
+    out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["alphaScaleObj"]] <- createJaspState(out,
@@ -129,10 +132,10 @@
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
-      out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::applyalpha, progressbarTick)
+      out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsSamp"]], Bayesrel:::applyalpha, progressbarTick)
 
     }
-    out[c("itemEst", "itemCred")] <- .summarizePosterior(out[["itemSamp"]], ciValueItem)
+    out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["alphaItemObj"]] <- createJaspState(out,
@@ -160,7 +163,7 @@
       startProgressbar(model[["progressbarLength"]])
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applylambda2, progressbarTick))
     }
-    out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
+    out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["lambda2ScaleObj"]] <- createJaspState(out,
@@ -190,10 +193,10 @@
 
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
-      out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::applylambda2, progressbarTick)
+      out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsSamp"]], Bayesrel:::applylambda2, progressbarTick)
 
     }
-    out[c("itemEst", "itemCred")] <- .summarizePosterior(out[["itemSamp"]], ciValueItem)
+    out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["lambda2ItemObj"]] <- createJaspState(out,
@@ -220,7 +223,7 @@
       startProgressbar(model[["progressbarLength"]])
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applylambda6, progressbarTick))
     }
-    out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
+    out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["lambda6ScaleObj"]] <- createJaspState(out,
@@ -251,10 +254,10 @@
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
-      out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::applylambda6, progressbarTick)
+      out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsSamp"]], Bayesrel:::applylambda6, progressbarTick)
 
     }
-    out[c("itemEst", "itemCred")] <- .summarizePosterior(out[["itemSamp"]], ciValueItem)
+    out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["lambda6ItemObj"]] <- createJaspState(out,
@@ -283,7 +286,7 @@
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::glbOnArray_custom,
                                         callback = progressbarTick))
     }
-    out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
+    out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["glbObj"]] <- createJaspState(out,
@@ -313,11 +316,16 @@
 
     if (is.null(out[["itemSamp"]])) {
       startProgressbar((model[["progressbarLength"]] %/% 500 + 1) * ncol(dataset))
-      out[["itemSamp"]] <- apply(model[["itemDroppedCovs"]], c(1, 2, 3), Bayesrel:::glbOnArray_custom,
-                                 callback = progressbarTick)
+      # special case glb, because it works with arrays not only matrices, small speedup...
+      dd <- dim(model[["gibbsSamp"]])
+      out[["itemSamp"]] <- matrix(0, dd[1]*dd[2], dd[3])
+      cov_samp <- array(model[["gibbsSamp"]], c(dd[1]*dd[2], dd[3], dd[3]))
+      for (i in 1:dd[3]) {
+        out[["itemSamp"]][, i] <- Bayesrel:::glbOnArray_custom(cov_samp[, -i, -i], progressbarTick)
+      }
 
     }
-    out[c("itemEst", "itemCred")] <- .summarizePosterior(out[["itemSamp"]], ciValueItem)
+    out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["glbItemObj"]] <- createJaspState(out,
@@ -355,7 +363,7 @@
       out[["samp"]] <- coda::mcmc(out[["samp"]])
 
     }
-    out[c("est", "cred")] <- .summarizePosterior(out[["samp"]], ciValue)
+    out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
     stateContainerB <- .getStateContainerB(jaspResults)
     stateContainerB[["avgCorObj"]] <- createJaspState(out,
@@ -420,7 +428,7 @@
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
-      startProgressbar(model[["progressbarLength"]] * ncol(dataset))
+      startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
 
       # dataset <- scale(dataset, scale = F)
       jaspBase::.setSeedJASP(options)
@@ -428,7 +436,7 @@
                               options[["noThin"]], options[["noChains"]], model[["pairwise"]],
                               callback = progressbarTick)
     }
-    out[c("itemEst", "itemCred")] <- .summarizePosterior(out[["itemSamp"]], ciValueItem)
+    out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["itemRestObj"]] <- createJaspState(out,
@@ -478,4 +486,24 @@
 }
 
 
+.itemRestCor <- function(dataset, n.iter, n.burnin, thin, n.chains, pairwise, callback) {
 
+  ircor_samp <- matrix(0, n.chains * length(seq(1, n.iter-n.burnin, thin)), ncol(dataset))
+  for (i in 1:ncol(dataset)) {
+    help_dat <- cbind(as.matrix(dataset[, i]), rowMeans(as.matrix(dataset[, -i]), na.rm = TRUE))
+    ircor_samp[, i] <- .WishartCorTransform(help_dat, n.iter = n.iter, n.burnin = n.burnin, thin = thin,
+                                              n.chains = n.chains, pairwise = pairwise, callback = callback)
+  }
+
+  return(ircor_samp)
+}
+
+.WishartCorTransform <- function(x, n.iter, n.burnin, thin, n.chains, pairwise, callback) {
+  tmp_cov <- Bayesrel:::covSamp(x, n.iter, n.burnin, thin, n.chains, pairwise, callback)$cov_mat
+  dd <- dim(tmp_cov)
+  tmp_cov <- array(tmp_cov, c(dd[1]*dd[2], dd[3], dd[4]))
+  tmp_cor <- apply(tmp_cov, c(1), cov2cor)
+  out <- tmp_cor[2, ]
+  callback()
+  return(out)
+}

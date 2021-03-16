@@ -106,9 +106,10 @@
       } else { # omega with pfa
       # do we have to compute item dropped values
         if (is.null(out[["itemDropped"]]))
-          out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applyomega_pfa)
+          out[["itemDropped"]] <- .freqItemDroppedStats(model[["data_cov"]], Bayesrel:::applyomega_pfa)
+
         if (anyNA(out[["itemDropped"]]))
-          out[["error"]] <- gettext("Omega item dropped statistics with CFA failed")
+          out[["error"]] <- gettext("Omega item dropped statistics with PFA failed")
 
       }
 
@@ -204,15 +205,11 @@
     if (options[["alphaMethod"]] == "alphaUnstand") { # alpha unstandardized
       # do we have to compute item dropped values
       if (is.null(out[["itemDropped"]]))
-        out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applyalpha)
+        out[["itemDropped"]] <- .freqItemDroppedStats(model[["data_cov"]], Bayesrel:::applyalpha)
 
     } else { # alpha standardized
-      ccor <- model[["data_cor"]]
       if (is.null(out[["itemDropped"]])) {
-        out[["itemDropped"]] <- numeric(model[["k"]])
-        for (i in 1:model[["k"]]){
-          out[["itemDropped"]][i] <- Bayesrel:::applyalpha(ccor[-i, -i])
-        }
+        out[["itemDropped"]] <- .freqItemDroppedStats(model[["data_cor"]], Bayesrel:::applyalpha)
       }
     }
 
@@ -272,8 +269,7 @@
     }
 
     if (is.null(out[["itemDropped"]]))
-      out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applylambda2)
-
+      out[["itemDropped"]] <- .freqItemDroppedStats(model[["data_cov"]], Bayesrel:::applylambda2)
 
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["lambda2ItemObj"]] <- createJaspState(out, dependencies = c("lambda2Item"))
@@ -339,7 +335,7 @@
     }
 
     if (is.null(out[["itemDropped"]]))
-      out[["itemDropped"]] <- apply(model[["itemDroppedCovs"]], 1, Bayesrel:::applylambda6)
+      out[["itemDropped"]] <- .freqItemDroppedStats(model[["data_cov"]], Bayesrel:::applylambda6)
     if (anyNA(out[["itemDropped"]]))
       out[["error"]] <- gettext("Lambda6 item dropped statistics failed")
 
@@ -401,8 +397,14 @@
     }
 
     # do we have to compute item dropped values
-    if (is.null(out[["itemDropped"]]))
-      out[["itemDropped"]] <- c(Bayesrel:::glbOnArray_custom(model[["itemDroppedCovs"]]))
+    if (is.null(out[["itemDropped"]])) {
+      # special case glb since it has build in array functionality, but it might be only slightly faster
+      itemDroppedCovs <- array(0, c(model[["k"]], model[["k"]]-1, model[["k"]]-1))
+      for (i in 1:model[["k"]]) {
+        itemDroppedCovs[i, , ] <- model[["data_cov"]][-i, -i]
+      }
+      out[["itemDropped"]] <- c(Bayesrel:::glbOnArray_custom(itemDroppedCovs))
+    }
 
 
     stateContainer <- .getStateContainerF(jaspResults)

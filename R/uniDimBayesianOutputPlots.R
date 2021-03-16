@@ -219,8 +219,7 @@
   dat$colos <- "1"
   dat$var <- "original"
 
-  item_tmp <- apply(coefItem[["itemSamp"]], 3, as.vector)
-  dat_del <- t(as.matrix(as.data.frame(item_tmp)))
+  dat_del <- t(as.matrix(as.data.frame(coefItem[["itemSamp"]])))
   names <- decodeColNames(variables)
 
   for (i in n_row:1){
@@ -245,7 +244,7 @@
       dat$var <- factor(dat$var, levels = c(est$name))
 
     } else if (ordering == "orderItemKL") {
-      samps <- item_tmp
+      samps <- coefItem[["itemSamp"]]
       og_samp <- samp_tmp
       dists <- apply(samps, 2, .KLD.statistic, y = og_samp) # kl divergence
       dists[length(dists)+1] <- 0
@@ -253,7 +252,7 @@
       dat$var <- factor(dat$var, levels = c(est$name))
 
     } else if (ordering == "orderItemKS") {
-      samps <- item_tmp
+      samps <- coefItem[["itemSamp"]]
       og_samp <- samp_tmp
       dists <- apply(samps, 2, .ks.test.statistic, y = og_samp) # ks distance
       dists[length(dists)+1] <- 0

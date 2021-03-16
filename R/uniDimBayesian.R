@@ -14,7 +14,7 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
 
   model <- .BayesianPreCalc(jaspResults, dataset, options)
   options <- .scaleItemBoxAlign(options)
-  model[["itemDroppedCovs"]] <- .BayesianItemDroppedMats(jaspResults, dataset, options, model)
+
   model[["derivedOptions"]] <- .BayesianDerivedOptions(options)
   model[["omegaScale"]] <- .BayesianOmegaScale(jaspResults, dataset, options, model)
   model[["omegaItem"]] <- .BayesianOmegaItem(jaspResults, dataset, options, model)
@@ -87,19 +87,18 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
   return(jaspResults[["stateContainerB"]])
 }
 
-.summarizePosterior <- function(samples, ciValue) {
+.summarizePosteriorStats <- function(samples, ciValue) {
+  return(list(
+    mean(samples),
+    coda::HPDinterval(coda::mcmc(as.vector(samples)), prob = ciValue)
+  ))
+}
 
-  if (length(dim(samples)) == 3L) {
-    return(list(
-      rowMeans(aperm(samples, rev(seq_along(dim(samples))))), # faster than apply(samples, 3, mean)
-      coda::HPDinterval(coda::mcmc(apply(samples, 3, as.vector)), prob = ciValue)
-    ))
-  } else {
-    return(list(
-      mean(samples),
-      coda::HPDinterval(coda::mcmc(as.vector(samples)), prob = ciValue)
-    ))
-  }
+.summarizePosteriorItems <- function(samples, ciValue) {
+  return(list(
+    colMeans(samples),
+    coda::HPDinterval(coda::mcmc(samples), prob = ciValue)
+  ))
 }
 
 
@@ -148,6 +147,18 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
       prioromega[i] <- Bayesrel:::omegaBasic(lambda, psi)
     }
     out <- density(prioromega, from = 0, to = 1, n = 512)
+  }
+
+  return(out)
+}
+
+.BayesItemDroppedStats <- function(cov_samp, f1 = function(){}, callback = function(){}) {
+
+  dd <- dim(cov_samp)
+  out <- matrix(0, dd[1]*dd[2], dd[3])
+  cov_samp <- array(cov_samp, c(dd[1]*dd[2], dd[3], dd[3]))
+  for (i in 1:dd[3]) {
+    out[, i] <- apply(cov_samp[, -i, -i], c(1), f1, callback)
   }
 
   return(out)

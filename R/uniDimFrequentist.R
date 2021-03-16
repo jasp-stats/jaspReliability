@@ -12,7 +12,7 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
 
   model <- .frequentistPreCalc(jaspResults, dataset, options)
   options <- .scaleItemBoxAlign(options)
-  model[["itemDroppedCovs"]] <- .frequentistItemDroppedMats(jaspResults, dataset, options, model)
+
   model[["derivedOptions"]] <- .frequentistDerivedOptions(options)
   model[["omegaScale"]] <- .frequentistOmegaScale(jaspResults, dataset, options, model)
   model[["omegaItem"]] <- .frequentistOmegaItem(jaspResults, dataset, options, model)
@@ -35,6 +35,7 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
   .frequentistScaleTable(         jaspResults, model, options)
   .frequentistItemTable(          jaspResults, model, options)
   .frequentistSingleFactorFitTable(jaspResults, model, options)
+
 
   return()
 
@@ -72,4 +73,11 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
   return(jaspResults[["stateContainerF"]])
 }
 
+.freqItemDroppedStats <- function(Cov, f = function(){}) {
 
+  out <- numeric(ncol(Cov))
+  for (i in 1:ncol(Cov)) {
+    out[i] <- f(Cov[-i, -i])
+  }
+  return(out)
+}

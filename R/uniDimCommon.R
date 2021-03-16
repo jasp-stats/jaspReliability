@@ -107,25 +107,6 @@
   )
 }
 
-.itemRestCor <- function(dataset, n.iter, n.burnin, thin, n.chains, missing, callback) {
-
-  ircor_samp <- array(0, c(n.chains, length(seq(1, n.iter-n.burnin, thin)), ncol(dataset)))
-  for (i in 1:ncol(dataset)) {
-    help_dat <- cbind(as.matrix(dataset[, i]), rowMeans(as.matrix(dataset[, -i]), na.rm = TRUE))
-    ircor_samp[, , i] <- .WishartCorTransform(help_dat, n.iter = n.iter, n.burnin = n.burnin, thin = thin,
-                                              n.chains = n.chains, missing = missing, callback = callback)
-  }
-
-  return(ircor_samp)
-}
-
-.WishartCorTransform <- function(x, n.iter, n.burnin, thin, n.chains, missing, callback) {
-  tmp_cov <- Bayesrel:::covSamp(x, n.iter, n.burnin, thin, n.chains, pairwise = missing, callback)$cov_mat
-  tmp_cor <- apply(tmp_cov, c(1, 2), cov2cor)
-  out <- tmp_cor[2, , ]
-  callback()
-  return(out)
-}
 
 
 # change options when scale box is unchecked
@@ -161,3 +142,5 @@
 .is.empty <- function(model) {
   !is.null(model[["empty"]])
 }
+
+

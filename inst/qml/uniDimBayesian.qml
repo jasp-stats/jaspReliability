@@ -181,7 +181,7 @@ Form
 				id: 		plotItem
 				name: 		"plotItem";
 				label: 		qsTr("If item dropped plot");
-				enabled: 	omegaItem.checked || alphaItem.checked || lambda2Item.checked || glbItem.checked;
+				enabled: 	omegaItem.checked || alphaItem.checked || lambda2Item.checked || lambda6Item.checked || glbItem.checked;
 
 				CheckBox
 				{
