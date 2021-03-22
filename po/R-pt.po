@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-03-06 15:52\n"
-"PO-Revision-Date: 2021-03-16 11:02+0000\n"
+"PO-Revision-Date: 2021-03-23 14:29+0000\n"
 "Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/pt/>\n"
@@ -69,7 +69,6 @@ msgstr ""
 msgid "Bayesian Scale Reliability Statistics"
 msgstr ""
 
-#, fuzzy
 msgid "Estimate"
 msgstr "Estimativas"
 
@@ -193,7 +192,6 @@ msgstr ""
 msgid "Fit Measure"
 msgstr "Medidas Adicionais de Ajuste"
 
-#, fuzzy
 msgid "Value"
 msgstr "Valor"
 
