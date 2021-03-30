@@ -62,15 +62,15 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
 
 
 .getStateContainerF <- function(jaspResults) {
-  if (!is.null(jaspResults[["stateContainerF"]]))
-    return(jaspResults[["stateContainerF"]])
+  if (!is.null(jaspResults[["stateContainer"]]))
+    return(jaspResults[["stateContainer"]])
 
-  jaspResults[["stateContainerF"]] <- createJaspContainer(dependencies=c("variables", "reverseScaledItems", "noSamples",
+  jaspResults[["stateContainer"]] <- createJaspContainer(dependencies=c("variables", "reverseScaledItems", "noSamples",
                                                                          "missingValues", "bootType","setSeed",
-                                                                         "seed", "intervalOn")
+                                                                         "seed", "intervalOn", "disableSampleSave")
   )
 
-  return(jaspResults[["stateContainerF"]])
+  return(jaspResults[["stateContainer"]])
 }
 
 .freqItemDroppedStats <- function(Cov, f = function(){}) {

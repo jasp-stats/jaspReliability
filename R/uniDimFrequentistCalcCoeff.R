@@ -65,8 +65,11 @@
       }
     }
 
-    stateContainerF <- .getStateContainerF(jaspResults)
-    stateContainerF[["omegaScaleObj"]] <- createJaspState(out,
+    if (options[["disableSampleSave"]])
+      return(out)
+
+    stateContainer <- .getStateContainerF(jaspResults)
+    stateContainer[["omegaScaleObj"]] <- createJaspState(out,
                                                           dependencies = c("omegaScale", "omegaMethod",
                                                                            "omegaInterval", "confidenceIntervalValue"))
   }
@@ -113,8 +116,11 @@
 
       }
 
-    stateContainerF <- .getStateContainerF(jaspResults)
-    stateContainerF[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "omegaMethod"))
+    if (options[["disableSampleSave"]])
+      return(out)
+
+    stateContainer <- .getStateContainerF(jaspResults)
+    stateContainer[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "omegaMethod"))
   }
 
   return(out)
@@ -179,6 +185,9 @@
       }
     }
 
+    if (options[["disableSampleSave"]])
+      return(out)
+
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["alphaScaleObj"]] <- createJaspState(out,
                                                          dependencies = c("alphaScale", "alphaMethod",
@@ -213,6 +222,9 @@
       }
     }
 
+    if (options[["disableSampleSave"]])
+      return(out)
+
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["alphaItemObj"]] <- createJaspState(out, dependencies = c("alphaItem", "alphaMethod"))
   }
@@ -245,6 +257,10 @@
       out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
 
     }
+
+    if (options[["disableSampleSave"]])
+      return(out)
+
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["lambda2ScaleObj"]] <- createJaspState(out,
                                                            dependencies = c("lambda2Scale", "confidenceIntervalValue"))
@@ -270,6 +286,9 @@
 
     if (is.null(out[["itemDropped"]]))
       out[["itemDropped"]] <- .freqItemDroppedStats(model[["data_cov"]], Bayesrel:::applylambda2)
+
+    if (options[["disableSampleSave"]])
+      return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["lambda2ItemObj"]] <- createJaspState(out, dependencies = c("lambda2Item"))
@@ -311,6 +330,9 @@
       }
     }
 
+    if (options[["disableSampleSave"]])
+      return(out)
+
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["lambda6ScaleObj"]] <- createJaspState(out,
                                                            dependencies = c("lambda6Scale", "confidenceIntervalValue"))
@@ -338,6 +360,9 @@
       out[["itemDropped"]] <- .freqItemDroppedStats(model[["data_cov"]], Bayesrel:::applylambda6)
     if (anyNA(out[["itemDropped"]]))
       out[["error"]] <- gettext("Lambda6 item dropped statistics failed")
+
+    if (options[["disableSampleSave"]])
+      return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["lambda6ItemObj"]] <- createJaspState(out, dependencies = c("lambda6Item"))
@@ -371,6 +396,9 @@
       }
       out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
     }
+
+    if (options[["disableSampleSave"]])
+      return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["glbScaleObj"]] <- createJaspState(out,
@@ -406,6 +434,8 @@
       out[["itemDropped"]] <- c(Bayesrel:::glbOnArray_custom(itemDroppedCovs))
     }
 
+    if (options[["disableSampleSave"]])
+      return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["glbItemObj"]] <- createJaspState(out, dependencies = c("glbItem"))
@@ -440,6 +470,10 @@
       }
       out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
     }
+
+    if (options[["disableSampleSave"]])
+      return(out)
+
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["avgObj"]] <- createJaspState(out,
                                                   dependencies = c("averageInterItemCor", "confidenceIntervalValue"))
@@ -470,6 +504,10 @@
       out[["conf"]] <- c(out[["est"]] - zz*(sdmean/sqrt(model[["n"]])),
                          out[["est"]] + zz*(sdmean/sqrt(model[["n"]])))
     }
+
+    if (options[["disableSampleSave"]])
+      return(out)
+
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["meanObj"]] <- createJaspState(out, dependencies = c("meanScale", "meanMethod"))
   }
@@ -491,11 +529,16 @@
     else
       sd(rowMeans(dataset, na.rm = TRUE))
 
-    if (options[["intervalOn"]])
+    if (options[["intervalOn"]]) {
       chiValueLow <- qchisq(1-(1-ciValue)/2, df = model[["n"]]-1)
       chiValueHigh <- qchisq((1-ciValue)/2, df = model[["n"]]-1)
       out[["conf"]] <- c(sqrt(((model[["n"]]-1) * out[["est"]]^2) / chiValueLow),
                          sqrt(((model[["n"]]-1) * out[["est"]]^2) / chiValueHigh))
+    }
+
+    if (options[["disableSampleSave"]])
+      return(out)
+
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["sdObj"]] <- createJaspState(out, dependencies = c("sdScale", "sdMethod"))
   }
@@ -517,6 +560,9 @@
       out[["itemDropped"]][i] <- cor(as.matrix(dataset[, i]), rowMeans(as.matrix(dataset[, -i]), na.rm = TRUE), use = model[["use.cases"]])
     }
 
+    if (options[["disableSampleSave"]])
+      return(out)
+
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["itemRestObj"]] <- createJaspState(out, dependencies = c("itemRestCor"))
   }
@@ -533,6 +579,10 @@
   # is box even checked?
   if (options[["itemMean"]]  && is.null(model[["empty"]])) {
     out[["itemDropped"]] <- colMeans(dataset, na.rm = TRUE)
+
+    if (options[["disableSampleSave"]])
+      return(out)
+
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["itemMeanObj"]] <- createJaspState(out, dependencies = c("itemMean"))
   }
@@ -550,6 +600,9 @@
   if (options[["itemSd"]]  && is.null(model[["empty"]])) {
 
     out[["itemDropped"]] <- apply(dataset, 2, sd, na.rm = TRUE)
+
+    if (options[["disableSampleSave"]])
+      return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["itemSdObj"]] <- createJaspState(out, dependencies = c("itemSd"))

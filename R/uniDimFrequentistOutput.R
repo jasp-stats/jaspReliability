@@ -22,8 +22,8 @@
   }
 
   scaleTable$position <- 1
-  stateContainerF <- .getStateContainerF(jaspResults)
-  stateContainerF[["scaleTable"]] <- scaleTable
+  stateContainer <- .getStateContainerF(jaspResults)
+  stateContainer[["scaleTable"]] <- scaleTable
 
   if (!is.null(model[["omegaScale"]][["error"]])) {
     scaleTable$setError(model[["omegaScale"]][["error"]])
@@ -105,8 +105,8 @@
   itemTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
 
   itemTable$position <- 2
-  stateContainerF <- .getStateContainerF(jaspResults)
-  stateContainerF[["itemTable"]] <- itemTable
+  stateContainer <- .getStateContainerF(jaspResults)
+  stateContainer[["itemTable"]] <- itemTable
 
   if (!is.null(model[["omegaItem"]][["error"]])) {
     itemTable$setError(model[["omegaItem"]][["error"]])
@@ -191,8 +191,8 @@
   fitTable$dependOn(options = c("variables", "omegaScale", "reverseScaledItems", "fitMeasures", "missingValues",
                                 "omegaMethod"))
   fitTable$position <- 3
-  stateContainerF <- .getStateContainerF(jaspResults)
-  stateContainerF[["fitTable"]] <- fitTable
+  stateContainer <- .getStateContainerF(jaspResults)
+  stateContainer[["fitTable"]] <- fitTable
 
   return()
 

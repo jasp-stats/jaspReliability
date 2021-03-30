@@ -28,8 +28,11 @@
 
     out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["omegaScaleObj"]] <- createJaspState(out,
+    if (options[["disableSampleSave"]])
+      return(out)
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["omegaScaleObj"]] <- createJaspState(out,
                                                           dependencies = c("omegaScale", "credibleIntervalValueScale"))
   }
 
@@ -76,8 +79,11 @@
     }
     out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "credibleIntervalValueItem"))
+    if (options[["disableSampleSave"]])
+      return(out)
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "credibleIntervalValueItem"))
   }
 
   return(out)
@@ -103,8 +109,11 @@
     }
     out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["alphaScaleObj"]] <- createJaspState(out,
+    if (options[["disableSampleSave"]])
+      return(out)
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["alphaScaleObj"]] <- createJaspState(out,
                                                           dependencies = c("alphaScale", "credibleIntervalValueScale"))
   }
 
@@ -137,8 +146,11 @@
     }
     out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["alphaItemObj"]] <- createJaspState(out,
+    if (options[["disableSampleSave"]])
+      return(out)
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["alphaItemObj"]] <- createJaspState(out,
                                                          dependencies = c("alphaItem", "credibleIntervalValueItem"))
   }
 
@@ -165,8 +177,11 @@
     }
     out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["lambda2ScaleObj"]] <- createJaspState(out,
+    if (options[["disableSampleSave"]])
+      return(out)
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["lambda2ScaleObj"]] <- createJaspState(out,
                                                             dependencies = c("lambda2Scale", "credibleIntervalValueScale"))
   }
 
@@ -198,8 +213,11 @@
     }
     out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["lambda2ItemObj"]] <- createJaspState(out,
+    if (options[["disableSampleSave"]])
+      return(out)
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["lambda2ItemObj"]] <- createJaspState(out,
                                                            dependencies = c("lambda2Item", "credibleIntervalValueItem"))
   }
 
@@ -225,8 +243,11 @@
     }
     out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["lambda6ScaleObj"]] <- createJaspState(out,
+    if (options[["disableSampleSave"]])
+      return(out)
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["lambda6ScaleObj"]] <- createJaspState(out,
                                                             dependencies = c("lambda6Scale","credibleIntervalValueScale"))
   }
 
@@ -259,8 +280,11 @@
     }
     out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["lambda6ItemObj"]] <- createJaspState(out,
+    if (options[["disableSampleSave"]])
+      return(out)
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["lambda6ItemObj"]] <- createJaspState(out,
                                                            dependencies = c("lambda6Item", "credibleIntervalValueItem"))
   }
 
@@ -288,8 +312,11 @@
     }
     out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["glbObj"]] <- createJaspState(out,
+    if (options[["disableSampleSave"]])
+      return(out)
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["glbObj"]] <- createJaspState(out,
                                                    dependencies = c("glbScale", "credibleIntervalValueScale"))
   }
 
@@ -327,8 +354,11 @@
     }
     out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["glbItemObj"]] <- createJaspState(out,
+    if (options[["disableSampleSave"]])
+      return(out)
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["glbItemObj"]] <- createJaspState(out,
                                                        dependencies = c("glbItem", "credibleIntervalValueItem"))
   }
 
@@ -365,8 +395,11 @@
     }
     out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["avgCorObj"]] <- createJaspState(out,
+    if (options[["disableSampleSave"]])
+      return(out)
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["avgCorObj"]] <- createJaspState(out,
                                                       dependencies = c("averageItemItemCor", "credibleIntervalValueScale"))
   }
 
@@ -388,6 +421,10 @@
       mean(rowMeans(dataset, na.rm = TRUE))
 
     out[["cred"]] <- c(NA_real_, NA_real_)
+
+    if (options[["disableSampleSave"]])
+      return(out)
+
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["meanObj"]] <- createJaspState(out, dependencies = c("meanScale", "meanMethod"))
   }
@@ -408,6 +445,10 @@
       sd(rowMeans(dataset, na.rm = TRUE))
 
     out[["cred"]] <- c(NA_real_, NA_real_)
+
+    if (options[["disableSampleSave"]])
+      return(out)
+
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["sdObj"]] <- createJaspState(out, dependencies = c("sdScale", "sdMethod"))
   }
@@ -438,6 +479,9 @@
     }
     out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
+    if (options[["disableSampleSave"]])
+      return(out)
+
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["itemRestObj"]] <- createJaspState(out,
                                                        dependencies = c("itemRestCor", "credibleIntervalValueItem"))
@@ -460,6 +504,9 @@
 
     out[["itemCred"]] <- matrix(NA_real_, ncol(dataset), 2)
 
+    if (options[["disableSampleSave"]])
+      return(out)
+
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["itemMeanObj"]] <- createJaspState(out, dependencies = c("itemMean"))
   }
@@ -478,6 +525,9 @@
 
     out[["itemEst"]] <- apply(dataset, 2, sd, na.rm = TRUE)
     out[["itemCred"]] <- matrix(NA_real_, ncol(dataset), 2)
+
+    if (options[["disableSampleSave"]])
+      return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["itemSdObj"]] <- createJaspState(out, dependencies = c("itemSd"))

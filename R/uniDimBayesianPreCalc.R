@@ -80,13 +80,17 @@
                                                model[["pairwise"]], progressbarTick)$cov_mat
 
   }
+
   model[["progressbarLength"]] <- options[["noChains"]] *
     length(seq(1, options[["noSamples"]] - options[["noBurnin"]], options[["noThin"]]))
 
   model[["itemsDropped"]] <- .unv(colnames(dataset))
 
-  stateContainerB <- .getStateContainerB(jaspResults)
-  stateContainerB[["modelObj"]] <- createJaspState(model)
+  if (options[["disableSampleSave"]])
+    return(model)
+
+  stateContainer <- .getStateContainerB(jaspResults)
+  stateContainer[["modelObj"]] <- createJaspState(model)
 
   return(model)
 }

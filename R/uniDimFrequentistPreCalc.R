@@ -107,6 +107,9 @@
     model[["bootSamp"]] <- boot_cov
   }
 
+  if (options[["disableSampleSave"]])
+    return(model)
+
   stateContainer <- .getStateContainerF(jaspResults)
   stateContainer[["modelObj"]] <- createJaspState(model)
 

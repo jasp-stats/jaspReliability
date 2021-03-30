@@ -76,15 +76,16 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
 
 
 .getStateContainerB <- function(jaspResults) {
-  if (!is.null(jaspResults[["stateContainerB"]]))
-    return(jaspResults[["stateContainerB"]])
+  if (!is.null(jaspResults[["stateContainer"]]))
+    return(jaspResults[["stateContainer"]])
 
-  jaspResults[["stateContainerB"]] <- createJaspContainer(dependencies=c("variables", "reverseScaledItems", "noSamples",
+  jaspResults[["stateContainer"]] <- createJaspContainer(dependencies=c("variables", "reverseScaledItems", "noSamples",
                                                                          "noBurnin", "noThin", "noChains",
-                                                                         "missingValues","setSeed", "seed")
+                                                                         "missingValues","setSeed", "seed",
+                                                                        "disableSampleSave")
   )
 
-  return(jaspResults[["stateContainerB"]])
+  return(jaspResults[["stateContainer"]])
 }
 
 .summarizePosteriorStats <- function(samples, ciValue) {

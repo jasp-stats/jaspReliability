@@ -56,8 +56,8 @@
       }
     }
     plotContainer$position <- 4
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["plotContainer"]] <- plotContainer
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["plotContainer"]] <- plotContainer
   }
 
   return()
@@ -201,8 +201,8 @@
       }
     }
     plotContainerItem$position <- 5
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["plotContainerItem"]] <- plotContainerItem
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["plotContainerItem"]] <- plotContainerItem
   }
 
   return()
@@ -301,8 +301,9 @@
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(0, max(eframe$eigen_sim_up)))
 
     g <- ggplot2::ggplot(eframe, mapping = ggplot2::aes(x = number, y = eigen_value)) +
-      ggplot2::geom_errorbar(ggplot2::aes(ymin = eigen_sim_low, ymax = eigen_sim_up), color = "grey60", width = 0.2) +
-      ggplot2::geom_point() +
+      ggplot2::geom_errorbar(ggplot2::aes(ymin = eigen_sim_low, ymax = eigen_sim_up), color = "grey55", width = 0.2,
+                             size = 1) +
+      ggplot2::geom_point(size = 2.25) +
       ggplot2::xlim(c(1, k)) +
       ggplot2::scale_y_continuous(name = gettext("Eigenvalue"), breaks = yBreaks, limits = range(yBreaks)) +
       ggplot2::scale_x_continuous(name = gettext("Eigenvalue No."),
@@ -315,8 +316,8 @@
     plot$dependOn(options = c("dispPPC", "omegaScale"))
 
     plot$position <- 6
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["omegaPPC"]] <- plot
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["omegaPPC"]] <- plot
   }
 
 return()
@@ -360,8 +361,8 @@ return()
     }
 
     plotContainerTP$position <- 7
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["plotContainerTP"]] <- plotContainerTP
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["plotContainerTP"]] <- plotContainerTP
 
   }
 

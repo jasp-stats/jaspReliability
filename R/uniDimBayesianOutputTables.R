@@ -13,8 +13,8 @@
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
 
   scaleTable$position <- 1
-  stateContainerB <- .getStateContainerB(jaspResults)
-  stateContainerB[["scaleTable"]] <- scaleTable
+  stateContainer <- .getStateContainerB(jaspResults)
+  stateContainer[["scaleTable"]] <- scaleTable
 
   interval <- gettextf("%s%% CI",
                        format(100*options[["credibleIntervalValueScale"]], digits = 3, drop0trailing = TRUE))
@@ -92,8 +92,8 @@
   itemTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
 
   itemTable$position <- 2
-  stateContainerB <- .getStateContainerB(jaspResults)
-  stateContainerB[["itemTable"]] <- itemTable
+  stateContainer <- .getStateContainerB(jaspResults)
+  stateContainer[["itemTable"]] <- itemTable
 
   overTitles <- format(derivedOptions[["namesEstimators"]][["tables_item"]], digits = 3, drop0trailing = TRUE)
   overTitles <- gettextf("%s (if item dropped)", overTitles)
@@ -175,8 +175,8 @@
   probTable$dependOn(options = c("probTableValueLow", "probTable", "probTableValueHigh"))
 
   overTitle <- gettext("Probability")
-  probTable$addColumnInfo(name = "statistic", title = gettext("Statistic"),   type = "string")
-  probTable$addColumnInfo(name = "prior",     title = gettext("Prior"), type = "number", overtitle = overTitle )
+  probTable$addColumnInfo(name = "statistic", title = gettext("Statistic"), type = "string")
+  probTable$addColumnInfo(name = "prior",     title = gettext("Prior"),     type = "number", overtitle = overTitle )
   probTable$addColumnInfo(name = "posterior", title = gettext("Posterior"), type = "number", overtitle = overTitle )
 
   derivedOptions <- model[["derivedOptions"]]
@@ -228,8 +228,8 @@
     probTable$setData(df)
 
     probTable$position <- 3
-    stateContainerB <- .getStateContainerB(jaspResults)
-    stateContainerB[["probTable"]] <- probTable
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["probTable"]] <- probTable
   }
 
   return()

@@ -241,7 +241,7 @@ Form
 					CheckBox
 					{
 						name: 		"fitMeasures"
-						label: 		qsTr("Single Factor Model Fit")
+						label: 		qsTr("Single factor model fit")
 					}
 
 					RadioButtonGroup
@@ -333,6 +333,28 @@ Form
 					max: 			1e9
 				}
 			}
+		}
+
+		Group
+		{
+			title: qsTr("Samples")
+
+			RowLayout
+			{
+				CheckBox
+				{
+					name:				"disableSampleSave"
+					label:				qsTr("Disable saving samples")
+					checked:			false
+				}
+				HelpButton
+				{
+					toolTip: 						qsTr("Click to learn more about saving the samples.")
+					helpPage:						"toolTip/sampleSavingFreq"
+				}
+			}
+
+
 		}
 	}
 }
