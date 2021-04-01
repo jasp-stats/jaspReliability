@@ -286,17 +286,21 @@
 
     ll <- model[["omegaScale"]][["loadings"]]
     rr <- model[["omegaScale"]][["residuals"]]
-    cimpl <- ll %*% t(ll) + diag(rr)
     cobs <- model[["data_cov"]]
+
     k <- ncol(cobs)
-    eframe <- data.frame(number = seq(1, k), eigen_value = eigen(cobs)$values)
-    ee_impl <- matrix(0, 1e3, k)
-    for (i in 1:1e3) {
-      dtmp <- MASS::mvrnorm(model[["n"]], rep(0, k), cimpl)
+    nsamp <- nrow(ll)
+    ee_impl <- matrix(0, nsamp, k)
+    for (i in 1:nsamp) {
+      ctmp <- ll[i, ] %*% t(ll[i, ]) + diag(rr[i, ])
+      dtmp <- MASS::mvrnorm(model[["n"]], rep(0, k), ctmp)
       ee_impl[i, ] <- eigen(cov(dtmp), only.values = TRUE)$values
     }
+
+    eframe <- data.frame(number = seq(1, k), eigen_value = eigen(cobs)$values)
     eframe$eigen_sim_low <- apply(ee_impl, 2, quantile, prob = .025)
     eframe$eigen_sim_up <- apply(ee_impl, 2, quantile, prob = .975)
+
     leg_pos <- (max(eframe$eigen_value) + min(eframe$eigen_value)) * .75
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(0, max(eframe$eigen_sim_up)))
 

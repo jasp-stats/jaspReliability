@@ -22,8 +22,8 @@
                                                options[["noThin"]], options[["noChains"]],
                                                model[["pairwise"]], progressbarTick)
       out[["samp"]] <- tmp_out$omega
-      out[["loadings"]] <- apply(tmp_out$lambda, 3, mean)
-      out[["residuals"]] <- apply(tmp_out$psi, 3, mean)
+      out[["loadings"]] <- apply(tmp_out$lambda, 3, as.vector)
+      out[["residuals"]] <- apply(tmp_out$psi, 3, as.vector)
     }
 
     out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
