@@ -69,7 +69,7 @@
                         ncol(dataset)))
 
       for (i in 1:ncol(dataset)) {
-        out[["itemSamp"]][, , i] <- Bayesrel:::omegaSampler(dataset[-i, -i],
+        out[["itemSamp"]][, , i] <- Bayesrel:::omegaSampler(dataset[, -i],
                                                             options[["noSamples"]], options[["noBurnin"]], options[["noThin"]],
                                                             options[["noChains"]], model[["pairwise"]], progressbarTick)$omega
       }
