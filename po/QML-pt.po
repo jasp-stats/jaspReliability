@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-04 17:26+0000\n"
-"Last-Translator: Alex França <alex.tonante@gmail.com>\n"
+"PO-Revision-Date: 2021-04-17 18:26+0000\n"
+"Last-Translator: Lucas Müller-Silveira <mullerlucass@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/pt/>\n"
 "Language: pt\n"
@@ -16,7 +16,7 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Reliability"
-msgstr ""
+msgstr "Confiabilidade"
 
 msgctxt "Description|"
 msgid "This module offers Reliability analyses."
