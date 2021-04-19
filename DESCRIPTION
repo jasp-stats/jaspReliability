@@ -6,7 +6,7 @@ Date: 2020-10-22
 Author: Julius M. Pfadt, Don van den Bergh & Eric-Jan Wagenmakers
 Website: https://github.com/jasp-stats/Reliability
 Maintainer: Julius M. Pfadt <julius.pfadt@gmail.com>
-Description: This module offers Reliability analyses.
+Description: Quantify the consistency of test scores
 License: GPL (>= 2)
 Encoding: UTF-8
 Imports:
