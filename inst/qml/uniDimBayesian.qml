@@ -162,7 +162,7 @@ Form
 
 			CheckBox
 			{
-				id: 		lambda6item
+				id: 		lambda6Item
 				name: 		"lambda6Item"
 				label: 		qsTr("Guttman's λ6 (if item dropped)");
 				enabled: 	lambda6.checked

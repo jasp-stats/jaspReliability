@@ -391,7 +391,7 @@
       ciValue <- options[["confidenceIntervalValue"]]
       if (is.null(out[["samp"]])) {
         startProgressbar(options[["noSamples"]] %/% 500 + 1)
-        out[["samp"]] <- Bayesrel:::glbOnArray_custom(model[["bootSamp"]])
+        out[["samp"]] <- Bayesrel:::glbOnArray_custom(model[["bootSamp"]], callback = progressbarTick)
 
       }
       out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
@@ -431,7 +431,7 @@
       for (i in 1:model[["k"]]) {
         itemDroppedCovs[i, , ] <- model[["data_cov"]][-i, -i]
       }
-      out[["itemDropped"]] <- c(Bayesrel:::glbOnArray_custom(itemDroppedCovs))
+      out[["itemDropped"]] <- c(Bayesrel:::glbOnArray_custom(itemDroppedCovs, callback = progressbarTick))
     }
 
     if (options[["disableSampleSave"]])

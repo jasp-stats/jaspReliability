@@ -46,6 +46,7 @@
 
 .checkLoadings <- function(dataset, variables) {
   if (ncol(dataset >= 2)) {
+    # check for negative loadings:
     prin <- psych::principal(dataset)
     idx <- prin[["loadings"]] < 0
     sidx <- sum(idx)
@@ -57,6 +58,22 @@
                                    "The following items correlated negatively with the scale: %s. "),
                           paste(variables[idx], collapse = ", "))
     }
+
+    # check for perfect correlations:
+    cr <- cor(dataset, use = "pairwise.complete.obs")
+    cr[lower.tri(cr, diag = TRUE)] <- 0
+    pos <- which(round(cr, 3) == 1, arr.ind = TRUE)
+    if (length(pos) == 0) {
+      footnote <- gettextf("%s", footnote)
+    } else {
+      for (i in 1:nrow(pos)) {
+        footnote <- gettextf("%s Variables %s and %s correlated perfectly. ",
+                             footnote, variables[pos[i, 1]], variables[pos[i, 2]])
+      }
+    }
+
+    return(footnote)
+
   } else {
     return(.atLeast2Variables())
   }
@@ -78,7 +95,7 @@
   return(cov2cor(C))
 }
 
-# calculate the kublack leibler distance between two samples
+# calculate the kullback leibler distance between two samples
 .KLD.statistic <- function(x, y) {
   # transform the samples to PDFs:
   xdf <- .get_approx_density(x)

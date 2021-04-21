@@ -33,7 +33,7 @@
 
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["omegaScaleObj"]] <- createJaspState(out,
-                                                          dependencies = c("omegaScale", "credibleIntervalValueScale"))
+                                                         dependencies = c("omegaScale", "credibleIntervalValueScale"))
   }
 
   return(out)
@@ -348,7 +348,7 @@
       out[["itemSamp"]] <- matrix(0, dd[1]*dd[2], dd[3])
       cov_samp <- array(model[["gibbsSamp"]], c(dd[1]*dd[2], dd[3], dd[3]))
       for (i in 1:dd[3]) {
-        out[["itemSamp"]][, i] <- Bayesrel:::glbOnArray_custom(cov_samp[, -i, -i], progressbarTick)
+        out[["itemSamp"]][, i] <- Bayesrel:::glbOnArray_custom(cov_samp[, -i, -i], callback = progressbarTick)
       }
 
     }

@@ -196,6 +196,9 @@
         plotObjItem <- createJaspPlot(plot = p, title = nmsObjs[i], width = 400)
         plotObjItem$dependOn(options = names(idxSelected[i]))
         plotObjItem$position <- i
+        if (is.null(p)) {
+          plotObjItem$setError(gettext("KLD ordering failed because two variables have perfect correlation"))
+        }
         plotContainerItem[[nmsObjsNoGreek[i]]] <- plotObjItem
 
       }
@@ -246,10 +249,16 @@
     } else if (ordering == "orderItemKL") {
       samps <- coefItem[["itemSamp"]]
       og_samp <- samp_tmp
-      dists <- apply(samps, 2, .KLD.statistic, y = og_samp) # kl divergence
-      dists[length(dists)+1] <- 0
-      est <- est[order(dists), ]
-      dat$var <- factor(dat$var, levels = c(est$name))
+
+      dists <- try(apply(samps, 2, .KLD.statistic, y = og_samp)) # kl divergence
+      ### when there are only three variables and two of them have almost perfect correlation, KLD fails
+      if (any(round(cor(samps)[lower.tri(cor(samps))], 3) == 1) && class(dists) == "try-error") {
+        return(NULL)
+      } else {
+        dists[length(dists)+1] <- 0
+        est <- est[order(dists), ]
+        dat$var <- factor(dat$var, levels = c(est$name))
+      }
 
     } else if (ordering == "orderItemKS") {
       samps <- coefItem[["itemSamp"]]
