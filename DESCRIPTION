@@ -18,7 +18,8 @@ Imports:
   jaspGraphs,
   LaplacesDemon,
   MASS,
-  psych
+  psych,
+  lme4
 Remotes:
   juliuspf/Bayesrel,
   jasp-stats/jaspBase,

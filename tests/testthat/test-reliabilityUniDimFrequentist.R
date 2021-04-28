@@ -131,8 +131,8 @@ test_that("Frequentist omega results match for CFA with bootstrapping", {
 
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.791710063361508, "Point estimate", 0.713290360179145, "95% CI lower bound",
-                                      0.824420567218228, "95% CI upper bound"))
+                                 list(0.7917101, "Point estimate", 0.6791257, "95% CI lower bound",
+                                      0.8494223, "95% CI upper bound"))
 })
 
 
