@@ -1,0 +1,4 @@
+
+## Disable the saving of bootstrap samples
+In case you want to save space for your output file, you can check this box. Beware that this will also lead to a loss in speed for the analysis. This happens because some samples inside the reliability module are precomputed and stored, so that the analysis can move forward in a much faster way. However, this also results in an increased size of the output object, and if you decide to save your analysis the resulting file will contain these samples. If you decide to run the analysis with a large number of bootstrap samples you might want to check that box if you do not want an increased file size for your output. 
+

@@ -1,0 +1,191 @@
+options <- analysisOptions("reliabilityUniDimFrequentist")
+options$alphaItem <- TRUE
+options$alphaScale <- TRUE
+options$averageInterItemCor <- TRUE
+options$confidenceIntervalValue <- 0.9
+options$fitMeasures <- TRUE
+options$glbItem <- TRUE
+options$glbScale <- TRUE
+options$lambda2Item <- TRUE
+options$lambda2Scale <- TRUE
+options$lambda6Item <- TRUE
+options$lambda6Scale <- TRUE
+options$itemRestCor <- TRUE
+options$omegaItem <- TRUE
+options$omegaMethod <- "pfa"
+options$itemMean <- TRUE
+options$meanScale <- TRUE
+options$noSamples <- 300
+options$itemSd <- TRUE
+options$sdScale <- TRUE
+options$setSeed <- TRUE
+options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
+set.seed(1)
+results <- runAnalysis("reliabilityUniDimFrequentist", "test.csv", options)
+
+
+test_that("Frequentist Individual Item Reliability Statistics table results match for main options", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.55175372583945, 0.484048636403245, 0.525547257736439, 0.552088397696874,
+                                      0.560933950469576, 0.133621852799609, -0.18874858754, 1.05841360919316,
+                                      "contNormal", 0.230256036016286, 0.189422705634724, 0.196049691047581,
+                                      0.134230003173562, 0.223967986152454, 0.458747451806099, 0.05254867287,
+                                      1.01183864387684, "contcor1", 0.28356284370461, 0.282664399460191,
+                                      0.283087797840773, 0.222670519008231, 0.284134273672075, 0.363943642284291,
+                                      0.06968807084, 1.0041493380131, "contcor2", 0.671633441261486,
+                                      0.535041083185576, 0.600687137005109, 0.558313196445623, 0.685678770613101,
+                                      0.139002685382132, 3, 1.4213381090374, "facFive"))
+})
+
+test_that("Frequentist Scale Reliability Statistics table results match", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.525637056655306, 0.448585203881531, 0.490572327059451, 0.516365401424283,
+                                      0.567466299403832, 0.191748160936288, 2.93348815617, 2.79198402042951,
+                                      "Point estimate", 0.403771687499453, 0.279137827611668, 0.359901964004142,
+                                      0.396402831936408, 0.459081486688799, 0.0950770018748302, 2.4742476519306,
+                                      2.50253823732555, "90% CI lower bound", 0.626298737852686, 0.586595705707241,
+                                      0.60076050080959, 0.628395738756313, 0.685340010046143, 0.28002617012781,
+                                      3.3927286604094, 3.16486028196314, "90% CI upper bound"))
+})
+
+options <- analysisOptions("reliabilityUniDimFrequentist")
+options$alphaInterval <- "alphaBoot"
+options$alphaItem <- TRUE
+options$alphaMethod <- "alphaStand"
+options$alphaScale <- TRUE
+options$averageInterItemCor <- TRUE
+options$bootType <- "parametric"
+options$glbItem <- TRUE
+options$glbScale <- TRUE
+options$lambda2Item <- TRUE
+options$lambda2Scale <- TRUE
+options$lambda6Item <- TRUE
+options$lambda6Scale <- TRUE
+options$itemRestCor <- TRUE
+options$omegaItem <- TRUE
+options$omegaMethod <- "pfa"
+options$itemMean <- TRUE
+options$meanScale <- TRUE
+options$meanMethod <- "meanScores"
+options$sdMethod <- "meanScores"
+options$noSamples <- 300
+options$reverseScaledItems <- "debMiss30"
+options$itemSd <- TRUE
+options$sdScale <- TRUE
+options$setSeed <- TRUE
+options$variables <- c("contNormal", "contcor1", "contcor2", "debMiss30")
+set.seed(1)
+results <- runAnalysis("reliabilityUniDimFrequentist", "test.csv", options)
+
+
+test_that("Frequentist Individual Item Reliability Statistics table results match for special options", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.0192598705478672, 0.499115899922193, 0.0162871794638591, 0.529785814609134,
+                                      0.0265192931578479, 0.197671423943988, -0.18874858754, 1.05841360919316,
+                                      "contNormal", 0.0309308512589049, 0.173583399426978, 0.02887162264849,
+                                      0.142434129645294, 0.0490584701419857, 0.180747669167931, 0.05254867287,
+                                      1.01183864387684, "contcor1", 0.0466790689222427, 0.325209102320569,
+                                      0.0377062864873144, 0.252472824196733, 0.0611690101495298, 0.0513962438424752,
+                                      0.06968807084, 1.0041493380131, "contcor2", 0.671633441261486,
+                                      0.542545781005174, 0.600687137005109, 0.558313196445623, 0.685678770613101,
+                                      0.122450817493202, 15.9882068024571, 24.0657052758223, "debMiss30"
+                                 ))
+})
+
+test_that("Frequentist Scale Reliability Statistics table results match for special options", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.0471510241880039, 0.474438267321141, 0.0392336793613145, 0.517855238417142,
+                                      0.0684849632061198, 0.184127369413486, 2.764059782725, 5.48120849970767,
+                                      "Point estimate", 0.00702485789714729, 0.293267132435948, 0.00476660616888555,
+                                      0.394302611317106, 0.0149501819485384, 0.0939902180995729, 1.68976265760681,
+                                      4.81253858382921, "95% CI lower bound", 0.11513640292755, 0.61599605394659,
+                                      0.0878218264568898, 0.635557616289631, 0.216185154128616, 0.286242462411683,
+                                      3.83835690784319, 6.36738428322095, "95% CI upper bound"))
+})
+
+
+
+test_that("Frequentist omega results match for CFA with bootstrapping", {
+  options <- analysisOptions("reliabilityUniDimFrequentist")
+  options$fitMeasures <- TRUE
+  options$noSamples <- 100
+  options$omegaInterval <- "omegaBoot"
+  options$missingValues <- "excludeCasesListwise"
+  options$bootType <- "parametric"
+  options$omegaMethod <- "cfa"
+  options$setSeed <- TRUE
+  options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
+  set.seed(1)
+  results <- runAnalysis("reliabilityUniDimFrequentist", "asrm_mis.csv", options)
+
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_fitTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list("Chi-Square", 12.788508304247, "df", 5, "p.value", 0.0254433712709828,
+                                      "RMSEA", 0.15724319758923, "Lower CI RMSEA", 0.0507316506074521,
+                                      "Upper CI RMSEA", 0.266560548199575, "SRMR", 0.0708026289801857
+                                 ))
+
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.7917101, "Point estimate", 0.6791257, "95% CI lower bound",
+                                      0.8494223, "95% CI upper bound"))
+})
+
+
+options <- analysisOptions("reliabilityUniDimFrequentist")
+options$alphaItem <- TRUE
+options$alphaScale <- TRUE
+options$averageInterItemCor <- TRUE
+options$confidenceIntervalValue <- 0.9
+options$fitMeasures <- TRUE
+options$glbItem <- TRUE
+options$glbScale <- TRUE
+options$lambda2Item <- TRUE
+options$lambda2Scale <- TRUE
+options$lambda6Item <- TRUE
+options$lambda6Scale <- TRUE
+options$itemRestCor <- TRUE
+options$omegaItem <- TRUE
+options$omegaMethod <- "pfa"
+options$itemMean <- TRUE
+options$meanScale <- TRUE
+options$noSamples <- 300
+options$itemSd <- TRUE
+options$disableSampleSave <- TRUE
+options$sdScale <- TRUE
+options$setSeed <- TRUE
+options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
+set.seed(1)
+results <- runAnalysis("reliabilityUniDimFrequentist", "test.csv", options)
+
+
+test_that("Frequentist Individual Item Reliability Statistics table results match for main options with disabled sample saving", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.55175372583945, 0.484048636403245, 0.525547257736439, 0.552088397696874,
+                                      0.560933950469576, 0.133621852799609, -0.18874858754, 1.05841360919316,
+                                      "contNormal", 0.230256036016286, 0.189422705634724, 0.196049691047581,
+                                      0.134230003173562, 0.223967986152454, 0.458747451806099, 0.05254867287,
+                                      1.01183864387684, "contcor1", 0.28356284370461, 0.282664399460191,
+                                      0.283087797840773, 0.222670519008231, 0.284134273672075, 0.363943642284291,
+                                      0.06968807084, 1.0041493380131, "contcor2", 0.671633441261486,
+                                      0.535041083185576, 0.600687137005109, 0.558313196445623, 0.685678770613101,
+                                      0.139002685382132, 3, 1.4213381090374, "facFive"))
+})
+
+test_that("Frequentist Scale Reliability Statistics table results match with disabled sample saving", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.525637056655306, 0.448585203881531, 0.490572327059451, 0.516365401424283,
+                                      0.567466299403832, 0.191748160936288, 2.93348815617, 2.79198402042951,
+                                      "Point estimate", 0.403771687499453, 0.279137827611668, 0.359901964004142,
+                                      0.396402831936408, 0.459081486688799, 0.0950770018748302, 2.4742476519306,
+                                      2.50253823732555, "90% CI lower bound", 0.626298737852686, 0.586595705707241,
+                                      0.60076050080959, 0.628395738756313, 0.685340010046143, 0.28002617012781,
+                                      3.3927286604094, 3.16486028196314, "90% CI upper bound"))
+})
+

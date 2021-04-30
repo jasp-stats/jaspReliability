@@ -22,9 +22,9 @@ Description
 
 	Analysis
 	{
-		title:	qsTr("Single-Test Reliability Analysis")
-		qml: 	"ReliabilityFrequentist.qml"
-		func: 	"reliabilityFrequentist"
+		title:	qsTr("Unidimensional Reliability")
+		qml: 	"uniDimFrequentist.qml"
+		func: 	"reliabilityUniDimFrequentist"
 	}
 	Analysis
 	{
@@ -43,9 +43,9 @@ Description
 
 	Analysis
 	{
-		menu: 	qsTr("Single-Test Reliability Analysis")
-		title: 	qsTr("Bayesian Single-Test Reliability Analysis")
-		qml: 	"ReliabilityBayesian.qml"
-		func: 	"reliabilityBayesian"
+		menu: 	qsTr("Unidimensional Reliability")
+		title: 	qsTr("Bayesian Unidimensional Reliability")
+		qml: 	"uniDimBayesian.qml"
+		func: 	"reliabilityUniDimBayesian"
 	}
 }
