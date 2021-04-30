@@ -3,21 +3,22 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-03-06 15:52\n"
-"PO-Revision-Date: 2020-12-02 21:29+0000\n"
-"Last-Translator: JASP Stats <b.boutin@uva.nl>\n"
+"PO-Revision-Date: 2021-04-26 20:32+0000\n"
+"Last-Translator: Alex França <alex.tonante@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
-"jaspReliability/pt/>\n"
+"jaspreliability-r/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
 "X-Language: en_US\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
 
 msgid "Intraclass Correlation"
-msgstr ""
+msgstr "Correlação Intraclasse"
 
 #, fuzzy
 msgid "Type"
@@ -127,8 +128,9 @@ msgstr "RÂ² Posterior"
 msgid "Posterior Plots"
 msgstr "Amostras posteriores"
 
+#, fuzzy
 msgid "Density"
-msgstr ""
+msgstr "Densidade"
 
 msgid "If Item Dropped Posterior Plots"
 msgstr ""
@@ -191,7 +193,6 @@ msgstr ""
 msgid "Fit Measure"
 msgstr "Medidas Adicionais de Ajuste"
 
-#, fuzzy
 msgid "Value"
 msgstr "Valor"
 
