@@ -128,7 +128,7 @@ test_that("Guttman's lambda6 item plot matches", {
 test_that("McDonald's omega item plot matches", {
   plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_plotContainerItem"]][["collection"]][["stateContainer_plotContainerItem_omega"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "omega-item", dir="UniDimBayesian")
+  jaspTools::expect_equal_plots(testPlot, "omega-item", dir="uniDimBayesian")
 })
 
 test_that("Cronbach's alpha traceplot plot matches", {
