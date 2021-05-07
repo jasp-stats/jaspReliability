@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-03-06 15:52\n"
+"POT-Creation-Date: 2021-05-07 13:27\n"
 "PO-Revision-Date: 2021-03-18 05:18+0000\n"
 "Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -51,15 +51,33 @@ msgstr "Mittelwert"
 msgid "sd"
 msgstr "sd"
 
-msgid "The covariance matrix of the data is not invertible"
-msgstr "Die Kovarianzmatrix der Daten ist nicht invertierbar"
+msgid "Posterior Plots"
+msgstr "Posterior Abbildungen"
 
-msgid "%s Of the observations, pairwise complete cases were used."
+msgid "Density"
+msgstr "Dichte"
+
+msgid "If Item Dropped Posterior Plots"
+msgstr "Falls-Item-ausgelassen Posterior-Abbildungen"
+
+msgid "KLD ordering failed because two variables have perfect correlation"
 msgstr ""
-"%s der Beobachtungen, es wurden paarweise vollständige Fälle verwendet."
 
-msgid "%s Of the observations, %1.f complete cases were used."
-msgstr "%s der Beobachtungen, es wurden %1.f vollständige Fälle verwendet."
+msgid "Item Dropped"
+msgstr "Item ausgelassen"
+
+msgid "Eigenvalue"
+msgstr "Eigenwert"
+
+#, fuzzy
+msgid "Eigenvalue No."
+msgstr "Eigenwert"
+
+msgid "Convergence Traceplot"
+msgstr "Konvergenz-Verlaufsdiagramm"
+
+msgid "Iterations"
+msgstr "Iterationen"
 
 msgid "Bayesian Scale Reliability Statistics"
 msgstr "Bayessche Skalenparameter-Reliabilitätsstatistiken"
@@ -76,23 +94,22 @@ msgstr "%s untere Grenze"
 msgid "%s upper bound"
 msgstr "%s obere Grenze"
 
-msgid "Please enter at least 3 variables to do an analysis. %s"
-msgstr "Bitte gib mindestens 3 Variablen ein, um eine Analyse zu machen. %s"
-
-msgid "Please enter at least 3 variables to do an analysis."
-msgstr "Bitte gib mindestens 3 Variablen ein, um eine Analyse zu machen."
-
-msgid "%s (if item dropped)"
-msgstr "%s (falls Item ausgelassen)"
-
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr "Bayessche Einzelitem-Reliabilitätsstatistiken"
 
 msgid "Item"
 msgstr "Item"
 
+msgid "%s (if item dropped)"
+msgstr "%s (falls Item ausgelassen)"
+
 msgid "Posterior Mean"
 msgstr "Posterior Mittelwert"
+
+#, fuzzy
+msgid ""
+"%s Please enter at least 3 variables for the if item dropped statistics."
+msgstr "Bitte gib mindestens 3 Variablen ein, um eine Analyse zu machen."
 
 msgid ""
 "Probability that Reliability Statistic is Larger than %.2f and Smaller than "
@@ -113,35 +130,53 @@ msgstr "Prior"
 msgid "Posterior"
 msgstr "Posterior"
 
-msgid "Posterior Plots"
-msgstr "Posterior Abbildungen"
+msgid "%s Of the observations, pairwise complete cases were used."
+msgstr ""
+"%s der Beobachtungen, es wurden paarweise vollständige Fälle verwendet."
 
-msgid "Density"
-msgstr "Dichte"
+msgid "%s Of the observations, %1.f complete cases were used."
+msgstr "%s der Beobachtungen, es wurden %1.f vollständige Fälle verwendet."
 
-msgid "If Item Dropped Posterior Plots"
-msgstr "Falls-Item-ausgelassen Posterior-Abbildungen"
+msgid "%s"
+msgstr ""
 
-msgid "Item Dropped"
-msgstr "Item ausgelassen"
+msgid "%s Variables %s and %s correlated perfectly."
+msgstr ""
 
-msgid "Eigenvalue"
-msgstr "Eigenwert"
+#, fuzzy
+msgid "Please enter at least 2 variables to do an analysis"
+msgstr "Bitte gib mindestens 3 Variablen ein, um eine Analyse zu machen."
 
-msgid "Factors"
-msgstr "Faktoren"
+msgid ""
+"Omega calculation with CFA failed. Try changing to PFA in Advanced Options"
+msgstr ""
 
-msgid "Convergence Traceplot"
-msgstr "Konvergenz-Verlaufsdiagramm"
+msgid ""
+"Omega bootstrapped interval calculation with CFA failed.\n"
+"                                          \n"
+" Try changing to PFA in 'Advanced Options'"
+msgstr ""
 
-msgid "Iterations"
-msgstr "Iterationen"
+msgid "Omega calculation with PFA failed"
+msgstr ""
 
-msgid "%.2f"
-msgstr "%.2f"
+msgid "Omega interval calculation with PFA failed"
+msgstr ""
 
-msgid "The analysis crashed with the following error message:"
-msgstr "Die Analyse stürzte mit der folgenden Fehlermeldung ab:"
+msgid "Omega item dropped statistics with CFA failed"
+msgstr ""
+
+msgid "Omega item dropped statistics with PFA failed"
+msgstr ""
+
+msgid "Lambda6 calculation failed"
+msgstr ""
+
+msgid "Lambda6 interval calculation failed"
+msgstr ""
+
+msgid "Lambda6 item dropped statistics failed"
+msgstr ""
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Frequentistische Skalenparameter-Reliabilitätsstatistiken"
@@ -149,32 +184,11 @@ msgstr "Frequentistische Skalenparameter-Reliabilitätsstatistiken"
 msgid "Point estimate"
 msgstr "Punktschätzung"
 
-msgid ""
-"%1$sMcDonald's %2$s estimation method switched to PFA because the CFA\n"
-"                                    did not find a solution."
-msgstr ""
-"%1$sMcDonalds %2$s Schätzmethode umgestellt auf PFA, weil die CFA\n"
-"                                    keine Lösung gefunden hat ."
-
-msgid ""
-"%s Some confidence intervals could not be computed because none of the "
-"bootstrapped covariance matrices were invertible."
-msgstr ""
-"%s Einige Konfidenzintervalle konnten nicht berechnet werden, weil keine der "
-"Matrizen des Bootstraps invertierbar waren."
-
-msgid "If item dropped"
-msgstr "Falls Item ausgelassen"
-
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr "Frequentistische Einzelitem-Reliabilitätsstatistiken"
 
-msgid ""
-"McDonald's %s estimation method for item-dropped statistics switched to PFA "
-"because the CFA did not find a solution."
-msgstr ""
-"McDonalds %s-Schätzmethode für Item-Auslassen-Statistiken wurde auf PFA "
-"umgestellt, weil die CFA keine Lösung fand."
+msgid "If item dropped"
+msgstr "Falls Item ausgelassen"
 
 msgid "Fit Measures of Single Factor Model Fit"
 msgstr "Anpassungsmaße der Einzelfaktor-Modellanpassung"
@@ -185,13 +199,6 @@ msgstr "Anpassungs-Maß"
 msgid "Value"
 msgstr "Wert"
 
-msgid ""
-"Fit measures cannot be displayed because the McDonald's %s estimation method "
-"switched to PFA as the CFA did not find a solution."
-msgstr ""
-"Anpassungsmaße können nicht angezeigt werden, weil die McDonalds %s-"
-"Schätzmethode auf PFA umgestellt wurde, da die CFA keine Lösung gefunden hat."
-
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
 msgstr[0] "Das folgende Item korrelierte negativ mit der Skala: %s. "
@@ -201,3 +208,47 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "Das folgende Item wurde umgekehrt kodiert: %s. "
 msgstr[1] "Die folgenden Items wurden umgekehrt kodiert: %s. "
+
+#~ msgid "The covariance matrix of the data is not invertible"
+#~ msgstr "Die Kovarianzmatrix der Daten ist nicht invertierbar"
+
+#~ msgid "Please enter at least 3 variables to do an analysis. %s"
+#~ msgstr "Bitte gib mindestens 3 Variablen ein, um eine Analyse zu machen. %s"
+
+#~ msgid "Factors"
+#~ msgstr "Faktoren"
+
+#~ msgid "%.2f"
+#~ msgstr "%.2f"
+
+#~ msgid "The analysis crashed with the following error message:"
+#~ msgstr "Die Analyse stürzte mit der folgenden Fehlermeldung ab:"
+
+#~ msgid ""
+#~ "%1$sMcDonald's %2$s estimation method switched to PFA because the CFA\n"
+#~ "                                    did not find a solution."
+#~ msgstr ""
+#~ "%1$sMcDonalds %2$s Schätzmethode umgestellt auf PFA, weil die CFA\n"
+#~ "                                    keine Lösung gefunden hat ."
+
+#~ msgid ""
+#~ "%s Some confidence intervals could not be computed because none of the "
+#~ "bootstrapped covariance matrices were invertible."
+#~ msgstr ""
+#~ "%s Einige Konfidenzintervalle konnten nicht berechnet werden, weil keine "
+#~ "der Matrizen des Bootstraps invertierbar waren."
+
+#~ msgid ""
+#~ "McDonald's %s estimation method for item-dropped statistics switched to "
+#~ "PFA because the CFA did not find a solution."
+#~ msgstr ""
+#~ "McDonalds %s-Schätzmethode für Item-Auslassen-Statistiken wurde auf PFA "
+#~ "umgestellt, weil die CFA keine Lösung fand."
+
+#~ msgid ""
+#~ "Fit measures cannot be displayed because the McDonald's %s estimation "
+#~ "method switched to PFA as the CFA did not find a solution."
+#~ msgstr ""
+#~ "Anpassungsmaße können nicht angezeigt werden, weil die McDonalds %s-"
+#~ "Schätzmethode auf PFA umgestellt wurde, da die CFA keine Lösung gefunden "
+#~ "hat."

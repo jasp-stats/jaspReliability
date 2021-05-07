@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-03-06 15:52\n"
+"POT-Creation-Date: 2021-05-07 13:27\n"
 "PO-Revision-Date: 2021-04-26 20:32+0000\n"
 "Last-Translator: Alex França <alex.tonante@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
@@ -57,14 +57,35 @@ msgstr "média:"
 msgid "sd"
 msgstr "padrão:"
 
-msgid "The covariance matrix of the data is not invertible"
+#, fuzzy
+msgid "Posterior Plots"
+msgstr "Amostras posteriores"
+
+#, fuzzy
+msgid "Density"
+msgstr "Densidade"
+
+msgid "If Item Dropped Posterior Plots"
 msgstr ""
 
-msgid "%s Of the observations, pairwise complete cases were used."
+msgid "KLD ordering failed because two variables have perfect correlation"
 msgstr ""
 
-msgid "%s Of the observations, %1.f complete cases were used."
+msgid "Item Dropped"
 msgstr ""
+
+msgid "Eigenvalue"
+msgstr ""
+
+msgid "Eigenvalue No."
+msgstr ""
+
+msgid "Convergence Traceplot"
+msgstr ""
+
+#, fuzzy
+msgid "Iterations"
+msgstr "Citação:"
 
 msgid "Bayesian Scale Reliability Statistics"
 msgstr ""
@@ -84,16 +105,6 @@ msgstr "limite inferior:"
 msgid "%s upper bound"
 msgstr "limite superior:"
 
-msgid "Please enter at least 3 variables to do an analysis. %s"
-msgstr ""
-
-msgid "Please enter at least 3 variables to do an analysis."
-msgstr ""
-
-#, fuzzy
-msgid "%s (if item dropped)"
-msgstr "McDonald's  (se o item for excluído)"
-
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr ""
 
@@ -101,8 +112,16 @@ msgid "Item"
 msgstr ""
 
 #, fuzzy
+msgid "%s (if item dropped)"
+msgstr "McDonald's  (se o item for excluído)"
+
+#, fuzzy
 msgid "Posterior Mean"
 msgstr "Amostras posteriores"
+
+msgid ""
+"%s Please enter at least 3 variables for the if item dropped statistics."
+msgstr ""
 
 msgid ""
 "Probability that Reliability Statistic is Larger than %.2f and Smaller than "
@@ -124,38 +143,50 @@ msgstr "Anterior"
 msgid "Posterior"
 msgstr "RÂ² Posterior"
 
-#, fuzzy
-msgid "Posterior Plots"
-msgstr "Amostras posteriores"
-
-#, fuzzy
-msgid "Density"
-msgstr "Densidade"
-
-msgid "If Item Dropped Posterior Plots"
+msgid "%s Of the observations, pairwise complete cases were used."
 msgstr ""
 
-msgid "Item Dropped"
+msgid "%s Of the observations, %1.f complete cases were used."
 msgstr ""
 
-msgid "Eigenvalue"
+msgid "%s"
 msgstr ""
 
-#, fuzzy
-msgid "Factors"
-msgstr "Fatores"
-
-msgid "Convergence Traceplot"
+msgid "%s Variables %s and %s correlated perfectly."
 msgstr ""
 
-#, fuzzy
-msgid "Iterations"
-msgstr "Citação:"
-
-msgid "%.2f"
+msgid "Please enter at least 2 variables to do an analysis"
 msgstr ""
 
-msgid "The analysis crashed with the following error message:"
+msgid ""
+"Omega calculation with CFA failed. Try changing to PFA in Advanced Options"
+msgstr ""
+
+msgid ""
+"Omega bootstrapped interval calculation with CFA failed.\n"
+"                                          \n"
+" Try changing to PFA in 'Advanced Options'"
+msgstr ""
+
+msgid "Omega calculation with PFA failed"
+msgstr ""
+
+msgid "Omega interval calculation with PFA failed"
+msgstr ""
+
+msgid "Omega item dropped statistics with CFA failed"
+msgstr ""
+
+msgid "Omega item dropped statistics with PFA failed"
+msgstr ""
+
+msgid "Lambda6 calculation failed"
+msgstr ""
+
+msgid "Lambda6 interval calculation failed"
+msgstr ""
+
+msgid "Lambda6 item dropped statistics failed"
 msgstr ""
 
 msgid "Frequentist Scale Reliability Statistics"
@@ -165,25 +196,10 @@ msgstr ""
 msgid "Point estimate"
 msgstr "Estimativas"
 
-msgid ""
-"%1$sMcDonald's %2$s estimation method switched to PFA because the CFA\n"
-"                                    did not find a solution."
-msgstr ""
-
-msgid ""
-"%s Some confidence intervals could not be computed because none of the "
-"bootstrapped covariance matrices were invertible."
-msgstr ""
-
-msgid "If item dropped"
-msgstr ""
-
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr ""
 
-msgid ""
-"McDonald's %s estimation method for item-dropped statistics switched to PFA "
-"because the CFA did not find a solution."
+msgid "If item dropped"
 msgstr ""
 
 msgid "Fit Measures of Single Factor Model Fit"
@@ -196,11 +212,6 @@ msgstr "Medidas Adicionais de Ajuste"
 msgid "Value"
 msgstr "Valor"
 
-msgid ""
-"Fit measures cannot be displayed because the McDonald's %s estimation method "
-"switched to PFA as the CFA did not find a solution."
-msgstr ""
-
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
 msgstr[0] ""
@@ -210,3 +221,7 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] ""
 msgstr[1] ""
+
+#, fuzzy
+#~ msgid "Factors"
+#~ msgstr "Fatores"
