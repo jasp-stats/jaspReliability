@@ -68,8 +68,7 @@ options$omegaItem <- TRUE
 options$omegaMethod <- "pfa"
 options$meanItem <- TRUE
 options$meanScale <- TRUE
-options$meanMethod <- "meanScores"
-options$sdMethod <- "meanScores"
+options$scoresMethod <- "meanScores"
 options$noSamples <- 300
 options$reverseScaledItems <- "debMiss30"
 options$sdItem <- TRUE

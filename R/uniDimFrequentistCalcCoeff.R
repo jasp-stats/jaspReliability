@@ -390,7 +390,7 @@
     if (options[["intervalOn"]]) {
       ciValue <- options[["confidenceIntervalValue"]]
       if (is.null(out[["samp"]])) {
-        startProgressbar(options[["noSamples"]] %/% 500 + 1)
+        startProgressbar(4)
         out[["samp"]] <- Bayesrel:::glbOnArray_custom(model[["bootSamp"]], callback = progressbarTick)
 
       }
@@ -431,7 +431,7 @@
       for (i in 1:model[["k"]]) {
         itemDroppedCovs[i, , ] <- model[["data_cov"]][-i, -i]
       }
-      out[["itemDropped"]] <- c(Bayesrel:::glbOnArray_custom(itemDroppedCovs, callback = progressbarTick))
+      out[["itemDropped"]] <- c(Bayesrel:::glbOnArray_custom(itemDroppedCovs))
     }
 
     if (options[["disableSampleSave"]])
@@ -491,7 +491,7 @@
   if (options[["meanScale"]] && is.null(model[["empty"]])) {
     ciValue <- options[["confidenceIntervalValue"]]
 
-    if (options[["meanMethod"]] == "sumScores") {
+    if (options[["scoresMethod"]] == "sumScores") {
       out[["est"]] <- mean(rowSums(dataset, na.rm = TRUE))
       sdmean <- sd(rowSums(dataset, na.rm = TRUE))
     } else {
@@ -509,7 +509,7 @@
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["meanObj"]] <- createJaspState(out, dependencies = c("meanScale", "meanMethod"))
+    stateContainer[["meanObj"]] <- createJaspState(out, dependencies = c("meanScale", "scoresMethod"))
   }
   return(out)
 }
@@ -524,7 +524,7 @@
   if (options[["sdScale"]] && is.null(model[["empty"]])) {
     ciValue <- options[["confidenceIntervalValue"]]
 
-    out[["est"]] <- if (options[["sdMethod"]] == "sumScores")
+    out[["est"]] <- if (options[["scoresMethod"]] == "sumScores")
       sd(rowSums(dataset, na.rm = TRUE))
     else
       sd(rowMeans(dataset, na.rm = TRUE))
@@ -540,7 +540,7 @@
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["sdObj"]] <- createJaspState(out, dependencies = c("sdScale", "sdMethod"))
+    stateContainer[["sdObj"]] <- createJaspState(out, dependencies = c("sdScale", "scoresMethod"))
   }
   return(out)
 }

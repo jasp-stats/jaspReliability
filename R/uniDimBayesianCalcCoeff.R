@@ -174,6 +174,7 @@
     if (is.null(out[["samp"]])) {
       startProgressbar(model[["progressbarLength"]])
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applylambda2, progressbarTick))
+
     }
     out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
@@ -306,17 +307,24 @@
     ciValue <- options[["credibleIntervalValueScale"]]
 
     if (is.null(out[["samp"]])) {
-      startProgressbar(model[["progressbarLength"]] %/% 500 + 1)
-      out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::glbOnArray_custom,
-                                        callback = function(){progressbarTick()}))
+
+      dd <- dim(model[["gibbsSamp"]])
+      out[["samp"]] <- matrix(0, dd[1], dd[2])
+
+      startProgressbar(dd[1] * 3)
+      for (i in 1:dd[1]) {
+        out[["samp"]][i, ] <- Bayesrel:::glbOnArray_custom(model[["gibbsSamp"]][i, , ,], callback = progressbarTick)
+      }
+
     }
+
     out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["glbObj"]] <- createJaspState(out,
+    stateContainer[["glbScaleObj"]] <- createJaspState(out,
                                                    dependencies = c("glbScale", "credibleIntervalValueScale"))
   }
 
@@ -342,11 +350,12 @@
     ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
-      startProgressbar((model[["progressbarLength"]] %/% 500 + 1) * ncol(dataset))
       # special case glb, because it works with arrays not only matrices, small speedup...
       dd <- dim(model[["gibbsSamp"]])
       out[["itemSamp"]] <- matrix(0, dd[1]*dd[2], dd[3])
       cov_samp <- array(model[["gibbsSamp"]], c(dd[1]*dd[2], dd[3], dd[3]))
+
+      startProgressbar(3 * ncol(dataset))
       for (i in 1:dd[3]) {
         out[["itemSamp"]][, i] <- Bayesrel:::glbOnArray_custom(cov_samp[, -i, -i], callback = progressbarTick)
       }
@@ -415,7 +424,7 @@
   if (is.null(out))
     out <- list()
   if (options[["meanScale"]] && is.null(model[["empty"]])) {
-    out[["est"]] <- if (options[["meanMethod"]] == "sumScores")
+    out[["est"]] <- if (options[["scoresMethod"]] == "sumScores")
       mean(rowSums(dataset, na.rm = TRUE))
     else
       mean(rowMeans(dataset, na.rm = TRUE))
@@ -426,7 +435,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["meanObj"]] <- createJaspState(out, dependencies = c("meanScale", "meanMethod"))
+    stateContainer[["meanObj"]] <- createJaspState(out, dependencies = c("meanScale", "scoresMethod"))
   }
   return(out)
 }
@@ -439,7 +448,7 @@
   if (is.null(out))
     out <- list()
   if (options[["sdScale"]] && is.null(model[["empty"]])) {
-    out[["est"]] <- if (options[["sdMethod"]] == "sumScores")
+    out[["est"]] <- if (options[["scoresMethod"]] == "sumScores")
       sd(rowSums(dataset, na.rm = TRUE))
     else
       sd(rowMeans(dataset, na.rm = TRUE))
@@ -450,7 +459,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["sdObj"]] <- createJaspState(out, dependencies = c("sdScale", "sdMethod"))
+    stateContainer[["sdObj"]] <- createJaspState(out, dependencies = c("sdScale", "scoresMethod"))
   }
   return(out)
 }

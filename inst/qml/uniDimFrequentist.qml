@@ -98,33 +98,21 @@ Form
 			}
 
 			CheckBox { name: "averageInterItemCor";	label: qsTr("Average interitem correlation")}
-			CheckBox
-			{
-				name: "meanScale"
-				label: qsTr("Mean")
 
-				RadioButtonGroup
-				{
-						title: 	qsTr("")
-						name: 	"meanMethod"
+			RowLayout {
+				CheckBox { name: "meanScale";	label: qsTr("Mean");	id: mean}
+				CheckBox { name: "sdScale";		label: qsTr("SD");		id: sd}
 
-						RadioButton { value: "sumScores"; label: qsTr("of sum scores"); checked: true}
-						RadioButton { value: "meanScores"; label: qsTr("of mean scores")}
-				}
 			}
-			CheckBox
+			RadioButtonGroup
 			{
-				name: "sdScale"
-				label: qsTr("Standard deviation")
+				indent:		true
+				enabled:	mean.checked || sd.checked
+				title:		qsTr("")
+				name:		"scoresMethod"
 
-				RadioButtonGroup
-				{
-						title: 	qsTr("")
-						name: 	"sdMethod"
-
-						RadioButton { value: "sumScores"; label: qsTr("of sum scores"); checked: true}
-						RadioButton { value: "meanScores"; label: qsTr("of mean scores")}
-				}
+				RadioButton { value: "sumScores";	label: qsTr("of participants' sum scores"); checked: true}
+				RadioButton { value: "meanScores";	label: qsTr("of participants' mean scores")}
 			}
 
 		}

@@ -7,8 +7,7 @@ options$glbScale <- TRUE
 options$averageInterItemCor <- TRUE
 options$meanScale <- TRUE
 options$sdScale <- TRUE
-options$meanMethod <- "meanScores"
-options$sdMethod <- "meanScores"
+options$scoresMethod <- "meanScores"
 options$credibleIntervalValueItem <- 0.9
 options$omegaItem <- TRUE
 options$alphaItem <- TRUE
@@ -196,8 +195,7 @@ options$glbScale <- TRUE
 options$averageInterItemCor <- TRUE
 options$meanScale <- TRUE
 options$sdScale <- TRUE
-options$meanMethod <- "meanScores"
-options$sdMethod <- "meanScores"
+options$scoresMethod <- "meanScores"
 options$credibleIntervalValueItem <- 0.9
 options$omegaItem <- TRUE
 options$alphaItem <- TRUE
