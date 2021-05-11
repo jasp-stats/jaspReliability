@@ -18,8 +18,8 @@ options$glbItem <- TRUE
 options$plotItem <- TRUE
 options$orderItem <- TRUE
 options$itemRestCor <- TRUE
-options$itemMean <- TRUE
-options$itemSd <- TRUE
+options$meanItem <- TRUE
+options$sdItem <- TRUE
 options$plotPosterior <- TRUE
 options$fixXRange <- TRUE
 options$dispPrior <- TRUE
@@ -206,8 +206,8 @@ options$lambda6Item <- TRUE
 options$glbItem <- TRUE
 options$orderItem <- TRUE
 options$itemRestCor <- TRUE
-options$itemMean <- TRUE
-options$itemSd <- TRUE
+options$meanItem <- TRUE
+options$sdItem <- TRUE
 options$probTable <- TRUE
 options$probTableValueLow <- 0.1
 options$probTableValueHigh <- 0.3

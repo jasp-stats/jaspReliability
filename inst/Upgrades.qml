@@ -40,16 +40,6 @@ Upgrades
 				from:	"guttman6Item"
 				to:		"lambda6Item"
 			}
-			ChangeRename
-			{
-				from:	"meanItem"
-				to:		"itemMean"
-			}
-			ChangeRename
-			{
-				from:	"sdItem"
-				to:		"itemSd"
-			}
 			ChangeJS
 			{
 				name:		"bootType"
@@ -103,16 +93,6 @@ Upgrades
 			{
 				from:	"guttman6Item"
 				to:		"lambda6Item"
-			}
-			ChangeRename
-			{
-				from:	"meanItem"
-				to:		"itemMean"
-			}
-			ChangeRename
-			{
-				from:	"sdItem"
-				to:		"itemSd"
 			}
 			ChangeRename
 			{

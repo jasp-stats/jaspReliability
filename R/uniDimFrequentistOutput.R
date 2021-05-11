@@ -97,7 +97,7 @@
 
   itemTable <- createJaspTable(gettext("Frequentist Individual Item Reliability Statistics"))
   itemTable$dependOn(options = c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item", "glbItem",
-                                 "itemMean", "itemRestCor", "itemSd",
+                                 "meanItem", "itemRestCor", "sdItem",
                                  "omegaScale", "alphaScale", "lambda2Scale", "lambda6Scale", "glbScale"))
   # adding the scale options fixes a bug, where the item table would remain displayed
   # after one had checked a scale coefficient box and the item coefficient box and then unchecked the scale coeff box

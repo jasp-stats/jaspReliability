@@ -202,8 +202,8 @@ Form
 			}
 
 			CheckBox { name: "itemRestCor";						label: qsTr("Item-rest correlation")			}
-			CheckBox { name: "itemMean";						label: qsTr("Mean")								}
-			CheckBox { name: "itemSd";							label: qsTr("Standard deviation")				}
+			CheckBox { name: "meanItem";						label: qsTr("Mean")								}
+			CheckBox { name: "sdItem";							label: qsTr("Standard deviation")				}
 		}
 
 		Group

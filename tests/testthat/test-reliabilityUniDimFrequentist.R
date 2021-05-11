@@ -13,10 +13,10 @@ options$lambda6Scale <- TRUE
 options$itemRestCor <- TRUE
 options$omegaItem <- TRUE
 options$omegaMethod <- "pfa"
-options$itemMean <- TRUE
+options$meanItem <- TRUE
 options$meanScale <- TRUE
 options$noSamples <- 300
-options$itemSd <- TRUE
+options$sdItem <- TRUE
 options$sdScale <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
@@ -66,13 +66,13 @@ options$lambda6Scale <- TRUE
 options$itemRestCor <- TRUE
 options$omegaItem <- TRUE
 options$omegaMethod <- "pfa"
-options$itemMean <- TRUE
+options$meanItem <- TRUE
 options$meanScale <- TRUE
 options$meanMethod <- "meanScores"
 options$sdMethod <- "meanScores"
 options$noSamples <- 300
 options$reverseScaledItems <- "debMiss30"
-options$itemSd <- TRUE
+options$sdItem <- TRUE
 options$sdScale <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "debMiss30")
@@ -151,10 +151,10 @@ options$lambda6Scale <- TRUE
 options$itemRestCor <- TRUE
 options$omegaItem <- TRUE
 options$omegaMethod <- "pfa"
-options$itemMean <- TRUE
+options$meanItem <- TRUE
 options$meanScale <- TRUE
 options$noSamples <- 300
-options$itemSd <- TRUE
+options$sdItem <- TRUE
 options$disableSampleSave <- TRUE
 options$sdScale <- TRUE
 options$setSeed <- TRUE

@@ -308,7 +308,7 @@
     if (is.null(out[["samp"]])) {
       startProgressbar(model[["progressbarLength"]] %/% 500 + 1)
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::glbOnArray_custom,
-                                        callback = progressbarTick))
+                                        callback = function(){progressbarTick()}))
     }
     out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
@@ -490,15 +490,15 @@
   return(out)
 }
 
-.BayesianItemMean <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["itemMeanObj"]]$object))
-    return(.getStateContainerB(jaspResults)[["itemMeanObj"]]$object)
+.BayesianMeanItem <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["meanItemObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["meanItemObj"]]$object)
 
-  out <- model[["itemMean"]]
+  out <- model[["meanItem"]]
   if (is.null(out))
     out <- list()
   # is box even checked?
-  if (options[["itemMean"]] && is.null(model[["empty"]])) {
+  if (options[["meanItem"]] && is.null(model[["empty"]])) {
 
     out[["itemEst"]] <- colMeans(dataset, na.rm = TRUE)
 
@@ -508,20 +508,20 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["itemMeanObj"]] <- createJaspState(out, dependencies = c("itemMean"))
+    stateContainer[["meanItemObj"]] <- createJaspState(out, dependencies = c("meanItem"))
   }
   return(out)
 }
 
-.BayesianItemSd <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["itemSdObj"]]$object))
-    return(.getStateContainerB(jaspResults)[["itemSdObj"]]$object)
+.BayesianSdItem <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["sdItemObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["sdItemObj"]]$object)
 
-  out <- model[["itemSd"]]
+  out <- model[["sdItem"]]
   if (is.null(out))
     out <- list()
   # is box even checked?
-  if (options[["itemSd"]] && is.null(model[["empty"]])) {
+  if (options[["sdItem"]] && is.null(model[["empty"]])) {
 
     out[["itemEst"]] <- apply(dataset, 2, sd, na.rm = TRUE)
     out[["itemCred"]] <- matrix(NA_real_, ncol(dataset), 2)
@@ -530,7 +530,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["itemSdObj"]] <- createJaspState(out, dependencies = c("itemSd"))
+    stateContainer[["sdItemObj"]] <- createJaspState(out, dependencies = c("sdItem"))
   }
   return(out)
 }

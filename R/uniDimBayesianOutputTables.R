@@ -86,7 +86,7 @@
   itemTable <- createJaspTable(gettext("Bayesian Individual Item Reliability Statistics"))
 
   itemTable$dependOn(options = c("omegaItem",  "alphaItem",  "lambda2Item",  "lambda6Item", "glbItem",
-                                 "credibleIntervalValueItem", "itemRestCor", "itemMean", "itemSd",
+                                 "credibleIntervalValueItem", "itemRestCor", "meanItem", "sdItem",
                                  "alphaScale", "omegaScale", "lambda2Scale", "lambda6Scale", "glbScale"))
 
   itemTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")

@@ -29,8 +29,8 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
   model[["meanScale"]] <- .frequentistMean(jaspResults, dataset, options, model)
   model[["sdScale"]] <- .frequentistStdDev(jaspResults, dataset, options, model)
   model[["itemRestCor"]] <- .frequentistItemRestCor(jaspResults, dataset, options, model)
-  model[["itemMean"]] <- .frequentistItemMean(jaspResults, dataset, options, model)
-  model[["itemSd"]] <- .frequentistItemSd(jaspResults, dataset, options, model)
+  model[["meanItem"]] <- .frequentistMeanItem(jaspResults, dataset, options, model)
+  model[["sdItem"]] <- .frequentistSdItem(jaspResults, dataset, options, model)
 
   .frequentistScaleTable(         jaspResults, model, options)
   .frequentistItemTable(          jaspResults, model, options)
@@ -47,7 +47,7 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
     selectedEstimators  = unlist(options[c("omegaScale","alphaScale", "lambda2Scale", "lambda6Scale",
                                             "glbScale", "averageInterItemCor", "meanScale", "sdScale")]),
     itemDroppedSelected = unlist(options[c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item",
-                                            "glbItem", "itemRestCor", "itemMean", "itemSd")]),
+                                            "glbItem", "itemRestCor", "meanItem", "sdItem")]),
     namesEstimators     = list(
       tables = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
                  "Greatest Lower Bound", "Average interitem correlation", "mean", "sd"),

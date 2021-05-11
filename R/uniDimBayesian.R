@@ -31,8 +31,8 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
   model[["meanScale"]] <- .BayesianMean(jaspResults, dataset, options, model)
   model[["sdScale"]] <- .BayesianStdDev(jaspResults, dataset, options, model)
   model[["itemRestCor"]] <- .BayesianItemRestCor(jaspResults, dataset, options, model)
-  model[["itemMean"]] <- .BayesianItemMean(jaspResults, dataset, options, model)
-  model[["itemSd"]] <- .BayesianItemSd(jaspResults, dataset, options, model)
+  model[["meanItem"]] <- .BayesianMeanItem(jaspResults, dataset, options, model)
+  model[["sdItem"]] <- .BayesianSdItem(jaspResults, dataset, options, model)
 
   .BayesianScaleTable(         jaspResults, model, options)
   .BayesianItemTable(          jaspResults, model, options)
@@ -54,7 +54,7 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
     selectedEstimatorsPlots  = unlist(options[c("omegaScale", "alphaScale", "lambda2Scale", "lambda6Scale",
                                                 "glbScale")]),
     itemDroppedSelected = unlist(options[c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item","glbItem",
-                                           "itemRestCor", "itemMean", "itemSd")]),
+                                           "itemRestCor", "meanItem", "sdItem")]),
     itemDroppedSelectedItem = unlist(options[c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item",
                                                "glbItem")]),
 
