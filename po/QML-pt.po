@@ -517,11 +517,6 @@ msgctxt "uniDimBayesian|"
 msgid "Mean"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:105
-msgctxt "uniDimBayesian|"
-msgid ""
-msgstr ""
-
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:108
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:122
 msgctxt "uniDimBayesian|"
@@ -538,11 +533,6 @@ msgstr ""
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:206
 msgctxt "uniDimBayesian|"
 msgid "Standard deviation"
-msgstr ""
-
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:119
-msgctxt "uniDimBayesian|"
-msgid ""
 msgstr ""
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:130
@@ -794,11 +784,6 @@ msgctxt "uniDimFrequentist|"
 msgid "Mean"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:108
-msgctxt "uniDimFrequentist|"
-msgid ""
-msgstr ""
-
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:111
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:125
 msgctxt "uniDimFrequentist|"
@@ -815,11 +800,6 @@ msgstr ""
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:173
 msgctxt "uniDimFrequentist|"
 msgid "Standard deviation"
-msgstr ""
-
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:122
-msgctxt "uniDimFrequentist|"
-msgid ""
 msgstr ""
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:134
@@ -985,4 +965,24 @@ msgstr ""
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:352
 msgctxt "uniDimFrequentist|"
 msgid "Click to learn more about saving the samples."
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:105
+msgctxt "uniDimBayesian|"
+msgid ""
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:119
+msgctxt "uniDimBayesian|"
+msgid ""
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:108
+msgctxt "uniDimFrequentist|"
+msgid ""
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:122
+msgctxt "uniDimFrequentist|"
+msgid ""
 msgstr ""
