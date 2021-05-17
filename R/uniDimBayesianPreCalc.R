@@ -11,7 +11,7 @@
   derivedOptions <- .BayesianDerivedOptions(options)
 
   # what if no coefficient boxes are checked?
-  if(!any(derivedOptions[["selectedEstimators"]]) && !any(derivedOptions[["itemDroppedSelected"]])) {
+  if (!any(derivedOptions[["selectedEstimators"]]) && !any(derivedOptions[["itemDroppedSelected"]])) {
     variables <- options[["variables"]]
     empty <-  TRUE
     model <- list(empty = empty)

@@ -15,22 +15,6 @@
 
 .checkErrors <- function(dataset, options) {
 
-  # # check for existing inverse
-  # .checkInverse <- function() {
-  #   if (length(options[["variables"]]) > 2) {
-  #     use.cases <- "everything"
-  #     if (anyNA(dataset)) {
-  #       if (options[["missingValues"]] == "excludeCasesPairwise")
-  #         use.cases <- "pairwise.complete.obs"
-  #       else if (options[["missingValues"]] == "excludeCasesListwise")
-  #         use.cases <- "complete.obs"
-  #     }
-  #     if (isTryError(try(solve(cov(dataset, use = use.cases)),silent = TRUE))) {
-  #       return(gettext("The covariance matrix of the data is not invertible"))
-  #     }
-  #   }
-  #   return(NULL)
-  # }
 
   .hasErrors(dataset = dataset,
              type = c("infinity", "variance", "observations"),
@@ -38,7 +22,6 @@
              infinity.target = options$variables,
              variance.target = options$variables,
              observations.target = options$variables,
-             # varCovData.corFun = function(x) cor(x, use = "pairwise.complete.obs"),
              exitAnalysisIfErrors = TRUE)
 
 }
@@ -66,7 +49,7 @@
     if (length(pos) == 0) {
       footnote <- gettextf("%s", footnote)
     } else {
-      for (i in 1:nrow(pos)) {
+      for (i in seq_len(nrow(pos))) {
         footnote <- gettextf("%s Variables %s and %s correlated perfectly. ",
                              footnote, variables[pos[i, 1]], variables[pos[i, 2]])
       }
@@ -84,8 +67,8 @@
   cols <- match(unlist(options[["reverseScaledItems"]]), .unv(colnames(dataset)))
   total <- apply(as.matrix(dataset[, cols]), 2, min, na.rm = TRUE) +
     apply(as.matrix(dataset[, cols]), 2, max, na.rm = TRUE)
-  dataset_rev[ ,cols] <- matrix(rep(total, nrow(dataset)), nrow(dataset), length(cols), byrow = TRUE) -
-    as.matrix(dataset[ ,cols])
+  dataset_rev[, cols] <- matrix(rep(total, nrow(dataset)), nrow(dataset), length(cols), byrow = TRUE) -
+    as.matrix(dataset[, cols])
   return(as.data.frame(dataset_rev))
 }
 
@@ -129,15 +112,15 @@
 # change options when scale box is unchecked
 .scaleItemBoxAlign <- function(options) {
   opts <- options
-  if(!options[["omegaScale"]])
+  if (!options[["omegaScale"]])
     opts[["omegaItem"]] <- FALSE
-  if(!options[["alphaScale"]])
+  if (!options[["alphaScale"]])
     opts[["alphaItem"]] <- FALSE
-  if(!options[["lambda2Scale"]])
+  if (!options[["lambda2Scale"]])
     opts[["lambda2Item"]] <- FALSE
-  if(!options[["lambda6Scale"]])
+  if (!options[["lambda6Scale"]])
     opts[["lambda6Item"]] <- FALSE
-  if(!options[["glbScale"]])
+  if (!options[["glbScale"]])
     opts[["glbItem"]] <- FALSE
 
   return(opts)
@@ -146,9 +129,9 @@
 
 .addFootnoteReverseScaledItems <- function(options) {
   out <- sprintf(ngettext(length(options[["reverseScaledItems"]]),
-                   "The following item was reverse scaled: %s. ",
-                   "The following items were reverse scaled: %s. "),
-          paste(options[["reverseScaledItems"]], collapse = ", "))
+                          "The following item was reverse scaled: %s. ",
+                          "The following items were reverse scaled: %s. "),
+                 paste(options[["reverseScaledItems"]], collapse = ", "))
   return(out)
 }
 
@@ -159,5 +142,3 @@
 .is.empty <- function(model) {
   !is.null(model[["empty"]])
 }
-
-

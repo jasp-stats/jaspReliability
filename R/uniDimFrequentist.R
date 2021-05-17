@@ -32,8 +32,8 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
   model[["meanItem"]] <- .frequentistMeanItem(jaspResults, dataset, options, model)
   model[["sdItem"]] <- .frequentistSdItem(jaspResults, dataset, options, model)
 
-  .frequentistScaleTable(         jaspResults, model, options)
-  .frequentistItemTable(          jaspResults, model, options)
+  .frequentistScaleTable(jaspResults, model, options)
+  .frequentistItemTable(jaspResults, model, options)
   .frequentistSingleFactorFitTable(jaspResults, model, options)
 
 
@@ -44,7 +44,7 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
 .frequentistDerivedOptions <- function(options) {
 
   derivedOptions <- list(
-    selectedEstimators  = unlist(options[c("omegaScale","alphaScale", "lambda2Scale", "lambda6Scale",
+    selectedEstimators  = unlist(options[c("omegaScale", "alphaScale", "lambda2Scale", "lambda6Scale",
                                             "glbScale", "averageInterItemCor", "meanScale", "sdScale")]),
     itemDroppedSelected = unlist(options[c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item",
                                             "glbItem", "itemRestCor", "meanItem", "sdItem")]),
@@ -65,8 +65,8 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
   if (!is.null(jaspResults[["stateContainer"]]))
     return(jaspResults[["stateContainer"]])
 
-  jaspResults[["stateContainer"]] <- createJaspContainer(dependencies=c("variables", "reverseScaledItems", "noSamples",
-                                                                         "missingValues", "bootType","setSeed",
+  jaspResults[["stateContainer"]] <- createJaspContainer(dependencies = c("variables", "reverseScaledItems", "noSamples",
+                                                                         "missingValues", "bootType", "setSeed",
                                                                          "seed", "intervalOn", "disableSampleSave")
   )
 
@@ -76,7 +76,7 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
 .freqItemDroppedStats <- function(Cov, f = function(){}) {
 
   out <- numeric(ncol(Cov))
-  for (i in 1:ncol(Cov)) {
+  for (i in seq_len(ncol(Cov))) {
     out[i] <- f(Cov[-i, -i])
   }
   return(out)

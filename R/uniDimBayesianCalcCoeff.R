@@ -65,16 +65,16 @@
       jaspBase::.setSeedJASP(options)
 
       out[["itemSamp"]] <- array(0, c(options[["noChains"]],
-                        length(seq(1, options[["noSamples"]]-options[["noBurnin"]], options[["noThin"]])),
+                        length(seq(1, options[["noSamples"]] - options[["noBurnin"]], options[["noThin"]])),
                         ncol(dataset)))
 
-      for (i in 1:ncol(dataset)) {
+      for (i in seq_len(ncol(dataset))) {
         out[["itemSamp"]][, , i] <- Bayesrel:::omegaSampler(dataset[, -i],
                                                             options[["noSamples"]], options[["noBurnin"]], options[["noThin"]],
                                                             options[["noChains"]], model[["pairwise"]], progressbarTick)$omega
       }
       dd <- dim(out[["itemSamp"]])
-      out[["itemSamp"]] <- matrix(out[["itemSamp"]], dd[1]*dd[2], ncol(dataset))
+      out[["itemSamp"]] <- matrix(out[["itemSamp"]], dd[1] * dd[2], ncol(dataset))
 
     }
     out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
@@ -183,7 +183,8 @@
 
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["lambda2ScaleObj"]] <- createJaspState(out,
-                                                            dependencies = c("lambda2Scale", "credibleIntervalValueScale"))
+                                                           dependencies = c("lambda2Scale",
+                                                                            "credibleIntervalValueScale"))
   }
 
   return(out)
@@ -312,8 +313,8 @@
       out[["samp"]] <- matrix(0, dd[1], dd[2])
 
       startProgressbar(dd[1] * 3)
-      for (i in 1:dd[1]) {
-        out[["samp"]][i, ] <- Bayesrel:::glbOnArray_custom(model[["gibbsSamp"]][i, , ,], callback = progressbarTick)
+      for (i in seq_len(dd[1])) {
+        out[["samp"]][i, ] <- Bayesrel:::glbOnArray_custom(model[["gibbsSamp"]][i, , , ], callback = progressbarTick)
       }
 
     }
@@ -352,11 +353,11 @@
     if (is.null(out[["itemSamp"]])) {
       # special case glb, because it works with arrays not only matrices, small speedup...
       dd <- dim(model[["gibbsSamp"]])
-      out[["itemSamp"]] <- matrix(0, dd[1]*dd[2], dd[3])
-      cov_samp <- array(model[["gibbsSamp"]], c(dd[1]*dd[2], dd[3], dd[3]))
+      out[["itemSamp"]] <- matrix(0, dd[1] * dd[2], dd[3])
+      cov_samp <- array(model[["gibbsSamp"]], c(dd[1] * dd[2], dd[3], dd[3]))
 
       startProgressbar(3 * ncol(dataset))
-      for (i in 1:dd[3]) {
+      for (i in seq_len(dd[3])) {
         out[["itemSamp"]][, i] <- Bayesrel:::glbOnArray_custom(cov_samp[, -i, -i], callback = progressbarTick)
       }
 
@@ -391,9 +392,9 @@
     if (is.null(out[["samp"]])) {
       startProgressbar(model[["progressbarLength"]])
       out[["samp"]] <- matrix(0, nrow(model[["gibbsSamp"]]), ncol(model[["gibbsSamp"]]))
-      lowerTriangleIndex = which(lower.tri(model[["gibbsSamp"]][1, 1, , ]))
-      for (i in 1:nrow(model[["gibbsSamp"]])) {
-        for (j in 1:ncol(model[["gibbsSamp"]])) {
+      lowerTriangleIndex <- which(lower.tri(model[["gibbsSamp"]][1, 1, , ]))
+      for (i in seq_len(nrow(model[["gibbsSamp"]]))) {
+        for (j in seq_len(ncol(model[["gibbsSamp"]]))) {
 
           corm <- .cov2cor.callback(model[["gibbsSamp"]][i, j, , ], progressbarTick)
           out[["samp"]][i, j] <- mean(corm[lowerTriangleIndex])
@@ -480,7 +481,6 @@
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
 
-      # dataset <- scale(dataset, scale = F)
       jaspBase::.setSeedJASP(options)
       out[["itemSamp"]] <- .itemRestCor(dataset, options[["noSamples"]], options[["noBurnin"]],
                               options[["noThin"]], options[["noChains"]], model[["pairwise"]],
@@ -517,7 +517,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["meanItemObj"]] <- createJaspState(out, dependencies = c("meanItem"))
+    stateContainer[["meanItemObj"]] <- createJaspState(out, dependencies = "meanItem")
   }
   return(out)
 }
@@ -539,7 +539,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["sdItemObj"]] <- createJaspState(out, dependencies = c("sdItem"))
+    stateContainer[["sdItemObj"]] <- createJaspState(out, dependencies = "sdItem")
   }
   return(out)
 }
@@ -547,8 +547,8 @@
 
 .itemRestCor <- function(dataset, n.iter, n.burnin, thin, n.chains, pairwise, callback) {
 
-  ircor_samp <- matrix(0, n.chains * length(seq(1, n.iter-n.burnin, thin)), ncol(dataset))
-  for (i in 1:ncol(dataset)) {
+  ircor_samp <- matrix(0, n.chains * length(seq(1, n.iter - n.burnin, thin)), ncol(dataset))
+  for (i in seq(ncol(dataset))) {
     help_dat <- cbind(as.matrix(dataset[, i]), rowMeans(as.matrix(dataset[, -i]), na.rm = TRUE))
     ircor_samp[, i] <- .WishartCorTransform(help_dat, n.iter = n.iter, n.burnin = n.burnin, thin = thin,
                                               n.chains = n.chains, pairwise = pairwise, callback = callback)
@@ -560,7 +560,7 @@
 .WishartCorTransform <- function(x, n.iter, n.burnin, thin, n.chains, pairwise, callback) {
   tmp_cov <- Bayesrel:::covSamp(x, n.iter, n.burnin, thin, n.chains, pairwise, callback)$cov_mat
   dd <- dim(tmp_cov)
-  tmp_cov <- array(tmp_cov, c(dd[1]*dd[2], dd[3], dd[4]))
+  tmp_cov <- array(tmp_cov, c(dd[1] * dd[2], dd[3], dd[4]))
   tmp_cor <- apply(tmp_cov, c(1), cov2cor)
   out <- tmp_cor[2, ]
   callback()

@@ -93,7 +93,7 @@
                            label = sapply(c(datCri$xmin, datCri$xmax), format, digits = 3, scientific = -1),
                            stringsAsFactors = FALSE)
     } else {
-      datTxt <- data.frame(x = c(datCri$xmin -.08, datCri$xmax + .08),
+      datTxt <- data.frame(x = c(datCri$xmin - .08, datCri$xmax + .08),
                            y = 0.985 * ymax,
                            label = sapply(c(datCri$xmin, datCri$xmax), format, digits = 3, scientific = -1),
                            stringsAsFactors = FALSE)
@@ -120,7 +120,7 @@
   # if the bounds are less than 0.05 away from 0 or 1, expand the axis by 0.1 so the credible interval text does not
   # get chopped off.
   xExpand <- .1 * ((c(0, 1) - datTxt$x) <= 0.05)
-  if (fixXRange && max(datDens$y, na.rm=T) >= 1000) xExpand <- c(xExpand[1], .05)
+  if (fixXRange && max(datDens$y, na.rm = T) >= 1000) xExpand <- c(xExpand[1], .05)
   # with large numebrs on the y-axis, the x-axis labels to the right get cut off sometimes, when the range is fixed
 
   g <- ggplot2::ggplot(data = datDens, mapping = ggplot2::aes(x = x, y = y)) +
@@ -135,7 +135,7 @@
   if (!is.null(shade)) {
     datFilter <- datDens[datDens[["x"]] >= shade[1] & datDens[["x"]] <= shade[2], ]
     if (length(datFilter$x) == 0)
-      datFilter <- data.frame(x=0, y=0)
+      datFilter <- data.frame(x = 0, y = 0)
     g <- g + ggplot2::geom_ribbon(data = datFilter, mapping = ggplot2::aes(ymin = 0, ymax = y),
                                   fill = "grey", alpha = 0.95) +
       ggplot2::geom_line(size = .85)
@@ -213,8 +213,8 @@
 
 .makeIfItemPlot <- function(coefItem, coefScale, nms, int, ordering, variables) {
   n_row <- length(variables)
-  lower <- (1-int)/2
-  upper <- int + (1-int)/2
+  lower <- (1 - int) / 2
+  upper <- int + (1 - int) / 2
 
   samp_tmp <- as.vector(coefScale[["samp"]])
   dat <- data.frame(as.matrix(samp_tmp), row.names =  NULL)
@@ -225,7 +225,7 @@
   dat_del <- t(as.matrix(as.data.frame(coefItem[["itemSamp"]])))
   names <- decodeColNames(variables)
 
-  for (i in n_row:1){
+  for (i in n_row:1) {
     tmp <- as.data.frame(dat_del[i, ])
     colnames(tmp) <- "value"
     tmp$var <- names[i]
@@ -242,7 +242,7 @@
 
     if (ordering == "orderItemMean") {
       dists <- abs(coefScale[["est"]] - coefItem[["itemEst"]])
-      dists[length(dists)+1] <- 0
+      dists[length(dists) + 1] <- 0
       est <- est[order(dists, decreasing = FALSE), ]
       dat$var <- factor(dat$var, levels = c(est$name))
 
@@ -255,7 +255,7 @@
       if (any(round(cor(samps)[lower.tri(cor(samps))], 3) == 1) && inherits(dists, "try-error")) {
         return(NULL)
       } else {
-        dists[length(dists)+1] <- 0
+        dists[length(dists) + 1] <- 0
         est <- est[order(dists), ]
         dat$var <- factor(dat$var, levels = c(est$name))
       }
@@ -264,7 +264,7 @@
       samps <- coefItem[["itemSamp"]]
       og_samp <- samp_tmp
       dists <- apply(samps, 2, .ks.test.statistic, y = og_samp) # ks distance
-      dists[length(dists)+1] <- 0
+      dists[length(dists) + 1] <- 0
       est <- est[order(dists), ]
       dat$var <- factor(dat$var, levels = c(est$name))
     }
@@ -300,7 +300,7 @@
     k <- ncol(cobs)
     nsamp <- nrow(ll)
     ee_impl <- matrix(0, nsamp, k)
-    for (i in 1:nsamp) {
+    for (i in seq_len(nsamp)) {
       ctmp <- ll[i, ] %*% t(ll[i, ]) + diag(rr[i, ])
       dtmp <- MASS::mvrnorm(model[["n"]], rep(0, k), ctmp)
       ee_impl[i, ] <- eigen(cov(dtmp), only.values = TRUE)$values
@@ -310,7 +310,6 @@
     eframe$eigen_sim_low <- apply(ee_impl, 2, quantile, prob = .025)
     eframe$eigen_sim_up <- apply(ee_impl, 2, quantile, prob = .975)
 
-    leg_pos <- (max(eframe$eigen_value) + min(eframe$eigen_value)) * .75
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(0, max(eframe$eigen_sim_up)))
 
     g <- ggplot2::ggplot(eframe, mapping = ggplot2::aes(x = number, y = eigen_value)) +
@@ -355,9 +354,7 @@ return()
     nmsLabs   <- derivedOptions[["namesEstimators"]][["plots"]]
     nmsObjs   <- derivedOptions[["namesEstimators"]][["tables"]]
     nmsObjsNoGreek   <- derivedOptions[["namesEstimators"]][["plotsNoGreek"]]
-    idMatched <- match(names(idxSelected), names(model))
 
-    xlim <- (options[["noSamples"]] - options[["noBurnin"]]) / options[["noThin"]]
     for (j in seq_along(idxSelected)) {
       i <- idxSelected[j]
       nm <- names(idxSelected[j])
@@ -406,4 +403,3 @@ return()
   return(jaspGraphs::themeJasp(g))
 
 }
-

@@ -8,6 +8,7 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
     dataset <- .reverseScoreItems(dataset, options)
   }
 
+
   .checkErrors(dataset, options)
 
 
@@ -34,13 +35,13 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
   model[["meanItem"]] <- .BayesianMeanItem(jaspResults, dataset, options, model)
   model[["sdItem"]] <- .BayesianSdItem(jaspResults, dataset, options, model)
 
-  .BayesianScaleTable(         jaspResults, model, options)
-  .BayesianItemTable(          jaspResults, model, options)
-  .BayesianProbTable(          jaspResults, model, options)
-  .BayesianPosteriorPlot(      jaspResults, model, options)
-  .BayesianIfItemPlot(         jaspResults, model, options)
+  .BayesianScaleTable(jaspResults, model, options)
+  .BayesianItemTable(jaspResults, model, options)
+  .BayesianProbTable(jaspResults, model, options)
+  .BayesianPosteriorPlot(jaspResults, model, options)
+  .BayesianIfItemPlot(jaspResults, model, options)
   .omegaPosteriorPredictive(jaspResults, model, options)
-  .BayesianTracePlot(          jaspResults, model, options)
+  .BayesianTracePlot(jaspResults, model, options)
   return()
 
 }
@@ -53,7 +54,7 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
                                            "averageInterItemCor", "meanScale", "sdScale")]),
     selectedEstimatorsPlots  = unlist(options[c("omegaScale", "alphaScale", "lambda2Scale", "lambda6Scale",
                                                 "glbScale")]),
-    itemDroppedSelected = unlist(options[c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item","glbItem",
+    itemDroppedSelected = unlist(options[c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item", "glbItem",
                                            "itemRestCor", "meanItem", "sdItem")]),
     itemDroppedSelectedItem = unlist(options[c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item",
                                                "glbItem")]),
@@ -79,10 +80,10 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
   if (!is.null(jaspResults[["stateContainer"]]))
     return(jaspResults[["stateContainer"]])
 
-  jaspResults[["stateContainer"]] <- createJaspContainer(dependencies=c("variables", "reverseScaledItems", "noSamples",
-                                                                         "noBurnin", "noThin", "noChains",
-                                                                         "missingValues","setSeed", "seed",
-                                                                        "disableSampleSave")
+  jaspResults[["stateContainer"]] <- createJaspContainer(dependencies = c("variables", "reverseScaledItems",
+                                                                          "noSamples", "noBurnin", "noThin",
+                                                                          "noChains", "missingValues", "setSeed",
+                                                                          "seed", "disableSampleSave")
   )
 
   return(jaspResults[["stateContainer"]])
@@ -109,10 +110,10 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
   v0 <- k
   k0 <- 1e-10
   t <- diag(k)
-  T0 <- solve(t/k0)
+  T0 <- solve(t / k0)
   m <- array(0, c(n_samp, k, k))
 
-  for (i in 1:n_samp){
+  for (i in seq_len(n_samp)) {
     m[i, , ] <- LaplacesDemon::rinvwishart(v0, T0)
     callback()
   }
@@ -140,10 +141,9 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
     a0k <- 1 # prior gamma function for psis
     b0k <- 2 # prior gamma for psi
     prioromega <- numeric(n_samp)
-    for (i in 1:n_samp){
+    for (i in seq_len(n_samp)) {
       invpsi <- rgamma(k, a0k, b0k)
-      invPsi <- diag(invpsi)
-      psi <- 1/invpsi
+      psi <- 1 / invpsi
       lambda <- rnorm(k, l0k, sqrt(psi * H0))
       prioromega[i] <- Bayesrel:::omegaBasic(lambda, psi)
     }
@@ -156,9 +156,9 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
 .BayesItemDroppedStats <- function(cov_samp, f1 = function(){}, callback = function(){}) {
 
   dd <- dim(cov_samp)
-  out <- matrix(0, dd[1]*dd[2], dd[3])
-  cov_samp <- array(cov_samp, c(dd[1]*dd[2], dd[3], dd[3]))
-  for (i in 1:dd[3]) {
+  out <- matrix(0, dd[1] * dd[2], dd[3])
+  cov_samp <- array(cov_samp, c(dd[1] * dd[2], dd[3], dd[3]))
+  for (i in seq_len(dd[3])) {
     out[, i] <- apply(cov_samp[, -i, -i], c(1), f1, callback)
   }
 

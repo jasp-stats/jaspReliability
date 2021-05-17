@@ -187,4 +187,3 @@ test_that("Frequentist Scale Reliability Statistics table results match with dis
                                       0.60076050080959, 0.628395738756313, 0.685340010046143, 0.28002617012781,
                                       3.3927286604094, 3.16486028196314, "90% CI upper bound"))
 })
-

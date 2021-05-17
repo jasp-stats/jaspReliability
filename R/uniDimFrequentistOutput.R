@@ -13,7 +13,7 @@
 
   if (options[["intervalOn"]]) {
     interval <- gettextf("%s%% CI",
-                         format(100*options[["confidenceIntervalValue"]], digits = 3, drop0trailing = TRUE))
+                         format(100 * options[["confidenceIntervalValue"]], digits = 3, drop0trailing = TRUE))
     intervalLow <- gettextf("%s lower bound", interval)
     intervalUp <- gettextf("%s upper bound", interval)
     allData <- data.frame(estimate = c(gettext("Point estimate"), intervalLow, intervalUp))
@@ -43,7 +43,7 @@
   # if no coefficients selected:
   if (.is.empty(model)) {
     scaleTable$setData(allData)
-    nvar <- length(options[["variables"]])
+
 
     for (i in idxSelected) {
       scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
@@ -185,8 +185,6 @@
   )
   fitTable$setData(allData)
 
-  # if (!is.null(model[["error"]]))
-  #   fitTable$setError(model[["error"]])
 
   fitTable$dependOn(options = c("variables", "omegaScale", "reverseScaledItems", "fitMeasures", "missingValues",
                                 "omegaMethod"))

@@ -11,7 +11,7 @@
   derivedOptions <- .frequentistDerivedOptions(options)
 
   # what if no coefficient boxes are checked?
-  if(!any(derivedOptions[["selectedEstimators"]]) && !any(derivedOptions[["itemDroppedSelected"]])) {
+  if (!any(derivedOptions[["selectedEstimators"]]) && !any(derivedOptions[["itemDroppedSelected"]])) {
     variables <- options[["variables"]]
     empty <-  TRUE
     model <- list(empty = empty)
@@ -91,14 +91,14 @@
 
     if (options[["bootType"]] == "parametric") {
       model[["parametric"]] <- TRUE
-      for (i in 1:options[["noSamples"]]) {
+      for (i in seq_len(options[["noSamples"]])) {
         boot_data <- MASS::mvrnorm(n, colMeans(dataset, na.rm = TRUE), cc)
         boot_cov[i, , ] <- cov(boot_data)
         progressbarTick()
       }
     } else {
       model[["parametric"]] <- FALSE
-      for (i in 1:options[["noSamples"]]){
+      for (i in seq_len(options[["noSamples"]])) {
         boot_data <- as.matrix(dataset[sample.int(n, size = n, replace = TRUE), ])
         boot_cov[i, , ] <- cov(boot_data, use = model[["use.cases"]])
         progressbarTick()
@@ -115,4 +115,3 @@
 
   return(model)
 }
-

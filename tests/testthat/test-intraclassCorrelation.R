@@ -88,7 +88,7 @@ sf_data <- matrix(c(
   7,    1,   2,    6,
   10,   5,   6,    9,
   6,   2,   4,    7
-), ncol=4, byrow=TRUE)
+), ncol = 4, byrow = TRUE)
 dataset <- as.data.frame(sf_data)
 
 # Set options
