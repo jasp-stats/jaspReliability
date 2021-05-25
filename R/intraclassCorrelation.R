@@ -33,7 +33,7 @@ IntraclassCorrelation <- function(jaspResults, dataset, options) {
   return(dataset)
 }
 
-.handleIntraclassCorrelation <- function (dataset, options) {
+.handleIntraclassCorrelation <- function(dataset, options) {
 
   # Check for errors using JASPs internal convenience function
   .hasErrors(

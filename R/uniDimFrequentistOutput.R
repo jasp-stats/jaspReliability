@@ -13,7 +13,7 @@
 
   if (options[["intervalOn"]]) {
     interval <- gettextf("%s%% CI",
-                         format(100*options[["confidenceIntervalValue"]], digits = 3, drop0trailing = TRUE))
+                         format(100 * options[["confidenceIntervalValue"]], digits = 3, drop0trailing = TRUE))
     intervalLow <- gettextf("%s lower bound", interval)
     intervalUp <- gettextf("%s upper bound", interval)
     allData <- data.frame(estimate = c(gettext("Point estimate"), intervalLow, intervalUp))
@@ -43,7 +43,7 @@
   # if no coefficients selected:
   if (.is.empty(model)) {
     scaleTable$setData(allData)
-    nvar <- length(options[["variables"]])
+
 
     for (i in idxSelected) {
       scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
@@ -97,7 +97,7 @@
 
   itemTable <- createJaspTable(gettext("Frequentist Individual Item Reliability Statistics"))
   itemTable$dependOn(options = c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item", "glbItem",
-                                 "itemMean", "itemRestCor", "itemSd",
+                                 "meanItem", "itemRestCor", "sdItem",
                                  "omegaScale", "alphaScale", "lambda2Scale", "lambda6Scale", "glbScale"))
   # adding the scale options fixes a bug, where the item table would remain displayed
   # after one had checked a scale coefficient box and the item coefficient box and then unchecked the scale coeff box
@@ -185,8 +185,6 @@
   )
   fitTable$setData(allData)
 
-  # if (!is.null(model[["error"]]))
-  #   fitTable$setError(model[["error"]])
 
   fitTable$dependOn(options = c("variables", "omegaScale", "reverseScaledItems", "fitMeasures", "missingValues",
                                 "omegaMethod"))

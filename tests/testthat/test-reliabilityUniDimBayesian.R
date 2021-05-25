@@ -7,8 +7,7 @@ options$glbScale <- TRUE
 options$averageInterItemCor <- TRUE
 options$meanScale <- TRUE
 options$sdScale <- TRUE
-options$meanMethod <- "meanScores"
-options$sdMethod <- "meanScores"
+options$scoresMethod <- "meanScores"
 options$credibleIntervalValueItem <- 0.9
 options$omegaItem <- TRUE
 options$alphaItem <- TRUE
@@ -18,8 +17,8 @@ options$glbItem <- TRUE
 options$plotItem <- TRUE
 options$orderItem <- TRUE
 options$itemRestCor <- TRUE
-options$itemMean <- TRUE
-options$itemSd <- TRUE
+options$meanItem <- TRUE
+options$sdItem <- TRUE
 options$plotPosterior <- TRUE
 options$fixXRange <- TRUE
 options$dispPrior <- TRUE
@@ -196,8 +195,7 @@ options$glbScale <- TRUE
 options$averageInterItemCor <- TRUE
 options$meanScale <- TRUE
 options$sdScale <- TRUE
-options$meanMethod <- "meanScores"
-options$sdMethod <- "meanScores"
+options$scoresMethod <- "meanScores"
 options$credibleIntervalValueItem <- 0.9
 options$omegaItem <- TRUE
 options$alphaItem <- TRUE
@@ -206,8 +204,8 @@ options$lambda6Item <- TRUE
 options$glbItem <- TRUE
 options$orderItem <- TRUE
 options$itemRestCor <- TRUE
-options$itemMean <- TRUE
-options$itemSd <- TRUE
+options$meanItem <- TRUE
+options$sdItem <- TRUE
 options$probTable <- TRUE
 options$probTableValueLow <- 0.1
 options$probTableValueHigh <- 0.3

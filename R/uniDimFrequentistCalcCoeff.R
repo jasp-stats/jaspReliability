@@ -57,10 +57,10 @@
             startProgressbar(options[["noSamples"]])
             out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applyomega_pfa, callback = progressbarTick)
           }
-          if (anyNA(out[["samp"]]))
-            out[["error"]] <- gettext("Omega interval calculation with PFA failed")
+          if (sum(!is.na(out[["samp"]])) < 3)
+            out[["error"]] <- gettext("Omega interval calculation with pfa failed")
           else
-            out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
+            out[["conf"]] <- quantile(out[["samp"]], probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
         }
       }
     }
@@ -98,7 +98,7 @@
       # do we have to compute item dropped values
         if (is.null(out[["itemDropped"]])) {
           out[["itemDropped"]] <- numeric(ncol(dataset))
-          for (i in 1:ncol(dataset)) {
+          for (i in seq_len(ncol(dataset))) {
             out[["itemDropped"]][i] <- Bayesrel:::applyomega_cfa_data(dataset[, -i], interval = .95,
                                                                       pairwise = model[["pairwise"]])
           }
@@ -155,7 +155,7 @@
             startProgressbar(options[["noSamples"]])
             out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applyalpha, callback = progressbarTick)
           }
-          out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2))
+          out[["conf"]] <- quantile(out[["samp"]], probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2))
         }
       }
 
@@ -175,11 +175,11 @@
 
           if (is.null(out[["sampCor"]])) {
             out[["sampCor"]] <- numeric(options[["noSamples"]])
-            for (i in 1:options[["noSamples"]]) {
-              out[["sampCor"]][i] <- Bayesrel:::applyalpha(cov2cor(model[["bootSamp"]][i, ,]))
+            for (i in seq_len(options[["noSamples"]])) {
+              out[["sampCor"]][i] <- Bayesrel:::applyalpha(cov2cor(model[["bootSamp"]][i, , ]))
             }
           }
-          out[["conf"]] <- quantile(out[["sampCor"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
+          out[["conf"]] <- quantile(out[["sampCor"]], probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
 
         }
       }
@@ -254,7 +254,7 @@
         startProgressbar(options[["noSamples"]])
         out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applylambda2, callback = progressbarTick)
       }
-      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
+      out[["conf"]] <- quantile(out[["samp"]], probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
 
     }
 
@@ -291,7 +291,7 @@
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["lambda2ItemObj"]] <- createJaspState(out, dependencies = c("lambda2Item"))
+    stateContainer[["lambda2ItemObj"]] <- createJaspState(out, dependencies = "lambda2Item")
   }
   return(out)
 }
@@ -325,7 +325,7 @@
         if (sum(!is.na(out[["samp"]])) < 3)
           out[["error"]] <- gettext("Lambda6 interval calculation failed")
         else
-          out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
+          out[["conf"]] <- quantile(out[["samp"]], probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
 
       }
     }
@@ -365,7 +365,7 @@
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["lambda6ItemObj"]] <- createJaspState(out, dependencies = c("lambda6Item"))
+    stateContainer[["lambda6ItemObj"]] <- createJaspState(out, dependencies = "lambda6Item")
   }
   return(out)
 }
@@ -390,11 +390,11 @@
     if (options[["intervalOn"]]) {
       ciValue <- options[["confidenceIntervalValue"]]
       if (is.null(out[["samp"]])) {
-        startProgressbar(options[["noSamples"]] %/% 500 + 1)
+        startProgressbar(4)
         out[["samp"]] <- Bayesrel:::glbOnArray_custom(model[["bootSamp"]], callback = progressbarTick)
 
       }
-      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
+      out[["conf"]] <- quantile(out[["samp"]], probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
     }
 
     if (options[["disableSampleSave"]])
@@ -428,17 +428,17 @@
     if (is.null(out[["itemDropped"]])) {
       # special case glb since it has build in array functionality, but it might be only slightly faster
       itemDroppedCovs <- array(0, c(model[["k"]], model[["k"]]-1, model[["k"]]-1))
-      for (i in 1:model[["k"]]) {
+      for (i in seq_len(model[["k"]])) {
         itemDroppedCovs[i, , ] <- model[["data_cov"]][-i, -i]
       }
-      out[["itemDropped"]] <- c(Bayesrel:::glbOnArray_custom(itemDroppedCovs, callback = progressbarTick))
+      out[["itemDropped"]] <- c(Bayesrel:::glbOnArray_custom(itemDroppedCovs))
     }
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["glbItemObj"]] <- createJaspState(out, dependencies = c("glbItem"))
+    stateContainer[["glbItemObj"]] <- createJaspState(out, dependencies = "glbItem")
   }
   return(out)
 }
@@ -463,12 +463,12 @@
       if (is.null(out[["samp"]])) {
         startProgressbar(options[["noSamples"]])
         out[["samp"]] <- numeric(options[["noSamples"]])
-        for (i in 1:options[["noSamples"]]) {
+        for (i in seq_len(options[["noSamples"]])) {
           corm <- .cov2cor.callback(model[["bootSamp"]][i, , ], progressbarTick)
           out[["samp"]][i] <- mean(corm[lower.tri(corm)])
         }
       }
-      out[["conf"]] <- quantile(out[["samp"]], probs = c((1-ciValue)/2, 1-(1-ciValue)/2), na.rm = TRUE)
+      out[["conf"]] <- quantile(out[["samp"]], probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
     }
 
     if (options[["disableSampleSave"]])
@@ -491,7 +491,7 @@
   if (options[["meanScale"]] && is.null(model[["empty"]])) {
     ciValue <- options[["confidenceIntervalValue"]]
 
-    if (options[["meanMethod"]] == "sumScores") {
+    if (options[["scoresMethod"]] == "sumScores") {
       out[["est"]] <- mean(rowSums(dataset, na.rm = TRUE))
       sdmean <- sd(rowSums(dataset, na.rm = TRUE))
     } else {
@@ -500,16 +500,16 @@
     }
 
     if (options[["intervalOn"]]) {
-      zz <- qnorm(1-(1-ciValue)/2)
-      out[["conf"]] <- c(out[["est"]] - zz*(sdmean/sqrt(model[["n"]])),
-                         out[["est"]] + zz*(sdmean/sqrt(model[["n"]])))
+      zz <- qnorm(1 - (1 - ciValue) / 2)
+      out[["conf"]] <- c(out[["est"]] - zz * (sdmean / sqrt(model[["n"]])),
+                         out[["est"]] + zz * (sdmean / sqrt(model[["n"]])))
     }
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["meanObj"]] <- createJaspState(out, dependencies = c("meanScale", "meanMethod"))
+    stateContainer[["meanObj"]] <- createJaspState(out, dependencies = c("meanScale", "scoresMethod"))
   }
   return(out)
 }
@@ -524,23 +524,23 @@
   if (options[["sdScale"]] && is.null(model[["empty"]])) {
     ciValue <- options[["confidenceIntervalValue"]]
 
-    out[["est"]] <- if (options[["sdMethod"]] == "sumScores")
+    out[["est"]] <- if (options[["scoresMethod"]] == "sumScores")
       sd(rowSums(dataset, na.rm = TRUE))
     else
       sd(rowMeans(dataset, na.rm = TRUE))
 
     if (options[["intervalOn"]]) {
-      chiValueLow <- qchisq(1-(1-ciValue)/2, df = model[["n"]]-1)
-      chiValueHigh <- qchisq((1-ciValue)/2, df = model[["n"]]-1)
-      out[["conf"]] <- c(sqrt(((model[["n"]]-1) * out[["est"]]^2) / chiValueLow),
-                         sqrt(((model[["n"]]-1) * out[["est"]]^2) / chiValueHigh))
+      chiValueLow <- qchisq(1 - (1 - ciValue) / 2, df = model[["n"]] - 1)
+      chiValueHigh <- qchisq((1 - ciValue) / 2, df = model[["n"]] - 1)
+      out[["conf"]] <- c(sqrt(((model[["n"]] - 1) * out[["est"]]^2) / chiValueLow),
+                         sqrt(((model[["n"]] - 1) * out[["est"]]^2) / chiValueHigh))
     }
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["sdObj"]] <- createJaspState(out, dependencies = c("sdScale", "sdMethod"))
+    stateContainer[["sdObj"]] <- createJaspState(out, dependencies = c("sdScale", "scoresMethod"))
   }
   return(out)
 }
@@ -556,7 +556,7 @@
   # is box even checked?
   if (options[["itemRestCor"]]  && is.null(model[["empty"]])) {
     out[["itemDropped"]] <- numeric(ncol(dataset))
-    for (i in 1:ncol(dataset)) {
+    for (i in seq_len(ncol(dataset))) {
       out[["itemDropped"]][i] <- cor(as.matrix(dataset[, i]), rowMeans(as.matrix(dataset[, -i]), na.rm = TRUE), use = model[["use.cases"]])
     }
 
@@ -564,40 +564,40 @@
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["itemRestObj"]] <- createJaspState(out, dependencies = c("itemRestCor"))
+    stateContainer[["itemRestObj"]] <- createJaspState(out, dependencies = "itemRestCor")
   }
   return(out)
 }
 
-.frequentistItemMean <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerF(jaspResults)[["itemMeanObj"]]$object))
-    return(.getStateContainerF(jaspResults)[["itemMeanObj"]]$object)
+.frequentistMeanItem <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerF(jaspResults)[["meanItemObj"]]$object))
+    return(.getStateContainerF(jaspResults)[["meanItemObj"]]$object)
 
-  out <- model[["itemMean"]]
+  out <- model[["meanItem"]]
   if (is.null(out))
     out <- list()
   # is box even checked?
-  if (options[["itemMean"]]  && is.null(model[["empty"]])) {
+  if (options[["meanItem"]]  && is.null(model[["empty"]])) {
     out[["itemDropped"]] <- colMeans(dataset, na.rm = TRUE)
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["itemMeanObj"]] <- createJaspState(out, dependencies = c("itemMean"))
+    stateContainer[["meanItemObj"]] <- createJaspState(out, dependencies = "meanItem")
   }
   return(out)
 }
 
-.frequentistItemSd <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerF(jaspResults)[["itemSdObj"]]$object))
-    return(.getStateContainerF(jaspResults)[["itemSdObj"]]$object)
+.frequentistSdItem <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerF(jaspResults)[["sdItemObj"]]$object))
+    return(.getStateContainerF(jaspResults)[["sdItemObj"]]$object)
 
-  out <- model[["itemSd"]]
+  out <- model[["sdItem"]]
   if (is.null(out))
     out <- list()
   # is box even checked?
-  if (options[["itemSd"]]  && is.null(model[["empty"]])) {
+  if (options[["sdItem"]]  && is.null(model[["empty"]])) {
 
     out[["itemDropped"]] <- apply(dataset, 2, sd, na.rm = TRUE)
 
@@ -605,10 +605,7 @@
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["itemSdObj"]] <- createJaspState(out, dependencies = c("itemSd"))
+    stateContainer[["sdItemObj"]] <- createJaspState(out, dependencies = "sdItem")
   }
   return(out)
 }
-
-
-

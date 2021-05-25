@@ -13,10 +13,10 @@ options$lambda6Scale <- TRUE
 options$itemRestCor <- TRUE
 options$omegaItem <- TRUE
 options$omegaMethod <- "pfa"
-options$itemMean <- TRUE
+options$meanItem <- TRUE
 options$meanScale <- TRUE
 options$noSamples <- 300
-options$itemSd <- TRUE
+options$sdItem <- TRUE
 options$sdScale <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
@@ -66,13 +66,12 @@ options$lambda6Scale <- TRUE
 options$itemRestCor <- TRUE
 options$omegaItem <- TRUE
 options$omegaMethod <- "pfa"
-options$itemMean <- TRUE
+options$meanItem <- TRUE
 options$meanScale <- TRUE
-options$meanMethod <- "meanScores"
-options$sdMethod <- "meanScores"
+options$scoresMethod <- "meanScores"
 options$noSamples <- 300
 options$reverseScaledItems <- "debMiss30"
-options$itemSd <- TRUE
+options$sdItem <- TRUE
 options$sdScale <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "debMiss30")
@@ -151,10 +150,10 @@ options$lambda6Scale <- TRUE
 options$itemRestCor <- TRUE
 options$omegaItem <- TRUE
 options$omegaMethod <- "pfa"
-options$itemMean <- TRUE
+options$meanItem <- TRUE
 options$meanScale <- TRUE
 options$noSamples <- 300
-options$itemSd <- TRUE
+options$sdItem <- TRUE
 options$disableSampleSave <- TRUE
 options$sdScale <- TRUE
 options$setSeed <- TRUE
@@ -188,4 +187,3 @@ test_that("Frequentist Scale Reliability Statistics table results match with dis
                                       0.60076050080959, 0.628395738756313, 0.685340010046143, 0.28002617012781,
                                       3.3927286604094, 3.16486028196314, "90% CI upper bound"))
 })
-

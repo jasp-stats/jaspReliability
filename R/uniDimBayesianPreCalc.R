@@ -11,7 +11,7 @@
   derivedOptions <- .BayesianDerivedOptions(options)
 
   # what if no coefficient boxes are checked?
-  if(!any(derivedOptions[["selectedEstimators"]]) && !any(derivedOptions[["itemDroppedSelected"]])) {
+  if (!any(derivedOptions[["selectedEstimators"]]) && !any(derivedOptions[["itemDroppedSelected"]])) {
     variables <- options[["variables"]]
     empty <-  TRUE
     model <- list(empty = empty)
@@ -38,19 +38,28 @@
     if (length(options[["variables"]]) == 2)
       model[["twoItems"]] <- TRUE
 
+    model[["footnote"]] <- ""
+
     # check for missings and determine the missing handling
-    if (anyNA(dataset)) {
-      if (options[["missingValues"]] == "excludeCasesPairwise") {
-        model[["use.cases"]] <- "pairwise.complete.obs"
-        model[["pairwise"]] <- TRUE
-        model[["footnote"]] <- gettextf("%s Of the observations, pairwise complete cases were used. ",
-                                        model[["footnote"]])
-      } else {
-        model[["use.cases"]] <- "complete.obs"
-        model[["pairwise"]] <- FALSE
-        model[["footnote"]] <- gettextf("%s Of the observations, %1.f complete cases were used. ",
-                                        model[["footnote"]], nrow(dataset))
-      }
+
+    # when listwise deletion is chosen the values are deleted upon reading in the data,
+    # before entering this whole analysis, without this we would never know the initial
+    # size of the data
+    tmp <- .readDataSetToEnd(columns.as.numeric = unlist(options[["variables"]]))
+    old_n <- nrow(tmp)
+
+    if (nrow(dataset) < old_n) { # this indicates listwise deletion
+      model[["use.cases"]] <- "complete.obs"
+      model[["pairwise"]] <- FALSE
+      model[["footnote"]] <- gettextf("%s Of the observations, %1.f complete cases were used. ",
+                                      model[["footnote"]], nrow(dataset))
+
+    } else if (anyNA(dataset)) { # when pairwise deletion
+      model[["use.cases"]] <- "pairwise.complete.obs"
+      model[["pairwise"]] <- TRUE
+      model[["footnote"]] <- gettextf("%s Of the observations, pairwise complete cases were used. ",
+                                      model[["footnote"]])
+
     } else {
       model[["use.cases"]] <- "everything"
       model[["pairwise"]] <- FALSE
@@ -62,7 +71,7 @@
     model[["n"]] <- nrow(dataset)
 
     # check if any items correlate negatively with the scale
-    model[["footnote"]] <- .checkLoadings(dataset, options[["variables"]])
+    model[["footnote"]] <- sprintf("%s%s", model[["footnote"]], .checkLoadings(dataset, options[["variables"]]))
   }
 
   jaspBase::.setSeedJASP(options)
@@ -75,9 +84,14 @@
 
     startProgressbar(options[["noSamples"]] * options[["noChains"]])
     dataset <- scale(dataset, scale = FALSE)
-    model[["gibbsSamp"]] <- Bayesrel:::covSamp(dataset, options[["noSamples"]], options[["noBurnin"]],
-                                               options[["noThin"]], options[["noChains"]],
-                                               model[["pairwise"]], progressbarTick)$cov_mat
+    c_out <- try(Bayesrel:::covSamp(dataset, options[["noSamples"]], options[["noBurnin"]],
+                                  options[["noThin"]], options[["noChains"]],
+                                  model[["pairwise"]], progressbarTick), silent = TRUE)
+    if (model[["pairwise"]] && inherits(c_out, "try-error")) {
+      .quitAnalysis(gettext("Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"))
+    }
+
+    model[["gibbsSamp"]] <- c_out$cov_mat
 
   }
 
