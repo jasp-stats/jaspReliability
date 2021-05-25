@@ -18,9 +18,12 @@
 
       jaspBase::.setSeedJASP(options)
 
-      tmp_out <- Bayesrel:::omegaSampler(dataset, options[["noSamples"]], options[["noBurnin"]],
+      tmp_out <- try(Bayesrel:::omegaSampler(dataset, options[["noSamples"]], options[["noBurnin"]],
                                                options[["noThin"]], options[["noChains"]],
-                                               model[["pairwise"]], progressbarTick)
+                                               model[["pairwise"]], progressbarTick), silent = TRUE)
+      if (model[["pairwise"]] && inherits(tmp_out, "try-error")) {
+        .quitAnalysis(gettext("Sampling the posterior factor model for omega failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"))
+      }
       out[["samp"]] <- tmp_out$omega
       out[["loadings"]] <- apply(tmp_out$lambda, 3, as.vector)
       out[["residuals"]] <- apply(tmp_out$psi, 3, as.vector)

@@ -38,27 +38,36 @@
     if (length(options[["variables"]]) == 2)
       model[["twoItems"]] <- TRUE
 
+    model[["footnote"]] <- ""
+
     # check for missings and determine the missing handling
-    if (anyNA(dataset)) {
-      if (options[["missingValues"]] == "excludeCasesPairwise") {
-        model[["use.cases"]] <- "pairwise.complete.obs"
-        model[["pairwise"]] <- TRUE
-        model[["footnote"]] <- gettextf("%s Of the observations, pairwise complete cases were used. ",
-                                        model[["footnote"]])
-      } else {
-        model[["use.cases"]] <- "complete.obs"
-        model[["pairwise"]] <- FALSE
-        model[["footnote"]] <- gettextf("%s Of the observations, %1.f complete cases were used. ",
-                                        model[["footnote"]], nrow(dataset))
-      }
+
+    # when listwise deletion is chosen the values are deleted upon reading in the data,
+    # before entering this whole analysis, without this we would never know the initial
+    # size of the data
+    tmp <- .readDataSetToEnd(columns.as.numeric = unlist(options[["variables"]]))
+    old_n <- nrow(tmp)
+
+    if (nrow(dataset) < old_n) { # this indicates listwise deletion
+      model[["use.cases"]] <- "complete.obs"
+      model[["pairwise"]] <- FALSE
+      model[["footnote"]] <- gettextf("%s Of the observations, %1.f complete cases were used. ",
+                                      model[["footnote"]], nrow(dataset))
+
+    } else if (anyNA(dataset)) { # when pairwise deletion
+      model[["use.cases"]] <- "pairwise.complete.obs"
+      model[["pairwise"]] <- TRUE
+      model[["footnote"]] <- gettextf("%s Of the observations, pairwise complete cases were used. ",
+                                      model[["footnote"]])
+
     } else {
       model[["use.cases"]] <- "everything"
       model[["pairwise"]] <- FALSE
     }
 
     k <- ncol(dataset); n <- nrow(dataset)
-    model[["k"]] <- ncol(dataset)
-    model[["n"]] <- nrow(dataset)
+    model[["k"]] <- k
+    model[["n"]] <- n
     cc <- cov(dataset, use = model[["use.cases"]])
     model[["data_cov"]] <- cc
     model[["data_cor"]] <- cor(dataset, use = model[["use.cases"]])
@@ -66,7 +75,7 @@
 
 
     # check if any items correlate negatively with the scale
-    model[["footnote"]] <- .checkLoadings(dataset, options[["variables"]])
+    model[["footnote"]] <- gettextf("%s %s", model[["footnote"]], .checkLoadings(dataset, options[["variables"]]))
   }
 
   jaspBase::.setSeedJASP(options)

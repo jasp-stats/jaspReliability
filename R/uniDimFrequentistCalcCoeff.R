@@ -57,8 +57,8 @@
             startProgressbar(options[["noSamples"]])
             out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applyomega_pfa, callback = progressbarTick)
           }
-          if (anyNA(out[["samp"]]))
-            out[["error"]] <- gettext("Omega interval calculation with PFA failed")
+          if (sum(!is.na(out[["samp"]])) < 3)
+            out[["error"]] <- gettext("Omega interval calculation with pfa failed")
           else
             out[["conf"]] <- quantile(out[["samp"]], probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
         }
