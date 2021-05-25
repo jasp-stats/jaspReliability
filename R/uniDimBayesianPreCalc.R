@@ -71,7 +71,7 @@
     model[["n"]] <- nrow(dataset)
 
     # check if any items correlate negatively with the scale
-    model[["footnote"]] <- gettextf("%s %s", model[["footnote"]], .checkLoadings(dataset, options[["variables"]]))
+    model[["footnote"]] <- sprintf("%s%s", model[["footnote"]], .checkLoadings(dataset, options[["variables"]]))
   }
 
   jaspBase::.setSeedJASP(options)
