@@ -8,981 +8,476 @@ msgstr ""
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:7
 msgctxt "Description|"
 msgid "Reliability"
 msgstr "Confiabilidade"
 
-#~ msgctxt "Description|"
-#~ msgid "This module offers Reliability analyses."
-#~ msgstr ""
-
-#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:19
 msgctxt "Description|"
 msgid "Classical"
 msgstr "Clássico"
 
-#~ msgctxt "Description|"
-#~ msgid "Single-Test Reliability Analysis"
-#~ msgstr ""
-
-#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:31
 msgctxt "Description|"
 msgid "Intraclass Correlation"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:40
 msgctxt "Description|"
 msgid "Bayesian"
 msgstr "Bayesiano"
 
-#~ msgctxt "Description|"
-#~ msgid "Bayesian Single-Test Reliability Analysis"
-#~ msgstr ""
-
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/IntraclassCorrelation.qml:35
 #, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Variables"
 msgstr "Variáveis"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/IntraclassCorrelation.qml:45
 msgctxt "IntraclassCorrelation|"
 msgid "Each subject is rated by..."
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/IntraclassCorrelation.qml:51
 msgctxt "IntraclassCorrelation|"
 msgid "a different rater (randomly selected)"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/IntraclassCorrelation.qml:58
 msgctxt "IntraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/IntraclassCorrelation.qml:65
 msgctxt "IntraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/IntraclassCorrelation.qml:73
 msgctxt "IntraclassCorrelation|"
 msgid "Ratings are averaged"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/IntraclassCorrelation.qml:81
 msgctxt "IntraclassCorrelation|"
 msgid "Confidence Interval"
 msgstr ""
 
-#, fuzzy
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Variables"
-#~ msgstr "Variáveis"
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Single-Test Reliability"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Scale Statistics"
-#~ msgstr ""
-
-#, fuzzy
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Credible interval"
-#~ msgstr "Intervalo de credibilidade"
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "McDonald's ω"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Posterior predictive check"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Cronbach's α"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Guttman's λ2"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Guttman's λ6"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Greatest lower bound"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Average interitem correlation"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Mean"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Standard deviation"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Individual Item Statistics"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "McDonald's ω  (if item dropped)"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Cronbach's α (if item dropped)"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Guttman's λ2 (if item dropped)"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Guttman's λ6 (if item dropped)"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Greatest lower bound (if item dropped)"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "If item dropped plot"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Order items"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Order items by mean"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Order items by KL-divergence"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Order items by KS-distance"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Item-rest correlation"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Plot Posteriors"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Fix range to 0-1"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Display Priors"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Probability for:"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "< Reliability <"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Shade posterior region in plot"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Convergence"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "MCMC parameters"
-#~ msgstr ""
-
-#, fuzzy
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "No. samples"
-#~ msgstr "No. de amostras"
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "No. burnin samples"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Thinning"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "No. chains"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Diagnostics"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "R-hat"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Traceplots"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Repeatability"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Set seed"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Reverse-Scaled Items"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Normal-Scaled Items"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Missing Data Handling"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Missing Values"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Exclude cases pairwise"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityBayesian|"
-#~ msgid "Exclude cases listwise"
-#~ msgstr ""
-
-#, fuzzy
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Variables"
-#~ msgstr "Variáveis"
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Single-Test Reliability"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Scale Statistics"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Confidence Interval"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "McDonald's ω"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Cronbach's α"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Guttman's λ2"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Guttman's λ6"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Greatest lower bound"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Average interitem correlation"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Mean"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Standard deviation"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Individual Item Statistics"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "McDonald's ω  (if item dropped)"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Cronbach's α (if item dropped)"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Guttman's λ2 (if item dropped)"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Guttman's λ6 (if item dropped)"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Greatest lower bound (if item dropped)"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Item-rest correlation"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Reverse-Scaled Items"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Normal-Scaled Items"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Advanced Options"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Missing Values"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Exclude cases pairwise"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Exclude cases listwise"
-#~ msgstr ""
-
-#, fuzzy
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Bootstrap"
-#~ msgstr "Bootstrap"
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "No. of bootstrap samples"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Non-parametric bootstrap"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Parametric bootstrap"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "McDonald's ω Estimation"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "CFA"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Single Factor Model Fit"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Interval"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Analytic interval"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Bootstrapped interval"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "PFA"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Cronbach's α Estimation"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Unstandardized"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Standardized"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Repeatability"
-#~ msgstr ""
-
-#~ msgctxt "ReliabilityFrequentist|"
-#~ msgid "Set seed"
-#~ msgstr ""
-
-#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:8
 msgctxt "Description|"
 msgid "Quantify the consistency of test scores"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:25
-#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:46
 msgctxt "Description|"
 msgid "Unidimensional Reliability"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:47
 msgctxt "Description|"
 msgid "Bayesian Unidimensional Reliability"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:33
 #, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Variables"
 msgstr "Variáveis"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:40
 msgctxt "uniDimBayesian|"
 msgid "Analysis"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:44
 msgctxt "uniDimBayesian|"
 msgid "Scale Statistics"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:49
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:135
 #, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Credible interval"
 msgstr "Intervalo de credibilidade"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:57
 msgctxt "uniDimBayesian|"
 msgid "McDonald's ω"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:63
 msgctxt "uniDimBayesian|"
 msgid "Posterior predictive check"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:73
 msgctxt "uniDimBayesian|"
 msgid "Cronbach's α"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:80
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ2"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:87
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ6"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:94
 msgctxt "uniDimBayesian|"
 msgid "Greatest lower bound"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:97
 msgctxt "uniDimBayesian|"
 msgid "Average interitem correlation"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:101
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:205
 msgctxt "uniDimBayesian|"
 msgid "Mean"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:108
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:122
-msgctxt "uniDimBayesian|"
-msgid "of sum scores"
-msgstr ""
-
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:109
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:123
-msgctxt "uniDimBayesian|"
-msgid "of mean scores"
-msgstr ""
-
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:115
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:206
 msgctxt "uniDimBayesian|"
 msgid "Standard deviation"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:130
 msgctxt "uniDimBayesian|"
 msgid "Individual Item Statistics"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:143
 msgctxt "uniDimBayesian|"
 msgid "McDonald's ω  (if item dropped)"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:151
 msgctxt "uniDimBayesian|"
 msgid "Cronbach's α (if item dropped)"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:159
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ2 (if item dropped)"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:167
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ6 (if item dropped)"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:175
 msgctxt "uniDimBayesian|"
 msgid "Greatest lower bound (if item dropped)"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:183
 msgctxt "uniDimBayesian|"
 msgid "If item dropped plot"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:189
 msgctxt "uniDimBayesian|"
 msgid "Order items"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:197
 msgctxt "uniDimBayesian|"
 msgid "Order items by mean"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:198
 msgctxt "uniDimBayesian|"
 msgid "Order items by KL-divergence"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:199
 msgctxt "uniDimBayesian|"
 msgid "Order items by KS-distance"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:204
 msgctxt "uniDimBayesian|"
 msgid "Item-rest correlation"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:214
 msgctxt "uniDimBayesian|"
 msgid "Plot Posteriors"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:220
 msgctxt "uniDimBayesian|"
 msgid "Fix range to 0-1"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:226
 msgctxt "uniDimBayesian|"
 msgid "Display Priors"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:238
 msgctxt "uniDimBayesian|"
 msgid "Probability for:"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:255
 msgctxt "uniDimBayesian|"
 msgid "< Reliability <"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:281
 msgctxt "uniDimBayesian|"
 msgid "Shade posterior region in plot"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:291
 msgctxt "uniDimBayesian|"
 msgid "Convergence"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:295
 msgctxt "uniDimBayesian|"
 msgid "MCMC parameters"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:301
 #, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "No. samples"
 msgstr "No. de amostras"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:312
 msgctxt "uniDimBayesian|"
 msgid "No. burnin samples"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:323
 msgctxt "uniDimBayesian|"
 msgid "Thinning"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:333
 msgctxt "uniDimBayesian|"
 msgid "No. chains"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:343
 msgctxt "uniDimBayesian|"
 msgid "Diagnostics"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:345
 msgctxt "uniDimBayesian|"
 msgid "R-hat"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:346
 msgctxt "uniDimBayesian|"
 msgid "Traceplots"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:351
 msgctxt "uniDimBayesian|"
 msgid "Repeatability"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:356
 msgctxt "uniDimBayesian|"
 msgid "Set seed"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:373
 msgctxt "uniDimBayesian|"
 msgid "Samples"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:380
 msgctxt "uniDimBayesian|"
 msgid "Disable saving samples"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:385
 msgctxt "uniDimBayesian|"
 msgid "Click to learn more about saving the samples."
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:396
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:402
 msgctxt "uniDimBayesian|"
 msgid "Reverse-Scaled Items"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:401
 msgctxt "uniDimBayesian|"
 msgid "Normal-Scaled Items"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:409
 msgctxt "uniDimBayesian|"
 msgid "Missing Data Handling"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:413
 msgctxt "uniDimBayesian|"
 msgid "Missing Values"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:416
 msgctxt "uniDimBayesian|"
 msgid "Exclude cases pairwise"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:417
 msgctxt "uniDimBayesian|"
 msgid "Exclude cases listwise"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:35
 #, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Variables"
 msgstr "Variáveis"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:42
 msgctxt "uniDimFrequentist|"
 msgid "Analysis"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:46
 msgctxt "uniDimFrequentist|"
 msgid "Scale Statistics"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:51
 msgctxt "uniDimFrequentist|"
 msgid "Confidence Interval"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:68
 msgctxt "uniDimFrequentist|"
 msgid "McDonald's ω"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:76
 msgctxt "uniDimFrequentist|"
 msgid "Cronbach's α"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:83
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ2"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:90
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ6"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:97
 msgctxt "uniDimFrequentist|"
 msgid "Greatest lower bound"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:100
 msgctxt "uniDimFrequentist|"
 msgid "Average interitem correlation"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:104
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:172
 msgctxt "uniDimFrequentist|"
 msgid "Mean"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:111
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:125
-msgctxt "uniDimFrequentist|"
-msgid "of sum scores"
-msgstr ""
-
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:112
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:126
-msgctxt "uniDimFrequentist|"
-msgid "of mean scores"
-msgstr ""
-
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:118
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:173
 msgctxt "uniDimFrequentist|"
 msgid "Standard deviation"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:134
 msgctxt "uniDimFrequentist|"
 msgid "Individual Item Statistics"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:139
 msgctxt "uniDimFrequentist|"
 msgid "McDonald's ω  (if item dropped)"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:146
 msgctxt "uniDimFrequentist|"
 msgid "Cronbach's α (if item dropped)"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:153
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ2 (if item dropped)"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:160
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ6 (if item dropped)"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:167
 msgctxt "uniDimFrequentist|"
 msgid "Greatest lower bound (if item dropped)"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:171
 msgctxt "uniDimFrequentist|"
 msgid "Item-rest correlation"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:179
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:186
 msgctxt "uniDimFrequentist|"
 msgid "Reverse-Scaled Items"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:185
 msgctxt "uniDimFrequentist|"
 msgid "Normal-Scaled Items"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:192
 msgctxt "uniDimFrequentist|"
 msgid "Advanced Options"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:196
 msgctxt "uniDimFrequentist|"
 msgid "Missing Values"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:199
 msgctxt "uniDimFrequentist|"
 msgid "Exclude cases pairwise"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:200
 msgctxt "uniDimFrequentist|"
 msgid "Exclude cases listwise"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:205
 #, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Bootstrap"
 msgstr "Bootstrap"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:210
 msgctxt "uniDimFrequentist|"
 msgid "No. of bootstrap samples"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:223
 msgctxt "uniDimFrequentist|"
 msgid "Non-parametric bootstrap"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:224
 msgctxt "uniDimFrequentist|"
 msgid "Parametric bootstrap"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:231
 msgctxt "uniDimFrequentist|"
 msgid "McDonald's ω Estimation"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:238
 msgctxt "uniDimFrequentist|"
 msgid "CFA"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:244
 msgctxt "uniDimFrequentist|"
 msgid "Single factor model fit"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:249
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:297
 msgctxt "uniDimFrequentist|"
 msgid "Interval"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:257
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:304
 msgctxt "uniDimFrequentist|"
 msgid "Analytic interval"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:264
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:311
 msgctxt "uniDimFrequentist|"
 msgid "Bootstrapped interval"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:268
 msgctxt "uniDimFrequentist|"
 msgid "PFA"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:273
 msgctxt "uniDimFrequentist|"
 msgid "Cronbach's α Estimation"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:284
 msgctxt "uniDimFrequentist|"
 msgid "Unstandardized"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:291
 msgctxt "uniDimFrequentist|"
 msgid "Standardized"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:318
 msgctxt "uniDimFrequentist|"
 msgid "Repeatability"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:323
 msgctxt "uniDimFrequentist|"
 msgid "Set seed"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:340
 msgctxt "uniDimFrequentist|"
 msgid "Samples"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:347
 msgctxt "uniDimFrequentist|"
 msgid "Disable saving samples"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:352
 msgctxt "uniDimFrequentist|"
 msgid "Click to learn more about saving the samples."
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:105
+msgctxt "uniDimBayesian|"
+msgid "SD"
+msgstr ""
+
 msgctxt "uniDimBayesian|"
 msgid ""
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:119
 msgctxt "uniDimBayesian|"
-msgid ""
+msgid "of participants' sum scores"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:108
+msgctxt "uniDimBayesian|"
+msgid "of participants' mean scores"
+msgstr ""
+
+msgctxt "uniDimFrequentist|"
+msgid "SD"
+msgstr ""
+
 msgctxt "uniDimFrequentist|"
 msgid ""
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:122
 msgctxt "uniDimFrequentist|"
-msgid ""
+msgid "of participants' sum scores"
+msgstr ""
+
+msgctxt "uniDimFrequentist|"
+msgid "of participants' mean scores"
 msgstr ""
