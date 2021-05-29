@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-05-07 13:27\n"
-"PO-Revision-Date: 2021-04-26 20:32+0000\n"
+"PO-Revision-Date: 2021-05-23 12:34+0000\n"
 "Last-Translator: Alex França <alex.tonante@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/pt/>\n"
@@ -61,7 +61,6 @@ msgstr "padrão:"
 msgid "Posterior Plots"
 msgstr "Amostras posteriores"
 
-#, fuzzy
 msgid "Density"
 msgstr "Densidade"
 
@@ -90,7 +89,6 @@ msgstr "Citação:"
 msgid "Bayesian Scale Reliability Statistics"
 msgstr ""
 
-#, fuzzy
 msgid "Estimate"
 msgstr "Estimativas"
 
@@ -131,7 +129,6 @@ msgstr ""
 msgid "Probability"
 msgstr ""
 
-#, fuzzy
 msgid "Statistic"
 msgstr "Estatísticas"
 
