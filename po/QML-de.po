@@ -529,10 +529,6 @@ msgid "SD"
 msgstr ""
 
 msgctxt "uniDimBayesian|"
-msgid ""
-msgstr ""
-
-msgctxt "uniDimBayesian|"
 msgid "of participants' sum scores"
 msgstr ""
 
@@ -545,13 +541,17 @@ msgid "SD"
 msgstr ""
 
 msgctxt "uniDimFrequentist|"
-msgid ""
-msgstr ""
-
-msgctxt "uniDimFrequentist|"
 msgid "of participants' sum scores"
 msgstr ""
 
 msgctxt "uniDimFrequentist|"
 msgid "of participants' mean scores"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid ""
+msgstr ""
+
+msgctxt "uniDimFrequentist|"
+msgid ""
 msgstr ""
