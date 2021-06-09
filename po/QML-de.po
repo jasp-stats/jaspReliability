@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-06-08 14:33+0000\n"
+"PO-Revision-Date: 2021-06-10 11:33+0000\n"
 "Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/de/>\n"
@@ -90,10 +90,9 @@ msgctxt "uniDimBayesian|"
 msgid "McDonald's ω"
 msgstr "McDonalds ω"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Posterior predictive check"
-msgstr "Posterior-Vorhersage-Kontrolle"
+msgstr "Posterior-prädiktive Kontrolle"
 
 msgctxt "uniDimBayesian|"
 msgid "Cronbach's α"
@@ -176,275 +175,226 @@ msgctxt "uniDimBayesian|"
 msgid "Plot Posteriors"
 msgstr "Posterior-Abbildung"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Fix range to 0-1"
 msgstr "Bereich auf 0-1 fixieren"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Display Priors"
 msgstr "Prior anzeigen"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Probability for:"
 msgstr "Wahrscheinlichkeit für:"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "< Reliability <"
 msgstr "< Reliabilität <"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Shade posterior region in plot"
-msgstr "Posterior-Region in Abbildung markieren"
+msgstr "Posterior-Region in Abbildung schattieren"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Convergence"
 msgstr "Konvergenz"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "MCMC parameters"
 msgstr "MCMC-Parameter"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "No. samples"
 msgstr "Stichprobenumfang"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "No. burnin samples"
 msgstr "Stichprobenumfang Aufwärmphase"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Thinning"
 msgstr "Ausdünnung"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "No. chains"
 msgstr "Anzahl Ketten"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Diagnostics"
 msgstr "Diagnostiken"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "R-hat"
 msgstr "R-Dach"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Traceplots"
 msgstr "Verlaufsdiagramme"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Repeatability"
 msgstr "Reproduzierbarkeit"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Set seed"
 msgstr "Startwert für Zufallszahlen setzen"
 
 msgctxt "uniDimBayesian|"
 msgid "Samples"
-msgstr ""
+msgstr "Stichprobe"
 
 msgctxt "uniDimBayesian|"
 msgid "Disable saving samples"
-msgstr ""
+msgstr "Speichern von Stichproben deaktivieren"
 
 msgctxt "uniDimBayesian|"
 msgid "Click to learn more about saving the samples."
-msgstr ""
+msgstr "Klicke hier, um mehr über das Speichern von Stichproben zu erfahren."
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Reverse-Scaled Items"
 msgstr "Umgekehrt kodierte Items"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Normal-Scaled Items"
 msgstr "Normal kodierte Items"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Missing Data Handling"
 msgstr "Umgang mit fehlenden Werten"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Missing Values"
 msgstr "Fehlende Werte"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Exclude cases pairwise"
 msgstr "Fälle paarweise ausschließen"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Exclude cases listwise"
 msgstr "Fälle zeilenweise ausschließen"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Variables"
 msgstr "Variablen"
 
 msgctxt "uniDimFrequentist|"
 msgid "Analysis"
-msgstr ""
+msgstr "Analyse"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Scale Statistics"
 msgstr "Skala-Statistiken"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Confidence Interval"
 msgstr "Konfidenzintervall"
 
 msgctxt "uniDimFrequentist|"
 msgid "McDonald's ω"
-msgstr ""
+msgstr "McDonalds ω"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Cronbach's α"
 msgstr "Cronbachs α"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ2"
 msgstr "Guttmans λ2"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ6"
 msgstr "Guttmans λ6"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Greatest lower bound"
 msgstr "Größte Untergrenze"
 
 msgctxt "uniDimFrequentist|"
 msgid "Average interitem correlation"
-msgstr ""
+msgstr "Mittlere inter-Item Korrelation"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Mean"
 msgstr "Mittelwert"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Standard deviation"
 msgstr "Standardabweichung"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Individual Item Statistics"
 msgstr "Individuelle Item-Statistiken"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "McDonald's ω  (if item dropped)"
 msgstr "McDonalds ω (falls Item gelöscht)"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Cronbach's α (if item dropped)"
 msgstr "Cronbachs α (falls Item gelöscht)"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ2 (if item dropped)"
-msgstr "Guttmans λ6 (falls Item gelöscht) {2 ?}"
+msgstr "Guttmans λ6 (falls Item gelöscht)"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ6 (if item dropped)"
 msgstr "Guttmans λ6 (falls Item gelöscht)"
 
 msgctxt "uniDimFrequentist|"
 msgid "Greatest lower bound (if item dropped)"
-msgstr ""
+msgstr "Größte Untergrenze (falls Item gelöscht)"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Item-rest correlation"
 msgstr "Item-Rest Korrelation"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Reverse-Scaled Items"
 msgstr "Umgekehrt kodierte Items"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Normal-Scaled Items"
 msgstr "Normal kodierte Items"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Advanced Options"
 msgstr "Weitere Optionen"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Missing Values"
 msgstr "Fehlende Werte"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Exclude cases pairwise"
 msgstr "Fälle paarweise ausschließen"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Exclude cases listwise"
 msgstr "Fälle zeilenweise ausschließen"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Bootstrap"
 msgstr "Bootstrap"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "No. of bootstrap samples"
 msgstr "Bootstrap-Stichprobenumfang"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Non-parametric bootstrap"
 msgstr "Nichtparametrischer Bootstrap"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Parametric bootstrap"
 msgstr "Parametrischer Bootstrap"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "McDonald's ω Estimation"
 msgstr "McDonalds ω Schätzung"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "CFA"
 msgstr "CFA"
@@ -453,66 +403,57 @@ msgctxt "uniDimFrequentist|"
 msgid "Single factor model fit"
 msgstr ""
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Interval"
 msgstr "Intervall"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Analytic interval"
 msgstr "Analytisches Intervall"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Bootstrapped interval"
 msgstr "Bootstrap-Intervall"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "PFA"
 msgstr "PFA"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Cronbach's α Estimation"
 msgstr "Cronbachs α Schätzung"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Unstandardized"
 msgstr "Unstandardisiert"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Standardized"
 msgstr "Standardisiert"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Repeatability"
 msgstr "Reproduzierbarkeit"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Set seed"
 msgstr "Startwert für Zufallszahlen setzen"
 
 msgctxt "uniDimFrequentist|"
 msgid "Samples"
-msgstr ""
+msgstr "Stichprobe"
 
 msgctxt "uniDimFrequentist|"
 msgid "Disable saving samples"
-msgstr ""
+msgstr "Speichern von Stichproben deaktivieren"
 
 msgctxt "uniDimFrequentist|"
 msgid "Click to learn more about saving the samples."
-msgstr ""
+msgstr "Klicke hier, um mehr über das Speichern von Stichproben zu erfahren."
 
 msgctxt "uniDimBayesian|"
 msgid "SD"
-msgstr ""
+msgstr "SD"
 
 msgctxt "uniDimBayesian|"
 msgid "of participants' sum scores"
@@ -524,7 +465,7 @@ msgstr ""
 
 msgctxt "uniDimFrequentist|"
 msgid "SD"
-msgstr ""
+msgstr "SD"
 
 msgctxt "uniDimFrequentist|"
 msgid "of participants' sum scores"
