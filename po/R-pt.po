@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-05-07 13:27\n"
-"PO-Revision-Date: 2021-05-23 12:34+0000\n"
+"PO-Revision-Date: 2021-06-15 09:20+0000\n"
 "Last-Translator: Alex França <alex.tonante@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/pt/>\n"
@@ -132,13 +132,11 @@ msgstr ""
 msgid "Statistic"
 msgstr "Estatísticas"
 
-#, fuzzy
 msgid "Prior"
 msgstr "Anterior"
 
-#, fuzzy
 msgid "Posterior"
-msgstr "RÂ² Posterior"
+msgstr "Posterior"
 
 msgid "%s Of the observations, pairwise complete cases were used."
 msgstr ""
