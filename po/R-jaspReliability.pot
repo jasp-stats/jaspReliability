@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
-"POT-Creation-Date: 2021-05-07 13:27\n"
+"POT-Creation-Date: 2021-06-30 11:45\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,6 +41,9 @@ msgid "mean"
 msgstr ""
 
 msgid "sd"
+msgstr ""
+
+msgid "Sampling the posterior factor model for omega failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
 msgstr ""
 
 msgid "Posterior Plots"
@@ -115,10 +118,13 @@ msgstr ""
 msgid "Posterior"
 msgstr ""
 
+msgid "%s Of the observations, %1.f complete cases were used."
+msgstr ""
+
 msgid "%s Of the observations, pairwise complete cases were used."
 msgstr ""
 
-msgid "%s Of the observations, %1.f complete cases were used."
+msgid "Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
 msgstr ""
 
 msgid "%s"
@@ -139,7 +145,7 @@ msgstr ""
 msgid "Omega calculation with PFA failed"
 msgstr ""
 
-msgid "Omega interval calculation with PFA failed"
+msgid "Omega interval calculation with pfa failed"
 msgstr ""
 
 msgid "Omega item dropped statistics with CFA failed"

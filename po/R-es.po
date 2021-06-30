@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
-"POT-Creation-Date: 2021-05-07 13:27\n"
+"POT-Creation-Date: 2021-06-30 11:45\n"
 "PO-Revision-Date: 2021-06-01 15:32+0000\n"
 "Last-Translator: Paulina Elizabeth Robalino <paulina.e.robalino@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
@@ -49,6 +49,11 @@ msgstr "media"
 
 msgid "sd"
 msgstr "DE"
+
+msgid ""
+"Sampling the posterior factor model for omega failed. Try changing to "
+"'Exclude cases listwise' in 'Advanced Options'"
+msgstr ""
 
 msgid "Posterior Plots"
 msgstr "Gráficos posteriores"
@@ -131,11 +136,17 @@ msgstr "Anterior"
 msgid "Posterior"
 msgstr "Posterior"
 
+msgid "%s Of the observations, %1.f complete cases were used."
+msgstr "%s De las observaciones, se utilizaron %1.f casos completos."
+
 msgid "%s Of the observations, pairwise complete cases were used."
 msgstr "%s De las observaciones, se utilizaron casos completos por pares."
 
-msgid "%s Of the observations, %1.f complete cases were used."
-msgstr "%s De las observaciones, se utilizaron %1.f casos completos."
+msgid ""
+"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
+"lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
+"Options'"
+msgstr ""
 
 msgid "%s"
 msgstr "%s"
@@ -164,7 +175,8 @@ msgstr ""
 msgid "Omega calculation with PFA failed"
 msgstr "Falló el cálculo de Omega con PFA"
 
-msgid "Omega interval calculation with PFA failed"
+#, fuzzy
+msgid "Omega interval calculation with pfa failed"
 msgstr "Falló el cálculo del intervalo Omega con PFA"
 
 msgid "Omega item dropped statistics with CFA failed"
@@ -206,7 +218,8 @@ msgstr "Valor"
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
 msgstr[0] "El siguiente ítem se correlacionó negativamente con la escala: %s. "
-msgstr[1] "Los siguientes ítems se correlacionan negativamente con la escala: %s. "
+msgstr[1] ""
+"Los siguientes ítems se correlacionan negativamente con la escala: %s. "
 
 msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
