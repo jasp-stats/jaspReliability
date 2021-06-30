@@ -1,32 +1,40 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: jaspReliability 0.1.0\n"
+"Project-Id-Version: \n"
 "POT-Creation-Date: 2021-06-30 11:45\n"
-"PO-Revision-Date: 2021-03-12 02:20+0000\n"
-"Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
-"jaspreliability-r/ja/>\n"
-"Language: ja\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: gl_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.5.2-dev\n"
+"X-Virgin-Header: remove this line if you change anything in the header.\n"
+"X-Language: gl_ES\n"
+"X-Source-Language: C\n"
+"X-Generator: Poedit 2.3\n"
 
+#, fuzzy
 msgid "Intraclass Correlation"
-msgstr "級内相関"
+msgstr "Correlación parcial"
 
 msgid "Type"
-msgstr "型"
+msgstr "Tipo"
 
+#, fuzzy
 msgid "Point Estimate"
-msgstr "点推定"
+msgstr "Estimación por punto"
 
 msgid "Lower %s%% CI"
-msgstr "下側 %s%% CI"
+msgstr ""
 
 msgid "Upper %s%% CI"
-msgstr "上側 %s%% CI"
+msgstr ""
 
 msgid ""
 "%s subjects and %s judges/measurements. ICC type as referenced by Shrout & "
@@ -34,78 +42,93 @@ msgid ""
 msgstr ""
 
 msgid "Please select at least 2 columns"
-msgstr "少なくとも2列選択してください"
-
-msgid "Greatest Lower Bound"
-msgstr "最大下界"
-
-msgid "Item-rest correlation"
 msgstr ""
 
-msgid "mean"
-msgstr "平均"
+#, fuzzy
+msgid "Greatest Lower Bound"
+msgstr "Maior límite inferior"
 
+msgid "Item-rest correlation"
+msgstr "Correlación do resto de elementos"
+
+msgid "mean"
+msgstr "media"
+
+#, fuzzy
 msgid "sd"
-msgstr "標準偏差"
+msgstr "típico:"
 
 msgid ""
 "Sampling the posterior factor model for omega failed. Try changing to "
 "'Exclude cases listwise' in 'Advanced Options'"
 msgstr ""
 
+#, fuzzy
 msgid "Posterior Plots"
-msgstr ""
+msgstr "Mostras posteriores"
 
 msgid "Density"
-msgstr "密度"
+msgstr "Densidade"
 
+#, fuzzy
 msgid "If Item Dropped Posterior Plots"
-msgstr ""
+msgstr "Gráfica ao eliminar elementos"
 
 msgid "KLD ordering failed because two variables have perfect correlation"
 msgstr ""
 
+#, fuzzy
 msgid "Item Dropped"
-msgstr ""
+msgstr "Gráfica ao eliminar elementos"
 
+#, fuzzy
 msgid "Eigenvalue"
-msgstr ""
+msgstr "Autovalores"
 
+#, fuzzy
 msgid "Eigenvalue No."
-msgstr ""
+msgstr "Autovalores"
 
+#, fuzzy
 msgid "Convergence Traceplot"
-msgstr ""
+msgstr "Valor límite da converxencia:"
 
 msgid "Iterations"
-msgstr ""
+msgstr "Iteracións"
 
+#, fuzzy
 msgid "Bayesian Scale Reliability Statistics"
-msgstr ""
+msgstr "Análise baiesiana de fiabilidade dunha proba"
 
+#, fuzzy
 msgid "Estimate"
-msgstr "推定"
+msgstr "Estimado"
 
 msgid "%s%% CI"
 msgstr ""
 
+#, fuzzy
 msgid "%s lower bound"
-msgstr ""
+msgstr "límite inferior:"
 
+#, fuzzy
 msgid "%s upper bound"
-msgstr ""
+msgstr "límite superior:"
 
+#, fuzzy
 msgid "Bayesian Individual Item Reliability Statistics"
-msgstr ""
+msgstr "Estatísticos de elementos individuais"
 
 msgid "Item"
 msgstr ""
 
+#, fuzzy
 msgid "%s (if item dropped)"
-msgstr ""
+msgstr "λ2 de Guttman (co elemento borrado)"
 
+#, fuzzy
 msgid "Posterior Mean"
-msgstr ""
+msgstr "Mediana posterior"
 
 msgid ""
 "%s Please enter at least 3 variables for the if item dropped statistics."
@@ -117,16 +140,18 @@ msgid ""
 msgstr ""
 
 msgid "Probability"
-msgstr ""
+msgstr "Probabilidade"
 
+#, fuzzy
 msgid "Statistic"
-msgstr "統計"
+msgstr "Estatísticos"
 
 msgid "Prior"
-msgstr ""
+msgstr "Previo"
 
+#, fuzzy
 msgid "Posterior"
-msgstr "事後分布"
+msgstr "R² posterior"
 
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr ""
@@ -184,27 +209,34 @@ msgid "Frequentist Scale Reliability Statistics"
 msgstr ""
 
 msgid "Point estimate"
-msgstr ""
+msgstr "Estimación por punto"
 
+#, fuzzy
 msgid "Frequentist Individual Item Reliability Statistics"
-msgstr ""
+msgstr "Estatísticos de elementos individuais"
 
+#, fuzzy
 msgid "If item dropped"
-msgstr ""
+msgstr "Gráfica ao eliminar elementos"
 
+#, fuzzy
 msgid "Fit Measures of Single Factor Model Fit"
-msgstr ""
+msgstr "Axuste do modelo de factor único"
 
+#, fuzzy
 msgid "Fit Measure"
-msgstr ""
+msgstr "Medidas de axuste"
 
 msgid "Value"
-msgstr "値"
+msgstr "Valor"
 
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
 msgstr[0] ""
+msgstr[1] ""
 
 msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] ""
+msgstr[1] ""
+
