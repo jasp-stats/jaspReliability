@@ -3,8 +3,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Language: ja\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
@@ -12,23 +10,11 @@ msgid "Reliability"
 msgstr ""
 
 msgctxt "Description|"
-msgid "Classical"
-msgstr "古典的"
-
-msgctxt "Description|"
-msgid "Intraclass Correlation"
-msgstr ""
-
-msgctxt "Description|"
-msgid "Bayesian"
-msgstr "ベイジアン"
-
-msgctxt "IntraclassCorrelation|"
-msgid "Variables"
-msgstr ""
-
-msgctxt "Description|"
 msgid "Quantify the consistency of test scores"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Classical"
 msgstr ""
 
 msgctxt "Description|"
@@ -36,7 +22,19 @@ msgid "Unidimensional Reliability"
 msgstr ""
 
 msgctxt "Description|"
+msgid "Intraclass Correlation"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Bayesian"
+msgstr ""
+
+msgctxt "Description|"
 msgid "Bayesian Unidimensional Reliability"
+msgstr ""
+
+msgctxt "IntraclassCorrelation|"
+msgid "Variables"
 msgstr ""
 
 msgctxt "IntraclassCorrelation|"
