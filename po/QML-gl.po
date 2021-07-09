@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-07-10 11:34+0000\n"
+"Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
+"Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/gl/>\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.8-dev\n"
 "X-Language: gl_ES\n"
 "X-Source-Language: C\n"
 "X-Qt-Contexts: true\n"
@@ -325,10 +331,9 @@ msgctxt "uniDimBayesian|"
 msgid "Exclude cases pairwise"
 msgstr "Excluír casos por parellas"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Exclude cases listwise"
-msgstr "Excluír casos por lista"
+msgstr "Excluír casos segundo a lista"
 
 #, fuzzy
 msgctxt "uniDimFrequentist|"
@@ -456,15 +461,13 @@ msgctxt "uniDimFrequentist|"
 msgid "Missing Values"
 msgstr "Valores ausentes"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Exclude cases pairwise"
 msgstr "Excluír casos por parellas"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Exclude cases listwise"
-msgstr "Excluír casos por lista"
+msgstr "Excluír casos segundo a lista"
 
 #, fuzzy
 msgctxt "uniDimFrequentist|"
