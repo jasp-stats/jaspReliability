@@ -116,10 +116,6 @@ msgid "SD"
 msgstr ""
 
 msgctxt "uniDimBayesian|"
-msgid ""
-msgstr ""
-
-msgctxt "uniDimBayesian|"
 msgid "of participants' sum scores"
 msgstr ""
 
@@ -332,10 +328,6 @@ msgid "SD"
 msgstr ""
 
 msgctxt "uniDimFrequentist|"
-msgid ""
-msgstr ""
-
-msgctxt "uniDimFrequentist|"
 msgid "of participants' sum scores"
 msgstr ""
 
@@ -473,4 +465,12 @@ msgstr ""
 
 msgctxt "uniDimFrequentist|"
 msgid "Click to learn more about saving the samples."
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid ""
+msgstr ""
+
+msgctxt "uniDimFrequentist|"
+msgid ""
 msgstr ""
