@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-06-30 11:45\n"
-"PO-Revision-Date: 2021-07-08 19:34+0000\n"
-"Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
+"PO-Revision-Date: 2021-07-09 06:35+0000\n"
+"Last-Translator: JASP Stats <b.boutin@uva.nl>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/gl/>\n"
 "Language: gl\n"
@@ -33,10 +33,10 @@ msgid "Point Estimate"
 msgstr "Estimación por punto"
 
 msgid "Lower %s%% CI"
-msgstr ""
+msgstr "IC inferior a %s%%"
 
 msgid "Upper %s%% CI"
-msgstr ""
+msgstr "IC superior a %s%%"
 
 msgid ""
 "%s subjects and %s judges/measurements. ICC type as referenced by Shrout & "
@@ -82,9 +82,8 @@ msgstr ""
 msgid "Item Dropped"
 msgstr "Gráfica ao eliminar elementos"
 
-#, fuzzy
 msgid "Eigenvalue"
-msgstr "Autovalores"
+msgstr "Autovalor"
 
 #, fuzzy
 msgid "Eigenvalue No."
@@ -111,9 +110,8 @@ msgstr ""
 msgid "%s lower bound"
 msgstr "límite inferior:"
 
-#, fuzzy
 msgid "%s upper bound"
-msgstr "límite superior:"
+msgstr "límite superior: %s"
 
 #, fuzzy
 msgid "Bayesian Individual Item Reliability Statistics"
