@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-07-13 21:20+0000\n"
+"PO-Revision-Date: 2021-07-15 17:32+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/gl/>\n"
@@ -203,10 +203,9 @@ msgctxt "uniDimBayesian|"
 msgid "Item-rest correlation"
 msgstr "Correlación do resto de elementos"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Standard deviation"
-msgstr "Desviación típica"
+msgstr "Desvío padrón"
 
 #, fuzzy
 msgctxt "uniDimBayesian|"
@@ -436,10 +435,9 @@ msgctxt "uniDimFrequentist|"
 msgid "Item-rest correlation"
 msgstr "Correlación do resto de elementos"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Standard deviation"
-msgstr "Desviación típica"
+msgstr "Desvío padrón"
 
 #, fuzzy
 msgctxt "uniDimFrequentist|"
