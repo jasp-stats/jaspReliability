@@ -48,14 +48,14 @@
       }
 
     } else { # omega with pfa
-      out[["est"]] <- Bayesrel:::applyomega_pfa(model[["data_cov"]])
+      out[["est"]] <- Bayesrel:::applyomegaPFA(model[["data_cov"]])
       if (is.na(out[["est"]])) {
         out[["error"]] <- gettext("Omega calculation with PFA failed")
       } else {
         if (options[["intervalOn"]]) {
           if (is.null(out[["samp"]])) {
             startProgressbar(options[["noSamples"]])
-            out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applyomega_pfa, callback = progressbarTick)
+            out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applyomegaPFA, callback = progressbarTick)
           }
           if (sum(!is.na(out[["samp"]])) < 3)
             out[["error"]] <- gettext("Omega interval calculation with pfa failed")
@@ -99,7 +99,7 @@
         if (is.null(out[["itemDropped"]])) {
           out[["itemDropped"]] <- numeric(ncol(dataset))
           for (i in seq_len(ncol(dataset))) {
-            out[["itemDropped"]][i] <- Bayesrel:::applyomega_cfa_data(dataset[, -i], interval = .95,
+            out[["itemDropped"]][i] <- Bayesrel:::applyomegaCFAData(dataset[, -i], interval = .95,
                                                                       pairwise = model[["pairwise"]])
           }
         }
@@ -109,7 +109,7 @@
       } else { # omega with pfa
       # do we have to compute item dropped values
         if (is.null(out[["itemDropped"]]))
-          out[["itemDropped"]] <- .freqItemDroppedStats(model[["data_cov"]], Bayesrel:::applyomega_pfa)
+          out[["itemDropped"]] <- .freqItemDroppedStats(model[["data_cov"]], Bayesrel:::applyomegaPFA)
 
         if (anyNA(out[["itemDropped"]]))
           out[["error"]] <- gettext("Omega item dropped statistics with PFA failed")
@@ -383,7 +383,7 @@
   # is coefficient even checked?
   if (options[["glbScale"]]  && is.null(model[["empty"]])) {
 
-    out[["est"]] <- Bayesrel:::glbOnArray_custom(model[["data_cov"]])
+    out[["est"]] <- Bayesrel:::glbOnArrayCustom(model[["data_cov"]])
 
 
     # do we need an interval estimate?
@@ -391,7 +391,7 @@
       ciValue <- options[["confidenceIntervalValue"]]
       if (is.null(out[["samp"]])) {
         startProgressbar(4)
-        out[["samp"]] <- Bayesrel:::glbOnArray_custom(model[["bootSamp"]], callback = progressbarTick)
+        out[["samp"]] <- Bayesrel:::glbOnArrayCustom(model[["bootSamp"]], callback = progressbarTick)
 
       }
       out[["conf"]] <- quantile(out[["samp"]], probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
@@ -431,7 +431,7 @@
       for (i in seq_len(model[["k"]])) {
         itemDroppedCovs[i, , ] <- model[["data_cov"]][-i, -i]
       }
-      out[["itemDropped"]] <- c(Bayesrel:::glbOnArray_custom(itemDroppedCovs))
+      out[["itemDropped"]] <- c(Bayesrel:::glbOnArrayCustom(itemDroppedCovs))
     }
 
     if (options[["disableSampleSave"]])

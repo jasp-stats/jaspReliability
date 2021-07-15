@@ -317,7 +317,7 @@
 
       startProgressbar(dd[1] * 3)
       for (i in seq_len(dd[1])) {
-        out[["samp"]][i, ] <- Bayesrel:::glbOnArray_custom(model[["gibbsSamp"]][i, , , ], callback = progressbarTick)
+        out[["samp"]][i, ] <- Bayesrel:::glbOnArrayCustom(model[["gibbsSamp"]][i, , , ], callback = progressbarTick)
       }
 
     }
@@ -361,7 +361,7 @@
 
       startProgressbar(3 * ncol(dataset))
       for (i in seq_len(dd[3])) {
-        out[["itemSamp"]][, i] <- Bayesrel:::glbOnArray_custom(cov_samp[, -i, -i], callback = progressbarTick)
+        out[["itemSamp"]][, i] <- Bayesrel:::glbOnArrayCustom(cov_samp[, -i, -i], callback = progressbarTick)
       }
 
     }
