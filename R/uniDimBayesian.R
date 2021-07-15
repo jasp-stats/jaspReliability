@@ -131,7 +131,7 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
     out <- density(priorlambda6, from = 0, to = 1, n = 512)
   }
   if (estimate == "glbScale") {
-    priorglb <- Bayesrel:::glbOnArray_custom(m, callback)
+    priorglb <- Bayesrel:::glbOnArrayCustom(m, callback)
     out <- density(priorglb, from = 0, to = 1, n = 512)
   }
 
