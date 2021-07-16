@@ -10,7 +10,7 @@ Description: Quantify the consistency of test scores
 License: GPL (>= 2)
 Encoding: UTF-8
 Imports:
-  Bayesrel (>= 0.7),
+  Bayesrel,
   coda,
   ggplot2,
   ggridges,
