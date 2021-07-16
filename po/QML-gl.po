@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-07-15 17:32+0000\n"
+"PO-Revision-Date: 2021-07-17 17:34+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/gl/>\n"
@@ -28,7 +28,7 @@ msgstr "Baiesiano"
 
 msgctxt "Description|"
 msgid "Quantify the consistency of test scores"
-msgstr ""
+msgstr "Cuantificar a consistencia dos valores que acada o test"
 
 msgctxt "Description|"
 msgid "Unidimensional Reliability"
@@ -217,10 +217,9 @@ msgctxt "uniDimBayesian|"
 msgid "Fix range to 0-1"
 msgstr "Fixar o rango en 0-1"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Display Priors"
-msgstr "Presentar os previos"
+msgstr "Presentar os Previos"
 
 #, fuzzy
 msgctxt "uniDimBayesian|"
