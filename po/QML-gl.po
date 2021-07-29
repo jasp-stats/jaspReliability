@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-07-22 19:33+0000\n"
+"PO-Revision-Date: 2021-07-24 23:21+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/gl/>\n"
@@ -416,7 +416,7 @@ msgstr "Bootstrap paramétrico"
 
 msgctxt "uniDimFrequentist|"
 msgid "McDonald's ω Estimation"
-msgstr "Estimación da ω de McDonalds"
+msgstr "Estimación da ω de McDonald"
 
 msgctxt "uniDimFrequentist|"
 msgid "CFA"
