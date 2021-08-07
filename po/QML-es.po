@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-08-09 00:37+0000\n"
+"Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/es/>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.8-dev\n"
 "X-Language: es\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -77,42 +83,34 @@ msgctxt "uniDimBayesian|"
 msgid "Analysis"
 msgstr ""
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Scale Statistics"
-msgstr "Estadísticas de escala"
+msgstr "Estadísticas de Escala"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Credible interval"
-msgstr "Intervalo creíble"
+msgstr "Intervalo de credibilidad"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "McDonald's ω"
-msgstr "McDonald's ω"
+msgstr "ω de McDonald"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Posterior predictive check"
 msgstr "Control predictivo posterior"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Cronbach's α"
-msgstr "Α de Cronbach"
+msgstr "α de Cronbach"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ2"
-msgstr "Λ2 de Guttman"
+msgstr "λ2 de Guttman"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ6"
-msgstr "Λ6 de Guttman"
+msgstr "λ6 de Guttman"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Greatest lower bound"
 msgstr "Mayor límite inferior"
@@ -217,10 +215,9 @@ msgctxt "uniDimBayesian|"
 msgid "< Reliability <"
 msgstr "<Fiabilidad <"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Shade posterior region in plot"
-msgstr "Sombrear la región posterior en la parcela"
+msgstr "Sombrear la región posterior en el gráfico"
 
 #, fuzzy
 msgctxt "uniDimBayesian|"
@@ -304,61 +301,50 @@ msgctxt "uniDimBayesian|"
 msgid "Missing Data Handling"
 msgstr "Manejo de datos faltantes"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Missing Values"
-msgstr "Valores faltantes"
+msgstr "Valores Perdidos"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Exclude cases pairwise"
 msgstr "Excluir casos por pares"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Exclude cases listwise"
 msgstr "Excluir casos según la lista"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Variables"
 msgstr "Variables"
 
 msgctxt "uniDimFrequentist|"
 msgid "Analysis"
-msgstr ""
+msgstr "Análisis"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Scale Statistics"
-msgstr "Estadísticas de escala"
+msgstr "Estadísticas de Escala"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Confidence Interval"
-msgstr "Intervalo de confianza"
+msgstr "Intervalo de Confianza"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "McDonald's ω"
-msgstr "McDonald's ω"
+msgstr "ω de McDonald"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Cronbach's α"
-msgstr "Α de Cronbach"
+msgstr "α de Cronbach"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ2"
-msgstr "Λ2 de Guttman"
+msgstr "λ2 de Guttman"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ6"
-msgstr "Λ6 de Guttman"
+msgstr "λ6 de Guttman"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Greatest lower bound"
 msgstr "Mayor límite inferior"
@@ -428,25 +414,21 @@ msgctxt "uniDimFrequentist|"
 msgid "Advanced Options"
 msgstr "Opciones avanzadas"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Missing Values"
-msgstr "Valores faltantes"
+msgstr "Valores Perdidos"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Exclude cases pairwise"
 msgstr "Excluir casos por pares"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Exclude cases listwise"
 msgstr "Excluir casos según la lista"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Bootstrap"
-msgstr "Oreja"
+msgstr "Bootstrap"
 
 #, fuzzy
 msgctxt "uniDimFrequentist|"
