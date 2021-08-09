@@ -231,6 +231,7 @@ Form
 				{
 					DoubleField
 					{
+						id:				probTableValueLow
 						name:			"probTableValueLow"
 						label:			""
 						defaultValue:	0.70
@@ -248,7 +249,7 @@ Form
 						name:			"probTableValueHigh"
 						label:			""
 						defaultValue:	.90
-						min:			0
+						min:			probTableValueLow.value
 						max:			1
 						decimals:		2
 						fieldWidth: 	40

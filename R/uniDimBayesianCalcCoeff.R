@@ -53,8 +53,8 @@
   if (options[["omegaItem"]] && is.null(model[["empty"]])) {
 
     if (ncol(dataset) == 2) {
-      out[["itemEst"]] <- c(NA_real_, NA_real_)
-      out[["itemCred"]] <- matrix(NA_real_, 2, 2)
+      out[["itemEst"]] <- c(NaN, NaN)
+      out[["itemCred"]] <- matrix(NaN, 2, 2)
       colnames(out[["itemCred"]]) <- c("lower", "upper")
       return(out)
     }
@@ -133,8 +133,8 @@
 
   if (options[["alphaItem"]] && is.null(model[["empty"]])) {
     if (ncol(dataset) == 2) {
-      out[["itemEst"]] <- c(NA_real_, NA_real_)
-      out[["itemCred"]] <- matrix(NA_real_, 2, 2)
+      out[["itemEst"]] <- c(NaN, NaN)
+      out[["itemCred"]] <- matrix(NaN, 2, 2)
       colnames(out[["itemCred"]]) <- c("lower", "upper")
 
       return(out)
@@ -203,8 +203,8 @@
 
   if (options[["lambda2Item"]] && is.null(model[["empty"]])) {
     if (ncol(dataset) == 2) {
-      out[["itemEst"]] <- c(NA_real_, NA_real_)
-      out[["itemCred"]] <- matrix(NA_real_, 2, 2)
+      out[["itemEst"]] <- c(NaN, NaN)
+      out[["itemCred"]] <- matrix(NaN, 2, 2)
       colnames(out[["itemCred"]]) <- c("lower", "upper")
 
       return(out)
@@ -269,8 +269,8 @@
 
   if (options[["lambda6Item"]] && is.null(model[["empty"]])) {
     if (ncol(dataset) == 2) {
-      out[["itemEst"]] <- c(NA_real_, NA_real_)
-      out[["itemCred"]] <- matrix(NA_real_, 2, 2)
+      out[["itemEst"]] <- c(NaN, NaN)
+      out[["itemCred"]] <- matrix(NaN, 2, 2)
       colnames(out[["itemCred"]]) <- c("lower", "upper")
 
       return(out)
@@ -345,8 +345,8 @@
 
   if (options[["glbItem"]] && is.null(model[["empty"]])) {
     if (ncol(dataset) == 2) {
-      out[["itemEst"]] <- c(NA_real_, NA_real_)
-      out[["itemCred"]] <- matrix(NA_real_, 2, 2)
+      out[["itemEst"]] <- c(NaN, NaN)
+      out[["itemCred"]] <- matrix(NaN, 2, 2)
       colnames(out[["itemCred"]]) <- c("lower", "upper")
 
       return(out)

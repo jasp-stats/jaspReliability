@@ -187,17 +187,22 @@
 
       if (is.null(plotContainerItem[[nmsObjsNoGreek[i]]])) {
 
-        # use the coefficient item object in the model list, and the object directly before it,
-        # which is always the corresponding scale object
-        prevNumber <- which(names(model) == nm) - 1
-        p <- .makeIfItemPlot(model[[nm]], model[[prevNumber]], nmsLabs[[i]],
-                                                options[["credibleIntervalValueItem"]],
-                                                ordering = ordering, model[["itemsDropped"]])
-        plotObjItem <- createJaspPlot(plot = p, title = nmsObjs[i], width = 400)
-        plotObjItem$dependOn(options = names(idxSelected[i]))
-        plotObjItem$position <- i
-        if (is.null(p)) {
-          plotObjItem$setError(gettext("KLD ordering failed because two variables have perfect correlation"))
+        if (length(options[["variables"]]) < 3) {
+          plotObjItem <- createJaspPlot(plot = NULL, title = nmsObjs[i], width = 400)
+          plotObjItem$setError(gettext("Please enter at least 3 variables for the if item dropped plot"))
+        } else {
+          # use the coefficient item object in the model list, and the object directly before it,
+          # which is always the corresponding scale object
+          prevNumber <- which(names(model) == nm) - 1
+          p <- .makeIfItemPlot(model[[nm]], model[[prevNumber]], nmsLabs[[i]],
+                               options[["credibleIntervalValueItem"]],
+                               ordering = ordering, model[["itemsDropped"]])
+          plotObjItem <- createJaspPlot(plot = p, title = nmsObjs[i], width = 400)
+          plotObjItem$dependOn(options = names(idxSelected[i]))
+          plotObjItem$position <- i
+          if (is.null(p)) {
+            plotObjItem$setError(gettext("KLD ordering failed because two variables have perfect correlation"))
+          }
         }
         plotContainerItem[[nmsObjsNoGreek[i]]] <- plotObjItem
 
