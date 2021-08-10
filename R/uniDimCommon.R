@@ -26,23 +26,19 @@
       return(NULL)
     }
 
-    .hasErrors(dataset = dataset,
-               type = c("infinity", "variance", "observations"),
-               observations.amount = " < 3",
-               infinity.target = options$variables,
-               variance.target = options$variables,
-               observations.target = options$variables,
-               custom = .checkMCMCBounds,
-               exitAnalysisIfErrors = TRUE)
+
   } else {
-    .hasErrors(dataset = dataset,
-               type = c("infinity", "variance", "observations"),
-               observations.amount = " < 3",
-               infinity.target = options$variables,
-               variance.target = options$variables,
-               observations.target = options$variables,
-               exitAnalysisIfErrors = TRUE)
+    .checkMCMCBounds <- NULL
   }
+
+  .hasErrors(dataset = dataset,
+             type = c("infinity", "variance", "observations"),
+             observations.amount = " < 3",
+             infinity.target = options$variables,
+             variance.target = options$variables,
+             observations.target = options$variables,
+             custom = .checkMCMCBounds,
+             exitAnalysisIfErrors = TRUE)
 }
 
 
