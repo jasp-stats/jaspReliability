@@ -13,17 +13,36 @@
 }
 
 
-.checkErrors <- function(dataset, options) {
+.checkErrors <- function(dataset, options, Bayes = FALSE) {
 
+  if (Bayes) {
+    # check for sensible MCMC values
+    .checkMCMCBounds <- function() {
+      # are the remaining samples after burnin and thinning larger than 2?
+      if (ceiling((options[["noSamples"]] - options[["noBurnin"]]) / options[["noThin"]]) < 2) {
+        return(gettext("Too few MCMC samples will remain after the removal of the burnin samples and thinning,
+                     please increase No.samples."))
+      }
+      return(NULL)
+    }
 
-  .hasErrors(dataset = dataset,
-             type = c("infinity", "variance", "observations"),
-             observations.amount = " < 3",
-             infinity.target = options$variables,
-             variance.target = options$variables,
-             observations.target = options$variables,
-             exitAnalysisIfErrors = TRUE)
-
+    .hasErrors(dataset = dataset,
+               type = c("infinity", "variance", "observations"),
+               observations.amount = " < 3",
+               infinity.target = options$variables,
+               variance.target = options$variables,
+               observations.target = options$variables,
+               custom = .checkMCMCBounds,
+               exitAnalysisIfErrors = TRUE)
+  } else {
+    .hasErrors(dataset = dataset,
+               type = c("infinity", "variance", "observations"),
+               observations.amount = " < 3",
+               infinity.target = options$variables,
+               variance.target = options$variables,
+               observations.target = options$variables,
+               exitAnalysisIfErrors = TRUE)
+  }
 }
 
 

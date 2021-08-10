@@ -9,7 +9,7 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
   }
 
 
-  .checkErrors(dataset, options)
+  .checkErrors(dataset, options, Bayes = TRUE)
 
 
 
