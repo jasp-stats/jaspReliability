@@ -38,7 +38,9 @@
 
   if (.is.empty(model)) {
     scaleTable$setData(allData)
-    scaleTable$addFootnote(model[["footnote"]])
+    if (model[["footnote"]] != "") {
+      scaleTable$addFootnote(model[["footnote"]])
+    }
     return()
   }
 
@@ -64,8 +66,9 @@
 
   scaleTable$setData(allData)
 
-  if (!is.null(model[["footnote"]]))
+  if (model[["footnote"]] != "") {
     scaleTable$addFootnote(model[["footnote"]])
+  }
 
 
 
@@ -104,12 +107,13 @@
 
 
   itemTable[["variable"]] <- model[["itemsDropped"]]
+
   footnote <- ""
   if (!is.null(unlist(options[["reverseScaledItems"]])))
     footnote <- .addFootnoteReverseScaledItems(options)
 
 
-  twoItemProblem <- FALSE
+  fewItemProblem <- FALSE
   for (i in idxSelected) {
     if (estimators[i] %in% coefficients) {
       if (estimators[i] == "Item-rest correlation") { # no item deleted for item rest cor
@@ -126,7 +130,7 @@
                                 overtitle = overTitles[i])
         itemTable$addColumnInfo(name = paste0("upper", i), title = gettextf("Upper %s%% CI", cred), type = "number",
                                 overtitle = overTitles[i])
-        twoItemProblem <- TRUE
+        fewItemProblem <- TRUE
       }
     } else {
       itemTable$addColumnInfo(name = paste0("postMean", i), title = estimators[i], type = "number")
@@ -151,11 +155,14 @@
     }
     itemTable$setData(tb)
 
-    if (!is.null(model[["twoItems"]]) && twoItemProblem)
+    if (length(options[["variables"]]) < 3 && fewItemProblem) {
       footnote <- gettextf("%s Please enter at least 3 variables for the if item dropped statistics.", footnote)
+    }
   }
 
-  itemTable$addFootnote(footnote)
+  if (footnote != "") {
+    itemTable$addFootnote(footnote)
+  }
 
   return()
 }
@@ -171,15 +178,14 @@
   if (options[["probTableValueLow"]] > options[["probTableValueHigh"]]) {
     low <- options[["probTableValueHigh"]]
     high <- options[["probTableValueLow"]]
-    note <- gettext("The bounds you entered have been rearranged in increasing order to provide meaningful results.")
+    footnote <- gettext("The bounds you entered have been rearranged in increasing order to provide meaningful results.")
   } else {
     low <- options[["probTableValueLow"]]
     high <- options[["probTableValueHigh"]]
-    note <- ""
+    footnote <- ""
   }
   probTable <- createJaspTable(
-    gettextf("Probability that Reliability Statistic is Larger than %.2f and Smaller than %.2f",
-             low, high))
+    gettextf("Probability that Reliability Statistic is Larger than %.2f and Smaller than %.2f", low, high))
   probTable$dependOn(options = c("probTableValueLow", "probTable", "probTableValueHigh"))
 
   overTitle <- gettext("Probability")
@@ -233,7 +239,10 @@
 
     df <- data.frame(statistic = opts[idxSelected], prior = probsPrior, posterior = probsPost)
     probTable$setData(df)
-    probTable$addFootnote(note)
+
+    if (footnote != "") {
+      probTable$addFootnote(footnote)
+    }
 
     probTable$position <- 3
     stateContainer <- .getStateContainerB(jaspResults)

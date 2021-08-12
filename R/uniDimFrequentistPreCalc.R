@@ -34,10 +34,6 @@
   if (is.null(model)) {
     model <- list()
 
-    # what if exactly two variables are entered:
-    if (length(options[["variables"]]) == 2)
-      model[["twoItems"]] <- TRUE
-
     model[["footnote"]] <- ""
 
     # check for missings and determine the missing handling
