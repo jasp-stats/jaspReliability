@@ -249,7 +249,7 @@ Form
 						name:			"probTableValueHigh"
 						label:			""
 						defaultValue:	.90
-						min:			probTableValueLow.value
+						min:			0
 						max:			1
 						decimals:		2
 						fieldWidth: 	40

@@ -167,9 +167,19 @@
   if (!is.null(.getStateContainerB(jaspResults)[["probTable"]]$object))
     return()
 
+  # check if the values are in the proper order, meaning the lower field value is smaller than the upper field
+  if (options[["probTableValueLow"]] > options[["probTableValueHigh"]]) {
+    low <- options[["probTableValueHigh"]]
+    high <- options[["probTableValueLow"]]
+    note <- gettext("The bounds you entered have been rearranged in increasing order to provide meaningful results.")
+  } else {
+    low <- options[["probTableValueLow"]]
+    high <- options[["probTableValueHigh"]]
+    note <- ""
+  }
   probTable <- createJaspTable(
     gettextf("Probability that Reliability Statistic is Larger than %.2f and Smaller than %.2f",
-             options[["probTableValueLow"]], options[["probTableValueHigh"]]))
+             low, high))
   probTable$dependOn(options = c("probTableValueLow", "probTable", "probTableValueHigh"))
 
   overTitle <- gettext("Probability")
@@ -196,8 +206,8 @@
 
     end <- 512
     xx <- seq(0, 1, length.out = 512)
-    poslow <- end - sum(xx > options[["probTableValueLow"]])
-    poshigh <- end - sum(xx > options[["probTableValueHigh"]])
+    poslow <- end - sum(xx > low)
+    poshigh <- end - sum(xx > high)
     # since the priors are only available in density form, the prior probability for the estimator being larger than
     # a cutoff is given by calculating the relative probability of the density from the cutoff to 1.
     # check this with R package
@@ -207,8 +217,8 @@
     for (i in seq_len(length(idxSelected))) {
         nm <- names(idxSelected[i])
       samp_tmp <- as.vector(model[[nm]][["samp"]])
-      probsPost[i] <- mean(samp_tmp > options[["probTableValueLow"]]) -
-        mean(samp_tmp > options[["probTableValueHigh"]])
+      probsPost[i] <- mean(samp_tmp > low) -
+        mean(samp_tmp > high)
 
       if (noPriorSaved) {
         startProgressbar(4e3)
@@ -223,6 +233,7 @@
 
     df <- data.frame(statistic = opts[idxSelected], prior = probsPrior, posterior = probsPost)
     probTable$setData(df)
+    probTable$addFootnote(note)
 
     probTable$position <- 3
     stateContainer <- .getStateContainerB(jaspResults)

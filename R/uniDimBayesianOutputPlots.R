@@ -17,10 +17,18 @@
   nmsObjs   <- derivedOptions[["namesEstimators"]][["tables"]]
   nmsObjsNoGreek   <- derivedOptions[["namesEstimators"]][["plotsNoGreek"]]
 
-  if (options[["shadePlots"]] && options[["probTable"]])
-    shadePlots <- c(options[["probTableValueLow"]], options[["probTableValueHigh"]])
-  else
+  if (options[["shadePlots"]] && options[["probTable"]]) {
+    if (options[["probTableValueLow"]] > options[["probTableValueHigh"]]) {
+      low <- options[["probTableValueHigh"]]
+      high <- options[["probTableValueLow"]]
+    } else {
+      low <- options[["probTableValueLow"]]
+      high <- options[["probTableValueHigh"]]
+    }
+    shadePlots <- c(low, high)
+  } else {
     shadePlots <- NULL
+  }
 
   if (options[["plotPosterior"]] && is.null(model[["empty"]])) {
     n.item <- model[["k"]]

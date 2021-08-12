@@ -11,8 +11,6 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
 
   .checkErrors(dataset, options, Bayes = TRUE)
 
-
-
   model <- .BayesianPreCalc(jaspResults, dataset, options)
   options <- .scaleItemBoxAlign(options)
 
