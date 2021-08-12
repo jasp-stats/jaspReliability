@@ -231,6 +231,7 @@ Form
 				{
 					DoubleField
 					{
+						id:				probTableValueLow
 						name:			"probTableValueLow"
 						label:			""
 						defaultValue:	0.70
@@ -290,7 +291,7 @@ Form
 				label: 			qsTr("No. samples")
 				defaultValue: 	1000
 				fieldWidth: 	100
-				min: 			parseFloat(noBurnin.value) + parseFloat(noThin.value) + 1
+				min: 			100
 				max: 			1e7
 			}
 
@@ -302,7 +303,7 @@ Form
 				defaultValue: 	50
 				fieldWidth: 	100
 				min: 			1
-				max:			parseFloat(noSamples.value) - parseFloat(noThin.value) -1
+				max:			1e6
 			}
 
 			IntegerField
@@ -313,7 +314,7 @@ Form
 				defaultValue: 	1
 				fieldWidth: 	100
 				min: 			1
-				max: 			parseFloat(noSamples.value) - parseFloat(noBurnin.value) -1
+				max: 			1e5
 			}
 
 			IntegerField

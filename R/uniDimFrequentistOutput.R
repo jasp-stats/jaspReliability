@@ -49,7 +49,10 @@
       scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
     }
 
-    scaleTable$addFootnote(model[["footnote"]])
+    if (model[["footnote"]] != "") {
+      scaleTable$addFootnote(model[["footnote"]])
+    }
+
     return()
   }
 
@@ -78,9 +81,9 @@
 
   scaleTable$setData(allData)
 
-  if (!is.null(model[["footnote"]]))
+  if (model[["footnote"]] != "") {
     scaleTable$addFootnote(model[["footnote"]])
-
+  }
   return()
 }
 
@@ -132,12 +135,12 @@
       footnote <- .addFootnoteReverseScaledItems(options)
   }
 
-  twoItemProblem <- FALSE
+  fewItemProblem <- FALSE
   for (i in idxSelected) {
     if (coefficientsTable[i] %in% coefficients) {
       itemTable$addColumnInfo(name = paste0("pointEst", i), title = coefficientsTable[i], type = "number",
                               overtitle = overTitle)
-      twoItemProblem <- TRUE
+      fewItemProblem <- TRUE
     } else {
       itemTable$addColumnInfo(name = paste0("pointEst", i), title = coefficientsTable[i], type = "number")
     }
@@ -155,11 +158,14 @@
     }
     itemTable$setData(tb)
 
-    if (!is.null(model[["twoItems"]]) && twoItemProblem)
+    if (length(options[["variables"]]) < 3 && fewItemProblem) {
       footnote <- gettextf("%s Please enter at least 3 variables for the if item dropped statistics.", footnote)
+    }
   }
 
-  itemTable$addFootnote(footnote)
+  if (footnote != "") {
+    itemTable$addFootnote(footnote)
+  }
 
   return()
 }

@@ -88,7 +88,7 @@
   if (options[["omegaItem"]] && is.null(model[["empty"]])) {
 
     if (ncol(dataset) == 2) {
-      out[["itemDropped"]] <- c(NA_real_, NA_real_)
+      out[["itemDropped"]] <- c(NaN, NaN)
       return(out)
     }
 
@@ -207,7 +207,7 @@
   if (options[["alphaItem"]] && is.null(model[["empty"]])) {
 
     if (ncol(dataset) == 2) {
-      out[["itemDropped"]] <- c(NA_real_, NA_real_)
+      out[["itemDropped"]] <- c(NaN, NaN)
       return(out)
     }
 
@@ -280,7 +280,7 @@
   if (options[["lambda2Item"]]  && is.null(model[["empty"]])) {
 
     if (ncol(dataset) == 2) {
-      out[["itemDropped"]] <- c(NA_real_, NA_real_)
+      out[["itemDropped"]] <- c(NaN, NaN)
       return(out)
     }
 
@@ -352,7 +352,7 @@
   if (options[["lambda6Item"]]  && is.null(model[["empty"]])) {
 
     if (ncol(dataset) == 2) {
-      out[["itemDropped"]] <- c(NA_real_, NA_real_)
+      out[["itemDropped"]] <- c(NaN, NaN)
       return(out)
     }
 
@@ -420,7 +420,7 @@
   if (options[["glbItem"]]  && is.null(model[["empty"]])) {
 
     if (ncol(dataset) == 2) {
-      out[["itemDropped"]] <- c(NA_real_, NA_real_)
+      out[["itemDropped"]] <- c(NaN, NaN)
       return(out)
     }
 
@@ -557,7 +557,8 @@
   if (options[["itemRestCor"]]  && is.null(model[["empty"]])) {
     out[["itemDropped"]] <- numeric(ncol(dataset))
     for (i in seq_len(ncol(dataset))) {
-      out[["itemDropped"]][i] <- cor(as.matrix(dataset[, i]), rowMeans(as.matrix(dataset[, -i]), na.rm = TRUE), use = model[["use.cases"]])
+      out[["itemDropped"]][i] <- cor(as.matrix(dataset[, i]), rowMeans(as.matrix(dataset[, -i]), na.rm = TRUE),
+                                     use = model[["use.cases"]])
     }
 
     if (options[["disableSampleSave"]])
