@@ -19,8 +19,8 @@
       jaspBase::.setSeedJASP(options)
 
       tmp_out <- try(Bayesrel:::omegaSampler(dataset, options[["noSamples"]], options[["noBurnin"]],
-                                               options[["noThin"]], options[["noChains"]],
-                                               model[["pairwise"]], progressbarTick), silent = TRUE)
+                                             options[["noThin"]], options[["noChains"]],
+                                             model[["pairwise"]], progressbarTick), silent = TRUE)
       if (model[["pairwise"]] && inherits(tmp_out, "try-error")) {
         .quitAnalysis(gettext("Sampling the posterior factor model for omega failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"))
       }
@@ -29,14 +29,11 @@
       out[["residuals"]] <- apply(tmp_out$psi, 3, as.vector)
     }
 
-    out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
-
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["omegaScaleObj"]] <- createJaspState(out,
-                                                         dependencies = c("omegaScale", "credibleIntervalValueScale"))
+    stateContainer[["omegaScaleObj"]] <- createJaspState(out, dependencies = "omegaScale")
   }
 
   return(out)
@@ -68,8 +65,8 @@
       jaspBase::.setSeedJASP(options)
 
       out[["itemSamp"]] <- array(0, c(options[["noChains"]],
-                        length(seq(1, options[["noSamples"]] - options[["noBurnin"]], options[["noThin"]])),
-                        ncol(dataset)))
+                                      length(seq(1, options[["noSamples"]] - options[["noBurnin"]], options[["noThin"]])),
+                                      ncol(dataset)))
 
       for (i in seq_len(ncol(dataset))) {
         out[["itemSamp"]][, , i] <- Bayesrel:::omegaSampler(dataset[, -i],
@@ -80,13 +77,12 @@
       out[["itemSamp"]] <- matrix(out[["itemSamp"]], dd[1] * dd[2], ncol(dataset))
 
     }
-    out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "credibleIntervalValueItem"))
+    stateContainer[["omegaItemObj"]] <- createJaspState(out, dependencies = "omegaItem")
   }
 
   return(out)
@@ -110,14 +106,12 @@
       startProgressbar(model[["progressbarLength"]])
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applyalpha, progressbarTick))
     }
-    out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["alphaScaleObj"]] <- createJaspState(out,
-                                                          dependencies = c("alphaScale", "credibleIntervalValueScale"))
+    stateContainer[["alphaScaleObj"]] <- createJaspState(out, dependencies = "alphaScale")
   }
 
   return(out)
@@ -147,14 +141,12 @@
       out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsSamp"]], Bayesrel:::applyalpha, progressbarTick)
 
     }
-    out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["alphaItemObj"]] <- createJaspState(out,
-                                                         dependencies = c("alphaItem", "credibleIntervalValueItem"))
+    stateContainer[["alphaItemObj"]] <- createJaspState(out, dependencies = "alphaItem")
   }
 
   return(out)
@@ -179,15 +171,12 @@
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applylambda2, progressbarTick))
 
     }
-    out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["lambda2ScaleObj"]] <- createJaspState(out,
-                                                           dependencies = c("lambda2Scale",
-                                                                            "credibleIntervalValueScale"))
+    stateContainer[["lambda2ScaleObj"]] <- createJaspState(out, dependencies = "lambda2Scale")
   }
 
   return(out)
@@ -216,14 +205,12 @@
       out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsSamp"]], Bayesrel:::applylambda2, progressbarTick)
 
     }
-    out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["lambda2ItemObj"]] <- createJaspState(out,
-                                                           dependencies = c("lambda2Item", "credibleIntervalValueItem"))
+    stateContainer[["lambda2ItemObj"]] <- createJaspState(out, dependencies = "lambda2Item")
   }
 
   return(out)
@@ -246,14 +233,12 @@
       startProgressbar(model[["progressbarLength"]])
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applylambda6, progressbarTick))
     }
-    out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["lambda6ScaleObj"]] <- createJaspState(out,
-                                                            dependencies = c("lambda6Scale","credibleIntervalValueScale"))
+    stateContainer[["lambda6ScaleObj"]] <- createJaspState(out, dependencies = "lambda6Scale")
   }
 
   return(out)
@@ -283,14 +268,12 @@
       out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsSamp"]], Bayesrel:::applylambda6, progressbarTick)
 
     }
-    out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["lambda6ItemObj"]] <- createJaspState(out,
-                                                           dependencies = c("lambda6Item", "credibleIntervalValueItem"))
+    stateContainer[["lambda6ItemObj"]] <- createJaspState(out, dependencies = "lambda6Item")
   }
 
   return(out)
@@ -322,14 +305,11 @@
 
     }
 
-    out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
-
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["glbScaleObj"]] <- createJaspState(out,
-                                                   dependencies = c("glbScale", "credibleIntervalValueScale"))
+    stateContainer[["glbScaleObj"]] <- createJaspState(out, dependencies = "glbScale")
   }
 
   return(out)
@@ -365,14 +345,12 @@
       }
 
     }
-    out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["glbItemObj"]] <- createJaspState(out,
-                                                       dependencies = c("glbItem", "credibleIntervalValueItem"))
+    stateContainer[["glbItemObj"]] <- createJaspState(out, dependencies = "glbItem")
   }
 
   return(out)
@@ -406,14 +384,12 @@
       out[["samp"]] <- coda::mcmc(out[["samp"]])
 
     }
-    out[c("est", "cred")] <- .summarizePosteriorStats(out[["samp"]], ciValue)
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["avgCorObj"]] <- createJaspState(out,
-                                                      dependencies = c("averageItemItemCor", "credibleIntervalValueScale"))
+    stateContainer[["avgCorObj"]] <- createJaspState(out, dependencies = "averageItemItemCor")
   }
 
   return(out)
@@ -486,17 +462,15 @@
 
       jaspBase::.setSeedJASP(options)
       out[["itemSamp"]] <- .itemRestCor(dataset, options[["noSamples"]], options[["noBurnin"]],
-                              options[["noThin"]], options[["noChains"]], model[["pairwise"]],
-                              callback = progressbarTick)
+                                        options[["noThin"]], options[["noChains"]], model[["pairwise"]],
+                                        callback = progressbarTick)
     }
-    out[c("itemEst", "itemCred")] <- .summarizePosteriorItems(out[["itemSamp"]], ciValueItem)
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["itemRestObj"]] <- createJaspState(out,
-                                                       dependencies = c("itemRestCor", "credibleIntervalValueItem"))
+    stateContainer[["itemRestObj"]] <- createJaspState(out, dependencies = "itemRestCor")
   }
 
   return(out)
@@ -554,7 +528,7 @@
   for (i in seq(ncol(dataset))) {
     help_dat <- cbind(as.matrix(dataset[, i]), rowMeans(as.matrix(dataset[, -i]), na.rm = TRUE))
     ircor_samp[, i] <- .WishartCorTransform(help_dat, n.iter = n.iter, n.burnin = n.burnin, thin = thin,
-                                              n.chains = n.chains, pairwise = pairwise, callback = callback)
+                                            n.chains = n.chains, pairwise = pairwise, callback = callback)
   }
 
   return(ircor_samp)
@@ -567,5 +541,109 @@
   tmp_cor <- apply(tmp_cov, c(1), cov2cor)
   out <- tmp_cor[2, ]
   callback()
+  return(out)
+}
+
+
+.BayesianComputeScaleResults <- function(jaspResults, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["scaleResultsObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["scaleResultsObj"]]$object)
+
+  out <- model[["scaleResults"]]
+  if (is.null(out))
+    out <- list()
+
+  if (is.null(model[["empty"]])) {
+
+    ciValue <- options[["credibleIntervalValueScale"]]
+
+    selected <- names(which(model[["derivedOptions"]][["selectedEstimators"]]))
+    # first the coefficients with samples
+    samps <- model[selected]
+    samps <- lapply(samps, function(x) x[["samp"]])
+    samps[sapply(samps, is.null)] <- NULL
+
+    out[["est"]] <- lapply(samps, mean)
+    out[["cred"]] <- lapply(samps, function(x) coda::HPDinterval(coda::mcmc(c(x)), prob = ciValue))
+
+    if (options[["rHat"]]) {
+      tmp <- lapply(samps, function(x) {lapply(as.data.frame(t(x)), coda::mcmc)})
+      out[["rHat"]] <- lapply(tmp, function(x) {coda::gelman.diag(coda::as.mcmc.list(x))[["psrf"]][, 1]})
+    }
+
+    # check for mean and sd
+    if ("meanScale" %in% selected) {
+      out[["est"]][["meanScale"]] <- model[["meanScale"]][["est"]]
+      out[["cred"]][["meanScale"]] <- model[["meanScale"]][["cred"]]
+      if (options[["rHat"]]) {
+        out[["rHat"]][["meanScale"]] <- NA_real_
+      }
+    }
+    if ("sdScale" %in% selected) {
+      out[["est"]][["sdScale"]] <- model[["sdScale"]][["est"]]
+      out[["cred"]][["sdScale"]] <- model[["sdScale"]][["cred"]]
+      if (options[["rHat"]]) {
+        out[["rHat"]][["sdScale"]] <- NA_real_
+      }
+    }
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["scaleResultsObj"]] <- createJaspState(out, dependencies = c("credibleIntervalValueScale",
+                                                                                 "meanScale", "sdScale", "rHat",
+                                                                                 "alphaScale", "omegaScale",
+                                                                                 "lambda2Scale", "lambda6Scale",
+                                                                                 "glbScale","averageInterItemCor",
+                                                                                 "meanMethod", "sdMethod"))
+
+  }
+
+  return(out)
+
+}
+
+
+.BayesianComputeItemResults <- function(jaspResults, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["itemResultsObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["itemResultsObj"]]$object)
+
+  out <- model[["itemResults"]]
+  if (is.null(out))
+    out <- list()
+
+  chosen <- any(model[["derivedOptions"]][["itemDroppedSelected"]])
+
+  if (is.null(model[["empty"]]) && chosen) {
+
+    ciValue <- options[["credibleIntervalValueItem"]]
+
+    selected <- names(which(model[["derivedOptions"]][["itemDroppedSelected"]]))
+    # first the coefficients with samples
+    samps <- model[selected]
+    samps <- lapply(samps, function(x) x[["itemSamp"]])
+    samps[sapply(samps, is.null)] <- NULL
+
+    out[["est"]] <- lapply(samps, colMeans)
+    out[["cred"]] <- lapply(samps, function(x) coda::HPDinterval(coda::mcmc(x), prob = ciValue))
+
+    # check for mean and sd
+    if ("meanItem" %in% selected) {
+      out[["est"]][["meanItem"]] <- model[["meanItem"]][["itemEst"]]
+      out[["cred"]][["meanItem"]] <- model[["meanItem"]][["itemCred"]]
+
+    }
+    if ("sdItem" %in% selected) {
+      out[["est"]][["sdItem"]] <- model[["sdItem"]][["itemEst"]]
+      out[["cred"]][["sdItem"]] <- model[["sdItem"]][["itemCred"]]
+
+    }
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["itemResultsObj"]] <- createJaspState(out, dependencies = c("omegaItem",  "alphaItem",
+                                                                                "lambda2Item",  "lambda6Item",
+                                                                                "glbItem","credibleIntervalValueItem",
+                                                                                "itemRestCor", "meanItem", "sdItem"))
+
+  }
+
   return(out)
 }

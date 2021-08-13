@@ -33,6 +33,9 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
   model[["meanItem"]] <- .BayesianMeanItem(jaspResults, dataset, options, model)
   model[["sdItem"]] <- .BayesianSdItem(jaspResults, dataset, options, model)
 
+  model[["scaleResults"]] <- .BayesianComputeScaleResults(jaspResults, options, model)
+  model[["itemResults"]] <- .BayesianComputeItemResults(jaspResults, options, model)
+
   .BayesianScaleTable(jaspResults, model, options)
   .BayesianItemTable(jaspResults, model, options)
   .BayesianProbTable(jaspResults, model, options)
@@ -87,12 +90,6 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
   return(jaspResults[["stateContainer"]])
 }
 
-.summarizePosteriorStats <- function(samples, ciValue) {
-  return(list(
-    mean(samples),
-    coda::HPDinterval(coda::mcmc(as.vector(samples)), prob = ciValue)
-  ))
-}
 
 .summarizePosteriorItems <- function(samples, ciValue) {
   return(list(

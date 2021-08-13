@@ -32,6 +32,8 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
   model[["meanItem"]] <- .frequentistMeanItem(jaspResults, dataset, options, model)
   model[["sdItem"]] <- .frequentistSdItem(jaspResults, dataset, options, model)
 
+  model[["scaleResults"]] <- .frequentistComputeScaleResults(jaspResults, dataset, options, model)
+
   .frequentistScaleTable(jaspResults, model, options)
   .frequentistItemTable(jaspResults, model, options)
   .frequentistSingleFactorFitTable(jaspResults, model, options)
@@ -45,17 +47,16 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
 
   derivedOptions <- list(
     selectedEstimators  = unlist(options[c("omegaScale", "alphaScale", "lambda2Scale", "lambda6Scale",
-                                            "glbScale", "averageInterItemCor", "meanScale", "sdScale")]),
+                                           "glbScale", "averageInterItemCor", "meanScale", "sdScale")]),
     itemDroppedSelected = unlist(options[c("omegaItem", "alphaItem", "lambda2Item", "lambda6Item",
-                                            "glbItem", "itemRestCor", "meanItem", "sdItem")]),
+                                           "glbItem", "itemRestCor", "meanItem", "sdItem")]),
     namesEstimators     = list(
       tables = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
                  "Greatest Lower Bound", "Average interitem correlation", "mean", "sd"),
       tables_item = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
                       gettext("Greatest Lower Bound"), gettext("Item-rest correlation"), gettext("mean"), gettext("sd")),
       coefficients = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
-                       gettext("Greatest Lower Bound"))
-    )
+                       gettext("Greatest Lower Bound")))
   )
   return(derivedOptions)
 }
@@ -66,8 +67,8 @@ reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
     return(jaspResults[["stateContainer"]])
 
   jaspResults[["stateContainer"]] <- createJaspContainer(dependencies = c("variables", "reverseScaledItems", "noSamples",
-                                                                         "missingValues", "bootType", "setSeed",
-                                                                         "seed", "intervalOn", "disableSampleSave")
+                                                                          "missingValues", "bootType", "setSeed",
+                                                                          "seed", "intervalOn", "disableSampleSave")
   )
 
   return(jaspResults[["stateContainer"]])

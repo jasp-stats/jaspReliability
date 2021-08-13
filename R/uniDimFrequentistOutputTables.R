@@ -3,12 +3,13 @@
 .frequentistScaleTable <- function(jaspResults, model, options) {
 
   if (!is.null(.getStateContainerF(jaspResults)[["scaleTable"]]$object))
-      return()
+    return()
 
   scaleTable <- createJaspTable(gettext("Frequentist Scale Reliability Statistics"))
 
   scaleTable$dependOn(options = c("omegaScale", "alphaScale", "lambda2Scale", "lambda6Scale", "glbScale",
-                                  "averageInterItemCor", "meanScale", "sdScale", "meanMethod", "sdMethod"))
+                                  "averageInterItemCor", "meanScale", "sdScale", "meanMethod", "sdMethod",
+                                  "omegaMethod", "omegaInterval", "alphaMethod", "alphaInterval"))
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
 
   if (options[["intervalOn"]]) {
@@ -25,13 +26,11 @@
   stateContainer <- .getStateContainerF(jaspResults)
   stateContainer[["scaleTable"]] <- scaleTable
 
-  if (!is.null(model[["omegaScale"]][["error"]])) {
-    scaleTable$setError(model[["omegaScale"]][["error"]])
-    return()
+  if (!is.null(model[["scaleResults"]][["error"]][["omegaScale"]])) {
+    model[["footnote"]] <- paste(model[["footnote"]], model[["scaleResults"]][["error"]][["omegaScale"]])
   }
-  if (!is.null(model[["lambda6Scale"]][["error"]])) {
-    scaleTable$setError(model[["lambda6Scale"]][["error"]])
-    return()
+  if (!is.null(model[["scaleResults"]][["error"]][["lambda6Scale"]])) {
+    model[["footnote"]] <- paste(model[["footnote"]], model[["scaleResults"]][["error"]][["lambda6Scale"]])
   }
 
   derivedOptions <- model[["derivedOptions"]]
@@ -62,8 +61,8 @@
       nm <- names(idxSelected[j])
 
       scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
-      newData <- data.frame(est = c(unlist(model[[nm]][["est"]], use.names = FALSE),
-                                    unlist(model[[nm]][["conf"]], use.names = FALSE)))
+      newData <- data.frame(est = c(unlist(model[["scaleResults"]][["est"]][[nm]], use.names = FALSE),
+                                    unlist(model[["scaleResults"]][["conf"]][[nm]], use.names = FALSE)))
       colnames(newData) <- paste0(colnames(newData), i)
       allData <- cbind(allData, newData)
     }
@@ -73,7 +72,7 @@
       nm <- names(idxSelected[j])
 
       scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
-      newData <- data.frame(est = c(unlist(model[[nm]][["est"]], use.names = FALSE)))
+      newData <- data.frame(est = c(unlist(model[["scaleResults"]][["est"]][[nm]], use.names = FALSE)))
       colnames(newData) <- paste0(colnames(newData), i)
       allData <- cbind(allData, newData)
     }
@@ -111,13 +110,13 @@
   stateContainer <- .getStateContainerF(jaspResults)
   stateContainer[["itemTable"]] <- itemTable
 
+  footnote <- ""
+
   if (!is.null(model[["omegaItem"]][["error"]])) {
-    itemTable$setError(model[["omegaItem"]][["error"]])
-    return()
+    footnote <- paste(footnote, model[["omegaItem"]][["error"]])
   }
   if (!is.null(model[["lambda6Item"]][["error"]])) {
-    itemTable$setError(model[["lambda6Item"]][["error"]])
-    return()
+    footnote <- paste(footnote, model[["omegaItem"]][["error"]])
   }
 
   selected <- derivedOptions[["itemDroppedSelected"]]
@@ -126,7 +125,6 @@
   idxSelected <- which(selected)
   coefficients <- derivedOptions[["namesEstimators"]][["coefficients"]]
 
-  footnote <- ""
 
   if (length(model[["itemsDropped"]]) > 0) {
     itemTable[["variable"]] <- model[["itemsDropped"]]
@@ -175,8 +173,8 @@
 # once the package is updated check this again and apply:
 .frequentistSingleFactorFitTable <- function(jaspResults, model, options) {
 
-  if (!is.null(.getStateContainerF(jaspResults)[["fitTable"]]$object) || is.null(model[["omegaScale"]][["omegaFit"]]) ||
-      !options[["fitMeasures"]])
+  if (!is.null(.getStateContainerF(jaspResults)[["fitTable"]]$object) ||
+      is.null(model[["scaleResults"]][["fit"]][["omegaScale"]]) || !options[["fitMeasures"]])
     return()
 
   fitTable <- createJaspTable(gettextf("Fit Measures of Single Factor Model Fit"))
@@ -187,7 +185,7 @@
   opts <- c("Chi-Square", "df", "p.value", "RMSEA", "Lower CI RMSEA", "Upper CI RMSEA", "SRMR")
   allData <- data.frame(
     measure = opts,
-    value = as.vector(model[["omegaScale"]][["omegaFit"]])
+    value = as.vector(model[["scaleResults"]][["fit"]][["omegaScale"]])
   )
   fitTable$setData(allData)
 

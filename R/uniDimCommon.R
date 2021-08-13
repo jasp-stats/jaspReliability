@@ -7,7 +7,7 @@
     dataset <- .readDataSetToEnd(
       columns.as.numeric  = variables,
       exclude.na.listwise = if (options[["missingValues"]] == "excludeCasesListwise") variables else NULL
-      )
+    )
   }
   return(dataset)
 }
