@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
-"POT-Creation-Date: 2021-06-30 11:45\n"
+"POT-Creation-Date: 2021-08-14 03:31\n"
 "PO-Revision-Date: 2021-03-12 02:20+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -62,6 +62,9 @@ msgstr "密度"
 msgid "If Item Dropped Posterior Plots"
 msgstr ""
 
+msgid "Please enter at least 3 variables for the if item dropped plot"
+msgstr ""
+
 msgid "KLD ordering failed because two variables have perfect correlation"
 msgstr ""
 
@@ -112,6 +115,11 @@ msgid ""
 msgstr ""
 
 msgid ""
+"The bounds you entered have been rearranged in increasing order to provide "
+"meaningful results."
+msgstr ""
+
+msgid ""
 "Probability that Reliability Statistic is Larger than %.2f and Smaller than "
 "%.2f"
 msgstr ""
@@ -138,6 +146,12 @@ msgid ""
 "Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
 "lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
 "Options'"
+msgstr ""
+
+msgid ""
+"Too few MCMC samples will remain after the removal of the burnin samples and "
+"thinning,\n"
+"                     please increase No.samples."
 msgstr ""
 
 msgid "%s"
