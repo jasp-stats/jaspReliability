@@ -6,7 +6,7 @@ Description
 	name		: "jaspReliability"
 	title		: qsTr("Reliability")
 	description	: qsTr("Quantify the consistency of test scores")
-	version		: "0.1"
+	version		: "0.15"
 	author		: "Julius M. Pfadt, Don van den Bergh & Eric-Jan Wagenmakers"
 	maintainer	: "Julius M. Pfadt <julius.pfadt@gmail.com>"
 	website		: "https://github.com/jasp-stats/Reliability"
