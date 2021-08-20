@@ -157,3 +157,10 @@
 .is.empty <- function(model) {
   !is.null(model[["empty"]])
 }
+
+
+.sampleListHelper <- function(ll, llName) {
+  samps <- lapply(ll, `[[`, llName)
+  samps[lengths(samps) == 0] <- NULL
+  return(samps)
+}

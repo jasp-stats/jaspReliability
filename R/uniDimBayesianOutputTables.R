@@ -131,16 +131,20 @@
     }
   }
 
+
   if (is.null(model[["empty"]])) {
-
     tb <- data.frame(variable = model[["itemsDropped"]])
-
     for (j in seq_along(idxSelected)) {
       i <- idxSelected[j]
       nm <- names(idxSelected[j])
 
-      if (i %in% c(1:6)) { # check this when more estimators are included !!!!!!!!!!!!!!!!!!!!!
-        newtb <- cbind(postMean = model[["itemResults"]][["est"]][[nm]], model[["itemResults"]][["cred"]][[nm]])
+      if (i %in% 1:6) {
+        rows <- length(options[["variables"]])
+        if (rows < 3 && nm != "itemRestCor") {
+          newtb <- cbind(postMean = rep(NaN, rows), matrix(NaN, rows, 2, dimnames = list(NULL, c("lower", "upper"))))
+        } else {
+          newtb <- cbind(postMean = model[["itemResults"]][["est"]][[nm]], model[["itemResults"]][["cred"]][[nm]])
+        }
       } else {
         newtb <- cbind(postMean = model[["itemResults"]][["est"]][[nm]])
       }

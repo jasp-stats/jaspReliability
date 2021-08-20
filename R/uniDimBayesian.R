@@ -159,3 +159,4 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
 
   return(out)
 }
+

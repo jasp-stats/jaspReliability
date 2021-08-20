@@ -642,8 +642,8 @@
       bootCoeffs <- c("lambda2Scale", "glbScale", "averageInterItemCor")
       selected <- bootCoeffs[bootCoeffs %in% names(which(model[["derivedOptions"]][["selectedEstimators"]]))]
 
-      samps <- model[selected]
-      samps <- lapply(samps, function(x) x[["samp"]])
+      sampellist <- model[selected]
+      samps <- .sampleListHelper(sampellist, "samp")
       out[["conf"]][selected] <- lapply(samps, function(x) {quantile(x, probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2),
                                                                      na.rm = TRUE)})
     }

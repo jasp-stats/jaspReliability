@@ -187,7 +187,6 @@
     ordering <- NULL
   }
 
-
   if (is.null(model[["empty"]]) && options[["plotItem"]]) {
     for (j in seq_along(idxSelected)) {
       i <- idxSelected[j]
@@ -202,9 +201,11 @@
           # use the coefficient item object in the model list, and the object directly before it,
           # which is always the corresponding scale object
           prevNumber <- which(names(model) == nm) - 1
+          name <- unlist(strsplit(nm, "Item"))
+          coefPos <- grep(name, names(model[["scaleResults"]][["est"]]))
           p <- .makeIfItemPlot(model[[nm]], model[[prevNumber]],
                                model[["itemResults"]][["est"]][[nm]],
-                               model[["scaleResults"]][["est"]][[nm]],
+                               model[["scaleResults"]][["est"]][[coefPos]],
                                nmsLabs[[i]],
                                options[["credibleIntervalValueItem"]],
                                ordering = ordering, model[["itemsDropped"]])
@@ -257,7 +258,7 @@
     est$name <- c(names, "original")
 
     if (ordering == "orderItemMean") {
-      dists <- abs(coefScaleEst - coefItem[["itemEst"]])
+      dists <- abs(coefScaleEst - coefItemEst)
       dists[length(dists) + 1] <- 0
       est <- est[order(dists, decreasing = FALSE), ]
       dat$var <- factor(dat$var, levels = c(est$name))

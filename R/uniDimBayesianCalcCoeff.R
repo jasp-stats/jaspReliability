@@ -9,8 +9,6 @@
 
   if (options[["omegaScale"]] && is.null(model[["empty"]])) {
 
-    ciValue <- options[["credibleIntervalValueScale"]]
-
     if (is.null(out[["samp"]])) {
       startProgressbar(options[["noSamples"]] * options[["noChains"]])
 
@@ -56,8 +54,6 @@
       return(out)
     }
 
-    ciValueItem <- options[["credibleIntervalValueItem"]]
-
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
 
@@ -100,8 +96,6 @@
 
   if (options[["alphaScale"]] && is.null(model[["empty"]])) {
 
-    ciValue <- options[["credibleIntervalValueScale"]]
-
     if (is.null(out[["samp"]])) {
       startProgressbar(model[["progressbarLength"]])
       out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applyalpha, progressbarTick))
@@ -130,10 +124,8 @@
       out[["itemEst"]] <- c(NaN, NaN)
       out[["itemCred"]] <- matrix(NaN, 2, 2)
       colnames(out[["itemCred"]]) <- c("lower", "upper")
-
       return(out)
     }
-    ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
@@ -163,8 +155,6 @@
     out <- list()
 
   if (options[["lambda2Scale"]] && is.null(model[["empty"]])) {
-
-    ciValue <- options[["credibleIntervalValueScale"]]
 
     if (is.null(out[["samp"]])) {
       startProgressbar(model[["progressbarLength"]])
@@ -198,7 +188,6 @@
 
       return(out)
     }
-    ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
@@ -227,7 +216,6 @@
     out <- list()
 
   if (options[["lambda6Scale"]] && is.null(model[["empty"]])) {
-    ciValue <- options[["credibleIntervalValueScale"]]
 
     if (is.null(out[["samp"]])) {
       startProgressbar(model[["progressbarLength"]])
@@ -260,7 +248,6 @@
 
       return(out)
     }
-    ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
@@ -290,8 +277,6 @@
     out <- list()
 
   if (options[["glbScale"]] && is.null(model[["empty"]])) {
-
-    ciValue <- options[["credibleIntervalValueScale"]]
 
     if (is.null(out[["samp"]])) {
 
@@ -331,7 +316,6 @@
 
       return(out)
     }
-    ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
       # special case glb, because it works with arrays not only matrices, small speedup...
@@ -367,8 +351,6 @@
     out <- list()
 
   if (options[["averageInterItemCor"]] && !is.null(model[["gibbsSamp"]])) {
-
-    ciValue <- options[["credibleIntervalValueScale"]]
 
     if (is.null(out[["samp"]])) {
       startProgressbar(model[["progressbarLength"]])
@@ -455,7 +437,6 @@
     out <- list()
   # is box even checked?
   if (options[["itemRestCor"]] && is.null(model[["empty"]])) {
-    ciValueItem <- options[["credibleIntervalValueItem"]]
 
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
@@ -559,16 +540,17 @@
 
     selected <- names(which(model[["derivedOptions"]][["selectedEstimators"]]))
     # first the coefficients with samples
-    samps <- model[selected]
-    samps <- lapply(samps, function(x) x[["samp"]])
-    samps[sapply(samps, is.null)] <- NULL
+    sampellist <- model[selected]
+    samps <- .sampleListHelper(sampellist, "samp")
 
     out[["est"]] <- lapply(samps, mean)
     out[["cred"]] <- lapply(samps, function(x) coda::HPDinterval(coda::mcmc(c(x)), prob = ciValue))
 
     if (options[["rHat"]]) {
-      tmp <- lapply(samps, function(x) {lapply(as.data.frame(t(x)), coda::mcmc)})
-      out[["rHat"]] <- lapply(tmp, function(x) {coda::gelman.diag(coda::as.mcmc.list(x))[["psrf"]][, 1]})
+      out[["rHat"]] <- lapply(samps, function(x) {
+        # for each samp, (1) convert the rows to a coda object, (2) convert to mcmc.list, so that (3) gelman.diag is happy.
+        coda::gelman.diag(coda::as.mcmc.list(lapply(seq_len(nrow(x)), function(i) coda::mcmc(x[i, ]))))[["psrf"]][, 1]
+        })
     }
 
     # check for mean and sd
@@ -618,9 +600,8 @@
 
     selected <- names(which(model[["derivedOptions"]][["itemDroppedSelected"]]))
     # first the coefficients with samples
-    samps <- model[selected]
-    samps <- lapply(samps, function(x) x[["itemSamp"]])
-    samps[sapply(samps, is.null)] <- NULL
+    sampellist <- model[selected]
+    samps <- .sampleListHelper(sampellist, "itemSamp")
 
     out[["est"]] <- lapply(samps, colMeans)
     out[["cred"]] <- lapply(samps, function(x) coda::HPDinterval(coda::mcmc(x), prob = ciValue))
