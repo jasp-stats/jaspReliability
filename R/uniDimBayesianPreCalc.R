@@ -76,13 +76,13 @@
   if (is.null(model[["gibbsSamp"]]) &&
       (options[["alphaScale"]] || options[["lambda2Scale"]] || options[["lambda6Scale"]] || options[["glbScale"]] ||
        options[["averageInterItemCor"]])
-      ) {
+  ) {
 
     startProgressbar(options[["noSamples"]] * options[["noChains"]])
     dataset <- scale(dataset, scale = FALSE)
     c_out <- try(Bayesrel:::covSamp(dataset, options[["noSamples"]], options[["noBurnin"]],
-                                  options[["noThin"]], options[["noChains"]],
-                                  model[["pairwise"]], progressbarTick), silent = TRUE)
+                                    options[["noThin"]], options[["noChains"]],
+                                    model[["pairwise"]], progressbarTick), silent = TRUE)
     if (model[["pairwise"]] && inherits(c_out, "try-error")) {
       .quitAnalysis(gettext("Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"))
     }

@@ -7,7 +7,7 @@
     dataset <- .readDataSetToEnd(
       columns.as.numeric  = variables,
       exclude.na.listwise = if (options[["missingValues"]] == "excludeCasesListwise") variables else NULL
-      )
+    )
   }
   return(dataset)
 }
@@ -156,4 +156,11 @@
 
 .is.empty <- function(model) {
   !is.null(model[["empty"]])
+}
+
+
+.sampleListHelper <- function(ll, llName) {
+  samps <- lapply(ll, `[[`, llName)
+  samps[lengths(samps) == 0] <- NULL
+  return(samps)
 }

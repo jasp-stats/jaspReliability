@@ -53,9 +53,9 @@
         } else {
           prior <- priors[[nm]]
         }
-        p <- .makeSinglePosteriorPlot(model[[nm]], nmsLabs[[i]],
-                                                         options[["fixXRange"]], shadePlots,
-                                                         options[["dispPrior"]], prior)
+        p <- .makeSinglePosteriorPlot(model[[nm]], model[["scaleResults"]][["cred"]][[nm]], nmsLabs[[i]],
+                                      options[["fixXRange"]], shadePlots,
+                                      options[["dispPrior"]], prior)
         plotObj <- createJaspPlot(plot = p, title = nmsObjs[i])
         plotObj$dependOn(options = names(idxSelected[i]))
         plotObj$position <- i
@@ -71,7 +71,7 @@
   return()
 }
 
-.makeSinglePosteriorPlot <- function(coefList, nms, fixXRange, shade = NULL, priorTrue, priorSample) {
+.makeSinglePosteriorPlot <- function(coefList, coefResults, nms, fixXRange, shade = NULL, priorTrue, priorSample) {
 
   # TODO: consider precomputing all densities (maybe with kernsmooth?) and reducing memory that way
 
@@ -91,7 +91,7 @@
   ymax <- max(d$y) / .9
   yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(0, ymax))
   ymax <- max(yBreaks)
-  scaleCriRound <- round(coefList[["cred"]], 3)
+  scaleCriRound <- round(coefResults, 3)
   datCri <- data.frame(xmin = scaleCriRound[1L], xmax = scaleCriRound[2L], y = .925 * ymax)
   height <- (ymax - .925 * ymax) / 2
   if (fixXRange) {
@@ -187,7 +187,6 @@
     ordering <- NULL
   }
 
-
   if (is.null(model[["empty"]]) && options[["plotItem"]]) {
     for (j in seq_along(idxSelected)) {
       i <- idxSelected[j]
@@ -202,7 +201,12 @@
           # use the coefficient item object in the model list, and the object directly before it,
           # which is always the corresponding scale object
           prevNumber <- which(names(model) == nm) - 1
-          p <- .makeIfItemPlot(model[[nm]], model[[prevNumber]], nmsLabs[[i]],
+          name <- unlist(strsplit(nm, "Item"))
+          coefPos <- grep(name, names(model[["scaleResults"]][["est"]]))
+          p <- .makeIfItemPlot(model[[nm]], model[[prevNumber]],
+                               model[["itemResults"]][["est"]][[nm]],
+                               model[["scaleResults"]][["est"]][[coefPos]],
+                               nmsLabs[[i]],
                                options[["credibleIntervalValueItem"]],
                                ordering = ordering, model[["itemsDropped"]])
           plotObjItem <- createJaspPlot(plot = p, title = nmsObjs[i], width = 400)
@@ -224,7 +228,7 @@
   return()
 }
 
-.makeIfItemPlot <- function(coefItem, coefScale, nms, int, ordering, variables) {
+.makeIfItemPlot <- function(coefItem, coefScale, coefItemEst, coefScaleEst, nms, int, ordering, variables) {
   n_row <- length(variables)
   lower <- (1 - int) / 2
   upper <- int + (1 - int) / 2
@@ -248,13 +252,13 @@
   dat$var <- factor(dat$var, levels = unique(dat$var))
 
   if (!is.null(ordering)) {
-    est <- as.data.frame(coefItem[["itemEst"]])
+    est <- as.data.frame(coefItemEst)
     est[n_row + 1, ] <- 1
     colnames(est) <- "value"
     est$name <- c(names, "original")
 
     if (ordering == "orderItemMean") {
-      dists <- abs(coefScale[["est"]] - coefItem[["itemEst"]])
+      dists <- abs(coefScaleEst - coefItemEst)
       dists[length(dists) + 1] <- 0
       est <- est[order(dists, decreasing = FALSE), ]
       dat$var <- factor(dat$var, levels = c(est$name))
@@ -345,7 +349,7 @@
     stateContainer[["omegaPPC"]] <- plot
   }
 
-return()
+  return()
 }
 
 

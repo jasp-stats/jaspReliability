@@ -48,17 +48,11 @@
     i <- idxSelected[j]
     nm <- names(idxSelected[j])
 
-    newData <- data.frame(est = c(unlist(model[[nm]][["est"]], use.names = FALSE),
-                                  unlist(model[[nm]][["cred"]], use.names = FALSE)))
+    newData <- data.frame(est = c(unlist(model[["scaleResults"]][["est"]][[nm]], use.names = FALSE),
+                                  unlist(model[["scaleResults"]][["cred"]][[nm]], use.names = FALSE)))
 
     if (options[["rHat"]]) {
-      if (opts[i] == "mean" || opts[i] == "sd") {
-        rhat <- NA_real_
-      } else {
-        tmp <- lapply(as.data.frame(t(model[[nm]][["samp"]])), coda::mcmc)
-        rhat <- coda::gelman.diag(coda::as.mcmc.list(tmp))[["psrf"]][, 1]
-      }
-      newData <- rbind(newData, rhat)
+      newData <- rbind(newData, model[["scaleResults"]][["rHat"]][[nm]])
     }
     colnames(newData) <- paste0(colnames(newData), i)
     allData <- cbind(allData, newData)
@@ -137,18 +131,22 @@
     }
   }
 
+
   if (is.null(model[["empty"]])) {
-
     tb <- data.frame(variable = model[["itemsDropped"]])
-
     for (j in seq_along(idxSelected)) {
       i <- idxSelected[j]
       nm <- names(idxSelected[j])
 
-      if (i %in% c(1:6)) { # check this when more estimators are included !!!!!!!!!!!!!!!!!!!!!
-        newtb <- cbind(postMean = model[[nm]][["itemEst"]], model[[nm]][["itemCred"]])
+      if (i %in% 1:6) {
+        rows <- length(options[["variables"]])
+        if (rows < 3 && nm != "itemRestCor") {
+          newtb <- cbind(postMean = rep(NaN, rows), matrix(NaN, rows, 2, dimnames = list(NULL, c("lower", "upper"))))
+        } else {
+          newtb <- cbind(postMean = model[["itemResults"]][["est"]][[nm]], model[["itemResults"]][["cred"]][[nm]])
+        }
       } else {
-        newtb <- cbind(postMean = model[[nm]][["itemEst"]])
+        newtb <- cbind(postMean = model[["itemResults"]][["est"]][[nm]])
       }
       colnames(newtb) <- paste0(colnames(newtb), i)
       tb <- cbind(tb, newtb)
@@ -221,7 +219,7 @@
     probsPrior <- numeric(sum(selected))
 
     for (i in seq_len(length(idxSelected))) {
-        nm <- names(idxSelected[i])
+      nm <- names(idxSelected[i])
       samp_tmp <- as.vector(model[[nm]][["samp"]])
       probsPost[i] <- mean(samp_tmp > low) -
         mean(samp_tmp > high)
