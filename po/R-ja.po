@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
 "POT-Creation-Date: 2021-08-14 03:31\n"
-"PO-Revision-Date: 2021-08-24 10:33+0000\n"
+"PO-Revision-Date: 2021-08-26 18:32+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/ja/>\n"
@@ -89,7 +89,6 @@ msgstr ""
 msgid "Estimate"
 msgstr "推定"
 
-#, fuzzy
 msgid "%s%% CI"
 msgstr "%s%% CI"
 
