@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-26 17:34+0000\n"
-"Last-Translator: Matheus Macena <macenamt21@gmail.com>\n"
+"PO-Revision-Date: 2021-08-27 20:21+0000\n"
+"Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/pt/>\n"
 "Language: pt\n"
@@ -379,7 +379,6 @@ msgctxt "uniDimFrequentist|"
 msgid "Exclude cases listwise"
 msgstr ""
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Bootstrap"
 msgstr "Bootstrap"
