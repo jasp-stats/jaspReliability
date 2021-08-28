@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-08-14 03:31\n"
-"PO-Revision-Date: 2021-07-10 23:32+0000\n"
-"Last-Translator: Luanna dos Santos Silva <luannasilva91@gmail.com>\n"
+"PO-Revision-Date: 2021-08-27 20:21+0000\n"
+"Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/pt/>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.8.1-dev\n"
 "X-Language: en_US\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -20,82 +20,81 @@ msgstr ""
 msgid "Intraclass Correlation"
 msgstr "Correlação Intraclasse"
 
-#, fuzzy
 msgid "Type"
-msgstr "Type"
+msgstr "Tipo"
 
-#, fuzzy
 msgid "Point Estimate"
-msgstr "Estimativas"
+msgstr "Estimativas por Ponto"
 
 msgid "Lower %s%% CI"
-msgstr ""
+msgstr "IC inferior a %s%%"
 
 msgid "Upper %s%% CI"
-msgstr ""
+msgstr "IC Superior a %s%%"
 
 msgid ""
 "%s subjects and %s judges/measurements. ICC type as referenced by Shrout & "
 "Fleiss (1979)."
 msgstr ""
+"%s sujeitos e %s juízes/medidas. Tipo de CCI referenciado por Shrout & "
+"Fleiss (1979)."
 
 msgid "Please select at least 2 columns"
-msgstr ""
+msgstr "Por favor seleciona pelo menos 2 colunas"
 
 msgid "Greatest Lower Bound"
-msgstr ""
+msgstr "Limite Inferior Máximo"
 
-#, fuzzy
 msgid "Item-rest correlation"
-msgstr "Covariâncias / correlações ajustadas"
+msgstr "Correlalção item-resto"
 
-#, fuzzy
 msgid "mean"
-msgstr "média:"
+msgstr "média"
 
-#, fuzzy
 msgid "sd"
-msgstr "padrão:"
+msgstr "padrão"
 
 msgid ""
 "Sampling the posterior factor model for omega failed. Try changing to "
 "'Exclude cases listwise' in 'Advanced Options'"
 msgstr ""
+"A amostragem do modelo de fator posterior para ômega falhou. Tente trocar "
+"para 'Excluir casos listwise' em 'Opções avançadas'"
 
-#, fuzzy
 msgid "Posterior Plots"
-msgstr "Amostras posteriores"
+msgstr "Gráficos Posteriores"
 
 msgid "Density"
 msgstr "Densidade"
 
 msgid "If Item Dropped Posterior Plots"
-msgstr ""
+msgstr "Gráficos posteriores caso o item seja eliminado"
 
 msgid "Please enter at least 3 variables for the if item dropped plot"
 msgstr ""
+"Por favor, introduza ao menos 3 variáveis para 'Gráficos Posteriores caso o "
+"item seja eliminado'"
 
 msgid "KLD ordering failed because two variables have perfect correlation"
-msgstr ""
+msgstr "O ordenamento KLD falhou pois as duas variáveis tem correlação perfeita"
 
 msgid "Item Dropped"
-msgstr ""
+msgstr "Item eliminado"
 
 msgid "Eigenvalue"
 msgstr "Autovalor"
 
 msgid "Eigenvalue No."
-msgstr ""
+msgstr "N.º de valor próprio."
 
 msgid "Convergence Traceplot"
-msgstr ""
+msgstr "Traçado de convergência"
 
-#, fuzzy
 msgid "Iterations"
-msgstr "Citação:"
+msgstr "Iterações"
 
 msgid "Bayesian Scale Reliability Statistics"
-msgstr ""
+msgstr "Estatísticas bayesianas de confiabilidade"
 
 msgid "Estimate"
 msgstr "Estimativa"
@@ -103,44 +102,46 @@ msgstr "Estimativa"
 msgid "%s%% CI"
 msgstr "%s%% IC"
 
-#, fuzzy
 msgid "%s lower bound"
-msgstr "limite inferior:"
+msgstr "%s limite inferior"
 
-#, fuzzy
 msgid "%s upper bound"
-msgstr "limite superior:"
+msgstr "%s limite superior"
 
 msgid "Bayesian Individual Item Reliability Statistics"
-msgstr ""
+msgstr "Estatísticas bayesianas de confiabilidade de itens individuais"
 
 msgid "Item"
-msgstr ""
+msgstr "Item"
 
-#, fuzzy
 msgid "%s (if item dropped)"
-msgstr "McDonald's  (se o item for excluído)"
+msgstr "%s (caso o item seja eliminado)"
 
-#, fuzzy
 msgid "Posterior Mean"
-msgstr "Amostras posteriores"
+msgstr "Media posterior"
 
 msgid ""
 "%s Please enter at least 3 variables for the if item dropped statistics."
 msgstr ""
+"%s Por favor, introduza ao menos 3 variáveis para as estatísticas de "
+"eliminação dos itens."
 
 msgid ""
 "The bounds you entered have been rearranged in increasing order to provide "
 "meaningful results."
 msgstr ""
+"Os limites indicados por você foram rearranjados em ordem crescente para "
+"prover resultados compreensivos."
 
 msgid ""
 "Probability that Reliability Statistic is Larger than %.2f and Smaller than "
 "%.2f"
 msgstr ""
+"Probabilidade que a estatística de confiabilidade seja maior que %.2f e "
+"menor que %.2f"
 
 msgid "Probability"
-msgstr ""
+msgstr "Probabilidade"
 
 msgid "Statistic"
 msgstr "Estatísticas"
@@ -152,80 +153,88 @@ msgid "Posterior"
 msgstr "Posterior"
 
 msgid "%s Of the observations, %1.f complete cases were used."
-msgstr ""
+msgstr "Dos %s de observações, foram utilizado %1.f dos casos completos."
 
 msgid "%s Of the observations, pairwise complete cases were used."
-msgstr ""
+msgstr "Dos %s de observações, foram utilizados casos completos por pares."
 
 msgid ""
 "Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
 "lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
 "Options'"
 msgstr ""
+"Amostragem para matriz posterior de covariância para algum destes [alpha, "
+"lambda2, lambda6, glb] falhou. Tente trocar para 'Exclusão listwise' em "
+"'Opções Avançadas'"
 
 msgid ""
 "Too few MCMC samples will remain after the removal of the burnin samples and "
 "thinning,\n"
 "                     please increase No.samples."
 msgstr ""
+"Restaram poucas amostras MCMC após os processos de remoção das amostras "
+"burnin e do processo de thinning\n"
+"                     por favor, aumentar o número de amostras."
 
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 msgid "%s Variables %s and %s correlated perfectly."
-msgstr ""
+msgstr "%s As variáveis %s e %s se correlacionam perfeitamente."
 
 msgid "Please enter at least 2 variables to do an analysis"
-msgstr ""
+msgstr "Por favor, introduza ao menos 2 variáveis para realizar uma análise"
 
 msgid ""
 "Omega calculation with CFA failed. Try changing to PFA in Advanced Options"
 msgstr ""
+"Calculo de Ômega com CFA falhou. Tente alterar para PFA em 'Opções Avançadas'"
 
 msgid ""
 "Omega bootstrapped interval calculation with CFA failed.\n"
 "                                          \n"
 " Try changing to PFA in 'Advanced Options'"
 msgstr ""
+"O calculo do intervalo de Ômega bootstrapped com CFA falhou.\n"
+"                                          \n"
+" Tente trocar para PFA em 'Opções Avançadas'"
 
 msgid "Omega calculation with PFA failed"
-msgstr ""
+msgstr "Calculo de Ômega com PFA falhou"
 
 msgid "Omega interval calculation with pfa failed"
-msgstr ""
+msgstr "Calculo do intervalo de Ômega com PFA falhou"
 
 msgid "Omega item dropped statistics with CFA failed"
-msgstr ""
+msgstr "As estatísticas Ômega com item eliminado e CFA falharam"
 
 msgid "Omega item dropped statistics with PFA failed"
-msgstr ""
+msgstr "As estatísticas Ômega com item eliminado e PFA falharam"
 
 msgid "Lambda6 calculation failed"
-msgstr ""
+msgstr "Calculo de Lambda6 falhou"
 
 msgid "Lambda6 interval calculation failed"
-msgstr ""
+msgstr "Calculo do intervalo de Lambda6 falhou"
 
 msgid "Lambda6 item dropped statistics failed"
-msgstr ""
+msgstr "As estatísticas de Lambda6 com item eliminado falharam"
 
 msgid "Frequentist Scale Reliability Statistics"
-msgstr ""
+msgstr "Estatísticas de confiabilidade de escala frequentist"
 
-#, fuzzy
 msgid "Point estimate"
-msgstr "Estimativas"
+msgstr "Estimativa Pontual"
 
 msgid "Frequentist Individual Item Reliability Statistics"
-msgstr ""
+msgstr "Estatísticas de confiabilidade de itens individuais frequentistas"
 
 msgid "If item dropped"
-msgstr ""
+msgstr "Caso item seja eliminado"
 
 msgid "Fit Measures of Single Factor Model Fit"
-msgstr ""
+msgstr "Medidas de ajuste para modelo de um único fator"
 
-#, fuzzy
 msgid "Fit Measure"
 msgstr "Medidas Adicionais de Ajuste"
 
@@ -234,13 +243,13 @@ msgstr "Valor"
 
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "O seguinte item se correlacionou negativamente com a escala: %s "
+msgstr[1] "Os seguintes itens se correlacionaram negativamente com a escala: %s "
 
 msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "O seguinte item foi escalado de forma invertida: %s "
+msgstr[1] "Os seguintes itens foram escalados de forma invertida: %s "
 
 #, fuzzy
 #~ msgid "Factors"
