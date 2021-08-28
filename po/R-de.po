@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-08-14 03:31\n"
+"POT-Creation-Date: 2021-08-28 03:30\n"
 "PO-Revision-Date: 2021-08-18 12:34+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -183,41 +183,53 @@ msgstr "%s Die Variablen %s und %s sind perfekt korreliert."
 msgid "Please enter at least 2 variables to do an analysis"
 msgstr "Bitte gib mindestens 2 Variablen ein, um eine Analyse durchzuführen"
 
-msgid ""
-"Omega calculation with CFA failed. Try changing to PFA in Advanced Options"
-msgstr ""
-"Omega-Berechnung mit CFA ist fehlgeschlagen. Versuche, in den weiteren "
-"Optionen zu PFA zu wechseln"
+#, fuzzy
+msgid "Omega item dropped statistics with CFA failed."
+msgstr "Omega-Item-weglassen-Statistik mit CFA fehlgeschlagen"
 
+#, fuzzy
+msgid "Omega item dropped statistics with PFA failed."
+msgstr "Omega-Item-weglassen-Statistik mit PFA fehlgeschlagen"
+
+#, fuzzy
+msgid "Lambda6 item dropped statistics failed."
+msgstr "Lambda6 mit gelöschten Items fehlgeschlagen"
+
+#, fuzzy
 msgid ""
-"Omega bootstrapped interval calculation with CFA failed.\n"
-"                                          \n"
-" Try changing to PFA in 'Advanced Options'"
+"Omega calculation with CFA failed.\n"
+"                                                    Try changing to PFA in "
+"Advanced Options"
 msgstr ""
 "Die Omega-Bootstrapped-Intervallberechnung mit CFA ist fehlgeschlagen.\n"
 "                                          \n"
 " Versuche, in den 'Weiteren Optionen' zu PFA zu wechseln"
 
-msgid "Omega calculation with PFA failed"
+#, fuzzy
+msgid ""
+"Omega bootstrapped interval calculation with CFA failed.\n"
+"                                                            Try changing to "
+"PFA in 'Advanced Options'"
+msgstr ""
+"Die Omega-Bootstrapped-Intervallberechnung mit CFA ist fehlgeschlagen.\n"
+"                                          \n"
+" Versuche, in den 'Weiteren Optionen' zu PFA zu wechseln"
+
+#, fuzzy
+msgid "Omega calculation with PFA failed."
 msgstr "Omega-Berechnung mit PFA fehlgeschlagen"
 
-msgid "Omega interval calculation with pfa failed"
+#, fuzzy
+msgid "Omega interval calculation with PFA failed."
 msgstr "Omega-Intervallberechnung mit pfa fehlgeschlagen"
 
-msgid "Omega item dropped statistics with CFA failed"
-msgstr "Omega-Item-weglassen-Statistik mit CFA fehlgeschlagen"
-
-msgid "Omega item dropped statistics with PFA failed"
-msgstr "Omega-Item-weglassen-Statistik mit PFA fehlgeschlagen"
-
-msgid "Lambda6 calculation failed"
+#, fuzzy
+msgid "Lambda6 calculation failed."
 msgstr "Lambda6-Berechnung fehlgeschlagen"
 
-msgid "Lambda6 interval calculation failed"
+#, fuzzy
+msgid "Lambda6 interval calculation failed."
 msgstr "Lambda6-Intervallberechnung fehlgeschlagen"
-
-msgid "Lambda6 item dropped statistics failed"
-msgstr "Lambda6 mit gelöschten Items fehlgeschlagen"
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Frequentistische Skala-Reliabilitätsstatistiken"
@@ -249,6 +261,12 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "Das folgende Item wurde umgekehrt kodiert: %s. "
 msgstr[1] "Die folgenden Items wurden umgekehrt kodiert: %s. "
+
+#~ msgid ""
+#~ "Omega calculation with CFA failed. Try changing to PFA in Advanced Options"
+#~ msgstr ""
+#~ "Omega-Berechnung mit CFA ist fehlgeschlagen. Versuche, in den weiteren "
+#~ "Optionen zu PFA zu wechseln"
 
 #~ msgid "The covariance matrix of the data is not invertible"
 #~ msgstr "Die Kovarianzmatrix der Daten ist nicht invertierbar"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-08-14 03:31\n"
+"POT-Creation-Date: 2021-08-28 03:30\n"
 "PO-Revision-Date: 2021-08-24 10:33+0000\n"
 "Last-Translator: D.J. Dekker <dj_dekker@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
@@ -133,8 +133,8 @@ msgid ""
 "Probability that Reliability Statistic is Larger than %.2f and Smaller than "
 "%.2f"
 msgstr ""
-"De kans dat de betrouwbaarheidsstatistiek groter is dan %.2f en kleiner dan %"
-".2f"
+"De kans dat de betrouwbaarheidsstatistiek groter is dan %.2f en kleiner dan "
+"%.2f"
 
 msgid "Probability"
 msgstr "Kansverdeling"
@@ -179,35 +179,37 @@ msgstr ""
 msgid "Please enter at least 2 variables to do an analysis"
 msgstr "Geef a.u.b. minstens 3 variabelen op."
 
+msgid "Omega item dropped statistics with CFA failed."
+msgstr ""
+
+msgid "Omega item dropped statistics with PFA failed."
+msgstr ""
+
+msgid "Lambda6 item dropped statistics failed."
+msgstr ""
+
 msgid ""
-"Omega calculation with CFA failed. Try changing to PFA in Advanced Options"
+"Omega calculation with CFA failed.\n"
+"                                                    Try changing to PFA in "
+"Advanced Options"
 msgstr ""
 
 msgid ""
 "Omega bootstrapped interval calculation with CFA failed.\n"
-"                                          \n"
-" Try changing to PFA in 'Advanced Options'"
+"                                                            Try changing to "
+"PFA in 'Advanced Options'"
 msgstr ""
 
-msgid "Omega calculation with PFA failed"
+msgid "Omega calculation with PFA failed."
 msgstr ""
 
-msgid "Omega interval calculation with pfa failed"
+msgid "Omega interval calculation with PFA failed."
 msgstr ""
 
-msgid "Omega item dropped statistics with CFA failed"
+msgid "Lambda6 calculation failed."
 msgstr ""
 
-msgid "Omega item dropped statistics with PFA failed"
-msgstr ""
-
-msgid "Lambda6 calculation failed"
-msgstr ""
-
-msgid "Lambda6 interval calculation failed"
-msgstr ""
-
-msgid "Lambda6 item dropped statistics failed"
+msgid "Lambda6 interval calculation failed."
 msgstr ""
 
 msgid "Frequentist Scale Reliability Statistics"

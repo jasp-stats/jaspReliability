@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-08-14 03:31\n"
+"POT-Creation-Date: 2021-08-28 03:30\n"
 "PO-Revision-Date: 2021-08-27 20:21+0000\n"
 "Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
@@ -76,7 +76,8 @@ msgstr ""
 "item seja eliminado'"
 
 msgid "KLD ordering failed because two variables have perfect correlation"
-msgstr "O ordenamento KLD falhou pois as duas variáveis tem correlação perfeita"
+msgstr ""
+"O ordenamento KLD falhou pois as duas variáveis tem correlação perfeita"
 
 msgid "Item Dropped"
 msgstr "Item eliminado"
@@ -185,40 +186,53 @@ msgstr "%s As variáveis %s e %s se correlacionam perfeitamente."
 msgid "Please enter at least 2 variables to do an analysis"
 msgstr "Por favor, introduza ao menos 2 variáveis para realizar uma análise"
 
-msgid ""
-"Omega calculation with CFA failed. Try changing to PFA in Advanced Options"
-msgstr ""
-"Calculo de Ômega com CFA falhou. Tente alterar para PFA em 'Opções Avançadas'"
+#, fuzzy
+msgid "Omega item dropped statistics with CFA failed."
+msgstr "As estatísticas Ômega com item eliminado e CFA falharam"
 
+#, fuzzy
+msgid "Omega item dropped statistics with PFA failed."
+msgstr "As estatísticas Ômega com item eliminado e PFA falharam"
+
+#, fuzzy
+msgid "Lambda6 item dropped statistics failed."
+msgstr "As estatísticas de Lambda6 com item eliminado falharam"
+
+#, fuzzy
 msgid ""
-"Omega bootstrapped interval calculation with CFA failed.\n"
-"                                          \n"
-" Try changing to PFA in 'Advanced Options'"
+"Omega calculation with CFA failed.\n"
+"                                                    Try changing to PFA in "
+"Advanced Options"
 msgstr ""
 "O calculo do intervalo de Ômega bootstrapped com CFA falhou.\n"
 "                                          \n"
 " Tente trocar para PFA em 'Opções Avançadas'"
 
-msgid "Omega calculation with PFA failed"
+#, fuzzy
+msgid ""
+"Omega bootstrapped interval calculation with CFA failed.\n"
+"                                                            Try changing to "
+"PFA in 'Advanced Options'"
+msgstr ""
+"O calculo do intervalo de Ômega bootstrapped com CFA falhou.\n"
+"                                          \n"
+" Tente trocar para PFA em 'Opções Avançadas'"
+
+#, fuzzy
+msgid "Omega calculation with PFA failed."
 msgstr "Calculo de Ômega com PFA falhou"
 
-msgid "Omega interval calculation with pfa failed"
+#, fuzzy
+msgid "Omega interval calculation with PFA failed."
 msgstr "Calculo do intervalo de Ômega com PFA falhou"
 
-msgid "Omega item dropped statistics with CFA failed"
-msgstr "As estatísticas Ômega com item eliminado e CFA falharam"
-
-msgid "Omega item dropped statistics with PFA failed"
-msgstr "As estatísticas Ômega com item eliminado e PFA falharam"
-
-msgid "Lambda6 calculation failed"
+#, fuzzy
+msgid "Lambda6 calculation failed."
 msgstr "Calculo de Lambda6 falhou"
 
-msgid "Lambda6 interval calculation failed"
+#, fuzzy
+msgid "Lambda6 interval calculation failed."
 msgstr "Calculo do intervalo de Lambda6 falhou"
-
-msgid "Lambda6 item dropped statistics failed"
-msgstr "As estatísticas de Lambda6 com item eliminado falharam"
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Estatísticas de confiabilidade de escala frequentist"
@@ -244,12 +258,19 @@ msgstr "Valor"
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
 msgstr[0] "O seguinte item se correlacionou negativamente com a escala: %s "
-msgstr[1] "Os seguintes itens se correlacionaram negativamente com a escala: %s "
+msgstr[1] ""
+"Os seguintes itens se correlacionaram negativamente com a escala: %s "
 
 msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "O seguinte item foi escalado de forma invertida: %s "
 msgstr[1] "Os seguintes itens foram escalados de forma invertida: %s "
+
+#~ msgid ""
+#~ "Omega calculation with CFA failed. Try changing to PFA in Advanced Options"
+#~ msgstr ""
+#~ "Calculo de Ômega com CFA falhou. Tente alterar para PFA em 'Opções "
+#~ "Avançadas'"
 
 #, fuzzy
 #~ msgid "Factors"
