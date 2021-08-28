@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-08-23 13:34+0000\n"
+"Last-Translator: D.J. Dekker <dj_dekker@hotmail.com>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/nl/>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.8.1-dev\n"
 "X-Language: nl\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -74,7 +80,7 @@ msgstr "Variabelen"
 
 msgctxt "uniDimBayesian|"
 msgid "Analysis"
-msgstr ""
+msgstr "Analyse"
 
 #, fuzzy
 msgctxt "uniDimBayesian|"
@@ -161,10 +167,9 @@ msgctxt "uniDimBayesian|"
 msgid "Greatest lower bound (if item dropped)"
 msgstr "Grootste ondergrens (als item is verwijderd)"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "If item dropped plot"
-msgstr "Als item is verwijderd"
+msgstr "Plot als item is verwijderd"
 
 #, fuzzy
 msgctxt "uniDimBayesian|"
