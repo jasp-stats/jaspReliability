@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-08-28 03:30\n"
-"PO-Revision-Date: 2021-08-24 10:33+0000\n"
-"Last-Translator: D.J. Dekker <dj_dekker@hotmail.com>\n"
+"PO-Revision-Date: 2021-09-07 11:34+0000\n"
+"Last-Translator: DanaJohanna <dana__@live.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/nl/>\n"
 "Language: nl\n"
@@ -14,11 +14,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
 "X-Generator: Weblate 4.8.1-dev\n"
 
-#, fuzzy
 msgid "Intraclass Correlation"
-msgstr "Item-rest correlatie"
+msgstr "Intraclass Correlatie"
 
-#, fuzzy
 msgid "Type"
 msgstr "Type"
 
@@ -117,10 +115,11 @@ msgstr "%s (als item wordt weggelaten)"
 msgid "Posterior Mean"
 msgstr "Posterior Gemiddelde"
 
-#, fuzzy
 msgid ""
 "%s Please enter at least 3 variables for the if item dropped statistics."
-msgstr "Geef a.u.b. minstens 3 variabelen op."
+msgstr ""
+"%s Geef a.u.b. minstens 3 variabelen op voor de als item wordt weggelaten "
+"statistieken."
 
 msgid ""
 "The bounds you entered have been rearranged in increasing order to provide "
@@ -149,10 +148,11 @@ msgid "Posterior"
 msgstr "Posterior"
 
 msgid "%s Of the observations, %1.f complete cases were used."
-msgstr "%s van de observaties, er werden %1.f volledige gevallen gebruikt."
+msgstr "%s van de observaties, zijn %1.f volledige observaties gebruikt."
 
 msgid "%s Of the observations, pairwise complete cases were used."
-msgstr "%s Alleen paarsgewijze volledige observaties zijn gebruikt."
+msgstr ""
+"%s van de observaties, alleen paarsgewijze volledige observaties gebruikt."
 
 msgid ""
 "Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
@@ -168,49 +168,57 @@ msgid ""
 "thinning,\n"
 "                     please increase No.samples."
 msgstr ""
+"Te weinig MCMC steekproeven blijven over na het verwijderen van "
+"opwarmsteekproeven en verdunnen,\n"
+"                     verhoog het aantal steekproeven."
 
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 msgid "%s Variables %s and %s correlated perfectly."
-msgstr ""
+msgstr "%s Variabelen %s en %s correleren perfect."
 
-#, fuzzy
 msgid "Please enter at least 2 variables to do an analysis"
-msgstr "Geef a.u.b. minstens 3 variabelen op."
+msgstr "Geef a.u.b. minstens 2 variabelen op om een analyse te doen"
 
 msgid "Omega item dropped statistics with CFA failed."
-msgstr ""
+msgstr "Omega verwijderde item statistieken met CFA mislukt."
 
 msgid "Omega item dropped statistics with PFA failed."
-msgstr ""
+msgstr "Omega verwijderde item statistieken met PFA mislukt."
 
 msgid "Lambda6 item dropped statistics failed."
-msgstr ""
+msgstr "Lambda6 verwijderde item statistieken mislukt."
 
 msgid ""
 "Omega calculation with CFA failed.\n"
 "                                                    Try changing to PFA in "
 "Advanced Options"
 msgstr ""
+"Omega berekening met CFA mislukt.\n"
+"                                                    Probeer te veranderen "
+"PFA in Geavanceerde Opties"
 
 msgid ""
 "Omega bootstrapped interval calculation with CFA failed.\n"
 "                                                            Try changing to "
 "PFA in 'Advanced Options'"
 msgstr ""
+"Omega gebootstrapte interval berekening met CFA mislukt.\n"
+"                                                            Probeer te "
+"veranderen naar PFA in 'Geavanceerde Opties'"
 
 msgid "Omega calculation with PFA failed."
-msgstr ""
+msgstr "Omega berekening met PFA mislukt."
 
 msgid "Omega interval calculation with PFA failed."
-msgstr ""
+msgstr "Omega interval berekening met PFA mislukt."
 
 msgid "Lambda6 calculation failed."
-msgstr ""
+msgstr "Lambda6 berekening mislukt."
 
 msgid "Lambda6 interval calculation failed."
-msgstr ""
+msgstr "Lambda6 interval berekening mislukt."
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Frequentistische Schaal Validiteitsstatistieken"
