@@ -43,6 +43,14 @@ Upgrades
 			to:		"lambda6Scale"
 		} // for 0.15 the coefficient name changed again.
 
+		ChangeSetValue
+		{
+			condition:	function(options) { return options["scoresMethod"] === undefined }
+			name:		"scoresMethod"
+			jsonValue:	"meanScores"
+		} // in older jasp versions there were no mean and sd options (rowSums and rowMeans),
+		// just the colMeans. This way, the refreshed result is closer to the old versions
+
 		ChangeRename
 		{
 			from:	"mcDonaldItem"
@@ -147,6 +155,15 @@ Upgrades
 			from:	"guttman6Scale"
 			to:		"lambda6Scale"
 		}
+
+		ChangeSetValue
+		{
+			condition:	function(options) { return options["scoresMethod"] === undefined }
+			name:		"scoresMethod"
+			jsonValue:	"meanScores"
+		} // in older jasp versions there were no mean and sd options (rowSums and rowMeans),
+		// just the colMeans. This way, the refreshed result is closer to the old versions
+
 		ChangeRename
 		{
 			from:	"mcDonaldItem"
