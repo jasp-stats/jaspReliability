@@ -8,7 +8,7 @@
   scaleTable <- createJaspTable(gettext("Frequentist Scale Reliability Statistics"))
 
   scaleTable$dependOn(options = c("omegaScale", "alphaScale", "lambda2Scale", "lambda6Scale", "glbScale",
-                                  "averageInterItemCor", "meanScale", "sdScale", "meanMethod", "sdMethod",
+                                  "averageInterItemCor", "meanScale", "sdScale", "scoresMethod",
                                   "omegaMethod", "omegaInterval", "alphaMethod", "alphaInterval"))
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
 

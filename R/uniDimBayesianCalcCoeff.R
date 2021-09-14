@@ -575,7 +575,7 @@
                                                                                  "alphaScale", "omegaScale",
                                                                                  "lambda2Scale", "lambda6Scale",
                                                                                  "glbScale","averageInterItemCor",
-                                                                                 "meanMethod", "sdMethod"))
+                                                                                 "scoresMethod"))
 
   }
 
