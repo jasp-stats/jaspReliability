@@ -8,7 +8,7 @@
   scaleTable <- createJaspTable(gettext("Bayesian Scale Reliability Statistics"))
   scaleTable$dependOn(options = c("credibleIntervalValueScale", "meanScale", "sdScale", "rHat",
                                   "alphaScale", "omegaScale", "lambda2Scale", "lambda6Scale", "glbScale",
-                                  "averageInterItemCor", "meanMethod", "sdMethod"))
+                                  "averageInterItemCor", "scoresMethod"))
 
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
 
