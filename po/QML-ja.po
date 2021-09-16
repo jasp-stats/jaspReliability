@@ -1,15 +1,21 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-09-15 21:36+0000\n"
+"Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/ja/>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.9-dev\n"
 "X-Language: ja\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Reliability"
-msgstr ""
+msgstr "信頼性"
 
 msgctxt "Description|"
 msgid "Classical"
@@ -17,7 +23,7 @@ msgstr "古典的"
 
 msgctxt "Description|"
 msgid "Intraclass Correlation"
-msgstr ""
+msgstr "級内相関"
 
 msgctxt "Description|"
 msgid "Bayesian"
@@ -25,107 +31,108 @@ msgstr "ベイジアン"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Variables"
-msgstr ""
+msgstr "変数"
 
 msgctxt "Description|"
 msgid "Quantify the consistency of test scores"
-msgstr ""
+msgstr "テスト得点の一貫性を定量化する"
 
 msgctxt "Description|"
 msgid "Unidimensional Reliability"
-msgstr ""
+msgstr "一次元の信頼性"
 
 msgctxt "Description|"
 msgid "Bayesian Unidimensional Reliability"
-msgstr ""
+msgstr "ベイジアン一次元信頼性"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Each subject is rated by..."
-msgstr ""
+msgstr "各参加者は以下によって評価されます..."
 
 msgctxt "IntraclassCorrelation|"
 msgid "a different rater (randomly selected)"
-msgstr ""
+msgstr "別の評価者(無作為に選出)"
 
+#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
-msgstr ""
+msgstr "無作為に選ばれた評価者/テストの同じセット"
 
 msgctxt "IntraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
-msgstr ""
+msgstr "評価者/テストの同じ固定セット"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Ratings are averaged"
-msgstr ""
+msgstr "評価者は平均化されています"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Confidence Interval"
-msgstr ""
+msgstr "信頼区間"
 
 msgctxt "uniDimBayesian|"
 msgid "Variables"
-msgstr ""
+msgstr "変数"
 
 msgctxt "uniDimBayesian|"
 msgid "Analysis"
-msgstr ""
+msgstr "分析"
 
 msgctxt "uniDimBayesian|"
 msgid "Scale Statistics"
-msgstr ""
+msgstr "尺度統計量"
 
 msgctxt "uniDimBayesian|"
 msgid "Credible interval"
-msgstr ""
+msgstr "信頼区間"
 
 msgctxt "uniDimBayesian|"
 msgid "McDonald's ω"
-msgstr ""
+msgstr "マクドナルド(McDonald's)のω"
 
 msgctxt "uniDimBayesian|"
 msgid "Posterior predictive check"
-msgstr ""
+msgstr "事後予測チェック"
 
 msgctxt "uniDimBayesian|"
 msgid "Cronbach's α"
-msgstr ""
+msgstr "クロンバック(Cronbach)のα"
 
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ2"
-msgstr ""
+msgstr "ガットマン(Guttman)のλ2"
 
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ6"
-msgstr ""
+msgstr "ガットマン(Guttman)のλ6"
 
 msgctxt "uniDimBayesian|"
 msgid "Greatest lower bound"
-msgstr ""
+msgstr "最大下界"
 
 msgctxt "uniDimBayesian|"
 msgid "Average interitem correlation"
-msgstr ""
+msgstr "平均項目間相関"
 
 msgctxt "uniDimBayesian|"
 msgid "Mean"
-msgstr ""
+msgstr "平均"
 
 msgctxt "uniDimBayesian|"
 msgid "SD"
-msgstr ""
+msgstr "標準偏差"
 
 msgctxt "uniDimBayesian|"
 msgid "of participants' sum scores"
-msgstr ""
+msgstr "参加者の合計スコアを用いた"
 
 msgctxt "uniDimBayesian|"
 msgid "of participants' mean scores"
-msgstr ""
+msgstr "参加者の平均スコアを用いた"
 
 msgctxt "uniDimBayesian|"
 msgid "Individual Item Statistics"
-msgstr ""
+msgstr "個別項目の統計量"
 
 msgctxt "uniDimBayesian|"
 msgid "McDonald's ω  (if item dropped)"
