@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
 "POT-Creation-Date: 2021-08-28 03:30\n"
-"PO-Revision-Date: 2021-09-03 13:32+0000\n"
+"PO-Revision-Date: 2021-09-15 21:34+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/ja/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.8.1-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 msgid "Intraclass Correlation"
 msgstr "級内相関"
@@ -31,7 +31,7 @@ msgstr "上側 %s%% CI"
 msgid ""
 "%s subjects and %s judges/measurements. ICC type as referenced by Shrout & "
 "Fleiss (1979)."
-msgstr ""
+msgstr "%s の参加者と %s の判定者/測定者. Shrout & Fleiss (1979) にて参照されているICC タイプ."
 
 msgid "Please select at least 2 columns"
 msgstr "少なくとも2列選択してください"
@@ -40,7 +40,7 @@ msgid "Greatest Lower Bound"
 msgstr "最大下界"
 
 msgid "Item-rest correlation"
-msgstr ""
+msgstr "I-R相関"
 
 msgid "mean"
 msgstr "平均"
@@ -51,40 +51,40 @@ msgstr "標準偏差"
 msgid ""
 "Sampling the posterior factor model for omega failed. Try changing to "
 "'Exclude cases listwise' in 'Advanced Options'"
-msgstr ""
+msgstr "オメガの事後因子モデルのサンプリングに失敗しました. '詳細オプションで'ケースをリストワイズで除外'に変更してみてください"
 
 msgid "Posterior Plots"
-msgstr ""
+msgstr "事後分布プロット"
 
 msgid "Density"
 msgstr "密度"
 
 msgid "If Item Dropped Posterior Plots"
-msgstr ""
+msgstr "項目除外したときの事後プロット"
 
 msgid "Please enter at least 3 variables for the if item dropped plot"
-msgstr ""
+msgstr "項目除外したときのプロットでは、少なくとも3つの変数を入力してください"
 
 msgid "KLD ordering failed because two variables have perfect correlation"
-msgstr ""
+msgstr "2つの変数が完全に相関しているため、KLD(KL-ダイバージェンス)順序付けは失敗した"
 
 msgid "Item Dropped"
-msgstr ""
+msgstr "項目を除外"
 
 msgid "Eigenvalue"
 msgstr "固有値"
 
 msgid "Eigenvalue No."
-msgstr ""
+msgstr "固有値 No."
 
 msgid "Convergence Traceplot"
-msgstr ""
+msgstr "収束トレースプロット"
 
 msgid "Iterations"
-msgstr ""
+msgstr "イテレーション"
 
 msgid "Bayesian Scale Reliability Statistics"
-msgstr ""
+msgstr "ベイジアン尺度信頼性統計"
 
 msgid "Estimate"
 msgstr "推定"
@@ -93,39 +93,39 @@ msgid "%s%% CI"
 msgstr "%s%% CI"
 
 msgid "%s lower bound"
-msgstr ""
+msgstr "%s 下限"
 
 msgid "%s upper bound"
-msgstr ""
+msgstr "%s 上限"
 
 msgid "Bayesian Individual Item Reliability Statistics"
-msgstr ""
+msgstr "ベイジアン個別項目信頼性統計"
 
 msgid "Item"
-msgstr ""
+msgstr "項目"
 
 msgid "%s (if item dropped)"
-msgstr ""
+msgstr "%s (項目が削除された場合)"
 
 msgid "Posterior Mean"
-msgstr ""
+msgstr "事後平均"
 
 msgid ""
 "%s Please enter at least 3 variables for the if item dropped statistics."
-msgstr ""
+msgstr "%s 項目が削除された統計の場合は、少なくとも 3 つの変数を入力してください。"
 
 msgid ""
 "The bounds you entered have been rearranged in increasing order to provide "
 "meaningful results."
-msgstr ""
+msgstr "入力した境界は、意味のある結果を提供するために昇順で再配置されています."
 
 msgid ""
 "Probability that Reliability Statistic is Larger than %.2f and Smaller than "
 "%.2f"
-msgstr ""
+msgstr "信頼性統計量が%.2fよりも大きく、%.2fよりも小さい確率"
 
 msgid "Probability"
-msgstr ""
+msgstr "確率"
 
 msgid "Statistic"
 msgstr "統計"
@@ -137,90 +137,99 @@ msgid "Posterior"
 msgstr "事後分布"
 
 msgid "%s Of the observations, %1.f complete cases were used."
-msgstr ""
+msgstr "観測値%s のうち、%1.f完全なケースが使用されました."
 
 msgid "%s Of the observations, pairwise complete cases were used."
-msgstr ""
+msgstr "観測値%s のうち、ペアワイズ処理された完全なケースが使用されました."
 
 msgid ""
 "Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
 "lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
 "Options'"
 msgstr ""
+"[alpha、lambda2、lambda6、glb]のいずれかの事後共分散行列のサンプリングに失敗しました。 "
+"'詳細オプション'で'ケースをリストワイズで除外'に変更してみてください"
 
 msgid ""
 "Too few MCMC samples will remain after the removal of the burnin samples and "
 "thinning,\n"
 "                     please increase No.samples."
 msgstr ""
+"バーンインサンプルの除去と間引き後のMCMCサンプルが少なすぎます。\n"
+"                     MCMCサンプルを増やしてください."
 
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 msgid "%s Variables %s and %s correlated perfectly."
-msgstr ""
+msgstr "%s 変数 %s と %s は完全に相関しています。"
 
 msgid "Please enter at least 2 variables to do an analysis"
-msgstr ""
+msgstr "分析を行うためには、少なくとも2つの変数を入力してください"
 
 msgid "Omega item dropped statistics with CFA failed."
-msgstr ""
+msgstr "CFAによる項目を除外したオメガ統計量の算出できませんでした."
 
 msgid "Omega item dropped statistics with PFA failed."
-msgstr ""
+msgstr "PFAによる項目を除外したオメガ統計量の算出できませんでした."
 
 msgid "Lambda6 item dropped statistics failed."
-msgstr ""
+msgstr "項目を除外したLambda6統計量の算出に失敗しました."
 
 msgid ""
 "Omega calculation with CFA failed.\n"
 "                                                    Try changing to PFA in "
 "Advanced Options"
 msgstr ""
+"CFAによるオメガ計算が失敗しました.\n"
+"                                                    詳細オプションでPFAに変更してみてください"
 
 msgid ""
 "Omega bootstrapped interval calculation with CFA failed.\n"
 "                                                            Try changing to "
 "PFA in 'Advanced Options'"
 msgstr ""
+"CFAによるオメガのブートストラップ区間計算に失敗しました。\n"
+"                                                            "
+"'詳細オプション'でPFAに変更してみてください"
 
 msgid "Omega calculation with PFA failed."
-msgstr ""
+msgstr "PFAによるオメガの計算は失敗しました."
 
 msgid "Omega interval calculation with PFA failed."
-msgstr ""
+msgstr "PFAによるオメガの区間計算に失敗しました."
 
 msgid "Lambda6 calculation failed."
-msgstr ""
+msgstr "Lambda6の計算に失敗しました."
 
 msgid "Lambda6 interval calculation failed."
-msgstr ""
+msgstr "Lambda6の区間計算に失敗しました."
 
 msgid "Frequentist Scale Reliability Statistics"
-msgstr ""
+msgstr "頻度論的尺度信頼性統計"
 
 msgid "Point estimate"
-msgstr ""
+msgstr "点推定値"
 
 msgid "Frequentist Individual Item Reliability Statistics"
-msgstr ""
+msgstr "頻度論的個別項目信頼性統計"
 
 msgid "If item dropped"
-msgstr ""
+msgstr "もし項目が除外された場合"
 
 msgid "Fit Measures of Single Factor Model Fit"
-msgstr ""
+msgstr "単一因子モデルの適合度指標"
 
 msgid "Fit Measure"
-msgstr ""
+msgstr "適合度指標"
 
 msgid "Value"
 msgstr "値"
 
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
-msgstr[0] ""
+msgstr[0] "次の項目は、尺度と負の相関がありました: %s. "
 
 msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
-msgstr[0] ""
+msgstr[0] "次の項目は逆転処理されました: %s. "
