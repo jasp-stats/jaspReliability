@@ -4,6 +4,7 @@ Frequentist Unidimensional Reliability Analysis
 The frequentist unidimensional reliability analysis allows the user to test the scale's ability to consistently measure a unidimensional construct. In other words the analysis indicates the amount of error captured in the mesaurement.
 
 ## Input
+---
 - All columns (variables/items) of the dataset 
 
 ### Variables Box
@@ -92,7 +93,7 @@ When bootstrapping is involved, set a seed, so that the background calculations 
 - SRMR: standardized root mean square residual, a value close to 0 is desired 
 
 ## References
--------
+---
 
 - Bonett, D. G., & Wright, T. A. (2015). Cronbach's alpha reliability: Interval estimation, hypothesis testing, and sample size planning. *Journal of Organizational Behavior, 36*(1), 3-15. doi: 10.1002/job.1960
 - Cronbach, L. J. (1951). Coefficient alpha and the internal structure of tests. *Psychometrika, 16*(3), 297–334. doi: 10.1007/BF02310555

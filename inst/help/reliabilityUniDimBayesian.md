@@ -4,6 +4,7 @@ Bayesian Unidimensional Reliability Analysis
 The frequentist unidimensional reliability analysis allows the user to test the scale's ability to consistently measure a unidimensional construct. In other words the analysis indicates the amount of error captured in the mesaurement.
 
 ## Input
+---
 - All columns (variables/items) of the dataset 
 
 ### Variables Box
@@ -119,7 +120,7 @@ Since sampling from the posterior distribution is subjected to random processes,
 - different colors represent different chains
 
 ## References
--------
+---
 - Cronbach, L. J. (1951). Coefficient alpha and the internal structure of tests. *Psychometrika, 16*(3), 297–334. doi: 10.1007/BF02310555
 - Gelman, A., & Rubin, D. B. (1992). Inference from iterative simulation using multiple sequences. *Statistical Science, 7*(4), 457–472. doi:10.1214/ss/1177011136
 - Guttman, L. (1945). A basis for analyzing test-retest reliability. *Psychometrika, 10*(4), 255–282. doi: 10.1007/BF02288892
