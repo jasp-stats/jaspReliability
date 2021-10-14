@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-10-14 01:51+0000\n"
+"Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/es/>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.9-dev\n"
 "X-Language: es\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -26,14 +32,13 @@ msgctxt "Description|"
 msgid "Bayesian"
 msgstr "Bayesiano"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Variables"
 msgstr "Variables"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Each subject is rated by..."
-msgstr ""
+msgstr "Cada sujeto es calificado por..."
 
 msgctxt "IntraclassCorrelation|"
 msgid "a different rater (randomly selected)"
@@ -51,10 +56,9 @@ msgctxt "IntraclassCorrelation|"
 msgid "Ratings are averaged"
 msgstr ""
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Confidence Interval"
-msgstr "Intervalo de confianza"
+msgstr "Intervalo de Confianza"
 
 msgctxt "Description|"
 msgid "Quantify the consistency of test scores"
@@ -68,19 +72,17 @@ msgctxt "Description|"
 msgid "Bayesian Unidimensional Reliability"
 msgstr ""
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Variables"
 msgstr "Variables"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Analysis"
 msgstr "Análisis"
 
 msgctxt "uniDimBayesian|"
 msgid "Scale Statistics"
-msgstr "Estadísticas de Escala"
+msgstr "Estadísticos de Escala"
 
 msgctxt "uniDimBayesian|"
 msgid "Credible interval"
@@ -224,54 +226,46 @@ msgctxt "uniDimBayesian|"
 msgid "MCMC parameters"
 msgstr "Parámetros de MCMC"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "No. samples"
-msgstr "No muestras"
+msgstr "Número de muestras"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "No. burnin samples"
-msgstr "No. de muestras quemadas"
+msgstr "Número de muestras quemadas"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Thinning"
-msgstr "Adelgazamiento"
+msgstr "Estrechamiento"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "No. chains"
-msgstr "No cadenas"
+msgstr "Número de cadenas"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Diagnostics"
-msgstr "Diagnóstico"
+msgstr "Diagnósticos"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "R-hat"
-msgstr "R-sombrero"
+msgstr "R-circunflejo"
 
 #, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Traceplots"
-msgstr "Traceplots"
+msgstr "Gráficos de trazados"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Repeatability"
 msgstr "Repetibilidad"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Set seed"
 msgstr "Establecer semilla"
 
 msgctxt "uniDimBayesian|"
 msgid "Samples"
-msgstr ""
+msgstr "Muestras"
 
 msgctxt "uniDimBayesian|"
 msgid "Disable saving samples"
@@ -298,7 +292,7 @@ msgstr "Manejo de datos faltantes"
 
 msgctxt "uniDimBayesian|"
 msgid "Missing Values"
-msgstr "Valores Perdidos"
+msgstr "Valores Ausentes"
 
 msgctxt "uniDimBayesian|"
 msgid "Exclude cases pairwise"
@@ -306,7 +300,7 @@ msgstr "Excluir casos por pares"
 
 msgctxt "uniDimBayesian|"
 msgid "Exclude cases listwise"
-msgstr "Excluir casos según la lista"
+msgstr "Excluir casos según lista"
 
 msgctxt "uniDimFrequentist|"
 msgid "Variables"
@@ -318,7 +312,7 @@ msgstr "Análisis"
 
 msgctxt "uniDimFrequentist|"
 msgid "Scale Statistics"
-msgstr "Estadísticas de Escala"
+msgstr "Estadísticos de Escala"
 
 msgctxt "uniDimFrequentist|"
 msgid "Confidence Interval"
@@ -411,7 +405,7 @@ msgstr "Opciones avanzadas"
 
 msgctxt "uniDimFrequentist|"
 msgid "Missing Values"
-msgstr "Valores Perdidos"
+msgstr "Valores Ausentes"
 
 msgctxt "uniDimFrequentist|"
 msgid "Exclude cases pairwise"
@@ -419,7 +413,7 @@ msgstr "Excluir casos por pares"
 
 msgctxt "uniDimFrequentist|"
 msgid "Exclude cases listwise"
-msgstr "Excluir casos según la lista"
+msgstr "Excluir casos según lista"
 
 msgctxt "uniDimFrequentist|"
 msgid "Bootstrap"
@@ -501,7 +495,7 @@ msgstr "Establecer semilla"
 
 msgctxt "uniDimFrequentist|"
 msgid "Samples"
-msgstr ""
+msgstr "Muestras"
 
 msgctxt "uniDimFrequentist|"
 msgid "Disable saving samples"
