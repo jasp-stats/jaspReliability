@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-10-15 11:32+0000\n"
+"PO-Revision-Date: 2021-10-15 19:45+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/es/>\n"
@@ -14,7 +14,6 @@ msgstr ""
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
 
-#, fuzzy
 msgctxt "Description|"
 msgid "Reliability"
 msgstr "Fiabilidad"
@@ -23,10 +22,9 @@ msgctxt "Description|"
 msgid "Classical"
 msgstr "Clásico"
 
-#, fuzzy
 msgctxt "Description|"
 msgid "Intraclass Correlation"
-msgstr "Correlación parcial"
+msgstr "Correlación Intraclase"
 
 msgctxt "Description|"
 msgid "Bayesian"
@@ -42,19 +40,20 @@ msgstr "Cada sujeto es calificado por..."
 
 msgctxt "IntraclassCorrelation|"
 msgid "a different rater (randomly selected)"
-msgstr ""
+msgstr "un evaluador distinto (seleccionado aleatoriamente)"
 
 msgctxt "IntraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
 msgstr ""
+"el mismo conjunto de evaluadores/contrastes seleccionados aleatoriamente"
 
 msgctxt "IntraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
-msgstr ""
+msgstr "el mismo conjunto fijo de evaluadores/pruebas"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Ratings are averaged"
-msgstr ""
+msgstr "Las calificaciones son promedios"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Confidence Interval"
@@ -62,15 +61,15 @@ msgstr "Intervalo de Confianza"
 
 msgctxt "Description|"
 msgid "Quantify the consistency of test scores"
-msgstr ""
+msgstr "Cuantificar la consistencia de las puntuaciones del test"
 
 msgctxt "Description|"
 msgid "Unidimensional Reliability"
-msgstr ""
+msgstr "Fiabilidad Unidimensional"
 
 msgctxt "Description|"
 msgid "Bayesian Unidimensional Reliability"
-msgstr ""
+msgstr "Fiabilidad Bayesiana Unidimensional"
 
 msgctxt "uniDimBayesian|"
 msgid "Variables"
@@ -269,26 +268,23 @@ msgstr "Muestras"
 
 msgctxt "uniDimBayesian|"
 msgid "Disable saving samples"
-msgstr ""
+msgstr "Deshabilitar la grabación de muestras"
 
 msgctxt "uniDimBayesian|"
 msgid "Click to learn more about saving the samples."
-msgstr ""
+msgstr "Hacer clic para saber más sobre guardar las muestras."
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Reverse-Scaled Items"
-msgstr "Elementos de escala inversa"
+msgstr "Elementos a Escala Invertida"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Normal-Scaled Items"
-msgstr "Elementos de escala normal"
+msgstr "Elementos a Escala Normal"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Missing Data Handling"
-msgstr "Manejo de datos faltantes"
+msgstr "Manejo de Datos Ausentes"
 
 msgctxt "uniDimBayesian|"
 msgid "Missing Values"
@@ -388,15 +384,13 @@ msgctxt "uniDimFrequentist|"
 msgid "Item-rest correlation"
 msgstr "Correlación ítem-resto"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Reverse-Scaled Items"
-msgstr "Elementos de escala inversa"
+msgstr "Elementos a Escala Invertida"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Normal-Scaled Items"
-msgstr "Elementos de escala normal"
+msgstr "Elementos a Escala Normal"
 
 msgctxt "uniDimFrequentist|"
 msgid "Advanced Options"
@@ -445,7 +439,7 @@ msgstr "CFA"
 
 msgctxt "uniDimFrequentist|"
 msgid "Single factor model fit"
-msgstr ""
+msgstr "Ajuste del modelo de un único factor"
 
 msgctxt "uniDimFrequentist|"
 msgid "Interval"
@@ -489,40 +483,40 @@ msgstr "Muestras"
 
 msgctxt "uniDimFrequentist|"
 msgid "Disable saving samples"
-msgstr ""
+msgstr "Deshabilitar la grabación de muestras"
 
 msgctxt "uniDimFrequentist|"
 msgid "Click to learn more about saving the samples."
-msgstr ""
+msgstr "Hacer clic para saber más sobre guardar las muestras."
 
 msgctxt "uniDimBayesian|"
 msgid "SD"
-msgstr ""
+msgstr "DT"
 
 msgctxt "uniDimBayesian|"
 msgid "of participants' sum scores"
-msgstr ""
+msgstr "de las puntuaciones de las sumas de los participantes"
 
 msgctxt "uniDimBayesian|"
 msgid "of participants' mean scores"
-msgstr ""
+msgstr "de las puntuaciones medias de los participantes"
 
 msgctxt "uniDimFrequentist|"
 msgid "SD"
-msgstr ""
+msgstr "DT"
 
 msgctxt "uniDimFrequentist|"
 msgid "of participants' sum scores"
-msgstr ""
+msgstr "de las puntuaciones de las sumas de los participantes"
 
 msgctxt "uniDimFrequentist|"
 msgid "of participants' mean scores"
-msgstr ""
+msgstr "de las puntuaciones medias de los participantes"
 
 msgctxt "uniDimBayesian|"
 msgid ""
-msgstr ""
+msgstr "  "
 
 msgctxt "uniDimFrequentist|"
 msgid ""
-msgstr ""
+msgstr "  "
