@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
 "POT-Creation-Date: 2021-08-28 03:30\n"
-"PO-Revision-Date: 2021-10-15 19:45+0000\n"
+"PO-Revision-Date: 2021-10-21 11:48+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/es/>\n"
@@ -54,6 +54,8 @@ msgid ""
 "Sampling the posterior factor model for omega failed. Try changing to "
 "'Exclude cases listwise' in 'Advanced Options'"
 msgstr ""
+"Falló el muestreo del modelo posterior de factores para omega. Intenta "
+"cambiar a 'Excluir casos según lista' en 'Opciones Avanzadas '"
 
 msgid "Posterior Plots"
 msgstr "Gráficos posteriores"
@@ -64,11 +66,10 @@ msgstr "Densidad"
 msgid "If Item Dropped Posterior Plots"
 msgstr "Gráficos posteriores si el ítem se eliminó"
 
-#, fuzzy
 msgid "Please enter at least 3 variables for the if item dropped plot"
 msgstr ""
-"%s Por favor, introduzca al menos 3 variables para las estadísticas de "
-"eliminación de los ítems."
+"Por favor, introducir al menos 3 variables para el gráfico al quitar "
+"elementos"
 
 msgid "KLD ordering failed because two variables have perfect correlation"
 msgstr ""
@@ -127,6 +128,8 @@ msgid ""
 "The bounds you entered have been rearranged in increasing order to provide "
 "meaningful results."
 msgstr ""
+"Los límites que has indicado se volvieron a colocar en orden creciente para "
+"proporcionar resultados comprensibles."
 
 msgid ""
 "Probability that Reliability Statistic is Larger than %.2f and Smaller than "
@@ -158,12 +161,18 @@ msgid ""
 "lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
 "Options'"
 msgstr ""
+"Falló el muestreo de la matriz posterior de covarianzas para alguno de estos "
+"[alpha, lambda2, lambda6, glb]. Intenta cambiar a 'Excluir casos según "
+"lista' en 'Opciones Avanzadas '"
 
 msgid ""
 "Too few MCMC samples will remain after the removal of the burnin samples and "
 "thinning,\n"
 "                     please increase No.samples."
 msgstr ""
+"Van a quedar muy pocas muestras MCMC después de quitar las muestras del "
+"calentamiento y del estrechamiento,\n"
+"                     por favor, aumenta el número de muestras."
 
 msgid "%s"
 msgstr "%s"
@@ -174,53 +183,44 @@ msgstr "%s las variables %s y %s se correlacionan perfectamente."
 msgid "Please enter at least 2 variables to do an analysis"
 msgstr "Por favor, introduzca al menos 2 variables para hacer un análisis"
 
-#, fuzzy
 msgid "Omega item dropped statistics with CFA failed."
-msgstr "Las estadísticas Omega del ítem eliminado con CFA fallaron"
+msgstr "Fallaron los estadísticos del elemento Omega eliminado con CFA."
 
-#, fuzzy
 msgid "Omega item dropped statistics with PFA failed."
-msgstr "Las estadísticas Omega del ítem eliminado con PFA fallaron"
+msgstr "Fallaron los estadísticos del elemento Omega eliminado con PFA."
 
-#, fuzzy
 msgid "Lambda6 item dropped statistics failed."
-msgstr "La estadística Lambda6 del ítem eliminado falló"
+msgstr "Fallaron los estadísticos del elemento Lambda6 eliminado."
 
-#, fuzzy
 msgid ""
 "Omega calculation with CFA failed.\n"
 "                                                    Try changing to PFA in "
 "Advanced Options"
 msgstr ""
-"El cálculo del intervalo de Omega bootstrapped con CFA falló.\n"
-"                                          \n"
-" Pruebe a cambiar a PFA en \"Opciones avanzadas\""
+"Falló el cálculo del intervalo de Omega con CFA.\n"
+"                                                    Probar a cambiar a PFA "
+"en \"Opciones Avanzadas\""
 
-#, fuzzy
 msgid ""
 "Omega bootstrapped interval calculation with CFA failed.\n"
 "                                                            Try changing to "
 "PFA in 'Advanced Options'"
 msgstr ""
-"El cálculo del intervalo de Omega bootstrapped con CFA falló.\n"
-"                                          \n"
-" Pruebe a cambiar a PFA en \"Opciones avanzadas\""
+"Falló el cálculo del intervalo de bootstrapp de Omega con CFA.\n"
+"                                                            Probar a cambiar "
+"a PFA en \"Opciones Avanzadas\""
 
-#, fuzzy
 msgid "Omega calculation with PFA failed."
-msgstr "Falló el cálculo de Omega con PFA"
+msgstr "Falló el cálculo de Omega con PFA."
 
-#, fuzzy
 msgid "Omega interval calculation with PFA failed."
-msgstr "Falló el cálculo del intervalo Omega con PFA"
+msgstr "Falló el cálculo del intervalo de Omega con PFA."
 
-#, fuzzy
 msgid "Lambda6 calculation failed."
-msgstr "Error en el cálculo de Lambda6"
+msgstr "Falló el cálculo de Lambda6."
 
-#, fuzzy
 msgid "Lambda6 interval calculation failed."
-msgstr "El cálculo de intervalo de Lambda6 falló"
+msgstr "Falló el cálculo del intervalo de Lambda6."
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Estadísticas de confiabilidad de la escala frecuente"
