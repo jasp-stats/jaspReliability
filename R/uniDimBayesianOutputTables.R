@@ -12,10 +12,6 @@
 
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
 
-  scaleTable$position <- 1
-  stateContainer <- .getStateContainerB(jaspResults)
-  stateContainer[["scaleTable"]] <- scaleTable
-
   interval <- gettextf("%s%% CI",
                        format(100 * options[["credibleIntervalValueScale"]], digits = 3, drop0trailing = TRUE))
   intervalLow <- gettextf("%s lower bound", interval)
@@ -41,6 +37,9 @@
     if (model[["footnote"]] != "") {
       scaleTable$addFootnote(model[["footnote"]])
     }
+    scaleTable$position <- 1
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["scaleTable"]] <- scaleTable
     return()
   }
 
@@ -64,7 +63,9 @@
     scaleTable$addFootnote(model[["footnote"]])
   }
 
-
+  scaleTable$position <- 1
+  stateContainer <- .getStateContainerB(jaspResults)
+  stateContainer[["scaleTable"]] <- scaleTable
 
   return()
 }
@@ -161,6 +162,10 @@
   if (footnote != "") {
     itemTable$addFootnote(footnote)
   }
+
+  itemTable$position <- 2
+  stateContainer <- .getStateContainerB(jaspResults)
+  stateContainer[["itemTable"]] <- itemTable
 
   return()
 }
