@@ -1,4 +1,8 @@
-
+# This is a temporary fix
+# TODO: remove it when R will solve this problem!
+gettextf <- function(fmt, ..., domain = NULL)  {
+  return(sprintf(gettext(fmt, domain = domain), ...))
+}
 
 .readData <- function(dataset, options) {
 
