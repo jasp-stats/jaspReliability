@@ -63,8 +63,15 @@ Display the posterior densities of the reliability coeffcients
 ### Repeatability
 Since sampling from the posterior distribution is subjected to random processes, one can set a seed so that the background calculations in R yield equal results for equal seeds
 
+## Priors
+### Prior for CTT-Coefficients
+The prior distributions for alpha, lambda2, lambda6, the glb, and the average inter-item correlation are induced by the prior distribution on the covariance matrix, which is an inverse Wishart distribution with the identity matrix as a scaling matrix and the number of items k as the degrees of freedom. 
+
+### Prior for FA-Coefficient
+The prior distribution on McDonald’s omega is induced by the prior distributions on the single-factor model parameters, which are: a normal distribution centered on zero for the factor loadings and scores; an inverse gamma distribution with shape=2 and rate=1 for the residuals; and for the variance of the latent variables an inverse Wishart distribution with the number of items k as a scaling matrix (scalar, since it is of dimension one) and k+2 as the degrees of freedom.
+
 ## Reverse-Scaled Items
-- This allows the user to select reverse-scaled items that need to be recoded.
+This allows the user to select reverse-scaled items that need to be recoded.
 
 ## Missing Data Handling
 ### Missing Values

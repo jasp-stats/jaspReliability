@@ -89,6 +89,17 @@
 
     model[["gibbsSamp"]] <- c_out$cov_mat
 
+    # if (options[["standardizedCoeffs"]]) {
+    #   startProgressbar(options[["noChains"]] *
+    #                    length(seq(1, options[["noSamples"]] - options[["noBurnin"]], options[["noThin"]])))
+    #   for (i in seq_len(nrow(c_out$cov_mat))) {
+    #     for (j in seq_len(ncol(c_out$cov_mat))) {
+    #       model[["gibbsSamp"]][i, j, , ] <- .cov2cor.callback(c_out$cov_mat[i, j, , ], progressbarTick)
+    #     }
+    #   }
+    # }
+
+
   }
 
   model[["progressbarLength"]] <- options[["noChains"]] *

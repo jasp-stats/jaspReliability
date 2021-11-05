@@ -56,14 +56,6 @@ Form
 				name:		"omegaScale"
 				label:		qsTr("McDonald's ω")
 				checked:	true
-
-				CheckBox
-				{
-					name:		"dispPPC"
-					label:		qsTr("Posterior predictive check");
-					enabled:	omega.checked
-				}
-
 			}
 
 			CheckBox
@@ -377,8 +369,20 @@ Form
 				}
 			}
 		}
+	}
 
+	Section
+	{
+		title: qsTr("Priors")
+		Group
+		{
+			title: qsTr("Priors for CTT-Coefficients")
 
+		}
+		Group
+		{
+			title: qsTr("Priors for FA-Coefficient")
+		}
 	}
 
 	Section
@@ -396,15 +400,52 @@ Form
 
 	Section
 	{
-		title: qsTr("Missing Data Handling")
+		title: qsTr("Advanced Options")
 
-		RadioButtonGroup
+		Group
 		{
-			title: 	qsTr("Missing Values")
-			name: 	"missingValues"
+			title: qsTr("Missing Values")
+			RadioButtonGroup
+			{
+				title: 	qsTr("")
+				name: 	"missingValues"
 
-			RadioButton { value: "excludeCasesPairwise"; label: qsTr("Exclude cases pairwise"); checked: true}
-			RadioButton { value: "excludeCasesListwise"; label: qsTr("Exclude cases listwise")}
+				RadioButton { value: "excludeCasesPairwise"; label: qsTr("Bayesian imputation"); checked: true}
+				RadioButton { value: "excludeCasesListwise"; label: qsTr("Exclude cases listwise")}
+			}
 		}
+
+		Group
+		{
+			title: qsTr("McDonald's ω Estimation")
+			enabled: omega.checked
+			CheckBox
+			{
+				name:		"dispPPC"
+				label:		qsTr("Posterior predictive check");
+			}
+			CheckBox
+			{
+				name:		"dispLoadings"
+				label:		qsTr("Show standardized factor loadings");
+			}
+		}
+
+		Group
+		{
+			title: qsTr("Miscellaneous")
+			CheckBox
+			{
+				name:	"standardizedCoeffs"
+				label:	qsTr("Standardized Coefficients")
+			}
+			CheckBox
+			{
+				name:	"postMedian"
+				label:	qsTr("Posterior Median")
+			}
+		}
+
+
 	}
 }

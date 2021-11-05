@@ -5,11 +5,11 @@ Description
 {
 	name		: "jaspReliability"
 	title		: qsTr("Reliability")
-	description	: qsTr("Quantify the consistency of test scores")
+	description	: qsTr("Quantify the reliability of test scores")
 	version		: "0.15"
 	author		: "Julius M. Pfadt, Don van den Bergh & Eric-Jan Wagenmakers"
 	maintainer	: "Julius M. Pfadt <julius.pfadt@gmail.com>"
-	website		: "https://github.com/jasp-stats/Reliability"
+	website		: "https://github.com/jasp-stats/jaspReliability"
 	license		: "GPL (>= 2)"
 	icon		: "reliability_icon_classic.svg"
 
@@ -26,11 +26,17 @@ Description
 		qml: 	"uniDimFrequentist.qml"
 		func: 	"reliabilityUniDimFrequentist"
 	}
+//	Analysis
+//	{
+//		title:	qsTr("Multidimensional Reliability")
+//		qml: 	"multiDimFrequentist.qml"
+//		func: 	"reliabilityMultiDimFrequentist"
+//	}
 	Analysis
 	{
 		title:	qsTr("Intraclass Correlation")
-		qml: 	"IntraclassCorrelation.qml"
-		func: 	"IntraclassCorrelation"
+		qml: 	"intraclassCorrelation.qml"
+		func: 	"intraclassCorrelation"
 	}
 
 	Separator {}
@@ -40,7 +46,6 @@ Description
 		title:	qsTr("Bayesian")
 		icon:	"reliability_icon_bayesian.svg"
 	}
-
 	Analysis
 	{
 		menu: 	qsTr("Unidimensional Reliability")
@@ -48,4 +53,11 @@ Description
 		qml: 	"uniDimBayesian.qml"
 		func: 	"reliabilityUniDimBayesian"
 	}
+//	Analysis
+//	{
+//		menu: 	qsTr("Multidimensional Reliability")
+//		title: 	qsTr("Bayesian Unidimensional Reliability")
+//		qml: 	"uniDimBayesian.qml"
+//		func: 	"reliabilityUniDimBayesian"
+//	}
 }

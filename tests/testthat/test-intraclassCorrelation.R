@@ -1,4 +1,4 @@
-options <- analysisOptions("IntraclassCorrelation")
+options <- analysisOptions("intraclassCorrelation")
 # ==== Ensure results are unchanged on JASP debug data ====
 
 # Set options
@@ -10,7 +10,7 @@ test_that("Intraclass Correlation 1 table results are unchanged", {
   options$iccType <- "icc1"
   options$iccRatingAverage <- FALSE
 
-  results <- runAnalysis("IntraclassCorrelation", dataset, options)
+  results <- runAnalysis("intraclassCorrelation", dataset, options)
   table <- results[["results"]][["table"]][["data"]]
   jaspTools::expect_equal_tables(
     table,
@@ -22,7 +22,7 @@ test_that("Intraclass Correlation 2 table results are unchanged", {
   options$iccType <- "icc2"
   options$iccRatingAverage <- FALSE
 
-  results <- runAnalysis("IntraclassCorrelation", dataset, options)
+  results <- runAnalysis("intraclassCorrelation", dataset, options)
   table <- results[["results"]][["table"]][["data"]]
   jaspTools::expect_equal_tables(
     table,
@@ -34,7 +34,7 @@ test_that("Intraclass Correlation 3 table results are unchanged", {
   options$iccType <- "icc3"
   options$iccRatingAverage <- FALSE
 
-  results <- runAnalysis("IntraclassCorrelation", dataset, options)
+  results <- runAnalysis("intraclassCorrelation", dataset, options)
   table <- results[["results"]][["table"]][["data"]]
   jaspTools::expect_equal_tables(
     table,
@@ -46,7 +46,7 @@ test_that("Intraclass Correlation 1k table results are unchanged", {
   options$iccType <- "icc1"
   options$iccRatingAverage <- TRUE
 
-  results <- runAnalysis("IntraclassCorrelation", dataset, options)
+  results <- runAnalysis("intraclassCorrelation", dataset, options)
   table <- results[["results"]][["table"]][["data"]]
   jaspTools::expect_equal_tables(
     table,
@@ -58,7 +58,7 @@ test_that("Intraclass Correlation 2k table results are unchanged", {
   options$iccType <- "icc2"
   options$iccRatingAverage <- TRUE
 
-  results <- runAnalysis("IntraclassCorrelation", dataset, options)
+  results <- runAnalysis("intraclassCorrelation", dataset, options)
   table <- results[["results"]][["table"]][["data"]]
   jaspTools::expect_equal_tables(
     table,
@@ -70,7 +70,7 @@ test_that("Intraclass Correlation 3k table results are unchanged", {
   options$iccType <- "icc3"
   options$iccRatingAverage <- TRUE
 
-  results <- runAnalysis("IntraclassCorrelation", dataset, options)
+  results <- runAnalysis("intraclassCorrelation", dataset, options)
   table <- results[["results"]][["table"]][["data"]]
   jaspTools::expect_equal_tables(
     table,
@@ -112,7 +112,7 @@ test_that("ICC coefficients match the ones published in Shrout & Fleiss (1979)",
     options$iccType <- substring(icc_type, 0, 4)
     options$iccRatingAverage <- substring(icc_type, 5) == "k"
 
-    results <- runAnalysis("IntraclassCorrelation", dataset, options)
+    results <- runAnalysis("intraclassCorrelation", dataset, options)
     jasp_coefs[icc_type] <- results[["results"]][["table"]][["data"]][[1]]$ICC
   }
 
