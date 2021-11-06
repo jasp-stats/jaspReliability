@@ -1,0 +1,485 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-10-31 14:36+0000\n"
+"Last-Translator: Changya Hu <changyahu@gmail.com>\n"
+"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
+"jasp/jaspreliability-qml/zh_Hant/>\n"
+"Language: zh_Hant\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.9-dev\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Description|"
+msgid "Reliability"
+msgstr "信度"
+
+msgctxt "Description|"
+msgid "Classical"
+msgstr "古典"
+
+msgctxt "Description|"
+msgid "Intraclass Correlation"
+msgstr "組內相關係數"
+
+msgctxt "Description|"
+msgid "Bayesian"
+msgstr "貝氏"
+
+msgctxt "IntraclassCorrelation|"
+msgid "Variables"
+msgstr "變項"
+
+msgctxt "IntraclassCorrelation|"
+msgid "Each subject is rated by..."
+msgstr "每位被評者被多少人評分..."
+
+msgctxt "IntraclassCorrelation|"
+msgid "a different rater (randomly selected)"
+msgstr "(隨機選取)評分者"
+
+msgctxt "IntraclassCorrelation|"
+msgid "the same set of randomly selected raters/tests"
+msgstr "同一群隨機選取的評分者/測驗"
+
+msgctxt "IntraclassCorrelation|"
+msgid "the same fixed set of raters/tests"
+msgstr "相同的固定評分者/測驗"
+
+#, fuzzy
+msgctxt "IntraclassCorrelation|"
+msgid "Ratings are averaged"
+msgstr "評分 (取其平均數)"
+
+msgctxt "IntraclassCorrelation|"
+msgid "Confidence Interval"
+msgstr "信賴區間"
+
+msgctxt "Description|"
+msgid "Quantify the consistency of test scores"
+msgstr "量化測驗分數之一致性"
+
+msgctxt "Description|"
+msgid "Unidimensional Reliability"
+msgstr "單向度信度"
+
+msgctxt "Description|"
+msgid "Bayesian Unidimensional Reliability"
+msgstr "貝氏單向度信度"
+
+msgctxt "uniDimBayesian|"
+msgid "Variables"
+msgstr "變項"
+
+msgctxt "uniDimBayesian|"
+msgid "Analysis"
+msgstr "分析"
+
+msgctxt "uniDimBayesian|"
+msgid "Scale Statistics"
+msgstr "量表統計數"
+
+msgctxt "uniDimBayesian|"
+msgid "Credible interval"
+msgstr "可靠區間"
+
+msgctxt "uniDimBayesian|"
+msgid "McDonald's ω"
+msgstr "McDonald's ω 信度係數"
+
+#, fuzzy
+msgctxt "uniDimBayesian|"
+msgid "Posterior predictive check"
+msgstr "事後預測檢查"
+
+msgctxt "uniDimBayesian|"
+msgid "Cronbach's α"
+msgstr "Cronbach's α 信度係數"
+
+msgctxt "uniDimBayesian|"
+msgid "Guttman's λ2"
+msgstr "Guttman's λ2 信度係數"
+
+msgctxt "uniDimBayesian|"
+msgid "Guttman's λ6"
+msgstr "Guttman's λ6 信度係數"
+
+msgctxt "uniDimBayesian|"
+msgid "Greatest lower bound"
+msgstr "最大下界"
+
+msgctxt "uniDimBayesian|"
+msgid "Average interitem correlation"
+msgstr "平均題項相關"
+
+msgctxt "uniDimBayesian|"
+msgid "Mean"
+msgstr "平均數"
+
+msgctxt "uniDimBayesian|"
+msgid "Standard deviation"
+msgstr "標準差"
+
+msgctxt "uniDimBayesian|"
+msgid "Individual Item Statistics"
+msgstr "個別題項統計數"
+
+msgctxt "uniDimBayesian|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr "刪除此題後的 McDonald's ω   信度係數"
+
+msgctxt "uniDimBayesian|"
+msgid "Cronbach's α (if item dropped)"
+msgstr "刪除此題後的 Cronbach's α 信度係數"
+
+msgctxt "uniDimBayesian|"
+msgid "Guttman's λ2 (if item dropped)"
+msgstr "刪除此題後的 Guttman's λ2 信度係數"
+
+msgctxt "uniDimBayesian|"
+msgid "Guttman's λ6 (if item dropped)"
+msgstr "刪除此題後的 Guttman's λ6 信度係數"
+
+msgctxt "uniDimBayesian|"
+msgid "Greatest lower bound (if item dropped)"
+msgstr "刪除此題後的最大下界"
+
+msgctxt "uniDimBayesian|"
+msgid "If item dropped plot"
+msgstr "刪除此題之信度係數圖"
+
+msgctxt "uniDimBayesian|"
+msgid "Order items"
+msgstr "題項排序"
+
+msgctxt "uniDimBayesian|"
+msgid "Order items by mean"
+msgstr "以平均數排序題項"
+
+msgctxt "uniDimBayesian|"
+msgid "Order items by KL-divergence"
+msgstr "以題項 KL-divergence 排序"
+
+msgctxt "uniDimBayesian|"
+msgid "Order items by KS-distance"
+msgstr "以題項 KS-distance 排序"
+
+msgctxt "uniDimBayesian|"
+msgid "Item-rest correlation"
+msgstr "此題項項-所有其他題項之相關"
+
+msgctxt "uniDimBayesian|"
+msgid "Plot Posteriors"
+msgstr "圖示事後機率"
+
+msgctxt "uniDimBayesian|"
+msgid "Fix range to 0-1"
+msgstr "將數值限制在0與1之間"
+
+msgctxt "uniDimBayesian|"
+msgid "Display Priors"
+msgstr "顯示事前機率"
+
+msgctxt "uniDimBayesian|"
+msgid "Probability for:"
+msgstr "的機率"
+
+msgctxt "uniDimBayesian|"
+msgid "< Reliability <"
+msgstr "<信度 <"
+
+msgctxt "uniDimBayesian|"
+msgid "Shade posterior region in plot"
+msgstr "在圖中顯示事後機率區"
+
+msgctxt "uniDimBayesian|"
+msgid "Convergence"
+msgstr "聚合"
+
+msgctxt "uniDimBayesian|"
+msgid "MCMC parameters"
+msgstr "MCMC 參數"
+
+msgctxt "uniDimBayesian|"
+msgid "No. samples"
+msgstr "樣本數"
+
+msgctxt "uniDimBayesian|"
+msgid "No. burnin samples"
+msgstr "burnin 樣本數"
+
+#, fuzzy
+msgctxt "uniDimBayesian|"
+msgid "Thinning"
+msgstr "資料瘦身"
+
+msgctxt "uniDimBayesian|"
+msgid "No. chains"
+msgstr "鍊數"
+
+msgctxt "uniDimBayesian|"
+msgid "Diagnostics"
+msgstr "診斷指標"
+
+msgctxt "uniDimBayesian|"
+msgid "R-hat"
+msgstr "R-hat 向量"
+
+msgctxt "uniDimBayesian|"
+msgid "Traceplots"
+msgstr "描線圖"
+
+#, fuzzy
+msgctxt "uniDimBayesian|"
+msgid "Repeatability"
+msgstr "再測信度"
+
+msgctxt "uniDimBayesian|"
+msgid "Set seed"
+msgstr "設定Seed起始值"
+
+msgctxt "uniDimBayesian|"
+msgid "Samples"
+msgstr "樣本"
+
+msgctxt "uniDimBayesian|"
+msgid "Disable saving samples"
+msgstr "不使用節省樣本功能"
+
+msgctxt "uniDimBayesian|"
+msgid "Click to learn more about saving the samples."
+msgstr "按此鍵以了解更多有關節省樣本"
+
+msgctxt "uniDimBayesian|"
+msgid "Reverse-Scaled Items"
+msgstr "反向計分題"
+
+msgctxt "uniDimBayesian|"
+msgid "Normal-Scaled Items"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "Missing Data Handling"
+msgstr "遺漏值處理"
+
+msgctxt "uniDimBayesian|"
+msgid "Missing Values"
+msgstr "遺漏值"
+
+msgctxt "uniDimBayesian|"
+msgid "Exclude cases pairwise"
+msgstr "成對排除法"
+
+msgctxt "uniDimBayesian|"
+msgid "Exclude cases listwise"
+msgstr "完全排除法"
+
+msgctxt "uniDimFrequentist|"
+msgid "Variables"
+msgstr "變項"
+
+msgctxt "uniDimFrequentist|"
+msgid "Analysis"
+msgstr "分析"
+
+msgctxt "uniDimFrequentist|"
+msgid "Scale Statistics"
+msgstr "量表統計數"
+
+msgctxt "uniDimFrequentist|"
+msgid "Confidence Interval"
+msgstr "信賴區間"
+
+msgctxt "uniDimFrequentist|"
+msgid "McDonald's ω"
+msgstr "McDonald's ω 信度係數"
+
+msgctxt "uniDimFrequentist|"
+msgid "Cronbach's α"
+msgstr "Cronbach's α 信度係數"
+
+msgctxt "uniDimFrequentist|"
+msgid "Guttman's λ2"
+msgstr "Guttman's λ2 信度係數"
+
+msgctxt "uniDimFrequentist|"
+msgid "Guttman's λ6"
+msgstr "Guttman's λ6 信度係數"
+
+msgctxt "uniDimFrequentist|"
+msgid "Greatest lower bound"
+msgstr "最大下界"
+
+msgctxt "uniDimFrequentist|"
+msgid "Average interitem correlation"
+msgstr "變項間平均相關"
+
+msgctxt "uniDimFrequentist|"
+msgid "Mean"
+msgstr "平均數"
+
+msgctxt "uniDimFrequentist|"
+msgid "Standard deviation"
+msgstr "標準差"
+
+msgctxt "uniDimFrequentist|"
+msgid "Individual Item Statistics"
+msgstr "個別題項統計數"
+
+msgctxt "uniDimFrequentist|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr "此題刪除後之 McDonald's ω 信度係數"
+
+msgctxt "uniDimFrequentist|"
+msgid "Cronbach's α (if item dropped)"
+msgstr "此題刪除後之 Cronbach's α 信度係數"
+
+msgctxt "uniDimFrequentist|"
+msgid "Guttman's λ2 (if item dropped)"
+msgstr "此題刪除後之 Guttman's λ2 信度係數"
+
+msgctxt "uniDimFrequentist|"
+msgid "Guttman's λ6 (if item dropped)"
+msgstr "此題刪除後之 Guttman's λ6 信度係數"
+
+msgctxt "uniDimFrequentist|"
+msgid "Greatest lower bound (if item dropped)"
+msgstr "此題刪除後之最大下界"
+
+msgctxt "uniDimFrequentist|"
+msgid "Item-rest correlation"
+msgstr "此題項-所有其他題項之相關"
+
+msgctxt "uniDimFrequentist|"
+msgid "Reverse-Scaled Items"
+msgstr "反向計分題"
+
+msgctxt "uniDimFrequentist|"
+msgid "Normal-Scaled Items"
+msgstr ""
+
+msgctxt "uniDimFrequentist|"
+msgid "Advanced Options"
+msgstr "進階選項"
+
+msgctxt "uniDimFrequentist|"
+msgid "Missing Values"
+msgstr "遺漏值"
+
+msgctxt "uniDimFrequentist|"
+msgid "Exclude cases pairwise"
+msgstr "成對排除法"
+
+msgctxt "uniDimFrequentist|"
+msgid "Exclude cases listwise"
+msgstr "完全排除法"
+
+msgctxt "uniDimFrequentist|"
+msgid "Bootstrap"
+msgstr "拔靴法"
+
+msgctxt "uniDimFrequentist|"
+msgid "No. of bootstrap samples"
+msgstr "拔靴法樣本數"
+
+msgctxt "uniDimFrequentist|"
+msgid "Non-parametric bootstrap"
+msgstr "無母數拔靴法"
+
+msgctxt "uniDimFrequentist|"
+msgid "Parametric bootstrap"
+msgstr "有母數拔靴法"
+
+msgctxt "uniDimFrequentist|"
+msgid "McDonald's ω Estimation"
+msgstr "McDonald's ω 估計值"
+
+msgctxt "uniDimFrequentist|"
+msgid "CFA"
+msgstr "驗證性因素分析"
+
+msgctxt "uniDimFrequentist|"
+msgid "Single factor model fit"
+msgstr "單一因素模式配適"
+
+msgctxt "uniDimFrequentist|"
+msgid "Interval"
+msgstr "區間"
+
+msgctxt "uniDimFrequentist|"
+msgid "Analytic interval"
+msgstr "分析區間"
+
+msgctxt "uniDimFrequentist|"
+msgid "Bootstrapped interval"
+msgstr "拔靴法區間"
+
+msgctxt "uniDimFrequentist|"
+msgid "PFA"
+msgstr "主軸因子分析"
+
+msgctxt "uniDimFrequentist|"
+msgid "Cronbach's α Estimation"
+msgstr "Cronbach's α 估計值"
+
+msgctxt "uniDimFrequentist|"
+msgid "Unstandardized"
+msgstr "未標準化"
+
+msgctxt "uniDimFrequentist|"
+msgid "Standardized"
+msgstr "標準化"
+
+msgctxt "uniDimFrequentist|"
+msgid "Repeatability"
+msgstr "可重複性"
+
+msgctxt "uniDimFrequentist|"
+msgid "Set seed"
+msgstr "設定Seed初始值"
+
+msgctxt "uniDimFrequentist|"
+msgid "Samples"
+msgstr "樣本"
+
+msgctxt "uniDimFrequentist|"
+msgid "Disable saving samples"
+msgstr "不使用節省樣本功能"
+
+msgctxt "uniDimFrequentist|"
+msgid "Click to learn more about saving the samples."
+msgstr "按此鍵以了解更多有關節省樣本"
+
+msgctxt "uniDimBayesian|"
+msgid "SD"
+msgstr "標準差"
+
+msgctxt "uniDimBayesian|"
+msgid "of participants' sum scores"
+msgstr "研究參與者的測驗總分"
+
+msgctxt "uniDimBayesian|"
+msgid "of participants' mean scores"
+msgstr "研究參與者的測驗平均分數"
+
+msgctxt "uniDimFrequentist|"
+msgid "SD"
+msgstr "標準差"
+
+msgctxt "uniDimFrequentist|"
+msgid "of participants' sum scores"
+msgstr "研究參與者的測驗總分"
+
+msgctxt "uniDimFrequentist|"
+msgid "of participants' mean scores"
+msgstr "研究參與者的測驗平均分數"
+
+msgctxt "uniDimBayesian|"
+msgid ""
+msgstr ""
+
+msgctxt "uniDimFrequentist|"
+msgid ""
+msgstr ""
