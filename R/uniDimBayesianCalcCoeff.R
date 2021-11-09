@@ -18,7 +18,8 @@
 
       tmp_out <- try(Bayesrel:::omegaSampler(dataset, options[["noSamples"]], options[["noBurnin"]],
                                              options[["noThin"]], options[["noChains"]],
-                                             model[["pairwise"]], progressbarTick), silent = TRUE)
+                                             model[["pairwise"]], progressbarTick,
+                                             a0 = options[["igShape"]], b0 = options[["igScale"]]), silent = TRUE)
       if (model[["pairwise"]] && inherits(tmp_out, "try-error")) {
         .quitAnalysis(gettext("Sampling the posterior factor model for omega failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"))
       }
@@ -31,7 +32,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["omegaScaleObj"]] <- createJaspState(out, dependencies = "omegaScale")
+    stateContainer[["omegaScaleObj"]] <- createJaspState(out, dependencies = c("omegaScale", "igShape", "igScale"))
   }
 
   return(out)
@@ -67,7 +68,8 @@
       for (i in seq_len(ncol(dataset))) {
         out[["itemSamp"]][, , i] <- Bayesrel:::omegaSampler(dataset[, -i],
                                                             options[["noSamples"]], options[["noBurnin"]], options[["noThin"]],
-                                                            options[["noChains"]], model[["pairwise"]], progressbarTick)$omega
+                                                            options[["noChains"]], model[["pairwise"]], progressbarTick,
+                                                            a0 = options[["igShape"]], b0 = options[["igScale"]])$omega
       }
       dd <- dim(out[["itemSamp"]])
       out[["itemSamp"]] <- matrix(out[["itemSamp"]], dd[1] * dd[2], ncol(dataset))
@@ -78,7 +80,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["omegaItemObj"]] <- createJaspState(out, dependencies = "omegaItem")
+    stateContainer[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "igShape", "igScale"))
   }
 
   return(out)
@@ -105,7 +107,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["alphaScaleObj"]] <- createJaspState(out, dependencies = "alphaScale")
+    stateContainer[["alphaScaleObj"]] <- createJaspState(out, dependencies = c("alphaScale", "iwScale", "iwDf"))
   }
 
   return(out)
@@ -138,7 +140,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["alphaItemObj"]] <- createJaspState(out, dependencies = "alphaItem")
+    stateContainer[["alphaItemObj"]] <- createJaspState(out, dependencies = c("alphaItem", "iwScale", "iwDf"))
   }
 
   return(out)
@@ -166,7 +168,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["lambda2ScaleObj"]] <- createJaspState(out, dependencies = "lambda2Scale")
+    stateContainer[["lambda2ScaleObj"]] <- createJaspState(out, dependencies = c("lambda2Scale", "iwScale", "iwDf"))
   }
 
   return(out)
@@ -199,7 +201,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["lambda2ItemObj"]] <- createJaspState(out, dependencies = "lambda2Item")
+    stateContainer[["lambda2ItemObj"]] <- createJaspState(out, dependencies = c("lambda2Item", "iwScale", "iwDf"))
   }
 
   return(out)
@@ -226,7 +228,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["lambda6ScaleObj"]] <- createJaspState(out, dependencies = "lambda6Scale")
+    stateContainer[["lambda6ScaleObj"]] <- createJaspState(out, dependencies = c("lambda6Scale", "iwScale", "iwDf"))
   }
 
   return(out)
@@ -260,7 +262,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["lambda6ItemObj"]] <- createJaspState(out, dependencies = "lambda6Item")
+    stateContainer[["lambda6ItemObj"]] <- createJaspState(out, dependencies = c("lambda6Item", "iwScale", "iwDf"))
   }
 
   return(out)
@@ -294,7 +296,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["glbScaleObj"]] <- createJaspState(out, dependencies = "glbScale")
+    stateContainer[["glbScaleObj"]] <- createJaspState(out, dependencies = c("glbScale", "iwScale", "iwDf"))
   }
 
   return(out)
@@ -334,7 +336,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["glbItemObj"]] <- createJaspState(out, dependencies = "glbItem")
+    stateContainer[["glbItemObj"]] <- createJaspState(out, dependencies = c("glbItem", "iwScale", "iwDf"))
   }
 
   return(out)
@@ -371,7 +373,7 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["avgCorObj"]] <- createJaspState(out, dependencies = "averageItemItemCor")
+    stateContainer[["avgCorObj"]] <- createJaspState(out, dependencies = c("averageInterItemCor", "iwScale", "iwDf"))
   }
 
   return(out)
@@ -444,14 +446,14 @@
       jaspBase::.setSeedJASP(options)
       out[["itemSamp"]] <- .itemRestCor(dataset, options[["noSamples"]], options[["noBurnin"]],
                                         options[["noThin"]], options[["noChains"]], model[["pairwise"]],
-                                        callback = progressbarTick)
+                                        callback = progressbarTick, options[["iwScale"]])
     }
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["itemRestObj"]] <- createJaspState(out, dependencies = "itemRestCor")
+    stateContainer[["itemRestObj"]] <- createJaspState(out, dependencies = c("itemRestCor", "iwScale", "iwDf"))
   }
 
   return(out)
@@ -503,20 +505,20 @@
 }
 
 
-.itemRestCor <- function(dataset, n.iter, n.burnin, thin, n.chains, pairwise, callback) {
+.itemRestCor <- function(dataset, n.iter, n.burnin, thin, n.chains, pairwise, callback, k0) {
 
   ircor_samp <- matrix(0, n.chains * length(seq(1, n.iter - n.burnin, thin)), ncol(dataset))
   for (i in seq(ncol(dataset))) {
     help_dat <- cbind(as.matrix(dataset[, i]), rowMeans(as.matrix(dataset[, -i]), na.rm = TRUE))
     ircor_samp[, i] <- .WishartCorTransform(help_dat, n.iter = n.iter, n.burnin = n.burnin, thin = thin,
-                                            n.chains = n.chains, pairwise = pairwise, callback = callback)
+                                            n.chains = n.chains, pairwise = pairwise, callback = callback, k0)
   }
 
   return(ircor_samp)
 }
 
-.WishartCorTransform <- function(x, n.iter, n.burnin, thin, n.chains, pairwise, callback) {
-  tmp_cov <- Bayesrel:::covSamp(x, n.iter, n.burnin, thin, n.chains, pairwise, callback)$cov_mat
+.WishartCorTransform <- function(x, n.iter, n.burnin, thin, n.chains, pairwise, callback, k0) {
+  tmp_cov <- Bayesrel:::covSamp(x, n.iter, n.burnin, thin, n.chains, pairwise, callback, k0 = k0, df0 = NULL)$cov_mat
   dd <- dim(tmp_cov)
   tmp_cov <- array(tmp_cov, c(dd[1] * dd[2], dd[3], dd[4]))
   tmp_cor <- apply(tmp_cov, c(1), cov2cor)
@@ -575,7 +577,8 @@
                                                                                  "alphaScale", "omegaScale",
                                                                                  "lambda2Scale", "lambda6Scale",
                                                                                  "glbScale","averageInterItemCor",
-                                                                                 "scoresMethod"))
+                                                                                 "scoresMethod", "iwScale", "iwDf",
+                                                                                 "igShape", "igScale"))
 
   }
 
@@ -622,7 +625,8 @@
     stateContainer[["itemResultsObj"]] <- createJaspState(out, dependencies = c("omegaItem",  "alphaItem",
                                                                                 "lambda2Item",  "lambda6Item",
                                                                                 "glbItem","credibleIntervalValueItem",
-                                                                                "itemRestCor", "meanItem", "sdItem"))
+                                                                                "itemRestCor", "meanItem", "sdItem",
+                                                                                "iwScale", "iwDf", "igShape", "igScale"))
 
   }
 

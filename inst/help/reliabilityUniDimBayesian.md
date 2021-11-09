@@ -1,11 +1,11 @@
 Bayesian Unidimensional Reliability Analysis
 ===
 
-The frequentist unidimensional reliability analysis allows the user to test the scale's ability to consistently measure a unidimensional construct. In other words the analysis indicates the amount of error captured in the mesaurement.
+The Bayesian unidimensional reliability analysis allows the user to test the scale's ability to consistently measure a unidimensional construct. In other words the analysis indicates the amount of error captured in the measurement.
 
 ## Input
 ---
-- All columns (variables/items) of the dataset 
+- All columns (variables/items) of the data set 
 
 ### Variables Box
 - Variables: All variables of interest that are ordinally or metrically scaled
@@ -25,6 +25,9 @@ The frequentist unidimensional reliability analysis allows the user to test the 
 - Standard deviation: 
 	- of the sum scores of participants
 	- of the mean scores of participants
+
+The CTT-coefficients alpha, lambda 2, lambda 6, and the glb are computed from the data covariance matrix.
+Coefficient omega is computed from the centered data matrix.
 	
 ### Individual Item Statistics
 - McDonald's omega
@@ -65,10 +68,17 @@ Since sampling from the posterior distribution is subjected to random processes,
 
 ## Priors
 ### Prior for CTT-Coefficients
-The prior distributions for alpha, lambda2, lambda6, the glb, and the average inter-item correlation are induced by the prior distribution on the covariance matrix, which is an inverse Wishart distribution with the identity matrix as a scaling matrix and the number of items k as the degrees of freedom. 
+The prior distributions for alpha, lambda2, lambda6, the glb, and the average inter-item correlation are induced by the prior distribution on the covariance matrix, which, by default, is an inverse Wishart distribution with the identity matrix as a scaling matrix and the number of items k as the degrees of freedom. 
+Input:
+- Scale: Precision values of the diagonal of the scaling matrix of the inverse Wishart distribution
+- Df: Degrees of freedom of the inverse Wishart distribution
 
 ### Prior for FA-Coefficient
-The prior distribution on McDonald’s omega is induced by the prior distributions on the single-factor model parameters, which are: a normal distribution centered on zero for the factor loadings and scores; an inverse gamma distribution with shape=2 and rate=1 for the residuals; and for the variance of the latent variables an inverse Wishart distribution with the number of items k as a scaling matrix (scalar, since it is of dimension one) and k+2 as the degrees of freedom.
+The prior distribution on McDonald’s omega is induced by the prior distributions on the single-factor model parameters, which are: a normal distribution centered on zero for the factor loadings and scores; an inverse gamma distribution with shape=2 and scale=1 for the residuals; and for the variance of the latent variables an inverse Wishart distribution with the number of items k as a scaling matrix (scalar, since it is of dimension one) and k+2 as the degrees of freedom.
+Input:
+- Residual variances shape: parameter for inverse gamma prior distribution
+- Residual variances scale: parameter for inverse gamma prior distribution
+
 
 ## Reverse-Scaled Items
 This allows the user to select reverse-scaled items that need to be recoded.

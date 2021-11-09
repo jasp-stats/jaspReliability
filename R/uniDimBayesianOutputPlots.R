@@ -32,27 +32,24 @@
 
   if (options[["plotPosterior"]] && is.null(model[["empty"]])) {
     n.item <- model[["k"]]
-    if (n.item < 3 || n.item > 50) {
-      noPriorSaved <- TRUE
-    } else {
-      priors <- Bayesrel:::priors[[as.character(n.item)]]
-      # the prior names dont match the model names, thus rename the priors in their original order
-      names(priors) <- c("alphaScale", "lambda2Scale", "lambda6Scale", "glbScale", "omegaScale")
-      noPriorSaved <- FALSE
-    }
-
 
     for (j in seq_along(idxSelected)) {
       i <- idxSelected[j]
       nm <- names(idxSelected[j])
 
       if (is.null(plotContainer[[nmsObjsNoGreek[i]]])) {
-        if (noPriorSaved) {
-          startProgressbar(4e3)
-          prior <- .samplePrior(n.item, nm, progressbarTick)
+        if (options[["dispPrior"]]) {
+          if (nm == "omegaScale") {
+            startProgressbar(2e3)
+          } else {
+            startProgressbar(4e3)
+          }
+          prior <- .samplePrior(n.item, nm, progressbarTick, options[["iwScale"]], options[["iwDf"]],
+                                options[["igShape"]], options[["igScale"]])
         } else {
-          prior <- priors[[nm]]
+          prior <- NULL
         }
+
         p <- .makeSinglePosteriorPlot(model[[nm]], model[["scaleResults"]][["cred"]][[nm]], nmsLabs[[i]],
                                       options[["fixXRange"]], shadePlots,
                                       options[["dispPrior"]], prior)

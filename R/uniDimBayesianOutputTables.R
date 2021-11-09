@@ -204,14 +204,6 @@
   if (options[["probTable"]] && is.null(model[["empty"]])) {
 
     n.item <- model[["k"]]
-    if (n.item < 3 || n.item > 50) {
-      noPriorSaved <- TRUE
-    } else {
-      priors <- Bayesrel:::priors[[as.character(n.item)]]
-      # the prior names dont match the model names, thus rename the priors in their original order
-      names(priors) <- c("alphaScale", "lambda2Scale", "lambda6Scale", "glbScale", "omegaScale")
-      noPriorSaved <- FALSE
-    }
 
     end <- 512
     xx <- seq(0, 1, length.out = 512)
@@ -226,15 +218,17 @@
     for (i in seq_len(length(idxSelected))) {
       nm <- names(idxSelected[i])
       samp_tmp <- as.vector(model[[nm]][["samp"]])
-      probsPost[i] <- mean(samp_tmp > low) -
-        mean(samp_tmp > high)
+      probsPost[i] <- mean(samp_tmp > low) - mean(samp_tmp > high)
 
-      if (noPriorSaved) {
-        startProgressbar(4e3)
-        prior <- .samplePrior(n.item, nm, progressbarTick)
+      if (nm == "omegaScale") {
+        startProgressbar(2e3)
       } else {
-        prior <- priors[[nm]]
+        startProgressbar(4e3)
       }
+
+      prior <- .samplePrior(n.item, nm, progressbarTick, options[["iwScale"]], options[["iwDf"]],
+                            options[["igShape"]], options[["igScale"]])
+
       probsPrior[i] <- sum(prior[["y"]][poslow:end]) / sum(prior[["y"]]) -
         sum(prior[["y"]][poshigh:end]) / sum(prior[["y"]])
 

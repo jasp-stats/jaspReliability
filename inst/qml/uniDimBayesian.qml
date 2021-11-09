@@ -32,6 +32,7 @@ Form
 			name:			"variables"
 			title:			qsTr("Variables")
 			allowedColumns:	["scale", "ordinal"]
+			id:				vars
 		}
 	}
 
@@ -376,12 +377,59 @@ Form
 		title: qsTr("Priors")
 		Group
 		{
-			title: qsTr("Priors for CTT-Coefficients")
+			title: qsTr("CTT-Coefficients (α, λ2, λ6, glb)")
+
+			FormulaField
+			{
+				name:			"iwScale"
+				label:			qsTr("Scale")
+				defaultValue:	"1e-10"
+				min:			0
+				max:			100
+				fieldWidth: 	40
+			}
+			DoubleField
+			{
+				name:			"iwDf"
+				label:			qsTr("Df")
+				defaultValue:	vars.count
+				min:			vars.count
+				max:			100
+				fieldWidth: 	40
+			}
 
 		}
 		Group
 		{
-			title: qsTr("Priors for FA-Coefficient")
+			title: qsTr("McDonald's ω residual variances")
+
+			RowLayout
+			{
+				Label
+				{	text: qsTr("Inverse gamma:")}
+
+				IntegerField
+				{
+					name:			"igShape"
+					label:			qsTr("shape")
+					defaultValue:	2
+					min:			0
+					max:			100
+					fieldWidth: 	40
+				}
+
+
+				IntegerField
+				{
+					name:			"igScale"
+					label:			qsTr("scale")
+					defaultValue:	1
+					min:			0
+					max:			100
+					fieldWidth: 	40
+				}
+			}
+
 		}
 	}
 
@@ -434,11 +482,11 @@ Form
 		Group
 		{
 			title: qsTr("Miscellaneous")
-			CheckBox
-			{
-				name:	"standardizedCoeffs"
-				label:	qsTr("Standardized Coefficients")
-			}
+//			CheckBox
+//			{
+//				name:	"standardizedCoeffs"
+//				label:	qsTr("Standardized Coefficients")
+//			}
 			CheckBox
 			{
 				name:	"postMedian"
