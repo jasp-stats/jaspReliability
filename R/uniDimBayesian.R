@@ -14,10 +14,12 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
   .checkErrors(dataset, options, Bayes = TRUE)
 
   model <- .BayesianPreCalc(jaspResults, dataset, options)
+
   options <- .scaleItemBoxAlign(options)
 
 
   model[["derivedOptions"]] <- .BayesianDerivedOptions(options)
+  model[["gibbsCor"]] <- .BayesianStdCov(jaspResults, dataset, options, model)
   model[["omegaScale"]] <- .BayesianOmegaScale(jaspResults, dataset, options, model)
   model[["omegaItem"]] <- .BayesianOmegaItem(jaspResults, dataset, options, model)
   model[["alphaScale"]] <- .BayesianAlphaScale(jaspResults, dataset, options, model)

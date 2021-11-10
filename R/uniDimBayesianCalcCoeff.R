@@ -1,3 +1,27 @@
+.BayesianStdCov <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["gibbsCor"]]$object))
+    return(.getStateContainerB(jaspResults)[["gibbsCor"]]$object)
+
+  if (is.null(model[["gibbsSamp"]])) {
+    return()
+  } else {
+    if (options[["stdCoeffs"]] == "unstand") {
+      return()
+    } else { # standardized
+      out <- model[["gibbsSamp"]]
+      startProgressbar(model[["progressbarLength"]])
+      for (i in seq_len(nrow(model[["gibbsSamp"]]))) {
+        for (j in seq_len(ncol(model[["gibbsSamp"]]))) {
+          out[i, j, , ] <- .cov2cor.callback(model[["gibbsSamp"]][i, j, , ], progressbarTick)
+        }
+      }
+      stateContainer <- .getStateContainerB(jaspResults)
+      stateContainer[["gibbsCorObj"]] <- createJaspState(out, dependencies = "stdCoeffs")
+    }
+  }
+  return(out)
+}
+
 
 .BayesianOmegaScale <- function(jaspResults, dataset, options, model) {
   if (!is.null(.getStateContainerB(jaspResults)[["omegaScaleObj"]]$object))
@@ -100,14 +124,20 @@
 
     if (is.null(out[["samp"]])) {
       startProgressbar(model[["progressbarLength"]])
-      out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applyalpha, progressbarTick))
+
+      if (options[["stdCoeffs"]] == "unstand") {
+        out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applyalpha, progressbarTick))
+      } else {
+        out[["samp"]] <- coda::mcmc(apply(model[["gibbsCor"]], MARGIN = c(1, 2), Bayesrel:::applyalpha, progressbarTick))
+      }
     }
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["alphaScaleObj"]] <- createJaspState(out, dependencies = c("alphaScale", "iwScale", "iwDf"))
+    stateContainer[["alphaScaleObj"]] <- createJaspState(out, dependencies = c("alphaScale", "iwScale", "iwDf",
+                                                                               "stdCoeffs"))
   }
 
   return(out)
@@ -132,7 +162,12 @@
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
-      out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsSamp"]], Bayesrel:::applyalpha, progressbarTick)
+      if (options[["stdCoeffs"]] == "unstand") {
+        out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsSamp"]], Bayesrel:::applyalpha, progressbarTick)
+      } else {
+        out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsCor"]], Bayesrel:::applyalpha, progressbarTick)
+      }
+
 
     }
 
@@ -140,7 +175,8 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["alphaItemObj"]] <- createJaspState(out, dependencies = c("alphaItem", "iwScale", "iwDf"))
+    stateContainer[["alphaItemObj"]] <- createJaspState(out, dependencies = c("alphaItem", "iwScale", "iwDf",
+                                                                              "stdCoeffs"))
   }
 
   return(out)
@@ -160,7 +196,11 @@
 
     if (is.null(out[["samp"]])) {
       startProgressbar(model[["progressbarLength"]])
-      out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applylambda2, progressbarTick))
+      if (options[["stdCoeffs"]] == "unstand") {
+        out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applylambda2, progressbarTick))
+      } else {
+        out[["samp"]] <- coda::mcmc(apply(model[["gibbsCor"]], MARGIN = c(1, 2), Bayesrel:::applylambda2, progressbarTick))
+      }
 
     }
 
@@ -168,7 +208,8 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["lambda2ScaleObj"]] <- createJaspState(out, dependencies = c("lambda2Scale", "iwScale", "iwDf"))
+    stateContainer[["lambda2ScaleObj"]] <- createJaspState(out, dependencies = c("lambda2Scale", "iwScale", "iwDf",
+                                                                                 "stdCoeffs"))
   }
 
   return(out)
@@ -193,15 +234,19 @@
 
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
-      out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsSamp"]], Bayesrel:::applylambda2, progressbarTick)
-
+      if (options[["stdCoeffs"]] == "unstand") {
+        out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsSamp"]], Bayesrel:::applylambda2, progressbarTick)
+      } else {
+        out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsCor"]], Bayesrel:::applylambda2, progressbarTick)
+      }
     }
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["lambda2ItemObj"]] <- createJaspState(out, dependencies = c("lambda2Item", "iwScale", "iwDf"))
+    stateContainer[["lambda2ItemObj"]] <- createJaspState(out, dependencies = c("lambda2Item", "iwScale", "iwDf",
+                                                                                "stdCoeffs"))
   }
 
   return(out)
@@ -221,14 +266,19 @@
 
     if (is.null(out[["samp"]])) {
       startProgressbar(model[["progressbarLength"]])
-      out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applylambda6, progressbarTick))
+      if (options[["stdCoeffs"]] == "unstand") {
+        out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applylambda6, progressbarTick))
+      } else {
+        out[["samp"]] <- coda::mcmc(apply(model[["gibbsCor"]], MARGIN = c(1, 2), Bayesrel:::applylambda6, progressbarTick))
+      }
     }
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["lambda6ScaleObj"]] <- createJaspState(out, dependencies = c("lambda6Scale", "iwScale", "iwDf"))
+    stateContainer[["lambda6ScaleObj"]] <- createJaspState(out, dependencies = c("lambda6Scale", "iwScale", "iwDf",
+                                                                                 "stdCoeffs"))
   }
 
   return(out)
@@ -254,15 +304,19 @@
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
-      out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsSamp"]], Bayesrel:::applylambda6, progressbarTick)
-
+      if (options[["stdCoeffs"]] == "unstand") {
+        out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsSamp"]], Bayesrel:::applylambda6, progressbarTick)
+      } else {
+        out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsCor"]], Bayesrel:::applylambda6, progressbarTick)
+      }
     }
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["lambda6ItemObj"]] <- createJaspState(out, dependencies = c("lambda6Item", "iwScale", "iwDf"))
+    stateContainer[["lambda6ItemObj"]] <- createJaspState(out, dependencies = c("lambda6Item", "iwScale", "iwDf",
+                                                                                "stdCoeffs"))
   }
 
   return(out)
@@ -286,9 +340,16 @@
       out[["samp"]] <- matrix(0, dd[1], dd[2])
 
       startProgressbar(dd[1] * 3)
-      for (i in seq_len(dd[1])) {
-        out[["samp"]][i, ] <- Bayesrel:::glbOnArrayCustom(model[["gibbsSamp"]][i, , , ], callback = progressbarTick)
+      if (options[["stdCoeffs"]] == "unstand") {
+        for (i in seq_len(dd[1])) {
+          out[["samp"]][i, ] <- Bayesrel:::glbOnArrayCustom(model[["gibbsSamp"]][i, , , ], callback = progressbarTick)
+        }
+      } else {
+        for (i in seq_len(dd[1])) {
+          out[["samp"]][i, ] <- Bayesrel:::glbOnArrayCustom(model[["gibbsCor"]][i, , , ], callback = progressbarTick)
+        }
       }
+
 
     }
 
@@ -296,7 +357,8 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["glbScaleObj"]] <- createJaspState(out, dependencies = c("glbScale", "iwScale", "iwDf"))
+    stateContainer[["glbScaleObj"]] <- createJaspState(out, dependencies = c("glbScale", "iwScale", "iwDf",
+                                                                             "stdCoeffs"))
   }
 
   return(out)
@@ -323,20 +385,26 @@
       # special case glb, because it works with arrays not only matrices, small speedup...
       dd <- dim(model[["gibbsSamp"]])
       out[["itemSamp"]] <- matrix(0, dd[1] * dd[2], dd[3])
-      cov_samp <- array(model[["gibbsSamp"]], c(dd[1] * dd[2], dd[3], dd[3]))
 
       startProgressbar(3 * ncol(dataset))
-      for (i in seq_len(dd[3])) {
-        out[["itemSamp"]][, i] <- Bayesrel:::glbOnArrayCustom(cov_samp[, -i, -i], callback = progressbarTick)
+      if (options[["stdCoeffs"]] == "unstand") {
+        cov_samp <- array(model[["gibbsSamp"]], c(dd[1] * dd[2], dd[3], dd[3]))
+        for (i in seq_len(dd[3])) {
+          out[["itemSamp"]][, i] <- Bayesrel:::glbOnArrayCustom(cov_samp[, -i, -i], callback = progressbarTick)
+        }
+      } else {
+        cov_samp <- array(model[["gibbsCor"]], c(dd[1] * dd[2], dd[3], dd[3]))
+        for (i in seq_len(dd[3])) {
+          out[["itemSamp"]][, i] <- Bayesrel:::glbOnArrayCustom(cov_samp[, -i, -i], callback = progressbarTick)
+        }
       }
-
     }
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["glbItemObj"]] <- createJaspState(out, dependencies = c("glbItem", "iwScale", "iwDf"))
+    stateContainer[["glbItemObj"]] <- createJaspState(out, dependencies = c("glbItem", "iwScale", "iwDf", "stdCoeffs"))
   }
 
   return(out)
@@ -578,7 +646,8 @@
                                                                                  "lambda2Scale", "lambda6Scale",
                                                                                  "glbScale","averageInterItemCor",
                                                                                  "scoresMethod", "iwScale", "iwDf",
-                                                                                 "igShape", "igScale"))
+                                                                                 "igShape", "igScale",
+                                                                                 "stdCoeffs"))
 
   }
 
@@ -626,7 +695,8 @@
                                                                                 "lambda2Item",  "lambda6Item",
                                                                                 "glbItem","credibleIntervalValueItem",
                                                                                 "itemRestCor", "meanItem", "sdItem",
-                                                                                "iwScale", "iwDf", "igShape", "igScale"))
+                                                                                "iwScale", "iwDf", "igShape", "igScale",
+                                                                                "stdCoeffs"))
 
   }
 

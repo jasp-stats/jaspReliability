@@ -482,15 +482,27 @@ Form
 		Group
 		{
 			title: qsTr("Miscellaneous")
+
+			RadioButtonGroup
+			{
+				title: qsTr("Coefficients")
+				name: "stdCoeffs"
+
+				RadioButton{ value: "unstand"; label: qsTr("Unstandardized"); checked: true }
+				RadioButton{ value: "stand"; label: qsTr("Standardized") }
+			}
+
 //			CheckBox
 //			{
 //				name:	"standardizedCoeffs"
 //				label:	qsTr("Standardized Coefficients")
 //			}
-			CheckBox
+			RadioButtonGroup
 			{
-				name:	"postMedian"
-				label:	qsTr("Posterior Median")
+				name: "pointEst"
+				title: qsTr("Posterior point estimate")
+				RadioButton{ value: "mean"; label: qsTr("Mean"); checked: true }
+				RadioButton{ value: "median"; label: qsTr("Median") }
 			}
 		}
 

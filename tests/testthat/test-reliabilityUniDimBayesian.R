@@ -311,8 +311,7 @@ options$igShape <- 6
 options$igScale <- 10
 
 set.seed(1)
-# results <- runAnalysis("reliabilityUniDimBayesian", "asrm_mis.csv", options, makeTests = T)
-results <- runAnalysis("reliabilityUniDimBayesian", Bayesrel::asrm_mis, options, makeTests = T)
+results <- runAnalysis("reliabilityUniDimBayesian", "asrm_mis.csv", options)
 
 
 test_that("Bayesian Individual Item Reliability Statistics table results match with adjusted priors", {
@@ -361,4 +360,18 @@ test_that("Bayesian Scale Reliability Statistics table results match with adjust
                                       1.0315251038237, 0.990343839523617, 0.997596520647971, "R-hat"
                                  ))
 })
+
+
+
+# options <- analysisOptions("reliabilityUniDimBayesian")
+# options$stdCoeffs <- "stand"
+# options$omegaScale <- F
+# options$alphaScale <- T
+# options$noSamples <- 300
+# options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
+# options$iwDf <- 6
+# options$iwScale <- 1e-10
+#
+#
+# results <- runAnalysis("reliabilityUniDimBayesian", "test.csv", options)
 
