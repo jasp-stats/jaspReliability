@@ -209,15 +209,20 @@
     xx <- seq(0, 1, length.out = 512)
     poslow <- end - sum(xx > low)
     poshigh <- end - sum(xx > high)
-    # since the priors are only available in density form, the prior probability for the estimator being larger than
-    # a cutoff is given by calculating the relative probability of the density from the cutoff to 1.
-    # check this with R package
+
     probsPost <- numeric(sum(selected))
     probsPrior <- numeric(sum(selected))
 
     for (i in seq_len(length(idxSelected))) {
       nm <- names(idxSelected[i])
-      samp_tmp <- as.vector(model[[nm]][["samp"]])
+
+      if (nm == "omegaScale" && options[["stdCoeffs"]] == "stand") {
+        input <- model[["omegaScaleStd"]]
+      } else {
+        input <- model[[nm]]
+      }
+
+      samp_tmp <- as.vector(input[["samp"]])
       probsPost[i] <- mean(samp_tmp > low) - mean(samp_tmp > high)
 
       if (nm == "omegaScale") {
@@ -248,3 +253,35 @@
 
   return()
 }
+
+
+.BayesianLoadingsTable <- function(jaspResults, model, options) {
+
+  if (!is.null(.getStateContainerB(jaspResults)[["loadTable"]]$object))
+    return()
+
+  if (!options[["omegaScale"]] && options[["dispLoadings"]]) {
+    return()
+  }
+
+  loadTable <- createJaspTable(gettextf("Omega Single-Factor Model"))
+
+  loadTable$dependOn(options = c("omegaScale", "dispLoadings"))
+
+  loadTable$addColumnInfo(name = "loadings", title = gettext("Standardized loadings"), type = "number")
+
+  derivedOptions <- model[["derivedOptions"]]
+
+  if (options[["omegaScale"]] && options[["dispLoadings"]] && is.null(model[["empty"]])) {
+
+    df <- data.frame(loadings = model[["omegaScaleStd"]][["loadingsStd"]])
+    loadTable$setData(df)
+
+    loadTable$position <- 4
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["loadTable"]] <- loadTable
+  }
+
+  return()
+}
+

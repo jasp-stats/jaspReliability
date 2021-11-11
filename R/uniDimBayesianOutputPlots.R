@@ -50,7 +50,13 @@
           prior <- NULL
         }
 
-        p <- .makeSinglePosteriorPlot(model[[nm]], model[["scaleResults"]][["cred"]][[nm]], nmsLabs[[i]],
+        if (nm == "omegaScale" && options[["stdCoeffs"]] == "stand") {
+          input <- model[["omegaScaleStd"]]
+        } else {
+          input <- model[[nm]]
+        }
+
+        p <- .makeSinglePosteriorPlot(input, model[["scaleResults"]][["cred"]][[nm]], nmsLabs[[i]],
                                       options[["fixXRange"]], shadePlots,
                                       options[["dispPrior"]], prior)
         plotObj <- createJaspPlot(plot = p, title = nmsObjs[i])
@@ -60,7 +66,7 @@
 
       }
     }
-    plotContainer$position <- 4
+    plotContainer$position <- 5
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["plotContainer"]] <- plotContainer
   }
@@ -200,7 +206,14 @@
           prevNumber <- which(names(model) == nm) - 1
           name <- unlist(strsplit(nm, "Item"))
           coefPos <- grep(name, names(model[["scaleResults"]][["est"]]))
-          p <- .makeIfItemPlot(model[[nm]], model[[prevNumber]],
+
+          if (nm == "omegaItem" && options[["stdCoeffs"]] == "stand") {
+            input <- model[["omegaItemStd"]]
+          } else {
+            input <- model[[nm]]
+          }
+
+          p <- .makeIfItemPlot(input, model[[prevNumber]],
                                model[["itemResults"]][["est"]][[nm]],
                                model[["scaleResults"]][["est"]][[coefPos]],
                                nmsLabs[[i]],
@@ -217,7 +230,7 @@
 
       }
     }
-    plotContainerItem$position <- 5
+    plotContainerItem$position <- 6
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["plotContainerItem"]] <- plotContainerItem
   }
@@ -307,8 +320,14 @@
 
   if (options[["dispPPC"]] && options[["omegaScale"]] && is.null(model[["empty"]])) {
 
-    ll <- model[["omegaScale"]][["loadings"]]
-    rr <- model[["omegaScale"]][["residuals"]]
+    # if (options[["stdCoeffs"]] == "unstand") {
+      ll <- apply(model[["omegaScale"]][["loadings"]], 3, as.vector)
+      rr <- apply(model[["omegaScale"]][["residuals"]], 3, as.vector)
+    # } else {
+    #   ll <- apply(model[["omegaScaleStd"]][["loadings"]], 3, as.vector)
+    #   rr <- apply(model[["omegaScaleStd"]][["residuals"]], 3, as.vector)
+    # }
+
     cobs <- model[["data_cov"]]
 
     k <- ncol(cobs)
@@ -339,9 +358,9 @@
     g <- jaspGraphs::themeJasp(g)
 
     plot <- createJaspPlot(plot = g, title = "Posterior Predictive Check Omega", width = 350)
-    plot$dependOn(options = c("dispPPC", "omegaScale"))
+    plot$dependOn(options = c("dispPPC", "omegaScale", "stdCoeffs"))
 
-    plot$position <- 6
+    plot$position <- 7
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["omegaPPC"]] <- plot
   }
@@ -384,7 +403,7 @@
       }
     }
 
-    plotContainerTP$position <- 7
+    plotContainerTP$position <- 8
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["plotContainerTP"]] <- plotContainerTP
 
