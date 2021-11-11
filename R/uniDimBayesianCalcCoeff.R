@@ -1,3 +1,5 @@
+
+# standardize covariance matrix sample
 .BayesianStdCov <- function(jaspResults, dataset, options, model) {
   if (!is.null(.getStateContainerB(jaspResults)[["gibbsCor"]]$object))
     return(.getStateContainerB(jaspResults)[["gibbsCor"]]$object)
@@ -573,27 +575,6 @@
 }
 
 
-.itemRestCor <- function(dataset, n.iter, n.burnin, thin, n.chains, pairwise, callback, k0) {
-
-  ircor_samp <- matrix(0, n.chains * length(seq(1, n.iter - n.burnin, thin)), ncol(dataset))
-  for (i in seq(ncol(dataset))) {
-    help_dat <- cbind(as.matrix(dataset[, i]), rowMeans(as.matrix(dataset[, -i]), na.rm = TRUE))
-    ircor_samp[, i] <- .WishartCorTransform(help_dat, n.iter = n.iter, n.burnin = n.burnin, thin = thin,
-                                            n.chains = n.chains, pairwise = pairwise, callback = callback, k0)
-  }
-
-  return(ircor_samp)
-}
-
-.WishartCorTransform <- function(x, n.iter, n.burnin, thin, n.chains, pairwise, callback, k0) {
-  tmp_cov <- Bayesrel:::covSamp(x, n.iter, n.burnin, thin, n.chains, pairwise, callback, k0 = k0, df0 = NULL)$cov_mat
-  dd <- dim(tmp_cov)
-  tmp_cov <- array(tmp_cov, c(dd[1] * dd[2], dd[3], dd[4]))
-  tmp_cor <- apply(tmp_cov, c(1), cov2cor)
-  out <- tmp_cor[2, ]
-  callback()
-  return(out)
-}
 
 
 .BayesianComputeScaleResults <- function(jaspResults, options, model) {
@@ -613,7 +594,11 @@
     sampellist <- model[selected]
     samps <- .sampleListHelper(sampellist, "samp")
 
-    out[["est"]] <- lapply(samps, mean)
+    if (options[["pointEst"]] == "mean") {
+      out[["est"]] <- lapply(samps, mean)
+    } else { # median
+      out[["est"]] <- lapply(samps, median)
+    }
     out[["cred"]] <- lapply(samps, function(x) coda::HPDinterval(coda::mcmc(c(x)), prob = ciValue))
 
     if (options[["rHat"]]) {
@@ -647,7 +632,7 @@
                                                                                  "glbScale","averageInterItemCor",
                                                                                  "scoresMethod", "iwScale", "iwDf",
                                                                                  "igShape", "igScale",
-                                                                                 "stdCoeffs"))
+                                                                                 "stdCoeffs", "pointEst"))
 
   }
 
@@ -675,7 +660,11 @@
     sampellist <- model[selected]
     samps <- .sampleListHelper(sampellist, "itemSamp")
 
-    out[["est"]] <- lapply(samps, colMeans)
+    if (options[["pointEst"]] == "mean") {
+      out[["est"]] <- lapply(samps, colMeans)
+    } else { # median
+      out[["est"]] <- lapply(samps, .colMedians)
+    }
     out[["cred"]] <- lapply(samps, function(x) coda::HPDinterval(coda::mcmc(x), prob = ciValue))
 
     # check for mean and sd
@@ -696,7 +685,7 @@
                                                                                 "glbItem","credibleIntervalValueItem",
                                                                                 "itemRestCor", "meanItem", "sdItem",
                                                                                 "iwScale", "iwDf", "igShape", "igScale",
-                                                                                "stdCoeffs"))
+                                                                                "stdCoeffs", "pointEst"))
 
   }
 
