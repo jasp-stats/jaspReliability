@@ -363,15 +363,117 @@ test_that("Bayesian Scale Reliability Statistics table results match with adjust
 
 
 
-# options <- analysisOptions("reliabilityUniDimBayesian")
-# options$stdCoeffs <- "stand"
-# options$omegaScale <- F
-# options$alphaScale <- T
-# options$noSamples <- 300
-# options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
-# options$iwDf <- 6
-# options$iwScale <- 1e-10
-#
-#
-# results <- runAnalysis("reliabilityUniDimBayesian", "test.csv", options)
+options <- analysisOptions("reliabilityUniDimBayesian")
+options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
+options$alphaScale <- TRUE
+options$lambda2Scale <- TRUE
+options$lambda6Scale <- TRUE
+options$glbScale <- TRUE
+options$averageInterItemCor <- TRUE
+options$omegaItem <- TRUE
+options$alphaItem <- TRUE
+options$lambda2Item <- TRUE
+options$lambda6Item <- TRUE
+options$glbItem <- TRUE
+options$plotPosterior <- TRUE
+options$dispPrior <- TRUE
+options$probTable <- TRUE
+options$probTableValueLow <- 0.2
+options$probTableValueHigh <- 0.5
+options$shadePlots <- TRUE
+options$noSamples <- 200
+options$rHat <- TRUE
+options$setSeed <- TRUE
+options$iwDf <- length(options$variables)
+options$iwScale <- 0.0000000001
+options$dispLoadings <- TRUE
+options$stdCoeffs <- "stand"
+options$pointEst <- "median"
+set.seed(1)
+results <- runAnalysis("reliabilityUniDimBayesian", "test.csv", options)
+
+test_that("Bayesian Individual Item Reliability Statistics table results match with standardization and median", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.499864243624906, 0.371987972410805, 0.519686705794261, 0.444919635513272,
+                                      0.57942106464377, 0.620670635416665, 0.553348700422337, 0.620992269207978,
+                                      0.567369697542575, 0.675482992764378, 0.714612686739471, 0.674415156445437,
+                                      0.710080098725572, 0.669197440622959, 0.748861253746742, "contNormal",
+                                      5.73312727298402e-06, -0.107114290877759, -0.0031654793906686,
+                                      -0.0482001841128878, -6.39634897513984e-09, 0.161564148144394,
+                                      0.194804130030221, 0.220807457791194, 0.149500575659385, 0.263953470015245,
+                                      0.372255405615577, 0.445366740296484, 0.439504615186215, 0.353753091342017,
+                                      0.429398503438359, "contcor1", 0.0393067987346478, 0.0189905734187845,
+                                      0.0792132799731724, 0.0283360768101215, 0.133307764798279, 0.280634498409812,
+                                      0.299360676376119, 0.314435040862574, 0.230611750413446, 0.349989129538079,
+                                      0.456896489326536, 0.49846757129663, 0.494379320017436, 0.408350563197256,
+                                      0.544288622938786, "contcor2", 0.518994671551128, 0.381555713653778,
+                                      0.523617983089419, 0.44863921584234, 0.605936721967155, 0.627501070070124,
+                                      0.542402992030407, 0.614551863581106, 0.567433639851765, 0.700263930105156,
+                                      0.714884024479502, 0.692929487440639, 0.707153922148802, 0.671066022395026,
+                                      0.776950364200239, "facFive"))
+})
+
+test_that("Omega Single-Factor Model table results match", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_loadTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.118960690052957, 0.808474151944778, 0.768612766587744, 0.144763227189446
+                                 ))
+})
+
+test_that("Cronbach's alpha plot matches", {
+  plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_plotContainer"]][["collection"]][["stateContainer_plotContainer_alpha"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "alpha-std")
+})
+
+test_that("Greatest Lower Bound plot matches", {
+  plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_plotContainer"]][["collection"]][["stateContainer_plotContainer_glb"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "greatest-lower-bound-std")
+})
+
+test_that("Guttman's lambda2 plot matches", {
+  plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_plotContainer"]][["collection"]][["stateContainer_plotContainer_lambda2"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "lambda2-std")
+})
+
+test_that("Guttman's lambda6 plot matches", {
+  plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_plotContainer"]][["collection"]][["stateContainer_plotContainer_lambda6"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "lambda6-std")
+})
+
+test_that("McDonald's omega plot matches", {
+  plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_plotContainer"]][["collection"]][["stateContainer_plotContainer_omega"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "omega-std")
+})
+
+
+
+test_that("Probability that Reliability Statistic is Larger than 0.20 and Smaller than 0.50 table results match with standardization and median", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_probTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.211111111111111, 0.322277450512426, "McDonald's <unicode>",
+                                      0.546666666666667, 0.327282806190898, "Cronbach's <unicode>",
+                                      0.206666666666667, 0.233873326185613, "Guttman's <unicode>2",
+                                      0.328888888888889, 0.20968370679484, "Guttman's <unicode>6",
+                                      0.00666666666666671, 0.0557055139950303, "Greatest Lower Bound"
+                                 ))
+})
+
+test_that("Bayesian Scale Reliability Statistics table results match with standardization and median", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.549475923084279, 0.485978025107501, 0.553414961378168, 0.527639174641981,
+                                      0.649735352170137, 0.191174460794261, "Posterior median", 0.435706048978678,
+                                      0.322525692701179, 0.443001980608279, 0.391309056840046, 0.530738963961284,
+                                      0.106359073588414, "95% CI lower bound", 0.664754350432929,
+                                      0.639694091225906, 0.669397876270056, 0.636673491920215, 0.743596201899069,
+                                      0.307409602568225, "95% CI upper bound", 1.00879071329335, 1.00688014001917,
+                                      1.00846765229577, 1.00873819260755, 1.01603809839108, 1.01104129919821,
+                                      "R-hat"))
+})
 
