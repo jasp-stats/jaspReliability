@@ -20,10 +20,10 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
 
   model[["derivedOptions"]] <- .BayesianDerivedOptions(options)
   model[["gibbsCor"]] <- .BayesianStdCov(jaspResults, dataset, options, model)
+  model[["singleFactor"]] <- .BayesianSingleFactorModel(jaspResults, dataset, options, model)
+  model[["singleFactorItem"]] <- .BayesianSingleFactorModelItem(jaspResults, dataset, options, model)
   model[["omegaScale"]] <- .BayesianOmegaScale(jaspResults, dataset, options, model)
   model[["omegaItem"]] <- .BayesianOmegaItem(jaspResults, dataset, options, model)
-  model[["omegaScaleStd"]] <- .BayesianOmegaScaleStd(jaspResults, dataset, options, model)
-  model[["omegaItemStd"]] <- .BayesianOmegaItemStd(jaspResults, dataset, options, model)
   model[["alphaScale"]] <- .BayesianAlphaScale(jaspResults, dataset, options, model)
   model[["alphaItem"]] <- .BayesianAlphaItem(jaspResults, dataset, options, model)
   model[["lambda2Scale"]] <- .BayesianLambda2Scale(jaspResults, dataset, options, model)
@@ -32,7 +32,6 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
   model[["lambda6Item"]] <- .BayesianLambda6Item(jaspResults, dataset, options, model)
   model[["glbScale"]] <- .BayesianGlbScale(jaspResults, dataset, options, model)
   model[["glbItem"]] <- .BayesianGlbItem(jaspResults, dataset, options, model)
-
   model[["averageInterItemCor"]] <- .BayesianAverageCor(jaspResults, dataset, options, model)
   model[["meanScale"]] <- .BayesianMean(jaspResults, dataset, options, model)
   model[["sdScale"]] <- .BayesianStdDev(jaspResults, dataset, options, model)

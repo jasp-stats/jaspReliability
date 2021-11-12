@@ -34,7 +34,6 @@ options$reverseScaledItems <- "debMiss30"
 options$orderType <- "orderItemKL"
 options$iwDf <- length(options$variables)
 options$iwScale <- 0.0000000001
-options$stdCoeffs <- "unstand"
 set.seed(1)
 results <- runAnalysis("reliabilityUniDimBayesian", "test.csv", options)
 

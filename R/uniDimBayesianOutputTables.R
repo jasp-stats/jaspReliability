@@ -17,10 +17,12 @@
   intervalLow <- gettextf("%s lower bound", interval)
   intervalUp <- gettextf("%s upper bound", interval)
 
+  pointEst <- gettextf("Posterior %s", options[["pointEst"]])
+
   if (options[["rHat"]]) {
-    allData <- data.frame(estimate = c("Posterior mean", intervalLow, intervalUp, "R-hat"))
+    allData <- data.frame(estimate = c(pointEst, intervalLow, intervalUp, "R-hat"))
   } else {
-    allData <- data.frame(estimate = c("Posterior mean", intervalLow, intervalUp))
+    allData <- data.frame(estimate = c(pointEst, intervalLow, intervalUp))
   }
 
   derivedOptions <- model[["derivedOptions"]]
@@ -107,19 +109,20 @@
   if (!is.null(unlist(options[["reverseScaledItems"]])))
     footnote <- .addFootnoteReverseScaledItems(options)
 
+  pointEst <- gettextf("Posterior %s", options[["pointEst"]])
 
   fewItemProblem <- FALSE
   for (i in idxSelected) {
     if (estimators[i] %in% coefficients) {
       if (estimators[i] == "Item-rest correlation") { # no item deleted for item rest cor
-        itemTable$addColumnInfo(name = paste0("postMean", i), title = gettext("Posterior Mean"), type = "number",
+        itemTable$addColumnInfo(name = paste0("postMean", i), title = pointEst, type = "number",
                                 overtitle = gettext("Item-rest correlation"))
         itemTable$addColumnInfo(name = paste0("lower", i), title = gettextf("Lower %s%% CI", cred), type = "number",
                                 overtitle = gettext("Item-rest correlation"))
         itemTable$addColumnInfo(name = paste0("upper", i), title = gettextf("Upper %s%% CI", cred), type = "number",
                                 overtitle = gettext("Item-rest correlation"))
       } else {
-        itemTable$addColumnInfo(name = paste0("postMean", i), title = gettext("Posterior Mean"), type = "number",
+        itemTable$addColumnInfo(name = paste0("postMean", i), title = pointEst, type = "number",
                                 overtitle = overTitles[i])
         itemTable$addColumnInfo(name = paste0("lower", i), title = gettextf("Lower %s%% CI", cred), type = "number",
                                 overtitle = overTitles[i])
@@ -216,13 +219,7 @@
     for (i in seq_len(length(idxSelected))) {
       nm <- names(idxSelected[i])
 
-      if (nm == "omegaScale" && options[["stdCoeffs"]] == "stand") {
-        input <- model[["omegaScaleStd"]]
-      } else {
-        input <- model[[nm]]
-      }
-
-      samp_tmp <- as.vector(input[["samp"]])
+      samp_tmp <- as.vector(model[[nm]][["samp"]])
       probsPost[i] <- mean(samp_tmp > low) - mean(samp_tmp > high)
 
       if (nm == "omegaScale") {
@@ -260,10 +257,6 @@
   if (!is.null(.getStateContainerB(jaspResults)[["loadTable"]]$object))
     return()
 
-  if (!options[["omegaScale"]] && options[["dispLoadings"]]) {
-    return()
-  }
-
   loadTable <- createJaspTable(gettextf("Omega Single-Factor Model"))
 
   loadTable$dependOn(options = c("omegaScale", "dispLoadings"))
@@ -274,7 +267,7 @@
 
   if (options[["omegaScale"]] && options[["dispLoadings"]] && is.null(model[["empty"]])) {
 
-    df <- data.frame(loadings = model[["omegaScaleStd"]][["loadingsStd"]])
+    df <- data.frame(loadings = model[["omegaScale"]][["loadingsStd"]])
     loadTable$setData(df)
 
     loadTable$position <- 4

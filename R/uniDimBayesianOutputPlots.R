@@ -39,6 +39,7 @@
 
       if (is.null(plotContainer[[nmsObjsNoGreek[i]]])) {
         if (options[["dispPrior"]]) {
+
           if (nm == "omegaScale") {
             startProgressbar(2e3)
           } else {
@@ -50,13 +51,7 @@
           prior <- NULL
         }
 
-        if (nm == "omegaScale" && options[["stdCoeffs"]] == "stand") {
-          input <- model[["omegaScaleStd"]]
-        } else {
-          input <- model[[nm]]
-        }
-
-        p <- .makeSinglePosteriorPlot(input, model[["scaleResults"]][["cred"]][[nm]], nmsLabs[[i]],
+        p <- .makeSinglePosteriorPlot(model[[nm]], model[["scaleResults"]][["cred"]][[nm]], nmsLabs[[i]],
                                       options[["fixXRange"]], shadePlots,
                                       options[["dispPrior"]], prior)
         plotObj <- createJaspPlot(plot = p, title = nmsObjs[i])
@@ -207,13 +202,7 @@
           name <- unlist(strsplit(nm, "Item"))
           coefPos <- grep(name, names(model[["scaleResults"]][["est"]]))
 
-          if (nm == "omegaItem" && options[["stdCoeffs"]] == "stand") {
-            input <- model[["omegaItemStd"]]
-          } else {
-            input <- model[[nm]]
-          }
-
-          p <- .makeIfItemPlot(input, model[[prevNumber]],
+          p <- .makeIfItemPlot(model[[nm]], model[[prevNumber]],
                                model[["itemResults"]][["est"]][[nm]],
                                model[["scaleResults"]][["est"]][[coefPos]],
                                nmsLabs[[i]],
@@ -320,13 +309,8 @@
 
   if (options[["dispPPC"]] && options[["omegaScale"]] && is.null(model[["empty"]])) {
 
-    # if (options[["stdCoeffs"]] == "unstand") {
-      ll <- apply(model[["omegaScale"]][["loadings"]], 3, as.vector)
-      rr <- apply(model[["omegaScale"]][["residuals"]], 3, as.vector)
-    # } else {
-    #   ll <- apply(model[["omegaScaleStd"]][["loadings"]], 3, as.vector)
-    #   rr <- apply(model[["omegaScaleStd"]][["residuals"]], 3, as.vector)
-    # }
+    ll <- apply(model[["omegaScale"]][["loadings"]], 3, as.vector)
+    rr <- apply(model[["omegaScale"]][["residuals"]], 3, as.vector)
 
     cobs <- model[["data_cov"]]
 

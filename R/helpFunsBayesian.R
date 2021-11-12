@@ -124,24 +124,26 @@
 }
 
 
-.stdFactorLoads <- function(ll, ee) {
+.stdFactorLoads <- function(ll, ee, callback = function(){}) {
   ds <- dim(ll)
   out <- ll
   for (i in seq_len(ds[1])) {
     for (j in seq_len(ds[2])) {
       implV <- diag(ll[i, j, ] %*% t(ll[i, j, ]) + diag(ee[i, j, ]))
       out[i, j, ] <- ll[i, j, ] / sqrt(implV)
+      callback()
     }
   }
   return(out)
 }
 
-.omegaOnArray <- function(ll, ee) {
+.omegaOnArray <- function(ll, ee, callback = function(){}) {
   ds <- dim(ll)
   out <- matrix(0, ds[1], ds[2])
   for (i in seq_len(ds[1])) {
     for (j in seq_len(ds[2])) {
       out[i, j] <- Bayesrel:::omegaBasic(ll[i, j, ], ee[i, j, ])
+      callback()
     }
   }
   return(out)

@@ -1,29 +1,4 @@
 
-# standardize covariance matrix sample
-.BayesianStdCov <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["gibbsCor"]]$object))
-    return(.getStateContainerB(jaspResults)[["gibbsCor"]]$object)
-
-  if (is.null(model[["gibbsSamp"]])) {
-    return()
-  } else {
-    if (options[["stdCoeffs"]] == "unstand") {
-      return()
-    } else { # standardized
-      out <- model[["gibbsSamp"]]
-      startProgressbar(model[["progressbarLength"]])
-      for (i in seq_len(nrow(model[["gibbsSamp"]]))) {
-        for (j in seq_len(ncol(model[["gibbsSamp"]]))) {
-          out[i, j, , ] <- .cov2cor.callback(model[["gibbsSamp"]][i, j, , ], progressbarTick)
-        }
-      }
-      stateContainer <- .getStateContainerB(jaspResults)
-      stateContainer[["gibbsCorObj"]] <- createJaspState(out, dependencies = "stdCoeffs")
-    }
-  }
-  return(out)
-}
-
 
 .BayesianOmegaScale <- function(jaspResults, dataset, options, model) {
   if (!is.null(.getStateContainerB(jaspResults)[["omegaScaleObj"]]$object))
@@ -33,26 +8,33 @@
   if (is.null(out))
     out <- list()
 
-  if (options[["omegaScale"]] && is.null(model[["empty"]])) {
+  if (options[["omegaScale"]] && is.null(model[["empty"]]) && !is.null(model[["singleFactor"]])) {
 
     if (is.null(out[["samp"]])) {
-      startProgressbar(options[["noSamples"]] * options[["noChains"]])
 
-      dataset <- scale(dataset, scale = FALSE)
+      startProgressbar(model[["progressbarLength"]])
 
-      jaspBase::.setSeedJASP(options)
+      if (options[["stdCoeffs"]] == "unstand") {
 
-      tmp_out <- try(Bayesrel:::omegaSampler(dataset, options[["noSamples"]], options[["noBurnin"]],
-                                             options[["noThin"]], options[["noChains"]],
-                                             model[["pairwise"]], progressbarTick,
-                                             a0 = options[["igShape"]], b0 = options[["igScale"]]), silent = TRUE)
-      if (model[["pairwise"]] && inherits(tmp_out, "try-error")) {
-        .quitAnalysis(gettext("Sampling the posterior factor model for omega failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"))
+        out[["samp"]] <- coda::mcmc(.omegaOnArray(model[["singleFactor"]][["loadings"]],
+                                                  model[["singleFactor"]][["residuals"]],
+                                                  progressbarTick))
       }
 
-      out[["loadings"]] <- tmp_out$lambda
-      out[["residuals"]] <- tmp_out$psi
-      out[["samp"]] <- tmp_out$omega
+      if (options[["stdCoeffs"]] == "stand" || options[["dispLoadings"]]) {
+
+        lstd <- .stdFactorLoads(model[["singleFactor"]][["loadings"]],
+                                model[["singleFactor"]][["residuals"]])
+        estd <- 1 - lstd^2
+
+        if (options[["stdCoeffs"]] == "stand") {
+          out[["samp"]] <- coda::mcmc(.omegaOnArray(lstd, estd, progressbarTick))
+        }
+
+        if (options[["dispLoadings"]]) {
+          out[["loadingsStd"]] <- apply(lstd, 3, get(options[["pointEst"]]))
+        }
+      }
 
     }
 
@@ -60,42 +42,9 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["omegaScaleObj"]] <- createJaspState(out, dependencies = c("omegaScale", "igShape", "igScale"))
+    stateContainer[["omegaScaleObj"]] <- createJaspState(out, dependencies = c("omegaScale", "stdCoeffs", "dispLoadings"))
   }
 
-  return(out)
-}
-
-
-# standardize omega and loadings
-.BayesianOmegaScaleStd <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["omegaStdObj"]]$object))
-    return(.getStateContainerB(jaspResults)[["omegaStdObj"]]$object)
-
-  if (!options[["omegaScale"]]) {
-    return()
-  } else {
-    if (options[["stdCoeffs"]] == "unstand" && !options[["dispLoadings"]]) {
-      return()
-    } else { # standardized
-      out <- list()
-      lstd <- .stdFactorLoads(model[["omegaScale"]][["loadings"]], model[["omegaScale"]][["residuals"]])
-      estd <- 1 - lstd^2
-
-      if (options[["stdCoeffs"]] == "stand") {
-        out[["samp"]] <- coda::mcmc(.omegaOnArray(lstd, estd))
-        # out[["loadings"]] <- apply(lstd, 3, as.vector)
-        # out[["residuals"]] <- apply(estd, 3, as.vector)
-      }
-
-      if (options[["dispLoadings"]]) {
-        out[["loadingsStd"]] <- apply(lstd, 3, get(options[["pointEst"]]))
-      }
-
-      stateContainer <- .getStateContainerB(jaspResults)
-      stateContainer[["omegaStdObj"]] <- createJaspState(out, dependencies = c("stdCoeffs", "dispLoadings", "pointEst"))
-    }
-  }
   return(out)
 }
 
@@ -108,7 +57,7 @@
   if (is.null(out))
     out <- list()
 
-  if (options[["omegaItem"]] && is.null(model[["empty"]])) {
+  if (options[["omegaItem"]] && is.null(model[["empty"]]) && !is.null(model[["singleFactorItem"]])) {
 
     if (ncol(dataset) == 2) {
       out[["itemEst"]] <- c(NaN, NaN)
@@ -118,72 +67,31 @@
     }
 
     if (is.null(out[["itemSamp"]])) {
-      startProgressbar(options[["noSamples"]] * options[["noChains"]] * ncol(dataset))
+      startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
-      dataset <- scale(dataset, scale = FALSE)
-      jaspBase::.setSeedJASP(options)
+      if (options[["stdCoeffs"]] == "unstand") {
 
-      out[["itemSamp"]] <- array(0, c(options[["noChains"]],
-                                      length(seq(1, options[["noSamples"]] - options[["noBurnin"]], options[["noThin"]])),
-                                      ncol(dataset)))
-      out[["itemLoadings"]] <- array(0, c(options[["noChains"]],
-                                          length(seq(1, options[["noSamples"]] - options[["noBurnin"]], options[["noThin"]])),
-                                          ncol(dataset), ncol(dataset) - 1))
-      out[["itemResiduals"]] <- array(0, c(options[["noChains"]],
-                                           length(seq(1, options[["noSamples"]] - options[["noBurnin"]], options[["noThin"]])),
-                                           ncol(dataset), ncol(dataset) - 1))
+        out[["itemSamp"]] <- coda::mcmc(.omegaOnArray(model[["singleFactorItem"]][["itemLoadings"]],
+                                                      model[["singleFactorItem"]][["itemResiduals"]],
+                                                      progressbarTick))
+      } else { # standardized
+        lstd <- .stdFactorLoads(model[["singleFactorItem"]][["itemLoadings"]],
+                                model[["singleFactorItem"]][["itemResiduals"]])
+        estd <- 1 - lstd^2
 
-      for (i in seq_len(ncol(dataset))) {
-        tmp_out <- Bayesrel:::omegaSampler(dataset[, -i],
-                                           options[["noSamples"]], options[["noBurnin"]], options[["noThin"]],
-                                           options[["noChains"]], model[["pairwise"]], progressbarTick,
-                                           a0 = options[["igShape"]], b0 = options[["igScale"]])
-        out[["itemSamp"]][, , i] <- tmp_out$omega
-        out[["itemLoadings"]][, , i, ] <- tmp_out$lambda
-        out[["itemResiduals"]][, , i, ] <- tmp_out$psi
+        out[["itemSamp"]] <- coda::mcmc(.omegaOnArray(lstd, estd, progressbarTick))
       }
-
-      dd <- dim(out[["itemSamp"]])
-      out[["itemSamp"]] <- matrix(out[["itemSamp"]], dd[1] * dd[2], ncol(dataset))
-      out[["itemLoadings"]] <- array(out[["itemLoadings"]], c(dd[1] * dd[2], ncol(dataset), ncol(dataset) - 1))
-      out[["itemResiduals"]] <- array(out[["itemResiduals"]], c(dd[1] * dd[2], ncol(dataset), ncol(dataset) - 1))
-
     }
 
     if (options[["disableSampleSave"]])
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "igShape", "igScale"))
+    stateContainer[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "stdCoeffs"))
   }
 
   return(out)
 }
-
-.BayesianOmegaItemStd <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["omegaItemStdObj"]]$object))
-    return(.getStateContainerB(jaspResults)[["omegaItemStdObj"]]$object)
-
-  if (!options[["omegaItem"]]) {
-    return()
-  } else {
-    if (options[["stdCoeffs"]] == "unstand") {
-      return()
-    } else { # standardized
-      out <- list()
-      lstd <- .stdFactorLoads(model[["omegaItem"]][["itemLoadings"]], model[["omegaItem"]][["itemResiduals"]])
-      estd <- 1 - lstd^2
-
-      tt <- coda::mcmc(.omegaOnArray(lstd, estd))
-      out[["itemSamp"]] <- coda::mcmc(.omegaOnArray(lstd, estd))
-
-      stateContainer <- .getStateContainerB(jaspResults)
-      stateContainer[["omegaItemStdObj"]] <- createJaspState(out, dependencies = c("stdCoeffs"))
-    }
-  }
-  return(out)
-}
-
 
 
 .BayesianAlphaScale <- function(jaspResults, dataset, options, model) {
@@ -646,7 +554,6 @@
 
 
 
-
 .BayesianComputeScaleResults <- function(jaspResults, options, model) {
   if (!is.null(.getStateContainerB(jaspResults)[["scaleResultsObj"]]$object))
     return(.getStateContainerB(jaspResults)[["scaleResultsObj"]]$object)
@@ -664,12 +571,7 @@
     sampellist <- model[selected]
     samps <- .sampleListHelper(sampellist, "samp")
 
-    if (options[["stdCoeffs"]] == "stand" && options[["omegaScale"]]) {
-      samps[["omegaScale"]] <- model[["omegaScaleStd"]][["samp"]]
-    }
-
     out[["est"]] <- lapply(samps, get(options[["pointEst"]]))
-
     out[["cred"]] <- lapply(samps, function(x) coda::HPDinterval(coda::mcmc(c(x)), prob = ciValue))
 
     if (options[["rHat"]]) {
@@ -730,10 +632,6 @@
     # first the coefficients with samples
     sampellist <- model[selected]
     samps <- .sampleListHelper(sampellist, "itemSamp")
-
-    if (options[["stdCoeffs"]] == "stand" && options[["omegaItem"]]) {
-      samps[["omegaItem"]] <- model[["omegaItemStd"]][["itemSamp"]]
-    }
 
     if (options[["pointEst"]] == "mean") {
       out[["est"]] <- lapply(samps, colMeans)

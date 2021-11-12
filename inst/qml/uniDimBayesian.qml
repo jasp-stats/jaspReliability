@@ -394,7 +394,7 @@ Form
 				label:			qsTr("Df")
 				defaultValue:	vars.count
 				min:			vars.count
-				max:			100
+				max:			vars.count + 100
 				fieldWidth: 	40
 			}
 
@@ -475,7 +475,7 @@ Form
 			CheckBox
 			{
 				name:		"dispLoadings"
-				label:		qsTr("Show standardized factor loadings");
+				label:		qsTr("Standardized factor loadings");
 			}
 		}
 
