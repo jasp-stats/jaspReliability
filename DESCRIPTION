@@ -2,7 +2,7 @@ Package: jaspReliability
 Type: Package
 Title: Reliability Module for JASP
 Version: 0.16.1
-Date: 2021-11-10
+Date: 2021-11-16
 Author: Julius M. Pfadt, Don van den Bergh & Eric-Jan Wagenmakers
 Website: https://github.com/jasp-stats/Reliability
 Maintainer: Julius M. Pfadt <julius.pfadt@gmail.com>
@@ -21,6 +21,6 @@ Imports:
   psych,
   lme4
 Remotes:
-  juliuspf/Bayesrel@9751d9735e7b2b4756453c857208057caaf434fe,
+  juliuspf/Bayesrel@b2fd9775789de3437be64fd4e34c9620bed5d65f,
   jasp-stats/jaspBase,
   jasp-stats/jaspGraphs

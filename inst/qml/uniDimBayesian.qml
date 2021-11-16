@@ -355,20 +355,28 @@ Form
 		{
 			title: qsTr("Samples")
 
-			RowLayout
+			CheckBox
 			{
-				CheckBox
-				{
-					name:				"disableSampleSave"
-					label:				qsTr("Disable saving samples")
-					checked:			false
-				}
-				HelpButton
-				{
-					toolTip: 						qsTr("Click to learn more about saving the samples.")
-					helpPage:						"toolTip/sampleSavingBayes"
-				}
+				name:				"disableSampleSave"
+				label:				qsTr("Disable saving samples")
+				checked:			false
 			}
+
+		}
+	}
+
+
+
+
+	Section
+	{
+		title: qsTr("Reverse-Scaled Items")
+
+		VariablesForm
+		{
+			height: 150
+			AvailableVariablesList { name: "normalScaledItems";	 title: qsTr("Normal-Scaled Items"); source: "variables" }
+			AssignedVariablesList {  name: "reverseScaledItems"; title: qsTr("Reverse-Scaled Items") }
 		}
 	}
 
@@ -382,7 +390,7 @@ Form
 			FormulaField
 			{
 				name:			"iwScale"
-				label:			qsTr("Scale")
+				label:			qsTr("Inverse Wishart scale")
 				defaultValue:	"1e-10"
 				min:			0
 				max:			100
@@ -391,7 +399,7 @@ Form
 			DoubleField
 			{
 				name:			"iwDf"
-				label:			qsTr("Df")
+				label:			qsTr("Inverse Wishart df")
 				defaultValue:	vars.count
 				min:			vars.count
 				max:			vars.count + 100
@@ -401,7 +409,7 @@ Form
 		}
 		Group
 		{
-			title: qsTr("McDonald's ω residual variances")
+			title: qsTr("McDonald's ω")
 
 			RowLayout
 			{
@@ -429,23 +437,25 @@ Form
 					fieldWidth: 	40
 				}
 			}
+			RowLayout
+			{
+				Label
+				{	text: qsTr("Normal:")}
+
+				DoubleField
+				{
+					name:			"loadMean"
+					label:			qsTr("mean")
+					defaultValue:	0
+					min:			-10
+					max:			10
+					fieldWidth: 	40
+				}
+			}
+
 
 		}
 	}
-
-	Section
-	{
-		title: qsTr("Reverse-Scaled Items")
-
-		VariablesForm
-		{
-			height: 150
-			AvailableVariablesList { name: "normalScaledItems";	 title: qsTr("Normal-Scaled Items"); source: "variables" }
-			AssignedVariablesList {  name: "reverseScaledItems"; title: qsTr("Reverse-Scaled Items") }
-		}
-	}
-
-
 	Section
 	{
 		title: qsTr("Advanced Options")
@@ -474,6 +484,11 @@ Form
 			}
 			CheckBox
 			{
+				name:		"fitMeasures"
+				label:		qsTr("Fit measures");
+			}
+			CheckBox
+			{
 				name:		"dispLoadings"
 				label:		qsTr("Standardized factor loadings");
 			}
@@ -481,7 +496,7 @@ Form
 
 		Group
 		{
-			title: qsTr("Miscellaneous")
+			title: qsTr("")
 
 			RadioButtonGroup
 			{
@@ -489,18 +504,19 @@ Form
 				name: "stdCoeffs"
 
 				RadioButton{ value: "unstand"; label: qsTr("Unstandardized"); checked: true }
-				RadioButton{ value: "stand"; label: qsTr("Standardized") }
-			}
+				RadioButton{ value: "stand"; label: qsTr("Standardized");
+				}
 
-//			CheckBox
-//			{
-//				name:	"standardizedCoeffs"
-//				label:	qsTr("Standardized Coefficients")
-//			}
+			}
+		}
+		Group
+		{
+			title: qsTr("")
+
 			RadioButtonGroup
 			{
 				name: "pointEst"
-				title: qsTr("Posterior point estimate")
+				title: qsTr("Posterior Point Estimate")
 				RadioButton{ value: "mean"; label: qsTr("Mean"); checked: true }
 				RadioButton{ value: "median"; label: qsTr("Median") }
 			}

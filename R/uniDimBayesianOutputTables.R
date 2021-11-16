@@ -229,7 +229,7 @@
       }
 
       prior <- .samplePrior(n.item, nm, progressbarTick, options[["iwScale"]], options[["iwDf"]],
-                            options[["igShape"]], options[["igScale"]])
+                            options[["igShape"]], options[["igScale"]], options[["loadMean"]])
 
       probsPrior[i] <- sum(prior[["y"]][poslow:end]) / sum(prior[["y"]]) -
         sum(prior[["y"]][poshigh:end]) / sum(prior[["y"]])
@@ -257,22 +257,54 @@
   if (!is.null(.getStateContainerB(jaspResults)[["loadTable"]]$object))
     return()
 
-  loadTable <- createJaspTable(gettextf("Omega Single-Factor Model"))
+  loadTable <- createJaspTable(gettextf("Standardized Loadings of the Single-Factor Model"))
 
   loadTable$dependOn(options = c("omegaScale", "dispLoadings"))
 
+  loadTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
   loadTable$addColumnInfo(name = "loadings", title = gettext("Standardized loadings"), type = "number")
 
   derivedOptions <- model[["derivedOptions"]]
 
   if (options[["omegaScale"]] && options[["dispLoadings"]] && is.null(model[["empty"]])) {
 
-    df <- data.frame(loadings = model[["omegaScale"]][["loadingsStd"]])
+
+
+    df <- data.frame(
+      variable = options[["variables"]],
+      loadings = model[["omegaScale"]][["loadingsStd"]])
     loadTable$setData(df)
 
     loadTable$position <- 4
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["loadTable"]] <- loadTable
+  }
+
+  return()
+}
+
+.BayesianFitMeasuresTable <- function(jaspResults, model, options) {
+
+  if (!is.null(.getStateContainerB(jaspResults)[["fitTable"]]$object))
+    return()
+
+  fitTable <- createJaspTable(gettextf("Fit Measures for the Single-Factor Model"))
+
+  fitTable$dependOn(options = c("omegaScale", "fitMeasures"))
+
+  fitTable$addColumnInfo(name = "measure", title = gettext("Fit measure"), type = "string")
+  fitTable$addColumnInfo(name = "value", title = gettext("Value"), type = "number")
+
+  derivedOptions <- model[["derivedOptions"]]
+
+  if (options[["omegaScale"]] && options[["fitMeasures"]] && is.null(model[["empty"]])) {
+
+    df <- data.frame(measure = names(model[["fitMeasures"]]), value = numeric(5))
+    fitTable$setData(df)
+
+    fitTable$position <- 5
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["fitTable"]] <- fitTable
   }
 
   return()

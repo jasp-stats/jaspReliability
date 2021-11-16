@@ -42,7 +42,9 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["omegaScaleObj"]] <- createJaspState(out, dependencies = c("omegaScale", "stdCoeffs", "dispLoadings"))
+    stateContainer[["omegaScaleObj"]] <- createJaspState(out, dependencies = c("omegaScale", "stdCoeffs",
+                                                                               "dispLoadings", "igShape", "igScale",
+                                                                               "loadMean", "pointEst"))
   }
 
   return(out)
@@ -87,7 +89,8 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "stdCoeffs"))
+    stateContainer[["omegaItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "stdCoeffs",
+                                                                              "igShape", "igScale", "loadMean"))
   }
 
   return(out)
@@ -605,7 +608,8 @@
                                                                                  "glbScale","averageInterItemCor",
                                                                                  "scoresMethod", "iwScale", "iwDf",
                                                                                  "igShape", "igScale",
-                                                                                 "stdCoeffs", "pointEst"))
+                                                                                 "stdCoeffs", "pointEst",
+                                                                                 "loadMean"))
 
   }
 
@@ -658,9 +662,20 @@
                                                                                 "glbItem","credibleIntervalValueItem",
                                                                                 "itemRestCor", "meanItem", "sdItem",
                                                                                 "iwScale", "iwDf", "igShape", "igScale",
-                                                                                "stdCoeffs", "pointEst"))
+                                                                                "stdCoeffs", "pointEst", "loadMean"))
 
   }
 
+  return(out)
+}
+
+
+.BayesianFitMeasures <- function(jaspResults, dataset, options, model) {
+  out <- list()
+  out[["BRMSEA"]] <- list()
+  out[["BSRMR"]] <- list()
+  out[["BCFI"]] <- list()
+  out[["BTLI"]] <- list()
+  out[["BChisq"]] <- list()
   return(out)
 }

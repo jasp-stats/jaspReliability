@@ -23,13 +23,13 @@
 }
 
 
-.samplePrior <- function(k, estimate, callback = function(){}, k0, df0, a0, b0) {
+.samplePrior <- function(k, estimate, callback = function(){}, k0, df0, a0, b0, m0) {
 
   n_samp <- 2e3
 
   if (estimate == "omegaScale") {
     H0 <- 1 # prior multiplier matrix for lambdas variance
-    l0k <- rep(0, k) # prior lambdas
+    l0k <- rep(m0, k) # prior lambdas
     a0k <- a0 # prior gamma function for psis
     b0k <- b0 # prior gamma for psi
     prioromega <- numeric(n_samp)
@@ -147,4 +147,33 @@
     }
   }
   return(out)
+}
+
+.implCov <- function(ll, ee, callback = function(){}) {
+  ds <- dim(ll)
+  out <- array(0, c(ds[1], ds[2], ds[3], ds[3]))
+  for (i in seq_len(ds[1])) {
+    for (j in seq_len(ds[2])) {
+      out[i, j, , ] <- ll[i, j, ] %*% t(ll[i, j, ]) + diag(ee[i, j, ])
+      callback()
+    }
+  }
+  return(out)
+}
+
+
+.SRMR <- function(samp, sigma) {
+  nvar <- ncol(samp)
+  e <- nvar * (nvar + 1) / 2
+  sqrt.d <- 1 / sqrt(diag(samp))
+  D <- diag(sqrt.d, ncol = length(sqrt.d))
+  R <- D %*% (samp - sigma) %*% D
+  srmr <- sqrt(sum(R[lower.tri(R, diag = TRUE)]^2) / e)
+  return(srmr)
+}
+
+.LR <- function(csamp, sigma, n) {
+  k <- ncol(csamp)
+  LR <- (n-1) * (log(det(sigma)) + sum(diag(solve(sigma) %*% csamp)) - log(det(csamp)) - k)
+  return(LR)
 }

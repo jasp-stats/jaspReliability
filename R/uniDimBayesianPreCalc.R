@@ -153,7 +153,8 @@
       tmp_out <- try(Bayesrel:::omegaSampler(dataset, options[["noSamples"]], options[["noBurnin"]],
                                              options[["noThin"]], options[["noChains"]],
                                              model[["pairwise"]], progressbarTick,
-                                             a0 = options[["igShape"]], b0 = options[["igScale"]]), silent = TRUE)
+                                             a0 = options[["igShape"]], b0 = options[["igScale"]],
+                                             m0 = options[["loadMean"]]), silent = TRUE)
       if (model[["pairwise"]] && inherits(tmp_out, "try-error")) {
         .quitAnalysis(gettext("Sampling the posterior factor model for omega failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"))
       }
@@ -166,7 +167,8 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["singleFactorObj"]] <- createJaspState(out, dependencies = c("omegaScale", "igShape", "igScale"))
+    stateContainer[["singleFactorObj"]] <- createJaspState(out, dependencies = c("omegaScale", "igShape", "igScale",
+                                                                                 "loadMean"))
   }
 
   return(out)
@@ -206,7 +208,8 @@
         tmp_out <- Bayesrel:::omegaSampler(dataset[, -i],
                                            options[["noSamples"]], options[["noBurnin"]], options[["noThin"]],
                                            options[["noChains"]], model[["pairwise"]], progressbarTick,
-                                           a0 = options[["igShape"]], b0 = options[["igScale"]])
+                                           a0 = options[["igShape"]], b0 = options[["igScale"]],
+                                           m0 = options[["loadMean"]])
         out[["itemLoadings"]][, , i, ] <- tmp_out$lambda
         out[["itemResiduals"]][, , i, ] <- tmp_out$psi
       }
@@ -221,7 +224,8 @@
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["singleFactorItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "igShape", "igScale"))
+    stateContainer[["singleFactorItemObj"]] <- createJaspState(out, dependencies = c("omegaItem", "igShape", "igScale",
+                                                                                     "loadMean"))
   }
 
   return(out)

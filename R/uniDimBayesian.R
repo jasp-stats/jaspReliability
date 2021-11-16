@@ -42,10 +42,13 @@ reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
   model[["scaleResults"]] <- .BayesianComputeScaleResults(jaspResults, options, model)
   model[["itemResults"]] <- .BayesianComputeItemResults(jaspResults, options, model)
 
+  model[["fitMeasures"]] <- .BayesianFitMeasures(jaspResults, dataset, options, model)
+
   .BayesianScaleTable(jaspResults, model, options)
   .BayesianItemTable(jaspResults, model, options)
   .BayesianProbTable(jaspResults, model, options)
   .BayesianLoadingsTable(jaspResults, model, options)
+  .BayesianFitMeasuresTable(jaspResults, model, options)
   .BayesianPosteriorPlot(jaspResults, model, options)
   .BayesianIfItemPlot(jaspResults, model, options)
   .omegaPosteriorPredictive(jaspResults, model, options)

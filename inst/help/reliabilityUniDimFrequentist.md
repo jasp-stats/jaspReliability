@@ -55,7 +55,7 @@ The number of times bootstrapped data sets are created and statistics are calcul
 		- Bootstrapped interval: CI from bootstrapped CFA
 - PFA: The single factor model is fit in a principal factor analysis. 
 	
- ### Cronbach's alpha Estimation: 
+### Cronbach's alpha Estimation: 
 - Unstandardized: Cronbach's alpha is calculated from the data covariance matrix
 - Standardized: Cronbach's alpha is calculated from the data correlation matrix
 - Interval: 
@@ -65,6 +65,9 @@ The number of times bootstrapped data sets are created and statistics are calcul
 ### Repeatability
 When bootstrapping is involved, set a seed, so that the background calculations in R yield equal results for equal seeds
 
+### Samples
+- Disable the saving of bootstrap samples:
+In case you want to save space for your output file, you can check this box. Beware that this will also lead to a loss in speed for the analysis. This happens because some samples inside the reliability module are precomputed and stored, so that the analysis can move forward in a much faster way. However, this also results in an increased size of the output object, and if you decide to save your analysis the resulting file will contain these samples. If you decide to run the analysis with a large number of bootstrap samples you might want to check that box if you do not want an increased file size for your output. 
 
 ## Output 
 --- 

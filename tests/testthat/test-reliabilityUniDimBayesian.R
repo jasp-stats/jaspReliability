@@ -309,26 +309,29 @@ options$iwScale <- 1
 options$iwDf <- 10
 options$igShape <- 6
 options$igScale <- 10
+options$loadMean <- 1
 
 set.seed(1)
 results <- runAnalysis("reliabilityUniDimBayesian", "asrm_mis.csv", options)
+# results <- runAnalysis("reliabilityUniDimBayesian", Bayesrel::asrm_mis, options)
+
 
 
 test_that("Bayesian Individual Item Reliability Statistics table results match with adjusted priors", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.324346445186646, 0.629664746841126, 0.545687305693647, 0.522797444487197,
-                                      0.713418617285292, 0.704753917140825, 0.695706372754342, 0.800896152983193,
-                                      0.806040917824956, "asrm_1", 0.412363386137415, 0.647546515358842,
-                                      0.494575435820718, 0.569055734597126, 0.737906643927936, 0.62199742360055,
-                                      0.723705519066232, 0.821130476744635, 0.765282608238874, "asrm_2",
-                                      0.486180857523702, 0.710291628124685, 0.30291057353508, 0.628937958080056,
-                                      0.784623165070472, 0.482953835674651, 0.790801326327376, 0.850735328744899,
-                                      0.649697706772137, "asrm_3", 0.382923845781582, 0.687663875830053,
-                                      0.409923579550942, 0.595677179481833, 0.767034290352854, 0.575064784601378,
-                                      0.708693867672186, 0.849444065720693, 0.717880569965568, "asrm_4",
-                                      0.349536140956892, 0.624933985182541, 0.516489284674043, 0.53503188451269,
-                                      0.733553360969622, 0.645086005269709, 0.704383744695658, 0.81305056069536,
+                                 list(0.365317706663268, 0.629664746841126, 0.545687305693647, 0.547833261943788,
+                                      0.713418617285292, 0.704753917140825, 0.719358502963356, 0.800896152983193,
+                                      0.806040917824956, "asrm_1", 0.425180238104353, 0.647546515358842,
+                                      0.494575435820718, 0.590585184223742, 0.737906643927936, 0.62199742360055,
+                                      0.720617721441406, 0.821130476744635, 0.765282608238874, "asrm_2",
+                                      0.511558346241041, 0.710291628124685, 0.30291057353508, 0.647299797106082,
+                                      0.784623165070472, 0.482953835674651, 0.800023243314042, 0.850735328744899,
+                                      0.649697706772137, "asrm_3", 0.419641220251401, 0.687663875830053,
+                                      0.409923579550942, 0.615730018474419, 0.767034290352854, 0.575064784601378,
+                                      0.72516307294578, 0.849444065720693, 0.717880569965568, "asrm_4",
+                                      0.380908166253114, 0.624933985182541, 0.516489284674043, 0.559120671647617,
+                                      0.733553360969622, 0.645086005269709, 0.717678239451181, 0.81305056069536,
                                       0.758536708477193, "asrm_5"))
 })
 
@@ -347,17 +350,17 @@ test_that("McDonald's omega plot matches with adjusted priors", {
 test_that("Probability that Reliability Statistic is Larger than 0.70 and Smaller than 1.00 table results match with adjusted priors", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_probTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.21, 0.133763640383305, "McDonald's <unicode>", 0.99, 0.101557273983737,
+                                 list(0.3, 0.523746083410163, "McDonald's <unicode>", 0.99, 0.101557273983737,
                                       "Guttman's <unicode>2"))
 })
 
 test_that("Bayesian Scale Reliability Statistics table results match with adjusted priors", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.640929054537157, 0.789270505536385, 0.419218581777162, "Posterior mean",
-                                      0.478242347471356, 0.715215558587289, 0.316743509774531, "95% CI lower bound",
-                                      0.764438656901237, 0.859660650371794, 0.507230342509293, "95% CI upper bound",
-                                      1.0315251038237, 0.990343839523617, 0.997596520647971, "R-hat"
+                                 list(0.658799634973158, 0.789270505536385, 0.419218581777162, "Posterior mean",
+                                      0.526011816625903, 0.715215558587289, 0.316743509774531, "95% CI lower bound",
+                                      0.795894536283031, 0.859660650371794, 0.507230342509293, "95% CI upper bound",
+                                      1.02778087840674, 0.990343839523617, 0.997596520647971, "R-hat"
                                  ))
 })
 
@@ -414,10 +417,11 @@ test_that("Bayesian Individual Item Reliability Statistics table results match w
                                       0.776950364200239, "facFive"))
 })
 
-test_that("Omega Single-Factor Model table results match", {
+test_that("Single-Factor Model for omega table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_loadTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.118960690052957, 0.808474151944778, 0.768612766587744, 0.144763227189446
+                                 list(0.118960690052957, "contNormal", 0.808474151944778, "contcor1",
+                                      0.768612766587744, "contcor2", 0.144763227189446, "facFive"
                                  ))
 })
 

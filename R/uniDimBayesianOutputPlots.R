@@ -46,7 +46,7 @@
             startProgressbar(4e3)
           }
           prior <- .samplePrior(n.item, nm, progressbarTick, options[["iwScale"]], options[["iwDf"]],
-                                options[["igShape"]], options[["igScale"]])
+                                options[["igShape"]], options[["igScale"]], options[["loadMean"]])
         } else {
           prior <- NULL
         }
@@ -61,7 +61,7 @@
 
       }
     }
-    plotContainer$position <- 5
+    plotContainer$position <- 6
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["plotContainer"]] <- plotContainer
   }
@@ -219,7 +219,7 @@
 
       }
     }
-    plotContainerItem$position <- 6
+    plotContainerItem$position <- 7
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["plotContainerItem"]] <- plotContainerItem
   }
@@ -344,7 +344,7 @@
     plot <- createJaspPlot(plot = g, title = "Posterior Predictive Check Omega", width = 350)
     plot$dependOn(options = c("dispPPC", "omegaScale", "stdCoeffs"))
 
-    plot$position <- 7
+    plot$position <- 8
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["omegaPPC"]] <- plot
   }
@@ -387,7 +387,7 @@
       }
     }
 
-    plotContainerTP$position <- 8
+    plotContainerTP$position <- 9
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["plotContainerTP"]] <- plotContainerTP
 
