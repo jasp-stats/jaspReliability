@@ -292,14 +292,22 @@
 
   fitTable$dependOn(options = c("omegaScale", "fitMeasures"))
 
-  fitTable$addColumnInfo(name = "measure", title = gettext("Fit measure"), type = "string")
-  fitTable$addColumnInfo(name = "value", title = gettext("Value"), type = "number")
+  cred <- format(100 * options[["credibleIntervalValueItem"]], digits = 3, drop0trailing = TRUE)
 
-  derivedOptions <- model[["derivedOptions"]]
+  fitTable$addColumnInfo(name = "measure", title = gettext("Fit measure"), type = "string")
+  fitTable$addColumnInfo(name = "pointEst", title = gettext("Point estimate"), type = "number")
+  fitTable$addColumnInfo(name = "lower", title = gettextf("Lower %s%% CI", cred), type = "number")
+  fitTable$addColumnInfo(name = "upper", title = gettextf("Upper %s%% CI", cred), type = "number")
+
 
   if (options[["omegaScale"]] && options[["fitMeasures"]] && is.null(model[["empty"]])) {
 
-    df <- data.frame(measure = names(model[["fitMeasures"]]), value = numeric(5))
+    pointEsts <- sapply(model[["fitMeasures"]], mean)
+    intervals <- sapply(model[["fitMeasures"]],
+                        function(x) coda::HPDinterval(coda::mcmc(x), prob = as.numeric(cred)/100))
+
+    df <- data.frame(measure = names(model[["fitMeasures"]]), pointEst = pointEsts,
+                     lower = intervals[1, ], upper = intervals[2, ])
     fitTable$setData(df)
 
     fitTable$position <- 5

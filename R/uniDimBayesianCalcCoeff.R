@@ -671,11 +671,43 @@
 
 
 .BayesianFitMeasures <- function(jaspResults, dataset, options, model) {
-  out <- list()
-  out[["BRMSEA"]] <- list()
-  out[["BSRMR"]] <- list()
-  out[["BCFI"]] <- list()
-  out[["BTLI"]] <- list()
-  out[["BChisq"]] <- list()
+  if (!is.null(.getStateContainerB(jaspResults)[["fitMeasuresObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["fitMeasuressObj"]]$object)
+
+  out <- model[["fitMeasures"]]
+  if (is.null(out)) {
+    out <- list()
+  }
+
+  if (options[["omegaScale"]] && options[["fitMeasures"]]) {
+    n <- nrow(dataset)
+    k <- ncol(dataset)
+    cdat <- .rescale(cov(dataset), n) # rescale to n, not n-1
+    implieds <- .implCovs(model[["singleFactor"]][["loadings"]], model[["singleFactor"]][["residuals"]])
+    tmp <- .fitDiscrepancy(cdat, implieds, n)
+
+    ### SRMR ###
+    out[["SRMR"]] <- tmp[["srmr_obs"]]
+
+    ### BRMSEA ###
+    pstar <- k * (k + 1) / 2 # unique elements in the covariance matrix, variances + covariances
+    Dm <- mean(tmp[["LR_obs"]]) # mean deviance of the model implied cov matrices
+    lsm <- apply(model[["singleFactor"]][["loadings"]], 3, mean)
+    psm <- apply(model[["singleFactor"]][["residuals"]], 3, mean)
+    implM <- lsm %*% t(lsm) + diag(psm) # mean implied covariance matrix
+    Dtm <- .LR(cdat, implM, n) # deviance of the mean model implied cov matrix
+    pD <- Dm - Dtm # effective number of parameters (free parameters)
+    dfstar <- pstar - pD # model complexity, degrees of freedom
+
+    out[["RMSEA"]] <- .BRMSEA(tmp[["LR_obs"]], pstar, pD, n)
+
+    ### Chisqs ###
+    out[["Chisq"]] <- tmp[["LR_obs"]]
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["fitMeasuresObj"]] <- createJaspState(out, dependencies = c("omegaScale", "igShape", "igScale",
+                                                                                "loadMean", "fitMeasures"))
+  }
+
   return(out)
 }

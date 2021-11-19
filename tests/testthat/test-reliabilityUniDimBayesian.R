@@ -481,3 +481,20 @@ test_that("Bayesian Scale Reliability Statistics table results match with standa
                                       "R-hat"))
 })
 
+
+
+# options <- analysisOptions("reliabilityUniDimBayesian")
+# options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
+# options$omegaScale <- TRUE
+# options$credibleIntervalValueItem <- 0.9
+# # options$noSamples <- 200
+# # options$noChains <- 3
+# options$setSeed <- TRUE
+# options$missingValues <- "excludeCasesListwise"
+# options$fitMeasures <- TRUE
+#
+#
+# set.seed(1)
+# # results <- runAnalysis("reliabilityUniDimBayesian", "asrm_mis.csv", options)
+# results <- runAnalysis("reliabilityUniDimBayesian", Bayesrel::asrm_mis, options)
+

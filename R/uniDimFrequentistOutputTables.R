@@ -179,7 +179,7 @@
 
   fitTable <- createJaspTable(gettextf("Fit Measures of Single Factor Model Fit"))
 
-  fitTable$addColumnInfo(name = "measure", title = gettext("Fit Measure"),   type = "string")
+  fitTable$addColumnInfo(name = "measure", title = gettext("Fit measure"),   type = "string")
   fitTable$addColumnInfo(name = "value",  title = gettext("Value"), type = "number")
 
   opts <- c("Chi-Square", "df", "p.value", "RMSEA", "Lower CI RMSEA", "Upper CI RMSEA", "SRMR")
