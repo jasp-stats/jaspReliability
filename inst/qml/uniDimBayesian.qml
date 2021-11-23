@@ -486,6 +486,25 @@ Form
 			{
 				name:		"fitMeasures"
 				label:		qsTr("Fit measures");
+
+				DoubleField
+				{
+					name:			"fitCutoffSat"
+					label:			qsTr("p RMSEA/SRMR <")
+					defaultValue:	.08
+					min:			0
+					max:			1
+					fieldWidth: 	40
+				}
+				DoubleField
+				{
+					name:			"fitCutoffNull"
+					label:			qsTr("p CFI/TLI >")
+					defaultValue:	.9
+					min:			0
+					max:			1
+					fieldWidth: 	40
+				}
 			}
 			CheckBox
 			{

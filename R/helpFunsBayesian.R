@@ -162,9 +162,9 @@
 }
 
 
-.SRMR <- function(cdat, impl) {
+.SRMR <- function(cdat, impl, pD) {
   nvar <- ncol(cdat)
-  e <- nvar * (nvar + 1) / 2
+  e <- (nvar * (nvar + 1)) / 2
   sqrt.d <- 1 / sqrt(diag(cdat))
   D <- diag(sqrt.d, ncol = length(sqrt.d))
   R <- D %*% (cdat - impl) %*% D
@@ -172,68 +172,13 @@
   return(srmr)
 }
 
-.LR <- function(cdat, impl, n) {
-  k <- ncol(cdat)
 
-  # general function
-  LR <- (n-1) * (log(det(impl)) + sum(diag(solve(impl) %*% cdat)) - log(det(cdat)) - k)
-
-  return(max(0, LR))
+.LRblav <- function(data, cmat, basell) {
+  tmpll <- .dmultinorm(data, cmat)
+  out <- 2 * (basell - sum(tmpll))
+  return(out)
 }
 
-.lavLR <- function(cdat, impl, n) {
-  k <- ncol(cdat)
-
-  # lavaan likelihoods
-  LOG.2PI <- log(2 * pi)
-  logdet_cdat <- log(det(cdat))
-  logdet_impl <- log(det(impl))
-
-  loglikh1 <- -n/2 * (k * LOG.2PI + logdet_cdat + k)
-  loglikh0 <- -n/2 * (k * LOG.2PI + logdet_impl + k)
-
-  LR <- 2 * (loglikh1 - loglikh0)
-
-  return(max(0, LR))
-}
-
-
-.modelDeviance <- function(cdat, implieds, n) {
-
-  implieds_v <- apply(implieds, c(3, 4), as.vector)
-  k <- ncol(cdat)
-
-  srmr_obs <- numeric(nrow(implieds_v))
-  LR_obs <- numeric(nrow(implieds_v))
-
-  # srmr_rep <- numeric(nrow(implieds_v))
-  # LR_rep <- numeric(nrow(implieds_v))
-
-  for (i in 1:nrow(implieds_v)) {
-
-    srmr_obs[i] <- .SRMR(cdat, implieds_v[i, , ])
-    LR_obs[i] <- .LR(cdat, implieds_v[i, , ], n)
-
-    # tmp_dat <- MASS::mvrnorm(n, integer(k), implieds_v[i, , ])
-
-    # # compare the post model predicted cov matrix with original cov matrix:
-    # srmr_rep[i] <- .SRMR(.rescale(cov(tmp_dat), n), cdat)
-    # LR_rep[i] <- .LR(.rescale(cov(tmp_dat), n), cdat, n)
-
-    # # compare the post model predicted cov matrix with the post model implied cov matrix
-    # srmr_rep[i] <- .SRMR(.rescale(cov(tmp_dat), n), implieds_v[i, , ])
-    # LR_rep[i] <- .LR(.rescale(cov(tmp_dat), n), implieds_v[i, , ], n)
-
-  }
-  return(list(srmr_obs = srmr_obs, LR_obs = LR_obs
-              # ,srmr_rep = srmr_rep, LR_rep = LR_rep
-              ))
-}
-
-.RMSEA <- function(chisq, df, n) {
-  rmsea <- sqrt(max(0, (chisq - df) / (df * n)))
-  return(rmsea)
-}
 
 .BRMSEA <- function(chisq, p, pD, n) {
   dChisq <- (chisq - p)
@@ -244,4 +189,16 @@
 
 .rescale <- function(cc, n) {
   return(cc * ((n - 1) / n))
+}
+
+# borrowed that from mnormt package
+.dmultinorm <- function(x, varcov, mm = 0) {
+  d <- ncol(varcov)
+  X <- t(x - mm)
+  varcov <- (varcov + t(varcov))/2
+  u <- chol(varcov, pivot = FALSE)
+  inv <- chol2inv(u)
+  logdet <- 2 * sum(log(diag(u)))
+  Q <- colSums((inv %*% X) * X)
+  logPDF <- as.vector(Q + d * logb(2 * pi) + logdet)/(-2)
 }

@@ -262,7 +262,7 @@
   loadTable$dependOn(options = c("omegaScale", "dispLoadings"))
 
   loadTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
-  loadTable$addColumnInfo(name = "loadings", title = gettext("Standardized loadings"), type = "number")
+  loadTable$addColumnInfo(name = "loadings", title = gettext("Standardized loading"), type = "number")
 
   derivedOptions <- model[["derivedOptions"]]
 
@@ -290,24 +290,29 @@
 
   fitTable <- createJaspTable(gettextf("Fit Measures for the Single-Factor Model"))
 
-  fitTable$dependOn(options = c("omegaScale", "fitMeasures"))
+  fitTable$dependOn(options = c("omegaScale", "fitMeasures", "fitCutoffSat", "fitCutoffNull", "pointEst"))
 
   cred <- format(100 * options[["credibleIntervalValueItem"]], digits = 3, drop0trailing = TRUE)
 
   fitTable$addColumnInfo(name = "measure", title = gettext("Fit measure"), type = "string")
   fitTable$addColumnInfo(name = "pointEst", title = gettext("Point estimate"), type = "number")
-  fitTable$addColumnInfo(name = "lower", title = gettextf("Lower %s%% CI", cred), type = "number")
-  fitTable$addColumnInfo(name = "upper", title = gettextf("Upper %s%% CI", cred), type = "number")
+  fitTable$addColumnInfo(name = "cutoff",
+                         title = gettextf("Relative to cutoff"), type = "number")
 
 
   if (options[["omegaScale"]] && options[["fitMeasures"]] && is.null(model[["empty"]])) {
 
-    pointEsts <- sapply(model[["fitMeasures"]], mean)
-    intervals <- sapply(model[["fitMeasures"]],
-                        function(x) coda::HPDinterval(coda::mcmc(x), prob = as.numeric(cred)/100))
+    pointEsts <- sapply(model[["fitMeasures"]], get(options[["pointEst"]]))
+
+    # intervals <- sapply(model[["fitMeasures"]],
+    #                     function(x) coda::HPDinterval(coda::mcmc(x), prob = as.numeric(cred)/100))
+    cutoffs_saturated <- sapply(model[["fitMeasures"]][2:3], function(x) mean(x < options[["fitCutoffSat"]]))
+    cutoffs_null <- sapply(model[["fitMeasures"]][-(1:3)], function(x) mean(x > options[["fitCutoffNull"]]))
+
+    cutoffs <- c(NA_real_, cutoffs_saturated, cutoffs_null)
 
     df <- data.frame(measure = names(model[["fitMeasures"]]), pointEst = pointEsts,
-                     lower = intervals[1, ], upper = intervals[2, ])
+                     cutoff = cutoffs)
     fitTable$setData(df)
 
     fitTable$position <- 5

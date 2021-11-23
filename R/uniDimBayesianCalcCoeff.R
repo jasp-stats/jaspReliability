@@ -672,37 +672,83 @@
 
 .BayesianFitMeasures <- function(jaspResults, dataset, options, model) {
   if (!is.null(.getStateContainerB(jaspResults)[["fitMeasuresObj"]]$object))
-    return(.getStateContainerB(jaspResults)[["fitMeasuressObj"]]$object)
+    return(.getStateContainerB(jaspResults)[["fitMeasuresObj"]]$object)
 
   out <- model[["fitMeasures"]]
   if (is.null(out)) {
     out <- list()
   }
 
-  if (options[["omegaScale"]] && options[["fitMeasures"]]) {
+  if (options[["omegaScale"]] && options[["fitMeasures"]] && is.null(model[["empty"]])) {
+
     n <- nrow(dataset)
     k <- ncol(dataset)
-    cdat <- .rescale(cov(dataset), n) # rescale to n, not n-1
-    implieds <- .implCovs(model[["singleFactor"]][["loadings"]], model[["singleFactor"]][["residuals"]])
-    tmp <- .fitDiscrepancy(cdat, implieds, n)
-
-    ### SRMR ###
-    out[["SRMR"]] <- tmp[["srmr_obs"]]
-
-    ### BRMSEA ###
     pstar <- k * (k + 1) / 2 # unique elements in the covariance matrix, variances + covariances
-    Dm <- mean(tmp[["LR_obs"]]) # mean deviance of the model implied cov matrices
+    # cdat <- .rescale(cov(dataset), n) # rescale to n, not n-1
+    dataset <- scale(dataset, scale = FALSE)
+    cdat <- cov(dataset, use = model[["use.cases"]])
+    implieds <- .implCovs(model[["singleFactor"]][["loadings"]], model[["singleFactor"]][["residuals"]])
+
+    ### Chisqs ###
+    LL1 <- sum(.dmultinorm(dataset, cdat)) # loglikelihood saturated model
+    LR_obs <- apply(implieds, c(1, 2), .LRblav, data = dataset, basell = LL1) # loglikelihoods tested model
+
     lsm <- apply(model[["singleFactor"]][["loadings"]], 3, mean)
     psm <- apply(model[["singleFactor"]][["residuals"]], 3, mean)
     implM <- lsm %*% t(lsm) + diag(psm) # mean implied covariance matrix
-    Dtm <- .LR(cdat, implM, n) # deviance of the mean model implied cov matrix
+    Dtm <- .LRblav(dataset, implM, LL1) # deviance of the mean model implied cov matrix
+    out[["B-LR"]] <- Dtm
+
+    ### BRMSEA ###
+    Dm <- mean(LR_obs) # mean deviance of the model implied cov matrices
     pD <- Dm - Dtm # effective number of parameters (free parameters)
-    dfstar <- pstar - pD # model complexity, degrees of freedom
+    out[["B-RMSEA"]] <- .BRMSEA(LR_obs, pstar, pD, n)
+    # rmsea_m <- sqrt((Dtm - (pstar - pD)) / ((pstar - pD) * n))
 
-    out[["RMSEA"]] <- .BRMSEA(tmp[["LR_obs"]], pstar, pD, n)
+    ### SRMR ###
+    srmr_m <- .SRMR(cdat, implM)
+    out[["B-SRMR"]] <- c(apply(implieds, c(1, 2), .SRMR, cdat = cdat, pD = pD))
 
-    ### Chisqs ###
-    out[["Chisq"]] <- tmp[["LR_obs"]]
+    startProgressbar(options[["noSamples"]] * options[["noChains"]])
+
+    ### CFI and TLI need a nullmodel:
+    res_null <- try(Bayesrel:::omegaSamplerNull(dataset, options[["noSamples"]], options[["noBurnin"]],
+                                                options[["noThin"]], options[["noChains"]],
+                                                model[["pairwise"]], progressbarTick,
+                                                a0 = options[["igShape"]], b0 = options[["igScale"]],
+                                                m0 = options[["loadMean"]]), silent = TRUE)
+
+    if (model[["pairwise"]] && inherits(tmp_out, "try-error")) {
+      .quitAnalysis(gettext("Sampling the posterior null model failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"))
+    }
+
+    ps_null <- res_null$psi
+    ps_null <- apply(ps_null, 3, as.vector)
+    impl_null <- array(0, c(nrow(ps_null), k, k))
+    for (i in 1:nrow(ps_null)) {
+      impl_null[i, , ] <- diag(ps_null[i, ])
+    }
+
+    LR_null <- apply(impl_null, 1, .LRblav, data = dataset, basell = LL1)
+    Dm_null <- mean(LR_null)
+
+    psm_null <- apply(ps_null, 2, mean)
+    implM_null <- diag(psm_null)
+    Dtm_null <- .LRblav(dataset, implM_null, LL1)
+    pD_null <- Dm_null - Dtm_null
+
+    cfis <- 1 - ((LR_obs - pstar) / (LR_null - pstar))
+    tlis <- (((LR_null - pD_null) / (pstar - pD_null)) - ((LR_obs - pD) / (pstar - pD))) /
+      (((LR_null - pD_null) / (pstar - pD_null)) - 1)
+
+    cfis[cfis < 0] <- 0
+    tlis[tlis < 0] <- 0
+    cfis[cfis > 1] <- 1
+    tlis[tlis > 1] <- 1
+
+    out[["B-CFI"]] <- cfis
+    out[["B-TLI"]] <- tlis
+
 
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["fitMeasuresObj"]] <- createJaspState(out, dependencies = c("omegaScale", "igShape", "igScale",

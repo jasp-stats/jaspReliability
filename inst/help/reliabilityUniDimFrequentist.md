@@ -98,12 +98,12 @@ In case you want to save space for your output file, you can check this box. Bew
 ## References
 ---
 
-- Bonett, D. G., & Wright, T. A. (2015). Cronbach's alpha reliability: Interval estimation, hypothesis testing, and sample size planning. *Journal of Organizational Behavior, 36*(1), 3-15. doi: 10.1002/job.1960
-- Cronbach, L. J. (1951). Coefficient alpha and the internal structure of tests. *Psychometrika, 16*(3), 297–334. doi: 10.1007/BF02310555
-- Guttman, L. (1945). A basis for analyzing test-retest reliability. *Psychometrika, 10*(4), 255–282. doi: 10.1007/BF02288892
-- McDonald, R. P. (2013). *Test theory: A unified treatment*. New York, NJ, US: Psychology Press. doi: 10.4324/9781410601087
-- Rencher, A. C.  (2002). *Methods of multivariate analysis*. New York, NY, USA: John Wiley & Sons, Inc.  doi:  10.1002/0471271357
-- Woodhouse, B., & Jackson, P. H. (1977). Lower bounds for the reliability of the total score on a test composed of non-homogeneous items:  II: A search procedure to locate the greatest lower bound. *Psychometrika, 42*(4), 579–591. doi: 10.1007/bf02295980
+- Bonett, D. G., & Wright, T. A. (2015). Cronbach's alpha reliability: Interval estimation, hypothesis testing, and sample size planning. *Journal of Organizational Behavior, 36*(1), 3-15. https://doi.org/10.1002/job.1960
+- Cronbach, L. J. (1951). Coefficient alpha and the internal structure of tests. *Psychometrika, 16*(3), 297–334. https://doi.org/10.1007/BF02310555
+- Guttman, L. (1945). A basis for analyzing test-retest reliability. *Psychometrika, 10*(4), 255–282. https://doi.org/10.1007/BF02288892
+- McDonald, R. P. (2013). *Test theory: A unified treatment*. New York, NJ, US: Psychology Press. https://doi.org/10.4324/9781410601087
+- Rencher, A. C.  (2002). *Methods of multivariate analysis*. New York, NY, USA: John Wiley & Sons, Inc.  https://doi.org/10.1002/0471271357
+- Woodhouse, B., & Jackson, P. H. (1977). Lower bounds for the reliability of the total score on a test composed of non-homogeneous items:  II: A search procedure to locate the greatest lower bound. *Psychometrika, 42*(4), 579–591. https://doi.org/10.1007/bf02295980
 
 ## R Packages
 ---
@@ -112,4 +112,4 @@ In case you want to save space for your output file, you can check this box. Bew
 - psych
 
 ## Example 
-- For an example go to `Open` --> `Data Library` --> `Descriptives` --> `Fear of Statistics`. 
+- For an example go to `Open` --> `Data Library` --> `13. Reliability` --> `Fear of Statistics`. 

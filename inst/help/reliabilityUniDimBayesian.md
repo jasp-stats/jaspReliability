@@ -95,25 +95,28 @@ This allows the user to select reverse-scaled items that need to be recoded.
  
 ### McDonald's omega Estimation
 - Posterior predictive check: Display a graphical check for the fit of the single factor model, in other words for the unidimensionality of the data. Answers the question if the posterior single-factor model predicts data similar to the original data set?
+- Fit measures: Display a table with Bayesian fit indices for the single factor model: 
+Bayesian LR, B-RMSEA, B-SRMR, B-CFI, B-TLI
+  - p RMSEA/SRMR < .08: probability that the B-RMSEA or the B-SRMR are smaller than a cutoff
+  - p CFI/TLI < .90: probability that the B-CFI or the B-TLI are larger than a cutoff
 - Standardized factor loadings: Display a table with the standardized loadings of the single-factor model
-- Fit measures: Display a table with Bayesian fit indices for the single factor model: Chi^2, BRMSEA, BSRMR, BCFI, BTLI
 
-### Miscellaneous
+
 #### Coefficients
 - Unstandardized (the default)
 - Standardized: The use of standardized coefficients is not undisputed in psychometric literature. 
 Keep in mind, that the covariance matrix, given the item scales are equal, is more informative about the measurement. 
 See:
 
-Carl F. Falk & Victoria Savalei (2011) The relationship between unstandardized and standardized alpha, true reliability, and the underlying measurement model, Journal of Personality Assessment, 93:5, 445-453, DOI: 10.1080/00223891.2011.594129
+Carl F. Falk & Victoria Savalei (2011) The relationship between unstandardized and standardized alpha, true reliability, and the underlying measurement model, *Journal of Personality Assessment, 93*(5), 445-453. https://doi.org/10.1080/00223891.2011.594129
 
-Hayashi, K. and Kamata, A. 2005. A note on the estimator of the alpha coefficient for standardized variables under normality. Psychometrika, 70: 579–586.
+Hayashi, K. and Kamata, A. 2005. A note on the estimator of the alpha coefficient for standardized variables under normality. *Psychometrika, 70*, 579–586.
 
-Sun, W., Chou, C. P., Stacy, A. W., Ma, H., Unger, J. and Gallaher, P. 2007. SAS and SPSS macros to calculate standardized Cronbach's alpha using the upper bound of the phi coefficient for dichotomous items. Behavior Research Methods, 39: 71–81.
+Sun, W., Chou, C. P., Stacy, A. W., Ma, H., Unger, J. and Gallaher, P. 2007. SAS and SPSS macros to calculate standardized Cronbach's alpha using the upper bound of the phi coefficient for dichotomous items. *Behavior Research Methods, 39*, 71–81.
 
 Moss, J. (2020). Please avoid the standardized alpha and the ordinal alpha. https://doi.org/10.31234/osf.io/nvg5d
 
-Warrens, M.J. Some relationships between Cronbach’s alpha and the Spearman-Brown formula. Journal of Classification, 32, 127–137 (2015). https://doi.org/10.1007/s00357-015-9168-0
+Warrens, M.J. Some relationships between Cronbach’s alpha and the Spearman-Brown formula. *Journal of Classification, 32*, 127–137 (2015). https://doi.org/10.1007/s00357-015-9168-0
 
 #### Posterior point estimate
 - Mean (the default)
@@ -136,15 +139,24 @@ Warrens, M.J. Some relationships between Cronbach’s alpha and the Spearman-Bro
 	- Lower `...` credible interval
 	- Upper `...` credible interval
 
-#### Probability that Reliability Statistic is Larger Than...
+#### Probability that Reliability Statistic is Larger Than...:
 - Statistic: reliability coefficient 
 - Probability: 
 	- Prior: prior probability that the coefficient is larger than `...` and smaller than `...`
 	- Posterior: posterior probability that the coefficient is larger than `...` and smaller than `...`
 
-#### Single-Factor Model:
-- Standardized loadings: Mean or median of standardized single-factor loadings
-- Fit Measures: Bayesian versions of RMSEA, SRMR, CFI, TLI, X^2
+#### Standardized loadings of the Single-Factor Model:
+- Mean or median of standardized single-factor loadings
+
+#### Fit Measures of the Single-Factor Model
+- Point estimate is either mean or median (see ''posterior point estimate''), except for LR, which is always the mean
+- Relative to cutoff: probability RMSEA and SRMR smaller than their specified cutoff, CFI and TLI larger than their cutoff
+  - B-LR: Bayesian likelihood ratio of tested model and saturated model 
+  - B-RMSEA: Bayesian RMSEA adapted from Garnier-Villareal and Jorgensen (2020), method equal to blavaan fit indices; 
+  uses devM method and degrees of freedom from dic
+  - B-SRMR: Bayesian SRMR
+  - B-CFI, B-TLI: Bayesian CFI and TLI adapted from Garnier-Villareal and Jorgensen (2020), equal to blavFitIndices,
+  requires a null-model, here a model with only variances of the observed variables; uses devM method and degrees of freedom from dic
 
 ### Plots
 #### Posterior Plots
@@ -173,15 +185,16 @@ Warrens, M.J. Some relationships between Cronbach’s alpha and the Spearman-Bro
 
 ## References
 ---
-- Cronbach, L. J. (1951). Coefficient alpha and the internal structure of tests. *Psychometrika, 16*(3), 297–334. doi: 10.1007/BF02310555
-- Gelman, A., & Rubin, D. B. (1992). Inference from iterative simulation using multiple sequences. *Statistical Science, 7*(4), 457–472. doi:10.1214/ss/1177011136
-- Guttman, L. (1945). A basis for analyzing test-retest reliability. *Psychometrika, 10*(4), 255–282. doi: 10.1007/BF02288892
+- Cronbach, L. J. (1951). Coefficient alpha and the internal structure of tests. *Psychometrika, 16*(3), 297–334. https://doi.org/10.1007/BF02310555
+- Garnier-Villarreal M., & Jorgensen T. D. (2020). Adapting fit indices for Bayesian structural equation modeling: Comparison to maximum likelihood. *Psychological Methods. 25*(1), 46-70. https://doi.org/10.1037/met0000224.
+- Gelman, A., & Rubin, D. B. (1992). Inference from iterative simulation using multiple sequences. *Statistical Science, 7*(4), 457–472. https://doi.org/10.1214/ss/1177011136
+- Guttman, L. (1945). A basis for analyzing test-retest reliability. *Psychometrika, 10*(4), 255–282. https://doi.org/10.1007/BF02288892
 - Kolmogorov, A. N. (1933). Sulla determinazione empirica di une legge di distribuzion. *Instituto Italiano degli Attuari, Giornale, 4*, 83–91.
-- Kullback, S., & Leibler, R. A. (1951). On information and sufficiency. *The Annals of Mathematical Statistics, 22*(1), 79–86. doi:10.1214/aoms/1177729694
-- McDonald, R. P. (2013). *Test theory: A unified treatment*. New York, NJ, US: Psychology Press. doi: 10.4324/9781410601087
+- Kullback, S., & Leibler, R. A. (1951). On information and sufficiency. *The Annals of Mathematical Statistics, 22*(1), 79–86. https://doi.org/10.1214/aoms/1177729694
+- McDonald, R. P. (2013). *Test theory: A unified treatment*. New York, NJ, US: Psychology Press. https://doi.org/10.4324/9781410601087
 - Pfadt, J. M., van den Bergh, D., Sijtsma, K., Moshagen, M., & Wagenmakers, E.-J. (in press). Bayesian estimation of single-test reliability coefficients. *Multivariate Behavioral Research*. Preprint available at https://psyarxiv.com/exg2y
 - Smirnov, N. (1939).  On the estimation of the discrepancy between empirical curves of distribution for two independent samples. *Bulletin Mathématique l’Université Moscou, 2*, 3–6.
-- Woodhouse, B., & Jackson, P. H. (1977). Lower bounds for the reliability of the total score on a test composed of non-homogeneous items:  II: A search procedure to locate the greatest lower bound. *Psychometrika, 42*(4), 579–591. doi: 10.1007/bf02295980
+- Woodhouse, B., & Jackson, P. H. (1977). Lower bounds for the reliability of the total score on a test composed of non-homogeneous items:  II: A search procedure to locate the greatest lower bound. *Psychometrika, 42*(4), 579–591. https://doi.org/10.1007/bf02295980
 
 ## R Packages
 ---
@@ -193,4 +206,4 @@ Warrens, M.J. Some relationships between Cronbach’s alpha and the Spearman-Bro
 - MASS
 
 ## Example 
-
+Go to: `Open` --> `Data Library` --> `13. Reliability` --> `ASRM - Mania Scale`.

@@ -482,19 +482,26 @@ test_that("Bayesian Scale Reliability Statistics table results match with standa
 })
 
 
+# results were compared to blavFitIndices and lavaan fitmeasures with the same data but 2000 obs
+options <- analysisOptions("reliabilityUniDimBayesian")
+options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
+options$omegaScale <- TRUE
+options$noSamples <- 200
+options$noChains <- 3
+options$setSeed <- TRUE
+options$fitMeasures <- TRUE
+options$fitCutoffSat <- .1
+options$fitCutoffNull <- .85
 
-# options <- analysisOptions("reliabilityUniDimBayesian")
-# options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
-# options$omegaScale <- TRUE
-# options$credibleIntervalValueItem <- 0.9
-# # options$noSamples <- 200
-# # options$noChains <- 3
-# options$setSeed <- TRUE
-# options$missingValues <- "excludeCasesListwise"
-# options$fitMeasures <- TRUE
-#
-#
-# set.seed(1)
-# # results <- runAnalysis("reliabilityUniDimBayesian", "asrm_mis.csv", options)
-# results <- runAnalysis("reliabilityUniDimBayesian", Bayesrel::asrm_mis, options)
 
+set.seed(1)
+results <- runAnalysis("reliabilityUniDimBayesian", "asrm.csv", options)
+
+test_that("Fit Measures for the Single-Factor Model table results match", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_fitTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list("", "B-LR", 13.0900880096089, 0.302222222222222, "B-RMSEA", 0.118621204227718,
+                                      0.133333333333333, "B-SRMR", 0.139629952022495, 0.957777777777778,
+                                      "B-CFI", 0.935330120385449, 0.748888888888889, "B-TLI", 0.886274624599037
+                                 ))
+})
