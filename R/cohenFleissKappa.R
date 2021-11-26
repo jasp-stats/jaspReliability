@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+
 cohenFleissKappa <- function(jaspResults, dataset, options) {
   
   ready <- length(options[["variables"]]) > 1
@@ -63,16 +64,14 @@ cohenFleissKappa <- function(jaspResults, dataset, options) {
       "kappaIntervalOn",
       "kappaConfidenceIntervalValue"
     )
-  )
-  
+  )  
   
   formattedCIPercent <- format(
     100 * options[["kappaConfidenceIntervalValue"]],
     digits = 3,
     drop0trailing = TRUE
   )
-  
-  
+
   if(ready){
     #Create all pairs
     variables <- colnames(dataset)
@@ -140,14 +139,11 @@ cohenFleissKappa <- function(jaspResults, dataset, options) {
       "kappaConfidenceIntervalValue"
     )
   )
-
-  
   formattedCIPercent <- format(
     100 * options[["kappaConfidenceIntervalValue"]],
     digits = 3,
     drop0trailing = TRUE
   )
-  
   
   # if (options[["kappaIntervalOn"]]) {
   #   jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI for Kappa", formattedCIPercent))
@@ -171,10 +167,8 @@ cohenFleissKappa <- function(jaspResults, dataset, options) {
     
     jaspTable$addFootnote(gettextf('%i subjects/items and %i judges/measurements.', nrow(dataset), ncol(dataset)))
   }
-
+  
   return(jaspTable)
-  
-  
 }
 
 .getPairs <- function(variable){
