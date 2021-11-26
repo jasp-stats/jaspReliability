@@ -19,7 +19,8 @@ Imports:
   LaplacesDemon,
   MASS,
   psych,
-  lme4
+  lme4,
+  irr
 Remotes:
   juliuspf/Bayesrel@68156bc9427f6e4545ee340d291d4cada729df30,
   jasp-stats/jaspBase,

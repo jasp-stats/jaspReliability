@@ -33,7 +33,7 @@ Form
 		{
 			name: 			"variables"
 			title: 			qsTr("Variables")
-			allowedColumns: ["scale", "ordinal"]
+			allowedColumns: ["nominal", "nominalText", "ordinal"]
 		}
 	}
 
@@ -50,6 +50,13 @@ Form
 			RadioButtonGroup
 			{
 			name:		"cohensWeightedOrNot"
+			
+			
+							RadioButton
+				{
+				name:                               "cohensUnweighted"
+				label:                              qsTr("Unweighted")
+				}
 
 				RadioButton
 				{
@@ -59,11 +66,7 @@ Form
 				}
 
 			
-				RadioButton
-				{
-				name:                               "cohensUnweighted"
-				label:                              qsTr("Unweighted")
-				}
+
 			}
 			
 			
@@ -90,7 +93,7 @@ Form
 
 		CIField 
 		{      
-			name: 		"kappaconfidenceIntervalValue";   
+			name: 		"kappaConfidenceIntervalValue";   
 			label: 		"";
 			defaultValue: 95;
 		}

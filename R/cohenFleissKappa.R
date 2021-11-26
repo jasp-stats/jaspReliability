@@ -14,7 +14,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-
 cohenFleissKappa <- function(jaspResults, dataset, options) {
 
   dataset <- .intraclassCorrelationReadData(dataset, options)
@@ -37,50 +36,50 @@ cohenFleissKappa <- function(jaspResults, dataset, options) {
   return(dataset)
 }
 
-.handleIntraclassCorrelation <- function(dataset, options) {
-
-  # Check for errors using JASPs internal convenience function
-  .hasErrors(
-    dataset = dataset,
-    type = c("infinity", "observations"),
-    observations.amount = c("< 2"),
-    exitAnalysisIfErrors = TRUE
-  )
-
-  # Create the JASP Table
-  jaspTable <- createJaspTable(title = gettext("Intraclass Correlation"))
-  jaspTable$addColumnInfo(name = "type", title = gettext("Type"), type = "string")
-  jaspTable$addColumnInfo(name = "ICC", title = gettext("Point Estimate"), type = "number")
-  formattedCIPercent <- format(
-    100 * options[["confidenceIntervalValue"]],
-    digits = 3,
-    drop0trailing = TRUE
-  )
-
-  if (options[["intervalOn"]]) {
-    jaspTable$addColumnInfo(
-      name = "lower bound",
-      title = gettextf("Lower %s%% CI", formattedCIPercent),
-      type = "number"
-    )
-    jaspTable$addColumnInfo(
-      name = "upper bound",
-      title = gettextf("Upper %s%% CI", formattedCIPercent),
-      type = "number"
-    )
-  }
-  jaspTable$dependOn(
-    options = c(
-      "variables",
-      "intervalOn",
-      "confidenceIntervalValue",
-      "iccType",
-      "iccRatingAverage"
-    )
-  )
-
-  return(jaspTable)
-}
+# .handleIntraclassCorrelation <- function(dataset, options) {
+# 
+#   # Check for errors using JASPs internal convenience function
+#   .hasErrors(
+#     dataset = dataset,
+#     type = c("infinity", "observations"),
+#     observations.amount = c("< 2"),
+#     exitAnalysisIfErrors = TRUE
+#   )
+# 
+#   # Create the JASP Table
+#   jaspTable <- createJaspTable(title = gettext("Intraclass Correlation"))
+#   jaspTable$addColumnInfo(name = "type", title = gettext("Type"), type = "string")
+#   jaspTable$addColumnInfo(name = "ICC", title = gettext("Point Estimate"), type = "number")
+#   formattedCIPercent <- format(
+#     100 * options[["confidenceIntervalValue"]],
+#     digits = 3,
+#     drop0trailing = TRUE
+#   )
+# 
+#   if (options[["intervalOn"]]) {
+#     jaspTable$addColumnInfo(
+#       name = "lower bound",
+#       title = gettextf("Lower %s%% CI", formattedCIPercent),
+#       type = "number"
+#     )
+#     jaspTable$addColumnInfo(
+#       name = "upper bound",
+#       title = gettextf("Upper %s%% CI", formattedCIPercent),
+#       type = "number"
+#     )
+#   }
+#   jaspTable$dependOn(
+#     options = c(
+#       "variables",
+#       "intervalOn",
+#       "confidenceIntervalValue",
+#       "iccType",
+#       "iccRatingAverage"
+#     )
+#   )
+# 
+#   return(jaspTable)
+# }
 
 
 .cohensKappa <- function(dataset, options){
@@ -103,24 +102,47 @@ cohenFleissKappa <- function(jaspResults, dataset, options) {
     drop0trailing = TRUE
   )
   
-  
   if (options[["kappaIntervalOn"]]) {
     jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "integer", overtitle = gettext("Confidence interval of 95%"))
     jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "integer", overtitle = gettext("Confidence interval of 95%"))
   }
   
   
+  #Create all pairs
+  variables <- colnames(dataset)
+  allPairs <- .getPairs(variables)
+  allDataframes <- .getDataframes(dataset, allPairs)
+  allPairStrings <- paste(allPairs$x, allPairs$y, sep = " - ")
+  
+  #calculate Cohen's Kappas
+  allKappaData <- lapply(allDataframes, psych::cohen.kappa, alpha = 1 - options[["kappaConfidenceIntervalValue"]])
+  
+  #Extract Kappas and CIs
+  allKappas <- c()
+  allLowerBounds <- c()
+  allUpperBounds <- c()
+  
+  for(i in allKappaData){
+    kappaData <- i$confid
+    if(options[["cohensWeightedOrNot"]] == "cohensWeighted"){
+      k <- 2
+    }else{
+      k <-1
+    }
+    allKappas <- c(allKappas, kappaData[k,2])
+    allLowerBounds <- c(allLowerBounds, kappaData[k,1])
+    allUpperBounds <- c(allUpperBounds, kappaData[k,3])
+  }
   
   
-  jaspTable$setData(list("ratings" = c("contNormal - contGamma", "contNormal - V1", "contGamma - V1"),
-                         "cKappa" = c(1,1,1),
-                         "CIL"    = c(0.9, 0.9,0.9),
-                         "CIU"    = c(1.1,1.1,1.1)))
   
+  
+  jaspTable$setData(list("ratings" = allPairStrings,
+                         "cKappa" = allKappas,
+                         "CIL"    = allLowerBounds,
+                         "CIU"    = allUpperBounds))
   
   return(jaspTable)
-  
-  
 }
 
 
@@ -146,15 +168,46 @@ cohenFleissKappa <- function(jaspResults, dataset, options) {
     jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "integer", overtitle = gettext("Confidence interval of 95%"))
   }
   
+  #calculate Fleiss' Kappa
+  allKappaData <- irr::kappam.fleiss(dataset, detail = T)
+  overallKappa <- allKappaData$value
+  categoryKappas <- allKappaData$detail[,1]
   
-  jaspTable$setData(list("ratings" = c("Overall", "Item 1", "Item 2"),
-                         "fKappa" = c(1,1,1),
-                         "CIL"    = c(0.9, 0.9,0.9),
-                         "CIU"    = c(1.1,1.1,1.1)))
+  cateogries <- sort(unique(unlist(dataset)))
+  ratings <- c("Overall", as.character(cateogries))
+  
+  jaspTable$setData(list("ratings" = ratings,
+                         "fKappa" = c(overallKappa, categoryKappas),
+                         "CIL"    = c(overallKappa, categoryKappas),
+                         "CIU"    = c(overallKappa, categoryKappas)))
 
   
   
   return(jaspTable)
   
   
+}
+
+.getPairs <- function(variable){
+  df <- data.frame()
+  for(i in 1:length(variable)){
+    for(j in variable[i:length(variable)]){
+      firstVariable <- variable[i]
+      secondVariable <- j
+      if(firstVariable != secondVariable){
+        row <- list(x = firstVariable, y = secondVariable)
+        df <- rbind(df, row)
+      }
+    }
+  }
+  return(df)
+}
+
+
+.getDataframes <- function(dataset, pairs){
+  l <- list()
+  for(i in 1:nrow(pairs)){
+    l[[i]] <- data.frame(x = dataset[pairs$x[i]], y = dataset[pairs$y[i]])
+  }
+  return(l)
 }
