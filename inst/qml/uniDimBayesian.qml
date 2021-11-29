@@ -490,20 +490,22 @@ Form
 				DoubleField
 				{
 					name:			"fitCutoffSat"
-					label:			qsTr("p RMSEA/SRMR <")
+					label:			qsTr("p(RMSEA <")
 					defaultValue:	.08
 					min:			0
 					max:			1
 					fieldWidth: 	40
+					afterLabel:		qsTr(")")
 				}
 				DoubleField
 				{
 					name:			"fitCutoffNull"
-					label:			qsTr("p CFI/TLI >")
+					label:			qsTr("p(CFI/TLI >")
 					defaultValue:	.9
 					min:			0
 					max:			1
 					fieldWidth: 	40
+					afterLabel:		qsTr(")")
 				}
 			}
 			CheckBox

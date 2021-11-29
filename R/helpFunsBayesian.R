@@ -162,7 +162,7 @@
 }
 
 
-.SRMR <- function(cdat, impl, pD) {
+.SRMR <- function(cdat, impl) {
   nvar <- ncol(cdat)
   e <- (nvar * (nvar + 1)) / 2
   sqrt.d <- 1 / sqrt(diag(cdat))
@@ -200,5 +200,7 @@
   inv <- chol2inv(u)
   logdet <- 2 * sum(log(diag(u)))
   Q <- colSums((inv %*% X) * X)
+  Q <- Q[!is.na(Q)]
   logPDF <- as.vector(Q + d * logb(2 * pi) + logdet)/(-2)
+  return(logPDF)
 }

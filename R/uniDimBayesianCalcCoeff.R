@@ -110,11 +110,9 @@
     if (is.null(out[["samp"]])) {
       startProgressbar(model[["progressbarLength"]])
 
-      if (options[["stdCoeffs"]] == "unstand") {
-        out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applyalpha, progressbarTick))
-      } else {
-        out[["samp"]] <- coda::mcmc(apply(model[["gibbsCor"]], MARGIN = c(1, 2), Bayesrel:::applyalpha, progressbarTick))
-      }
+      out[["samp"]] <- coda::mcmc(apply(model[[if (options[["stdCoeffs"]] == "unstand") "gibbsSamp" else "gibbsCor"]],
+                                        MARGIN = c(1, 2), Bayesrel:::applyalpha, progressbarTick))
+
     }
 
     if (options[["disableSampleSave"]])
@@ -147,11 +145,8 @@
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
-      if (options[["stdCoeffs"]] == "unstand") {
-        out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsSamp"]], Bayesrel:::applyalpha, progressbarTick)
-      } else {
-        out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsCor"]], Bayesrel:::applyalpha, progressbarTick)
-      }
+      out[["itemSamp"]] <- .BayesItemDroppedStats(model[[if (options[["stdCoeffs"]] == "unstand") "gibbsSamp" else "gibbsCor"]],
+                                                  Bayesrel:::applyalpha, progressbarTick)
 
 
     }
@@ -181,11 +176,9 @@
 
     if (is.null(out[["samp"]])) {
       startProgressbar(model[["progressbarLength"]])
-      if (options[["stdCoeffs"]] == "unstand") {
-        out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applylambda2, progressbarTick))
-      } else {
-        out[["samp"]] <- coda::mcmc(apply(model[["gibbsCor"]], MARGIN = c(1, 2), Bayesrel:::applylambda2, progressbarTick))
-      }
+
+      out[["samp"]] <- coda::mcmc(apply(model[[if (options[["stdCoeffs"]] == "unstand") "gibbsSamp" else "gibbsCor"]],
+                                        MARGIN = c(1, 2), Bayesrel:::applylambda2, progressbarTick))
 
     }
 
@@ -219,11 +212,9 @@
 
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
-      if (options[["stdCoeffs"]] == "unstand") {
-        out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsSamp"]], Bayesrel:::applylambda2, progressbarTick)
-      } else {
-        out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsCor"]], Bayesrel:::applylambda2, progressbarTick)
-      }
+
+      out[["itemSamp"]] <- .BayesItemDroppedStats(model[[if (options[["stdCoeffs"]] == "unstand") "gibbsSamp" else "gibbsCor"]],
+                                                  Bayesrel:::applylambda2, progressbarTick)
     }
 
     if (options[["disableSampleSave"]])
@@ -251,11 +242,9 @@
 
     if (is.null(out[["samp"]])) {
       startProgressbar(model[["progressbarLength"]])
-      if (options[["stdCoeffs"]] == "unstand") {
-        out[["samp"]] <- coda::mcmc(apply(model[["gibbsSamp"]], MARGIN = c(1, 2), Bayesrel:::applylambda6, progressbarTick))
-      } else {
-        out[["samp"]] <- coda::mcmc(apply(model[["gibbsCor"]], MARGIN = c(1, 2), Bayesrel:::applylambda6, progressbarTick))
-      }
+
+      out[["samp"]] <- coda::mcmc(apply(model[[if (options[["stdCoeffs"]] == "unstand") "gibbsSamp" else "gibbsCor"]],
+                                        MARGIN = c(1, 2), Bayesrel:::applylambda6, progressbarTick))
     }
 
     if (options[["disableSampleSave"]])
@@ -289,11 +278,8 @@
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
-      if (options[["stdCoeffs"]] == "unstand") {
-        out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsSamp"]], Bayesrel:::applylambda6, progressbarTick)
-      } else {
-        out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsCor"]], Bayesrel:::applylambda6, progressbarTick)
-      }
+      out[["itemSamp"]] <- .BayesItemDroppedStats(model[[if (options[["stdCoeffs"]] == "unstand") "gibbsSamp" else "gibbsCor"]],
+                                                  Bayesrel:::applylambda6, progressbarTick)
     }
 
     if (options[["disableSampleSave"]])
@@ -324,15 +310,12 @@
       out[["samp"]] <- matrix(0, dd[1], dd[2])
 
       startProgressbar(dd[1] * 3)
-      if (options[["stdCoeffs"]] == "unstand") {
-        for (i in seq_len(dd[1])) {
-          out[["samp"]][i, ] <- Bayesrel:::glbOnArrayCustom(model[["gibbsSamp"]][i, , , ], callback = progressbarTick)
-        }
-      } else {
-        for (i in seq_len(dd[1])) {
-          out[["samp"]][i, ] <- Bayesrel:::glbOnArrayCustom(model[["gibbsCor"]][i, , , ], callback = progressbarTick)
-        }
+
+      for (i in seq_len(dd[1])) {
+        out[["samp"]][i, ] <- Bayesrel:::glbOnArrayCustom(model[[if (options[["stdCoeffs"]] == "unstand") "gibbsSamp" else "gibbsCor"]][i, , , ],
+                                                          callback = progressbarTick)
       }
+
 
 
     }
@@ -371,17 +354,13 @@
       out[["itemSamp"]] <- matrix(0, dd[1] * dd[2], dd[3])
 
       startProgressbar(3 * ncol(dataset))
-      if (options[["stdCoeffs"]] == "unstand") {
-        cov_samp <- array(model[["gibbsSamp"]], c(dd[1] * dd[2], dd[3], dd[3]))
-        for (i in seq_len(dd[3])) {
-          out[["itemSamp"]][, i] <- Bayesrel:::glbOnArrayCustom(cov_samp[, -i, -i], callback = progressbarTick)
-        }
-      } else {
-        cov_samp <- array(model[["gibbsCor"]], c(dd[1] * dd[2], dd[3], dd[3]))
-        for (i in seq_len(dd[3])) {
-          out[["itemSamp"]][, i] <- Bayesrel:::glbOnArrayCustom(cov_samp[, -i, -i], callback = progressbarTick)
-        }
+
+      cov_samp <- array(model[[if (options[["stdCoeffs"]] == "unstand") "gibbsSamp" else "gibbsCor"]],
+                        c(dd[1] * dd[2], dd[3], dd[3]))
+      for (i in seq_len(dd[3])) {
+        out[["itemSamp"]][, i] <- Bayesrel:::glbOnArrayCustom(cov_samp[, -i, -i], callback = progressbarTick)
       }
+
     }
 
     if (options[["disableSampleSave"]])
@@ -454,6 +433,7 @@
   }
   return(out)
 }
+
 
 .BayesianStdDev <- function(jaspResults, dataset, options, model) {
   if (!is.null(.getStateContainerB(jaspResults)[["sdObj"]]$object))
@@ -670,6 +650,8 @@
 }
 
 
+# see https://www.rdocumentation.org/packages/blavaan/versions/0.3-17/topics/blavFitIndices
+
 .BayesianFitMeasures <- function(jaspResults, dataset, options, model) {
   if (!is.null(.getStateContainerB(jaspResults)[["fitMeasuresObj"]]$object))
     return(.getStateContainerB(jaspResults)[["fitMeasuresObj"]]$object)
@@ -705,10 +687,6 @@
     out[["B-RMSEA"]] <- .BRMSEA(LR_obs, pstar, pD, n)
     # rmsea_m <- sqrt((Dtm - (pstar - pD)) / ((pstar - pD) * n))
 
-    ### SRMR ###
-    srmr_m <- .SRMR(cdat, implM)
-    out[["B-SRMR"]] <- c(apply(implieds, c(1, 2), .SRMR, cdat = cdat, pD = pD))
-
     startProgressbar(options[["noSamples"]] * options[["noChains"]])
 
     ### CFI and TLI need a nullmodel:
@@ -732,7 +710,7 @@
     LR_null <- apply(impl_null, 1, .LRblav, data = dataset, basell = LL1)
     Dm_null <- mean(LR_null)
 
-    psm_null <- apply(ps_null, 2, mean)
+    psm_null <- colMeans(ps_null)
     implM_null <- diag(psm_null)
     Dtm_null <- .LRblav(dataset, implM_null, LL1)
     pD_null <- Dm_null - Dtm_null

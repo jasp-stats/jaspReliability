@@ -252,6 +252,49 @@
 }
 
 
+.BayesianFitMeasuresTable <- function(jaspResults, model, options) {
+
+  if (!is.null(.getStateContainerB(jaspResults)[["fitTable"]]$object))
+    return()
+
+  fitTable <- createJaspTable(gettextf("Fit Measures for the Single-Factor Model"))
+
+  fitTable$dependOn(options = c("omegaScale", "fitMeasures", "fitCutoffSat", "fitCutoffNull", "pointEst"))
+
+  cred <- format(100 * options[["credibleIntervalValueItem"]], digits = 3, drop0trailing = TRUE)
+
+  fitTable$addColumnInfo(name = "measure", title = gettext("Fit measure"), type = "string")
+  fitTable$addColumnInfo(name = "pointEst", title = gettext("Point estimate"), type = "number")
+  fitTable$addColumnInfo(name = "cutoff",
+                         title = gettextf("Relative to cutoff"), type = "number")
+
+
+  if (options[["omegaScale"]] && options[["fitMeasures"]] && is.null(model[["empty"]])) {
+
+    pointEsts <- sapply(model[["fitMeasures"]], get(options[["pointEst"]]))
+
+    cutoffs_saturated <- sapply(model[["fitMeasures"]][2], function(x) mean(x < options[["fitCutoffSat"]]))
+    cutoffs_null <- sapply(model[["fitMeasures"]][-(1:2)], function(x) mean(x > options[["fitCutoffNull"]]))
+
+    cutoffs <- c(NA_real_, cutoffs_saturated, cutoffs_null)
+
+    df <- data.frame(measure = names(model[["fitMeasures"]]), pointEst = pointEsts,
+                     cutoff = cutoffs)
+    fitTable$setData(df)
+
+    fitTable$addFootnote("'Relative to cutoff'-column denotes the probability that the B-RMSEA is smaller than
+                         the cutoff and the probabilities that the B-CFI/TLI are larger than the cutoff.")
+
+    fitTable$position <- 4
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["fitTable"]] <- fitTable
+  }
+
+  return()
+}
+
+
+
 .BayesianLoadingsTable <- function(jaspResults, model, options) {
 
   if (!is.null(.getStateContainerB(jaspResults)[["loadTable"]]$object))
@@ -275,7 +318,7 @@
       loadings = model[["omegaScale"]][["loadingsStd"]])
     loadTable$setData(df)
 
-    loadTable$position <- 4
+    loadTable$position <- 5
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["loadTable"]] <- loadTable
   }
@@ -283,43 +326,4 @@
   return()
 }
 
-.BayesianFitMeasuresTable <- function(jaspResults, model, options) {
-
-  if (!is.null(.getStateContainerB(jaspResults)[["fitTable"]]$object))
-    return()
-
-  fitTable <- createJaspTable(gettextf("Fit Measures for the Single-Factor Model"))
-
-  fitTable$dependOn(options = c("omegaScale", "fitMeasures", "fitCutoffSat", "fitCutoffNull", "pointEst"))
-
-  cred <- format(100 * options[["credibleIntervalValueItem"]], digits = 3, drop0trailing = TRUE)
-
-  fitTable$addColumnInfo(name = "measure", title = gettext("Fit measure"), type = "string")
-  fitTable$addColumnInfo(name = "pointEst", title = gettext("Point estimate"), type = "number")
-  fitTable$addColumnInfo(name = "cutoff",
-                         title = gettextf("Relative to cutoff"), type = "number")
-
-
-  if (options[["omegaScale"]] && options[["fitMeasures"]] && is.null(model[["empty"]])) {
-
-    pointEsts <- sapply(model[["fitMeasures"]], get(options[["pointEst"]]))
-
-    # intervals <- sapply(model[["fitMeasures"]],
-    #                     function(x) coda::HPDinterval(coda::mcmc(x), prob = as.numeric(cred)/100))
-    cutoffs_saturated <- sapply(model[["fitMeasures"]][2:3], function(x) mean(x < options[["fitCutoffSat"]]))
-    cutoffs_null <- sapply(model[["fitMeasures"]][-(1:3)], function(x) mean(x > options[["fitCutoffNull"]]))
-
-    cutoffs <- c(NA_real_, cutoffs_saturated, cutoffs_null)
-
-    df <- data.frame(measure = names(model[["fitMeasures"]]), pointEst = pointEsts,
-                     cutoff = cutoffs)
-    fitTable$setData(df)
-
-    fitTable$position <- 5
-    stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["fitTable"]] <- fitTable
-  }
-
-  return()
-}
 

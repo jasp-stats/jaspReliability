@@ -96,9 +96,9 @@ This allows the user to select reverse-scaled items that need to be recoded.
 ### McDonald's omega Estimation
 - Posterior predictive check: Display a graphical check for the fit of the single factor model, in other words for the unidimensionality of the data. Answers the question if the posterior single-factor model predicts data similar to the original data set?
 - Fit measures: Display a table with Bayesian fit indices for the single factor model: 
-Bayesian LR, B-RMSEA, B-SRMR, B-CFI, B-TLI
-  - p RMSEA/SRMR < .08: probability that the B-RMSEA or the B-SRMR are smaller than a cutoff
-  - p CFI/TLI < .90: probability that the B-CFI or the B-TLI are larger than a cutoff
+Bayesian LR, B-RMSEA, B-CFI, B-TLI
+  - p(RMSEA < .08): probability that the B-RMSEA is smaller than a cutoff
+  - p(CFI/TLI < .90): probability that the B-CFI or the B-TLI are larger than a cutoff
 - Standardized factor loadings: Display a table with the standardized loadings of the single-factor model
 
 
@@ -145,18 +145,17 @@ Warrens, M.J. Some relationships between Cronbach’s alpha and the Spearman-Bro
 	- Prior: prior probability that the coefficient is larger than `...` and smaller than `...`
 	- Posterior: posterior probability that the coefficient is larger than `...` and smaller than `...`
 
-#### Standardized loadings of the Single-Factor Model:
-- Mean or median of standardized single-factor loadings
-
 #### Fit Measures of the Single-Factor Model
 - Point estimate is either mean or median (see ''posterior point estimate''), except for LR, which is always the mean
 - Relative to cutoff: probability RMSEA and SRMR smaller than their specified cutoff, CFI and TLI larger than their cutoff
   - B-LR: Bayesian likelihood ratio of tested model and saturated model 
   - B-RMSEA: Bayesian RMSEA adapted from Garnier-Villareal and Jorgensen (2020), method equal to blavaan fit indices; 
   uses devM method and degrees of freedom from dic
-  - B-SRMR: Bayesian SRMR
   - B-CFI, B-TLI: Bayesian CFI and TLI adapted from Garnier-Villareal and Jorgensen (2020), equal to blavFitIndices,
   requires a null-model, here a model with only variances of the observed variables; uses devM method and degrees of freedom from dic
+
+#### Standardized loadings of the Single-Factor Model:
+- Mean or median of standardized single-factor loadings
 
 ### Plots
 #### Posterior Plots
