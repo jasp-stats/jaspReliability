@@ -56,13 +56,13 @@ Form
 				{
 				name:                               "cohensUnweighted"
 				label:                              qsTr("Unweighted")
+				checked:                            true
 				}
 
 				RadioButton
 				{
 				name:                               "cohensWeighted"
 				label:                              qsTr("Weighted")
-				checked:                            true
 				}
 
 			
