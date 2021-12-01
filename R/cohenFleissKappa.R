@@ -16,10 +16,10 @@
 #
 cohenFleissKappa <- function(jaspResults, dataset, options) {
   
-  ready <- length(options[["variables"]] > 1)
+  ready <- length(options[["variables"]]) > 1
   
   dataset <- .cohensFleissKappaReadData(dataset, options)
-  
+    
   if(options[["cohensKappa"]])
     jaspResults[["cohensKappa"]] <- .cohensKappa(dataset, options, ready)
   
@@ -52,6 +52,18 @@ cohenFleissKappa <- function(jaspResults, dataset, options) {
   jaspTable <- createJaspTable(title = gettextf("Cohen's %s Kappa", casefold(weightedString, upper = F)))
   jaspTable$addColumnInfo(name = "ratings", title = gettext("Ratings"), type = "string")
   jaspTable$addColumnInfo(name = "cKappa", title = gettextf("%s Kappa", weightedString), type = "number")
+  jaspTable$position <- 1
+  
+  #dependencies
+  jaspTable$dependOn(
+    options = c(
+      "variables",
+      "cohensKappa",
+      "cohensWeightedOrNot",
+      "kappaIntervalOn",
+      "kappaConfidenceIntervalValue"
+    )
+  )
   
   
   formattedCIPercent <- format(
@@ -60,51 +72,52 @@ cohenFleissKappa <- function(jaspResults, dataset, options) {
     drop0trailing = TRUE
   )
   
-  if (options[["kappaIntervalOn"]]) {
-    jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("Confidence interval of %s%%", formattedCIPercent))
-    jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("Confidence interval of %s%%", formattedCIPercent))
-  }
   
   if(ready){
-  #Create all pairs
-  variables <- colnames(dataset)
-  allPairs <- .getPairs(variables)
-  allDataframes <- .getDataframes(dataset, allPairs)
-  allPairStrings <- paste(allPairs$x, allPairs$y, sep = " - ")
-  
-  #calculate Cohen's Kappas
-  allKappaData <- lapply(allDataframes, psych::cohen.kappa, alpha = 1 - options[["kappaConfidenceIntervalValue"]])
-  
-  #Extract Kappas and CIs
-  allKappas <- c()
-  allLowerBounds <- c()
-  allUpperBounds <- c()
-  
-  for(i in allKappaData){
-    kappaData <- i$confid
-    if(weighted){
-      k <- 2
-    }else{
-      k <-1
+    #Create all pairs
+    variables <- colnames(dataset)
+    allPairs <- .getPairs(variables)
+    allDataframes <- .getDataframes(dataset, allPairs)
+    allPairStrings <- paste(allPairs$x, allPairs$y, sep = " - ")
+    
+    #calculate Cohen's Kappas
+    allKappaData <- lapply(allDataframes, psych::cohen.kappa, alpha = 1 - options[["kappaConfidenceIntervalValue"]])
+    
+    #Extract Kappas and CIs
+    allKappas <- c()
+    allLowerBounds <- c()
+    allUpperBounds <- c()
+    
+    for(i in allKappaData){
+      kappaData <- i$confid
+      if(weighted){
+        k <- 2
+      }else{
+        k <-1
+      }
+      allKappas <- c(allKappas, kappaData[k,2])
+      allLowerBounds <- c(allLowerBounds, kappaData[k,1])
+      allUpperBounds <- c(allUpperBounds, kappaData[k,3])
     }
-    allKappas <- c(allKappas, kappaData[k,2])
-    allLowerBounds <- c(allLowerBounds, kappaData[k,1])
-    allUpperBounds <- c(allUpperBounds, kappaData[k,3])
-  }
-  
-  
-  
-  
-  jaspTable$setData(list("ratings" = allPairStrings,
-                         "cKappa" = allKappas,
-                         "CIL"    = allLowerBounds,
-                         "CIU"    = allUpperBounds))
-  jaspTable$addFootnote(gettextf('%i subjects/items and %i judges/measurements.', nrow(dataset), ncol(dataset)))
-  
-  #if weighted kappa option is on but data only has 2 levels
-  if(weighted && length(levels(unlist(dataset))) < 3)
-    jaspTable$addFootnote(gettext('Weighted Kappa is only meaningful for less than 2 levels. Calculated weighted Kappa is the same as unweighted Kappa.'))
-  
+    
+    tableData <- list("ratings" = allPairStrings,
+                      "cKappa" = allKappas)
+    
+    if (options[["kappaIntervalOn"]]) {
+      jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI for Kappa", formattedCIPercent))
+      jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI for Kappa", formattedCIPercent))
+      tableData[["CIL"]] <- allLowerBounds
+      tableData[["CIU"]] <- allUpperBounds
+    }
+    
+    
+    jaspTable$setData(tableData)
+    jaspTable$addFootnote(gettextf('%i subjects/items and %i judges/measurements.', nrow(dataset), ncol(dataset)))
+    
+    #if weighted kappa option is on but data only has 2 levels
+    if(weighted && length(levels(unlist(dataset))) < 3)
+      jaspTable$addFootnote(gettext('Weighted Kappa is only meaningful for more than 2 levels. Calculated weighted Kappa is the same as unweighted Kappa.'))
+    
   }
   
   return(jaspTable)
@@ -114,9 +127,19 @@ cohenFleissKappa <- function(jaspResults, dataset, options) {
   
   # Create the JASP Table
   jaspTable <- createJaspTable(title = gettextf("Fleiss' Kappa"))
-  
   jaspTable$addColumnInfo(name = "ratings", title = gettext("Ratings"), type = "string")
   jaspTable$addColumnInfo(name = "fKappa", title = gettext("Fleiss' Kappa"), type = "number")
+  jaspTable$position <- 2
+  
+  #dependencies
+  jaspTable$dependOn(
+    options = c(
+      "variables",
+      "fleissKappa",
+      "kappaIntervalOn",
+      "kappaConfidenceIntervalValue"
+    )
+  )
 
   
   formattedCIPercent <- format(
@@ -127,26 +150,26 @@ cohenFleissKappa <- function(jaspResults, dataset, options) {
   
   
   # if (options[["kappaIntervalOn"]]) {
-  #   jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("Confidence interval of %s%%", formattedCIPercent))
-  #   jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("Confidence interval of %s%%", formattedCIPercent))
+  #   jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI for Kappa", formattedCIPercent))
+  #   jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI for Kappa", formattedCIPercent))
   # }
   
   if(ready){
-  #calculate Fleiss' Kappa
-  allKappaData <- irr::kappam.fleiss(dataset, detail = T)
-  overallKappa <- allKappaData$value
-  categoryKappas <- allKappaData$detail[,1]
-  
-  cateogries <- sort(unique(unlist(dataset)))
-  ratings <- c("Overall", as.character(cateogries))
-  
-  jaspTable$setData(list("ratings" = ratings,
-                         "fKappa" = c(overallKappa, categoryKappas)))
-  
-  # "CIL"    = c(overallKappa, categoryKappas),
-  # "CIU"    = c(overallKappa, categoryKappas))
-  
-  jaspTable$addFootnote(gettextf('%i subjects/items and %i judges/measurements.', nrow(dataset), ncol(dataset)))
+    #calculate Fleiss' Kappa
+    allKappaData <- irr::kappam.fleiss(dataset, detail = T)
+    overallKappa <- allKappaData$value
+    categoryKappas <- allKappaData$detail[,1]
+    
+    cateogries <- sort(unique(unlist(dataset)))
+    ratings <- c("Overall", as.character(cateogries))
+    
+    jaspTable$setData(list("ratings" = ratings,
+                           "fKappa" = c(overallKappa, categoryKappas)))
+    
+    # "CIL"    = c(overallKappa, categoryKappas),
+    # "CIU"    = c(overallKappa, categoryKappas))
+    
+    jaspTable$addFootnote(gettextf('%i subjects/items and %i judges/measurements.', nrow(dataset), ncol(dataset)))
   }
 
   return(jaspTable)
@@ -176,14 +199,4 @@ cohenFleissKappa <- function(jaspResults, dataset, options) {
     l[[i]] <- data.frame(x = dataset[pairs$x[i]], y = dataset[pairs$y[i]])
   }
   return(l)
-}
-
-.calculateMatches <- function(x){
-  TABLE <- matrix(rep(0, length(unlist(x))), nrow = nrow(x))
-  for (COLUMN in 1:ncol(x)) {
-    for (ROW in 1:nrow(x)) {
-      TABLE[ROW, COLUMN] <- sum(x[ROW,] == COLUMN)
-    }
-  }
-  return(TABLE)
 }
