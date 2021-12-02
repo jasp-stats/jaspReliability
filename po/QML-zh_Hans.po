@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-02 09:52+0000\n"
+"PO-Revision-Date: 2021-12-03 02:10+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "jasp/jaspreliability-qml/zh_Hans/>\n"
@@ -63,13 +63,12 @@ msgstr "同一组固定的评分者/试验"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Ratings are averaged"
-msgstr ""
+msgstr "评分已平均化"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Confidence Interval"
-msgstr ""
+msgstr "置信区间"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Variables"
 msgstr "变量"
