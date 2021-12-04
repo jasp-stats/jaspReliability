@@ -18,19 +18,19 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
   
   ready <- length(options[["variables"]]) > 1
   
-  dataset <- .cohensFleissKappaReadData(dataset, options)
+  dataset <- .readDataCohensFleissKappa(dataset, options)
     
   if (options[["cohensKappa"]])
-    jaspResults[["cohensKappa"]] <- .cohensKappa(dataset, options, ready)
+    jaspResults[["cohensKappa"]] <- .computeCohensKappaTable(dataset, options, ready)
   
   if (options[["fleissKappa"]])
-    jaspResults[["fleissKappa"]] <- .fleissKappa(dataset, options, ready)
+    jaspResults[["fleissKappa"]] <- .computeFleissKappaTable(dataset, options, ready)
   
   return()
 }
 
 # Read in the dataset (copied from .reliabilityReadData)
-.cohensFleissKappaReadData <- function(dataset, options) {
+.readDataCohensFleissKappa <- function(dataset, options) {
   variables <- unlist(options[["variables"]])
   if (is.null(dataset)) {
     dataset <- .readDataSetToEnd(columns.as.factor = variables)
@@ -38,7 +38,7 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
   return(dataset)
 }
 
-.cohensKappa <- function(dataset, options, ready) {
+.computeCohensKappaTable <- function(dataset, options, ready) {
   
   weighted <- options[["cohensWeightedOrNot"]] == "cohensWeighted"
   
@@ -115,7 +115,7 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
   return(jaspTable)
 }
 
-.fleissKappa <- function(dataset, options, ready) {
+.computeFleissKappaTable <- function(dataset, options, ready) {
   
   # Create the JASP Table
   jaspTable <- createJaspTable(title = gettextf("Fleiss' Kappa"))
