@@ -38,7 +38,7 @@ Description
 	{
 		title:	qsTr("Cohen's & Fleiss' Kappa")
 		qml: 	"cohensFleissKappa.qml"
-		func: 	"cohenFleissKappa"
+		func: 	"cohensFleissKappa"
 	}
 
 	Separator {}
