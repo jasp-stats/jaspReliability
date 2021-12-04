@@ -36,7 +36,7 @@ Description
 	
 		Analysis
 	{
-		title:	qsTr("Cohen's Kappa & Fleiss' Kappa")
+		title:	qsTr("Cohen's & Fleiss' Kappa")
 		qml: 	"cohenFleissKappa.qml"
 		func: 	"cohenFleissKappa"
 	}
