@@ -1,15 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-03 02:10+0000\n"
-"Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
-"jasp/jaspreliability-qml/zh_Hans/>\n"
-"Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.10-dev\n"
 "X-Language: zh_Hans\n"
 "X-Qt-Contexts: true\n"
 
@@ -290,17 +284,19 @@ msgctxt "uniDimFrequentist|"
 msgid "Variables"
 msgstr "变量"
 
+#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Analysis"
-msgstr ""
+msgstr "分析"
 
 msgctxt "uniDimFrequentist|"
 msgid "Scale Statistics"
 msgstr ""
 
+#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Confidence Interval"
-msgstr ""
+msgstr "置信区间"
 
 msgctxt "uniDimFrequentist|"
 msgid "McDonald's ω"
