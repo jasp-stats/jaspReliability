@@ -201,3 +201,11 @@
   logPDF <- as.vector(Q + d * logb(2 * pi) + logdet)/(-2)
   return(logPDF)
 }
+
+.getPointEstFun <- function(pointEstFunString) {
+  return(switch(pointEstFunString,
+                "mean"   = mean,
+                "median" = median,
+                stop("getPointEstFun has no case for value: ", pointEstFunString))
+  )
+}

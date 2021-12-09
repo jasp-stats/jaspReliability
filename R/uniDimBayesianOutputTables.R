@@ -265,13 +265,12 @@
 
   fitTable$addColumnInfo(name = "measure", title = gettext("Fit measure"), type = "string")
   fitTable$addColumnInfo(name = "pointEst", title = gettext("Point estimate"), type = "number")
-  fitTable$addColumnInfo(name = "cutoff",
-                         title = gettextf("Relative to cutoff"), type = "number")
+  fitTable$addColumnInfo(name = "cutoff", title = gettext("Relative to cutoff"), type = "number")
 
 
   if (options[["omegaScale"]] && options[["fitMeasures"]] && is.null(model[["empty"]])) {
 
-    pointEsts <- sapply(model[["fitMeasures"]], get(options[["pointEst"]]))
+    pointEsts <- sapply(model[["fitMeasures"]], .getPointEstFun(options[["pointEst"]]))
 
     cutoffs_saturated <- sapply(model[["fitMeasures"]][2], function(x) mean(x < options[["fitCutoffSat"]]))
     cutoffs_null <- sapply(model[["fitMeasures"]][-(1:2)], function(x) mean(x > options[["fitCutoffNull"]]))
@@ -282,9 +281,9 @@
                      cutoff = cutoffs)
     fitTable$setData(df)
 
-    fitTable$addFootnote("'Relative to cutoff'-column denotes the probability that the B-RMSEA is smaller than
-                         the correpsonding cutoff and the probabilities that the B-CFI/TLI are larger than the
-                         correpsonding cutoff.")
+    fitTable$addFootnote(gettext("'Relative to cutoff'-column denotes the probability that the B-RMSEA is smaller than
+                         the corresponding cutoff and the probabilities that the B-CFI/TLI are larger than the
+                         corresponding cutoff."))
 
     fitTable$position <- 4
     stateContainer <- .getStateContainerB(jaspResults)
@@ -301,7 +300,7 @@
   if (!is.null(.getStateContainerB(jaspResults)[["loadTable"]]$object))
     return()
 
-  loadTable <- createJaspTable(gettextf("Standardized Loadings of the Single-Factor Model"))
+  loadTable <- createJaspTable(gettext("Standardized Loadings of the Single-Factor Model"))
 
   loadTable$dependOn(options = c("omegaScale", "dispLoadings"))
 
@@ -316,7 +315,7 @@
 
     df <- data.frame(
       variable = options[["variables"]],
-      loadings = model[["omegaScale"]][["loadingsStd"]])
+      loadings = model[["scaleResults"]][["loadingsStd"]])
     loadTable$setData(df)
 
     loadTable$position <- 5

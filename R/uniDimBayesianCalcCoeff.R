@@ -32,7 +32,7 @@
         }
 
         if (options[["dispLoadings"]]) {
-          out[["loadingsStd"]] <- apply(lstd, 3, get(options[["pointEst"]]))
+          out[["loadingsStdSamp"]] <- lstd
         }
       }
 
@@ -44,7 +44,7 @@
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["omegaScaleObj"]] <- createJaspState(out, dependencies = c("omegaScale", "stdCoeffs",
                                                                                "dispLoadings", "igShape", "igScale",
-                                                                               "loadMean", "pointEst"))
+                                                                               "loadMean"))
   }
 
   return(out)
@@ -554,7 +554,7 @@
     sampellist <- model[selected]
     samps <- .sampleListHelper(sampellist, "samp")
 
-    out[["est"]] <- lapply(samps, get(options[["pointEst"]]))
+    out[["est"]] <- lapply(samps, .getPointEstFun(options[["pointEst"]]))
     out[["cred"]] <- lapply(samps, function(x) coda::HPDinterval(coda::mcmc(c(x)), prob = ciValue))
 
     if (options[["rHat"]]) {
@@ -562,6 +562,10 @@
         # for each samp, (1) convert the rows to a coda object, (2) convert to mcmc.list, so that (3) gelman.diag is happy.
         coda::gelman.diag(coda::as.mcmc.list(lapply(seq_len(nrow(x)), function(i) coda::mcmc(x[i, ]))))[["psrf"]][, 1]
         })
+    }
+
+    if (options[["dispLoadings"]]) {
+      out[["loadingsStd"]] <- apply(model[["omegaScale"]][["loadingsStdSamp"]], 3, .getPointEstFun(options[["pointEst"]]))
     }
 
     # check for mean and sd
@@ -589,7 +593,7 @@
                                                                                  "scoresMethod", "iwScale", "iwDf",
                                                                                  "igShape", "igScale",
                                                                                  "stdCoeffs", "pointEst",
-                                                                                 "loadMean"))
+                                                                                 "loadMean", "dispLoadings"))
 
   }
 
