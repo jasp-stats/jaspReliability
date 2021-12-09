@@ -492,17 +492,24 @@ options$setSeed <- TRUE
 options$fitMeasures <- TRUE
 options$fitCutoffSat <- .1
 options$fitCutoffNull <- .85
+options$dispPPC <- TRUE
 
 
 set.seed(1)
-# results <- runAnalysis("reliabilityUniDimBayesian", "asrm.csv", options)
-results <- runAnalysis("reliabilityUniDimBayesian", as.data.frame(Bayesrel::asrm), options, makeTests = T)
+results <- runAnalysis("reliabilityUniDimBayesian", "asrm.csv", options)
 
-test_that("Fit Measures for the Single-Factor Model table results match", {
+
+test_that("Fit for the Single-Factor Model results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_fitTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list("", "B-LR", 13.0900880096089, 0.215555555555556, "B-RMSEA", 0.1319747009136,
                                       0.946666666666667, "B-CFI", 0.929544182303969, 0.595555555555556,
                                       "B-TLI", 0.860237253334787))
+})
+
+test_that("Posterior Predictive Check Omega plot matches", {
+  plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_omegaPPC"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "posterior-predictive-check-omega")
 })
 

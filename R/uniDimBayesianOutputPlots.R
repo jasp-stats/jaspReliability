@@ -309,8 +309,9 @@
 
   if (options[["dispPPC"]] && options[["omegaScale"]] && is.null(model[["empty"]])) {
 
-    ll <- apply(model[["omegaScale"]][["loadings"]], 3, as.vector)
-    rr <- apply(model[["omegaScale"]][["residuals"]], 3, as.vector)
+    ll <- apply(model[["singleFactor"]][["loadings"]], 3, as.vector)
+    rr <- apply(model[["singleFactor"]][["residuals"]], 3, as.vector)
+    phi <- c(model[["singleFactor"]][["factor_var"]])
 
     cobs <- model[["data_cov"]]
 
@@ -318,7 +319,7 @@
     nsamp <- nrow(ll)
     ee_impl <- matrix(0, nsamp, k)
     for (i in seq_len(nsamp)) {
-      ctmp <- ll[i, ] %*% t(ll[i, ]) + diag(rr[i, ])
+      ctmp <- ll[i, ] %*% t(phi[i]) %*% t(ll[i, ]) + diag(rr[i, ])
       dtmp <- MASS::mvrnorm(model[["n"]], rep(0, k), ctmp)
       ee_impl[i, ] <- eigen(cov(dtmp), only.values = TRUE)$values
     }

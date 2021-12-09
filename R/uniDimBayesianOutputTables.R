@@ -283,7 +283,8 @@
     fitTable$setData(df)
 
     fitTable$addFootnote("'Relative to cutoff'-column denotes the probability that the B-RMSEA is smaller than
-                         the cutoff and the probabilities that the B-CFI/TLI are larger than the cutoff.")
+                         the correpsonding cutoff and the probabilities that the B-CFI/TLI are larger than the
+                         correpsonding cutoff.")
 
     fitTable$position <- 4
     stateContainer <- .getStateContainerB(jaspResults)
