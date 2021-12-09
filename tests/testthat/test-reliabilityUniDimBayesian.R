@@ -495,12 +495,14 @@ options$fitCutoffNull <- .85
 
 
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimBayesian", "asrm.csv", options)
+# results <- runAnalysis("reliabilityUniDimBayesian", "asrm.csv", options)
+results <- runAnalysis("reliabilityUniDimBayesian", as.data.frame(Bayesrel::asrm), options, makeTests = T)
 
 test_that("Fit Measures for the Single-Factor Model table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_fitTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list("", "B-LR", 13.0900880096089, 0.302222222222222, "B-RMSEA", 0.118621204227718,
-                                      0.957777777777778, "B-CFI", 0.935330120385449, 0.748888888888889,
-                                      "B-TLI", 0.886274624599037))
+                                 list("", "B-LR", 13.0900880096089, 0.215555555555556, "B-RMSEA", 0.1319747009136,
+                                      0.946666666666667, "B-CFI", 0.929544182303969, 0.595555555555556,
+                                      "B-TLI", 0.860237253334787))
 })
+

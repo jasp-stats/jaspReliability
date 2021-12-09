@@ -161,6 +161,7 @@
 
       out[["loadings"]] <- tmp_out$lambda
       out[["residuals"]] <- tmp_out$psi
+      out[["factor_var"]] <- tmp_out$phi
     }
 
     if (options[["disableSampleSave"]])

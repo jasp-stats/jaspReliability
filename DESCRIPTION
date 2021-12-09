@@ -21,6 +21,6 @@ Imports:
   psych,
   lme4
 Remotes:
-  juliuspf/Bayesrel@5b76903cc4f5511c5214fe65303c6e079b738819,
+  juliuspf/Bayesrel@68156bc9427f6e4545ee340d291d4cada729df30,
   jasp-stats/jaspBase,
   jasp-stats/jaspGraphs

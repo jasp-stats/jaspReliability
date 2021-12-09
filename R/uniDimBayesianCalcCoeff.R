@@ -669,7 +669,9 @@
     # cdat <- .rescale(cov(dataset), n) # rescale to n, not n-1
     dataset <- scale(dataset, scale = FALSE)
     cdat <- cov(dataset, use = model[["use.cases"]])
-    implieds <- .implCovs(model[["singleFactor"]][["loadings"]], model[["singleFactor"]][["residuals"]])
+    implieds <- .implCovs(model[["singleFactor"]][["loadings"]],
+                          model[["singleFactor"]][["residuals"]],
+                          model[["singleFactor"]][["factor_var"]])
 
     ### Chisqs ###
     LL1 <- sum(.dmultinorm(dataset, cdat)) # loglikelihood saturated model

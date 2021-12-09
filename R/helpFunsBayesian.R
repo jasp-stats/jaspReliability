@@ -149,12 +149,12 @@
   return(out)
 }
 
-.implCovs <- function(ll, ee, callback = function(){}) {
+.implCovs <- function(ll, ee, pp, callback = function(){}) {
   ds <- dim(ll)
   out <- array(0, c(ds[1], ds[2], ds[3], ds[3]))
   for (i in seq_len(ds[1])) {
     for (j in seq_len(ds[2])) {
-      out[i, j, , ] <- ll[i, j, ] %*% t(ll[i, j, ]) + diag(ee[i, j, ])
+      out[i, j, , ] <- ll[i, j, ] %*% t(pp[i, j]) %*% t(ll[i, j, ]) + diag(ee[i, j, ])
       callback()
     }
   }
@@ -187,9 +187,6 @@
   return(rmsea)
 }
 
-.rescale <- function(cc, n) {
-  return(cc * ((n - 1) / n))
-}
 
 # borrowed that from mnormt package
 .dmultinorm <- function(x, varcov, mm = 0) {
