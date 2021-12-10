@@ -80,7 +80,7 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
       allKappaData <- out_kappa[2:(nPairs + 1)]
       allPairStrings <- sub(" ", " - ", names(out_kappa[2:(nPairs + 1)]))
     }
-    
+
     #Extract Kappas and CIs
     allKappas <- c()
     allLowerBounds <- c()
@@ -92,16 +92,17 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
       allKappas <- c(allKappas, kappaData[k, 2])
       allLowerBounds <- c(allLowerBounds, kappaData[k, 1])
       allUpperBounds <- c(allUpperBounds, kappaData[k, 3])
+      averageKappa <- ifelse(weighted, out_kappa$av.wt, out_kappa$av.kappa)
     }
     
-    tableData <- list("ratings" = allPairStrings,
-                      "cKappa" = allKappas)
+    tableData <- list("ratings" = c("Average Kappa", allPairStrings),
+                      "cKappa" = c(averageKappa, allKappas))
     
     if (options[["kappaIntervalOn"]]) {
       jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI for Kappa", formattedCIPercent))
       jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI for Kappa", formattedCIPercent))
-      tableData[["CIL"]] <- allLowerBounds
-      tableData[["CIU"]] <- allUpperBounds
+      tableData[["CIL"]] <- c(NA, allLowerBounds)
+      tableData[["CIU"]] <- c(NA, allUpperBounds)
     }
     
     
@@ -140,26 +141,42 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
     drop0trailing = TRUE
   )
   
-  
-  # if (options[["kappaIntervalOn"]]) {
-  #   jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI for Kappa", formattedCIPercent))
-  #   jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI for Kappa", formattedCIPercent))
-  # }
-  
   if (ready) {
     #calculate Fleiss' Kappa
-    allKappaData <- irr::kappam.fleiss(dataset, detail = TRUE)
+    allKappaData <- .fleissKappaMod(dataset, detail = TRUE)
     overallKappa <- allKappaData$value
     categoryKappas <- allKappaData$detail[, 1]
+    overallSE <- allKappaData$se
+    categorySE <- allKappaData$se_cat
+    alpha <- 1 - options[["kappaConfidenceIntervalValue"]]
     
-    categories <- sort(unique(unlist(dataset)))
+    # for nominal text data we want the rating text to be displayed:
+    # if the transformation to numeric goes wrong:
+    if (anyNA(as.numeric(as.character(unique(unlist(dataset)))))) {
+      categories <- sort(unique(unlist(dataset)))
+    } else { # if data is ordinal (can be transformed to numeric)
+      categories <- sort(as.numeric(as.character(unique(unlist(dataset)))))
+    }
     ratings <- c("Overall", as.character(categories))
+    # when the data was read with columns as factors the kappa function
+    # would not order the categories numerically, this is a fix
+    categoryKappas <- categoryKappas[as.character(categories)]
     
-    jaspTable$setData(list("ratings" = ratings,
-                           "fKappa" = c(overallKappa, categoryKappas)))
+    tableData <- list("ratings" = ratings,
+                      "fKappa" = c(overallKappa, categoryKappas))
+    if (options[["kappaIntervalOn"]]) {
+      overallCI <- overallKappa + c(-1,1)*qnorm(1 - alpha/2) * overallSE 
+      categoryCIL <- categoryKappas - qnorm(1 - alpha/2) * categorySE
+      categoryCIU <- categoryKappas + qnorm(1 - alpha/2) * categorySE
+      jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI for Kappa", formattedCIPercent))
+      jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI for Kappa", formattedCIPercent))
+      tableData[["CIL"]] <- c(overallCI[1], categoryCIL)
+      tableData[["CIU"]] <- c(overallCI[2], categoryCIU)
+      
+      jaspTable$addFootnote(gettext('Confidence intervals are asymptotic.'))
+    }
     
-    # "CIL"    = c(overallKappa, categoryKappas),
-    # "CIU"    = c(overallKappa, categoryKappas))
+    jaspTable$setData(tableData)
     
     jaspTable$addFootnote(gettextf('%i subjects/items and %i raters/measurements.', nrow(dataset), ncol(dataset)))
   }
