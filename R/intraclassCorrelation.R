@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-IntraclassCorrelation <- function(jaspResults, dataset, options) {
+intraclassCorrelation <- function(jaspResults, dataset, options) {
 
   dataset <- .intraclassCorrelationReadData(dataset, options)
 

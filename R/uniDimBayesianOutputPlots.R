@@ -32,27 +32,25 @@
 
   if (options[["plotPosterior"]] && is.null(model[["empty"]])) {
     n.item <- model[["k"]]
-    if (n.item < 3 || n.item > 50) {
-      noPriorSaved <- TRUE
-    } else {
-      priors <- Bayesrel:::priors[[as.character(n.item)]]
-      # the prior names dont match the model names, thus rename the priors in their original order
-      names(priors) <- c("alphaScale", "lambda2Scale", "lambda6Scale", "glbScale", "omegaScale")
-      noPriorSaved <- FALSE
-    }
-
 
     for (j in seq_along(idxSelected)) {
       i <- idxSelected[j]
       nm <- names(idxSelected[j])
 
       if (is.null(plotContainer[[nmsObjsNoGreek[i]]])) {
-        if (noPriorSaved) {
-          startProgressbar(4e3)
-          prior <- .samplePrior(n.item, nm, progressbarTick)
+        if (options[["dispPrior"]]) {
+
+          if (nm == "omegaScale") {
+            startProgressbar(2e3)
+          } else {
+            startProgressbar(4e3)
+          }
+          prior <- .samplePrior(n.item, nm, progressbarTick, options[["iwScale"]], options[["iwDf"]],
+                                options[["igShape"]], options[["igScale"]], options[["loadMean"]])
         } else {
-          prior <- priors[[nm]]
+          prior <- NULL
         }
+
         p <- .makeSinglePosteriorPlot(model[[nm]], model[["scaleResults"]][["cred"]][[nm]], nmsLabs[[i]],
                                       options[["fixXRange"]], shadePlots,
                                       options[["dispPrior"]], prior)
@@ -63,7 +61,7 @@
 
       }
     }
-    plotContainer$position <- 4
+    plotContainer$position <- 6
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["plotContainer"]] <- plotContainer
   }
@@ -203,6 +201,7 @@
           prevNumber <- which(names(model) == nm) - 1
           name <- unlist(strsplit(nm, "Item"))
           coefPos <- grep(name, names(model[["scaleResults"]][["est"]]))
+
           p <- .makeIfItemPlot(model[[nm]], model[[prevNumber]],
                                model[["itemResults"]][["est"]][[nm]],
                                model[["scaleResults"]][["est"]][[coefPos]],
@@ -220,7 +219,7 @@
 
       }
     }
-    plotContainerItem$position <- 5
+    plotContainerItem$position <- 7
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["plotContainerItem"]] <- plotContainerItem
   }
@@ -310,15 +309,17 @@
 
   if (options[["dispPPC"]] && options[["omegaScale"]] && is.null(model[["empty"]])) {
 
-    ll <- model[["omegaScale"]][["loadings"]]
-    rr <- model[["omegaScale"]][["residuals"]]
+    ll <- apply(model[["singleFactor"]][["loadings"]], 3, as.vector)
+    rr <- apply(model[["singleFactor"]][["residuals"]], 3, as.vector)
+    phi <- c(model[["singleFactor"]][["factor_var"]])
+
     cobs <- model[["data_cov"]]
 
     k <- ncol(cobs)
     nsamp <- nrow(ll)
     ee_impl <- matrix(0, nsamp, k)
     for (i in seq_len(nsamp)) {
-      ctmp <- ll[i, ] %*% t(ll[i, ]) + diag(rr[i, ])
+      ctmp <- ll[i, ] %*% t(phi[i]) %*% t(ll[i, ]) + diag(rr[i, ])
       dtmp <- MASS::mvrnorm(model[["n"]], rep(0, k), ctmp)
       ee_impl[i, ] <- eigen(cov(dtmp), only.values = TRUE)$values
     }
@@ -342,9 +343,9 @@
     g <- jaspGraphs::themeJasp(g)
 
     plot <- createJaspPlot(plot = g, title = "Posterior Predictive Check Omega", width = 350)
-    plot$dependOn(options = c("dispPPC", "omegaScale"))
+    plot$dependOn(options = c("dispPPC", "omegaScale", "stdCoeffs"))
 
-    plot$position <- 6
+    plot$position <- 8
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["omegaPPC"]] <- plot
   }
@@ -387,7 +388,7 @@
       }
     }
 
-    plotContainerTP$position <- 7
+    plotContainerTP$position <- 9
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["plotContainerTP"]] <- plotContainerTP
 

@@ -32,6 +32,7 @@ Form
 			name:			"variables"
 			title:			qsTr("Variables")
 			allowedColumns:	["scale", "ordinal"]
+			id:				vars
 		}
 	}
 
@@ -56,14 +57,6 @@ Form
 				name:		"omegaScale"
 				label:		qsTr("McDonald's ω")
 				checked:	true
-
-				CheckBox
-				{
-					name:		"dispPPC"
-					label:		qsTr("Posterior predictive check");
-					enabled:	omega.checked
-				}
-
 			}
 
 			CheckBox
@@ -362,24 +355,18 @@ Form
 		{
 			title: qsTr("Samples")
 
-			RowLayout
+			CheckBox
 			{
-				CheckBox
-				{
-					name:				"disableSampleSave"
-					label:				qsTr("Disable saving samples")
-					checked:			false
-				}
-				HelpButton
-				{
-					toolTip: 						qsTr("Click to learn more about saving the samples.")
-					helpPage:						"toolTip/sampleSavingBayes"
-				}
+				name:				"disableSampleSave"
+				label:				qsTr("Disable saving samples")
+				checked:			false
 			}
+
 		}
-
-
 	}
+
+
+
 
 	Section
 	{
@@ -393,18 +380,169 @@ Form
 		}
 	}
 
-
 	Section
 	{
-		title: qsTr("Missing Data Handling")
-
-		RadioButtonGroup
+		title: qsTr("Priors")
+		Group
 		{
-			title: 	qsTr("Missing Values")
-			name: 	"missingValues"
+			title: qsTr("CTT-Coefficients (α, λ2, λ6, glb)")
 
-			RadioButton { value: "excludeCasesPairwise"; label: qsTr("Exclude cases pairwise"); checked: true}
-			RadioButton { value: "excludeCasesListwise"; label: qsTr("Exclude cases listwise")}
+			FormulaField
+			{
+				name:			"iwScale"
+				label:			qsTr("Inverse Wishart scale")
+				defaultValue:	"1e-10"
+				min:			0
+				max:			100
+				fieldWidth: 	40
+			}
+			DoubleField
+			{
+				name:			"iwDf"
+				label:			qsTr("Inverse Wishart df")
+				defaultValue:	vars.count
+				min:			vars.count
+				max:			vars.count + 100
+				fieldWidth: 	40
+			}
+
 		}
+		Group
+		{
+			title: qsTr("McDonald's ω")
+
+			RowLayout
+			{
+				Label
+				{	text: qsTr("Inverse gamma:")}
+
+				IntegerField
+				{
+					name:			"igShape"
+					label:			qsTr("shape")
+					defaultValue:	2
+					min:			0
+					max:			100
+					fieldWidth: 	40
+				}
+
+
+				IntegerField
+				{
+					name:			"igScale"
+					label:			qsTr("scale")
+					defaultValue:	1
+					min:			0
+					max:			100
+					fieldWidth: 	40
+				}
+			}
+			RowLayout
+			{
+				Label
+				{	text: qsTr("Normal:")}
+
+				DoubleField
+				{
+					name:			"loadMean"
+					label:			qsTr("mean")
+					defaultValue:	0
+					min:			-10
+					max:			10
+					fieldWidth: 	40
+				}
+			}
+
+
+		}
+	}
+	Section
+	{
+		title: qsTr("Advanced Options")
+
+		Group
+		{
+			title: qsTr("Missing Values")
+			RadioButtonGroup
+			{
+				title: 	qsTr("")
+				name: 	"missingValues"
+
+				RadioButton { value: "excludeCasesPairwise"; label: qsTr("Bayesian imputation"); checked: true}
+				RadioButton { value: "excludeCasesListwise"; label: qsTr("Exclude cases listwise")}
+			}
+		}
+
+		Group
+		{
+			title: qsTr("McDonald's ω Estimation")
+			enabled: omega.checked
+			CheckBox
+			{
+				name:		"dispPPC"
+				label:		qsTr("Posterior predictive check");
+			}
+			CheckBox
+			{
+				name:		"fitMeasures"
+				label:		qsTr("Fit measures");
+
+				DoubleField
+				{
+					name:			"fitCutoffSat"
+					label:			qsTr("p(RMSEA <")
+					defaultValue:	.08
+					min:			0
+					max:			1
+					fieldWidth: 	40
+					afterLabel:		qsTr(")")
+				}
+				DoubleField
+				{
+					name:			"fitCutoffNull"
+					label:			qsTr("p(CFI/TLI >")
+					defaultValue:	.9
+					min:			0
+					max:			1
+					fieldWidth: 	40
+					afterLabel:		qsTr(")")
+				}
+			}
+			CheckBox
+			{
+				name:		"dispLoadings"
+				label:		qsTr("Standardized factor loadings");
+			}
+		}
+
+		Group
+		{
+			title: qsTr("")
+
+			RadioButtonGroup
+			{
+				title: qsTr("Coefficients")
+				name: "stdCoeffs"
+
+				RadioButton{ value: "unstand"; label: qsTr("Unstandardized"); checked: true }
+				RadioButton{ value: "stand"; label: qsTr("Standardized");
+				}
+
+			}
+		}
+		Group
+		{
+			title: qsTr("")
+
+			RadioButtonGroup
+			{
+				name: "pointEst"
+				title: qsTr("Posterior Point Estimate")
+				RadioButton{ value: "mean"; label: qsTr("Mean"); checked: true }
+				RadioButton{ value: "median"; label: qsTr("Median") }
+			}
+		}
+
+
 	}
 }

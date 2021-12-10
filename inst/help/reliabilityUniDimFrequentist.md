@@ -4,6 +4,7 @@ Frequentist Unidimensional Reliability Analysis
 The frequentist unidimensional reliability analysis allows the user to test the scale's ability to consistently measure a unidimensional construct. In other words the analysis indicates the amount of error captured in the mesaurement.
 
 ## Input
+---
 - All columns (variables/items) of the dataset 
 
 ### Variables Box
@@ -54,7 +55,7 @@ The number of times bootstrapped data sets are created and statistics are calcul
 		- Bootstrapped interval: CI from bootstrapped CFA
 - PFA: The single factor model is fit in a principal factor analysis. 
 	
- ### Cronbach's alpha Estimation: 
+### Cronbach's alpha Estimation: 
 - Unstandardized: Cronbach's alpha is calculated from the data covariance matrix
 - Standardized: Cronbach's alpha is calculated from the data correlation matrix
 - Interval: 
@@ -64,6 +65,9 @@ The number of times bootstrapped data sets are created and statistics are calcul
 ### Repeatability
 When bootstrapping is involved, set a seed, so that the background calculations in R yield equal results for equal seeds
 
+### Samples
+- Disable the saving of bootstrap samples:
+In case you want to save space for your output file, you can check this box. Beware that this will also lead to a loss in speed for the analysis. This happens because some samples inside the reliability module are precomputed and stored, so that the analysis can move forward in a much faster way. However, this also results in an increased size of the output object, and if you decide to save your analysis the resulting file will contain these samples. If you decide to run the analysis with a large number of bootstrap samples you might want to check that box if you do not want an increased file size for your output. 
 
 ## Output 
 --- 
@@ -92,14 +96,14 @@ When bootstrapping is involved, set a seed, so that the background calculations 
 - SRMR: standardized root mean square residual, a value close to 0 is desired 
 
 ## References
--------
+---
 
-- Bonett, D. G., & Wright, T. A. (2015). Cronbach's alpha reliability: Interval estimation, hypothesis testing, and sample size planning. *Journal of Organizational Behavior, 36*(1), 3-15. doi: 10.1002/job.1960
-- Cronbach, L. J. (1951). Coefficient alpha and the internal structure of tests. *Psychometrika, 16*(3), 297–334. doi: 10.1007/BF02310555
-- Guttman, L. (1945). A basis for analyzing test-retest reliability. *Psychometrika, 10*(4), 255–282. doi: 10.1007/BF02288892
-- McDonald, R. P. (2013). *Test theory: A unified treatment*. New York, NJ, US: Psychology Press. doi: 10.4324/9781410601087
-- Rencher, A. C.  (2002). *Methods of multivariate analysis*. New York, NY, USA: John Wiley & Sons, Inc.  doi:  10.1002/0471271357
-- Woodhouse, B., & Jackson, P. H. (1977). Lower bounds for the reliability of the total score on a test composed of non-homogeneous items:  II: A search procedure to locate the greatest lower bound. *Psychometrika, 42*(4), 579–591. doi: 10.1007/bf02295980
+- Bonett, D. G., & Wright, T. A. (2015). Cronbach's alpha reliability: Interval estimation, hypothesis testing, and sample size planning. *Journal of Organizational Behavior, 36*(1), 3-15. https://doi.org/10.1002/job.1960
+- Cronbach, L. J. (1951). Coefficient alpha and the internal structure of tests. *Psychometrika, 16*(3), 297–334. https://doi.org/10.1007/BF02310555
+- Guttman, L. (1945). A basis for analyzing test-retest reliability. *Psychometrika, 10*(4), 255–282. https://doi.org/10.1007/BF02288892
+- McDonald, R. P. (2013). *Test theory: A unified treatment*. New York, NJ, US: Psychology Press. https://doi.org/10.4324/9781410601087
+- Rencher, A. C.  (2002). *Methods of multivariate analysis*. New York, NY, USA: John Wiley & Sons, Inc.  https://doi.org/10.1002/0471271357
+- Woodhouse, B., & Jackson, P. H. (1977). Lower bounds for the reliability of the total score on a test composed of non-homogeneous items:  II: A search procedure to locate the greatest lower bound. *Psychometrika, 42*(4), 579–591. https://doi.org/10.1007/bf02295980
 
 ## R Packages
 ---
@@ -108,4 +112,4 @@ When bootstrapping is involved, set a seed, so that the background calculations 
 - psych
 
 ## Example 
-- For an example go to `Open` --> `Data Library` --> `Descriptives` --> `Fear of Statistics`. 
+- For an example go to `Open` --> `Data Library` --> `13. Reliability` --> `Fear of Statistics`. 

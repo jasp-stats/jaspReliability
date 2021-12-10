@@ -12,19 +12,17 @@
 
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
 
-  scaleTable$position <- 1
-  stateContainer <- .getStateContainerB(jaspResults)
-  stateContainer[["scaleTable"]] <- scaleTable
-
   interval <- gettextf("%s%% CI",
                        format(100 * options[["credibleIntervalValueScale"]], digits = 3, drop0trailing = TRUE))
   intervalLow <- gettextf("%s lower bound", interval)
   intervalUp <- gettextf("%s upper bound", interval)
 
+  pointEst <- gettextf("Posterior %s", options[["pointEst"]])
+
   if (options[["rHat"]]) {
-    allData <- data.frame(estimate = c("Posterior mean", intervalLow, intervalUp, "R-hat"))
+    allData <- data.frame(estimate = c(pointEst, intervalLow, intervalUp, "R-hat"))
   } else {
-    allData <- data.frame(estimate = c("Posterior mean", intervalLow, intervalUp))
+    allData <- data.frame(estimate = c(pointEst, intervalLow, intervalUp))
   }
 
   derivedOptions <- model[["derivedOptions"]]
@@ -41,6 +39,9 @@
     if (model[["footnote"]] != "") {
       scaleTable$addFootnote(model[["footnote"]])
     }
+    scaleTable$position <- 1
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["scaleTable"]] <- scaleTable
     return()
   }
 
@@ -64,7 +65,9 @@
     scaleTable$addFootnote(model[["footnote"]])
   }
 
-
+  scaleTable$position <- 1
+  stateContainer <- .getStateContainerB(jaspResults)
+  stateContainer[["scaleTable"]] <- scaleTable
 
   return()
 }
@@ -106,19 +109,20 @@
   if (!is.null(unlist(options[["reverseScaledItems"]])))
     footnote <- .addFootnoteReverseScaledItems(options)
 
+  pointEst <- gettextf("Posterior %s", options[["pointEst"]])
 
   fewItemProblem <- FALSE
   for (i in idxSelected) {
     if (estimators[i] %in% coefficients) {
       if (estimators[i] == "Item-rest correlation") { # no item deleted for item rest cor
-        itemTable$addColumnInfo(name = paste0("postMean", i), title = gettext("Posterior Mean"), type = "number",
+        itemTable$addColumnInfo(name = paste0("postMean", i), title = pointEst, type = "number",
                                 overtitle = gettext("Item-rest correlation"))
         itemTable$addColumnInfo(name = paste0("lower", i), title = gettextf("Lower %s%% CI", cred), type = "number",
                                 overtitle = gettext("Item-rest correlation"))
         itemTable$addColumnInfo(name = paste0("upper", i), title = gettextf("Upper %s%% CI", cred), type = "number",
                                 overtitle = gettext("Item-rest correlation"))
       } else {
-        itemTable$addColumnInfo(name = paste0("postMean", i), title = gettext("Posterior Mean"), type = "number",
+        itemTable$addColumnInfo(name = paste0("postMean", i), title = pointEst, type = "number",
                                 overtitle = overTitles[i])
         itemTable$addColumnInfo(name = paste0("lower", i), title = gettextf("Lower %s%% CI", cred), type = "number",
                                 overtitle = overTitles[i])
@@ -162,6 +166,10 @@
     itemTable$addFootnote(footnote)
   }
 
+  itemTable$position <- 2
+  stateContainer <- .getStateContainerB(jaspResults)
+  stateContainer[["itemTable"]] <- itemTable
+
   return()
 }
 
@@ -199,37 +207,30 @@
   if (options[["probTable"]] && is.null(model[["empty"]])) {
 
     n.item <- model[["k"]]
-    if (n.item < 3 || n.item > 50) {
-      noPriorSaved <- TRUE
-    } else {
-      priors <- Bayesrel:::priors[[as.character(n.item)]]
-      # the prior names dont match the model names, thus rename the priors in their original order
-      names(priors) <- c("alphaScale", "lambda2Scale", "lambda6Scale", "glbScale", "omegaScale")
-      noPriorSaved <- FALSE
-    }
 
     end <- 512
     xx <- seq(0, 1, length.out = 512)
     poslow <- end - sum(xx > low)
     poshigh <- end - sum(xx > high)
-    # since the priors are only available in density form, the prior probability for the estimator being larger than
-    # a cutoff is given by calculating the relative probability of the density from the cutoff to 1.
-    # check this with R package
+
     probsPost <- numeric(sum(selected))
     probsPrior <- numeric(sum(selected))
 
     for (i in seq_len(length(idxSelected))) {
       nm <- names(idxSelected[i])
-      samp_tmp <- as.vector(model[[nm]][["samp"]])
-      probsPost[i] <- mean(samp_tmp > low) -
-        mean(samp_tmp > high)
 
-      if (noPriorSaved) {
-        startProgressbar(4e3)
-        prior <- .samplePrior(n.item, nm, progressbarTick)
+      samp_tmp <- as.vector(model[[nm]][["samp"]])
+      probsPost[i] <- mean(samp_tmp > low) - mean(samp_tmp > high)
+
+      if (nm == "omegaScale") {
+        startProgressbar(2e3)
       } else {
-        prior <- priors[[nm]]
+        startProgressbar(4e3)
       }
+
+      prior <- .samplePrior(n.item, nm, progressbarTick, options[["iwScale"]], options[["iwDf"]],
+                            options[["igShape"]], options[["igScale"]], options[["loadMean"]])
+
       probsPrior[i] <- sum(prior[["y"]][poslow:end]) / sum(prior[["y"]]) -
         sum(prior[["y"]][poshigh:end]) / sum(prior[["y"]])
 
@@ -249,3 +250,80 @@
 
   return()
 }
+
+
+.BayesianFitMeasuresTable <- function(jaspResults, model, options) {
+
+  if (!is.null(.getStateContainerB(jaspResults)[["fitTable"]]$object))
+    return()
+
+  fitTable <- createJaspTable(gettextf("Fit Measures for the Single-Factor Model"))
+
+  fitTable$dependOn(options = c("omegaScale", "fitMeasures", "fitCutoffSat", "fitCutoffNull", "pointEst"))
+
+  cred <- format(100 * options[["credibleIntervalValueItem"]], digits = 3, drop0trailing = TRUE)
+
+  fitTable$addColumnInfo(name = "measure", title = gettext("Fit measure"), type = "string")
+  fitTable$addColumnInfo(name = "pointEst", title = gettext("Point estimate"), type = "number")
+  fitTable$addColumnInfo(name = "cutoff", title = gettext("Relative to cutoff"), type = "number")
+
+
+  if (options[["omegaScale"]] && options[["fitMeasures"]] && is.null(model[["empty"]])) {
+
+    pointEsts <- sapply(model[["fitMeasures"]], .getPointEstFun(options[["pointEst"]]))
+
+    cutoffs_saturated <- sapply(model[["fitMeasures"]][2], function(x) mean(x < options[["fitCutoffSat"]]))
+    cutoffs_null <- sapply(model[["fitMeasures"]][-(1:2)], function(x) mean(x > options[["fitCutoffNull"]]))
+
+    cutoffs <- c(NA_real_, cutoffs_saturated, cutoffs_null)
+
+    df <- data.frame(measure = names(model[["fitMeasures"]]), pointEst = pointEsts,
+                     cutoff = cutoffs)
+    fitTable$setData(df)
+
+    fitTable$addFootnote(gettext("'Relative to cutoff'-column denotes the probability that the B-RMSEA is smaller than
+                         the corresponding cutoff and the probabilities that the B-CFI/TLI are larger than the
+                         corresponding cutoff."))
+
+    fitTable$position <- 4
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["fitTable"]] <- fitTable
+  }
+
+  return()
+}
+
+
+
+.BayesianLoadingsTable <- function(jaspResults, model, options) {
+
+  if (!is.null(.getStateContainerB(jaspResults)[["loadTable"]]$object))
+    return()
+
+  loadTable <- createJaspTable(gettext("Standardized Loadings of the Single-Factor Model"))
+
+  loadTable$dependOn(options = c("omegaScale", "dispLoadings"))
+
+  loadTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
+  loadTable$addColumnInfo(name = "loadings", title = gettext("Standardized loading"), type = "number")
+
+  derivedOptions <- model[["derivedOptions"]]
+
+  if (options[["omegaScale"]] && options[["dispLoadings"]] && is.null(model[["empty"]])) {
+
+
+
+    df <- data.frame(
+      variable = options[["variables"]],
+      loadings = model[["scaleResults"]][["loadingsStd"]])
+    loadTable$setData(df)
+
+    loadTable$position <- 5
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["loadTable"]] <- loadTable
+  }
+
+  return()
+}
+
+
