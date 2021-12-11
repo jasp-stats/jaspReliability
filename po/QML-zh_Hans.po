@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-12-06 05:51+0000\n"
+"Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"jasp/jaspreliability-qml/zh_Hans/>\n"
+"Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.10-dev\n"
 "X-Language: zh_Hans\n"
 "X-Qt-Contexts: true\n"
 
@@ -73,227 +79,224 @@ msgstr "分析"
 
 msgctxt "uniDimBayesian|"
 msgid "Scale Statistics"
-msgstr ""
+msgstr "尺度统计量"
 
 msgctxt "uniDimBayesian|"
 msgid "Credible interval"
-msgstr ""
+msgstr "可信区间"
 
 msgctxt "uniDimBayesian|"
 msgid "McDonald's ω"
-msgstr ""
+msgstr "McDonald's ω"
 
 msgctxt "uniDimBayesian|"
 msgid "Posterior predictive check"
-msgstr ""
+msgstr "后验预测检验"
 
 msgctxt "uniDimBayesian|"
 msgid "Cronbach's α"
-msgstr ""
+msgstr "Cronbach's α"
 
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ2"
-msgstr ""
+msgstr "Guttman's λ2"
 
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ6"
-msgstr ""
+msgstr "Guttman's λ6"
 
 msgctxt "uniDimBayesian|"
 msgid "Greatest lower bound"
-msgstr ""
+msgstr "最大下界"
 
 msgctxt "uniDimBayesian|"
 msgid "Average interitem correlation"
-msgstr ""
+msgstr "平均项目间相关性"
 
 msgctxt "uniDimBayesian|"
 msgid "Mean"
-msgstr ""
+msgstr "均值"
 
 msgctxt "uniDimBayesian|"
 msgid "SD"
-msgstr ""
+msgstr "标准差"
 
 msgctxt "uniDimBayesian|"
 msgid "of participants' sum scores"
-msgstr ""
+msgstr "参与者的总分"
 
 msgctxt "uniDimBayesian|"
 msgid "of participants' mean scores"
-msgstr ""
+msgstr "参与者的平均分"
 
 msgctxt "uniDimBayesian|"
 msgid "Individual Item Statistics"
-msgstr ""
+msgstr "个别项目统计量"
 
 msgctxt "uniDimBayesian|"
 msgid "McDonald's ω  (if item dropped)"
-msgstr ""
+msgstr "McDonald's ω  (如果排除此项目后)"
 
 msgctxt "uniDimBayesian|"
 msgid "Cronbach's α (if item dropped)"
-msgstr ""
+msgstr "Cronbach's α (如果排除此项目后)"
 
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ2 (if item dropped)"
-msgstr ""
+msgstr "Guttman's λ2 (如果排除此项目后)"
 
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ6 (if item dropped)"
-msgstr ""
+msgstr "Guttman's λ6 (如果排除此项目后)"
 
 msgctxt "uniDimBayesian|"
 msgid "Greatest lower bound (if item dropped)"
-msgstr ""
+msgstr "Greatest lower bound (如果排除此项目后)"
 
 msgctxt "uniDimBayesian|"
 msgid "If item dropped plot"
-msgstr ""
+msgstr "当排除此项目后的图"
 
 msgctxt "uniDimBayesian|"
 msgid "Order items"
-msgstr ""
+msgstr "项目排序"
 
 msgctxt "uniDimBayesian|"
 msgid "Order items by mean"
-msgstr ""
+msgstr "按均值排序项目"
 
 msgctxt "uniDimBayesian|"
 msgid "Order items by KL-divergence"
-msgstr ""
+msgstr "按 KL-divergence 排序项目"
 
 msgctxt "uniDimBayesian|"
 msgid "Order items by KS-distance"
-msgstr ""
+msgstr "按 KS-distance 排序项目"
 
 msgctxt "uniDimBayesian|"
 msgid "Item-rest correlation"
-msgstr ""
+msgstr "此项目与其余项目相关性"
 
 msgctxt "uniDimBayesian|"
 msgid "Standard deviation"
-msgstr ""
+msgstr "标准差"
 
 msgctxt "uniDimBayesian|"
 msgid "Plot Posteriors"
-msgstr ""
+msgstr "绘制后验图"
 
 msgctxt "uniDimBayesian|"
 msgid "Fix range to 0-1"
-msgstr ""
+msgstr "将范围固定为 0-1"
 
 msgctxt "uniDimBayesian|"
 msgid "Display Priors"
-msgstr ""
+msgstr "显示先验"
 
 msgctxt "uniDimBayesian|"
 msgid "Probability for:"
-msgstr ""
+msgstr "概率，当："
 
 msgctxt "uniDimBayesian|"
 msgid "< Reliability <"
-msgstr ""
+msgstr "< 信度 <"
 
 msgctxt "uniDimBayesian|"
 msgid "Shade posterior region in plot"
-msgstr ""
+msgstr "对绘图中后验区域进行着色"
 
 msgctxt "uniDimBayesian|"
 msgid "Convergence"
-msgstr ""
+msgstr "收敛"
 
 msgctxt "uniDimBayesian|"
 msgid "MCMC parameters"
-msgstr ""
+msgstr "MCMC 参数"
 
 msgctxt "uniDimBayesian|"
 msgid "No. samples"
-msgstr ""
+msgstr "样本数量"
 
 msgctxt "uniDimBayesian|"
 msgid "No. burnin samples"
-msgstr ""
+msgstr "样本丢弃(burnin)数量"
 
 msgctxt "uniDimBayesian|"
 msgid "Thinning"
-msgstr ""
+msgstr "细化(采样间隔)"
 
 msgctxt "uniDimBayesian|"
 msgid "No. chains"
-msgstr ""
+msgstr "链数(chain)"
 
 msgctxt "uniDimBayesian|"
 msgid "Diagnostics"
-msgstr ""
+msgstr "诊断"
 
 msgctxt "uniDimBayesian|"
 msgid "R-hat"
-msgstr ""
+msgstr "R-hat"
 
 msgctxt "uniDimBayesian|"
 msgid "Traceplots"
-msgstr ""
+msgstr "轨迹图(Traceplot)"
 
 msgctxt "uniDimBayesian|"
 msgid "Repeatability"
-msgstr ""
+msgstr "可重复性"
 
 msgctxt "uniDimBayesian|"
 msgid "Set seed"
-msgstr ""
+msgstr "设置种子"
 
 msgctxt "uniDimBayesian|"
 msgid "Samples"
-msgstr ""
+msgstr "样本"
 
 msgctxt "uniDimBayesian|"
 msgid "Disable saving samples"
-msgstr ""
+msgstr "禁用保存样本"
 
 msgctxt "uniDimBayesian|"
 msgid "Click to learn more about saving the samples."
-msgstr ""
+msgstr "点击了解更多有关保存样本的信息。"
 
 msgctxt "uniDimBayesian|"
 msgid "Reverse-Scaled Items"
-msgstr ""
+msgstr "反向度量的项目"
 
 msgctxt "uniDimBayesian|"
 msgid "Normal-Scaled Items"
-msgstr ""
+msgstr "正向度量的项目"
 
 msgctxt "uniDimBayesian|"
 msgid "Missing Data Handling"
-msgstr ""
+msgstr "缺失数据处理方式"
 
 msgctxt "uniDimBayesian|"
 msgid "Missing Values"
-msgstr ""
+msgstr "缺失值"
 
 msgctxt "uniDimBayesian|"
 msgid "Exclude cases pairwise"
-msgstr ""
+msgstr "成对排除个案"
 
 msgctxt "uniDimBayesian|"
 msgid "Exclude cases listwise"
-msgstr ""
+msgstr "按列表排除个案"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Variables"
 msgstr "变量"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Analysis"
 msgstr "分析"
 
 msgctxt "uniDimFrequentist|"
 msgid "Scale Statistics"
-msgstr ""
+msgstr "尺度统计量"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Confidence Interval"
 msgstr "置信区间"
@@ -316,159 +319,159 @@ msgstr ""
 
 msgctxt "uniDimFrequentist|"
 msgid "Greatest lower bound"
-msgstr ""
+msgstr "最大下界"
 
 msgctxt "uniDimFrequentist|"
 msgid "Average interitem correlation"
-msgstr ""
+msgstr "平均项目间相关性"
 
 msgctxt "uniDimFrequentist|"
 msgid "Mean"
-msgstr ""
+msgstr "均值"
 
 msgctxt "uniDimFrequentist|"
 msgid "SD"
-msgstr ""
+msgstr "标准差"
 
 msgctxt "uniDimFrequentist|"
 msgid "of participants' sum scores"
-msgstr ""
+msgstr "参与者的总分"
 
 msgctxt "uniDimFrequentist|"
 msgid "of participants' mean scores"
-msgstr ""
+msgstr "参与者的平均分"
 
 msgctxt "uniDimFrequentist|"
 msgid "Individual Item Statistics"
-msgstr ""
+msgstr "个别项目统计量"
 
 msgctxt "uniDimFrequentist|"
 msgid "McDonald's ω  (if item dropped)"
-msgstr ""
+msgstr "McDonald's ω  (如果排除此项目后)"
 
 msgctxt "uniDimFrequentist|"
 msgid "Cronbach's α (if item dropped)"
-msgstr ""
+msgstr "Cronbach's α (如果排除此项目后)"
 
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ2 (if item dropped)"
-msgstr ""
+msgstr "Guttman's λ2 (如果排除此项目后)"
 
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ6 (if item dropped)"
-msgstr ""
+msgstr "Guttman's λ6 (如果排除此项目后)"
 
 msgctxt "uniDimFrequentist|"
 msgid "Greatest lower bound (if item dropped)"
-msgstr ""
+msgstr "最大下界 (如果排除此项目后)"
 
 msgctxt "uniDimFrequentist|"
 msgid "Item-rest correlation"
-msgstr ""
+msgstr "此项目与其余项目相关性"
 
 msgctxt "uniDimFrequentist|"
 msgid "Standard deviation"
-msgstr ""
+msgstr "标准差"
 
 msgctxt "uniDimFrequentist|"
 msgid "Reverse-Scaled Items"
-msgstr ""
+msgstr "反向度量的项目"
 
 msgctxt "uniDimFrequentist|"
 msgid "Normal-Scaled Items"
-msgstr ""
+msgstr "正向度量的项目"
 
 msgctxt "uniDimFrequentist|"
 msgid "Advanced Options"
-msgstr ""
+msgstr "高级选项"
 
 msgctxt "uniDimFrequentist|"
 msgid "Missing Values"
-msgstr ""
+msgstr "缺失值处理方式"
 
 msgctxt "uniDimFrequentist|"
 msgid "Exclude cases pairwise"
-msgstr ""
+msgstr "成对排除个案"
 
 msgctxt "uniDimFrequentist|"
 msgid "Exclude cases listwise"
-msgstr ""
+msgstr "按列表排除案例"
 
 msgctxt "uniDimFrequentist|"
 msgid "Bootstrap"
-msgstr ""
+msgstr "Bootstrap 方法"
 
 msgctxt "uniDimFrequentist|"
 msgid "No. of bootstrap samples"
-msgstr ""
+msgstr "bootstrap 自助抽样数量"
 
 msgctxt "uniDimFrequentist|"
 msgid "Non-parametric bootstrap"
-msgstr ""
+msgstr "非参数 bootstrap"
 
 msgctxt "uniDimFrequentist|"
 msgid "Parametric bootstrap"
-msgstr ""
+msgstr "参数 bootstrap"
 
 msgctxt "uniDimFrequentist|"
 msgid "McDonald's ω Estimation"
-msgstr ""
+msgstr "McDonald's ω 估计"
 
 msgctxt "uniDimFrequentist|"
 msgid "CFA"
-msgstr ""
+msgstr "验证性因子分析 (CFA)"
 
 msgctxt "uniDimFrequentist|"
 msgid "Single factor model fit"
-msgstr ""
+msgstr "单因子模型拟合"
 
 msgctxt "uniDimFrequentist|"
 msgid "Interval"
-msgstr ""
+msgstr "区间"
 
 msgctxt "uniDimFrequentist|"
 msgid "Analytic interval"
-msgstr ""
+msgstr "分析区间"
 
 msgctxt "uniDimFrequentist|"
 msgid "Bootstrapped interval"
-msgstr ""
+msgstr "Bootstrap 区间"
 
 msgctxt "uniDimFrequentist|"
 msgid "PFA"
-msgstr ""
+msgstr "主因子分析（PFA）"
 
 msgctxt "uniDimFrequentist|"
 msgid "Cronbach's α Estimation"
-msgstr ""
+msgstr "Cronbach's α 估计"
 
 msgctxt "uniDimFrequentist|"
 msgid "Unstandardized"
-msgstr ""
+msgstr "未标准化的"
 
 msgctxt "uniDimFrequentist|"
 msgid "Standardized"
-msgstr ""
+msgstr "标准化的"
 
 msgctxt "uniDimFrequentist|"
 msgid "Repeatability"
-msgstr ""
+msgstr "可重复性"
 
 msgctxt "uniDimFrequentist|"
 msgid "Set seed"
-msgstr ""
+msgstr "设置种子(seed)"
 
 msgctxt "uniDimFrequentist|"
 msgid "Samples"
-msgstr ""
+msgstr "样本"
 
 msgctxt "uniDimFrequentist|"
 msgid "Disable saving samples"
-msgstr ""
+msgstr "禁用保存样本"
 
 msgctxt "uniDimFrequentist|"
 msgid "Click to learn more about saving the samples."
-msgstr ""
+msgstr "点击了解更多有关保存样本的信息。"
 
 msgctxt "uniDimBayesian|"
 msgid ""
