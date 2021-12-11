@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: jaspReliability 0.15.0\n"
-"POT-Creation-Date: 2021-08-28 03:30\n"
+"Project-Id-Version: jaspReliability 0.16.1\n"
+"POT-Creation-Date: 2021-12-11 03:31\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9,6 +9,9 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+
+msgid "getPointEstFun has no case for value:"
+msgstr ""
 
 msgid "Intraclass Correlation"
 msgstr ""
@@ -25,7 +28,7 @@ msgstr ""
 msgid "Upper %s%% CI"
 msgstr ""
 
-msgid "%s subjects and %s judges/measurements. ICC type as referenced by Shrout & Fleiss (1979)."
+msgid "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & Fleiss (1979)."
 msgstr ""
 
 msgid "Please select at least 2 columns"
@@ -43,7 +46,7 @@ msgstr ""
 msgid "sd"
 msgstr ""
 
-msgid "Sampling the posterior factor model for omega failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
+msgid "Sampling the posterior null model failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
 msgstr ""
 
 msgid "Posterior Plots"
@@ -91,6 +94,9 @@ msgstr ""
 msgid "%s upper bound"
 msgstr ""
 
+msgid "Posterior %s"
+msgstr ""
+
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr ""
 
@@ -98,9 +104,6 @@ msgid "Item"
 msgstr ""
 
 msgid "%s (if item dropped)"
-msgstr ""
-
-msgid "Posterior Mean"
 msgstr ""
 
 msgid "%s Please enter at least 3 variables for the if item dropped statistics."
@@ -124,6 +127,27 @@ msgstr ""
 msgid "Posterior"
 msgstr ""
 
+msgid "Fit Measures for the Single-Factor Model"
+msgstr ""
+
+msgid "Fit measure"
+msgstr ""
+
+msgid "Point estimate"
+msgstr ""
+
+msgid "Relative to cutoff"
+msgstr ""
+
+msgid "'Relative to cutoff'-column denotes the probability that the B-RMSEA is smaller than\n                         the corresponding cutoff and the probabilities that the B-CFI/TLI are larger than the\n                         corresponding cutoff."
+msgstr ""
+
+msgid "Standardized Loadings of the Single-Factor Model"
+msgstr ""
+
+msgid "Standardized loading"
+msgstr ""
+
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr ""
 
@@ -131,6 +155,9 @@ msgid "%s Of the observations, pairwise complete cases were used."
 msgstr ""
 
 msgid "Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
+msgstr ""
+
+msgid "Sampling the posterior factor model for omega failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
 msgstr ""
 
 msgid "Too few MCMC samples will remain after the removal of the burnin samples and thinning,\n                     please increase No.samples."
@@ -175,9 +202,6 @@ msgstr ""
 msgid "Frequentist Scale Reliability Statistics"
 msgstr ""
 
-msgid "Point estimate"
-msgstr ""
-
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr ""
 
@@ -185,9 +209,6 @@ msgid "If item dropped"
 msgstr ""
 
 msgid "Fit Measures of Single Factor Model Fit"
-msgstr ""
-
-msgid "Fit Measure"
 msgstr ""
 
 msgid "Value"

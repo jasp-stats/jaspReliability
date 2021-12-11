@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
-"POT-Creation-Date: 2021-08-28 03:30\n"
+"POT-Creation-Date: 2021-12-11 03:31\n"
 "PO-Revision-Date: 2021-10-31 14:35+0000\n"
 "Last-Translator: Changya Hu <changyahu@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -12,6 +12,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.9-dev\n"
+
+msgid "getPointEstFun has no case for value:"
+msgstr ""
 
 msgid "Intraclass Correlation"
 msgstr "組內相關"
@@ -28,7 +31,10 @@ msgstr "%s%% 信賴區間下界"
 msgid "Upper %s%% CI"
 msgstr "%s%% 信賴區間上界"
 
-msgid "%s subjects and %s judges/measurements. ICC type as referenced by Shrout & Fleiss (1979)."
+#, fuzzy
+msgid ""
+"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
+"Fleiss (1979)."
 msgstr "%s 被評者與 %s 評分者/測量。ICC類型請參見 Shrout & Fleiss (1979)。"
 
 msgid "Please select at least 2 columns"
@@ -46,7 +52,10 @@ msgstr "平均數"
 msgid "sd"
 msgstr "標準差"
 
-msgid "Sampling the posterior factor model for omega failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
+#, fuzzy
+msgid ""
+"Sampling the posterior null model failed. Try changing to 'Exclude cases "
+"listwise' in 'Advanced Options'"
 msgstr "無法抽樣事後模型之omega值。建議在'進階設定'中選擇'完全排除法'"
 
 msgid "Posterior Plots"
@@ -94,6 +103,10 @@ msgstr "%s 下界"
 msgid "%s upper bound"
 msgstr "%s 上界"
 
+#, fuzzy
+msgid "Posterior %s"
+msgstr "事後"
+
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr "貝氏個別題項信度統計數"
 
@@ -103,16 +116,18 @@ msgstr "題項"
 msgid "%s (if item dropped)"
 msgstr "%s (若刪除此題)"
 
-msgid "Posterior Mean"
-msgstr "事前平均數"
-
-msgid "%s Please enter at least 3 variables for the if item dropped statistics."
+msgid ""
+"%s Please enter at least 3 variables for the if item dropped statistics."
 msgstr "%s 若要計算此題刪除後的統計數，請至少選擇3個變項"
 
-msgid "The bounds you entered have been rearranged in increasing order to provide meaningful results."
+msgid ""
+"The bounds you entered have been rearranged in increasing order to provide "
+"meaningful results."
 msgstr "為提供有意義的結果，輸入界限已被調整"
 
-msgid "Probability that Reliability Statistic is Larger than %.2f and Smaller than %.2f"
+msgid ""
+"Probability that Reliability Statistic is Larger than %.2f and Smaller than "
+"%.2f"
 msgstr "信度統計數大於 %.2f 且小於 %.2f 之機率"
 
 msgid "Probability"
@@ -127,16 +142,58 @@ msgstr "事前"
 msgid "Posterior"
 msgstr "事後"
 
+#, fuzzy
+msgid "Fit Measures for the Single-Factor Model"
+msgstr "單一因子模式配適指標"
+
+#, fuzzy
+msgid "Fit measure"
+msgstr "配適指標"
+
+msgid "Point estimate"
+msgstr "點估計"
+
+msgid "Relative to cutoff"
+msgstr ""
+
+msgid ""
+"'Relative to cutoff'-column denotes the probability that the B-RMSEA is "
+"smaller than\n"
+"                         the corresponding cutoff and the probabilities that "
+"the B-CFI/TLI are larger than the\n"
+"                         corresponding cutoff."
+msgstr ""
+
+#, fuzzy
+msgid "Standardized Loadings of the Single-Factor Model"
+msgstr "單一因子模式配適指標"
+
+msgid "Standardized loading"
+msgstr ""
+
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr "從 %s 的觀察值中, 使用 %1.f 的完整資料"
 
 msgid "%s Of the observations, pairwise complete cases were used."
 msgstr "從 %s 的觀察值中，以配對完整的個案進行分析"
 
-msgid "Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
-msgstr "無法成功抽樣事後共變數矩陣中的以下數值[alpha, lambda2, lambda6, glb]。建議在'進階設定'中選擇'完全排除法'。"
+msgid ""
+"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
+"lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
+"Options'"
+msgstr ""
+"無法成功抽樣事後共變數矩陣中的以下數值[alpha, lambda2, lambda6, glb]。建議"
+"在'進階設定'中選擇'完全排除法'。"
 
-msgid "Too few MCMC samples will remain after the removal of the burnin samples and thinning,\n                     please increase No.samples."
+msgid ""
+"Sampling the posterior factor model for omega failed. Try changing to "
+"'Exclude cases listwise' in 'Advanced Options'"
+msgstr "無法抽樣事後模型之omega值。建議在'進階設定'中選擇'完全排除法'"
+
+msgid ""
+"Too few MCMC samples will remain after the removal of the burnin samples and "
+"thinning,\n"
+"                     please increase No.samples."
 msgstr ""
 "刪去刨除以及資料瘦身後，MCMC樣本數過少。,\n"
 "                     請增加樣本數。"
@@ -160,12 +217,18 @@ msgstr "因PFA失敗而未顯示Omega 題項"
 msgid "Lambda6 item dropped statistics failed."
 msgstr ""
 
-msgid "Omega calculation with CFA failed.\n                                                    Try changing to PFA in Advanced Options"
+msgid ""
+"Omega calculation with CFA failed.\n"
+"                                                    Try changing to PFA in "
+"Advanced Options"
 msgstr ""
 "無法以CFA計算Omega.\n"
 "                                                    建議在進階設定中改選'PFA'"
 
-msgid "Omega bootstrapped interval calculation with CFA failed.\n                                                            Try changing to PFA in 'Advanced Options'"
+msgid ""
+"Omega bootstrapped interval calculation with CFA failed.\n"
+"                                                            Try changing to "
+"PFA in 'Advanced Options'"
 msgstr ""
 "無法以CFA計算Omega 拔靴法信賴區間.\n"
 "                                                    建議在進階設定中改選'PFA'"
@@ -185,9 +248,6 @@ msgstr "無法計算Lambda6區間"
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "頻率派量表信度統計數"
 
-msgid "Point estimate"
-msgstr "點估計"
-
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr "頻率派個別題項信度統計數"
 
@@ -196,9 +256,6 @@ msgstr "若此題刪除"
 
 msgid "Fit Measures of Single Factor Model Fit"
 msgstr "單一因子模式配適指標"
-
-msgid "Fit Measure"
-msgstr "配適指標"
 
 msgid "Value"
 msgstr "值"
@@ -210,3 +267,6 @@ msgstr[0] "以下題項與量表為負相關：%s "
 msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "以下題項反向計分：%s "
+
+#~ msgid "Posterior Mean"
+#~ msgstr "事前平均數"

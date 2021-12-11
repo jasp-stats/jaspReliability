@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-08-28 03:30\n"
+"POT-Creation-Date: 2021-12-11 03:31\n"
 "PO-Revision-Date: 2021-10-18 09:32+0000\n"
 "Last-Translator: Koen Derks <koen-derks@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
@@ -13,6 +13,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
 "X-Generator: Weblate 4.9-dev\n"
+
+msgid "getPointEstFun has no case for value:"
+msgstr ""
 
 msgid "Intraclass Correlation"
 msgstr "Intraclass Correlatie"
@@ -29,8 +32,9 @@ msgstr "Onder %s%% BI"
 msgid "Upper %s%% CI"
 msgstr "Boven %s%% BI"
 
+#, fuzzy
 msgid ""
-"%s subjects and %s judges/measurements. ICC type as referenced by Shrout & "
+"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
 "Fleiss (1979)."
 msgstr ""
 "%s subjecten en %s beoordelaars/metingen. ICC-type zoals vermeld door Shrout "
@@ -51,9 +55,10 @@ msgstr "gemiddelde"
 msgid "sd"
 msgstr "sd"
 
+#, fuzzy
 msgid ""
-"Sampling the posterior factor model for omega failed. Try changing to "
-"'Exclude cases listwise' in 'Advanced Options'"
+"Sampling the posterior null model failed. Try changing to 'Exclude cases "
+"listwise' in 'Advanced Options'"
 msgstr ""
 "Steekproef van posterior factormodel voor omega mislukt. Probeer 'Exclude "
 "cases listwise' in te stellen in 'Advanced Options'"
@@ -103,6 +108,10 @@ msgstr "%s ondergrens"
 msgid "%s upper bound"
 msgstr "%s bovengrens"
 
+#, fuzzy
+msgid "Posterior %s"
+msgstr "Posterior"
+
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr "Bayesiaanse Individuele Item Validiteitsstatistieken"
 
@@ -111,9 +120,6 @@ msgstr "Item"
 
 msgid "%s (if item dropped)"
 msgstr "%s (als item wordt weggelaten)"
-
-msgid "Posterior Mean"
-msgstr "Posterior Gemiddelde"
 
 msgid ""
 "%s Please enter at least 3 variables for the if item dropped statistics."
@@ -147,6 +153,35 @@ msgstr "Prior"
 msgid "Posterior"
 msgstr "Posterior"
 
+#, fuzzy
+msgid "Fit Measures for the Single-Factor Model"
+msgstr "Pasmaat van Enkele Factor Model passing"
+
+#, fuzzy
+msgid "Fit measure"
+msgstr "Pasmaat"
+
+msgid "Point estimate"
+msgstr "Puntschatting"
+
+msgid "Relative to cutoff"
+msgstr ""
+
+msgid ""
+"'Relative to cutoff'-column denotes the probability that the B-RMSEA is "
+"smaller than\n"
+"                         the corresponding cutoff and the probabilities that "
+"the B-CFI/TLI are larger than the\n"
+"                         corresponding cutoff."
+msgstr ""
+
+#, fuzzy
+msgid "Standardized Loadings of the Single-Factor Model"
+msgstr "Pasmaat van Enkele Factor Model passing"
+
+msgid "Standardized loading"
+msgstr ""
+
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr "%s van de observaties, zijn %1.f volledige observaties gebruikt."
 
@@ -162,6 +197,13 @@ msgstr ""
 "Steekproef van de posterior-covariantiematrix voor een van [alpha, lambda2, "
 "lambda6, glb] mislukt. Probeer over te schakelen op 'Exclude cases listwise' "
 "in Voorkeuren>Geavanceerd"
+
+msgid ""
+"Sampling the posterior factor model for omega failed. Try changing to "
+"'Exclude cases listwise' in 'Advanced Options'"
+msgstr ""
+"Steekproef van posterior factormodel voor omega mislukt. Probeer 'Exclude "
+"cases listwise' in te stellen in 'Advanced Options'"
 
 msgid ""
 "Too few MCMC samples will remain after the removal of the burnin samples and "
@@ -223,9 +265,6 @@ msgstr "Lambda6 interval berekening mislukt."
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Frequentistische Schaal Validiteitsstatistieken"
 
-msgid "Point estimate"
-msgstr "Puntschatting"
-
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr "Frequentistische Individuele Item Validiteitsstatistieken"
 
@@ -234,9 +273,6 @@ msgstr "Als item wordt weggelaten"
 
 msgid "Fit Measures of Single Factor Model Fit"
 msgstr "Pasmaat van Enkele Factor Model passing"
-
-msgid "Fit Measure"
-msgstr "Pasmaat"
 
 msgid "Value"
 msgstr "Waarde"
@@ -250,6 +286,9 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "De volgende item is omgekeerd geschaald: %s. "
 msgstr[1] "De volgende items zijn omgekeerd geschaald: %s. "
+
+#~ msgid "Posterior Mean"
+#~ msgstr "Posterior Gemiddelde"
 
 #~ msgid "The covariance matrix of the data is not invertible"
 #~ msgstr "De covariantiematrix van de gegevens is niet inverteerbaar"

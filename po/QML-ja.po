@@ -7,470 +7,764 @@ msgstr ""
 "X-Language: ja\n"
 "X-Qt-Contexts: true\n"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:7
 msgctxt "Description|"
 msgid "Reliability"
 msgstr "信頼性"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:19
 msgctxt "Description|"
 msgid "Classical"
 msgstr "伝統的"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:32
 msgctxt "Description|"
 msgid "Intraclass Correlation"
 msgstr "級内相関"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:41
 msgctxt "Description|"
 msgid "Bayesian"
 msgstr "ベイジアン"
 
-msgctxt "IntraclassCorrelation|"
-msgid "Variables"
-msgstr "変数"
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "Variables"
+#~ msgstr "変数"
 
-msgctxt "Description|"
-msgid "Quantify the consistency of test scores"
-msgstr "テスト得点の一貫性を定量化する"
+#~ msgctxt "Description|"
+#~ msgid "Quantify the consistency of test scores"
+#~ msgstr "テスト得点の一貫性を定量化する"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:25
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:46
 msgctxt "Description|"
 msgid "Unidimensional Reliability"
 msgstr "一次元の信頼性"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:47
 msgctxt "Description|"
 msgid "Bayesian Unidimensional Reliability"
 msgstr "ベイジアン一次元信頼性"
 
-msgctxt "IntraclassCorrelation|"
-msgid "Each subject is rated by..."
-msgstr "各参加者は以下によって評価されます..."
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "Each subject is rated by..."
+#~ msgstr "各参加者は以下によって評価されます..."
 
-msgctxt "IntraclassCorrelation|"
-msgid "a different rater (randomly selected)"
-msgstr "別の評価者(無作為に選出)"
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "a different rater (randomly selected)"
+#~ msgstr "別の評価者(無作為に選出)"
 
-msgctxt "IntraclassCorrelation|"
-msgid "the same set of randomly selected raters/tests"
-msgstr "無作為に選ばれた評価者/テストの同じセット"
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "the same set of randomly selected raters/tests"
+#~ msgstr "無作為に選ばれた評価者/テストの同じセット"
 
-msgctxt "IntraclassCorrelation|"
-msgid "the same fixed set of raters/tests"
-msgstr "評価者/テストの同じ固定セット"
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "the same fixed set of raters/tests"
+#~ msgstr "評価者/テストの同じ固定セット"
 
-msgctxt "IntraclassCorrelation|"
-msgid "Ratings are averaged"
-msgstr "評価者は平均化されています"
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "Ratings are averaged"
+#~ msgstr "評価者は平均化されています"
 
-msgctxt "IntraclassCorrelation|"
-msgid "Confidence Interval"
-msgstr "信頼区間"
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "Confidence Interval"
+#~ msgstr "信頼区間"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:33
 msgctxt "uniDimBayesian|"
 msgid "Variables"
 msgstr "変数"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:41
 msgctxt "uniDimBayesian|"
 msgid "Analysis"
 msgstr "分析"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:45
 msgctxt "uniDimBayesian|"
 msgid "Scale Statistics"
 msgstr "尺度統計量"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:50
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:117
 msgctxt "uniDimBayesian|"
 msgid "Credible interval"
 msgstr "信用区間"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:58
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:412
 msgctxt "uniDimBayesian|"
 msgid "McDonald's ω"
 msgstr "マクドナルド(McDonald's)のω"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:483
 msgctxt "uniDimBayesian|"
 msgid "Posterior predictive check"
 msgstr "事後予測チェック"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:66
 msgctxt "uniDimBayesian|"
 msgid "Cronbach's α"
 msgstr "クロンバック(Cronbach)のα"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:73
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ2"
 msgstr "ガットマン(Guttman)のλ2"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:80
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ6"
 msgstr "ガットマン(Guttman)のλ6"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:87
 msgctxt "uniDimBayesian|"
 msgid "Greatest lower bound"
 msgstr "最大下界 (Greatest lower bound)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:90
 msgctxt "uniDimBayesian|"
 msgid "Average interitem correlation"
 msgstr "平均項目間相関"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:93
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:187
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:541
 msgctxt "uniDimBayesian|"
 msgid "Mean"
 msgstr "平均"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:94
 msgctxt "uniDimBayesian|"
 msgid "SD"
 msgstr "標準偏差"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:104
 msgctxt "uniDimBayesian|"
 msgid "of participants' sum scores"
 msgstr "参加者の合計スコアを用いた"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:105
 msgctxt "uniDimBayesian|"
 msgid "of participants' mean scores"
 msgstr "参加者の平均スコアを用いた"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:112
 msgctxt "uniDimBayesian|"
 msgid "Individual Item Statistics"
 msgstr "個別項目の統計量"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:125
 msgctxt "uniDimBayesian|"
 msgid "McDonald's ω  (if item dropped)"
 msgstr "マクドナルド(McDonald)のω  (項目が除外された場合)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:133
 msgctxt "uniDimBayesian|"
 msgid "Cronbach's α (if item dropped)"
 msgstr "クロンバック(Cronbach)のα (項目が除外された場合)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:141
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ2 (if item dropped)"
 msgstr "ガットマン(Guttman)のλ2 (項目が除外された場合)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:149
 msgctxt "uniDimBayesian|"
 msgid "Guttman's λ6 (if item dropped)"
 msgstr "ガットマン(Guttman)のλ6 (項目が除外された場合)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:157
 msgctxt "uniDimBayesian|"
 msgid "Greatest lower bound (if item dropped)"
 msgstr "最大下界 (Greatest lower bound) (項目が除外された場合)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:165
 msgctxt "uniDimBayesian|"
 msgid "If item dropped plot"
 msgstr "項目が除外された場合のプロット"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:171
 msgctxt "uniDimBayesian|"
 msgid "Order items"
 msgstr "項目の並び替え"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:179
 msgctxt "uniDimBayesian|"
 msgid "Order items by mean"
 msgstr "項目の並び替え(平均順)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:180
 msgctxt "uniDimBayesian|"
 msgid "Order items by KL-divergence"
 msgstr "項目の並び替え(KLダイバージェンス順)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:181
 msgctxt "uniDimBayesian|"
 msgid "Order items by KS-distance"
 msgstr "項目の並び替え(KS距離順)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:186
 msgctxt "uniDimBayesian|"
 msgid "Item-rest correlation"
 msgstr "I-R相関"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:188
 msgctxt "uniDimBayesian|"
 msgid "Standard deviation"
 msgstr "標準偏差"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:196
 msgctxt "uniDimBayesian|"
 msgid "Plot Posteriors"
 msgstr "事後分布のプロット"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:202
 msgctxt "uniDimBayesian|"
 msgid "Fix range to 0-1"
 msgstr "範囲を0-1に固定"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:208
 msgctxt "uniDimBayesian|"
 msgid "Display Priors"
 msgstr "事前分布を表示"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:220
 msgctxt "uniDimBayesian|"
 msgid "Probability for:"
 msgstr "以下における確率:"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:238
 msgctxt "uniDimBayesian|"
 msgid "< Reliability <"
 msgstr "< 信頼性 <"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:264
 msgctxt "uniDimBayesian|"
 msgid "Shade posterior region in plot"
 msgstr "図中の事後分布を灰色にする"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:274
 msgctxt "uniDimBayesian|"
 msgid "Convergence"
 msgstr "収束"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:278
 msgctxt "uniDimBayesian|"
 msgid "MCMC parameters"
 msgstr "MCMC パラメータ"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:284
 msgctxt "uniDimBayesian|"
 msgid "No. samples"
 msgstr "サンプル数"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:295
 msgctxt "uniDimBayesian|"
 msgid "No. burnin samples"
 msgstr "バーンインサンプルの数"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:306
 msgctxt "uniDimBayesian|"
 msgid "Thinning"
 msgstr "Thinning(間引き間隔)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:316
 msgctxt "uniDimBayesian|"
 msgid "No. chains"
 msgstr "チェーンの数"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:326
 msgctxt "uniDimBayesian|"
 msgid "Diagnostics"
 msgstr "診断"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:328
 msgctxt "uniDimBayesian|"
 msgid "R-hat"
 msgstr "R-hat"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:329
 msgctxt "uniDimBayesian|"
 msgid "Traceplots"
 msgstr "トレースプロット"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:334
 msgctxt "uniDimBayesian|"
 msgid "Repeatability"
 msgstr "反復可能性"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:339
 msgctxt "uniDimBayesian|"
 msgid "Set seed"
 msgstr "seedの設定"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:356
 msgctxt "uniDimBayesian|"
 msgid "Samples"
 msgstr "サンプル"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:361
 msgctxt "uniDimBayesian|"
 msgid "Disable saving samples"
 msgstr "MCMCサンプルの保存を無効"
 
-msgctxt "uniDimBayesian|"
-msgid "Click to learn more about saving the samples."
-msgstr "サンプルの保存については、こちらをクリックしてください."
+#~ msgctxt "uniDimBayesian|"
+#~ msgid "Click to learn more about saving the samples."
+#~ msgstr "サンプルの保存については、こちらをクリックしてください."
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:373
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:379
 msgctxt "uniDimBayesian|"
 msgid "Reverse-Scaled Items"
 msgstr "逆転項目"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:378
 msgctxt "uniDimBayesian|"
 msgid "Normal-Scaled Items"
 msgstr "順行項目"
 
-msgctxt "uniDimBayesian|"
-msgid "Missing Data Handling"
-msgstr "欠損値の処理"
+#~ msgctxt "uniDimBayesian|"
+#~ msgid "Missing Data Handling"
+#~ msgstr "欠損値の処理"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:465
 msgctxt "uniDimBayesian|"
 msgid "Missing Values"
 msgstr "欠損値"
 
-msgctxt "uniDimBayesian|"
-msgid "Exclude cases pairwise"
-msgstr "ペアワイズでケースを除外"
+#~ msgctxt "uniDimBayesian|"
+#~ msgid "Exclude cases pairwise"
+#~ msgstr "ペアワイズでケースを除外"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:472
 msgctxt "uniDimBayesian|"
 msgid "Exclude cases listwise"
 msgstr "ケースをリストワイズで除外"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:35
 msgctxt "uniDimFrequentist|"
 msgid "Variables"
 msgstr "変数"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:42
 msgctxt "uniDimFrequentist|"
 msgid "Analysis"
 msgstr "分析"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:46
 msgctxt "uniDimFrequentist|"
 msgid "Scale Statistics"
 msgstr "尺度統計量"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:51
 msgctxt "uniDimFrequentist|"
 msgid "Confidence Interval"
 msgstr "信頼区間"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:68
 msgctxt "uniDimFrequentist|"
 msgid "McDonald's ω"
 msgstr "マクドナルド(McDonald's)のω"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:76
 msgctxt "uniDimFrequentist|"
 msgid "Cronbach's α"
 msgstr "クロンバック(Cronbach)のα"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:83
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ2"
 msgstr "ガットマン(Guttman)のλ2"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:90
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ6"
 msgstr "ガットマン(Guttman)のλ6"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:97
 msgctxt "uniDimFrequentist|"
 msgid "Greatest lower bound"
 msgstr "最大下界 (Greatest lower bound)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:100
 msgctxt "uniDimFrequentist|"
 msgid "Average interitem correlation"
 msgstr "平均項目間相関"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:103
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:160
 msgctxt "uniDimFrequentist|"
 msgid "Mean"
 msgstr "平均"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:104
 msgctxt "uniDimFrequentist|"
 msgid "SD"
 msgstr "標準偏差"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:114
 msgctxt "uniDimFrequentist|"
 msgid "of participants' sum scores"
 msgstr "参加者の合計スコアを用いた"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:115
 msgctxt "uniDimFrequentist|"
 msgid "of participants' mean scores"
 msgstr "参加者の平均スコアを用いた"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:122
 msgctxt "uniDimFrequentist|"
 msgid "Individual Item Statistics"
 msgstr "個別項目の統計量"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:127
 msgctxt "uniDimFrequentist|"
 msgid "McDonald's ω  (if item dropped)"
 msgstr "マクドナルド(McDonald)のω  (特定の項目を除外した場合の)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:134
 msgctxt "uniDimFrequentist|"
 msgid "Cronbach's α (if item dropped)"
 msgstr "クロンバック(Cronbach)のα (特定の項目を除外した場合の)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:141
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ2 (if item dropped)"
 msgstr "ガットマン(Guttman)のλ2 (特定の項目を除外した場合の)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:148
 msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ6 (if item dropped)"
 msgstr "ガットマン(Guttman)のλ6 (特定の項目を除外した場合の)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:155
 msgctxt "uniDimFrequentist|"
 msgid "Greatest lower bound (if item dropped)"
 msgstr "最大下界 (Greatest lower bound) (特定の項目を除外した場合の)"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:159
 msgctxt "uniDimFrequentist|"
 msgid "Item-rest correlation"
 msgstr "I-R相関"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:161
 msgctxt "uniDimFrequentist|"
 msgid "Standard deviation"
 msgstr "標準偏差"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:167
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:174
 msgctxt "uniDimFrequentist|"
 msgid "Reverse-Scaled Items"
 msgstr "逆転項目"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:173
 msgctxt "uniDimFrequentist|"
 msgid "Normal-Scaled Items"
 msgstr "順行項目"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:180
 msgctxt "uniDimFrequentist|"
 msgid "Advanced Options"
 msgstr "詳細オプション"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:184
 msgctxt "uniDimFrequentist|"
 msgid "Missing Values"
 msgstr "欠損値"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:187
 msgctxt "uniDimFrequentist|"
 msgid "Exclude cases pairwise"
 msgstr "ペアワイズでケースを除外"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:188
 msgctxt "uniDimFrequentist|"
 msgid "Exclude cases listwise"
 msgstr "ケースをリストワイズで除外"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:193
 msgctxt "uniDimFrequentist|"
 msgid "Bootstrap"
 msgstr "ブートストラップ"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:198
 msgctxt "uniDimFrequentist|"
 msgid "No. of bootstrap samples"
 msgstr "ブートストラップサンプルの数"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:211
 msgctxt "uniDimFrequentist|"
 msgid "Non-parametric bootstrap"
 msgstr "ノンパラメトリックブートストラップ"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:212
 msgctxt "uniDimFrequentist|"
 msgid "Parametric bootstrap"
 msgstr "パラメトリックブートストラップ"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:219
 msgctxt "uniDimFrequentist|"
 msgid "McDonald's ω Estimation"
 msgstr "マクドナルド(McDonald)のωの推定"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:226
 msgctxt "uniDimFrequentist|"
 msgid "CFA"
 msgstr "CFA"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:232
 msgctxt "uniDimFrequentist|"
 msgid "Single factor model fit"
 msgstr "単一因子モデルのあてはまり"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:237
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:285
 msgctxt "uniDimFrequentist|"
 msgid "Interval"
 msgstr "区間"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:245
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:292
 msgctxt "uniDimFrequentist|"
 msgid "Analytic interval"
 msgstr "解析的区間"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:252
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:299
 msgctxt "uniDimFrequentist|"
 msgid "Bootstrapped interval"
 msgstr "ブートストラップ区間"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:256
 msgctxt "uniDimFrequentist|"
 msgid "PFA"
 msgstr "PFA"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:261
 msgctxt "uniDimFrequentist|"
 msgid "Cronbach's α Estimation"
 msgstr "クロンバック(Cronbach)のα推定"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:272
 msgctxt "uniDimFrequentist|"
 msgid "Unstandardized"
 msgstr "非標準化"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:279
 msgctxt "uniDimFrequentist|"
 msgid "Standardized"
 msgstr "標準化"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:306
 msgctxt "uniDimFrequentist|"
 msgid "Repeatability"
 msgstr "反復可能性"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:311
 msgctxt "uniDimFrequentist|"
 msgid "Set seed"
 msgstr "seedの設定"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:328
 msgctxt "uniDimFrequentist|"
 msgid "Samples"
 msgstr "サンプル"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:335
 msgctxt "uniDimFrequentist|"
 msgid "Disable saving samples"
 msgstr "サンプルの保存を無効"
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:340
 msgctxt "uniDimFrequentist|"
 msgid "Click to learn more about saving the samples."
 msgstr "サンプルの保存については、こちらをクリックしてください."
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:8
+msgctxt "Description|"
+msgid "Quantify the reliability of test scores"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:35
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "Variables"
+msgstr "変数"
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:45
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "Each subject is rated by..."
+msgstr "各参加者は以下によって評価されます..."
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:51
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "a different rater (randomly selected)"
+msgstr "別の評価者(無作為に選出)"
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:58
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "the same set of randomly selected raters/tests"
+msgstr "無作為に選ばれた評価者/テストの同じセット"
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:65
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "the same fixed set of raters/tests"
+msgstr "評価者/テストの同じ固定セット"
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:73
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "Ratings are averaged"
+msgstr "評価者は平均化されています"
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:81
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "Confidence Interval"
+msgstr "信頼区間"
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:101
 msgctxt "uniDimBayesian|"
 msgid ""
 msgstr ""
 
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:385
+msgctxt "uniDimBayesian|"
+msgid "Priors"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:388
+msgctxt "uniDimBayesian|"
+msgid "CTT-Coefficients (α, λ2, λ6, glb)"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:393
+msgctxt "uniDimBayesian|"
+msgid "Inverse Wishart scale"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:402
+msgctxt "uniDimBayesian|"
+msgid "Inverse Wishart df"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:417
+msgctxt "uniDimBayesian|"
+msgid "Inverse gamma:"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:422
+msgctxt "uniDimBayesian|"
+msgid "shape"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:433
+msgctxt "uniDimBayesian|"
+msgid "scale"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:443
+msgctxt "uniDimBayesian|"
+msgid "Normal:"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:448
+msgctxt "uniDimBayesian|"
+msgid "mean"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:461
+#, fuzzy
+msgctxt "uniDimBayesian|"
+msgid "Advanced Options"
+msgstr "詳細オプション"
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:468
+msgctxt "uniDimBayesian|"
+msgid ""
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:471
+msgctxt "uniDimBayesian|"
+msgid "Bayesian imputation"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:478
+#, fuzzy
+msgctxt "uniDimBayesian|"
+msgid "McDonald's ω Estimation"
+msgstr "マクドナルド(McDonald)のωの推定"
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:488
+msgctxt "uniDimBayesian|"
+msgid "Fit measures"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:493
+msgctxt "uniDimBayesian|"
+msgid "p(RMSEA <"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:498
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:508
+msgctxt "uniDimBayesian|"
+msgid ")"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:503
+msgctxt "uniDimBayesian|"
+msgid "p(CFI/TLI >"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:514
+msgctxt "uniDimBayesian|"
+msgid "Standardized factor loadings"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:520
+msgctxt "uniDimBayesian|"
+msgid ""
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:524
+msgctxt "uniDimBayesian|"
+msgid "Coefficients"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:527
+#, fuzzy
+msgctxt "uniDimBayesian|"
+msgid "Unstandardized"
+msgstr "非標準化"
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:528
+#, fuzzy
+msgctxt "uniDimBayesian|"
+msgid "Standardized"
+msgstr "標準化"
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:535
+msgctxt "uniDimBayesian|"
+msgid ""
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:540
+msgctxt "uniDimBayesian|"
+msgid "Posterior Point Estimate"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:542
+msgctxt "uniDimBayesian|"
+msgid "Median"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:111
 msgctxt "uniDimFrequentist|"
 msgid ""
 msgstr ""

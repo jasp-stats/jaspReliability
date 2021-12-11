@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-08-28 03:30\n"
+"POT-Creation-Date: 2021-12-11 03:31\n"
 "PO-Revision-Date: 2021-09-03 13:32+0000\n"
 "Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
@@ -16,6 +16,9 @@ msgstr ""
 "X-Language: en_US\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
+
+msgid "getPointEstFun has no case for value:"
+msgstr ""
 
 msgid "Intraclass Correlation"
 msgstr "Correlação Intraclasse"
@@ -32,8 +35,9 @@ msgstr "IC inferior a %s%%"
 msgid "Upper %s%% CI"
 msgstr "IC Superior a %s%%"
 
+#, fuzzy
 msgid ""
-"%s subjects and %s judges/measurements. ICC type as referenced by Shrout & "
+"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
 "Fleiss (1979)."
 msgstr ""
 "%s sujeitos e %s juízes/medidas. Tipo de CCI referenciado por Shrout & "
@@ -54,9 +58,10 @@ msgstr "média"
 msgid "sd"
 msgstr "padrão"
 
+#, fuzzy
 msgid ""
-"Sampling the posterior factor model for omega failed. Try changing to "
-"'Exclude cases listwise' in 'Advanced Options'"
+"Sampling the posterior null model failed. Try changing to 'Exclude cases "
+"listwise' in 'Advanced Options'"
 msgstr ""
 "A amostragem do modelo de fator posterior para ômega falhou. Tente trocar "
 "para 'Excluir casos listwise' em 'Opções avançadas'"
@@ -109,6 +114,10 @@ msgstr "%s limite inferior"
 msgid "%s upper bound"
 msgstr "%s limite superior"
 
+#, fuzzy
+msgid "Posterior %s"
+msgstr "Posterior"
+
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr "Estatísticas bayesianas de confiabilidade de itens individuais"
 
@@ -117,9 +126,6 @@ msgstr "Item"
 
 msgid "%s (if item dropped)"
 msgstr "%s (caso o item seja eliminado)"
-
-msgid "Posterior Mean"
-msgstr "Media posterior"
 
 msgid ""
 "%s Please enter at least 3 variables for the if item dropped statistics."
@@ -153,6 +159,35 @@ msgstr "Anterior"
 msgid "Posterior"
 msgstr "Posterior"
 
+#, fuzzy
+msgid "Fit Measures for the Single-Factor Model"
+msgstr "Medidas de ajuste para modelo de um único fator"
+
+#, fuzzy
+msgid "Fit measure"
+msgstr "Medidas Adicionais de Ajuste"
+
+msgid "Point estimate"
+msgstr "Estimativa Pontual"
+
+msgid "Relative to cutoff"
+msgstr ""
+
+msgid ""
+"'Relative to cutoff'-column denotes the probability that the B-RMSEA is "
+"smaller than\n"
+"                         the corresponding cutoff and the probabilities that "
+"the B-CFI/TLI are larger than the\n"
+"                         corresponding cutoff."
+msgstr ""
+
+#, fuzzy
+msgid "Standardized Loadings of the Single-Factor Model"
+msgstr "Medidas de ajuste para modelo de um único fator"
+
+msgid "Standardized loading"
+msgstr ""
+
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr "Dos %s de observações, foram utilizado %1.f dos casos completos."
 
@@ -167,6 +202,13 @@ msgstr ""
 "Amostragem para matriz posterior de covariância para algum destes [alpha, "
 "lambda2, lambda6, glb] falhou. Tente trocar para 'Exclusão listwise' em "
 "'Opções Avançadas'"
+
+msgid ""
+"Sampling the posterior factor model for omega failed. Try changing to "
+"'Exclude cases listwise' in 'Advanced Options'"
+msgstr ""
+"A amostragem do modelo de fator posterior para ômega falhou. Tente trocar "
+"para 'Excluir casos listwise' em 'Opções avançadas'"
 
 msgid ""
 "Too few MCMC samples will remain after the removal of the burnin samples and "
@@ -228,9 +270,6 @@ msgstr "Cálculo do intervalo de Lambda6 falhou."
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Estatísticas de confiabilidade de escala frequentist"
 
-msgid "Point estimate"
-msgstr "Estimativa Pontual"
-
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr "Estatísticas de confiabilidade de itens individuais frequentistas"
 
@@ -239,9 +278,6 @@ msgstr "Caso item seja eliminado"
 
 msgid "Fit Measures of Single Factor Model Fit"
 msgstr "Medidas de ajuste para modelo de um único fator"
-
-msgid "Fit Measure"
-msgstr "Medidas Adicionais de Ajuste"
 
 msgid "Value"
 msgstr "Valor"
@@ -256,6 +292,9 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "O seguinte item foi escalado de forma invertida: %s "
 msgstr[1] "Os seguintes itens foram escalados de forma invertida: %s "
+
+#~ msgid "Posterior Mean"
+#~ msgstr "Media posterior"
 
 #~ msgid ""
 #~ "Omega calculation with CFA failed. Try changing to PFA in Advanced Options"
