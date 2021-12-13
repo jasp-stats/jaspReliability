@@ -487,6 +487,13 @@ Form
 				name:		"fitMeasures"
 				label:		qsTr("Fit measures");
 
+				CIField
+				{
+					name:			"credibleIntervalValueFitMeasures";
+					label:			qsTr("Credible interval");
+					defaultValue:	90
+				}
+
 				DoubleField
 				{
 					name:			"fitCutoffSat"
