@@ -44,7 +44,7 @@ Form
 		CheckBox
 		{
 			name:   	"cohensKappa"
-			label:  	qsTr("Cohen's Kappa")
+			label:  	qsTr("Cohen's kappa")
 			checked: 	true
 			
 			RadioButtonGroup
@@ -75,7 +75,7 @@ Form
 		CheckBox
 		{
 			name:   	"fleissKappa"
-			label:  	qsTr("Fleiss' Kappa")
+			label:  	qsTr("Fleiss' kappa")
 			checked: 	true
 		}
 		
