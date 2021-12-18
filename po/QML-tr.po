@@ -622,11 +622,6 @@ msgctxt "intraclassCorrelation|"
 msgid "Confidence Interval"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:101
-msgctxt "uniDimBayesian|"
-msgid ""
-msgstr ""
-
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:385
 msgctxt "uniDimBayesian|"
 msgid "Priors"
@@ -677,11 +672,6 @@ msgctxt "uniDimBayesian|"
 msgid "Advanced Options"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:468
-msgctxt "uniDimBayesian|"
-msgid ""
-msgstr ""
-
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:471
 msgctxt "uniDimBayesian|"
 msgid "Bayesian imputation"
@@ -718,11 +708,6 @@ msgctxt "uniDimBayesian|"
 msgid "Standardized factor loadings"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:520
-msgctxt "uniDimBayesian|"
-msgid ""
-msgstr ""
-
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:524
 msgctxt "uniDimBayesian|"
 msgid "Coefficients"
@@ -738,11 +723,6 @@ msgctxt "uniDimBayesian|"
 msgid "Standardized"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:535
-msgctxt "uniDimBayesian|"
-msgid ""
-msgstr ""
-
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:540
 msgctxt "uniDimBayesian|"
 msgid "Posterior Point Estimate"
@@ -751,6 +731,26 @@ msgstr ""
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:542
 msgctxt "uniDimBayesian|"
 msgid "Median"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:101
+msgctxt "uniDimBayesian|"
+msgid ""
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:468
+msgctxt "uniDimBayesian|"
+msgid ""
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:520
+msgctxt "uniDimBayesian|"
+msgid ""
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:535
+msgctxt "uniDimBayesian|"
+msgid ""
 msgstr ""
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:111
