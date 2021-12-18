@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
 "POT-Creation-Date: 2021-12-11 03:31\n"
-"PO-Revision-Date: 2021-11-14 11:51+0000\n"
+"PO-Revision-Date: 2021-12-11 12:54+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/es/>\n"
@@ -11,10 +11,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9.1-dev\n"
+"X-Generator: Weblate 4.10-dev\n"
 
 msgid "getPointEstFun has no case for value:"
-msgstr ""
+msgstr "getPointEstFun no tiene ningún caso que valorar:"
 
 msgid "Intraclass Correlation"
 msgstr "Correlación intraclase"
@@ -31,13 +31,12 @@ msgstr "IC inferior al %s%%"
 msgid "Upper %s%% CI"
 msgstr "IC superior %s%%"
 
-#, fuzzy
 msgid ""
 "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
 "Fleiss (1979)."
 msgstr ""
-"%s sujetos y %s jueces/medidas. Tipo de CCI según la referencia de Shrout & "
-"Fleiss (1979)."
+"%s sujetos y %s calificadores/medidas. Tipo de CCI según la referencia de "
+"Shrout & Fleiss (1979)."
 
 msgid "Please select at least 2 columns"
 msgstr "Por favor seleccione al menos 2 columnas"
@@ -54,13 +53,12 @@ msgstr "media"
 msgid "sd"
 msgstr "dt"
 
-#, fuzzy
 msgid ""
 "Sampling the posterior null model failed. Try changing to 'Exclude cases "
 "listwise' in 'Advanced Options'"
 msgstr ""
-"Falló el muestreo del modelo posterior de factores para omega. Intenta "
-"cambiar a 'Excluir casos según lista' en 'Opciones Avanzadas '"
+"Falló el muestreo del modelo nulo posterior. Intenta cambiar a 'Excluir "
+"casos según lista' en 'Opciones Avanzadas '"
 
 msgid "Posterior Plots"
 msgstr "Gráficos Posteriores"
@@ -111,9 +109,8 @@ msgstr "%s límite inferior"
 msgid "%s upper bound"
 msgstr "%s límite superior"
 
-#, fuzzy
 msgid "Posterior %s"
-msgstr "Posterior"
+msgstr "%s posterior"
 
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr "Estadísticas bayesianas de confiabilidad de ítems individuales"
@@ -156,11 +153,9 @@ msgstr "Previo"
 msgid "Posterior"
 msgstr "Posterior"
 
-#, fuzzy
 msgid "Fit Measures for the Single-Factor Model"
-msgstr "Medidas de ajuste del modelo de un solo factor"
+msgstr "Medidas de Ajuste del Modelo de Factor Único"
 
-#, fuzzy
 msgid "Fit measure"
 msgstr "Medida de ajuste"
 
@@ -168,7 +163,7 @@ msgid "Point estimate"
 msgstr "Estimación por punto"
 
 msgid "Relative to cutoff"
-msgstr ""
+msgstr "Relativo al punto de corte"
 
 msgid ""
 "'Relative to cutoff'-column denotes the probability that the B-RMSEA is "
@@ -177,13 +172,17 @@ msgid ""
 "the B-CFI/TLI are larger than the\n"
 "                         corresponding cutoff."
 msgstr ""
+"La columna 'Relativo al punto de corte' expresa la probabilidad de que la B-"
+"REACM sea menor que\n"
+"                         el punto de corte correspondiente, y las "
+"probabilidades de que los B-IAC/ITL sean mayores que\n"
+"                         el punto de corte correspondiente."
 
-#, fuzzy
 msgid "Standardized Loadings of the Single-Factor Model"
-msgstr "Medidas de ajuste del modelo de un solo factor"
+msgstr "Cargas Tipificadas del Modelo de Factor Único"
 
 msgid "Standardized loading"
-msgstr ""
+msgstr "Carga tipificada"
 
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr "%s De las observaciones, se utilizaron %1.f casos completos."

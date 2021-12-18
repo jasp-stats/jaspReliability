@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-12-11 03:31\n"
-"PO-Revision-Date: 2021-09-11 22:44+0000\n"
+"PO-Revision-Date: 2021-12-13 15:53+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/de/>\n"
@@ -12,10 +12,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.10-dev\n"
 
 msgid "getPointEstFun has no case for value:"
-msgstr ""
+msgstr "getPointEstFun hat keinen Fall für Wert:"
 
 msgid "Intraclass Correlation"
 msgstr "Intraklassen-Korrelation"
@@ -32,7 +32,6 @@ msgstr "Untergrenze %s%%-KI"
 msgid "Upper %s%% CI"
 msgstr "Obergrenze %s%%-KI"
 
-#, fuzzy
 msgid ""
 "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
 "Fleiss (1979)."
@@ -55,13 +54,12 @@ msgstr "Mittelwert"
 msgid "sd"
 msgstr "sd"
 
-#, fuzzy
 msgid ""
 "Sampling the posterior null model failed. Try changing to 'Exclude cases "
 "listwise' in 'Advanced Options'"
 msgstr ""
-"Die Stichprobe des Posterior-Faktor-Modells für Omega schlug fehl. Versuche, "
-"auf 'Fälle listenweise ausschließen' in den 'Weiteren Optionen' zu wechseln"
+"Die Stichprobe des Posterior-Nullmodells schlug fehl. Versuchen Sie, auf "
+"'Fälle listenweise ausschließen' in den 'Weiteren Optionen' zu wechseln"
 
 msgid "Posterior Plots"
 msgstr "Posterior Abbildungen"
@@ -110,9 +108,8 @@ msgstr "%s untere Grenze"
 msgid "%s upper bound"
 msgstr "%s obere Grenze"
 
-#, fuzzy
 msgid "Posterior %s"
-msgstr "Posterior"
+msgstr "Posterior %s"
 
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr "Bayessche Einzelitem-Reliabilitätsstatistiken"
@@ -155,19 +152,17 @@ msgstr "Prior"
 msgid "Posterior"
 msgstr "Posterior"
 
-#, fuzzy
 msgid "Fit Measures for the Single-Factor Model"
-msgstr "Anpassungsmaße der Einzelfaktor-Modellanpassung"
+msgstr "Anpassungsmaße des Einzelfaktor-Modells"
 
-#, fuzzy
 msgid "Fit measure"
-msgstr "Anpassungs-Maß"
+msgstr "Anpassungsmaß"
 
 msgid "Point estimate"
 msgstr "Punktschätzung"
 
 msgid "Relative to cutoff"
-msgstr ""
+msgstr "Relativ zum Cutoff"
 
 msgid ""
 "'Relative to cutoff'-column denotes the probability that the B-RMSEA is "
@@ -176,13 +171,17 @@ msgid ""
 "the B-CFI/TLI are larger than the\n"
 "                         corresponding cutoff."
 msgstr ""
+"'Relativ zum Cutoff'-Spalte gibt die Wahrscheinlichkeit an, dass der B-RMSEA "
+"kleiner ist als\n"
+"                         der entsprechende Cutoff-Wert und die "
+"Wahrscheinlichkeit, dass der B-CFI/TLI größer ist als der\n"
+"                         entsprechende Cutoff."
 
-#, fuzzy
 msgid "Standardized Loadings of the Single-Factor Model"
-msgstr "Anpassungsmaße der Einzelfaktor-Modellanpassung"
+msgstr "Standardisierte Ladungen des Einzelfaktor-Modells"
 
 msgid "Standardized loading"
-msgstr ""
+msgstr "Standardisierte Ladung"
 
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr "%s der Beobachtungen, es wurden %1.f vollständige Fälle verwendet."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
 "POT-Creation-Date: 2021-12-11 03:31\n"
-"PO-Revision-Date: 2021-11-10 04:46+0000\n"
+"PO-Revision-Date: 2021-12-13 15:53+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/ja/>\n"
@@ -11,10 +11,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.10-dev\n"
 
 msgid "getPointEstFun has no case for value:"
-msgstr ""
+msgstr "getPointEstFunには、値のケースはありません:"
 
 msgid "Intraclass Correlation"
 msgstr "級内相関"
@@ -31,13 +31,10 @@ msgstr "下側 %s%% CI"
 msgid "Upper %s%% CI"
 msgstr "上側 %s%% CI"
 
-#, fuzzy
 msgid ""
 "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
 "Fleiss (1979)."
-msgstr ""
-"%s の参加者と %s の判定者/測定者. Shrout & Fleiss (1979) にて参照されている"
-"ICC タイプ."
+msgstr "%s の参加者と %s の判定者/測定者. Shrout & Fleiss (1979) にて参照されているICC タイプ."
 
 msgid "Please select at least 2 columns"
 msgstr "少なくとも2列選択してください"
@@ -54,13 +51,10 @@ msgstr "平均"
 msgid "sd"
 msgstr "標準偏差"
 
-#, fuzzy
 msgid ""
 "Sampling the posterior null model failed. Try changing to 'Exclude cases "
 "listwise' in 'Advanced Options'"
-msgstr ""
-"オメガの事後因子モデルのサンプリングに失敗しました. '詳細オプションで'ケース"
-"をリストワイズで除外'に変更してみてください"
+msgstr "事後ナルモデルのサンプリングに失敗しました. '詳細オプション'で'ケースをリストワイズで除外'に変更してみてください"
 
 msgid "Posterior Plots"
 msgstr "事後分布プロット"
@@ -108,9 +102,8 @@ msgstr "%s 下限"
 msgid "%s upper bound"
 msgstr "%s 上限"
 
-#, fuzzy
 msgid "Posterior %s"
-msgstr "事後分布"
+msgstr "事後%s"
 
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr "ベイジアン個別項目信頼性統計"
@@ -149,11 +142,9 @@ msgstr "事前分布"
 msgid "Posterior"
 msgstr "事後分布"
 
-#, fuzzy
 msgid "Fit Measures for the Single-Factor Model"
 msgstr "単一因子モデルの適合度指標"
 
-#, fuzzy
 msgid "Fit measure"
 msgstr "適合度指標"
 
@@ -161,7 +152,7 @@ msgid "Point estimate"
 msgstr "点推定値"
 
 msgid "Relative to cutoff"
-msgstr ""
+msgstr "カットオフに対して"
 
 msgid ""
 "'Relative to cutoff'-column denotes the probability that the B-RMSEA is "
@@ -170,13 +161,15 @@ msgid ""
 "the B-CFI/TLI are larger than the\n"
 "                         corresponding cutoff."
 msgstr ""
+"'カットオフに対して'-列は、B-RMSEAが対応するカットオフよりも小さい確率を示し\n"
+"                         B-CFI / TLIが対応するカットオフ寄りも\n"
+"                         大きい確率を表しています."
 
-#, fuzzy
 msgid "Standardized Loadings of the Single-Factor Model"
-msgstr "単一因子モデルの適合度指標"
+msgstr "単一因子モデルの標準化負荷量"
 
 msgid "Standardized loading"
-msgstr ""
+msgstr "標準化負荷量"
 
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr "観測値%s のうち、%1.f完全なケースが使用されました."
