@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-21 17:50+0000\n"
+"PO-Revision-Date: 2021-12-22 18:23+0000\n"
 "Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/pt/>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.10.1\n"
 "X-Language: pt\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -132,7 +132,7 @@ msgstr "Maior limite inferior"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:90
 msgctxt "uniDimBayesian|"
 msgid "Average interitem correlation"
-msgstr ""
+msgstr "Média das correlações entre itens"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:93
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:187
@@ -219,7 +219,7 @@ msgstr "Fixar intervalo em 0-1"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:208
 msgctxt "uniDimBayesian|"
 msgid "Display Priors"
-msgstr ""
+msgstr "Exibir anteriores"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:220
 msgctxt "uniDimBayesian|"
@@ -269,7 +269,7 @@ msgstr ""
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:326
 msgctxt "uniDimBayesian|"
 msgid "Diagnostics"
-msgstr ""
+msgstr "Diagnósticos"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:328
 msgctxt "uniDimBayesian|"
@@ -396,7 +396,6 @@ msgid "Standard deviation"
 msgstr "Desvio padrão"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimFrequentist.qml:122
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Individual Item Statistics"
 msgstr "Estatísticas por item"
