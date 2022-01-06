@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-01-06 12:55+0000\n"
+"PO-Revision-Date: 2022-01-07 13:54+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/ja/>\n"
@@ -614,19 +614,16 @@ msgid "the same set of randomly selected raters/tests"
 msgstr "無作為に選ばれた評価者/テストの同じセット"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:65
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
-msgstr "評価者/テストの同じ固定セット"
+msgstr "評価者/テストが同一固定のセット"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:73
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Ratings are averaged"
 msgstr "評価者は平均化されています"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:81
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Confidence Interval"
 msgstr "信頼区間"
@@ -634,50 +631,49 @@ msgstr "信頼区間"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:385
 msgctxt "uniDimBayesian|"
 msgid "Priors"
-msgstr ""
+msgstr "事前分布"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:388
 msgctxt "uniDimBayesian|"
 msgid "CTT-Coefficients (α, λ2, λ6, glb)"
-msgstr ""
+msgstr "CTT-係数 (α, λ2, λ6, glb)"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:393
 msgctxt "uniDimBayesian|"
 msgid "Inverse Wishart scale"
-msgstr ""
+msgstr "逆ウィシャートスケール"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:402
 msgctxt "uniDimBayesian|"
 msgid "Inverse Wishart df"
-msgstr ""
+msgstr "逆ウィシャートdf"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:417
 msgctxt "uniDimBayesian|"
 msgid "Inverse gamma:"
-msgstr ""
+msgstr "逆ガンマ:"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:422
 msgctxt "uniDimBayesian|"
 msgid "shape"
-msgstr ""
+msgstr "形状"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:433
 msgctxt "uniDimBayesian|"
 msgid "scale"
-msgstr ""
+msgstr "尺度"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:443
 msgctxt "uniDimBayesian|"
 msgid "Normal:"
-msgstr ""
+msgstr "正規:"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:448
 msgctxt "uniDimBayesian|"
 msgid "mean"
-msgstr ""
+msgstr "平均"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:461
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Advanced Options"
 msgstr "詳細オプション"
@@ -685,10 +681,9 @@ msgstr "詳細オプション"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:471
 msgctxt "uniDimBayesian|"
 msgid "Bayesian imputation"
-msgstr ""
+msgstr "ベイズ推定"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:478
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "McDonald's ω Estimation"
 msgstr "マクドナルド(McDonald)のωの推定"
@@ -696,42 +691,40 @@ msgstr "マクドナルド(McDonald)のωの推定"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:488
 msgctxt "uniDimBayesian|"
 msgid "Fit measures"
-msgstr ""
+msgstr "適合度指標"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:493
 msgctxt "uniDimBayesian|"
 msgid "p(RMSEA <"
-msgstr ""
+msgstr "p(RMSEA <"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:498
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:508
 msgctxt "uniDimBayesian|"
 msgid ")"
-msgstr ""
+msgstr ")"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:503
 msgctxt "uniDimBayesian|"
 msgid "p(CFI/TLI >"
-msgstr ""
+msgstr "p(CFI/TLI >"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:514
 msgctxt "uniDimBayesian|"
 msgid "Standardized factor loadings"
-msgstr ""
+msgstr "標準化因子負荷量"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:524
 msgctxt "uniDimBayesian|"
 msgid "Coefficients"
-msgstr ""
+msgstr "係数"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:527
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Unstandardized"
 msgstr "非標準化"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:528
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Standardized"
 msgstr "標準化"
@@ -739,12 +732,12 @@ msgstr "標準化"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:540
 msgctxt "uniDimBayesian|"
 msgid "Posterior Point Estimate"
-msgstr ""
+msgstr "事後点推定値"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:542
 msgctxt "uniDimBayesian|"
 msgid "Median"
-msgstr ""
+msgstr "中央値"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:101
 msgctxt "uniDimBayesian|"
