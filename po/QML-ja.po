@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2022-01-06 12:55+0000\n"
+"Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/ja/>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.10.1\n"
 "X-Language: ja\n"
 "X-Qt-Contexts: true\n"
 
@@ -585,28 +591,24 @@ msgstr "サンプルの保存については、こちらをクリックしてく
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:8
 msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
-msgstr ""
+msgstr "テストの点数の信頼性を定量化"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:35
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Variables"
 msgstr "変数"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:45
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Each subject is rated by..."
 msgstr "各参加者は以下によって評価されます..."
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:51
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "a different rater (randomly selected)"
 msgstr "別の評価者(無作為に選出)"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:58
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
 msgstr "無作為に選ばれた評価者/テストの同じセット"
