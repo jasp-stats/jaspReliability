@@ -83,6 +83,7 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
     
     #Extract Kappas and CIs
     allKappas <- c()
+    allSE <- c()
     allLowerBounds <- c()
     allUpperBounds <- c()
     
@@ -90,6 +91,7 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
       kappaData <- i$confid
       k <- ifelse(weighted, 2, 1)
       allKappas <- c(allKappas, kappaData[k, 2])
+      allSE <- c(allSE, sqrt(ifelse(weighted, i$var.weighted, i$var.kappa)))
       allLowerBounds <- c(allLowerBounds, kappaData[k, 1])
       allUpperBounds <- c(allUpperBounds, kappaData[k, 3])
     }
@@ -101,8 +103,10 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
     footnote <- gettextf('%i subjects/items and %i raters/measurements.', nrow(dataset), ncol(dataset))
     
     if (options[["kappaIntervalOn"]]) {
-      jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI for kappa", formattedCIPercent))
-      jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI for kappa", formattedCIPercent))
+      jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
+      jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
+      jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
+      tableData[["SE"]] <- c(allSE, NA)
       tableData[["CIL"]] <- c(allLowerBounds, NA)
       tableData[["CIU"]] <- c(allUpperBounds, NA)
       footnote <- paste(footnote, gettext('Confidence intervals are asymptotic.'))
@@ -137,7 +141,6 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
     )
   )
   
-  
   formattedCIPercent <- format(
     100 * options[["kappaConfidenceIntervalValue"]],
     digits = 3,
@@ -166,14 +169,19 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
     categoryKappas <- categoryKappas[as.character(categories)]
     
     tableData <- list("ratings" = ratings,
-                      "fKappa" = c(overallKappa, categoryKappas))
+                      "fKappa"  = c(overallKappa, categoryKappas))
     footnote <- gettextf('%i subjects/items and %i raters/measurements.', nrow(dataset), ncol(dataset))
+    
     if (options[["kappaIntervalOn"]]) {
+      nCategories <- length(categories)
+      SE <- c(overallSE, rep(categorySE, nCategories))
       overallCI <- overallKappa + c(-1,1)*qnorm(1 - alpha/2) * overallSE 
       categoryCIL <- categoryKappas - qnorm(1 - alpha/2) * categorySE
       categoryCIU <- categoryKappas + qnorm(1 - alpha/2) * categorySE
-      jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI for kappa", formattedCIPercent))
-      jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI for kappa", formattedCIPercent))
+      jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
+      jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
+      jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
+      tableData[["SE"]] <- SE
       tableData[["CIL"]] <- c(overallCI[1], categoryCIL)
       tableData[["CIU"]] <- c(overallCI[2], categoryCIU)
       footnote <- paste(footnote, gettext('Confidence intervals are asymptotic.'))
