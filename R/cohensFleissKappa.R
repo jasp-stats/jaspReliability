@@ -98,17 +98,17 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
     
     averageKappa <- mean(allKappas)
     
-    tableData <- list("ratings" = c(allPairStrings, "Average kappa"),
-                      "cKappa" = c(allKappas, averageKappa))
+    tableData <- list("ratings" = c("Average kappa", allPairStrings),
+                      "cKappa" = c(averageKappa, allKappas))
     footnote <- gettextf('%i subjects/items and %i raters/measurements.', nrow(dataset), ncol(dataset))
     
     if (options[["kappaIntervalOn"]]) {
       jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
       jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
       jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
-      tableData[["SE"]] <- c(allSE, NA)
-      tableData[["CIL"]] <- c(allLowerBounds, NA)
-      tableData[["CIU"]] <- c(allUpperBounds, NA)
+      tableData[["SE"]] <- c(NA, allSE)
+      tableData[["CIL"]] <- c(NA, allLowerBounds)
+      tableData[["CIU"]] <- c(NA, allUpperBounds)
       footnote <- paste(footnote, gettext('Confidence intervals are asymptotic.'))
     }
     

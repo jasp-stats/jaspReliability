@@ -2,6 +2,8 @@ options <- analysisOptions("cohensFleissKappa")
 
 # ==== Ensure results are unchanged on JASP debug data ====
 
+####Cohen's unweighted kappa and Fleiss' kappa####
+
 # Set options
 options <- analysisOptions("cohensFleissKappa")
 options$variables <- c("V1", "facFifty", "contNormal")
@@ -12,9 +14,9 @@ results <- runAnalysis("cohensFleissKappa", "test.csv", options)
 test_that("Cohen's Unweighted kappa table results match", {
   table <- results[["results"]][["cohensKappa"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.396961294518455, 0.592937695380535, 0.049994898479747, 0.494949494949495,
-                                      "V1 - facFifty", 0, 0, 0, 0, "V1 - contNormal", 0, 0, 0, 0,
-                                      "facFifty - contNormal", "", "", "", 0.164983164983165, "Average kappa"
+                                 list("", "", "", 0.164983164983165, "Average kappa", 0.396961294518455,
+                                      0.592937695380535, 0.049994898479747, 0.494949494949495, "V1 - facFifty",
+                                      0, 0, 0, 0, "V1 - contNormal", 0, 0, 0, 0, "facFifty - contNormal"
                                  ))
 })
 
@@ -247,6 +249,40 @@ test_that("Fleiss' kappa table results match", {
                                       -0.003, 98, -0.116158573407617, 0.110158573407617, 0.0577350269189626,
                                       -0.003, 99, -0.116158573407617, 0.110158573407617, 0.0577350269189626,
                                       -0.003, 100))
+})
+
+####Cohen's weighted kappa and Fleiss' kappa with different CI range(99%)####
+
+# Set options
+options <- analysisOptions("cohensFleissKappa")
+options$variables <- c("facGender", "facExperim", "debBinMiss20")
+options$kappaConfidenceIntervalValue <- 0.99
+options$cohensWeightedOrNot <- "cohensWeighted"
+set.seed(1)
+results <- runAnalysis("cohensFleissKappa", "test.csv", options)
+
+
+test_that("Cohen's Weighted kappa table results match", {
+  table <- results[["results"]][["cohensKappa"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list("", "", "", -0.00184386638316336, "Average kappa", 0.0177777777777777,
+                                      0.0177777777777777, 0, 0.0177777777777777, "facGender - facExperim",
+                                      -0.00617957106506728, -0.00617957106506728, 0, -0.00617957106506728,
+                                      "facGender - debBinMiss20", -0.0171298058622005, -0.0171298058622005,
+                                      0, -0.0171298058622005, "facExperim - debBinMiss20"))
+})
+
+test_that("Fleiss' kappa table results match", {
+  table <- results[["results"]][["fleissKappa"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(-0.276327852798572, -0.127177258822542, 0.0289519561273983, -0.201752555810557,
+                                      "Overall", -0.360269066588632, -0.0277309334113677, 0.0645497224367903,
+                                      -0.194, "f", -0.372269066588632, -0.0397309334113677, 0.0645497224367903,
+                                      -0.206, "m", -0.384269066588632, -0.0517309334113677, 0.0645497224367903,
+                                      -0.218, "control", -0.348269066588632, -0.0157309334113677,
+                                      0.0645497224367903, -0.182, "experimental", -0.337269066588632,
+                                      -0.00473093341136771, 0.0645497224367903, -0.171, 0, -0.397269066588632,
+                                      -0.0647309334113677, 0.0645497224367903, -0.231, 1))
 })
 
 
