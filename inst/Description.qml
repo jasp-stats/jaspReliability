@@ -33,6 +33,13 @@ Description
 		qml: 	"intraclassCorrelation.qml"
 		func: 	"intraclassCorrelation"
 	}
+	
+		Analysis
+	{
+		title:	qsTr("Cohen's & Fleiss' kappa")
+		qml: 	"cohensFleissKappa.qml"
+		func: 	"cohensFleissKappa"
+	}
 
 	Separator {}
 
