@@ -175,9 +175,9 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
     if (options[["kappaIntervalOn"]]) {
       nCategories <- length(categories)
       SE <- c(overallSE, rep(categorySE, nCategories))
-      overallCI <- overallKappa + c(-1,1)*qnorm(1 - alpha/2) * overallSE 
-      categoryCIL <- categoryKappas - qnorm(1 - alpha/2) * categorySE
-      categoryCIU <- categoryKappas + qnorm(1 - alpha/2) * categorySE
+      overallCI <- overallKappa + c(-1, 1) * qnorm(1 - alpha / 2) * overallSE 
+      categoryCIL <- categoryKappas - qnorm(1 - alpha / 2) * categorySE
+      categoryCIU <- categoryKappas + qnorm(1 - alpha / 2) * categorySE
       jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
       jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
       jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
