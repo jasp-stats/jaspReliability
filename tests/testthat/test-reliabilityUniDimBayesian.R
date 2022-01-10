@@ -498,13 +498,15 @@ options$dispPPC <- TRUE
 set.seed(1)
 results <- runAnalysis("reliabilityUniDimBayesian", "asrm.csv", options)
 
+
 test_that("Fit Measures for the Single-Factor Model table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_fitTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list("", "", "B-LR", 13.0900880096089, "", 0.215555555555556, 0.0233139770705626,
-                                      "B-RMSEA", 0.1319747009136, 0.222796365776379, 0.946666666666667,
-                                      0.845602177064211, "B-CFI", 0.929544182303969, 1, 0.595555555555556,
-                                      0.693722044278387, "B-TLI", 0.860237253334787, 1))
+                                 list(0.929544182303969, "Posterior mean", 13.0900880096089, 0.1319747009136,
+                                      0.061860112775025, 0.860237253334787, 0.845602177064211, "90% CI lower bound",
+                                      "", 0.0233139770705626, "", 0.693722044278387, 1, "90% CI upper bound",
+                                      "", 0.222796365776379, "", 1, 0.946666666666667, "Relative to cutoff",
+                                      "", 0.215555555555556, "", 0.595555555555556))
 })
 
 test_that("Posterior Predictive Check Omega plot matches", {

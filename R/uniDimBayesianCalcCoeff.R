@@ -685,12 +685,13 @@
     psm <- apply(model[["singleFactor"]][["residuals"]], 3, mean)
     implM <- lsm %*% t(lsm) + diag(psm) # mean implied covariance matrix
     Dtm <- .LRblav(dataset, implM, LL1) # deviance of the mean model implied cov matrix
-    out[["B-LR"]] <- Dtm
+    out[["lr"]] <- Dtm
 
+    out[["srmr"]] <- .SRMR(cdat, implM)
     ### BRMSEA ###
     Dm <- mean(LR_obs) # mean deviance of the model implied cov matrices
     pD <- Dm - Dtm # effective number of parameters (free parameters)
-    out[["B-RMSEA"]] <- .BRMSEA(LR_obs, pstar, pD, n)
+    out[["rmsea"]] <- .BRMSEA(LR_obs, pstar, pD, n)
     # rmsea_m <- sqrt((Dtm - (pstar - pD)) / ((pstar - pD) * n))
 
     startProgressbar(options[["noSamples"]] * options[["noChains"]])
@@ -730,8 +731,8 @@
     cfis[cfis > 1] <- 1
     tlis[tlis > 1] <- 1
 
-    out[["B-CFI"]] <- cfis
-    out[["B-TLI"]] <- tlis
+    out[["cfi"]] <- cfis
+    out[["tli"]] <- tlis
 
 
     stateContainer <- .getStateContainerB(jaspResults)
