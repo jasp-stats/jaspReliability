@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-01-10 11:56+0000\n"
+"PO-Revision-Date: 2022-01-13 05:51+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "jasp/jaspreliability-qml/zh_Hans/>\n"
@@ -666,7 +666,7 @@ msgstr ""
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:443
 msgctxt "uniDimBayesian|"
 msgid "Normal:"
-msgstr ""
+msgstr "正态："
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:448
 msgctxt "uniDimBayesian|"
