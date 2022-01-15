@@ -20,7 +20,7 @@ msgid "Classical"
 msgstr ""
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:25
-#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:46
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:53
 msgctxt "Description|"
 msgid "Unidimensional Reliability"
 msgstr ""
@@ -30,12 +30,12 @@ msgctxt "Description|"
 msgid "Intraclass Correlation"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:41
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:48
 msgctxt "Description|"
 msgid "Bayesian"
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:47
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:54
 msgctxt "Description|"
 msgid "Bayesian Unidimensional Reliability"
 msgstr ""
@@ -729,6 +729,41 @@ msgstr ""
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:542
 msgctxt "uniDimBayesian|"
 msgid "Median"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:39
+msgctxt "Description|"
+msgid "Cohen's & Fleiss' kappa"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:35
+msgctxt "cohensFleissKappa|"
+msgid "Variables"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:47
+msgctxt "cohensFleissKappa|"
+msgid "Cohen's kappa"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:58
+msgctxt "cohensFleissKappa|"
+msgid "Unweighted"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:65
+msgctxt "cohensFleissKappa|"
+msgid "Weighted"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:78
+msgctxt "cohensFleissKappa|"
+msgid "Fleiss' kappa"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:90
+msgctxt "cohensFleissKappa|"
+msgid "Confidence Interval"
 msgstr ""
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:101

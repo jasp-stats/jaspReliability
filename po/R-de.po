@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-12-11 03:31\n"
+"POT-Creation-Date: 2022-01-15 03:31\n"
 "PO-Revision-Date: 2021-12-13 15:53+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -13,6 +13,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
 "X-Generator: Weblate 4.10-dev\n"
+
+msgid "Cohen's %s kappa"
+msgstr ""
+
+msgid "Ratings"
+msgstr ""
+
+msgid "%s kappa"
+msgstr ""
+
+msgid "%i subjects/items and %i raters/measurements."
+msgstr ""
+
+msgid "SE"
+msgstr ""
+
+msgid "Lower"
+msgstr ""
+
+msgid "%s%% CI"
+msgstr "%s%% KI"
+
+msgid "Upper"
+msgstr ""
+
+msgid "Confidence intervals are asymptotic."
+msgstr ""
+
+msgid ""
+"If there are only 2 levels, weighted kappa is equal to unweighted kappa."
+msgstr ""
+
+msgid "Fleiss' kappa"
+msgstr ""
 
 msgid "getPointEstFun has no case for value:"
 msgstr "getPointEstFun hat keinen Fall für Wert:"
@@ -98,9 +132,6 @@ msgstr "Bayessche Skala-Reliabilitätsstatistiken"
 
 msgid "Estimate"
 msgstr "Schätzung"
-
-msgid "%s%% CI"
-msgstr "%s%% KI"
 
 msgid "%s lower bound"
 msgstr "%s untere Grenze"

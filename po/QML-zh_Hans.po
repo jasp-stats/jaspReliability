@@ -1,15 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-01-13 05:51+0000\n"
-"Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
-"jasp/jaspreliability-qml/zh_Hans/>\n"
-"Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.10.1\n"
 "X-Language: zh_Hans\n"
 "X-Qt-Contexts: true\n"
 
@@ -28,7 +22,7 @@ msgid "Classical"
 msgstr "经典"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:25
-#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:46
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:53
 msgctxt "Description|"
 msgid "Unidimensional Reliability"
 msgstr "单维信度(Unidimensional )"
@@ -38,12 +32,12 @@ msgctxt "Description|"
 msgid "Intraclass Correlation"
 msgstr "组内相关性"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:41
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:48
 msgctxt "Description|"
 msgid "Bayesian"
 msgstr "贝叶斯方法"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:47
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:54
 msgctxt "Description|"
 msgid "Bayesian Unidimensional Reliability"
 msgstr "贝叶斯单维信度"
@@ -738,6 +732,43 @@ msgstr "后验点估计"
 msgctxt "uniDimBayesian|"
 msgid "Median"
 msgstr "中位数"
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:39
+msgctxt "Description|"
+msgid "Cohen's & Fleiss' kappa"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:35
+#, fuzzy
+msgctxt "cohensFleissKappa|"
+msgid "Variables"
+msgstr "变量"
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:47
+msgctxt "cohensFleissKappa|"
+msgid "Cohen's kappa"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:58
+msgctxt "cohensFleissKappa|"
+msgid "Unweighted"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:65
+msgctxt "cohensFleissKappa|"
+msgid "Weighted"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:78
+msgctxt "cohensFleissKappa|"
+msgid "Fleiss' kappa"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:90
+#, fuzzy
+msgctxt "cohensFleissKappa|"
+msgid "Confidence Interval"
+msgstr "置信区间"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:101
 msgctxt "uniDimBayesian|"

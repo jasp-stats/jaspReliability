@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.16.1\n"
-"POT-Creation-Date: 2021-12-11 03:31\n"
+"POT-Creation-Date: 2022-01-15 03:31\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9,6 +9,39 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+
+msgid "Cohen's %s kappa"
+msgstr ""
+
+msgid "Ratings"
+msgstr ""
+
+msgid "%s kappa"
+msgstr ""
+
+msgid "%i subjects/items and %i raters/measurements."
+msgstr ""
+
+msgid "SE"
+msgstr ""
+
+msgid "Lower"
+msgstr ""
+
+msgid "%s%% CI"
+msgstr ""
+
+msgid "Upper"
+msgstr ""
+
+msgid "Confidence intervals are asymptotic."
+msgstr ""
+
+msgid "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
+msgstr ""
+
+msgid "Fleiss' kappa"
+msgstr ""
 
 msgid "getPointEstFun has no case for value:"
 msgstr ""
@@ -83,9 +116,6 @@ msgid "Bayesian Scale Reliability Statistics"
 msgstr ""
 
 msgid "Estimate"
-msgstr ""
-
-msgid "%s%% CI"
 msgstr ""
 
 msgid "%s lower bound"
