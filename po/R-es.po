@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
 "POT-Creation-Date: 2022-01-15 03:31\n"
-"PO-Revision-Date: 2021-12-11 12:54+0000\n"
+"PO-Revision-Date: 2022-01-17 00:21+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/es/>\n"
@@ -11,41 +11,41 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 
 msgid "Cohen's %s kappa"
-msgstr ""
+msgstr "Kappa %s de Cohen"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Calificaciones"
 
 msgid "%s kappa"
-msgstr ""
+msgstr "Kappa %s"
 
 msgid "%i subjects/items and %i raters/measurements."
-msgstr ""
+msgstr "%i sujetos/elementos y %i calificadores/medidas."
 
 msgid "SE"
-msgstr ""
+msgstr "ET"
 
 msgid "Lower"
-msgstr ""
+msgstr "Inferior"
 
 msgid "%s%% CI"
 msgstr "IC del %s%%"
 
 msgid "Upper"
-msgstr ""
+msgstr "Superior"
 
 msgid "Confidence intervals are asymptotic."
-msgstr ""
+msgstr "Los intervalos de confianza son asintóticos."
 
 msgid ""
 "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
-msgstr ""
+msgstr "Si solo hay 2 niveles, kappa ponderada equivale a kappa sin ponderar."
 
 msgid "Fleiss' kappa"
-msgstr ""
+msgstr "Kappa de Fleiss"
 
 msgid "getPointEstFun has no case for value:"
 msgstr "getPointEstFun no tiene ningún caso que valorar:"
