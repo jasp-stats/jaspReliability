@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2022-01-15 03:31\n"
-"PO-Revision-Date: 2022-01-18 15:53+0000\n"
-"Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
+"PO-Revision-Date: 2022-01-27 16:20+0000\n"
+"Last-Translator: Thomas Langkamp <thomas.lassdiesonnerein@gmx.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/de/>\n"
 "Language: de\n"
@@ -18,35 +18,37 @@ msgid "Cohen's %s kappa"
 msgstr "Cohens %s Kappa"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Bewertungen"
 
 msgid "%s kappa"
 msgstr "%s Kappa"
 
 msgid "%i subjects/items and %i raters/measurements."
-msgstr ""
+msgstr "%i Themen/Items und %i Bewerter/Messungen."
 
 msgid "SE"
-msgstr ""
+msgstr "Standardfehler"
 
 msgid "Lower"
-msgstr ""
+msgstr "Untere"
 
 msgid "%s%% CI"
 msgstr "%s%% KI"
 
 msgid "Upper"
-msgstr ""
+msgstr "Obere"
 
 msgid "Confidence intervals are asymptotic."
-msgstr ""
+msgstr "Konfidenzintervalle sind asymptotisch."
 
 msgid ""
 "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
 msgstr ""
+"Wenn es nur 2 Stufen gibt, ist das gewichtete Kappa gleich dem ungewichteten "
+"Kappa."
 
 msgid "Fleiss' kappa"
-msgstr ""
+msgstr "Fleiss' Kappa"
 
 msgid "getPointEstFun has no case for value:"
 msgstr "getPointEstFun hat keinen Fall für Wert:"
