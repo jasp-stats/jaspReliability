@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2022-01-15 03:31\n"
-"PO-Revision-Date: 2022-01-18 15:53+0000\n"
+"PO-Revision-Date: 2022-01-29 03:28+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/de/>\n"
@@ -18,35 +18,37 @@ msgid "Cohen's %s kappa"
 msgstr "Cohens %s Kappa"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Bewertungen"
 
 msgid "%s kappa"
 msgstr "%s Kappa"
 
 msgid "%i subjects/items and %i raters/measurements."
-msgstr ""
+msgstr "%i Messobjekte/Items und %i Bewerter/Messungen."
 
 msgid "SE"
-msgstr ""
+msgstr "Standardfehler"
 
 msgid "Lower"
-msgstr ""
+msgstr "Untere"
 
 msgid "%s%% CI"
 msgstr "%s%% KI"
 
 msgid "Upper"
-msgstr ""
+msgstr "Obere"
 
 msgid "Confidence intervals are asymptotic."
-msgstr ""
+msgstr "Konfidenzintervalle sind asymptotisch."
 
 msgid ""
 "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
 msgstr ""
+"Wenn es nur 2 Stufen gibt, ist das gewichtete Kappa gleich dem ungewichteten "
+"Kappa."
 
 msgid "Fleiss' kappa"
-msgstr ""
+msgstr "Fleiss' Kappa"
 
 msgid "getPointEstFun has no case for value:"
 msgstr "getPointEstFun hat keinen Fall für Wert:"
@@ -70,8 +72,8 @@ msgid ""
 "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
 "Fleiss (1979)."
 msgstr ""
-"%s Probanden und %s Beurteilende/Messungen. IKK-Typ wie von Shrout & Fleiss "
-"(1979) referenziert."
+"%s Messobjekte und %s Beurteilende/Messungen. IKK-Typ wie von Shrout & "
+"Fleiss (1979) referenziert."
 
 msgid "Please select at least 2 columns"
 msgstr "Bitte wähle mindestens 2 Spalten aus"
@@ -86,7 +88,7 @@ msgid "mean"
 msgstr "Mittelwert"
 
 msgid "sd"
-msgstr "sd"
+msgstr "SD"
 
 msgid ""
 "Sampling the posterior null model failed. Try changing to 'Exclude cases "
