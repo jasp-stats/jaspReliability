@@ -3,6 +3,13 @@ import JASP.Module 	1.0
 
 Upgrades
 {
+	Upgrade
+	{
+		functionName: 		"IntraclassCorrelation"
+		newFunctionName:	"intraclassCorrelation"
+		fromVersion:		"0.16"
+		toVersion:			"0.16.1"
+	}
 
 	Upgrade
 	{
