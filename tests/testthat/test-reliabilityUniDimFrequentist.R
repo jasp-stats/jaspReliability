@@ -124,8 +124,8 @@ test_that("Frequentist omega results match for CFA with bootstrapping", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_fitTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list("Chi-Square", 12.788508304247, "df", 5, "p.value", 0.0254433712709828,
-                                      "RMSEA", 0.15724319758923, "Lower CI RMSEA", 0.0507316506074521,
-                                      "Upper CI RMSEA", 0.266560548199575, "SRMR", 0.0708026289801857
+                                      "RMSEA", 0.15724319758923, "Lower 90% CI RMSEA", 0.0507316506074521,
+                                      "Upper 90% CI RMSEA", 0.266560548199575, "SRMR", 0.0708026289801857
                                  ))
 
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
