@@ -676,10 +676,14 @@
     implieds <- .implCovs(model[["singleFactor"]][["loadings"]],
                           model[["singleFactor"]][["residuals"]],
                           model[["singleFactor"]][["factor_var"]])
+    dd <- dim(implieds)
+    startProgressbar(dd[1] * dd[2] + # for model implied covariance matrices
+      options[["noSamples"]] * options[["noChains"]] + # for null model sampling
+        dd[1] * dd[2]) # for null model implied covariance matrices
 
     ### Chisqs ###
     LL1 <- sum(.dmultinorm(dataset, cdat)) # loglikelihood saturated model
-    LR_obs <- apply(implieds, c(1, 2), .LRblav, data = dataset, basell = LL1) # loglikelihoods tested model
+    LR_obs <- apply(implieds, c(1, 2), .LRblav, data = dataset, basell = LL1, callback = progressbarTick) # loglikelihoods tested model
 
     lsm <- apply(model[["singleFactor"]][["loadings"]], 3, mean)
     psm <- apply(model[["singleFactor"]][["residuals"]], 3, mean)
@@ -693,8 +697,6 @@
     pD <- Dm - Dtm # effective number of parameters (free parameters)
     out[["rmsea"]] <- .BRMSEA(LR_obs, pstar, pD, n)
     # rmsea_m <- sqrt((Dtm - (pstar - pD)) / ((pstar - pD) * n))
-
-    startProgressbar(options[["noSamples"]] * options[["noChains"]])
 
     ### CFI and TLI need a nullmodel:
     res_null <- try(Bayesrel:::omegaSamplerNull(dataset, options[["noSamples"]], options[["noBurnin"]],
@@ -714,7 +716,7 @@
       impl_null[i, , ] <- diag(ps_null[i, ])
     }
 
-    LR_null <- apply(impl_null, 1, .LRblav, data = dataset, basell = LL1)
+    LR_null <- apply(impl_null, 1, .LRblav, data = dataset, basell = LL1, callback = progressbarTick)
     Dm_null <- mean(LR_null)
 
     psm_null <- colMeans(ps_null)
