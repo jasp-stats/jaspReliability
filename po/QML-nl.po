@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2022-02-04 16:55+0000\n"
+"Last-Translator: DanaJohanna <dana__@live.nl>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/nl/>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.11-dev\n"
 "X-Language: nl\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -586,28 +592,24 @@ msgstr "van gemiddelde scores van participanten"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:8
 msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
-msgstr ""
+msgstr "Kwantificeer de betrouwbaarheid van de testscores"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:35
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Variables"
 msgstr "Variabelen"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:45
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Each subject is rated by..."
 msgstr "Ieder subject is gescoord door..."
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:51
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "a different rater (randomly selected)"
 msgstr "een andere beoordelaar (willekeurig geselecteerd)"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:58
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
 msgstr "dezelfde willekeurig gekozen beoordelaars/ metingen"
