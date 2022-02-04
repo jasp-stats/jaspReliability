@@ -615,7 +615,6 @@ msgid "the same set of randomly selected raters/tests"
 msgstr "dezelfde willekeurig gekozen beoordelaars/ metingen"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:65
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
 msgstr "dezelfde vaste set van beoordelaars/ metingen"
