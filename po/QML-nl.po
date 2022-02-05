@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2022-02-04 20:20+0000\n"
+"Last-Translator: DanaJohanna <dana__@live.nl>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/nl/>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.11-dev\n"
 "X-Language: nl\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -586,46 +592,39 @@ msgstr "van gemiddelde scores van participanten"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:8
 msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
-msgstr ""
+msgstr "Kwantificeer de betrouwbaarheid van de testscores"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:35
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Variables"
 msgstr "Variabelen"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:45
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Each subject is rated by..."
 msgstr "Ieder subject is gescoord door..."
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:51
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "a different rater (randomly selected)"
 msgstr "een andere beoordelaar (willekeurig geselecteerd)"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:58
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
 msgstr "dezelfde willekeurig gekozen beoordelaars/ metingen"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:65
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
 msgstr "dezelfde vaste set van beoordelaars/ metingen"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:73
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Ratings are averaged"
 msgstr "Scores zijn gemiddeld"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/intraclassCorrelation.qml:81
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Confidence Interval"
 msgstr "Betrouwbaarheidsinterval"
@@ -633,50 +632,49 @@ msgstr "Betrouwbaarheidsinterval"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:385
 msgctxt "uniDimBayesian|"
 msgid "Priors"
-msgstr ""
+msgstr "Priors"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:388
 msgctxt "uniDimBayesian|"
 msgid "CTT-Coefficients (α, λ2, λ6, glb)"
-msgstr ""
+msgstr "CTT-Coëfficiënten (α, λ2, λ6, glb)"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:393
 msgctxt "uniDimBayesian|"
 msgid "Inverse Wishart scale"
-msgstr ""
+msgstr "Inverse Wishart schaal"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:402
 msgctxt "uniDimBayesian|"
 msgid "Inverse Wishart df"
-msgstr ""
+msgstr "Inverse Wishart df"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:417
 msgctxt "uniDimBayesian|"
 msgid "Inverse gamma:"
-msgstr ""
+msgstr "Inverse gamma:"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:422
 msgctxt "uniDimBayesian|"
 msgid "shape"
-msgstr ""
+msgstr "vorm"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:433
 msgctxt "uniDimBayesian|"
 msgid "scale"
-msgstr ""
+msgstr "schaal"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:443
 msgctxt "uniDimBayesian|"
 msgid "Normal:"
-msgstr ""
+msgstr "Normaal:"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:448
 msgctxt "uniDimBayesian|"
 msgid "mean"
-msgstr ""
+msgstr "gemiddelde"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:461
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Advanced Options"
 msgstr "Geavanceerde Opties"
@@ -684,10 +682,9 @@ msgstr "Geavanceerde Opties"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:471
 msgctxt "uniDimBayesian|"
 msgid "Bayesian imputation"
-msgstr ""
+msgstr "Bayesiaanse imputatie"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:478
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "McDonald's ω Estimation"
 msgstr "McDonald's ω Schatting"
@@ -695,42 +692,40 @@ msgstr "McDonald's ω Schatting"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:488
 msgctxt "uniDimBayesian|"
 msgid "Fit measures"
-msgstr ""
+msgstr "Pasmaten"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:493
 msgctxt "uniDimBayesian|"
 msgid "p(RMSEA <"
-msgstr ""
+msgstr "p(RMSEA <"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:498
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:508
 msgctxt "uniDimBayesian|"
 msgid ")"
-msgstr ""
+msgstr ")"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:503
 msgctxt "uniDimBayesian|"
 msgid "p(CFI/TLI >"
-msgstr ""
+msgstr "p(CFI/TLI >"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:514
 msgctxt "uniDimBayesian|"
 msgid "Standardized factor loadings"
-msgstr ""
+msgstr "Gestandaardiseerde factorladingen"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:524
 msgctxt "uniDimBayesian|"
 msgid "Coefficients"
-msgstr ""
+msgstr "Coëfficiënten"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:527
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Unstandardized"
-msgstr "Niet gestandaardiseerd"
+msgstr "Ongestandaardiseerd"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:528
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Standardized"
 msgstr "Gestandaardiseerd"
@@ -738,20 +733,19 @@ msgstr "Gestandaardiseerd"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:540
 msgctxt "uniDimBayesian|"
 msgid "Posterior Point Estimate"
-msgstr ""
+msgstr "Posterior Puntschatting"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:542
 msgctxt "uniDimBayesian|"
 msgid "Median"
-msgstr ""
+msgstr "Mediaan"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:39
 msgctxt "Description|"
 msgid "Cohen's & Fleiss' kappa"
-msgstr ""
+msgstr "Cohen's & Fleiss' kappa"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:35
-#, fuzzy
 msgctxt "cohensFleissKappa|"
 msgid "Variables"
 msgstr "Variabelen"
@@ -759,25 +753,24 @@ msgstr "Variabelen"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:47
 msgctxt "cohensFleissKappa|"
 msgid "Cohen's kappa"
-msgstr ""
+msgstr "Cohen's kappa"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:58
 msgctxt "cohensFleissKappa|"
 msgid "Unweighted"
-msgstr ""
+msgstr "Ongewogen"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:65
 msgctxt "cohensFleissKappa|"
 msgid "Weighted"
-msgstr ""
+msgstr "Gewogen"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:78
 msgctxt "cohensFleissKappa|"
 msgid "Fleiss' kappa"
-msgstr ""
+msgstr "Fleiss' kappa"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:90
-#, fuzzy
 msgctxt "cohensFleissKappa|"
 msgid "Confidence Interval"
 msgstr "Betrouwbaarheidsinterval"
