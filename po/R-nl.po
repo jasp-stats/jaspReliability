@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2022-01-15 03:31\n"
-"PO-Revision-Date: 2021-10-18 09:32+0000\n"
-"Last-Translator: Koen Derks <koen-derks@hotmail.com>\n"
+"PO-Revision-Date: 2022-02-05 03:26+0000\n"
+"Last-Translator: DanaJohanna <dana__@live.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/nl/>\n"
 "Language: nl\n"
@@ -12,44 +12,46 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 msgid "Cohen's %s kappa"
-msgstr ""
+msgstr "Cohen's %s kappa"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Scores"
 
 msgid "%s kappa"
-msgstr ""
+msgstr "%s kappa"
 
 msgid "%i subjects/items and %i raters/measurements."
-msgstr ""
+msgstr "%i subjecten/items and %i beoordelaars/metingen."
 
 msgid "SE"
-msgstr ""
+msgstr "Std. Fout"
 
 msgid "Lower"
-msgstr ""
+msgstr "Onder"
 
 msgid "%s%% CI"
 msgstr "%s%% BI"
 
 msgid "Upper"
-msgstr ""
+msgstr "Boven"
 
 msgid "Confidence intervals are asymptotic."
-msgstr ""
+msgstr "Betrouwbaarheidsintervallen zijn asymptotisch."
 
 msgid ""
 "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
 msgstr ""
+"Als er enkel 2 niveaus zijn, is de gewogen kappa gelijk aan de ongewogen "
+"kappa."
 
 msgid "Fleiss' kappa"
-msgstr ""
+msgstr "Fleiss' kappa"
 
 msgid "getPointEstFun has no case for value:"
-msgstr ""
+msgstr "getPointEstFun heeft geen geval voor waarde:"
 
 msgid "Intraclass Correlation"
 msgstr "Intraclass Correlatie"
@@ -66,7 +68,6 @@ msgstr "Onder %s%% BI"
 msgid "Upper %s%% CI"
 msgstr "Boven %s%% BI"
 
-#, fuzzy
 msgid ""
 "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
 "Fleiss (1979)."
@@ -89,13 +90,12 @@ msgstr "gemiddelde"
 msgid "sd"
 msgstr "sd"
 
-#, fuzzy
 msgid ""
 "Sampling the posterior null model failed. Try changing to 'Exclude cases "
 "listwise' in 'Advanced Options'"
 msgstr ""
-"Steekproef van posterior factormodel voor omega mislukt. Probeer 'Exclude "
-"cases listwise' in te stellen in 'Advanced Options'"
+"Steekproef van posterior factormodel voor omega mislukt. Probeer 'Sluit "
+"gevallen lijstgewijs uit' in te stellen in 'Geavanceerde Opties'"
 
 msgid "Posterior Plots"
 msgstr "Posterior Grafieken"
@@ -104,7 +104,7 @@ msgid "Density"
 msgstr "Dichtheid"
 
 msgid "If Item Dropped Posterior Plots"
-msgstr "Als Item Wordt Weggelaten Posterior Grafiek"
+msgstr "Als Item Wordt Weggelaten Posterior Grafieken"
 
 msgid "Please enter at least 3 variables for the if item dropped plot"
 msgstr "Geef a.u.b. minstens 3 variabelen op"
@@ -139,12 +139,11 @@ msgstr "%s ondergrens"
 msgid "%s upper bound"
 msgstr "%s bovengrens"
 
-#, fuzzy
 msgid "Posterior %s"
-msgstr "Posterior"
+msgstr "Posterior %s"
 
 msgid "Bayesian Individual Item Reliability Statistics"
-msgstr "Bayesiaanse Individuele Item Validiteitsstatistieken"
+msgstr "Bayesiaanse Individuele Item Betrouwbaarheidsstatistieken"
 
 msgid "Item"
 msgstr "Item"
@@ -184,11 +183,9 @@ msgstr "Prior"
 msgid "Posterior"
 msgstr "Posterior"
 
-#, fuzzy
 msgid "Fit Measures for the Single-Factor Model"
-msgstr "Pasmaat van Enkele Factor Model passing"
+msgstr "Pasmaten van Enkele Factor Model"
 
-#, fuzzy
 msgid "Fit measure"
 msgstr "Pasmaat"
 
@@ -196,7 +193,7 @@ msgid "Point estimate"
 msgstr "Puntschatting"
 
 msgid "Relative to cutoff"
-msgstr ""
+msgstr "Relatief aan afsnijding"
 
 msgid ""
 "'Relative to cutoff'-column denotes the probability that the B-RMSEA is "
@@ -205,13 +202,16 @@ msgid ""
 "the B-CFI/TLI are larger than the\n"
 "                         corresponding cutoff."
 msgstr ""
+"'Relatief aan afsnijding'-kolom geeft de kans dat de B-RMSEA kleiner is dan\n"
+"                         de overeenkomende afsnijding en de kansen dat de "
+"B-CFI/TLI groter zijn dan de\n"
+"                         overeenkomende afsnijding."
 
-#, fuzzy
 msgid "Standardized Loadings of the Single-Factor Model"
-msgstr "Pasmaat van Enkele Factor Model passing"
+msgstr "Gestandaardiseerde Ladingen van Enkele Factor Model"
 
 msgid "Standardized loading"
-msgstr ""
+msgstr "Gestandaardiseerde lading"
 
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr "%s van de observaties, zijn %1.f volledige observaties gebruikt."
