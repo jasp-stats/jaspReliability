@@ -687,7 +687,7 @@
 
     lsm <- apply(model[["singleFactor"]][["loadings"]], 3, mean)
     psm <- apply(model[["singleFactor"]][["residuals"]], 3, mean)
-    implM <- lsm %*% t(lsm) + diag(psm) # mean implied covariance matrix
+    implM <- tcrossprod(lsm) + diag(psm) # mean implied covariance matrix
     Dtm <- .LRblav(dataset, implM, LL1) # deviance of the mean model implied cov matrix
     out[["lr"]] <- Dtm
 

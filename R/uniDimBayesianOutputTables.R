@@ -253,7 +253,7 @@
 
 
 ###############################################
-# use 'posterior mean and median in the table, also flip the table
+# use posterior mean and median in the table, also flip the table
 ###############################################
 
 .BayesianFitMeasuresTable <- function(jaspResults, model, options) {
@@ -283,13 +283,15 @@
 
   if (options[["omegaScale"]] && options[["fitMeasures"]] && is.null(model[["empty"]])) {
 
-    pointEsts <- sapply(model[["fitMeasures"]], .getPointEstFun(options[["pointEst"]]))
+    pointEsts <- vapply(model[["fitMeasures"]], .getPointEstFun(options[["pointEst"]]), numeric(1))
 
-    creds <- sapply(model[["fitMeasures"]][3:5], function(x) coda::HPDinterval(coda::mcmc(c(x))))
+    creds <- vapply(model[["fitMeasures"]][3:5], function(x) coda::HPDinterval(coda::mcmc(c(x))), numeric(2))
     creds <- cbind(matrix(NA_real_, 2, 2), creds) # no entry for LR and SRMR
 
-    cutoffs_saturated <- sapply(model[["fitMeasures"]][3], function(x) mean(x < options[["fitCutoffSat"]]))
-    cutoffs_null <- sapply(model[["fitMeasures"]][-(1:3)], function(x) mean(x > options[["fitCutoffNull"]]))
+    cutoffs_saturated <- vapply(model[["fitMeasures"]][3], function(x) mean(x < options[["fitCutoffSat"]]),
+                                numeric(1))
+    cutoffs_null <- vapply(model[["fitMeasures"]][-(1:3)], function(x) mean(x > options[["fitCutoffNull"]]),
+                           numeric(1))
     cutoffs <- c(NA_real_, NA_real_, cutoffs_saturated, cutoffs_null) # no entry for LR and SRMR
 
     df <- data.frame(estimate = c(pointEst, intervalLow, intervalUp, "Relative to cutoff"))
