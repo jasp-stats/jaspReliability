@@ -1,8 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2022-02-16 10:57+0000\n"
+"Last-Translator: Jordy STEFAN <jordy.stefan@askoria.eu>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/fr/>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.11-dev\n"
 "X-Qt-Contexts: true\n"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:7
@@ -18,7 +25,7 @@ msgstr ""
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:19
 msgctxt "Description|"
 msgid "Classical"
-msgstr ""
+msgstr "Classique"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:25
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:53
@@ -39,7 +46,7 @@ msgstr ""
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:48
 msgctxt "Description|"
 msgid "Bayesian"
-msgstr ""
+msgstr "Bayésien"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:54
 msgctxt "Description|"
