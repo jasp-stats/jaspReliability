@@ -22,9 +22,10 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
   
   if (options[["cohensKappa"]])
     jaspResults[["cohensKappa"]] <- .computeCohensKappaTable(dataset, options, ready)
-  
   if (options[["fleissKappa"]])
     jaspResults[["fleissKappa"]] <- .computeFleissKappaTable(dataset, options, ready)
+  if (options[["krippendorffsAlpha"]])
+    jaspResults[["krippendorffsAlpha"]] <- .computeKrippendorffsAlphaTable(dataset, options, ready)
   
   return()
 }
@@ -191,4 +192,62 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
     jaspTable$addFootnote(footnote)
   }
   return(jaspTable)
+}
+
+.computeKrippendorffsAlphaTable <- function(dataset, options, ready) {
+  # Create the JASP Table
+  jaspTable <- createJaspTable(title = gettextf("Krippendorff's alpha"))
+  jaspTable$addColumnInfo(name = "method", title = gettext("Method"), type = "string")
+  jaspTable$addColumnInfo(name = "kAlpha", title = gettext("Krippendorff's alpha"), type = "number")
+  jaspTable$position <- 2
+  
+  #dependencies
+  jaspTable$dependOn(
+    options = c(
+      "variables",
+      "krippendorffsAlpha",
+      "kappaIntervalOn",
+      "kappaConfidenceIntervalValue"
+    )
+  )
+  
+  formattedCIPercent <- format(
+    100 * options[["kappaConfidenceIntervalValue"]],
+    digits = 3,
+    drop0trailing = TRUE
+  )
+  
+  if (ready) {
+    #calculate Krippendorff's alpha
+    kAlphaData <- t(as.matrix(dataset))
+    method <- options[["alphaMethod"]]
+    kAlpha <- irr::kripp.alpha(kAlphaData, method)
+    
+    tableData <- list("method" = paste0(toupper(substr(method, 1, 1)), substr(method, 2, nchar(method))),
+                      "kAlpha" = kAlpha$value)
+    footnote <- gettextf('%i subjects/items and %i raters/measurements.', kAlpha$subjects, kAlpha$raters)
+    
+    if (options[["kappaIntervalOn"]]) {
+      bootstrapAlphas <- boot::boot(dataset, alpha.boot, R = 1000, method = method)
+      CIs <- boot::boot.ci(bootstrapAlphas, type = "perc", conf = options[["kappaConfidenceIntervalValue"]])
+      jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
+      jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
+      jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
+      tableData[["SE"]] <- sd(bootstrapAlphas$t)
+      tableData[["CIL"]] <- CIs$percent[4]
+      tableData[["CIU"]] <- CIs$percent[5]
+      footnote <- paste(footnote, gettext('Confidence intervals are based on percentiles from 1000 bootstrap replications.'))
+    }
+    jaspTable$setData(tableData)
+    jaspTable$addFootnote(footnote)
+  }
+  
+  
+  return(jaspTable)
+  
+}
+
+alpha.boot <- function(d, w, method) {
+  data <- t(d[w,])
+  return(irr::kripp.alpha(data, method = method)$value)
 }

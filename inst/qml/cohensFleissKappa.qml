@@ -79,6 +79,27 @@ Form
 			checked: 	true
 		}
 		
+		CheckBox
+		{
+			name:   	"krippendorffsAlpha"
+			label:  	qsTr("Krippendorff's alpha")
+			checked: 	true
+			
+			DropDown
+			{
+				name: "alphaMethod"
+				label: qsTr("Method")
+				id: alphaMethod
+				values:
+				[
+					{label: qsTr("Nominal"),		value: "nominal"},
+					{label: qsTr("Ordinal"),		value: "ordinal"},
+					{label: qsTr("Interval"),		value: "interval"},
+					{label: qsTr("Ratio"),			value: "ratio"}
+				]
+			}
+		}
+		
 	}
 	
 	
