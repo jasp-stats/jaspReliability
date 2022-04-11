@@ -198,7 +198,7 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
   # Create the JASP Table
   jaspTable <- createJaspTable(title = "Krippendorff's alpha")
   jaspTable$addColumnInfo(name = "method", title = gettext("Method"), type = "string")
-  jaspTable$addColumnInfo(name = "kAlpha", title = gettext("Krippendorff's alpha"), type = "number")
+  jaspTable$addColumnInfo(name = "kAlpha", title = "Krippendorff's alpha", type = "number")
   jaspTable$position <- 2
   
   #dependencies
