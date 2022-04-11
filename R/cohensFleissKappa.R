@@ -232,7 +232,7 @@ n <- nrow(dataset)
 alphas <- numeric(1e3)
 for (i in seq_len(1e3)) {
   bootData <- as.matrix(dataset[sample.int(n, size = n, replace = TRUE), ])
-  alphas[i] <- irr::kripp.alpha(t(boot_data), method = method)$value
+  alphas[i] <- irr::kripp.alpha(t(bootData), method = method)$value
 }
 conf <- options[["kappaConfidenceIntervalValue"]]
 confs <- (1 + c(-conf, conf)) / 2
