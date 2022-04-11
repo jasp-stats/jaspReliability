@@ -241,9 +241,9 @@ CIs <- quantile(alphas, probs = confs)
       jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
       jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
       jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
-      tableData[["SE"]] <- sd(bootstrapAlphas$t)
-      tableData[["CIL"]] <- CIs$percent[4]
-      tableData[["CIU"]] <- CIs$percent[5]
+      tableData[["SE"]] <- sd(alphas)
+      tableData[["CIL"]] <- CIs[1]
+      tableData[["CIU"]] <- CIs[2]
       footnote <- paste(footnote, gettext('Confidence intervals are based on percentiles from 1000 bootstrap replications.'))
     }
     jaspTable$setData(tableData)
