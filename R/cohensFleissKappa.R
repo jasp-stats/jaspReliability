@@ -242,12 +242,10 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
     jaspTable$addFootnote(footnote)
   }
   
-  
   return(jaspTable)
-  
 }
 
-alpha.boot <- function(d, w, method) {
-  data <- t(d[w,])
+alpha.boot <- function(d, w, method) {  #d for data and w for weights, standard arguments for the boot::boot function
+  data <- t(d[w, ])
   return(irr::kripp.alpha(data, method = method)$value)
 }
