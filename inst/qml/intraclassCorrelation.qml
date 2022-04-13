@@ -89,4 +89,54 @@ Form
 			defaultValue: 95;
 		}
 	}
+	
+	Section
+	{
+		title:			qsTr("Plots")
+
+		VariablesForm
+		{
+			preferredHeight: jaspTheme.smallDefaultVariablesFormHeight
+
+			AvailableVariablesList
+			{
+				name:	"availablePlottingComponents"
+				title:	qsTr("Plot components")
+				source:	"variables"
+			}
+
+			AssignedPairsVariablesList
+			{
+				id:					pairs
+				name:				"pairs"
+				title:				qsTr("Measurement Pairs")
+				suggestedColumns: 	["scale", "ordinal"]
+			}
+		}
+		
+		CheckBox
+		{
+			name:   	"descriptivesBlandAltman"
+			label:  	qsTr("Bland-Altman plot")
+			CheckBox 
+			{
+				name: 				"ciDisplay"
+				label:				qsTr("Confidence Interval")
+				childrenOnSameRow: 	true
+
+				CIField 
+				{      
+					name: 		"ciValue";   
+					label: 		"";
+					defaultValue: 50;
+				}
+				
+				CheckBox 
+				{
+					name: 				"ciShading"
+					label:				qsTr("Shading")
+				}
+			}
+		}
+	}
 }

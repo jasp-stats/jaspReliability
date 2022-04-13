@@ -1,7 +1,7 @@
 setwd('/Users/lucat/OneDrive/Dokumente/Uni Amsterdam/Internship/Example Data/')
 write.csv(df,"BlandAtlman.csv", row.names = FALSE)
 
-df <- read.csv("LikertData_TextItems&Level.csv", header = T)
+df <- read.csv("LikertData_7Lvl.csv", header = T)
 df <- df[,-c(1,2)]
 for (i in 1:ncol(df)) {
   df[, i] <- factor(df[, i], levels = 1:nLevels)
@@ -28,7 +28,9 @@ library(BlandAltmanLeh)
 bland.altman.plot(measurement1, measurement2, xlab="mean measurement",
                   ylab="differences", conf.int= .95, graph.sys = "ggplot2")
 View(bland.altman.plot)
-undebug(bland.altman.plot)
+debug(bland.altman.plot)
+
+
 View(bland.altman.ggplot2)
 
 xx <- bland.altman.stats(measurement1, measurement2)
@@ -39,17 +41,13 @@ values <- data.frame(m = xx$means, d = xx$diffs)
 
 # Errors: (1) different length of variables & (2) obs below 2 not working
 
-place <- function(measure1, measure2, ci = 0.95, ciDisplay = TRUE, ciShading = TRUE, mode = FALSE){
+place <- function(measure1, measure2, ci = 0.95, ciDisplay = TRUE, ciShading = TRUE){
 
   df <- data.frame(group1 = measure1, group2 = measure2)
   df <- na.omit(df)
 
   # Main components
-  if (!mode){
-    diffs <- df[[1]] - df[[2]]
-  } else {
-    diffs <- df[[2]] - df[[1]]
-  }
+  diffs <- df[[1]] - df[[2]]
   means <- (df[[1]] + df[[2]])/2
   values <- data.frame(m = means, d = diffs)
   obs <- length(df[[1]])
@@ -85,9 +83,9 @@ place <- function(measure1, measure2, ci = 0.95, ciDisplay = TRUE, ciShading = T
   xBreaks <- c(floor(min(xBreaks)), xBreaks[!xBreaks%%1], ceiling(max(xBreaks)))
 
   p <- ggplot2::ggplot(values, ggplot2::aes(x = m, y = d)) +
-    ggplot2::geom_point() + ggplot2::geom_hline(yintercept = lines, linetype = 2, size = 1) +
+    ggplot2::geom_point(size = 3) + ggplot2::geom_hline(yintercept = lines, linetype = 2, size = 1) +
     ggplot2::xlab("Mean of Measurements") +
-    ggplot2::ylab("Difference")
+    ggplot2::ylab("Difference of Measurements")
 
   if(ciDisplay){
     p <- p + ggplot2::geom_hline(yintercept = CiLines, linetype = 2, size = 0.5)
@@ -119,7 +117,7 @@ place <- function(measure1, measure2, ci = 0.95, ciDisplay = TRUE, ciShading = T
   return(p)
 }
 
-place(measurement1, measurement2)
+place(measurement1, measurement2, ciDisplay = F)
 
 set.seed(12)
 place(rnorm(100), rnorm(100))

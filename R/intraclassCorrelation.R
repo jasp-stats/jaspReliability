@@ -22,6 +22,10 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
 
   jaspResults[["table"]] <- .handleIntraclassCorrelation(dataset, options)
 
+  if(options$descriptivesBlandAltman){
+    .descriptivesBlandAltman(jaspResults, dataset, options)
+  }
+
   return()
 }
 
@@ -123,3 +127,125 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
 
   return(jaspTable)
 }
+
+.descriptivesBlandAltman <- function(jaspResults, dataset, options){
+
+  ready <- length(options$pairs) > 0
+
+  if (is.null(jaspResults[["plotsBlandAltman"]])) {
+    jaspResults[["plotsBlandAltman"]] <- createJaspContainer(gettext("Bland-Altman Plots"))
+    jaspResults[["plotsBlandAltman"]]$dependOn(c("descriptivesBlandAltman", "ciDisplay", "ciShading", "ciValue"))
+    subcontainer <- jaspResults[["plotsBlandAltman"]]
+  } else {
+    subcontainer <- jaspResults[["plotsBlandAltman"]]
+  }
+
+  if(ready){
+    for(pair in options$pairs) {
+      title <- paste(pair, collapse = " - ")
+      if(!is.null(subcontainer[[title]]))
+        next
+      descriptivesBlandAltman <- createJaspPlot(title = title, width = 600, height = 420)
+      descriptivesBlandAltman$dependOn(optionContainsValue = list(pairs = pair))
+      subcontainer[[title]] <- descriptivesBlandAltman
+
+      subData <- data.frame(dataset[, unlist(pair)])
+      subData <- na.omit(subData)
+
+      p <- .descriptivesBlandAltmanPlot(subData, options)
+
+      descriptivesBlandAltman$plotObject <- p
+    }
+  }
+  return()
+
+}
+
+.descriptivesBlandAltmanStats <- function(dataset, options){
+
+  # Calculating main components
+  ci <- options[["ciValue"]]
+  diffs <- dataset[[1]] - dataset[[2]]
+  means <- (dataset[[1]] + dataset[[2]])/2
+
+  obs <- length(dataset[[1]])
+  meanDiffs <- mean(diffs)
+  criticalDiff <- 1.96 * sd(diffs) #1.96 used instead of suggested 2 by Bland & Altman
+  lowerLimit <- meanDiffs - criticalDiff
+  upperLimit <- meanDiffs + criticalDiff
+  lines <- c(lowerLimit, meanDiffs, upperLimit)
+
+  t1 <- qt((1 - ci)/2, df = obs - 1)
+  t2 <- qt((ci + 1)/2, df = obs - 1)
+
+  # CI calculations based on Bland & Altman, 1986
+  lowerLimitCiLower <- lowerLimit + t1 * sqrt(sd(diffs)^2 * 3/obs)
+  lowerLimitCiUpper <- lowerLimit + t2 * sqrt(sd(diffs)^2 * 3/obs)
+  meanDiffCiLower <- meanDiffs + t1 * sd(diffs)/sqrt(obs)
+  meanDiffCiUpper <- meanDiffs + t2 * sd(diffs)/sqrt(obs)
+  upperLimitCiLower <- upperLimit + t1 * sqrt(sd(diffs)^2 * 3/obs)
+  upperLimitCiUpper <- upperLimit + t2 * sqrt(sd(diffs)^2 * 3/obs)
+  CiLines <- c(lowerLimitCiLower, lowerLimitCiUpper, meanDiffCiLower, meanDiffCiUpper, upperLimitCiLower, upperLimitCiUpper)
+
+  return(list(means = means, diffs = diffs, lines = lines, CiLines = CiLines))
+}
+
+.descriptivesBlandAltmanPlot <- function(dataset, options){
+
+  ba <- .descriptivesBlandAltmanStats(dataset = dataset, options = options)
+  values <- data.frame(m = ba$means, d = ba$diffs)
+
+  # Bland-Altman Plot
+  if(max(ba$CiLines) > max(ba$diffs) && min(ba$CiLines) < min(ba$diffs)){
+    yBreaks <- jaspGraphs::getPrettyAxisBreaks(ba$CiLines)
+  } else if(max(ba$CiLines) < max(ba$diffs) && min(ba$CiLines) > min(ba$diffs)){
+    yBreaks <- jaspGraphs::getPrettyAxisBreaks(ba$diffs)
+  } else if(max(ba$CiLines) < max(ba$diffs) && min(ba$CiLines) < min(ba$diffs)){
+    yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(ba$CiLines), ba$diffs))
+  } else if(max(ba$CiLines) > max(ba$diffs) && min(ba$CiLines) > min(ba$diffs)){
+    yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(ba$diffs), ba$CiLines))
+  }
+
+  yBreaks <- c(floor(min(yBreaks)), yBreaks[!yBreaks%%1], ceiling(max(yBreaks)))
+  xBreaks <- jaspGraphs::getPrettyAxisBreaks(ba$means)
+  xBreaks <- c(floor(min(xBreaks)), xBreaks[!xBreaks%%1], ceiling(max(xBreaks)))
+
+  p <- ggplot2::ggplot(values, ggplot2::aes(x = m, y = d)) +
+    ggplot2::geom_point(size = 3) + ggplot2::geom_hline(yintercept = ba$lines, linetype = 2, size = 1) +
+    ggplot2::xlab("Mean of Measurements") +
+    ggplot2::ylab("Difference of Measurements")
+
+  if(options[["ciDisplay"]]){
+    p <- p + ggplot2::geom_hline(yintercept = ba$CiLines, linetype = 2, size = 0.5)
+
+    if (options[["ciShading"]]){
+      p <- p + ggplot2::annotate("rect", xmin = -Inf, xmax = Inf,
+                                 ymin = ba$CiLines[3],
+                                 ymax = ba$CiLines[4],
+                                 fill = "blue", alpha = 0.3) +
+        ggplot2::annotate("rect", xmin = -Inf, xmax = Inf,
+                          ymin = ba$CiLines[5],
+                          ymax = ba$CiLines[6],
+                          fill = "green", alpha = 0.3) +
+        ggplot2::annotate("rect", xmin = -Inf, xmax = Inf,
+                          ymin = ba$CiLines[1],
+                          ymax = ba$CiLines[2],
+                          fill = "red", alpha = 0.3)
+    }
+  }
+
+  p <- p + ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks),
+                                       sec.axis = ggplot2::dup_axis(~., breaks = yBreaks, labels = NULL, name = "")) +
+    ggplot2::theme(axis.ticks.y.right = ggplot2::element_blank()) +
+    ggplot2::scale_x_continuous(breaks = xBreaks, limits = range(xBreaks))+
+    jaspGraphs::geom_rangeframe(sides = "rbl") +
+    jaspGraphs::themeJaspRaw() +
+    ggplot2::theme(plot.margin = ggplot2::margin(5))
+}
+
+
+
+
+
+
+
