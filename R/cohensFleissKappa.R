@@ -24,8 +24,11 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
     jaspResults[["cohensKappa"]] <- .computeCohensKappaTable(dataset, options, ready)
   if (options[["fleissKappa"]])
     jaspResults[["fleissKappa"]] <- .computeFleissKappaTable(dataset, options, ready)
-  if (options[["krippendorffsAlpha"]])
-    jaspResults[["krippendorffsAlpha"]] <- .computeKrippendorffsAlphaTable(dataset, options, ready)
+  if (options[["krippendorffsAlpha"]]) {
+    if (options[["kappaIntervalOn"]])
+      .kripAlphaBoot(jaspResults, dataset, options, ready)
+    jaspResults[["krippendorffsAlpha"]] <- .computeKrippendorffsAlphaTable(jaspResults, dataset, options, ready)
+  }
   
   return()
 }
@@ -194,7 +197,7 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
   return(jaspTable)
 }
 
-.computeKrippendorffsAlphaTable <- function(dataset, options, ready) {
+.computeKrippendorffsAlphaTable <- function(jaspResults, dataset, options, ready) {
   # Create the JASP Table
   jaspTable <- createJaspTable(title = "Krippendorff's alpha")
   jaspTable$addColumnInfo(name = "method", title = gettext("Method"), type = "string")
@@ -228,16 +231,11 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
     footnote <- gettextf('%i subjects/items and %i raters/measurements.', kAlpha$subjects, kAlpha$raters)
     
     if (options[["kappaIntervalOn"]]) {
-n <- nrow(dataset)
-alphas <- numeric(1e3)
-for (i in seq_len(1e3)) {
-  bootData <- as.matrix(dataset[sample.int(n, size = n, replace = TRUE), ])
-  alphas[i] <- irr::kripp.alpha(t(bootData), method = method)$value
-}
-conf <- options[["kappaConfidenceIntervalValue"]]
-confs <- (1 + c(-conf, conf)) / 2
-CIs <- quantile(alphas, probs = confs)
-
+      alphas <- jaspResults[["bootstrapSamples"]]$object
+      conf <- options[["kappaConfidenceIntervalValue"]]
+      confs <- (1 + c(-conf, conf)) / 2
+      CIs <- quantile(alphas, probs = confs)
+      
       jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
       jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
       jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
@@ -253,3 +251,22 @@ CIs <- quantile(alphas, probs = confs)
   return(jaspTable)
 }
 
+.kripAlphaBoot <- function(jaspResults, dataset, options, ready) {
+  if (ready) {
+    bootstrapSamples <- createJaspState()
+    method <- options[["alphaMethod"]]
+    n <- nrow(dataset)
+    alphas <- numeric(1e3)
+    for (i in seq_len(1e3)) {
+      bootData <- as.matrix(dataset[sample.int(n, size = n, replace = TRUE), ])
+      alphas[i] <- irr::kripp.alpha(t(bootData), method = method)$value
+    }
+    bootstrapSamples$object <- alphas
+    jaspResults[["bootstrapSamples"]] <- bootstrapSamples
+    jaspResults[["bootstrapSamples"]]$dependOn(options = c(
+      "variables",
+      "krippendorffsAlpha",
+      "kappaIntervalOn"))
+  }
+  return()
+}
