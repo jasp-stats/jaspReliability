@@ -252,21 +252,22 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
 }
 
 .kripAlphaBoot <- function(jaspResults, dataset, options, ready) {
-  if (ready) {
-    bootstrapSamples <- createJaspState()
-    method <- options[["alphaMethod"]]
-    n <- nrow(dataset)
-    alphas <- numeric(1e3)
-    for (i in seq_len(1e3)) {
-      bootData <- as.matrix(dataset[sample.int(n, size = n, replace = TRUE), ])
-      alphas[i] <- irr::kripp.alpha(t(bootData), method = method)$value
-    }
-    bootstrapSamples$object <- alphas
-    jaspResults[["bootstrapSamples"]] <- bootstrapSamples
-    jaspResults[["bootstrapSamples"]]$dependOn(options = c(
-      "variables",
-      "krippendorffsAlpha",
-      "kappaIntervalOn"))
+   if (!ready || !is.null(jaspResults[["bootstrapSamples"]]$object))
+    return()
+
+  bootstrapSamples <- createJaspState()
+  method <- options[["alphaMethod"]]
+  n <- nrow(dataset)
+  alphas <- numeric(1e3)
+  for (i in seq_len(1e3)) {
+    bootData <- as.matrix(dataset[sample.int(n, size = n, replace = TRUE), ])
+    alphas[i] <- irr::kripp.alpha(t(bootData), method = method)$value
   }
+  bootstrapSamples$object <- alphas
+  jaspResults[["bootstrapSamples"]] <- bootstrapSamples
+  jaspResults[["bootstrapSamples"]]$dependOn(options = c(
+    "variables",
+    "krippendorffsAlpha",
+    "kappaIntervalOn"))
   return()
 }
