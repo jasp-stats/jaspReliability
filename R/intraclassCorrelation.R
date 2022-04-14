@@ -24,6 +24,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
 
   if(options$descriptivesBlandAltman){
     .descriptivesBlandAltman(jaspResults, dataset, options)
+    .descriptivesBlandAltmanTable(jaspResults, dataset, options)
   }
 
   return()
@@ -149,6 +150,11 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
       descriptivesBlandAltman$dependOn(optionContainsValue = list(pairs = pair))
       subcontainer[[title]] <- descriptivesBlandAltman
 
+      if(pair[[1]] == "" || pair[[2]] == ""){
+        descriptivesBlandAltman$setError(gettext("Please provide another variable"))
+        next
+      }
+
       subData <- data.frame(dataset[, unlist(pair)])
       subData <- na.omit(subData)
 
@@ -161,49 +167,32 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
 
 }
 
-.descriptivesBlandAltmanStats <- function(dataset, options){
-
-  # Calculating main components
-  ci <- options[["ciValue"]]
-  diffs <- dataset[[1]] - dataset[[2]]
-  means <- (dataset[[1]] + dataset[[2]])/2
-
-  obs <- length(dataset[[1]])
-  meanDiffs <- mean(diffs)
-  criticalDiff <- 1.96 * sd(diffs) #1.96 used instead of suggested 2 by Bland & Altman
-  lowerLimit <- meanDiffs - criticalDiff
-  upperLimit <- meanDiffs + criticalDiff
-  lines <- c(lowerLimit, meanDiffs, upperLimit)
-
-  t1 <- qt((1 - ci)/2, df = obs - 1)
-  t2 <- qt((ci + 1)/2, df = obs - 1)
-
-  # CI calculations based on Bland & Altman, 1986
-  lowerLimitCiLower <- lowerLimit + t1 * sqrt(sd(diffs)^2 * 3/obs)
-  lowerLimitCiUpper <- lowerLimit + t2 * sqrt(sd(diffs)^2 * 3/obs)
-  meanDiffCiLower <- meanDiffs + t1 * sd(diffs)/sqrt(obs)
-  meanDiffCiUpper <- meanDiffs + t2 * sd(diffs)/sqrt(obs)
-  upperLimitCiLower <- upperLimit + t1 * sqrt(sd(diffs)^2 * 3/obs)
-  upperLimitCiUpper <- upperLimit + t2 * sqrt(sd(diffs)^2 * 3/obs)
-  CiLines <- c(lowerLimitCiLower, lowerLimitCiUpper, meanDiffCiLower, meanDiffCiUpper, upperLimitCiLower, upperLimitCiUpper)
-
-  return(list(means = means, diffs = diffs, lines = lines, CiLines = CiLines))
-}
-
 .descriptivesBlandAltmanPlot <- function(dataset, options){
 
   ba <- .descriptivesBlandAltmanStats(dataset = dataset, options = options)
   values <- data.frame(m = ba$means, d = ba$diffs)
 
   # Bland-Altman Plot
-  if(max(ba$CiLines) > max(ba$diffs) && min(ba$CiLines) < min(ba$diffs)){
-    yBreaks <- jaspGraphs::getPrettyAxisBreaks(ba$CiLines)
-  } else if(max(ba$CiLines) < max(ba$diffs) && min(ba$CiLines) > min(ba$diffs)){
-    yBreaks <- jaspGraphs::getPrettyAxisBreaks(ba$diffs)
-  } else if(max(ba$CiLines) < max(ba$diffs) && min(ba$CiLines) < min(ba$diffs)){
-    yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(ba$CiLines), ba$diffs))
-  } else if(max(ba$CiLines) > max(ba$diffs) && min(ba$CiLines) > min(ba$diffs)){
-    yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(ba$diffs), ba$CiLines))
+  if(options[["ciDisplay"]]){
+    if(max(ba$CiLines) > max(ba$diffs) && min(ba$CiLines) < min(ba$diffs)){
+      yBreaks <- jaspGraphs::getPrettyAxisBreaks(ba$CiLines)
+    } else if(max(ba$CiLines) < max(ba$diffs) && min(ba$CiLines) > min(ba$diffs)){
+      yBreaks <- jaspGraphs::getPrettyAxisBreaks(ba$diffs)
+    } else if(max(ba$CiLines) < max(ba$diffs) && min(ba$CiLines) < min(ba$diffs)){
+      yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(ba$CiLines), ba$diffs))
+    } else if(max(ba$CiLines) > max(ba$diffs) && min(ba$CiLines) > min(ba$diffs)){
+      yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(ba$diffs), ba$CiLines))
+    }
+  } else {
+    if(max(ba$lines) > max(ba$diffs) && min(ba$lines) < min(ba$diffs)){
+      yBreaks <- jaspGraphs::getPrettyAxisBreaks(ba$lines)
+    } else if(max(ba$lines) < max(ba$diffs) && min(ba$lines) > min(ba$diffs)){
+      yBreaks <- jaspGraphs::getPrettyAxisBreaks(ba$diffs)
+    } else if(max(ba$lines) < max(ba$diffs) && min(ba$lines) < min(ba$diffs)){
+      yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(ba$lines), ba$diffs))
+    } else if(max(ba$lines) > max(ba$diffs) && min(ba$lines) > min(ba$diffs)){
+      yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(min(ba$diffs), ba$lines))
+    }
   }
 
   yBreaks <- c(floor(min(yBreaks)), yBreaks[!yBreaks%%1], ceiling(max(yBreaks)))
@@ -243,7 +232,113 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
     ggplot2::theme(plot.margin = ggplot2::margin(5))
 }
 
+.descriptivesBlandAltmanTable <- function(jaspResults, dataset, options){
 
+  # Check for errors using JASPs internal convenience function
+  .hasErrors(
+    dataset = dataset,
+    type = c("infinity", "observations"),
+    observations.amount = c("< 2"),
+    exitAnalysisIfErrors = TRUE
+  )
+
+  ready <- length(options$pairs) > 0
+
+  if (is.null(jaspResults[["tabBlandAltman"]])) {
+    jaspResults[["tabBlandAltman"]] <- createJaspContainer(gettext("Bland-Altman Tables"))
+    jaspResults[["tabBlandAltman"]]$dependOn(c("descriptivesBlandAltman", "ciDisplay", "ciValue"))
+    subcontainer <- jaspResults[["tabBlandAltman"]]
+  } else {
+    subcontainer <- jaspResults[["tabBlandAltman"]]
+  }
+
+  if(ready){
+    for(pair in options$pairs) {
+      title <- paste(pair, collapse = " - ")
+      if(!is.null(subcontainer[[title]]))
+        next
+      tablesBlandAltman <- createJaspTable(title = title)
+      tablesBlandAltman$dependOn(optionContainsValue = list(pairs = pair))
+      tablesBlandAltman$addColumnInfo(name = "names", title = gettext("Bias & Limits"), type = "string")
+      tablesBlandAltman$addColumnInfo(name = "agree", title = gettext("Point Value"), type = "number")
+      subcontainer[[title]] <- tablesBlandAltman
+
+      if(pair[[1]] == "" || pair[[2]] == ""){
+        tablesBlandAltman$setError(gettext("Please provide another variable"))
+        next
+      }
+
+      intervalLow <- gettextf("Mean difference - 1.96 SD")
+      intervalUp <- gettextf("Mean difference + 1.96 SD")
+      allData <- data.frame(names = c(intervalUp, gettext("Mean difference"), intervalLow))
+      formattedCIPercent <- format(
+        100 * options[["ciValue"]],
+        digits = 3,
+        drop0trailing = TRUE
+      )
+
+      if (options[["ciDisplay"]]) {
+        tablesBlandAltman$addColumnInfo(
+          name = "lowerBound",
+          title = gettextf("Lower %s%% CI", formattedCIPercent),
+          type = "number"
+        )
+        tablesBlandAltman$addColumnInfo(
+          name = "upperBound",
+          title = gettextf("Upper %s%% CI", formattedCIPercent),
+          type = "number"
+        )
+      }
+
+      subData <- data.frame(dataset[, unlist(pair)])
+      subData <- na.omit(subData)
+
+      ba <- .descriptivesBlandAltmanStats(dataset = subData, options = options)
+
+      linesData <- data.frame(agree = c(ba$lines[3], ba$lines[2], ba$lines[1]))
+      allData <- cbind(allData, linesData)
+
+      if(options[["ciDisplay"]]){
+        lowCiData <- data.frame(lowerBound = c(ba$CiLines[5], ba$CiLines[3], ba$CiLines[1]))
+        topCiData <- data.frame(upperBound = c(ba$CiLines[6], ba$CiLines[4], ba$CiLines[2]))
+        allData <- cbind(allData, lowCiData, topCiData)
+      }
+
+      tablesBlandAltman$setData(allData)
+    }
+  }
+  return()
+
+}
+
+.descriptivesBlandAltmanStats <- function(dataset, options){
+
+  # Calculating main components
+  ci <- options[["ciValue"]]
+  diffs <- dataset[[1]] - dataset[[2]]
+  means <- (dataset[[1]] + dataset[[2]])/2
+
+  obs <- length(dataset[[1]])
+  meanDiffs <- mean(diffs)
+  criticalDiff <- 1.96 * sd(diffs) #1.96 used instead of suggested 2 by Bland & Altman
+  lowerLimit <- meanDiffs - criticalDiff
+  upperLimit <- meanDiffs + criticalDiff
+  lines <- c(lowerLimit, meanDiffs, upperLimit)
+
+  t1 <- qt((1 - ci)/2, df = obs - 1)
+  t2 <- qt((ci + 1)/2, df = obs - 1)
+
+  # CI calculations based on Bland & Altman, 1986
+  lowerLimitCiLower <- lowerLimit + t1 * sqrt(sd(diffs)^2 * 3/obs)
+  lowerLimitCiUpper <- lowerLimit + t2 * sqrt(sd(diffs)^2 * 3/obs)
+  meanDiffCiLower <- meanDiffs + t1 * sd(diffs)/sqrt(obs)
+  meanDiffCiUpper <- meanDiffs + t2 * sd(diffs)/sqrt(obs)
+  upperLimitCiLower <- upperLimit + t1 * sqrt(sd(diffs)^2 * 3/obs)
+  upperLimitCiUpper <- upperLimit + t2 * sqrt(sd(diffs)^2 * 3/obs)
+  CiLines <- c(lowerLimitCiLower, lowerLimitCiUpper, meanDiffCiLower, meanDiffCiUpper, upperLimitCiLower, upperLimitCiUpper)
+
+  return(list(means = means, diffs = diffs, lines = lines, CiLines = CiLines))
+}
 
 
 

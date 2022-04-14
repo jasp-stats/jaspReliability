@@ -128,7 +128,7 @@ Form
 				{      
 					name: 		"ciValue";   
 					label: 		"";
-					defaultValue: 50;
+					defaultValue: 95;
 				}
 				
 				CheckBox 
