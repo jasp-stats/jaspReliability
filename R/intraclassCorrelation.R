@@ -305,6 +305,13 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
       }
 
       tablesBlandAltman$setData(allData)
+      tablesBlandAltman$addFootnote(
+        gettextf(
+          "%s subjects and 2 measurements. Confidence intervals calculated as referenced by Bland & Altman (1986).",
+          nrow(dataset)
+        )
+      )
+
     }
   }
   return()
