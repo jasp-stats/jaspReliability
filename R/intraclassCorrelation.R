@@ -200,7 +200,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
   xBreaks <- c(floor(min(xBreaks)), xBreaks[!xBreaks%%1], ceiling(max(xBreaks)))
 
   p <- ggplot2::ggplot(values, ggplot2::aes(x = m, y = d)) +
-    ggplot2::geom_point(size = 3) + ggplot2::geom_hline(yintercept = ba$lines, linetype = 2, size = 1) +
+    ggplot2::geom_hline(yintercept = ba$lines, linetype = 2, size = 1) +
     ggplot2::xlab("Mean of Measurements") +
     ggplot2::ylab("Difference of Measurements")
 
@@ -223,7 +223,8 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
     }
   }
 
-  p <- p + ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks),
+  p <- p + ggplot2::geom_point(shape = 21, size = 3, colour = "black", fill = "grey") +
+    ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks),
                                        sec.axis = ggplot2::dup_axis(~., breaks = yBreaks, labels = NULL, name = "")) +
     ggplot2::theme(axis.ticks.y.right = ggplot2::element_blank()) +
     ggplot2::scale_x_continuous(breaks = xBreaks, limits = range(xBreaks))+
@@ -264,7 +265,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
       subcontainer[[title]] <- tablesBlandAltman
 
       if(pair[[1]] == "" || pair[[2]] == ""){
-        tablesBlandAltman$setError(gettext("Please provide another variable"))
+        tablesBlandAltman$addFootnote(gettext("Please provide another variable"))
         next
       }
 
@@ -305,12 +306,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
       }
 
       tablesBlandAltman$setData(allData)
-      tablesBlandAltman$addFootnote(
-        gettextf(
-          "%s subjects and 2 measurements. Confidence intervals calculated as referenced by Bland & Altman (1986).",
-          nrow(dataset)
-        )
-      )
+      tablesBlandAltman$addFootnote(gettextf("%s subjects and 2 measurements.", nrow(dataset)))
 
     }
   }
