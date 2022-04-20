@@ -676,24 +676,27 @@
     implieds <- .implCovs(model[["singleFactor"]][["loadings"]],
                           model[["singleFactor"]][["residuals"]],
                           model[["singleFactor"]][["factor_var"]])
+    dd <- dim(implieds)
+    startProgressbar(dd[1] * dd[2] + # for model implied covariance matrices
+      options[["noSamples"]] * options[["noChains"]] + # for null model sampling
+        dd[1] * dd[2]) # for null model implied covariance matrices
 
     ### Chisqs ###
     LL1 <- sum(.dmultinorm(dataset, cdat)) # loglikelihood saturated model
-    LR_obs <- apply(implieds, c(1, 2), .LRblav, data = dataset, basell = LL1) # loglikelihoods tested model
+    LR_obs <- apply(implieds, c(1, 2), .LRblav, data = dataset, basell = LL1, callback = progressbarTick) # loglikelihoods tested model
 
     lsm <- apply(model[["singleFactor"]][["loadings"]], 3, mean)
     psm <- apply(model[["singleFactor"]][["residuals"]], 3, mean)
-    implM <- lsm %*% t(lsm) + diag(psm) # mean implied covariance matrix
+    implM <- tcrossprod(lsm) + diag(psm) # mean implied covariance matrix
     Dtm <- .LRblav(dataset, implM, LL1) # deviance of the mean model implied cov matrix
-    out[["B-LR"]] <- Dtm
+    out[["lr"]] <- Dtm
 
+    out[["srmr"]] <- .SRMR(cdat, implM)
     ### BRMSEA ###
     Dm <- mean(LR_obs) # mean deviance of the model implied cov matrices
     pD <- Dm - Dtm # effective number of parameters (free parameters)
-    out[["B-RMSEA"]] <- .BRMSEA(LR_obs, pstar, pD, n)
+    out[["rmsea"]] <- .BRMSEA(LR_obs, pstar, pD, n)
     # rmsea_m <- sqrt((Dtm - (pstar - pD)) / ((pstar - pD) * n))
-
-    startProgressbar(options[["noSamples"]] * options[["noChains"]])
 
     ### CFI and TLI need a nullmodel:
     res_null <- try(Bayesrel:::omegaSamplerNull(dataset, options[["noSamples"]], options[["noBurnin"]],
@@ -713,7 +716,7 @@
       impl_null[i, , ] <- diag(ps_null[i, ])
     }
 
-    LR_null <- apply(impl_null, 1, .LRblav, data = dataset, basell = LL1)
+    LR_null <- apply(impl_null, 1, .LRblav, data = dataset, basell = LL1, callback = progressbarTick)
     Dm_null <- mean(LR_null)
 
     psm_null <- colMeans(ps_null)
@@ -730,8 +733,8 @@
     cfis[cfis > 1] <- 1
     tlis[tlis > 1] <- 1
 
-    out[["B-CFI"]] <- cfis
-    out[["B-TLI"]] <- tlis
+    out[["cfi"]] <- cfis
+    out[["tli"]] <- tlis
 
 
     stateContainer <- .getStateContainerB(jaspResults)
