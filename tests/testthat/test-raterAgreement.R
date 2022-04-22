@@ -1,14 +1,12 @@
-options <- analysisOptions("cohensFleissKappa")
-
 # ==== Ensure results are unchanged on JASP debug data ====
 
-####Cohen's unweighted kappa and Fleiss' kappa####
+####Cohen's unweighted kappa and Fleiss' kappa and Krippendorff's alpha####
 
 # Set options
-options <- analysisOptions("cohensFleissKappa")
+options <- analysisOptions("raterAgreement")
 options$variables <- c("V1", "facFifty", "contNormal")
 set.seed(1)
-results <- runAnalysis("cohensFleissKappa", "test.csv", options)
+results <- runAnalysis("raterAgreement", "test.csv", options)
 
 
 test_that("Cohen's Unweighted kappa table results match", {
@@ -251,15 +249,23 @@ test_that("Fleiss' kappa table results match", {
                                       -0.003, 100))
 })
 
-####Cohen's weighted kappa and Fleiss' kappa with different CI range(99%)####
+
+test_that("Krippendorff's alpha table results match", {
+  table <- results[["results"]][["krippendorffsAlpha"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.128688123975843, 0.192400836732261, 0.0164047879778507, 0.162472035794184,
+                                      "Nominal"))
+})
+
+####Cohen's weighted kappa and Fleiss' kappa and Krippendorf's alpha with different CI range(99%)####
 
 # Set options
-options <- analysisOptions("cohensFleissKappa")
+options <- analysisOptions("raterAgreement")
 options$variables <- c("facGender", "facExperim", "debBinMiss20")
 options$kappaConfidenceIntervalValue <- 0.99
 options$cohensWeightedOrNot <- "cohensWeighted"
 set.seed(1)
-results <- runAnalysis("cohensFleissKappa", "test.csv", options)
+results <- runAnalysis("raterAgreement", "test.csv", options)
 
 
 test_that("Cohen's Weighted kappa table results match", {
@@ -285,15 +291,22 @@ test_that("Fleiss' kappa table results match", {
                                       -0.0647309334113677, 0.0645497224367903, -0.231, 1))
 })
 
+test_that("Krippendorff's alpha table results match", {
+  table <- results[["results"]][["krippendorffsAlpha"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(-0.210559277301944, -0.197092068692018, 0.00282684600279606, -0.199079048349962,
+                                      "Nominal"))
+})
+
 
 # ==== Verify results of Fleiss' kappa with data set from Fleiss (1971) NOTE: Only verifying kappa values, not CIs====
 test_that("Fleiss' kappa table results match", {
-  options <- analysisOptions("cohensFleissKappa")
+  options <- analysisOptions("raterAgreement")
   options$variables <- c("V1", "V2", "V3", "V4", "V5", "V6")
   options$cohensKappa <- FALSE
   options$kappaIntervalOn <- FALSE
   set.seed(1)
-  results <- runAnalysis("cohensFleissKappa", "Fleiss1971.csv", options)
+  results <- runAnalysis("raterAgreement", "Fleiss1971.csv", options)
   table <- results[["results"]][["fleissKappa"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list(0.430244520060141, "Overall", 0.245, 1, 0.245, 2, 0.52, 3, 0.471,
