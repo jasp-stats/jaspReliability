@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
-"POT-Creation-Date: 2022-01-15 03:31\n"
+"POT-Creation-Date: 2022-04-23 03:36\n"
 "PO-Revision-Date: 2021-10-31 14:35+0000\n"
 "Last-Translator: Changya Hu <changyahu@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -177,19 +177,9 @@ msgstr "事後"
 msgid "Fit Measures for the Single-Factor Model"
 msgstr "單一因子模式配適指標"
 
-#, fuzzy
-msgid "Fit measure"
-msgstr "配適指標"
-
-msgid "Point estimate"
-msgstr "點估計"
-
-msgid "Relative to cutoff"
-msgstr ""
-
 msgid ""
-"'Relative to cutoff'-column denotes the probability that the B-RMSEA is "
-"smaller than\n"
+"'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
+"than\n"
 "                         the corresponding cutoff and the probabilities that "
 "the B-CFI/TLI are larger than the\n"
 "                         corresponding cutoff."
@@ -279,6 +269,9 @@ msgstr "無法計算Lambda6區間"
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "頻率派量表信度統計數"
 
+msgid "Point estimate"
+msgstr "點估計"
+
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr "頻率派個別題項信度統計數"
 
@@ -287,6 +280,10 @@ msgstr "若此題刪除"
 
 msgid "Fit Measures of Single Factor Model Fit"
 msgstr "單一因子模式配適指標"
+
+#, fuzzy
+msgid "Fit measure"
+msgstr "配適指標"
 
 msgid "Value"
 msgstr "值"
