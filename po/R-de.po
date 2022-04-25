@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2022-01-15 03:31\n"
+"POT-Creation-Date: 2022-04-23 03:36\n"
 "PO-Revision-Date: 2022-01-29 03:28+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -188,18 +188,10 @@ msgstr "Posterior"
 msgid "Fit Measures for the Single-Factor Model"
 msgstr "Anpassungsmaße des Einzelfaktor-Modells"
 
-msgid "Fit measure"
-msgstr "Anpassungsmaß"
-
-msgid "Point estimate"
-msgstr "Punktschätzung"
-
-msgid "Relative to cutoff"
-msgstr "Relativ zum Cutoff"
-
+#, fuzzy
 msgid ""
-"'Relative to cutoff'-column denotes the probability that the B-RMSEA is "
-"smaller than\n"
+"'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
+"than\n"
 "                         the corresponding cutoff and the probabilities that "
 "the B-CFI/TLI are larger than the\n"
 "                         corresponding cutoff."
@@ -299,6 +291,9 @@ msgstr "Lambda6-Intervallberechnung fehlgeschlagen."
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Frequentistische Skala-Reliabilitätsstatistiken"
 
+msgid "Point estimate"
+msgstr "Punktschätzung"
+
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr "Frequentistische Einzelitem-Reliabilitätsstatistiken"
 
@@ -307,6 +302,9 @@ msgstr "Falls Item ausgelassen"
 
 msgid "Fit Measures of Single Factor Model Fit"
 msgstr "Anpassungsmaße der Einzelfaktor-Modellanpassung"
+
+msgid "Fit measure"
+msgstr "Anpassungsmaß"
 
 msgid "Value"
 msgstr "Wert"
@@ -320,6 +318,9 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "Das folgende Item wurde umgekehrt kodiert: %s. "
 msgstr[1] "Die folgenden Items wurden umgekehrt kodiert: %s. "
+
+#~ msgid "Relative to cutoff"
+#~ msgstr "Relativ zum Cutoff"
 
 #~ msgid "Posterior Mean"
 #~ msgstr "Posterior Mittelwert"

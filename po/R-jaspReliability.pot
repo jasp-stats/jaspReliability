@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.16.1\n"
-"POT-Creation-Date: 2022-01-15 03:31\n"
+"POT-Creation-Date: 2022-04-23 03:36\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,16 +160,7 @@ msgstr ""
 msgid "Fit Measures for the Single-Factor Model"
 msgstr ""
 
-msgid "Fit measure"
-msgstr ""
-
-msgid "Point estimate"
-msgstr ""
-
-msgid "Relative to cutoff"
-msgstr ""
-
-msgid "'Relative to cutoff'-column denotes the probability that the B-RMSEA is smaller than\n                         the corresponding cutoff and the probabilities that the B-CFI/TLI are larger than the\n                         corresponding cutoff."
+msgid "'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller than\n                         the corresponding cutoff and the probabilities that the B-CFI/TLI are larger than the\n                         corresponding cutoff."
 msgstr ""
 
 msgid "Standardized Loadings of the Single-Factor Model"
@@ -232,6 +223,9 @@ msgstr ""
 msgid "Frequentist Scale Reliability Statistics"
 msgstr ""
 
+msgid "Point estimate"
+msgstr ""
+
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr ""
 
@@ -239,6 +233,9 @@ msgid "If item dropped"
 msgstr ""
 
 msgid "Fit Measures of Single Factor Model Fit"
+msgstr ""
+
+msgid "Fit measure"
 msgstr ""
 
 msgid "Value"
