@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2022-01-15 03:31\n"
+"POT-Creation-Date: 2022-04-23 03:36\n"
 "PO-Revision-Date: 2021-09-03 13:32+0000\n"
 "Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
@@ -194,19 +194,9 @@ msgstr "Posterior"
 msgid "Fit Measures for the Single-Factor Model"
 msgstr "Medidas de ajuste para modelo de um único fator"
 
-#, fuzzy
-msgid "Fit measure"
-msgstr "Medidas Adicionais de Ajuste"
-
-msgid "Point estimate"
-msgstr "Estimativa Pontual"
-
-msgid "Relative to cutoff"
-msgstr ""
-
 msgid ""
-"'Relative to cutoff'-column denotes the probability that the B-RMSEA is "
-"smaller than\n"
+"'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
+"than\n"
 "                         the corresponding cutoff and the probabilities that "
 "the B-CFI/TLI are larger than the\n"
 "                         corresponding cutoff."
@@ -301,6 +291,9 @@ msgstr "Cálculo do intervalo de Lambda6 falhou."
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Estatísticas de confiabilidade de escala frequentist"
 
+msgid "Point estimate"
+msgstr "Estimativa Pontual"
+
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr "Estatísticas de confiabilidade de itens individuais frequentistas"
 
@@ -309,6 +302,10 @@ msgstr "Caso item seja eliminado"
 
 msgid "Fit Measures of Single Factor Model Fit"
 msgstr "Medidas de ajuste para modelo de um único fator"
+
+#, fuzzy
+msgid "Fit measure"
+msgstr "Medidas Adicionais de Ajuste"
 
 msgid "Value"
 msgstr "Valor"

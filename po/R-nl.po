@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2022-01-15 03:31\n"
+"POT-Creation-Date: 2022-04-23 03:36\n"
 "PO-Revision-Date: 2022-02-05 03:26+0000\n"
 "Last-Translator: DanaJohanna <dana__@live.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
@@ -186,25 +186,17 @@ msgstr "Posterior"
 msgid "Fit Measures for the Single-Factor Model"
 msgstr "Pasmaten van Enkele Factor Model"
 
-msgid "Fit measure"
-msgstr "Pasmaat"
-
-msgid "Point estimate"
-msgstr "Puntschatting"
-
-msgid "Relative to cutoff"
-msgstr "Relatief aan afsnijding"
-
+#, fuzzy
 msgid ""
-"'Relative to cutoff'-column denotes the probability that the B-RMSEA is "
-"smaller than\n"
+"'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
+"than\n"
 "                         the corresponding cutoff and the probabilities that "
 "the B-CFI/TLI are larger than the\n"
 "                         corresponding cutoff."
 msgstr ""
 "'Relatief aan afsnijding'-kolom geeft de kans dat de B-RMSEA kleiner is dan\n"
-"                         de overeenkomende afsnijding en de kansen dat de "
-"B-CFI/TLI groter zijn dan de\n"
+"                         de overeenkomende afsnijding en de kansen dat de B-"
+"CFI/TLI groter zijn dan de\n"
 "                         overeenkomende afsnijding."
 
 msgid "Standardized Loadings of the Single-Factor Model"
@@ -296,6 +288,9 @@ msgstr "Lambda6 interval berekening mislukt."
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Frequentistische Schaal Validiteitsstatistieken"
 
+msgid "Point estimate"
+msgstr "Puntschatting"
+
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr "Frequentistische Individuele Item Validiteitsstatistieken"
 
@@ -304,6 +299,9 @@ msgstr "Als item wordt weggelaten"
 
 msgid "Fit Measures of Single Factor Model Fit"
 msgstr "Pasmaat van Enkele Factor Model passing"
+
+msgid "Fit measure"
+msgstr "Pasmaat"
 
 msgid "Value"
 msgstr "Waarde"
@@ -317,6 +315,9 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "De volgende item is omgekeerd geschaald: %s. "
 msgstr[1] "De volgende items zijn omgekeerd geschaald: %s. "
+
+#~ msgid "Relative to cutoff"
+#~ msgstr "Relatief aan afsnijding"
 
 #~ msgid "Posterior Mean"
 #~ msgstr "Posterior Gemiddelde"

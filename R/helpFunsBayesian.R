@@ -173,9 +173,10 @@
 }
 
 
-.LRblav <- function(data, cmat, basell) {
+.LRblav <- function(data, cmat, basell, callback = function(){}) {
   tmpll <- .dmultinorm(data, cmat)
   out <- 2 * (basell - sum(tmpll))
+  callback()
   return(out)
 }
 

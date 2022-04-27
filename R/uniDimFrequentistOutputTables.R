@@ -182,7 +182,7 @@
   fitTable$addColumnInfo(name = "measure", title = gettext("Fit measure"),   type = "string")
   fitTable$addColumnInfo(name = "value",  title = gettext("Value"), type = "number")
 
-  opts <- c("Chi-Square", "df", "p.value", "RMSEA", "Lower CI RMSEA", "Upper CI RMSEA", "SRMR")
+  opts <- c("Chi-Square", "df", "p.value", "RMSEA", "Lower 90% CI RMSEA", "Upper 90% CI RMSEA", "SRMR")
   allData <- data.frame(
     measure = opts,
     value = as.vector(model[["scaleResults"]][["fit"]][["omegaScale"]])

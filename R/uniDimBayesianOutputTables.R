@@ -252,6 +252,10 @@
 }
 
 
+###############################################
+# use posterior mean and median in the table, also flip the table
+###############################################
+
 .BayesianFitMeasuresTable <- function(jaspResults, model, options) {
 
   if (!is.null(.getStateContainerB(jaspResults)[["fitTable"]]$object))
@@ -259,29 +263,43 @@
 
   fitTable <- createJaspTable(gettextf("Fit Measures for the Single-Factor Model"))
 
-  fitTable$dependOn(options = c("omegaScale", "fitMeasures", "fitCutoffSat", "fitCutoffNull", "pointEst"))
+  fitTable$dependOn(options = c("omegaScale", "fitMeasures", "fitCutoffSat", "fitCutoffNull", "pointEst",
+                                "credibleIntervalValueFitMeasures"))
 
-  cred <- format(100 * options[["credibleIntervalValueItem"]], digits = 3, drop0trailing = TRUE)
+  fitTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
 
-  fitTable$addColumnInfo(name = "measure", title = gettext("Fit measure"), type = "string")
-  fitTable$addColumnInfo(name = "pointEst", title = gettext("Point estimate"), type = "number")
-  fitTable$addColumnInfo(name = "cutoff", title = gettext("Relative to cutoff"), type = "number")
+  fitTable$addColumnInfo(name = "lr", title = "B-LR", type = "number")
+  fitTable$addColumnInfo(name = "srmr", title = "B-SRMR", type = "number")
+  fitTable$addColumnInfo(name = "rmsea", title = "B-RMSEA", type = "number")
+  fitTable$addColumnInfo(name = "cfi", title = "B-CFI", type = "number")
+  fitTable$addColumnInfo(name = "tli", title = "B-TLI", type = "number")
 
+  cred <- gettextf("%s%% CI",
+                       format(100 * options[["credibleIntervalValueFitMeasures"]], digits = 3, drop0trailing = TRUE))
+  intervalLow <- gettextf("%s lower bound", cred)
+  intervalUp <- gettextf("%s upper bound", cred)
+
+  pointEst <- gettextf("Posterior %s", options[["pointEst"]])
 
   if (options[["omegaScale"]] && options[["fitMeasures"]] && is.null(model[["empty"]])) {
 
-    pointEsts <- sapply(model[["fitMeasures"]], .getPointEstFun(options[["pointEst"]]))
+    pointEsts <- vapply(model[["fitMeasures"]], .getPointEstFun(options[["pointEst"]]), numeric(1))
 
-    cutoffs_saturated <- sapply(model[["fitMeasures"]][2], function(x) mean(x < options[["fitCutoffSat"]]))
-    cutoffs_null <- sapply(model[["fitMeasures"]][-(1:2)], function(x) mean(x > options[["fitCutoffNull"]]))
+    creds <- vapply(model[["fitMeasures"]][3:5], function(x) coda::HPDinterval(coda::mcmc(c(x))), numeric(2))
+    creds <- cbind(matrix(NA_real_, 2, 2), creds) # no entry for LR and SRMR
 
-    cutoffs <- c(NA_real_, cutoffs_saturated, cutoffs_null)
+    cutoffs_saturated <- vapply(model[["fitMeasures"]][3], function(x) mean(x < options[["fitCutoffSat"]]),
+                                numeric(1))
+    cutoffs_null <- vapply(model[["fitMeasures"]][-(1:3)], function(x) mean(x > options[["fitCutoffNull"]]),
+                           numeric(1))
+    cutoffs <- c(NA_real_, NA_real_, cutoffs_saturated, cutoffs_null) # no entry for LR and SRMR
 
-    df <- data.frame(measure = names(model[["fitMeasures"]]), pointEst = pointEsts,
-                     cutoff = cutoffs)
+    df <- data.frame(estimate = c(pointEst, intervalLow, intervalUp, "Relative to cutoff"))
+    dfnums <- rbind(pointEsts, creds, cutoffs)
+    df <- cbind(df, dfnums)
     fitTable$setData(df)
 
-    fitTable$addFootnote(gettext("'Relative to cutoff'-column denotes the probability that the B-RMSEA is smaller than
+    fitTable$addFootnote(gettext("'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller than
                          the corresponding cutoff and the probabilities that the B-CFI/TLI are larger than the
                          corresponding cutoff."))
 
