@@ -9,8 +9,9 @@ Cohen's and Fleiss' kappa and Krippendorff's alpha are coefficients that measure
 ### Input
 -------
 
-- Variables: The variables / columns to compute kappa for. Each variable corresponds to one rater, with different rows corresponding to different subjects being rated. Note that for Krippendorff's alpha this is different from
-the common format, which has one rater per row and one column of measurements per subject. For Cohen's kappa the maximum number of raters  is 2. If more than 2 variables/raters are entered, all possible pairs of the variables/raters will be calculated. 
+- Variables: The variables / columns to compute kappa for. Each variable corresponds to one rater, with different rows corresponding to different subjects being rated. 
+Note that this data format is different from the common data format for Krippendorff's alpha, which has raters in rows and units of measurements (subjects) in columns. 
+For Cohen's kappa the maximum number of raters  is 2. If more than 2 variables/raters are entered, all possible pairs of the variables/raters will be calculated. 
 
 - Cohen's kappa: Whether Cohen's kappa is calculated.
   - Unweighted or weighted: The unweighted kappa treats all disagreements equally, whereas the weighted kappa takes degrees of disagreement into account (Cohen, 1968). To calculate degrees of disagreement, a meaningful order of the rating categories is necessary. Therefore, weighted kappa can only be calculated for ordinal ratings. 
@@ -18,7 +19,7 @@ the common format, which has one rater per row and one column of measurements pe
 - Fleiss' kappa: Whether Fleiss' kappa is calculated.
 
 - Krippendorff's alpha: Whether Krippendorff's alpha is calculated.
-  - Method: Krippendorff's alpha is calculated differently depending on the level of measurement of the variable. This option allows to select the method corresponding to the correct level of measurement.
+  - Method: Krippendorff's alpha is calculated differently depending on the level of measurement of the variables. This option allows to select the method corresponding to the correct level of measurement. The available levels are nominal, ordinal, interval, and ratio.
 
 - Confidence Interval: Whether a confidence interval should be reported for Cohen's and Fleiss' kappa and Krippendorff's alpha and the width of the interval.
 
@@ -53,7 +54,7 @@ This table shows Krippendorff's alpha for the overall agreement. If selected, a 
 
 Krippendorff (2004) suggests the following guideline for the interpretation of Krippendorff's alpha:
 - Less than 0.66: unacceptable agreement
-- Between 0.66 and 0.80: tenatively acceptable agreement
+- Between 0.66 and 0.80: tentatively acceptable agreement
 - Between 0.81 and .99: acceptable agreement
 - 1: perfect agreement
 
