@@ -9,7 +9,7 @@ Cohen's and Fleiss' kappa and Krippendorff's alpha are coefficients that measure
 ### Input
 -------
 
-- Variables: The variables / columns to compute kappa for. Each variable corresponds to one rater, with different rows corresponding to different subjects being rated. 
+- Variables: The variables / columns to compute coefficients for. Each variable corresponds to one rater, with different rows corresponding to different subjects being rated. 
 Note that this data format is different from the common data format for Krippendorff's alpha, which has raters in rows and units of measurements (subjects) in columns. 
 For Cohen's kappa the maximum number of raters  is 2. If more than 2 variables/raters are entered, all possible pairs of the variables/raters will be calculated. 
 
