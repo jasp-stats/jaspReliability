@@ -21,8 +21,8 @@ Shrout & Fleiss (1979) distinguish between 6 different ways of calculating the I
   - Displays a scatterplot of the means and differences between the two measurement variables. Additionaly, a table is created displaying the values regarding the mean difference and its respective limits.
     - Plot components: The variables included in the analysis.
     - Measurement Pair: At least two variables have to be selected (pair)
-    - Confidence Interval: Coverage of the confidence intervals in percentages. By default, the confidence interval is set to 95%. This can be changed into the desired percentage. The confidence interval is drawn around the mean difference and the upper and lower limits. Calculations for confidence intervals are based on Bland & Altman (1986).
-	- Shading: Highlights the confidence bounds around the mean difference and the limits.
+    - Confidence Interval: Coverage of the confidence intervals in percentages. By default, the confidence interval is set to 95%. This can be changed into the desired percentage. The confidence interval is drawn around the mean difference and its upper and lower limits. Calculations for confidence intervals are based on Bland & Altman (1986).
+	- Shading: Highlights the confidence bounds around the mean difference and its limits.
   
 
 ### Output
@@ -45,9 +45,9 @@ Koo and Li (2016) provide a newer, slightly more conservative guideline for inte
 - above 0.90: excellent
 
 Bland-Altman plot (and table):
-- Displays a scatterplot of the means and differences between the two measurement variables. The x-axis represents the means of the two measurements, the y-axis represents the difference between the two measurements.
+- Displays a scatterplot of the means and differences between the two measurement variables. The x-axis represents the means of the two measurements, the y-axis represents the differences between the two measurements.
 - By default, three lines (dashed) are added to the plot, indicating the mean difference between the two variables and its upper and lower limits. Limits are based on the critical difference which is calculated using the standard deviation 1.96.
-- By enabling "Confidence Interval", the x% confidence bounds for the mean difference, the upper limit, and the lower limit are added to the plot. Enabling "Shading" highlights these bounds.
+- By enabling "Confidence Interval", the x% confidence intervals for the mean difference, the upper limit, and the lower limit are added to the plot (dashed). Enabling "Shading" highlights these bounds.
 - By default, a table containing the above information is created. The table displays the point value, lower and upper confidence interval numbers for the mean difference and its limits, respectively.
 
 ### References

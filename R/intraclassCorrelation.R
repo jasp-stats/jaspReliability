@@ -157,11 +157,19 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
       }
 
       subData <- data.frame(dataset[, unlist(pair)])
-      subData <- na.omit(subData)
+      errorMessage <- .baCheckPlotErrors(subData, c(pair[[1]], pair[[2]]), obsAmount = "< 2")
+      if (is.null(errorMessage)) {
+        subData <- na.omit(subData)
+        p <- .descriptivesBlandAltmanPlot(subData, options)
 
-      p <- .descriptivesBlandAltmanPlot(subData, options)
+        if (isTryError(p))
+          errorMessage <- .extractErrorMessage(p)
+      }
 
-      descriptivesBlandAltman$plotObject <- p
+      if (!is.null(errorMessage))
+        descriptivesBlandAltman$setError(gettextf("Plotting not possible: %s", errorMessage))
+      else
+        descriptivesBlandAltman$plotObject <- p
     }
   }
   return()
@@ -225,7 +233,6 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
   if(!options$descriptivesBlandAltman)
     return()
 
-  # Check for errors using JASPs internal convenience function
   .hasErrors(
     dataset = dataset,
     type = c("infinity", "observations"),
@@ -331,6 +338,14 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
   CiLines <- c(lowerLimitCiLower, lowerLimitCiUpper, meanDiffCiLower, meanDiffCiUpper, upperLimitCiLower, upperLimitCiUpper)
 
   return(list(means = means, diffs = diffs, lines = lines, CiLines = CiLines))
+}
+
+.baCheckPlotErrors <- function(dataset, vars, obsAmount) {
+  errors <- .hasErrors(dataset, all.target=vars, message="short", type=c("infinity", "observations"), observations.amount = obsAmount)
+  if (!isFALSE(errors))
+    return(errors$message)
+
+  return(NULL)
 }
 
 
