@@ -160,7 +160,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
       errorMessage <- .baCheckPlotErrors(subData, c(pair[[1]], pair[[2]]), obsAmount = "< 2")
       if (is.null(errorMessage)) {
         subData <- na.omit(subData)
-        p <- .descriptivesBlandAltmanPlot(subData, options)
+        p <- try(.descriptivesBlandAltmanPlot(subData, options))
 
         if (isTryError(p))
           errorMessage <- .extractErrorMessage(p)
