@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-cohensFleissKappa <- function(jaspResults, dataset, options) {
+raterAgreement <- function(jaspResults, dataset, options) {
   
   ready <- length(options[["variables"]]) > 1
   
@@ -22,9 +22,13 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
   
   if (options[["cohensKappa"]])
     jaspResults[["cohensKappa"]] <- .computeCohensKappaTable(dataset, options, ready)
-  
   if (options[["fleissKappa"]])
     jaspResults[["fleissKappa"]] <- .computeFleissKappaTable(dataset, options, ready)
+  if (options[["krippendorffsAlpha"]]) {
+    if (options[["kappaIntervalOn"]])
+      .kripAlphaBoot(jaspResults, dataset, options, ready)
+    jaspResults[["krippendorffsAlpha"]] <- .computeKrippendorffsAlphaTable(jaspResults, dataset, options, ready)
+  }
   
   return()
 }
@@ -191,4 +195,79 @@ cohensFleissKappa <- function(jaspResults, dataset, options) {
     jaspTable$addFootnote(footnote)
   }
   return(jaspTable)
+}
+
+.computeKrippendorffsAlphaTable <- function(jaspResults, dataset, options, ready) {
+  # Create the JASP Table
+  jaspTable <- createJaspTable(title = "Krippendorff's alpha")
+  jaspTable$addColumnInfo(name = "method", title = gettext("Method"), type = "string")
+  jaspTable$addColumnInfo(name = "kAlpha", title = "Krippendorff's alpha", type = "number")
+  jaspTable$position <- 2
+  
+  #dependencies
+  jaspTable$dependOn(
+    options = c(
+      "variables",
+      "krippendorffsAlpha",
+      "kappaIntervalOn",
+      "kappaConfidenceIntervalValue"
+    )
+  )
+  
+  formattedCIPercent <- format(
+    100 * options[["kappaConfidenceIntervalValue"]],
+    digits = 3,
+    drop0trailing = TRUE
+  )
+  
+  if (ready) {
+    #calculate Krippendorff's alpha
+    kAlphaData <- t(as.matrix(dataset))
+    method <- options[["alphaMethod"]]
+    kAlpha <- irr::kripp.alpha(kAlphaData, method)
+    
+    tableData <- list("method" = paste0(toupper(substr(method, 1, 1)), substr(method, 2, nchar(method))),
+                      "kAlpha" = kAlpha$value)
+    footnote <- gettextf('%i subjects/items and %i raters/measurements.', kAlpha$subjects, kAlpha$raters)
+    
+    if (options[["kappaIntervalOn"]]) {
+      alphas <- jaspResults[["bootstrapSamples"]]$object
+      conf <- options[["kappaConfidenceIntervalValue"]]
+      confs <- (1 + c(-conf, conf)) / 2
+      CIs <- quantile(alphas, probs = confs)
+      
+      jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
+      jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
+      jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
+      tableData[["SE"]] <- sd(alphas)
+      tableData[["CIL"]] <- CIs[1]
+      tableData[["CIU"]] <- CIs[2]
+      footnote <- paste(footnote, gettext('Confidence intervals are based on percentiles from 1000 bootstrap replications.'))
+    }
+    jaspTable$setData(tableData)
+    jaspTable$addFootnote(footnote)
+  }
+  
+  return(jaspTable)
+}
+
+.kripAlphaBoot <- function(jaspResults, dataset, options, ready) {
+   if (!ready || !is.null(jaspResults[["bootstrapSamples"]]$object))
+    return()
+
+  bootstrapSamples <- createJaspState()
+  method <- options[["alphaMethod"]]
+  n <- nrow(dataset)
+  alphas <- numeric(1e3)
+  for (i in seq_len(1e3)) {
+    bootData <- as.matrix(dataset[sample.int(n, size = n, replace = TRUE), ])
+    alphas[i] <- irr::kripp.alpha(t(bootData), method = method)$value
+  }
+  bootstrapSamples$object <- alphas
+  jaspResults[["bootstrapSamples"]] <- bootstrapSamples
+  jaspResults[["bootstrapSamples"]]$dependOn(options = c(
+    "variables",
+    "krippendorffsAlpha",
+    "kappaIntervalOn"))
+  return()
 }

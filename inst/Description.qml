@@ -36,9 +36,9 @@ Description
 	
 		Analysis
 	{
-		title:	qsTr("Cohen's & Fleiss' kappa")
-		qml: 	"cohensFleissKappa.qml"
-		func: 	"cohensFleissKappa"
+		title:	qsTr("Rater Agreement")
+		qml: 	"raterAgreement.qml"
+		func: 	"raterAgreement"
 	}
 
 	Separator {}
