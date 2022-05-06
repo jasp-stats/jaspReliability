@@ -219,9 +219,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
   }
 
   p <- p + ggplot2::geom_point(shape = 21, size = 3, colour = "black", fill = "grey") +
-    ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks),
-                                       sec.axis = ggplot2::dup_axis(~., breaks = yBreaks, labels = NULL, name = "")) +
-    ggplot2::theme(axis.ticks.y.right = ggplot2::element_blank()) +
+    ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks)) +
     ggplot2::scale_x_continuous(breaks = xBreaks, limits = range(xBreaks))+
     jaspGraphs::geom_rangeframe(sides = "rbl") +
     jaspGraphs::themeJaspRaw() +
