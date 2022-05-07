@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-02-17 15:13+0000\n"
-"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
+"PO-Revision-Date: 2022-05-08 12:15+0000\n"
+"Last-Translator: Kukuh Pambuka Putra <kukuh.pambuka@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/id/>\n"
 "Language: id\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 "X-Qt-Contexts: true\n"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:7
@@ -24,7 +24,7 @@ msgstr ""
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:19
 msgctxt "Description|"
 msgid "Classical"
-msgstr ""
+msgstr "Klasik"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:25
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:53
@@ -40,7 +40,7 @@ msgstr ""
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:48
 msgctxt "Description|"
 msgid "Bayesian"
-msgstr ""
+msgstr "Bayesian"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:54
 msgctxt "Description|"
