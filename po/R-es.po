@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
-"POT-Creation-Date: 2022-04-23 03:36\n"
+"POT-Creation-Date: 2022-05-07 03:37\n"
 "PO-Revision-Date: 2022-04-24 21:12+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
@@ -12,6 +12,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.12.1-dev\n"
+
+msgid "getPointEstFun has no case for value:"
+msgstr "getPointEstFun no tiene ningún caso que valorar:"
+
+msgid "Intraclass Correlation"
+msgstr "Correlación intraclase"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Point Estimate"
+msgstr "Estimación por Punto"
+
+msgid "Lower %s%% CI"
+msgstr "IC inferior al %s%%"
+
+msgid "Upper %s%% CI"
+msgstr "IC superior %s%%"
+
+msgid ""
+"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
+"Fleiss (1979)."
+msgstr ""
+"%s sujetos y %s calificadores/medidas. Tipo de CCI según la referencia de "
+"Shrout & Fleiss (1979)."
+
+msgid "Please select at least 2 columns"
+msgstr "Por favor seleccione al menos 2 columnas"
 
 msgid "Cohen's %s kappa"
 msgstr "Kappa %s de Cohen"
@@ -47,33 +75,13 @@ msgstr "Si solo hay 2 niveles, kappa ponderada equivale a kappa sin ponderar."
 msgid "Fleiss' kappa"
 msgstr "Kappa de Fleiss"
 
-msgid "getPointEstFun has no case for value:"
-msgstr "getPointEstFun no tiene ningún caso que valorar:"
-
-msgid "Intraclass Correlation"
-msgstr "Correlación intraclase"
-
-msgid "Type"
-msgstr "Tipo"
-
-msgid "Point Estimate"
-msgstr "Estimación por Punto"
-
-msgid "Lower %s%% CI"
-msgstr "IC inferior al %s%%"
-
-msgid "Upper %s%% CI"
-msgstr "IC superior %s%%"
+msgid "Method"
+msgstr ""
 
 msgid ""
-"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
-"Fleiss (1979)."
+"Confidence intervals are based on percentiles from 1000 bootstrap "
+"replications."
 msgstr ""
-"%s sujetos y %s calificadores/medidas. Tipo de CCI según la referencia de "
-"Shrout & Fleiss (1979)."
-
-msgid "Please select at least 2 columns"
-msgstr "Por favor seleccione al menos 2 columnas"
 
 msgid "Greatest Lower Bound"
 msgstr "Límite inferior máximo"

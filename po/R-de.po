@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2022-04-23 03:36\n"
+"POT-Creation-Date: 2022-05-07 03:37\n"
 "PO-Revision-Date: 2022-04-23 13:12+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -13,6 +13,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
 "X-Generator: Weblate 4.12.1-dev\n"
+
+msgid "getPointEstFun has no case for value:"
+msgstr "getPointEstFun hat keinen Fall für Wert:"
+
+msgid "Intraclass Correlation"
+msgstr "Intraklassen-Korrelation"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Point Estimate"
+msgstr "Punktschätzung"
+
+msgid "Lower %s%% CI"
+msgstr "Untergrenze %s%%-KI"
+
+msgid "Upper %s%% CI"
+msgstr "Obergrenze %s%%-KI"
+
+msgid ""
+"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
+"Fleiss (1979)."
+msgstr ""
+"%s Messobjekte und %s Beurteilende/Messungen. IKK-Typ wie von Shrout & "
+"Fleiss (1979) referenziert."
+
+msgid "Please select at least 2 columns"
+msgstr "Bitte wähle mindestens 2 Spalten aus"
 
 msgid "Cohen's %s kappa"
 msgstr "Cohens %s Kappa"
@@ -50,33 +78,13 @@ msgstr ""
 msgid "Fleiss' kappa"
 msgstr "Fleiss' Kappa"
 
-msgid "getPointEstFun has no case for value:"
-msgstr "getPointEstFun hat keinen Fall für Wert:"
-
-msgid "Intraclass Correlation"
-msgstr "Intraklassen-Korrelation"
-
-msgid "Type"
-msgstr "Typ"
-
-msgid "Point Estimate"
-msgstr "Punktschätzung"
-
-msgid "Lower %s%% CI"
-msgstr "Untergrenze %s%%-KI"
-
-msgid "Upper %s%% CI"
-msgstr "Obergrenze %s%%-KI"
+msgid "Method"
+msgstr ""
 
 msgid ""
-"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
-"Fleiss (1979)."
+"Confidence intervals are based on percentiles from 1000 bootstrap "
+"replications."
 msgstr ""
-"%s Messobjekte und %s Beurteilende/Messungen. IKK-Typ wie von Shrout & "
-"Fleiss (1979) referenziert."
-
-msgid "Please select at least 2 columns"
-msgstr "Bitte wähle mindestens 2 Spalten aus"
 
 msgid "Greatest Lower Bound"
 msgstr "Größte Untergrenze"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
-"POT-Creation-Date: 2022-04-23 03:36\n"
+"POT-Creation-Date: 2022-05-07 03:37\n"
 "PO-Revision-Date: 2021-10-31 14:35+0000\n"
 "Last-Translator: Changya Hu <changyahu@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -12,6 +12,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.9-dev\n"
+
+msgid "getPointEstFun has no case for value:"
+msgstr ""
+
+msgid "Intraclass Correlation"
+msgstr "組內相關"
+
+msgid "Type"
+msgstr "類型"
+
+msgid "Point Estimate"
+msgstr "點估計"
+
+msgid "Lower %s%% CI"
+msgstr "%s%% 信賴區間下界"
+
+msgid "Upper %s%% CI"
+msgstr "%s%% 信賴區間上界"
+
+#, fuzzy
+msgid ""
+"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
+"Fleiss (1979)."
+msgstr "%s 被評者與 %s 評分者/測量。ICC類型請參見 Shrout & Fleiss (1979)。"
+
+msgid "Please select at least 2 columns"
+msgstr "請至少選擇兩欄"
 
 msgid "Cohen's %s kappa"
 msgstr ""
@@ -47,32 +74,13 @@ msgstr ""
 msgid "Fleiss' kappa"
 msgstr ""
 
-msgid "getPointEstFun has no case for value:"
+msgid "Method"
 msgstr ""
 
-msgid "Intraclass Correlation"
-msgstr "組內相關"
-
-msgid "Type"
-msgstr "類型"
-
-msgid "Point Estimate"
-msgstr "點估計"
-
-msgid "Lower %s%% CI"
-msgstr "%s%% 信賴區間下界"
-
-msgid "Upper %s%% CI"
-msgstr "%s%% 信賴區間上界"
-
-#, fuzzy
 msgid ""
-"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
-"Fleiss (1979)."
-msgstr "%s 被評者與 %s 評分者/測量。ICC類型請參見 Shrout & Fleiss (1979)。"
-
-msgid "Please select at least 2 columns"
-msgstr "請至少選擇兩欄"
+"Confidence intervals are based on percentiles from 1000 bootstrap "
+"replications."
+msgstr ""
 
 msgid "Greatest Lower Bound"
 msgstr "最大下界"

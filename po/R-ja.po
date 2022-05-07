@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
-"POT-Creation-Date: 2022-04-23 03:36\n"
+"POT-Creation-Date: 2022-05-07 03:37\n"
 "PO-Revision-Date: 2021-12-13 15:53+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -12,6 +12,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.10-dev\n"
+
+msgid "getPointEstFun has no case for value:"
+msgstr "getPointEstFunには、値のケースはありません:"
+
+msgid "Intraclass Correlation"
+msgstr "級内相関"
+
+msgid "Type"
+msgstr "型"
+
+msgid "Point Estimate"
+msgstr "点推定"
+
+msgid "Lower %s%% CI"
+msgstr "下側 %s%% CI"
+
+msgid "Upper %s%% CI"
+msgstr "上側 %s%% CI"
+
+msgid ""
+"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
+"Fleiss (1979)."
+msgstr ""
+"%s の参加者と %s の判定者/測定者. Shrout & Fleiss (1979) にて参照されている"
+"ICC タイプ."
+
+msgid "Please select at least 2 columns"
+msgstr "少なくとも2列選択してください"
 
 msgid "Cohen's %s kappa"
 msgstr ""
@@ -47,33 +75,13 @@ msgstr ""
 msgid "Fleiss' kappa"
 msgstr ""
 
-msgid "getPointEstFun has no case for value:"
-msgstr "getPointEstFunには、値のケースはありません:"
-
-msgid "Intraclass Correlation"
-msgstr "級内相関"
-
-msgid "Type"
-msgstr "型"
-
-msgid "Point Estimate"
-msgstr "点推定"
-
-msgid "Lower %s%% CI"
-msgstr "下側 %s%% CI"
-
-msgid "Upper %s%% CI"
-msgstr "上側 %s%% CI"
+msgid "Method"
+msgstr ""
 
 msgid ""
-"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
-"Fleiss (1979)."
+"Confidence intervals are based on percentiles from 1000 bootstrap "
+"replications."
 msgstr ""
-"%s の参加者と %s の判定者/測定者. Shrout & Fleiss (1979) にて参照されている"
-"ICC タイプ."
-
-msgid "Please select at least 2 columns"
-msgstr "少なくとも2列選択してください"
 
 msgid "Greatest Lower Bound"
 msgstr "最大下界"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2022-04-23 03:36\n"
+"POT-Creation-Date: 2022-05-07 03:37\n"
 "PO-Revision-Date: 2022-02-05 03:26+0000\n"
 "Last-Translator: DanaJohanna <dana__@live.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
@@ -13,6 +13,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
 "X-Generator: Weblate 4.11-dev\n"
+
+msgid "getPointEstFun has no case for value:"
+msgstr "getPointEstFun heeft geen geval voor waarde:"
+
+msgid "Intraclass Correlation"
+msgstr "Intraclass Correlatie"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Point Estimate"
+msgstr "Puntschatting"
+
+msgid "Lower %s%% CI"
+msgstr "Onder %s%% BI"
+
+msgid "Upper %s%% CI"
+msgstr "Boven %s%% BI"
+
+msgid ""
+"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
+"Fleiss (1979)."
+msgstr ""
+"%s subjecten en %s beoordelaars/metingen. ICC-type zoals vermeld door Shrout "
+"& Fleiss (1979)."
+
+msgid "Please select at least 2 columns"
+msgstr "Selecteer minstens twee kolommen"
 
 msgid "Cohen's %s kappa"
 msgstr "Cohen's %s kappa"
@@ -50,33 +78,13 @@ msgstr ""
 msgid "Fleiss' kappa"
 msgstr "Fleiss' kappa"
 
-msgid "getPointEstFun has no case for value:"
-msgstr "getPointEstFun heeft geen geval voor waarde:"
-
-msgid "Intraclass Correlation"
-msgstr "Intraclass Correlatie"
-
-msgid "Type"
-msgstr "Type"
-
-msgid "Point Estimate"
-msgstr "Puntschatting"
-
-msgid "Lower %s%% CI"
-msgstr "Onder %s%% BI"
-
-msgid "Upper %s%% CI"
-msgstr "Boven %s%% BI"
+msgid "Method"
+msgstr ""
 
 msgid ""
-"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
-"Fleiss (1979)."
+"Confidence intervals are based on percentiles from 1000 bootstrap "
+"replications."
 msgstr ""
-"%s subjecten en %s beoordelaars/metingen. ICC-type zoals vermeld door Shrout "
-"& Fleiss (1979)."
-
-msgid "Please select at least 2 columns"
-msgstr "Selecteer minstens twee kolommen"
 
 msgid "Greatest Lower Bound"
 msgstr "Hoogste Ondergrens"

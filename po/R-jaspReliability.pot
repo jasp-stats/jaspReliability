@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: jaspReliability 0.16.1\n"
-"POT-Creation-Date: 2022-04-23 03:36\n"
+"Project-Id-Version: jaspReliability 0.16.2\n"
+"POT-Creation-Date: 2022-05-07 03:37\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9,6 +9,30 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+
+msgid "getPointEstFun has no case for value:"
+msgstr ""
+
+msgid "Intraclass Correlation"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Point Estimate"
+msgstr ""
+
+msgid "Lower %s%% CI"
+msgstr ""
+
+msgid "Upper %s%% CI"
+msgstr ""
+
+msgid "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & Fleiss (1979)."
+msgstr ""
+
+msgid "Please select at least 2 columns"
+msgstr ""
 
 msgid "Cohen's %s kappa"
 msgstr ""
@@ -43,28 +67,10 @@ msgstr ""
 msgid "Fleiss' kappa"
 msgstr ""
 
-msgid "getPointEstFun has no case for value:"
+msgid "Method"
 msgstr ""
 
-msgid "Intraclass Correlation"
-msgstr ""
-
-msgid "Type"
-msgstr ""
-
-msgid "Point Estimate"
-msgstr ""
-
-msgid "Lower %s%% CI"
-msgstr ""
-
-msgid "Upper %s%% CI"
-msgstr ""
-
-msgid "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & Fleiss (1979)."
-msgstr ""
-
-msgid "Please select at least 2 columns"
+msgid "Confidence intervals are based on percentiles from 1000 bootstrap replications."
 msgstr ""
 
 msgid "Greatest Lower Bound"
