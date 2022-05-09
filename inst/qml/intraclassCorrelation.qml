@@ -92,7 +92,7 @@ Form
 	
 	Section
 	{
-		title:			qsTr("Plots")
+		title: qsTr("Plots")
 
 		VariablesForm
 		{
@@ -133,8 +133,8 @@ Form
 				
 				CheckBox 
 				{
-					name: 				"ciShading"
-					label:				qsTr("Shading")
+					name: 		"ciShading"
+					label:		qsTr("Shading")
 				}
 			}
 		}
