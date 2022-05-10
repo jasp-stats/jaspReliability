@@ -189,10 +189,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
     sum <- c(ba$diffs, ba$lines)
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(sum)
   }
-
-  yBreaks <- c(floor(min(yBreaks)), yBreaks[!yBreaks%%1], ceiling(max(yBreaks)))
   xBreaks <- jaspGraphs::getPrettyAxisBreaks(ba$means)
-  xBreaks <- c(floor(min(xBreaks)), xBreaks[!xBreaks%%1], ceiling(max(xBreaks)))
 
   p <- ggplot2::ggplot(values, ggplot2::aes(x = m, y = d)) +
     ggplot2::geom_hline(yintercept = ba$lines, linetype = 2, size = 1) +
