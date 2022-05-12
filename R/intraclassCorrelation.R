@@ -129,10 +129,10 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
 
 .descriptivesBlandAltman <- function(jaspResults, dataset, options){
 
-  if(!options$descriptivesBlandAltman)
+  if(!options[["descriptivesBlandAltman"]])
     return()
 
-  ready <- length(options$pairs) > 0
+  ready <- length(options[["pairs"]]) > 0
 
   if (is.null(jaspResults[["plotsBlandAltman"]])) {
     jaspResults[["plotsBlandAltman"]] <- createJaspContainer(gettext("Bland-Altman Plots"))
@@ -143,7 +143,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
   }
 
   if(ready){
-    for(pair in options$pairs) {
+    for(pair in options[["pairs"]]) {
       title <- paste(pair, collapse = " - ")
       if(!is.null(subcontainer[[title]]))
         next
@@ -225,7 +225,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
 
 .descriptivesBlandAltmanTable <- function(jaspResults, dataset, options){
 
-  if(!options$descriptivesBlandAltman)
+  if(!options[["descriptivesBlandAltman"]])
     return()
 
   .hasErrors(
@@ -235,7 +235,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
     exitAnalysisIfErrors = TRUE
   )
 
-  ready <- length(options$pairs) > 0
+  ready <- length(options[["pairs"]]) > 0
 
   if (is.null(jaspResults[["tabBlandAltman"]])) {
     jaspResults[["tabBlandAltman"]] <- createJaspContainer(gettext("Bland-Altman Tables"))
@@ -246,7 +246,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
   }
 
   if(ready){
-    for(pair in options$pairs) {
+    for(pair in options[["pairs"]]) {
       title <- paste(pair, collapse = " - ")
       if(!is.null(subcontainer[[title]]))
         next
