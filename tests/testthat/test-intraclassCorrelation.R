@@ -120,3 +120,31 @@ test_that("ICC coefficients match the ones published in Shrout & Fleiss (1979)",
   # because R would round 0.715 to 0.71 instead of 0.72
   expect_equal(sf_coefs, jasp_coefs, tolerance = .0051)
 })
+
+test_that("Bland-Altman plot matches", {
+  options <- jaspTools::analysisOptions("intraclassCorrelation")
+  options$variables <- c("contcor1", "contcor2")
+  options$pairs <- list(c("contcor1", "contcor2"))
+  options$descriptivesBlandAltman <- TRUE
+  results <- jaspTools::runAnalysis("intraclassCorrelation", "test.csv", options)
+  testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "baPlot")
+})
+
+test_that("Bland-Altman table results matches", {
+  options <- jaspTools::analysisOptions("intraclassCorrelation")
+  options$variables <- c("contcor1", "contcor2")
+  options$pairs <- list(c("contcor1", "contcor2"))
+  options$descriptivesBlandAltman <- FALSE
+  options$descriptivesBlandAltmanTable <- TRUE
+  results <- jaspTools::runAnalysis("intraclassCorrelation", "test.csv", options)
+  table <- results[["results"]][["tabBlandAltman"]][["collection"]][["tabBlandAltman_contcor1 - contcor2"]][["data"]]
+  jaspTools::expect_equal_tables(
+    table,
+    list(1.61924361312177, "Mean difference + 1.96 SD",
+         -0.01713939797, "Mean difference",
+         -1.65352240906177, "Mean difference - 1.96 SD")
+  )
+})
+
+

@@ -137,6 +137,12 @@ Form
 					label:		qsTr("Shading")
 				}
 			}
+			
+			CheckBox 
+			{
+					name: 		"descriptivesBlandAltmanTable"
+					label:		qsTr("Bland-Altman table")
+			}
 		}
 	}
 }
