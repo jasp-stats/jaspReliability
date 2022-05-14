@@ -157,7 +157,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
       }
 
       subData <- data.frame(dataset[, unlist(pair)])
-      errorMessage <- .baCheckPlotErrors(subData, c(pair[[1]], pair[[2]]), obsAmount = "< 2")
+      errorMessage <- .baCheckErrors(subData, c(pair[[1]], pair[[2]]), obsAmount = "< 2")
       if (is.null(errorMessage)) {
         subData <- na.omit(subData)
         p <- try(.descriptivesBlandAltmanPlot(subData, options))
@@ -166,10 +166,11 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
           errorMessage <- .extractErrorMessage(p)
       }
 
-      if (!is.null(errorMessage))
+      if (!is.null(errorMessage)){
         descriptivesBlandAltman$setError(gettextf("Plotting not possible: %s", errorMessage))
-      else
+      } else {
         descriptivesBlandAltman$plotObject <- p
+      }
     }
   }
   return()
@@ -228,13 +229,6 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
   if(!options[["descriptivesBlandAltmanTable"]])
     return()
 
-  .hasErrors(
-    dataset = dataset,
-    type = c("infinity", "observations"),
-    observations.amount = c("< 2"),
-    exitAnalysisIfErrors = TRUE
-  )
-
   ready <- length(options[["pairs"]]) > 0
 
   if (is.null(jaspResults[["tabBlandAltman"]])) {
@@ -255,11 +249,6 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
       tablesBlandAltman$addColumnInfo(name = "names", title = gettext("Bias & Limits"), type = "string")
       tablesBlandAltman$addColumnInfo(name = "agree", title = gettext("Point Value"), type = "number")
       subcontainer[[title]] <- tablesBlandAltman
-
-      if(pair[[1]] == "" || pair[[2]] == ""){
-        tablesBlandAltman$addFootnote(gettext("Please provide another variable"))
-        next
-      }
 
       intervalLow <- gettextf("Mean difference - 1.96 SD")
       intervalUp <- gettextf("Mean difference + 1.96 SD")
@@ -283,9 +272,19 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
         )
       }
 
-      subData <- data.frame(dataset[, unlist(pair)])
-      subData <- na.omit(subData)
+      if(pair[[1]] == "" || pair[[2]] == ""){
+        tablesBlandAltman$addFootnote(gettext("Please provide another variable"))
+        next
+      }
 
+      subData <- data.frame(dataset[, unlist(pair)])
+      errorMessage <- .baCheckErrors(subData, c(pair[[1]], pair[[2]]), obsAmount = "< 2")
+      if (!is.null(errorMessage)) {
+        tablesBlandAltman$addFootnote(gettextf("Calculations not possible: %s", errorMessage))
+        next
+      }
+
+      subData <- na.omit(subData)
       ba <- .descriptivesBlandAltmanStats(dataset = subData, options = options)
 
       linesData <- data.frame(agree = c(ba$lines[3], ba$lines[2], ba$lines[1]))
@@ -299,7 +298,6 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
 
       tablesBlandAltman$setData(allData)
       tablesBlandAltman$addFootnote(gettextf("%s subjects and 2 measurements.", nrow(dataset)))
-
     }
   }
   return()
@@ -335,8 +333,8 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
   return(list(means = means, diffs = diffs, lines = lines, CiLines = CiLines))
 }
 
-.baCheckPlotErrors <- function(dataset, vars, obsAmount) {
-  errors <- .hasErrors(dataset, all.target=vars, message="short", type=c("infinity", "observations"), observations.amount = obsAmount)
+.baCheckErrors <- function(dataset, vars, obsAmount) {
+  errors <- .hasErrors(dataset, all.target = vars, message = "short", type = c("infinity", "observations"), observations.amount = obsAmount)
   if (!isFALSE(errors))
     return(errors$message)
 
