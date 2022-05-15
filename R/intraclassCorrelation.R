@@ -158,19 +158,13 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
 
       subData <- data.frame(dataset[, unlist(pair)])
       errorMessage <- .baCheckErrors(subData, c(pair[[1]], pair[[2]]), obsAmount = "< 2")
-      if (is.null(errorMessage)) {
-        subData <- na.omit(subData)
-        p <- try(.descriptivesBlandAltmanPlot(subData, options))
-
-        if (isTryError(p))
-          errorMessage <- .extractErrorMessage(p)
-      }
-
       if (!is.null(errorMessage)){
         descriptivesBlandAltman$setError(gettextf("Plotting not possible: %s", errorMessage))
-      } else {
-        descriptivesBlandAltman$plotObject <- p
+        next
       }
+
+      subData <- na.omit(subData)
+      descriptivesBlandAltman$plotObject <- .descriptivesBlandAltmanPlot(subData, options)
     }
   }
   return()
