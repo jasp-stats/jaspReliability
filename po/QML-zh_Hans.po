@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2022-06-13 12:22+0000\n"
+"Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"jasp/jaspreliability-qml/zh_Hans/>\n"
+"Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.13-dev\n"
 "X-Language: zh_Hans\n"
 "X-Qt-Contexts: true\n"
 
@@ -655,7 +661,7 @@ msgstr "形状"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:433
 msgctxt "uniDimBayesian|"
 msgid "scale"
-msgstr ""
+msgstr "尺度"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:443
 msgctxt "uniDimBayesian|"
@@ -736,7 +742,7 @@ msgstr "中位数"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:39
 msgctxt "Description|"
 msgid "Cohen's & Fleiss' kappa"
-msgstr ""
+msgstr "Cohen's & Fleiss' kappa"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:35
 msgctxt "cohensFleissKappa|"
@@ -746,7 +752,7 @@ msgstr "变量"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:47
 msgctxt "cohensFleissKappa|"
 msgid "Cohen's kappa"
-msgstr ""
+msgstr "Cohen's kappa"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:58
 msgctxt "cohensFleissKappa|"
@@ -761,7 +767,7 @@ msgstr "已加权"
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:78
 msgctxt "cohensFleissKappa|"
 msgid "Fleiss' kappa"
-msgstr ""
+msgstr "Fleiss' kappa"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:90
 msgctxt "cohensFleissKappa|"
