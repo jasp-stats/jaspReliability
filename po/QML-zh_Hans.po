@@ -1,15 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-06-13 12:22+0000\n"
-"Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
-"jasp/jaspreliability-qml/zh_Hans/>\n"
-"Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13-dev\n"
 "X-Language: zh_Hans\n"
 "X-Qt-Contexts: true\n"
 
@@ -93,6 +87,7 @@ msgstr "尺度统计量"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:50
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:117
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:493
 msgctxt "uniDimBayesian|"
 msgid "Credible interval"
 msgstr "可信区间"
@@ -135,7 +130,7 @@ msgstr "平均项目间相关性"
 
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:93
 #: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:187
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:541
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:548
 msgctxt "uniDimBayesian|"
 msgid "Mean"
 msgstr "均值"
@@ -693,84 +688,149 @@ msgctxt "uniDimBayesian|"
 msgid "Fit measures"
 msgstr "拟合度量"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:493
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:500
 msgctxt "uniDimBayesian|"
 msgid "p(RMSEA <"
 msgstr "p(RMSEA <"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:498
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:508
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:505
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:515
 msgctxt "uniDimBayesian|"
 msgid ")"
 msgstr ")"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:503
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:510
 msgctxt "uniDimBayesian|"
 msgid "p(CFI/TLI >"
 msgstr "p(CFI/TLI >"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:514
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:521
 msgctxt "uniDimBayesian|"
 msgid "Standardized factor loadings"
 msgstr "标准化因子载荷"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:524
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:531
 msgctxt "uniDimBayesian|"
 msgid "Coefficients"
 msgstr "系数"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:527
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:534
 msgctxt "uniDimBayesian|"
 msgid "Unstandardized"
 msgstr "未标准化的"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:528
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:535
 msgctxt "uniDimBayesian|"
 msgid "Standardized"
 msgstr "标准化的"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:540
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:547
 msgctxt "uniDimBayesian|"
 msgid "Posterior Point Estimate"
 msgstr "后验点估计"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:542
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:549
 msgctxt "uniDimBayesian|"
 msgid "Median"
 msgstr "中位数"
 
+#~ msgctxt "Description|"
+#~ msgid "Cohen's & Fleiss' kappa"
+#~ msgstr "Cohen's & Fleiss' kappa"
+
+#~ msgctxt "cohensFleissKappa|"
+#~ msgid "Variables"
+#~ msgstr "变量"
+
+#~ msgctxt "cohensFleissKappa|"
+#~ msgid "Cohen's kappa"
+#~ msgstr "Cohen's kappa"
+
+#~ msgctxt "cohensFleissKappa|"
+#~ msgid "Unweighted"
+#~ msgstr "未加权"
+
+#~ msgctxt "cohensFleissKappa|"
+#~ msgid "Weighted"
+#~ msgstr "已加权"
+
+#~ msgctxt "cohensFleissKappa|"
+#~ msgid "Fleiss' kappa"
+#~ msgstr "Fleiss' kappa"
+
+#~ msgctxt "cohensFleissKappa|"
+#~ msgid "Confidence Interval"
+#~ msgstr "置信区间"
+
 #: /home/runner/work/jaspReliability/jaspReliability/inst/Description.qml:39
 msgctxt "Description|"
-msgid "Cohen's & Fleiss' kappa"
-msgstr "Cohen's & Fleiss' kappa"
+msgid "Rater Agreement"
+msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:35
-msgctxt "cohensFleissKappa|"
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/raterAgreement.qml:35
+#, fuzzy
+msgctxt "raterAgreement|"
 msgid "Variables"
 msgstr "变量"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:47
-msgctxt "cohensFleissKappa|"
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/raterAgreement.qml:47
+#, fuzzy
+msgctxt "raterAgreement|"
 msgid "Cohen's kappa"
 msgstr "Cohen's kappa"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:58
-msgctxt "cohensFleissKappa|"
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/raterAgreement.qml:58
+#, fuzzy
+msgctxt "raterAgreement|"
 msgid "Unweighted"
 msgstr "未加权"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:65
-msgctxt "cohensFleissKappa|"
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/raterAgreement.qml:65
+#, fuzzy
+msgctxt "raterAgreement|"
 msgid "Weighted"
 msgstr "已加权"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:78
-msgctxt "cohensFleissKappa|"
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/raterAgreement.qml:78
+#, fuzzy
+msgctxt "raterAgreement|"
 msgid "Fleiss' kappa"
 msgstr "Fleiss' kappa"
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/cohensFleissKappa.qml:90
-msgctxt "cohensFleissKappa|"
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/raterAgreement.qml:85
+msgctxt "raterAgreement|"
+msgid "Krippendorff's alpha"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/raterAgreement.qml:91
+msgctxt "raterAgreement|"
+msgid "Method"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/raterAgreement.qml:95
+msgctxt "raterAgreement|"
+msgid "Nominal"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/raterAgreement.qml:96
+msgctxt "raterAgreement|"
+msgid "Ordinal"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/raterAgreement.qml:97
+#, fuzzy
+msgctxt "raterAgreement|"
+msgid "Interval"
+msgstr "区间"
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/raterAgreement.qml:98
+msgctxt "raterAgreement|"
+msgid "Ratio"
+msgstr ""
+
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/raterAgreement.qml:111
+#, fuzzy
+msgctxt "raterAgreement|"
 msgid "Confidence Interval"
 msgstr "置信区间"
 
@@ -784,12 +844,12 @@ msgctxt "uniDimBayesian|"
 msgid ""
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:520
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:527
 msgctxt "uniDimBayesian|"
 msgid ""
 msgstr ""
 
-#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:535
+#: /home/runner/work/jaspReliability/jaspReliability/inst/qml/uniDimBayesian.qml:542
 msgctxt "uniDimBayesian|"
 msgid ""
 msgstr ""
