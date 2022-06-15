@@ -98,7 +98,6 @@ Form
 			{
 				indent:		true
 				enabled:	mean.checked || sd.checked
-				title:		qsTr("")
 				name:		"scoresMethod"
 
 				RadioButton { value: "sumScores";	label: qsTr("of participants' sum scores"); checked: true}
@@ -465,7 +464,6 @@ Form
 			title: qsTr("Missing Values")
 			RadioButtonGroup
 			{
-				title: 	qsTr("")
 				name: 	"missingValues"
 
 				RadioButton { value: "excludeCasesPairwise"; label: qsTr("Bayesian imputation"); checked: true}
@@ -524,8 +522,6 @@ Form
 
 		Group
 		{
-			title: qsTr("")
-
 			RadioButtonGroup
 			{
 				title: qsTr("Coefficients")
@@ -539,8 +535,6 @@ Form
 		}
 		Group
 		{
-			title: qsTr("")
-
 			RadioButtonGroup
 			{
 				name: "pointEst"
