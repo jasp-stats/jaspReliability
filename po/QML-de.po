@@ -1,15 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-11-07 16:52+0000\n"
-"Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/jasp/"
-"jaspreliability-qml/de/>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Language: de\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -29,38 +23,6 @@ msgstr "Intraklassen-Korrelation"
 msgctxt "Description|"
 msgid "Bayesian"
 msgstr "Bayesianisch"
-
-msgctxt "IntraclassCorrelation|"
-msgid "Variables"
-msgstr "Variablen"
-
-msgctxt "IntraclassCorrelation|"
-msgid "Each subject is rated by..."
-msgstr "Jedes Messobjekt wird bewertet von..."
-
-msgctxt "IntraclassCorrelation|"
-msgid "a different rater (randomly selected)"
-msgstr "einem anderen Bewerter (zufällig ausgewählt)"
-
-msgctxt "IntraclassCorrelation|"
-msgid "the same set of randomly selected raters/tests"
-msgstr "demselben Satz zufällig ausgewählter Bewerter/Tests"
-
-msgctxt "IntraclassCorrelation|"
-msgid "the same fixed set of raters/tests"
-msgstr "demselben festen Satz von Bewertern/Tests"
-
-msgctxt "IntraclassCorrelation|"
-msgid "Ratings are averaged"
-msgstr "Bewertungen werden gemittelt"
-
-msgctxt "IntraclassCorrelation|"
-msgid "Confidence Interval"
-msgstr "Konfidenzintervall"
-
-msgctxt "Description|"
-msgid "Quantify the consistency of test scores"
-msgstr "Quantifiziere die Konsistenz von Testergebnissen"
 
 msgctxt "Description|"
 msgid "Unidimensional Reliability"
@@ -247,10 +209,6 @@ msgid "Disable saving samples"
 msgstr "Speichern von Stichproben deaktivieren"
 
 msgctxt "uniDimBayesian|"
-msgid "Click to learn more about saving the samples."
-msgstr "Klicke hier, um mehr über das Speichern von Stichproben zu erfahren."
-
-msgctxt "uniDimBayesian|"
 msgid "Reverse-Scaled Items"
 msgstr "Umgekehrt kodierte Items"
 
@@ -259,16 +217,8 @@ msgid "Normal-Scaled Items"
 msgstr "Normal kodierte Items"
 
 msgctxt "uniDimBayesian|"
-msgid "Missing Data Handling"
-msgstr "Umgang mit fehlenden Werten"
-
-msgctxt "uniDimBayesian|"
 msgid "Missing Values"
 msgstr "Fehlende Werte"
-
-msgctxt "uniDimBayesian|"
-msgid "Exclude cases pairwise"
-msgstr "Fälle paarweise ausschließen"
 
 msgctxt "uniDimBayesian|"
 msgid "Exclude cases listwise"
@@ -474,10 +424,233 @@ msgctxt "uniDimFrequentist|"
 msgid "of participants' mean scores"
 msgstr "der Score-Mittelwerte der Teilnehmenden"
 
-msgctxt "uniDimBayesian|"
-msgid ""
-msgstr " "
+msgctxt "Description|"
+msgid "Quantify the reliability of test scores"
+msgstr ""
 
-msgctxt "uniDimFrequentist|"
-msgid ""
-msgstr " "
+msgctxt "Description|"
+msgid "Rater Agreement"
+msgstr ""
+
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "Variables"
+msgstr "Variablen"
+
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "Each subject is rated by..."
+msgstr "Jedes Messobjekt wird bewertet von..."
+
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "a different rater (randomly selected)"
+msgstr "einem anderen Bewerter (zufällig ausgewählt)"
+
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "the same set of randomly selected raters/tests"
+msgstr "demselben Satz zufällig ausgewählter Bewerter/Tests"
+
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "the same fixed set of raters/tests"
+msgstr "demselben festen Satz von Bewertern/Tests"
+
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "Ratings are averaged"
+msgstr "Bewertungen werden gemittelt"
+
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "Confidence Interval"
+msgstr "Konfidenzintervall"
+
+#, fuzzy
+msgctxt "raterAgreement|"
+msgid "Variables"
+msgstr "Variablen"
+
+msgctxt "raterAgreement|"
+msgid "Cohen's kappa"
+msgstr ""
+
+msgctxt "raterAgreement|"
+msgid "Unweighted"
+msgstr ""
+
+msgctxt "raterAgreement|"
+msgid "Weighted"
+msgstr ""
+
+msgctxt "raterAgreement|"
+msgid "Fleiss' kappa"
+msgstr ""
+
+msgctxt "raterAgreement|"
+msgid "Krippendorff's alpha"
+msgstr ""
+
+msgctxt "raterAgreement|"
+msgid "Method"
+msgstr ""
+
+msgctxt "raterAgreement|"
+msgid "Nominal"
+msgstr ""
+
+msgctxt "raterAgreement|"
+msgid "Ordinal"
+msgstr ""
+
+#, fuzzy
+msgctxt "raterAgreement|"
+msgid "Interval"
+msgstr "Intervall"
+
+msgctxt "raterAgreement|"
+msgid "Ratio"
+msgstr ""
+
+#, fuzzy
+msgctxt "raterAgreement|"
+msgid "Confidence Interval"
+msgstr "Konfidenzintervall"
+
+msgctxt "uniDimBayesian|"
+msgid "Priors"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "CTT-Coefficients (α, λ2, λ6, glb)"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "Inverse Wishart scale"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "Inverse Wishart df"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "Inverse gamma:"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "shape"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "scale"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "Normal:"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "mean"
+msgstr ""
+
+#, fuzzy
+msgctxt "uniDimBayesian|"
+msgid "Advanced Options"
+msgstr "Weitere Optionen"
+
+msgctxt "uniDimBayesian|"
+msgid "Bayesian imputation"
+msgstr ""
+
+#, fuzzy
+msgctxt "uniDimBayesian|"
+msgid "McDonald's ω Estimation"
+msgstr "McDonalds ω Schätzung"
+
+msgctxt "uniDimBayesian|"
+msgid "Fit measures"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "p(RMSEA <"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid ")"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "p(CFI/TLI >"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "Standardized factor loadings"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "Coefficients"
+msgstr ""
+
+#, fuzzy
+msgctxt "uniDimBayesian|"
+msgid "Unstandardized"
+msgstr "Unstandardisiert"
+
+#, fuzzy
+msgctxt "uniDimBayesian|"
+msgid "Standardized"
+msgstr "Standardisiert"
+
+msgctxt "uniDimBayesian|"
+msgid "Posterior Point Estimate"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "Median"
+msgstr ""
+
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "Variables"
+#~ msgstr "Variablen"
+
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "Each subject is rated by..."
+#~ msgstr "Jedes Messobjekt wird bewertet von..."
+
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "a different rater (randomly selected)"
+#~ msgstr "einem anderen Bewerter (zufällig ausgewählt)"
+
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "the same set of randomly selected raters/tests"
+#~ msgstr "demselben Satz zufällig ausgewählter Bewerter/Tests"
+
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "the same fixed set of raters/tests"
+#~ msgstr "demselben festen Satz von Bewertern/Tests"
+
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "Ratings are averaged"
+#~ msgstr "Bewertungen werden gemittelt"
+
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "Confidence Interval"
+#~ msgstr "Konfidenzintervall"
+
+#~ msgctxt "Description|"
+#~ msgid "Quantify the consistency of test scores"
+#~ msgstr "Quantifiziere die Konsistenz von Testergebnissen"
+
+#~ msgctxt "uniDimBayesian|"
+#~ msgid "Click to learn more about saving the samples."
+#~ msgstr ""
+#~ "Klicke hier, um mehr über das Speichern von Stichproben zu erfahren."
+
+#~ msgctxt "uniDimBayesian|"
+#~ msgid "Missing Data Handling"
+#~ msgstr "Umgang mit fehlenden Werten"
+
+#~ msgctxt "uniDimBayesian|"
+#~ msgid "Exclude cases pairwise"
+#~ msgstr "Fälle paarweise ausschließen"

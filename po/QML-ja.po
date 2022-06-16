@@ -597,7 +597,3 @@ msgstr ""
 msgctxt "raterAgreement|"
 msgid "Confidence Interval"
 msgstr "信頼区間"
-
-msgctxt "uniDimFrequentist|"
-msgid ""
-msgstr ""
