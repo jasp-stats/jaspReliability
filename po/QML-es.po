@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2022-06-16 12:41+0000\n"
+"Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/es/>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13-dev\n"
 "X-Language: es\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -426,187 +432,173 @@ msgstr "de las puntuaciones medias de los participantes"
 
 msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
-msgstr ""
+msgstr "Cuantificar la fiabilidad de las puntuaciones de los tests"
 
 msgctxt "Description|"
 msgid "Rater Agreement"
-msgstr ""
+msgstr "Acuerdo de Calificador"
 
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Variables"
 msgstr "Variables"
 
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Each subject is rated by..."
 msgstr "Cada sujeto es calificado por..."
 
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "a different rater (randomly selected)"
 msgstr "un evaluador distinto (seleccionado aleatoriamente)"
 
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
 msgstr ""
 "el mismo conjunto de evaluadores/contrastes seleccionados aleatoriamente"
 
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
 msgstr "el mismo conjunto fijo de evaluadores/pruebas"
 
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Ratings are averaged"
 msgstr "Las calificaciones son promedios"
 
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Confidence Interval"
 msgstr "Intervalo de Confianza"
 
-#, fuzzy
 msgctxt "raterAgreement|"
 msgid "Variables"
 msgstr "Variables"
 
 msgctxt "raterAgreement|"
 msgid "Cohen's kappa"
-msgstr ""
+msgstr "Kappa de Cohen"
 
 msgctxt "raterAgreement|"
 msgid "Unweighted"
-msgstr ""
+msgstr "No ponderado"
 
 msgctxt "raterAgreement|"
 msgid "Weighted"
-msgstr ""
+msgstr "Ponderado"
 
 msgctxt "raterAgreement|"
 msgid "Fleiss' kappa"
-msgstr ""
+msgstr "Kappa de Fleiss"
 
 msgctxt "raterAgreement|"
 msgid "Krippendorff's alpha"
-msgstr ""
+msgstr "Alfa de Krippendorff"
 
 msgctxt "raterAgreement|"
 msgid "Method"
-msgstr ""
+msgstr "Método"
 
 msgctxt "raterAgreement|"
 msgid "Nominal"
-msgstr ""
+msgstr "Nominal"
 
 msgctxt "raterAgreement|"
 msgid "Ordinal"
-msgstr ""
+msgstr "Ordinal"
 
-#, fuzzy
 msgctxt "raterAgreement|"
 msgid "Interval"
 msgstr "Intervalo"
 
 msgctxt "raterAgreement|"
 msgid "Ratio"
-msgstr ""
+msgstr "Ratio"
 
-#, fuzzy
 msgctxt "raterAgreement|"
 msgid "Confidence Interval"
 msgstr "Intervalo de Confianza"
 
 msgctxt "uniDimBayesian|"
 msgid "Priors"
-msgstr ""
+msgstr "Previos"
 
 msgctxt "uniDimBayesian|"
 msgid "CTT-Coefficients (α, λ2, λ6, glb)"
-msgstr ""
+msgstr "Coeficientes CTT (α, λ2, λ6, glb)"
 
 msgctxt "uniDimBayesian|"
 msgid "Inverse Wishart scale"
-msgstr ""
+msgstr "Escala Wishart Inversa"
 
 msgctxt "uniDimBayesian|"
 msgid "Inverse Wishart df"
-msgstr ""
+msgstr "gl da Wishart Inversa"
 
 msgctxt "uniDimBayesian|"
 msgid "Inverse gamma:"
-msgstr ""
+msgstr "Gamma Inversa:"
 
 msgctxt "uniDimBayesian|"
 msgid "shape"
-msgstr ""
+msgstr "forma"
 
 msgctxt "uniDimBayesian|"
 msgid "scale"
-msgstr ""
+msgstr "escala"
 
 msgctxt "uniDimBayesian|"
 msgid "Normal:"
-msgstr ""
+msgstr "Normal:"
 
 msgctxt "uniDimBayesian|"
 msgid "mean"
-msgstr ""
+msgstr "media"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Advanced Options"
 msgstr "Opciones Avanzadas"
 
 msgctxt "uniDimBayesian|"
 msgid "Bayesian imputation"
-msgstr ""
+msgstr "Imputación bayesiana"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "McDonald's ω Estimation"
 msgstr "Estimación de ω de McDonald"
 
 msgctxt "uniDimBayesian|"
 msgid "Fit measures"
-msgstr ""
+msgstr "Medidas de ajuste"
 
 msgctxt "uniDimBayesian|"
 msgid "p(RMSEA <"
-msgstr ""
+msgstr "p(REACM <"
 
 msgctxt "uniDimBayesian|"
 msgid ")"
-msgstr ""
+msgstr ")"
 
 msgctxt "uniDimBayesian|"
 msgid "p(CFI/TLI >"
-msgstr ""
+msgstr "p(IAC/ITL >"
 
 msgctxt "uniDimBayesian|"
 msgid "Standardized factor loadings"
-msgstr ""
+msgstr "Cargas de los factores tipificados"
 
 msgctxt "uniDimBayesian|"
 msgid "Coefficients"
-msgstr ""
+msgstr "Coeficientes"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Unstandardized"
 msgstr "No tipificado"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Standardized"
 msgstr "Tipificado"
 
 msgctxt "uniDimBayesian|"
 msgid "Posterior Point Estimate"
-msgstr ""
+msgstr "Estimación de Punto Posterior"
 
 msgctxt "uniDimBayesian|"
 msgid "Median"
-msgstr ""
+msgstr "Mediana"
