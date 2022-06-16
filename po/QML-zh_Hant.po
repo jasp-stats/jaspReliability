@@ -1,15 +1,10 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-10-31 14:36+0000\n"
-"Last-Translator: Changya Hu <changyahu@gmail.com>\n"
-"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
-"jasp/jaspreliability-qml/zh_Hant/>\n"
-"Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Language: zh_Hant\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
@@ -27,39 +22,6 @@ msgstr "組內相關係數"
 msgctxt "Description|"
 msgid "Bayesian"
 msgstr "貝氏"
-
-msgctxt "IntraclassCorrelation|"
-msgid "Variables"
-msgstr "變項"
-
-msgctxt "IntraclassCorrelation|"
-msgid "Each subject is rated by..."
-msgstr "每位被評者被多少人評分..."
-
-msgctxt "IntraclassCorrelation|"
-msgid "a different rater (randomly selected)"
-msgstr "(隨機選取)評分者"
-
-msgctxt "IntraclassCorrelation|"
-msgid "the same set of randomly selected raters/tests"
-msgstr "同一群隨機選取的評分者/測驗"
-
-msgctxt "IntraclassCorrelation|"
-msgid "the same fixed set of raters/tests"
-msgstr "相同的固定評分者/測驗"
-
-#, fuzzy
-msgctxt "IntraclassCorrelation|"
-msgid "Ratings are averaged"
-msgstr "評分 (取其平均數)"
-
-msgctxt "IntraclassCorrelation|"
-msgid "Confidence Interval"
-msgstr "信賴區間"
-
-msgctxt "Description|"
-msgid "Quantify the consistency of test scores"
-msgstr "量化測驗分數之一致性"
 
 msgctxt "Description|"
 msgid "Unidimensional Reliability"
@@ -249,10 +211,6 @@ msgid "Disable saving samples"
 msgstr "不使用節省樣本功能"
 
 msgctxt "uniDimBayesian|"
-msgid "Click to learn more about saving the samples."
-msgstr "按此鍵以了解更多有關節省樣本"
-
-msgctxt "uniDimBayesian|"
 msgid "Reverse-Scaled Items"
 msgstr "反向計分題"
 
@@ -261,16 +219,8 @@ msgid "Normal-Scaled Items"
 msgstr ""
 
 msgctxt "uniDimBayesian|"
-msgid "Missing Data Handling"
-msgstr "遺漏值處理"
-
-msgctxt "uniDimBayesian|"
 msgid "Missing Values"
 msgstr "遺漏值"
-
-msgctxt "uniDimBayesian|"
-msgid "Exclude cases pairwise"
-msgstr "成對排除法"
 
 msgctxt "uniDimBayesian|"
 msgid "Exclude cases listwise"
@@ -476,10 +426,233 @@ msgctxt "uniDimFrequentist|"
 msgid "of participants' mean scores"
 msgstr "研究參與者的測驗平均分數"
 
-msgctxt "uniDimBayesian|"
-msgid ""
+msgctxt "Description|"
+msgid "Quantify the reliability of test scores"
 msgstr ""
 
-msgctxt "uniDimFrequentist|"
-msgid ""
+msgctxt "Description|"
+msgid "Rater Agreement"
 msgstr ""
+
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "Variables"
+msgstr "變項"
+
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "Each subject is rated by..."
+msgstr "每位被評者被多少人評分..."
+
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "a different rater (randomly selected)"
+msgstr "(隨機選取)評分者"
+
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "the same set of randomly selected raters/tests"
+msgstr "同一群隨機選取的評分者/測驗"
+
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "the same fixed set of raters/tests"
+msgstr "相同的固定評分者/測驗"
+
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "Ratings are averaged"
+msgstr "評分 (取其平均數)"
+
+#, fuzzy
+msgctxt "intraclassCorrelation|"
+msgid "Confidence Interval"
+msgstr "信賴區間"
+
+#, fuzzy
+msgctxt "raterAgreement|"
+msgid "Variables"
+msgstr "變項"
+
+msgctxt "raterAgreement|"
+msgid "Cohen's kappa"
+msgstr ""
+
+msgctxt "raterAgreement|"
+msgid "Unweighted"
+msgstr ""
+
+msgctxt "raterAgreement|"
+msgid "Weighted"
+msgstr ""
+
+msgctxt "raterAgreement|"
+msgid "Fleiss' kappa"
+msgstr ""
+
+msgctxt "raterAgreement|"
+msgid "Krippendorff's alpha"
+msgstr ""
+
+msgctxt "raterAgreement|"
+msgid "Method"
+msgstr ""
+
+msgctxt "raterAgreement|"
+msgid "Nominal"
+msgstr ""
+
+msgctxt "raterAgreement|"
+msgid "Ordinal"
+msgstr ""
+
+#, fuzzy
+msgctxt "raterAgreement|"
+msgid "Interval"
+msgstr "區間"
+
+msgctxt "raterAgreement|"
+msgid "Ratio"
+msgstr ""
+
+#, fuzzy
+msgctxt "raterAgreement|"
+msgid "Confidence Interval"
+msgstr "信賴區間"
+
+msgctxt "uniDimBayesian|"
+msgid "Priors"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "CTT-Coefficients (α, λ2, λ6, glb)"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "Inverse Wishart scale"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "Inverse Wishart df"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "Inverse gamma:"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "shape"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "scale"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "Normal:"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "mean"
+msgstr ""
+
+#, fuzzy
+msgctxt "uniDimBayesian|"
+msgid "Advanced Options"
+msgstr "進階選項"
+
+msgctxt "uniDimBayesian|"
+msgid "Bayesian imputation"
+msgstr ""
+
+#, fuzzy
+msgctxt "uniDimBayesian|"
+msgid "McDonald's ω Estimation"
+msgstr "McDonald's ω 估計值"
+
+msgctxt "uniDimBayesian|"
+msgid "Fit measures"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "p(RMSEA <"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid ")"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "p(CFI/TLI >"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "Standardized factor loadings"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "Coefficients"
+msgstr ""
+
+#, fuzzy
+msgctxt "uniDimBayesian|"
+msgid "Unstandardized"
+msgstr "未標準化"
+
+#, fuzzy
+msgctxt "uniDimBayesian|"
+msgid "Standardized"
+msgstr "標準化"
+
+msgctxt "uniDimBayesian|"
+msgid "Posterior Point Estimate"
+msgstr ""
+
+msgctxt "uniDimBayesian|"
+msgid "Median"
+msgstr ""
+
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "Variables"
+#~ msgstr "變項"
+
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "Each subject is rated by..."
+#~ msgstr "每位被評者被多少人評分..."
+
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "a different rater (randomly selected)"
+#~ msgstr "(隨機選取)評分者"
+
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "the same set of randomly selected raters/tests"
+#~ msgstr "同一群隨機選取的評分者/測驗"
+
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "the same fixed set of raters/tests"
+#~ msgstr "相同的固定評分者/測驗"
+
+#, fuzzy
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "Ratings are averaged"
+#~ msgstr "評分 (取其平均數)"
+
+#~ msgctxt "IntraclassCorrelation|"
+#~ msgid "Confidence Interval"
+#~ msgstr "信賴區間"
+
+#~ msgctxt "Description|"
+#~ msgid "Quantify the consistency of test scores"
+#~ msgstr "量化測驗分數之一致性"
+
+#~ msgctxt "uniDimBayesian|"
+#~ msgid "Click to learn more about saving the samples."
+#~ msgstr "按此鍵以了解更多有關節省樣本"
+
+#~ msgctxt "uniDimBayesian|"
+#~ msgid "Missing Data Handling"
+#~ msgstr "遺漏值處理"
+
+#~ msgctxt "uniDimBayesian|"
+#~ msgid "Exclude cases pairwise"
+#~ msgstr "成對排除法"

@@ -108,7 +108,6 @@ Form
 			{
 				indent:		true
 				enabled:	mean.checked || sd.checked
-				title:		qsTr("")
 				name:		"scoresMethod"
 
 				RadioButton { value: "sumScores";	label: qsTr("of participants' sum scores"); checked: true}

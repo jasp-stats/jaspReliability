@@ -608,7 +608,3 @@ msgstr ""
 msgctxt "raterAgreement|"
 msgid "Confidence Interval"
 msgstr "Intervalo de confiança"
-
-msgctxt "uniDimFrequentist|"
-msgid ""
-msgstr ""
