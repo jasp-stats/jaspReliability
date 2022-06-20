@@ -118,6 +118,7 @@ Form
 		{
 			name:   	"descriptivesBlandAltman"
 			label:  	qsTr("Bland-Altman plot")
+			
 			CheckBox 
 			{
 				name: 				"ciDisplay"
