@@ -174,38 +174,38 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
 .descriptivesBlandAltmanPlot <- function(dataset, options) {
 
   ba <- .descriptivesBlandAltmanStats(dataset = dataset, options = options)
-  values <- data.frame(m = ba$means, d = ba$diffs)
+  values <- data.frame(m = ba[["means"]], d = ba[["diffs"]])
 
   # Bland-Altman Plot
   if (options[["ciDisplay"]]) {
-    sum <- c(ba$diffs, ba$CiLines)
+    sum <- c(ba[["diffs"]], ba[["CiLines"]])
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(sum)
   } else {
-    sum <- c(ba$diffs, ba$lines)
+    sum <- c(ba[["diffs"]], ba[["lines"]])
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(sum)
   }
-  xBreaks <- jaspGraphs::getPrettyAxisBreaks(ba$means)
+  xBreaks <- jaspGraphs::getPrettyAxisBreaks(ba[["means"]])
 
   p <- ggplot2::ggplot(values, ggplot2::aes(x = m, y = d)) +
-    ggplot2::geom_hline(yintercept = ba$lines, linetype = 2, size = 1) +
+    ggplot2::geom_hline(yintercept = ba[["lines"]], linetype = 2, size = 1) +
     ggplot2::xlab("Mean of Measurements") +
     ggplot2::ylab("Difference of Measurements")
 
   if (options[["ciDisplay"]]) {
-    p <- p + ggplot2::geom_hline(yintercept = ba$CiLines, linetype = 2, size = 0.5)
+    p <- p + ggplot2::geom_hline(yintercept = ba[["CiLines"]], linetype = 2, size = 0.5)
 
     if (options[["ciShading"]]) {
       p <- p + ggplot2::annotate("rect", xmin = -Inf, xmax = Inf,
-                                 ymin = ba$CiLines[3],
-                                 ymax = ba$CiLines[4],
+                                 ymin = ba[["CiLines"]][3],
+                                 ymax = ba[["CiLines"]][4],
                                  fill = "blue", alpha = 0.3) +
         ggplot2::annotate("rect", xmin = -Inf, xmax = Inf,
-                          ymin = ba$CiLines[5],
-                          ymax = ba$CiLines[6],
+                          ymin = ba[["CiLines"]][5],
+                          ymax = ba[["CiLines"]][6],
                           fill = "green", alpha = 0.3) +
         ggplot2::annotate("rect", xmin = -Inf, xmax = Inf,
-                          ymin = ba$CiLines[1],
-                          ymax = ba$CiLines[2],
+                          ymin = ba[["CiLines"]][1],
+                          ymax = ba[["CiLines"]][2],
                           fill = "red", alpha = 0.3)
     }
   }
@@ -281,12 +281,12 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
       subData <- na.omit(subData)
       ba <- .descriptivesBlandAltmanStats(dataset = subData, options = options)
 
-      linesData <- data.frame(agree = c(ba$lines[3], ba$lines[2], ba$lines[1]))
+      linesData <- data.frame(agree = c(ba[["lines"]][3], ba[["lines"]][2], ba[["lines"]][1]))
       allData <- cbind(allData, linesData)
 
       if (options[["ciDisplay"]]) {
-        lowCiData <- data.frame(lowerBound = c(ba$CiLines[5], ba$CiLines[3], ba$CiLines[1]))
-        topCiData <- data.frame(upperBound = c(ba$CiLines[6], ba$CiLines[4], ba$CiLines[2]))
+        lowCiData <- data.frame(lowerBound = c(ba[["CiLines"]][5], ba[["CiLines"]][3], ba[["CiLines"]][1]))
+        topCiData <- data.frame(upperBound = c(ba[["CiLines"]][6], ba[["CiLines"]][4], ba[["CiLines"]][2]))
         allData <- cbind(allData, lowCiData, topCiData)
       }
 
