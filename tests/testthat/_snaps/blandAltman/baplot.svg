@@ -30,6 +30,15 @@
 <line x1='60.77' y1='457.60' x2='720.00' y2='457.60' style='stroke-width: 2.13; stroke-dasharray: 11.38,11.38; stroke-linecap: butt;' />
 <line x1='60.77' y1='313.47' x2='720.00' y2='313.47' style='stroke-width: 2.13; stroke-dasharray: 11.38,11.38; stroke-linecap: butt;' />
 <line x1='60.77' y1='169.33' x2='720.00' y2='169.33' style='stroke-width: 2.13; stroke-dasharray: 11.38,11.38; stroke-linecap: butt;' />
+<line x1='60.77' y1='482.87' x2='720.00' y2='482.87' style='stroke-width: 1.07; stroke-dasharray: 5.69,5.69; stroke-linecap: butt;' />
+<line x1='60.77' y1='432.33' x2='720.00' y2='432.33' style='stroke-width: 1.07; stroke-dasharray: 5.69,5.69; stroke-linecap: butt;' />
+<line x1='60.77' y1='328.06' x2='720.00' y2='328.06' style='stroke-width: 1.07; stroke-dasharray: 5.69,5.69; stroke-linecap: butt;' />
+<line x1='60.77' y1='298.87' x2='720.00' y2='298.87' style='stroke-width: 1.07; stroke-dasharray: 5.69,5.69; stroke-linecap: butt;' />
+<line x1='60.77' y1='194.60' x2='720.00' y2='194.60' style='stroke-width: 1.07; stroke-dasharray: 5.69,5.69; stroke-linecap: butt;' />
+<line x1='60.77' y1='144.06' x2='720.00' y2='144.06' style='stroke-width: 1.07; stroke-dasharray: 5.69,5.69; stroke-linecap: butt;' />
+<rect x='60.77' y='298.87' width='659.23' height='29.18' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #0000FF; fill-opacity: 0.30;' />
+<rect x='60.77' y='144.06' width='659.23' height='50.55' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #00FF00; fill-opacity: 0.30;' />
+<rect x='60.77' y='432.33' width='659.23' height='50.55' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FF0000; fill-opacity: 0.30;' />
 <circle cx='510.36' cy='308.42' r='3.56' style='stroke-width: 0.71; fill: #BEBEBE;' />
 <circle cx='215.17' cy='302.90' r='3.56' style='stroke-width: 0.71; fill: #BEBEBE;' />
 <circle cx='275.97' cy='339.86' r='3.56' style='stroke-width: 0.71; fill: #BEBEBE;' />
@@ -164,6 +173,6 @@
 <text x='690.03' y='537.32' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='9.46px' lengthAdjust='spacingAndGlyphs'>3</text>
 <text x='390.38' y='567.49' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='178.62px' lengthAdjust='spacingAndGlyphs'>Mean of Measurements</text>
 <text transform='translate(16.68,267.91) rotate(-90)' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='213.58px' lengthAdjust='spacingAndGlyphs'>Difference of Measurements</text>
-<text x='390.38' y='16.68' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='48.21px' lengthAdjust='spacingAndGlyphs'>baPlot</text>
+<text x='390.38' y='16.68' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='46.32px' lengthAdjust='spacingAndGlyphs'>baplot</text>
 </g>
 </svg>

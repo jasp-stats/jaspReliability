@@ -1,3 +1,4 @@
+
 #
 # Copyright (C) 2021 University of Amsterdam
 #
@@ -13,167 +14,70 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-
 #' @export
-intraclassCorrelation <- function(jaspResults, dataset, options) {
+blandAltman <- function(jaspResults, dataset, options) {
 
-  dataset <- .intraclassCorrelationReadData(dataset, options)
+  dataset <- .blandAltmanReadData(dataset, options)
 
-  jaspResults[["table"]] <- .handleIntraclassCorrelation(dataset, options)
-
-  .descriptivesBlandAltman(     jaspResults, dataset, options)
-  .descriptivesBlandAltmanTable(jaspResults, dataset, options)
+  .blandAltmanPlots(jaspResults, dataset, options)
+  .blandAltmanTable(jaspResults, dataset, options)
 
   return()
 }
 
 # Read in the dataset (copied from .reliabilityReadData)
-.intraclassCorrelationReadData <- function(dataset, options) {
-  variables <- unlist(options[["variables"]])
+.blandAltmanReadData <- function(dataset, options) {
+  variables <- unlist(options[["pairs"]])
+  variables <- variables[variables != ""]
   if (is.null(dataset)) {
     dataset <- .readDataSetToEnd(columns.as.numeric = variables)
   }
   return(dataset)
 }
 
-.handleIntraclassCorrelation <- function(dataset, options) {
+.blandAltmanPlots <- function(jaspResults, dataset, options) {
 
-  # Check for errors using JASPs internal convenience function
-  jaspBase::.hasErrors(
-    dataset = dataset,
-    type = c("infinity", "observations"),
-    observations.amount = c("< 2"),
-    exitAnalysisIfErrors = TRUE
-  )
-
-  # Create the JASP Table
-  jaspTable <- createJaspTable(title = gettext("Intraclass Correlation"))
-  jaspTable$addColumnInfo(name = "type", title = gettext("Type"), type = "string")
-  jaspTable$addColumnInfo(name = "ICC", title = gettext("Point Estimate"), type = "number")
-  formattedCIPercent <- format(
-    100 * options[["confidenceIntervalValue"]],
-    digits = 3,
-    drop0trailing = TRUE
-  )
-
-  if (options[["intervalOn"]]) {
-    jaspTable$addColumnInfo(
-      name = "lower bound",
-      title = gettextf("Lower %s%% CI", formattedCIPercent),
-      type = "number"
-    )
-    jaspTable$addColumnInfo(
-      name = "upper bound",
-      title = gettextf("Upper %s%% CI", formattedCIPercent),
-      type = "number"
-    )
-  }
-  jaspTable$dependOn(
-    options = c(
-      "variables",
-      "intervalOn",
-      "confidenceIntervalValue",
-      "iccType",
-      "iccRatingAverage"
-    )
-  )
-
-  # Only run ICC analysis if conditions are met,
-  # but still return table elsewise for better feedback
-  if (ncol(dataset) >= 2) {
-    # Get the ICC type e.g. "ICC1k"
-    type <- toupper(options["iccType"])
-    if (options[["iccRatingAverage"]]) {
-      type <- paste0(type, ",k")
-    } else {
-      type <- paste0(type, ",1")
-    }
-
-    # Compute the ICC
-    full_results <- psych::ICC(
-      dataset,
-      alpha = 1 - options[["confidenceIntervalValue"]]
-    )
-    icc_results <- full_results$results
-    icc_results$type <- c("ICC1,1", "ICC2,1", "ICC3,1", "ICC1,k", "ICC2,k", "ICC3,k")
-    # Select correct ICC
-    icc <- icc_results[icc_results$type == type, ]
-    rownames(icc) <- NULL
-
-    # Only report relevant columns
-    cols <- c("type", "ICC")
-    # Report CI
-    if (options[["intervalOn"]]) {
-      cols <- c(cols, "lower bound", "upper bound")
-    }
-    icc <- icc[, cols]
-
-    # Add results to table
-    jaspTable$setData(icc)
-    jaspTable$addFootnote(
-      gettextf(
-        "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & Fleiss (1979).",
-        full_results$n.obs,
-        full_results$n.judge
-      )
-    )
-  } else {
-    jaspTable$addFootnote(
-      gettext("Please select at least 2 columns")
-    )
-  }
-
-  return(jaspTable)
-}
-
-.descriptivesBlandAltman <- function(jaspResults, dataset, options) {
-
-  if (!options[["descriptivesBlandAltman"]])
-    return()
-
-  ready <- length(options[["pairs"]]) > 0
+  if (length(options[["pairs"]]) < 1) return()
 
   if (is.null(jaspResults[["plotsBlandAltman"]])) {
     jaspResults[["plotsBlandAltman"]] <- createJaspContainer(gettext("Bland-Altman Plots"))
-    jaspResults[["plotsBlandAltman"]]$dependOn(c("descriptivesBlandAltman", "ciDisplay", "ciShading", "ciValue"))
+    jaspResults[["plotsBlandAltman"]]$dependOn(c("ciDisplay", "ciShading", "ciValue"))
     subcontainer <- jaspResults[["plotsBlandAltman"]]
   } else {
     subcontainer <- jaspResults[["plotsBlandAltman"]]
   }
 
-  if (ready) {
-    for (pair in options[["pairs"]]) {
-      title <- paste(pair, collapse = " - ")
-      if (!is.null(subcontainer[[title]]))
-        next
-      descriptivesBlandAltman <- createJaspPlot(title = title, width = 600, height = 420)
-      descriptivesBlandAltman$dependOn(optionContainsValue = list(pairs = pair))
-      subcontainer[[title]] <- descriptivesBlandAltman
+  for (pair in options[["pairs"]]) {
+    title <- paste(pair, collapse = " - ")
+    if (!is.null(subcontainer[[title]]))
+      next
+    blandAltmanPlots <- createJaspPlot(title = title, width = 600, height = 420)
+    blandAltmanPlots$dependOn(optionContainsValue = list(pairs = pair))
+    subcontainer[[title]] <- blandAltmanPlots
 
-      if (pair[[1]] == "" || pair[[2]] == "") {
-        descriptivesBlandAltman$setError(gettext("Please provide another variable"))
-        next
-      }
-
-      subData <- data.frame(dataset[, unlist(pair)])
-      errorMessage <- .baCheckErrors(subData, c(pair[[1]], pair[[2]]), obsAmount = "< 2")
-      if (!is.null(errorMessage)) {
-        descriptivesBlandAltman$setError(gettextf("Plotting not possible: %s", errorMessage))
-        next
-      }
-
-      subData <- na.omit(subData)
-      descriptivesBlandAltman$plotObject <- .descriptivesBlandAltmanPlot(subData, options)
+    if (pair[[1]] == "" || pair[[2]] == "") {
+      blandAltmanPlots$setError(gettext("Please provide another variable"))
+      next
     }
+
+    subData <- data.frame(dataset[, pair])
+    errorMessage <- .baCheckErrors(subData, c(pair[[1]], pair[[2]]), obsAmount = "< 2")
+    if (!is.null(errorMessage)) {
+      blandAltmanPlots$setError(gettextf("Plotting not possible: %s", errorMessage))
+      next
+    }
+
+    subData <- na.omit(subData)
+    blandAltmanPlots$plotObject <- .createBlandAltmanPlot(subData, options)
   }
+
   return()
 
 }
 
-.descriptivesBlandAltmanPlot <- function(dataset, options) {
+.createBlandAltmanPlot <- function(dataset, options) {
 
-  ba <- .descriptivesBlandAltmanStats(dataset = dataset, options = options)
+  ba <- .blandAltmanStats(dataset = dataset, options = options)
   values <- data.frame(m = ba[["means"]], d = ba[["diffs"]])
 
   # Bland-Altman Plot
@@ -214,18 +118,20 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
     jaspGraphs::geom_rangeframe(sides = "rbl") +
     jaspGraphs::themeJaspRaw() +
     ggplot2::theme(plot.margin = ggplot2::margin(5))
+
+  return(p)
 }
 
-.descriptivesBlandAltmanTable <- function(jaspResults, dataset, options) {
+.blandAltmanTable <- function(jaspResults, dataset, options) {
 
-  if (!options[["descriptivesBlandAltmanTable"]])
+  if (!options[["blandAltmanTable"]])
     return()
 
   ready <- length(options[["pairs"]]) > 0
 
   if (is.null(jaspResults[["tabBlandAltman"]])) {
     jaspResults[["tabBlandAltman"]] <- createJaspContainer(gettext("Bland-Altman Tables"))
-    jaspResults[["tabBlandAltman"]]$dependOn(c("descriptivesBlandAltmanTable", "ciDisplay", "ciValue"))
+    jaspResults[["tabBlandAltman"]]$dependOn(c("blandAltmanTable", "ciDisplay", "ciValue"))
     subcontainer <- jaspResults[["tabBlandAltman"]]
   } else {
     subcontainer <- jaspResults[["tabBlandAltman"]]
@@ -277,7 +183,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
       }
 
       subData <- na.omit(subData)
-      ba <- .descriptivesBlandAltmanStats(dataset = subData, options = options)
+      ba <- .blandAltmanStats(dataset = subData, options = options)
 
       linesData <- data.frame(agree = c(ba[["lines"]][3], ba[["lines"]][2], ba[["lines"]][1]))
       allData <- cbind(allData, linesData)
@@ -296,7 +202,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
 
 }
 
-.descriptivesBlandAltmanStats <- function(dataset, options) {
+.blandAltmanStats <- function(dataset, options) {
 
   # Calculating main components
   ci <- options[["ciValue"]]
@@ -332,8 +238,4 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
 
   return(NULL)
 }
-
-
-
-
 
