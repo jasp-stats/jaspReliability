@@ -41,7 +41,7 @@ blandAltman <- function(jaspResults, dataset, options) {
 
   if (is.null(jaspResults[["plotsBlandAltman"]])) {
     jaspResults[["plotsBlandAltman"]] <- createJaspContainer(gettext("Bland-Altman Plots"))
-    jaspResults[["plotsBlandAltman"]]$dependOn(c("ciDisplay", "ciShading", "ciValue"))
+    jaspResults[["plotsBlandAltman"]]$dependOn(c("ciDisplay", "ciShading", "ciValue", "useColour"))
     subcontainer <- jaspResults[["plotsBlandAltman"]]
   } else {
     subcontainer <- jaspResults[["plotsBlandAltman"]]
@@ -97,22 +97,26 @@ blandAltman <- function(jaspResults, dataset, options) {
     p <- p + ggplot2::geom_hline(yintercept = ba[["CiLines"]], linetype = 2, size = 0.5)
 
     if (options[["ciShading"]]) {
+      cols <- rep("grey", 3)
+      if (options[["useColour"]]) {
+        cols <- jaspGraphs::JASPcolors()
+      }
       p <- p + ggplot2::annotate("rect", xmin = -Inf, xmax = Inf,
                                  ymin = ba[["CiLines"]][3],
                                  ymax = ba[["CiLines"]][4],
-                                 fill = "blue", alpha = 0.3) +
+                                 fill = cols[3], alpha = 0.3) +
         ggplot2::annotate("rect", xmin = -Inf, xmax = Inf,
                           ymin = ba[["CiLines"]][5],
                           ymax = ba[["CiLines"]][6],
-                          fill = "green", alpha = 0.3) +
+                          fill = cols[1], alpha = 0.3) +
         ggplot2::annotate("rect", xmin = -Inf, xmax = Inf,
                           ymin = ba[["CiLines"]][1],
                           ymax = ba[["CiLines"]][2],
-                          fill = "red", alpha = 0.3)
+                          fill = cols[2], alpha = 0.3)
     }
   }
 
-  p <- p + ggplot2::geom_point(shape = 21, size = 3, colour = "black", fill = "grey") +
+  p <- p + ggplot2::geom_point(shape = 21, size = 3, colour = "black", fill = "grey50") +
     ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks)) +
     ggplot2::scale_x_continuous(breaks = xBreaks, limits = range(xBreaks))+
     jaspGraphs::geom_rangeframe(sides = "rbl") +
@@ -195,7 +199,6 @@ blandAltman <- function(jaspResults, dataset, options) {
       }
 
       tablesBlandAltman$setData(allData)
-      tablesBlandAltman$addFootnote(gettextf("%s subjects and 2 measurements.", nrow(dataset)))
     }
   }
   return()

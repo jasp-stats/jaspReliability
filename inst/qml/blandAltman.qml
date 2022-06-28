@@ -54,7 +54,15 @@ Form
 		{
 			name: 		"ciShading"
 			label:		qsTr("Shading")
+
+			CheckBox
+			{
+				name: 		"useColour"
+				label:		qsTr("Use colour")
+			}
 		}
+
+
 	}
 
 	CheckBox
