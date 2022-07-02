@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2022-06-26 08:18+0000\n"
+"Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"jasp/jaspreliability-qml/zh_Hans/>\n"
+"Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 "X-Language: zh_Hans\n"
 "X-Qt-Contexts: true\n"
 
@@ -545,59 +551,52 @@ msgstr "中位数"
 
 msgctxt "Description|"
 msgid "Rater Agreement"
-msgstr ""
+msgstr "评价者一致性"
 
-#, fuzzy
 msgctxt "raterAgreement|"
 msgid "Variables"
 msgstr "变量"
 
-#, fuzzy
 msgctxt "raterAgreement|"
 msgid "Cohen's kappa"
 msgstr "Cohen's kappa"
 
-#, fuzzy
 msgctxt "raterAgreement|"
 msgid "Unweighted"
 msgstr "未加权"
 
-#, fuzzy
 msgctxt "raterAgreement|"
 msgid "Weighted"
 msgstr "已加权"
 
-#, fuzzy
 msgctxt "raterAgreement|"
 msgid "Fleiss' kappa"
 msgstr "Fleiss' kappa"
 
 msgctxt "raterAgreement|"
 msgid "Krippendorff's alpha"
-msgstr ""
+msgstr "Krippendorff's alpha"
 
 msgctxt "raterAgreement|"
 msgid "Method"
-msgstr ""
+msgstr "方法"
 
 msgctxt "raterAgreement|"
 msgid "Nominal"
-msgstr ""
+msgstr "名义"
 
 msgctxt "raterAgreement|"
 msgid "Ordinal"
-msgstr ""
+msgstr "定序"
 
-#, fuzzy
 msgctxt "raterAgreement|"
 msgid "Interval"
 msgstr "区间"
 
 msgctxt "raterAgreement|"
 msgid "Ratio"
-msgstr ""
+msgstr "比率"
 
-#, fuzzy
 msgctxt "raterAgreement|"
 msgid "Confidence Interval"
 msgstr "置信区间"
