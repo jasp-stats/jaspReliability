@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2022-07-04 10:53+0000\n"
+"Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/de/>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 "X-Language: de\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -432,7 +438,6 @@ msgctxt "Description|"
 msgid "Rater Agreement"
 msgstr ""
 
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Variables"
 msgstr "Variablen"
@@ -462,19 +467,17 @@ msgctxt "intraclassCorrelation|"
 msgid "Ratings are averaged"
 msgstr "Bewertungen werden gemittelt"
 
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Confidence Interval"
 msgstr "Konfidenzintervall"
 
-#, fuzzy
 msgctxt "raterAgreement|"
 msgid "Variables"
 msgstr "Variablen"
 
 msgctxt "raterAgreement|"
 msgid "Cohen's kappa"
-msgstr ""
+msgstr "Cohens Kappa"
 
 msgctxt "raterAgreement|"
 msgid "Unweighted"
@@ -494,7 +497,7 @@ msgstr ""
 
 msgctxt "raterAgreement|"
 msgid "Method"
-msgstr ""
+msgstr "Methode"
 
 msgctxt "raterAgreement|"
 msgid "Nominal"
@@ -513,7 +516,6 @@ msgctxt "raterAgreement|"
 msgid "Ratio"
 msgstr ""
 
-#, fuzzy
 msgctxt "raterAgreement|"
 msgid "Confidence Interval"
 msgstr "Konfidenzintervall"
@@ -554,7 +556,6 @@ msgctxt "uniDimBayesian|"
 msgid "mean"
 msgstr ""
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Advanced Options"
 msgstr "Weitere Optionen"
@@ -578,7 +579,7 @@ msgstr ""
 
 msgctxt "uniDimBayesian|"
 msgid ")"
-msgstr ""
+msgstr ")"
 
 msgctxt "uniDimBayesian|"
 msgid "p(CFI/TLI >"
@@ -590,14 +591,12 @@ msgstr ""
 
 msgctxt "uniDimBayesian|"
 msgid "Coefficients"
-msgstr ""
+msgstr "Koeffizienten"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Unstandardized"
 msgstr "Unstandardisiert"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Standardized"
 msgstr "Standardisiert"
@@ -608,4 +607,4 @@ msgstr ""
 
 msgctxt "uniDimBayesian|"
 msgid "Median"
-msgstr ""
+msgstr "Median"
