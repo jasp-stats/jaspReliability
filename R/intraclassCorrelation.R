@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+#' @export
 intraclassCorrelation <- function(jaspResults, dataset, options) {
 
   dataset <- .intraclassCorrelationReadData(dataset, options)
@@ -36,7 +37,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
 .handleIntraclassCorrelation <- function(dataset, options) {
 
   # Check for errors using JASPs internal convenience function
-  .hasErrors(
+  jaspBase::.hasErrors(
     dataset = dataset,
     type = c("infinity", "observations"),
     observations.amount = c("< 2"),

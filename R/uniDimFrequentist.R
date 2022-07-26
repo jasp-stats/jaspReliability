@@ -1,4 +1,4 @@
-
+#' @export
 reliabilityUniDimFrequentist <- function(jaspResults, dataset, options) {
 
   dataset <- .readData(dataset, options)
