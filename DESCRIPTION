@@ -18,6 +18,7 @@ Imports:
   jaspBase,
   jaspGraphs,
   LaplacesDemon,
+  lme4,
   MASS,
   psych
 Remotes:
