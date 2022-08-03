@@ -25,7 +25,7 @@
     empty <-  TRUE
     model <- list(empty = empty)
     model[["footnote"]] <- .atLeast2Variables()
-    model[["itemsDropped"]] <- .unv(colnames(dataset))
+    model[["itemsDropped"]] <- colnames(dataset)
     return(model)
   }
 
@@ -84,8 +84,12 @@
                                     options[["noThin"]], options[["noChains"]],
                                     model[["pairwise"]], progressbarTick, k0 = options[["iwScale"]],
                                     df0 = options[["iwDf"]]), silent = TRUE)
-    if (model[["pairwise"]] && inherits(c_out, "try-error")) {
-      .quitAnalysis(gettext("Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"))
+    if (inherits(c_out, "try-error")) {
+      if (model[["pairwise"]]) {
+        .quitAnalysis(gettext("Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"))
+      } else {
+        .quitAnalysis(gettext("Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed."))
+      }
     }
 
     model[["gibbsSamp"]] <- c_out$cov_mat
@@ -95,7 +99,7 @@
   model[["progressbarLength"]] <- options[["noChains"]] *
     length(seq(1, options[["noSamples"]] - options[["noBurnin"]], options[["noThin"]]))
 
-  model[["itemsDropped"]] <- .unv(colnames(dataset))
+  model[["itemsDropped"]] <- colnames(dataset)
 
   if (options[["disableSampleSave"]])
     return(model)

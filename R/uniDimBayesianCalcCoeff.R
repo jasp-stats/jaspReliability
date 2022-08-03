@@ -705,7 +705,7 @@
                                                 a0 = options[["igShape"]], b0 = options[["igScale"]],
                                                 m0 = options[["loadMean"]]), silent = TRUE)
 
-    if (model[["pairwise"]] && inherits(tmp_out, "try-error")) {
+    if (model[["pairwise"]] && inherits(res_null, "try-error")) {
       .quitAnalysis(gettext("Sampling the posterior null model failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"))
     }
 

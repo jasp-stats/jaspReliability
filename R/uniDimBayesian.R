@@ -1,8 +1,13 @@
 
+#' @importFrom jaspBase createJaspContainer createJaspHtml createJaspPlot createJaspQmlSource createJaspState createJaspTable
+#' progressbarTick .quitAnalysis .readDataSetToEnd startProgressbar
 
+#' @importFrom stats approxfun cor cov cov2cor density integrate median na.omit pnorm qchisq qnorm quantile rgamma rnorm sd var
+
+#' @export
 reliabilityUniDimBayesian <- function(jaspResults, dataset, options) {
 
-  options <- .parseAndStoreFormulaOptions(jaspResults, options, "iwScale")
+  options <- jaspBase::.parseAndStoreFormulaOptions(jaspResults, options, "iwScale")
 
   dataset <- .readData(dataset, options)
 

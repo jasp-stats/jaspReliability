@@ -35,7 +35,7 @@ gettextf <- function(fmt, ..., domain = NULL)  {
     .checkMCMCBounds <- NULL
   }
 
-  .hasErrors(dataset = dataset,
+  jaspBase::.hasErrors(dataset = dataset,
              type = c("infinity", "variance", "observations"),
              observations.amount = " < 3",
              infinity.target = options$variables,
@@ -83,7 +83,7 @@ gettextf <- function(fmt, ..., domain = NULL)  {
 
 .reverseScoreItems <- function(dataset, options) {
   dataset_rev <- as.matrix(dataset) # fails for string factors!
-  cols <- match(unlist(options[["reverseScaledItems"]]), .unv(colnames(dataset)))
+  cols <- match(unlist(options[["reverseScaledItems"]]), colnames(dataset))
   total <- apply(as.matrix(dataset[, cols]), 2, min, na.rm = TRUE) +
     apply(as.matrix(dataset[, cols]), 2, max, na.rm = TRUE)
   dataset_rev[, cols] <- matrix(rep(total, nrow(dataset)), nrow(dataset), length(cols), byrow = TRUE) -

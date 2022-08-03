@@ -239,7 +239,7 @@
   dat$var <- "original"
 
   dat_del <- t(as.matrix(as.data.frame(coefItem[["itemSamp"]])))
-  names <- decodeColNames(variables)
+  names <- jaspBase::decodeColNames(variables)
 
   for (i in n_row:1) {
     tmp <- as.data.frame(dat_del[i, ])

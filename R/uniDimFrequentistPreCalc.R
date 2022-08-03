@@ -25,7 +25,7 @@
     empty <-  TRUE
     model <- list(empty = empty)
     model[["footnote"]] <- .atLeast2Variables()
-    model[["itemsDropped"]] <- .unv(colnames(dataset))
+    model[["itemsDropped"]] <- colnames(dataset)
     return(model)
   }
 
@@ -67,7 +67,7 @@
     cc <- cov(dataset, use = model[["use.cases"]])
     model[["data_cov"]] <- cc
     model[["data_cor"]] <- cor(dataset, use = model[["use.cases"]])
-    model[["itemsDropped"]] <- .unv(colnames(dataset))
+    model[["itemsDropped"]] <- colnames(dataset)
 
 
     # check if any items correlate negatively with the scale
