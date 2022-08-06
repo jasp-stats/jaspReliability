@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: jaspReliability 0.16.2\n"
-"POT-Creation-Date: 2022-05-07 03:37\n"
+"Project-Id-Version: jaspReliability 0.16.4\n"
+"POT-Creation-Date: 2022-08-06 03:39\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -182,6 +182,9 @@ msgid "%s Of the observations, pairwise complete cases were used."
 msgstr ""
 
 msgid "Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
+msgstr ""
+
+msgid "Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed."
 msgstr ""
 
 msgid "Sampling the posterior factor model for omega failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
