@@ -3,7 +3,7 @@ options <- analysisOptions("blandAltman")
 options$variables <- c("contcor1", "contcor2")
 options$pairs <- list(c("contcor1", "contcor2"))
 options$blandAltmanTable <- TRUE
-options$ciDisplay <- TRUE
+options$ci <- TRUE
 options$ciShading <- TRUE
 results <- jaspTools::runAnalysis("blandAltman", "test.csv", options)
 

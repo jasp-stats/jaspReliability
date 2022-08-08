@@ -40,14 +40,14 @@ Form
 
 	CheckBox
 	{
-		name: 				"ciDisplay"
+		name: 				"ci"
 		label:				qsTr("Confidence Interval")
 
 		CIField
 		{
-			name: 		"ciValue";
-			label: 		"";
-			defaultValue: 95;
+			name:			"ciLevel";
+			label:			"";
+			defaultValue:	95;
 		}
 
 		CheckBox
@@ -57,8 +57,8 @@ Form
 
 			CheckBox
 			{
-				name: 		"useColour"
-				label:		qsTr("Use colour")
+				name: 	"ciShadingWithColour"
+				label:	qsTr("Use colour")
 			}
 		}
 

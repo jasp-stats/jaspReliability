@@ -41,7 +41,7 @@ blandAltman <- function(jaspResults, dataset, options) {
 
   if (is.null(jaspResults[["plotsBlandAltman"]])) {
     jaspResults[["plotsBlandAltman"]] <- createJaspContainer(gettext("Bland-Altman Plots"))
-    jaspResults[["plotsBlandAltman"]]$dependOn(c("ciDisplay", "ciShading", "ciValue", "useColour"))
+    jaspResults[["plotsBlandAltman"]]$dependOn(c("ci", "ciShading", "ciLevel", "ciShadingWithColour"))
     subcontainer <- jaspResults[["plotsBlandAltman"]]
   } else {
     subcontainer <- jaspResults[["plotsBlandAltman"]]
@@ -81,7 +81,7 @@ blandAltman <- function(jaspResults, dataset, options) {
   values <- data.frame(m = ba[["means"]], d = ba[["diffs"]])
 
   # Bland-Altman Plot
-  yBreaks <- if (options[["ciDisplay"]]) {
+  yBreaks <- if (options[["ci"]]) {
     jaspGraphs::getPrettyAxisBreaks(c(ba[["diffs"]], ba[["CiLines"]]))
   } else {
     jaspGraphs::getPrettyAxisBreaks(c(ba[["diffs"]], ba[["lines"]]))
@@ -93,12 +93,12 @@ blandAltman <- function(jaspResults, dataset, options) {
     ggplot2::xlab("Mean of Measurements") +
     ggplot2::ylab("Difference of Measurements")
 
-  if (options[["ciDisplay"]]) {
+  if (options[["ci"]]) {
     p <- p + ggplot2::geom_hline(yintercept = ba[["CiLines"]], linetype = 2, size = 0.5)
 
     if (options[["ciShading"]]) {
       cols <- rep("grey", 3)
-      if (options[["useColour"]]) {
+      if (options[["ciShadingWithColour"]]) {
         cols <- jaspGraphs::JASPcolors()
       }
       p <- p + ggplot2::annotate("rect", xmin = -Inf, xmax = Inf,
@@ -135,7 +135,7 @@ blandAltman <- function(jaspResults, dataset, options) {
 
   if (is.null(jaspResults[["tabBlandAltman"]])) {
     jaspResults[["tabBlandAltman"]] <- createJaspContainer(gettext("Bland-Altman Tables"))
-    jaspResults[["tabBlandAltman"]]$dependOn(c("blandAltmanTable", "ciDisplay", "ciValue"))
+    jaspResults[["tabBlandAltman"]]$dependOn(c("blandAltmanTable", "ci", "ciLevel"))
     subcontainer <- jaspResults[["tabBlandAltman"]]
   } else {
     subcontainer <- jaspResults[["tabBlandAltman"]]
@@ -156,12 +156,12 @@ blandAltman <- function(jaspResults, dataset, options) {
       intervalUp <- gettextf("Mean difference + 1.96 SD")
       allData <- data.frame(names = c(intervalUp, gettext("Mean difference"), intervalLow))
       formattedCIPercent <- format(
-        100 * options[["ciValue"]],
+        100 * options[["ciLevel"]],
         digits = 3,
         drop0trailing = TRUE
       )
 
-      if (options[["ciDisplay"]]) {
+      if (options[["ci"]]) {
         tablesBlandAltman$addColumnInfo(
           name = "lowerBound",
           title = gettextf("Lower %s%% CI", formattedCIPercent),
@@ -192,7 +192,7 @@ blandAltman <- function(jaspResults, dataset, options) {
       linesData <- data.frame(agree = c(ba[["lines"]][3], ba[["lines"]][2], ba[["lines"]][1]))
       allData <- cbind(allData, linesData)
 
-      if (options[["ciDisplay"]]) {
+      if (options[["ci"]]) {
         lowCiData <- data.frame(lowerBound = c(ba[["CiLines"]][5], ba[["CiLines"]][3], ba[["CiLines"]][1]))
         topCiData <- data.frame(upperBound = c(ba[["CiLines"]][6], ba[["CiLines"]][4], ba[["CiLines"]][2]))
         allData <- cbind(allData, lowCiData, topCiData)
@@ -208,7 +208,7 @@ blandAltman <- function(jaspResults, dataset, options) {
 .blandAltmanStats <- function(dataset, options) {
 
   # Calculating main components
-  ci <- options[["ciValue"]]
+  ci <- options[["ciLevel"]]
   diffs <- dataset[[1]] - dataset[[2]]
   means <- (dataset[[1]] + dataset[[2]])/2
 
