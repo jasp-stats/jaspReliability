@@ -1,6 +1,6 @@
 context("Unidimensional Reliability Frequentist -- Verification project")
 
-options <- analysisOptions("reliabilityUniDimFrequentist")
+options <- analysisOptions("unidimensionalReliabilityFrequentist")
 options$omegaScale <- TRUE
 options$alphaScale <- TRUE
 options$lambda2Scale <- TRUE
@@ -16,20 +16,20 @@ options$sdItem <- TRUE
 options$omegaInterval <- "omegaAnalytic"
 options$scoresMethod <- "meanScores"
 
-options$variables <- c(paste("Question", c(1, 4:8), sep="_0"), 
+options$variables <- c(paste("Question", c(1, 4:8), sep="_0"),
                        paste("Question", 10, sep="_"))
 
 set.seed(1)
 
-result <- jaspTools::runAnalysis("reliabilityUniDimFrequentist", 
+result <- jaspTools::runAnalysis("unidimensionalReliabilityFrequentist",
                                  "Reliability.csv", options)
 
-test_that("Main (scale) table results match R, SPSS, SAS and MiniTab", { 
+test_that("Main (scale) table results match R, SPSS, SAS and MiniTab", {
   tempResult <- result$results$stateContainer$collection$stateContainer_scaleTable
   resultTable <- tempResult$data
-  
+
   jaspTools::expect_equal_tables(
-    "test"=resultTable, 
+    "test"=resultTable,
     "ref"=list(0.762830469875067, 0.757381263545318, 0.764552908800385, 0.744068664329276,
                2.50730677335111, "Point estimate", 0.748803468173598, 0.742939526669925,
                0.749596669466729, 0.728519956964, 2.48349947134054, "95% CI lower bound",
@@ -37,12 +37,12 @@ test_that("Main (scale) table results match R, SPSS, SAS and MiniTab", {
                2.53111407536169, "95% CI upper bound"))
 })
 
-test_that("Main (item) table results match R, SPSS, SAS and MiniTab", { 
+test_that("Main (item) table results match R, SPSS, SAS and MiniTab", {
   tempResult <- result$results$stateContainer$collection$stateContainer_itemTable
   resultTable <- tempResult$data
-  
+
   jaspTools::expect_equal_tables(
-    "test"=resultTable, 
+    "test"=resultTable,
     "ref"=list(0.738318723638981, 0.72770167960325, 0.736546525283196, 0.702841729674047,
                0.482407830305298, 2.37417347335667, 0.828022142655599, "Question_01",
                0.725416778506326, 0.714226029693281, 0.724004514548663, 0.691632709918766,

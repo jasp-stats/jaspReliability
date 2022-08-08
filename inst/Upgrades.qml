@@ -194,6 +194,7 @@ Upgrades
 	}
 
 
+// stuff for R syntax
 	Upgrade
 	{
 		functionName: 		"raterAgreement"
@@ -255,5 +256,21 @@ Upgrades
 			from:	"confidenceIntervalValue"
 			to:		"ciLevel"
 		}
+	}
+
+	Upgrade
+	{
+		functionName: 		"reliabilityUniDimFrequentist"
+		newFunctionName:	"unidimensionalReliabilityFrequentist"
+		fromVersion:		"0.16.3"
+		toVersion:			"0.16.4"
+	}
+
+	Upgrade
+	{
+		functionName: 		"reliabilityUniDimBayesian"
+		newFunctionName:	"unidimensionalReliabilityBayesian"
+		fromVersion:		"0.16.3"
+		toVersion:			"0.16.4"
 	}
 }

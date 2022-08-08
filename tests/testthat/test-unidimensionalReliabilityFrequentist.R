@@ -1,4 +1,4 @@
-options <- analysisOptions("reliabilityUniDimFrequentist")
+options <- analysisOptions("unidimensionalReliabilityFrequentist")
 options$alphaItem <- TRUE
 options$alphaScale <- TRUE
 options$averageInterItemCor <- TRUE
@@ -21,7 +21,7 @@ options$sdScale <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimFrequentist", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options)
 
 
 test_that("Frequentist Individual Item Reliability Statistics table results match for main options", {
@@ -50,7 +50,7 @@ test_that("Frequentist Scale Reliability Statistics table results match", {
                                       3.3927286604094, 3.16486028196314, "90% CI upper bound"))
 })
 
-options <- analysisOptions("reliabilityUniDimFrequentist")
+options <- analysisOptions("unidimensionalReliabilityFrequentist")
 options$alphaInterval <- "alphaBoot"
 options$alphaItem <- TRUE
 options$alphaMethod <- "alphaStand"
@@ -76,7 +76,7 @@ options$sdScale <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "debMiss30")
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimFrequentist", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options)
 
 
 test_that("Frequentist Individual Item Reliability Statistics table results match for special options", {
@@ -109,7 +109,7 @@ test_that("Frequentist Scale Reliability Statistics table results match for spec
 
 
 test_that("Frequentist omega results match for CFA with bootstrapping", {
-  options <- analysisOptions("reliabilityUniDimFrequentist")
+  options <- analysisOptions("unidimensionalReliabilityFrequentist")
   options$fitMeasures <- TRUE
   options$noSamples <- 100
   options$omegaInterval <- "omegaBoot"
@@ -119,7 +119,7 @@ test_that("Frequentist omega results match for CFA with bootstrapping", {
   options$setSeed <- TRUE
   options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
   set.seed(1)
-  results <- runAnalysis("reliabilityUniDimFrequentist", "asrm_mis.csv", options)
+  results <- runAnalysis("unidimensionalReliabilityFrequentist", "asrm_mis.csv", options)
 
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_fitTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
@@ -135,7 +135,7 @@ test_that("Frequentist omega results match for CFA with bootstrapping", {
 })
 
 
-options <- analysisOptions("reliabilityUniDimFrequentist")
+options <- analysisOptions("unidimensionalReliabilityFrequentist")
 options$alphaItem <- TRUE
 options$alphaScale <- TRUE
 options$averageInterItemCor <- TRUE
@@ -159,7 +159,7 @@ options$sdScale <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimFrequentist", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options)
 
 
 test_that("Frequentist Individual Item Reliability Statistics table results match for main options with disabled sample saving", {

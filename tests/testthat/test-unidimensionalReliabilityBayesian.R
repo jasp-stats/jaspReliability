@@ -1,4 +1,4 @@
-options <- analysisOptions("reliabilityUniDimBayesian")
+options <- analysisOptions("unidimensionalReliabilityBayesian")
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss30")
 options$alphaScale <- TRUE
 options$lambda2Scale <- TRUE
@@ -35,7 +35,7 @@ options$orderType <- "orderItemKL"
 options$iwDf <- length(options$variables)
 options$iwScale <- 0.0000000001
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimBayesian", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options)
 
 test_that("Bayesian Individual Item Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
@@ -188,7 +188,7 @@ test_that("Bayesian Scale Reliability Statistics table results match", {
 
 
 
-options <- analysisOptions("reliabilityUniDimBayesian")
+options <- analysisOptions("unidimensionalReliabilityBayesian")
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss30")
 options$alphaScale <- TRUE
 options$lambda2Scale <- TRUE
@@ -221,7 +221,7 @@ options$iwDf <- length(options$variables)
 options$iwScale <- 0.0000000001
 
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimBayesian", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options)
 
 test_that("Bayesian Individual Item Reliability Statistics table results match with disabled sample saving", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
@@ -285,7 +285,7 @@ test_that("Bayesian Scale Reliability Statistics table results match with disabl
 
 
 
-options <- analysisOptions("reliabilityUniDimBayesian")
+options <- analysisOptions("unidimensionalReliabilityBayesian")
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
 options$omegaScale <- TRUE
 options$lambda2Scale <- TRUE
@@ -312,8 +312,8 @@ options$igScale <- 10
 options$loadMean <- 1
 
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimBayesian", "asrm_mis.csv", options)
-# results <- runAnalysis("reliabilityUniDimBayesian", Bayesrel::asrm_mis, options)
+results <- runAnalysis("unidimensionalReliabilityBayesian", "asrm_mis.csv", options)
+# results <- runAnalysis("unidimensionalReliabilityBayesian", Bayesrel::asrm_mis, options)
 
 
 
@@ -366,7 +366,7 @@ test_that("Bayesian Scale Reliability Statistics table results match with adjust
 
 
 
-options <- analysisOptions("reliabilityUniDimBayesian")
+options <- analysisOptions("unidimensionalReliabilityBayesian")
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
 options$alphaScale <- TRUE
 options$lambda2Scale <- TRUE
@@ -393,7 +393,7 @@ options$dispLoadings <- TRUE
 options$stdCoeffs <- "stand"
 options$pointEst <- "median"
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimBayesian", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options)
 
 test_that("Bayesian Individual Item Reliability Statistics table results match with standardization and median", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
@@ -483,7 +483,7 @@ test_that("Bayesian Scale Reliability Statistics table results match with standa
 
 
 # results were compared to blavFitIndices and lavaan fitmeasures with the same data but 2000 obs
-options <- analysisOptions("reliabilityUniDimBayesian")
+options <- analysisOptions("unidimensionalReliabilityBayesian")
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
 options$omegaScale <- TRUE
 options$noSamples <- 200
@@ -496,7 +496,7 @@ options$dispPPC <- TRUE
 
 
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimBayesian", "asrm.csv", options)
+results <- runAnalysis("unidimensionalReliabilityBayesian", "asrm.csv", options)
 
 
 test_that("Fit Measures for the Single-Factor Model table results match", {
