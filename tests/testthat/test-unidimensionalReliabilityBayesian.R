@@ -3,7 +3,7 @@ options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss
 options$scaleAlpha <- TRUE
 options$scaleLambda2 <- TRUE
 options$scaleLambda6 <- TRUE
-options$scaleGlb <- TRUE
+options$scaleGreatestLowerBound <- TRUE
 options$averageInterItemCorrelation <- TRUE
 options$scaleMean <- TRUE
 options$scaleSd <- TRUE
@@ -13,25 +13,25 @@ options$itemDeletedOmega <- TRUE
 options$itemDeletedAlpha <- TRUE
 options$itemDeletedLambda2 <- TRUE
 options$itemDeletedLambda6 <- TRUE
-options$itemDeletedGlb <- TRUE
+options$itemDeletedGreatestLowerBound <- TRUE
 options$itemDeletedPlot <- TRUE
-options$itemDeletedPlotOrder <- TRUE
+options$itemDeletedPlotOrdered <- TRUE
 options$itemRestCorrelation <- TRUE
 options$itemMean <- TRUE
 options$itemSd <- TRUE
 options$posteriorPlot <- TRUE
-options$xRangeFix <- TRUE
-options$priorPlot <- TRUE
+options$posteriorPlotFixedRange <- TRUE
+options$posteriorPlotPriorDisplayed <- TRUE
 options$probabilityTable <- TRUE
 options$probabilityTableLowerBound <- 0.1
 options$probabilityTableUpperBound <- 0.3
-options$posteriorPlotShade <- TRUE
+options$posteriorPlotShaded <- TRUE
 options$samples <- 200
 options$rHat <- TRUE
 options$tracePlot <- TRUE
 options$setSeed <- TRUE
 options$reverseScaledItems <- "debMiss30"
-options$itemDeletedPlotOrderType <- "kullbackLeibler"
+options$itemDeletedPlotOrderedType <- "kullbackLeibler"
 options$inverseWishartPriorDf <- length(options$variables)
 options$inverseWishartPriorScale <- 0.0000000001
 set.seed(1)
@@ -193,7 +193,7 @@ options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss
 options$scaleAlpha <- TRUE
 options$scaleLambda2 <- TRUE
 options$scaleLambda6 <- TRUE
-options$scaleGlb <- TRUE
+options$scaleGreatestLowerBound <- TRUE
 options$averageInterItemCorrelation <- TRUE
 options$scaleMean <- TRUE
 options$scaleSd <- TRUE
@@ -203,15 +203,15 @@ options$itemDeletedOmega <- TRUE
 options$itemDeletedAlpha <- TRUE
 options$itemDeletedLambda2 <- TRUE
 options$itemDeletedLambda6 <- TRUE
-options$itemDeletedGlb <- TRUE
-options$itemDeletedPlotOrder <- TRUE
+options$itemDeletedGreatestLowerBound <- TRUE
+options$itemDeletedPlotOrdered <- TRUE
 options$itemRestCorrelation <- TRUE
 options$itemMean <- TRUE
 options$itemSd <- TRUE
 options$probabilityTable <- TRUE
 options$probabilityTableLowerBound <- 0.1
 options$probabilityTableUpperBound <- 0.3
-options$posteriorPlotShade <- TRUE
+options$posteriorPlotShaded <- TRUE
 options$samples <- 200
 options$rHat <- TRUE
 options$samplesSavingDisabled <- TRUE
@@ -295,8 +295,8 @@ options$itemDeletedOmega <- TRUE
 options$itemDeletedLambda2 <- TRUE
 options$itemRestCorrelation <- TRUE
 options$posteriorPlot <- TRUE
-options$xRangeFix <- TRUE
-options$priorPlot <- TRUE
+options$posteriorPlotFixedRange <- TRUE
+options$posteriorPlotPriorDisplayed <- TRUE
 options$probabilityTable <- TRUE
 options$probabilityTableLowerBound <- 0.7
 options$probabilityTableUpperBound <- 1
@@ -371,19 +371,19 @@ options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
 options$scaleAlpha <- TRUE
 options$scaleLambda2 <- TRUE
 options$scaleLambda6 <- TRUE
-options$scaleGlb <- TRUE
+options$scaleGreatestLowerBound <- TRUE
 options$averageInterItemCorrelation <- TRUE
 options$itemDeletedOmega <- TRUE
 options$itemDeletedAlpha <- TRUE
 options$itemDeletedLambda2 <- TRUE
 options$itemDeletedLambda6 <- TRUE
-options$itemDeletedGlb <- TRUE
+options$itemDeletedGreatestLowerBound <- TRUE
 options$posteriorPlot <- TRUE
-options$priorPlot <- TRUE
+options$posteriorPlotPriorDisplayed <- TRUE
 options$probabilityTable <- TRUE
 options$probabilityTableLowerBound <- 0.2
 options$probabilityTableUpperBound <- 0.5
-options$posteriorPlotShade <- TRUE
+options$posteriorPlotShaded <- TRUE
 options$samples <- 200
 options$rHat <- TRUE
 options$setSeed <- TRUE
@@ -492,7 +492,7 @@ options$setSeed <- TRUE
 options$omegaFitMeasures <- TRUE
 options$omegaFitMeasuresCutoffRmsea <- .1
 options$omegaFitMeasuresCutoffCfiTli <- .85
-options$ppc <- TRUE
+options$omegaPosteriorPredictiveCheck <- TRUE
 
 set.seed(1)
 results <- runAnalysis("unidimensionalReliabilityBayesian", "asrm.csv", options)

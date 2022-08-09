@@ -193,8 +193,9 @@ Upgrades
 		}
 	}
 
-
-// stuff for R syntax
+/////////////////////////////////////////////////////////////////
+// ------------------ stuff for R syntax ----------------------
+////////////////////////////////////////////////////////////////
 	Upgrade
 	{
 		functionName: 		"raterAgreement"
@@ -298,7 +299,7 @@ Upgrades
 		ChangeRename
 		{
 			from:	"glbScale"
-			to:		"scaleGlb"
+			to:		"scaleGreatestLowerBound"
 		}
 		ChangeRename
 		{
@@ -343,7 +344,7 @@ Upgrades
 		ChangeRename
 		{
 			from:	"glbItem"
-			to:		"itemDeletedGlb"
+			to:		"itemDeletedGreatestLowerBound"
 		}
 		ChangeRename
 		{
@@ -491,7 +492,7 @@ Upgrades
 		ChangeRename
 		{
 			from:	"glbScale"
-			to:		"scaleGlb"
+			to:		"scaleGreatestLowerBound"
 		}
 		ChangeRename
 		{
@@ -541,7 +542,7 @@ Upgrades
 		ChangeRename
 		{
 			from:	"glbItem"
-			to:		"itemDeletedGlb"
+			to:		"itemDeletedGreatestLowerBound"
 		}
 		ChangeRename
 		{
@@ -551,19 +552,19 @@ Upgrades
 		ChangeRename
 		{
 			from:	"orderItem"
-			to:		"itemDeletedPlotOrder"
+			to:		"itemDeletedPlotOrdered"
 		}
 		ChangeRename
 		{
 			from:	"orderType"
-			to:		"itemDeletedPlotOrderType"
+			to:		"itemDeletedPlotOrderedType"
 		}
 		ChangeJS
 		{
-			name:		"itemDeletedPlotOrderType"
+			name:		"itemDeletedPlotOrderedType"
 			jsFunction:	function(options)
 			{
-				switch(options["itemDeletedPlotOrderType"])
+				switch(options["itemDeletedPlotOrderedType"])
 				{
 					case "orderItemMean":	return "mean"
 					case "orderItemKL":		return "kullbackLeibler"
@@ -594,12 +595,12 @@ Upgrades
 		ChangeRename
 		{
 			from:	"fixXRange"
-			to:		"xRangeFix"
+			to:		"posteriorPlotFixedRange"
 		}
 		ChangeRename
 		{
 			from:	"dispPrior"
-			to:		"priorPlot"
+			to:		"posteriorPlotPriorDisplayed"
 		}
 		ChangeRename
 		{
@@ -619,7 +620,7 @@ Upgrades
 		ChangeRename
 		{
 			from:	"shadePlots"
-			to:		"posteriorPlotShade"
+            to:		"posteriorPlotShaded"
 		}
 		ChangeRename
 		{
@@ -691,7 +692,7 @@ Upgrades
 		ChangeRename
 		{
 			from:	"dispPPC"
-			to:		"ppc"
+			to:		"omegaPosteriorPredictiveCheck"
 		}
 		ChangeRename
 		{

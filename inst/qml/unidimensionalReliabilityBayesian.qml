@@ -83,7 +83,7 @@ Form
 			CheckBox
 			{
 				id:		glb
-				name:	"scaleGlb";
+				name:	"scaleGreatestLowerBound";
 				label:	qsTr("Greatest lower bound");
 			}
 
@@ -152,7 +152,7 @@ Form
 			CheckBox
 			{
 				id: 		glbItem
-				name: 		"itemDeletedGlb";
+				name: 		"itemDeletedGreatestLowerBound";
 				label: 		qsTr("Greatest lower bound (if item dropped)");
 				enabled: 	glb.checked
 			}
@@ -166,14 +166,14 @@ Form
 
 				CheckBox
 				{
-					name: 		"itemDeletedPlotOrder";
+					name: 		"itemDeletedPlotOrdered";
 					label: 		qsTr("Order items");
 					enabled: 	itemPlot.checked
 
 					RadioButtonGroup
 					{
 						title: 	""
-						name: 	"itemDeletedPlotOrderType"
+						name: 	"itemDeletedPlotOrderedType"
 
 						RadioButton { value: "mean"; 	label: qsTr("Order items by mean");			checked: true	}
 						RadioButton { value: "kullbackLeibler"; 	label: qsTr("Order items by KL-divergence")					}
@@ -197,13 +197,13 @@ Form
 
 				CheckBox
 				{
-					name: 	"xRangeFix";
+					name: 	"posteriorPlotFixedRange";
 					label: 	qsTr("Fix range to 0-1")
 				}
 
 				CheckBox
 				{
-					name: 	"priorPlot";
+					name: 	"posteriorPlotPriorDisplayed";
 					label: 	qsTr("Display Priors")
 				}
 
@@ -257,7 +257,7 @@ Form
 				CheckBox
 				{
 					id:			shadePlots
-					name:		"posteriorPlotShade";
+					name:		"posteriorPlotShaded";
 					indent:		true
 					label:		qsTr("Shade posterior region in plot");
 					enabled:	probTable.checked & postPlot.checked
@@ -473,7 +473,7 @@ Form
 			enabled: omega.checked
 			CheckBox
 			{
-				name:		"ppc"
+				name:		"omegaPosteriorPredictiveCheck"
 				label:		qsTr("Posterior predictive check");
 			}
 			CheckBox

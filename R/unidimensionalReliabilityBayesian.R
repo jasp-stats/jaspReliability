@@ -35,8 +35,8 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   model[["itemDeletedLambda2"]] <- .BayesianLambda2Item(jaspResults, dataset, options, model)
   model[["scaleLambda6"]] <- .BayesianLambda6Scale(jaspResults, dataset, options, model)
   model[["itemDeletedLambda6"]] <- .BayesianLambda6Item(jaspResults, dataset, options, model)
-  model[["scaleGlb"]] <- .BayesianGlbScale(jaspResults, dataset, options, model)
-  model[["itemDeletedGlb"]] <- .BayesianGlbItem(jaspResults, dataset, options, model)
+  model[["scaleGreatestLowerBound"]] <- .BayesianGlbScale(jaspResults, dataset, options, model)
+  model[["itemDeletedGreatestLowerBound"]] <- .BayesianGlbItem(jaspResults, dataset, options, model)
   model[["averageInterItemCorrelation"]] <- .BayesianAverageCor(jaspResults, dataset, options, model)
   model[["scaleMean"]] <- .BayesianMean(jaspResults, dataset, options, model)
   model[["scaleSd"]] <- .BayesianStdDev(jaspResults, dataset, options, model)
@@ -66,14 +66,14 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   # order of appearance in Bayesrel
   derivedOptions <- list(
-    selectedEstimators  = unlist(options[c("scaleOmega", "scaleAlpha", "scaleLambda2", "scaleLambda6", "scaleGlb",
+    selectedEstimators  = unlist(options[c("scaleOmega", "scaleAlpha", "scaleLambda2", "scaleLambda6", "scaleGreatestLowerBound",
                                            "averageInterItemCorrelation", "scaleMean", "scaleSd")]),
     selectedEstimatorsPlots  = unlist(options[c("scaleOmega", "scaleAlpha", "scaleLambda2", "scaleLambda6",
-                                                "scaleGlb")]),
-    itemDroppedSelected = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedLambda6", "itemDeletedGlb",
+                                                "scaleGreatestLowerBound")]),
+    itemDroppedSelected = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedLambda6", "itemDeletedGreatestLowerBound",
                                            "itemRestCorrelation", "itemMean", "itemSd")]),
     itemDroppedSelectedItem = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedLambda6",
-                                               "itemDeletedGlb")]),
+                                               "itemDeletedGreatestLowerBound")]),
 
     namesEstimators     = list(
       tables = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
@@ -171,7 +171,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   # check if posterior cov sample already exists and any of the relevant coefficients are checked
   if (is.null(model[["gibbsSamp"]]) &&
-      (options[["scaleAlpha"]] || options[["scaleLambda2"]] || options[["scaleLambda6"]] || options[["scaleGlb"]] ||
+      (options[["scaleAlpha"]] || options[["scaleLambda2"]] || options[["scaleLambda6"]] || options[["scaleGreatestLowerBound"]] ||
        options[["averageInterItemCorrelation"]])
   ) {
 
@@ -636,14 +636,14 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
 
 .BayesianGlbScale <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["scaleGlbObj"]]$object))
-    return(.getStateContainerB(jaspResults)[["scaleGlbObj"]]$object)
+  if (!is.null(.getStateContainerB(jaspResults)[["scaleGreatestLowerBoundObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["scaleGreatestLowerBoundObj"]]$object)
 
-  out <- model[["scaleGlb"]]
+  out <- model[["scaleGreatestLowerBound"]]
   if (is.null(out))
     out <- list()
 
-  if (options[["scaleGlb"]] && is.null(model[["empty"]])) {
+  if (options[["scaleGreatestLowerBound"]] && is.null(model[["empty"]])) {
 
     if (is.null(out[["samp"]])) {
 
@@ -665,7 +665,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["scaleGlbObj"]] <- createJaspState(out, dependencies = c("scaleGlb", "inverseWishartPriorScale", "inverseWishartPriorDf",
+    stateContainer[["scaleGreatestLowerBoundObj"]] <- createJaspState(out, dependencies = c("scaleGreatestLowerBound", "inverseWishartPriorScale", "inverseWishartPriorDf",
                                                                              "coefficientType"))
   }
 
@@ -673,14 +673,14 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 }
 
 .BayesianGlbItem <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["itemDeletedGlbObj"]]$object))
-    return(.getStateContainerB(jaspResults)[["itemDeletedGlbObj"]]$object)
+  if (!is.null(.getStateContainerB(jaspResults)[["itemDeletedGreatestLowerBoundObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["itemDeletedGreatestLowerBoundObj"]]$object)
 
-  out <- model[["itemDeletedGlb"]]
+  out <- model[["itemDeletedGreatestLowerBound"]]
   if (is.null(out))
     out <- list()
 
-  if (options[["itemDeletedGlb"]] && is.null(model[["empty"]])) {
+  if (options[["itemDeletedGreatestLowerBound"]] && is.null(model[["empty"]])) {
     if (ncol(dataset) == 2) {
       out[["itemEst"]] <- c(NaN, NaN)
       out[["itemCred"]] <- matrix(NaN, 2, 2)
@@ -708,7 +708,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["itemDeletedGlbObj"]] <- createJaspState(out, dependencies = c("itemDeletedGlb", "inverseWishartPriorScale", "inverseWishartPriorDf", "coefficientType"))
+    stateContainer[["itemDeletedGreatestLowerBoundObj"]] <- createJaspState(out, dependencies = c("itemDeletedGreatestLowerBound", "inverseWishartPriorScale", "inverseWishartPriorDf", "coefficientType"))
   }
 
   return(out)
@@ -930,7 +930,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
                                                                                  "scaleMean", "scaleSd", "rHat",
                                                                                  "scaleAlpha", "scaleOmega",
                                                                                  "scaleLambda2", "scaleLambda6",
-                                                                                 "scaleGlb","averageInterItemCorrelation",
+                                                                                 "scaleGreatestLowerBound","averageInterItemCorrelation",
                                                                                  "meanSdScoresMethod", "inverseWishartPriorScale", "inverseWishartPriorDf",
                                                                                  "inverseGammaPriorShape", "inverseGammaPriorScale",
                                                                                  "coefficientType", "pointEstimate",
@@ -984,7 +984,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["itemResultsObj"]] <- createJaspState(out, dependencies = c("itemDeletedOmega",  "itemDeletedAlpha",
                                                                                 "itemDeletedLambda2",  "itemDeletedLambda6",
-                                                                                "itemDeletedGlb","itemCiLevel",
+                                                                                "itemDeletedGreatestLowerBound","itemCiLevel",
                                                                                 "itemRestCorrelation", "itemMean", "itemSd",
                                                                                 "inverseWishartPriorScale", "inverseWishartPriorDf", "inverseGammaPriorShape", "inverseGammaPriorScale",
                                                                                 "coefficientType", "pointEstimate", "normalPriorMean"))
@@ -1101,7 +1101,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   scaleTable <- createJaspTable(gettext("Bayesian Scale Reliability Statistics"))
   scaleTable$dependOn(options = c("scaleCiLevel", "scaleMean", "scaleSd", "rHat",
-                                  "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6", "scaleGlb",
+                                  "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6", "scaleGreatestLowerBound",
                                   "averageInterItemCorrelation", "meanSdScoresMethod"))
 
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
@@ -1177,9 +1177,9 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   itemTable <- createJaspTable(gettext("Bayesian Individual Item Reliability Statistics"))
 
-  itemTable$dependOn(options = c("itemDeletedOmega",  "itemDeletedAlpha",  "itemDeletedLambda2",  "itemDeletedLambda6", "itemDeletedGlb",
+  itemTable$dependOn(options = c("itemDeletedOmega",  "itemDeletedAlpha",  "itemDeletedLambda2",  "itemDeletedLambda6", "itemDeletedGreatestLowerBound",
                                  "itemCiLevel", "itemRestCorrelation", "itemMean", "itemSd",
-                                 "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6", "scaleGlb"))
+                                 "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6", "scaleGreatestLowerBound"))
 
   itemTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
 
@@ -1450,9 +1450,9 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     return()
 
   plotContainer <- createJaspContainer(gettext("Posterior Plots"))
-  plotContainer$dependOn(options = c("posteriorPlot", "posteriorPlotShade", "probabilityTable", "probabilityTableLowerBound",
-                                     "probabilityTableUpperBound", "xRangeFix", "priorPlot", "scaleCiLevel",
-                                     "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6", "scaleGlb"))
+  plotContainer$dependOn(options = c("posteriorPlot", "posteriorPlotShaded", "probabilityTable", "probabilityTableLowerBound",
+                                     "probabilityTableUpperBound", "posteriorPlotFixedRange", "posteriorPlotPriorDisplayed", "scaleCiLevel",
+                                     "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6", "scaleGreatestLowerBound"))
 
   derivedOptions <- model[["derivedOptions"]]
   selected <- derivedOptions[["selectedEstimatorsPlots"]]
@@ -1461,7 +1461,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   nmsObjs   <- derivedOptions[["namesEstimators"]][["tables"]]
   nmsObjsNoGreek   <- derivedOptions[["namesEstimators"]][["plotsNoGreek"]]
 
-  if (options[["posteriorPlotShade"]] && options[["probabilityTable"]]) {
+  if (options[["posteriorPlotShaded"]] && options[["probabilityTable"]]) {
     if (options[["probabilityTableLowerBound"]] > options[["probabilityTableUpperBound"]]) {
       low <- options[["probabilityTableUpperBound"]]
       high <- options[["probabilityTableLowerBound"]]
@@ -1469,9 +1469,9 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
       low <- options[["probabilityTableLowerBound"]]
       high <- options[["probabilityTableUpperBound"]]
     }
-    posteriorPlotShade <- c(low, high)
+    posteriorPlotShaded <- c(low, high)
   } else {
-    posteriorPlotShade <- NULL
+    posteriorPlotShaded <- NULL
   }
 
   if (options[["posteriorPlot"]] && is.null(model[["empty"]])) {
@@ -1482,7 +1482,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
       nm <- names(idxSelected[j])
 
       if (is.null(plotContainer[[nmsObjsNoGreek[i]]])) {
-        if (options[["priorPlot"]]) {
+        if (options[["posteriorPlotPriorDisplayed"]]) {
 
           if (nm == "scaleOmega") {
             startProgressbar(2e3)
@@ -1496,8 +1496,8 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
         }
 
         p <- .makeSinglePosteriorPlot(model[[nm]], model[["scaleResults"]][["cred"]][[nm]], nmsLabs[[i]],
-                                      options[["xRangeFix"]], posteriorPlotShade,
-                                      options[["priorPlot"]], prior)
+                                      options[["posteriorPlotFixedRange"]], posteriorPlotShaded,
+                                      options[["posteriorPlotPriorDisplayed"]], prior)
         plotObj <- createJaspPlot(plot = p, title = nmsObjs[i])
         plotObj$dependOn(options = names(idxSelected[i]))
         plotObj$position <- i
@@ -1513,12 +1513,12 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   return()
 }
 
-.makeSinglePosteriorPlot <- function(coefList, coefResults, nms, xRangeFix, shade = NULL, priorTrue, priorSample) {
+.makeSinglePosteriorPlot <- function(coefList, coefResults, nms, posteriorPlotFixedRange, shade = NULL, priorTrue, priorSample) {
 
   # TODO: consider precomputing all densities (maybe with kernsmooth?) and reducing memory that way
 
   samp_tmp <- as.vector(coefList[["samp"]])
-  if (xRangeFix) {
+  if (posteriorPlotFixedRange) {
     d <- stats::density(samp_tmp, from = 0, to = 1, n = 2^10)
   } else {
     d <- stats::density(samp_tmp, n = 2^10)
@@ -1536,7 +1536,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   scaleCriRound <- round(coefResults, 3)
   datCri <- data.frame(xmin = scaleCriRound[1L], xmax = scaleCriRound[2L], y = .925 * ymax)
   height <- (ymax - .925 * ymax) / 2
-  if (xRangeFix) {
+  if (posteriorPlotFixedRange) {
     if (datCri$xmin == datCri$xmax) { # if two zeros, the interval is merged together
       datTxt <- data.frame(x = c(datCri$xmin, datCri$xmax),
                            y = 0.985 * ymax,
@@ -1570,7 +1570,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   # if the bounds are less than 0.05 away from 0 or 1, expand the axis by 0.1 so the credible interval text does not
   # get chopped off.
   xExpand <- .1 * ((c(0, 1) - datTxt$x) <= 0.05)
-  if (xRangeFix && max(datDens$y, na.rm = T) >= 1000) xExpand <- c(xExpand[1], .05)
+  if (posteriorPlotFixedRange && max(datDens$y, na.rm = T) >= 1000) xExpand <- c(xExpand[1], .05)
   # with large numebrs on the y-axis, the x-axis labels to the right get cut off sometimes, when the range is fixed
 
   g <- ggplot2::ggplot(data = datDens, mapping = ggplot2::aes(x = x, y = y)) +
@@ -1612,8 +1612,8 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   plotContainerItem <- createJaspContainer(gettext("If Item Dropped Posterior Plots"))
   plotContainerItem$dependOn(options = c("variables", "itemDeletedPlot",
-                                         "itemCiLevel", "itemDeletedPlotOrderType", "itemDeletedPlotOrder",
-                                         "itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedLambda6", "itemDeletedGlb"))
+                                         "itemCiLevel", "itemDeletedPlotOrderedType", "itemDeletedPlotOrdered",
+                                         "itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedLambda6", "itemDeletedGreatestLowerBound"))
 
   derivedOptions <- model[["derivedOptions"]]
 
@@ -1623,8 +1623,8 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   nmsObjs   <- derivedOptions[["namesEstimators"]][["tables_item"]]
   nmsObjsNoGreek   <- derivedOptions[["namesEstimators"]][["plotsNoGreek"]]
 
-  if (options[["itemDeletedPlotOrder"]]) {
-    ordering <- options[["itemDeletedPlotOrderType"]]
+  if (options[["itemDeletedPlotOrdered"]]) {
+    ordering <- options[["itemDeletedPlotOrderedType"]]
   } else {
     ordering <- NULL
   }
@@ -1751,7 +1751,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   if (!is.null(.getStateContainerB(jaspResults)[["omegaPPC"]]$object))
     return()
 
-  if (options[["ppc"]] && options[["scaleOmega"]] && is.null(model[["empty"]])) {
+  if (options[["omegaPosteriorPredictiveCheck"]] && options[["scaleOmega"]] && is.null(model[["empty"]])) {
 
     ll <- apply(model[["singleFactor"]][["loadings"]], 3, as.vector)
     rr <- apply(model[["singleFactor"]][["residuals"]], 3, as.vector)
@@ -1787,7 +1787,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     g <- jaspGraphs::themeJasp(g)
 
     plot <- createJaspPlot(plot = g, title = "Posterior Predictive Check Omega", width = 350)
-    plot$dependOn(options = c("ppc", "scaleOmega", "coefficientType"))
+    plot$dependOn(options = c("omegaPosteriorPredictiveCheck", "scaleOmega", "coefficientType"))
 
     plot$position <- 8
     stateContainer <- .getStateContainerB(jaspResults)
@@ -1808,7 +1808,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
     plotContainerTP <- createJaspContainer(gettext("Convergence Traceplot"))
     plotContainerTP$dependOn(options = c("tracePlot", "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6",
-                                         "scaleGlb"))
+                                         "scaleGreatestLowerBound"))
 
     derivedOptions <- model[["derivedOptions"]]
     selected <- derivedOptions[["selectedEstimatorsPlots"]]
@@ -1947,7 +1947,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     return(out)
 
   }
-  if (estimate == "scaleGlb") {
+  if (estimate == "scaleGreatestLowerBound") {
     priorglb <- Bayesrel:::glbOnArrayCustom(m, callback)
     out <- density(priorglb, from = 0, to = 1, n = 512)
     return(out)

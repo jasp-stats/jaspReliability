@@ -4,8 +4,8 @@ options$scaleAlpha <- TRUE
 options$averageInterItemCorrelation <- TRUE
 options$ciLevel <- 0.9
 options$omegafitMeasures <- TRUE
-options$itemDeletedGlb <- TRUE
-options$scaleGlb <- TRUE
+options$itemDeletedGreatestLowerBound <- TRUE
+options$scaleGreatestLowerBound <- TRUE
 options$itemDeletedLambda2 <- TRUE
 options$scaleLambda2 <- TRUE
 options$itemDeletedLambda6 <- TRUE
@@ -57,8 +57,8 @@ options$alphaType <- "standardized"
 options$scaleAlpha <- TRUE
 options$averageInterItemCorrelation <- TRUE
 options$bootstrapType <- "parametric"
-options$itemDeletedGlb <- TRUE
-options$scaleGlb <- TRUE
+options$itemDeletedGreatestLowerBound <- TRUE
+options$scaleGreatestLowerBound <- TRUE
 options$itemDeletedLambda2 <- TRUE
 options$scaleLambda2 <- TRUE
 options$itemDeletedLambda6 <- TRUE
@@ -140,8 +140,8 @@ options$scaleAlpha <- TRUE
 options$averageInterItemCorrelation <- TRUE
 options$ciLevel <- 0.9
 options$omegafitMeasures <- TRUE
-options$itemDeletedGlb <- TRUE
-options$scaleGlb <- TRUE
+options$itemDeletedGreatestLowerBound <- TRUE
+options$scaleGreatestLowerBound <- TRUE
 options$itemDeletedLambda2 <- TRUE
 options$scaleLambda2 <- TRUE
 options$itemDeletedLambda6 <- TRUE

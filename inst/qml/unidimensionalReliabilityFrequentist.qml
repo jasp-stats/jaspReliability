@@ -93,7 +93,7 @@ Form
 			CheckBox
 			{
 				id: 	glb
-				name: 	"scaleGlb";
+				name: 	"scaleGreatestLowerBound";
 				label: 	qsTr("Greatest lower bound");
 			}
 
@@ -150,7 +150,7 @@ Form
 
 			CheckBox
 			{
-				name: 		"itemDeletedGlb";
+				name: 		"itemDeletedGreatestLowerBound";
 				label: 		qsTr("Greatest lower bound (if item dropped)");
 				enabled: 	glb.checked
 			}
