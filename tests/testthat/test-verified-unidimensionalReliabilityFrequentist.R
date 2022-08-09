@@ -1,20 +1,20 @@
 context("Unidimensional Reliability Frequentist -- Verification project")
 
 options <- analysisOptions("unidimensionalReliabilityFrequentist")
-options$omegaScale <- TRUE
-options$alphaScale <- TRUE
-options$lambda2Scale <- TRUE
-options$lambda6Scale <- TRUE
-options$meanScale <- TRUE
-options$omegaItem <- TRUE
-options$alphaItem <- TRUE
-options$lambda2Item <- TRUE
-options$lambda6Item <- TRUE
-options$itemRestCor <- TRUE
-options$meanItem <- TRUE
-options$sdItem <- TRUE
-options$omegaInterval <- "omegaAnalytic"
-options$scoresMethod <- "meanScores"
+options$scaleOmega <- TRUE
+options$scaleAlpha <- TRUE
+options$scaleLambda2 <- TRUE
+options$scaleLambda6 <- TRUE
+options$scaleMean <- TRUE
+options$itemDeletedOmega <- TRUE
+options$itemDeletedAlpha <- TRUE
+options$itemDeletedLambda2 <- TRUE
+options$itemDeletedLambda6 <- TRUE
+options$itemRestCorrelation <- TRUE
+options$itemMean <- TRUE
+options$itemSd <- TRUE
+options$omegaIntervalMethod <- "analytic"
+options$meanSdScoresMethod <- "meanScores"
 
 options$variables <- c(paste("Question", c(1, 4:8), sep="_0"),
                        paste("Question", 10, sep="_"))

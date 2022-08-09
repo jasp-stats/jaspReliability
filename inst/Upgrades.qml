@@ -264,6 +264,201 @@ Upgrades
 		newFunctionName:	"unidimensionalReliabilityFrequentist"
 		fromVersion:		"0.16.3"
 		toVersion:			"0.16.4"
+
+		ChangeRename
+		{
+			from:	"intervalOn"
+			to:		"ci"
+		}
+		ChangeRename
+		{
+			from:	"confidenceIntervalValue"
+			to:		"ciLevel"
+		}
+		ChangeRename
+		{
+			from:	"omegaScale"
+			to:		"scaleOmega"
+		}
+		ChangeRename
+		{
+			from:	"alphaScale"
+			to:		"scaleAlpha"
+		}
+		ChangeRename
+		{
+			from:	"lambda2Scale"
+			to:		"scaleLambda2"
+		}
+		ChangeRename
+		{
+			from:	"lambda6Scale"
+			to:		"scaleLambda6"
+		}
+		ChangeRename
+		{
+			from:	"glbScale"
+			to:		"scaleGlb"
+		}
+		ChangeRename
+		{
+			from:	"averageInterItemCor"
+			to:		"averageInterItemCorrelation"
+		}
+		ChangeRename
+		{
+			from:	"meanScale"
+			to:		"scaleMean"
+		}
+		ChangeRename
+		{
+			from:	"sdScale"
+			to:		"scaleSd"
+		}
+		ChangeRename
+		{
+			from:	"scoresMethod"
+			to:		"meanSdScoresMethod"
+		}
+		ChangeRename
+		{
+			from:	"omegaItem"
+			to:		"itemDeletedOmega"
+		}
+		ChangeRename
+		{
+			from:	"alphaItem"
+			to:		"itemDeletedAlpha"
+		}
+		ChangeRename
+		{
+			from:	"lambda2Item"
+			to:		"itemDeletedLambda2"
+		}
+		ChangeRename
+		{
+			from:	"lambda6Item"
+			to:		"itemDeletedLambda6"
+		}
+		ChangeRename
+		{
+			from:	"glbItem"
+			to:		"itemDeletedGlb"
+		}
+		ChangeRename
+		{
+			from:	"itemRestCor"
+			to:		"itemRestCorrelation"
+		}
+		ChangeRename
+		{
+			from:	"meanItem"
+			to:		"itemMean"
+		}
+		ChangeRename
+		{
+			from:	"sdItem"
+			to:		"itemSd"
+		}
+		ChangeRename
+		{
+			from:	"missingValues"
+			to:		"naAction"
+		}
+		ChangeRename
+		{
+			from:	"missingValues"
+			to:		"naAction"
+		}
+		ChangeJS
+		{
+			name:		"naAction"
+			jsFunction:	function(options)
+			{
+				switch(options["naAction"])
+				{
+					case "excludeCasesPairwise":	return "pairwise";
+					case "excludeCasesListwise":	return "listwise";
+				}
+			}
+		}
+		ChangeRename
+		{
+			from:	"noSamples"
+			to:		"bootstrapSamples"
+		}
+		ChangeRename
+		{
+			from:	"bootType"
+			to:		"bootstrapType"
+		}
+		ChangeRename
+		{
+			from:	"omegaMethod"
+			to:		"omegaEstimationMethod"
+		}
+		ChangeRename
+		{
+			from:	"fitMeasures"
+			to:		"omegaFitMeasures"
+		}
+		ChangeRename
+		{
+			from:	"omegaInterval"
+			to:		"omegaIntervalMethod"
+		}
+		ChangeJS
+		{
+			name:		"omegaIntervalMethod"
+			jsFunction:	function(options)
+			{
+				switch(options["omegaIntervalMethod"])
+				{
+					case "omegaAnalytic":	return "analytic";
+					case "omegaBoot":		return "bootstrapped";
+				}
+			}
+		}
+		ChangeRename
+		{
+			from:	"alphaMethod"
+			to:		"alphaType"
+		}
+		ChangeJS
+		{
+			name:		"alphaType"
+			jsFunction:	function(options)
+			{
+				switch(options["alphaType"])
+				{
+					case "alphaUnstand":	return "unstandardized";
+					case "alphaStand":		return "standardized";
+				}
+			}
+		}
+		ChangeRename
+		{
+			from:	"alphaInterval"
+			to:		"alphaIntervalMethod"
+		}
+		ChangeJS
+		{
+			name:		"alphaIntervalMethod"
+			jsFunction:	function(options)
+			{
+				switch(options["alphaIntervalMethod"])
+				{
+					case "alphaAnalytic":	return "analytic";
+					case "alphaBoot":		return "bootstrapped";
+				}
+			}
+		}
+		ChangeRename
+		{
+			from:	"disableSampleSave"
+			to:		"samplesSavingDisabled"
+		}
+
 	}
 
 	Upgrade
