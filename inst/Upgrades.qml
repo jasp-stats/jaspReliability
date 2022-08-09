@@ -365,11 +365,6 @@ Upgrades
 			from:	"missingValues"
 			to:		"naAction"
 		}
-		ChangeRename
-		{
-			from:	"missingValues"
-			to:		"naAction"
-		}
 		ChangeJS
 		{
 			name:		"naAction"
@@ -467,5 +462,284 @@ Upgrades
 		newFunctionName:	"unidimensionalReliabilityBayesian"
 		fromVersion:		"0.16.3"
 		toVersion:			"0.16.4"
+
+		ChangeRename
+		{
+			from:	"credibleIntervalValueScale"
+			to:		"scaleCiLevel"
+		}
+		ChangeRename
+		{
+			from:	"omegaScale"
+			to:		"scaleOmega"
+		}
+		ChangeRename
+		{
+			from:	"alphaScale"
+			to:		"scaleAlpha"
+		}
+		ChangeRename
+		{
+			from:	"lambda2Scale"
+			to:		"scaleLambda2"
+		}
+		ChangeRename
+		{
+			from:	"lambda6Scale"
+			to:		"scaleLambda6"
+		}
+		ChangeRename
+		{
+			from:	"glbScale"
+			to:		"scaleGlb"
+		}
+		ChangeRename
+		{
+			from:	"averageInterItemCor"
+			to:		"averageInterItemCorrelation"
+		}
+		ChangeRename
+		{
+			from:	"meanScale"
+			to:		"scaleMean"
+		}
+		ChangeRename
+		{
+			from:	"sdScale"
+			to:		"scaleSd"
+		}
+		ChangeRename
+		{
+			from:	"scoresMethod"
+			to:		"meanSdScoresMethod"
+		}
+		ChangeRename
+		{
+			from:	"credibleIntervalValueItem"
+			to:		"itemCiLevel"
+		}
+		ChangeRename
+		{
+			from:	"omegaItem"
+			to:		"itemDeletedOmega"
+		}
+		ChangeRename
+		{
+			from:	"alphaItem"
+			to:		"itemDeletedAlpha"
+		}
+		ChangeRename
+		{
+			from:	"lambda2Item"
+			to:		"itemDeletedLambda2"
+		}
+		ChangeRename
+		{
+			from:	"lambda6Item"
+			to:		"itemDeletedLambda6"
+		}
+		ChangeRename
+		{
+			from:	"glbItem"
+			to:		"itemDeletedGlb"
+		}
+		ChangeRename
+		{
+			from:	"plotItem"
+			to:		"itemDeletedPlot"
+		}
+		ChangeRename
+		{
+			from:	"orderItem"
+			to:		"itemDeletedPlotOrder"
+		}
+		ChangeRename
+		{
+			from:	"orderType"
+			to:		"itemDeletedPlotOrderType"
+		}
+		ChangeJS
+		{
+			name:		"itemDeletedPlotOrderType"
+			jsFunction:	function(options)
+			{
+				switch(options["itemDeletedPlotOrderType"])
+				{
+					case "orderItemMean":	return "mean"
+					case "orderItemKL":		return "kullbackLeibler"
+					case "orderItemKS":		return "kolmogorovSmirnov"
+				}
+			}
+		}
+		ChangeRename
+		{
+			from:	"itemRestCor"
+			to:		"itemRestCorrelation"
+		}
+		ChangeRename
+		{
+			from:	"meanItem"
+			to:		"itemMean"
+		}
+		ChangeRename
+		{
+			from:	"sdItem"
+			to:		"itemSd"
+		}
+		ChangeRename
+		{
+			from:	"plotPosterior"
+			to:		"posteriorPlot"
+		}
+		ChangeRename
+		{
+			from:	"fixXRange"
+			to:		"xRangeFix"
+		}
+		ChangeRename
+		{
+			from:	"dispPrior"
+			to:		"priorPlot"
+		}
+		ChangeRename
+		{
+			from:	"probTable"
+			to:		"probabilityTable"
+		}
+		ChangeRename
+		{
+			from:	"probTableValueLow"
+			to:		"probabilityTableLowerBound"
+		}
+		ChangeRename
+		{
+			from:	"probTableValueHigh"
+			to:		"probabilityTableUpperBound"
+		}
+		ChangeRename
+		{
+			from:	"shadePlots"
+			to:		"posteriorPlotShade"
+		}
+		ChangeRename
+		{
+			from:	"noSamples"
+			to:		"samples"
+		}
+		ChangeRename
+		{
+			from:	"noBurnin"
+			to:		"burnin"
+		}
+		ChangeRename
+		{
+			from:	"noThin"
+			to:		"thinning"
+		}
+		ChangeRename
+		{
+			from:	"noChains"
+			to:		"chains"
+		}
+		ChangeRename
+		{
+			from:	"disableSampleSave"
+			to:		"samplesSavingDisabled"
+		}
+		ChangeRename
+		{
+			from:	"iwScale"
+			to:		"inverseWishartPriorScale"
+		}
+		ChangeRename
+		{
+			from:	"iwDf"
+			to:		"inverseWishartPriorDf"
+		}
+		ChangeRename
+		{
+			from:	"igShape"
+			to:		"inverseGammaPriorShape"
+		}
+		ChangeRename
+		{
+			from:	"igScale"
+			to:		"inverseGammaPriorScale"
+		}
+		ChangeRename
+		{
+			from:	"loadMean"
+			to:		"normalPriorMean"
+		}
+		ChangeRename
+		{
+			from:	"missingValues"
+			to:		"naAction"
+		}
+		ChangeJS
+		{
+			name:		"naAction"
+			jsFunction:	function(options)
+			{
+				switch(options["naAction"])
+				{
+					case "excludeCasesPairwise":	return "imputation";
+					case "excludeCasesListwise":	return "listwise";
+				}
+			}
+		}
+		ChangeRename
+		{
+			from:	"dispPPC"
+			to:		"ppc"
+		}
+		ChangeRename
+		{
+			from:	"fitMeasures"
+			to:		"omegaFitMeasures"
+		}
+		ChangeRename
+		{
+			from:	"credibleIntervalValueFitMeasures"
+			to:		"omegaFitMeasuresCiLevel"
+		}
+		ChangeRename
+		{
+			from:	"fitCutoffSat"
+			to:		"omegaFitMeasuresCutoffRmsea"
+		}
+		ChangeRename
+		{
+			from:	"fitCutoffNull"
+			to:		"omegaFitMeasuresCutoffCfiTli"
+		}
+		ChangeRename
+		{
+			from:	"dispLoadings"
+			to:		"standardizedLoadings"
+		}
+		ChangeRename
+		{
+			from:	"stdCoeffs"
+			to:		"coefficientType"
+		}
+		ChangeJS
+		{
+			name:		"coefficientType"
+			jsFunction:	function(options)
+			{
+				switch(options["coefficientType"])
+				{
+					case "unstand":	return "undstandardized";
+					case "stand":	return "standardized";
+				}
+			}
+		}
+		ChangeRename
+		{
+			from:	"pointEst"
+			to:		"pointEstimate"
+		}
+
 	}
 }

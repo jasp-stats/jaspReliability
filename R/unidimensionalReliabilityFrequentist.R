@@ -1055,11 +1055,11 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   fewItemProblem <- FALSE
   for (i in idxSelected) {
     if (coefficientsTable[i] %in% coefficients) {
-      itemTable$addColumnInfo(name = paste0("pointEst", i), title = coefficientsTable[i], type = "number",
+      itemTable$addColumnInfo(name = paste0("pointEstimate", i), title = coefficientsTable[i], type = "number",
                               overtitle = overTitle)
       fewItemProblem <- TRUE
     } else {
-      itemTable$addColumnInfo(name = paste0("pointEst", i), title = coefficientsTable[i], type = "number")
+      itemTable$addColumnInfo(name = paste0("pointEstimate", i), title = coefficientsTable[i], type = "number")
     }
   }
 
@@ -1069,7 +1069,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     for (j in seq_along(idxSelected)) {
       i <- idxSelected[j]
       nm <- names(idxSelected[j])
-      newtb <- cbind(pointEst = model[[nm]][["itemDropped"]])
+      newtb <- cbind(pointEstimate = model[[nm]][["itemDropped"]])
       colnames(newtb) <- paste0(colnames(newtb), i)
       tb <- cbind(tb, newtb)
     }
@@ -1151,7 +1151,7 @@ gettextf <- function(fmt, ..., domain = NULL)  {
     # check for sensible MCMC values
     .checkMCMCBounds <- function() {
       # are the remaining samples after burnin and thinning larger than 2?
-      if (ceiling((options[["bootstrapSamples"]] - options[["noBurnin"]]) / options[["noThin"]]) < 2) {
+      if (ceiling((options[["samples"]] - options[["burnin"]]) / options[["thinning"]]) < 2) {
         return(gettext("Too few MCMC samples will remain after the removal of the burnin samples and thinning,
                      please increase No.samples."))
       }
