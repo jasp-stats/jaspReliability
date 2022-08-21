@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2022-08-21 21:14+0000\n"
+"Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/pt/>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.14-dev\n"
 "X-Language: pt\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -42,11 +48,11 @@ msgstr "Análise"
 
 msgctxt "uniDimBayesian|"
 msgid "Scale Statistics"
-msgstr ""
+msgstr "Estatísticas"
 
 msgctxt "uniDimBayesian|"
 msgid "Credible interval"
-msgstr "Intervalo de credibilidade"
+msgstr "Intervalo de confiança"
 
 msgctxt "uniDimBayesian|"
 msgid "McDonald's ω"
@@ -54,7 +60,7 @@ msgstr "Ômega de McDonald ω"
 
 msgctxt "uniDimBayesian|"
 msgid "Posterior predictive check"
-msgstr ""
+msgstr "Verificação preditiva posterior"
 
 msgctxt "uniDimBayesian|"
 msgid "Cronbach's α"
@@ -130,7 +136,7 @@ msgstr "Ordenar itens por KS-distance"
 
 msgctxt "uniDimBayesian|"
 msgid "Item-rest correlation"
-msgstr ""
+msgstr "Correlação item-resto"
 
 msgctxt "uniDimBayesian|"
 msgid "Plot Posteriors"
@@ -162,7 +168,7 @@ msgstr "Convergência"
 
 msgctxt "uniDimBayesian|"
 msgid "MCMC parameters"
-msgstr ""
+msgstr "Parâmetros MCMC"
 
 msgctxt "uniDimBayesian|"
 msgid "No. samples"
@@ -194,7 +200,7 @@ msgstr ""
 
 msgctxt "uniDimBayesian|"
 msgid "Repeatability"
-msgstr "Repetibilidade"
+msgstr "Reprodutibilidade"
 
 msgctxt "uniDimBayesian|"
 msgid "Set seed"
@@ -210,11 +216,11 @@ msgstr "Não salvar as amostras"
 
 msgctxt "uniDimBayesian|"
 msgid "Reverse-Scaled Items"
-msgstr ""
+msgstr "Itens de escala reversa"
 
 msgctxt "uniDimBayesian|"
 msgid "Normal-Scaled Items"
-msgstr ""
+msgstr "Itens de escala normal"
 
 msgctxt "uniDimBayesian|"
 msgid "Missing Values"
@@ -222,7 +228,7 @@ msgstr "Valores ausentes"
 
 msgctxt "uniDimBayesian|"
 msgid "Exclude cases listwise"
-msgstr ""
+msgstr "Exclusão listwise"
 
 msgctxt "uniDimFrequentist|"
 msgid "Variables"
@@ -234,7 +240,7 @@ msgstr "Análise"
 
 msgctxt "uniDimFrequentist|"
 msgid "Scale Statistics"
-msgstr ""
+msgstr "Estatísticas"
 
 msgctxt "uniDimFrequentist|"
 msgid "Confidence Interval"
@@ -256,12 +262,10 @@ msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ6"
 msgstr "λ6 de Guttman"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Greatest lower bound"
 msgstr "Maior limite inferior"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Average interitem correlation"
 msgstr "Média das correlações entre itens"
@@ -294,22 +298,21 @@ msgctxt "uniDimFrequentist|"
 msgid "Guttman's λ6 (if item dropped)"
 msgstr "λ6 de Guttman (excluindo esse item)"
 
-#, fuzzy
 msgctxt "uniDimFrequentist|"
 msgid "Greatest lower bound (if item dropped)"
 msgstr "Máx. limite inferior (excluindo esse item)"
 
 msgctxt "uniDimFrequentist|"
 msgid "Item-rest correlation"
-msgstr ""
+msgstr "Correlação item-resto"
 
 msgctxt "uniDimFrequentist|"
 msgid "Reverse-Scaled Items"
-msgstr ""
+msgstr "Itens de escala reversa"
 
 msgctxt "uniDimFrequentist|"
 msgid "Normal-Scaled Items"
-msgstr ""
+msgstr "Itens de escala normal"
 
 msgctxt "uniDimFrequentist|"
 msgid "Advanced Options"
@@ -325,7 +328,7 @@ msgstr "Excluir casos aos pares"
 
 msgctxt "uniDimFrequentist|"
 msgid "Exclude cases listwise"
-msgstr ""
+msgstr "Exclusão listwise"
 
 msgctxt "uniDimFrequentist|"
 msgid "Bootstrap"
@@ -377,7 +380,7 @@ msgstr ""
 
 msgctxt "uniDimFrequentist|"
 msgid "Unstandardized"
-msgstr ""
+msgstr "Não padronizado"
 
 msgctxt "uniDimFrequentist|"
 msgid "Standardized"
@@ -385,7 +388,7 @@ msgstr "Padronizado"
 
 msgctxt "uniDimFrequentist|"
 msgid "Repeatability"
-msgstr "Repetibilidade"
+msgstr "Reprodutibilidade"
 
 msgctxt "uniDimFrequentist|"
 msgid "Set seed"
@@ -409,11 +412,11 @@ msgstr "DP"
 
 msgctxt "uniDimBayesian|"
 msgid "of participants' sum scores"
-msgstr ""
+msgstr "da soma dos escores dos participantes"
 
 msgctxt "uniDimBayesian|"
 msgid "of participants' mean scores"
-msgstr ""
+msgstr "da média dos escores dos participantes"
 
 msgctxt "uniDimFrequentist|"
 msgid "SD"
@@ -421,52 +424,47 @@ msgstr "DP"
 
 msgctxt "uniDimFrequentist|"
 msgid "of participants' sum scores"
-msgstr ""
+msgstr "da soma dos escores dos participantes"
 
 msgctxt "uniDimFrequentist|"
 msgid "of participants' mean scores"
-msgstr ""
+msgstr "da média dos escores dos participantes"
 
 msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
-msgstr ""
+msgstr "Quantificar a confiabilidade dos escores"
 
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Variables"
 msgstr "Variáveis"
 
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Each subject is rated by..."
 msgstr "Cada assunto é classificado por..."
 
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "a different rater (randomly selected)"
 msgstr "um avaliador diferente (selecionado aleatoriamente)"
 
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
-msgstr "o mesmo conjunto de examinadores/teste selecionados aleatoriamente"
+msgstr "o mesmo conjunto de avaliadores selecionados aleatoriamente"
 
 msgctxt "intraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
-msgstr ""
+msgstr "o mesmo conjunto fixo de avaliadores"
 
 msgctxt "intraclassCorrelation|"
 msgid "Ratings are averaged"
-msgstr ""
+msgstr "As classificações são calculadas em média"
 
-#, fuzzy
 msgctxt "intraclassCorrelation|"
 msgid "Confidence Interval"
 msgstr "Intervalo de confiança"
 
 msgctxt "uniDimBayesian|"
 msgid "Priors"
-msgstr ""
+msgstr "Anteriores"
 
 msgctxt "uniDimBayesian|"
 msgid "CTT-Coefficients (α, λ2, λ6, glb)"
@@ -494,13 +492,12 @@ msgstr ""
 
 msgctxt "uniDimBayesian|"
 msgid "Normal:"
-msgstr ""
+msgstr "Normal:"
 
 msgctxt "uniDimBayesian|"
 msgid "mean"
-msgstr ""
+msgstr "média"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Advanced Options"
 msgstr "Opções avançadas"
@@ -515,7 +512,7 @@ msgstr ""
 
 msgctxt "uniDimBayesian|"
 msgid "Fit measures"
-msgstr ""
+msgstr "Medidas de ajuste"
 
 msgctxt "uniDimBayesian|"
 msgid "p(RMSEA <"
@@ -531,20 +528,19 @@ msgstr ""
 
 msgctxt "uniDimBayesian|"
 msgid "Standardized factor loadings"
-msgstr ""
+msgstr "Cargas fatoriais padronizadas"
 
 msgctxt "uniDimBayesian|"
 msgid "Coefficients"
-msgstr ""
+msgstr "Coeficientes"
 
 msgctxt "uniDimBayesian|"
 msgid "Unstandardized"
-msgstr ""
+msgstr "Não padronizados"
 
-#, fuzzy
 msgctxt "uniDimBayesian|"
 msgid "Standardized"
-msgstr "Padronizado"
+msgstr "Padronizados"
 
 msgctxt "uniDimBayesian|"
 msgid "Posterior Point Estimate"
@@ -552,59 +548,56 @@ msgstr ""
 
 msgctxt "uniDimBayesian|"
 msgid "Median"
-msgstr ""
+msgstr "Mediana"
 
 msgctxt "Description|"
 msgid "Rater Agreement"
-msgstr ""
+msgstr "Concordância dos avaliadores/juízes"
 
-#, fuzzy
 msgctxt "raterAgreement|"
 msgid "Variables"
 msgstr "Variáveis"
 
 msgctxt "raterAgreement|"
 msgid "Cohen's kappa"
-msgstr ""
+msgstr "Kappa de Cohen"
 
 msgctxt "raterAgreement|"
 msgid "Unweighted"
-msgstr ""
+msgstr "Não ponderado"
 
 msgctxt "raterAgreement|"
 msgid "Weighted"
-msgstr ""
+msgstr "Ponderado"
 
 msgctxt "raterAgreement|"
 msgid "Fleiss' kappa"
-msgstr ""
+msgstr "Kappa de Fleiss"
 
 msgctxt "raterAgreement|"
 msgid "Krippendorff's alpha"
-msgstr ""
+msgstr "Alfa de Krippendorff"
 
 msgctxt "raterAgreement|"
 msgid "Method"
-msgstr ""
+msgstr "Método"
 
 msgctxt "raterAgreement|"
 msgid "Nominal"
-msgstr ""
+msgstr "Nominal"
 
 msgctxt "raterAgreement|"
 msgid "Ordinal"
-msgstr ""
+msgstr "Ordinal"
 
-#, fuzzy
 msgctxt "raterAgreement|"
 msgid "Interval"
 msgstr "Intervalo"
 
 msgctxt "raterAgreement|"
 msgid "Ratio"
-msgstr ""
+msgstr "Razão"
 
-#, fuzzy
 msgctxt "raterAgreement|"
 msgid "Confidence Interval"
 msgstr "Intervalo de confiança"
