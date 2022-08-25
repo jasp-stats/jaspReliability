@@ -175,7 +175,7 @@ Form
 						title: 	""
 						name: 	"itemDeletedPlotOrderedType"
 
-						RadioButton { value: "mean"; 	label: qsTr("Order items by mean");			checked: true	}
+						RadioButton { value: "mean";				label: qsTr("Order items by mean");			checked: true	}
 						RadioButton { value: "kullbackLeibler"; 	label: qsTr("Order items by KL-divergence")					}
 						RadioButton { value: "kolmogorovSmirnov"; 	label: qsTr("Order items by KS-distance")					}
 					}

@@ -193,9 +193,7 @@ Upgrades
 		}
 	}
 
-/////////////////////////////////////////////////////////////////
 // ------------------ stuff for R syntax ----------------------
-////////////////////////////////////////////////////////////////
 	Upgrade
 	{
 		functionName: 		"raterAgreement"
@@ -620,7 +618,7 @@ Upgrades
 		ChangeRename
 		{
 			from:	"shadePlots"
-            to:		"posteriorPlotShaded"
+			to:		"posteriorPlotShaded"
 		}
 		ChangeRename
 		{
