@@ -33,7 +33,7 @@ Description
 		qml: 	"intraclassCorrelation.qml"
 		func: 	"intraclassCorrelation"
 	}
-	
+
 		Analysis
 	{
 		title:	qsTr("Rater Agreement")
@@ -43,7 +43,7 @@ Description
 		Analysis
 	{
 		title:	qsTr("Bland-Altman Plots")
-		qml: 	"blandAltman.qml"
+		qml: 	"BlandAltman.qml"
 		func: 	"blandAltman"
 	}
 
