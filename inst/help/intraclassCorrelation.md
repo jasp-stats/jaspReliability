@@ -17,6 +17,14 @@ Shrout & Fleiss (1979) distinguish between 6 different ways of calculating the I
   - the same fixed set of raters/tests: A fixed set of raters rate all subjects. These are all the raters of interest and there is no generalization to a wider population. Corresponds to *ICC(3, B)* in accordance with the conventions by Shrout & Fleiss (1979).
 - Ratings are averaged: Are ratings by all raters averaged in the end? This strongly impacts the ICC coefficient. If yes, it corresponds to an *ICC(A, k)* in accordance with the conventions by Shrout & Fleiss (1979), if not it corresponds to an *ICC(A, 1)*.
 - Confidence Interval: Whether a confidence interval should be reported for the ICC and the size of the interval.
+- Bland-Altman plot:
+  - Displays a scatterplot of the means and differences between the two measurement variables. Calculations for this plot are based on Bland & Altman (1986).
+    - Plot components: The variables included in the analysis.
+    - Measurement Pair: At least two variables have to be selected (pair)
+    - Confidence Interval: Coverage of the confidence intervals in percentages. By default, the confidence interval is set to 95%. This can be changed into the desired percentage. The confidence interval is drawn around the mean difference and its upper and lower limits.
+	- Shading: Highlights the confidence bounds around the mean difference and its limits.
+	- Bland-Altman table: Creates a table displaying the values regarding the mean difference and its respective limits.
+
 
 ### Output
 -------
@@ -37,6 +45,12 @@ Koo and Li (2016) provide a newer, slightly more conservative guideline for inte
 - between 0.75 and 0.90: good
 - above 0.90: excellent
 
+Bland-Altman plot:
+- Displays a scatterplot of the means and differences between the two measurement variables. The x-axis represents the means of the two measurements, the y-axis represents the differences between the two measurements.
+- By default, three lines (dashed) are added to the plot, indicating the mean difference between the two variables and its upper and lower limits. Limits are based on the critical difference which is calculated by multiplying the standard deviation with 1.96.
+- By enabling "Confidence Interval", the x% confidence intervals for the mean difference, the upper limit, and the lower limit are added to the plot (dashed). Enabling "Shading" highlights these bounds.
+- By enabling "Bland-Altman table", a table containing the above information is created. The table displays the point value, lower and upper confidence interval numbers for the mean difference and its limits, respectively.
+
 ### References
 -------
 - Field, A. P., Miles, J., & Field, Z. (2012). *Discovering statistics using R*. Sage.
@@ -44,6 +58,7 @@ Koo and Li (2016) provide a newer, slightly more conservative guideline for inte
 - Shrout, P. E., & Fleiss, J. L. (1979). Intraclass correlations: uses in assessing rater reliability. *Psychological Bulletin, 86*(2), 420. https://doi.org/10.1037/0033-2909.86.2.420
 - Cicchetti, D. V. (1994). Guidelines, criteria, and rules of thumb for evaluating normed and standardized assessment instruments in psychology. *Psychological Assessment, 6*(4), 284. https://doi.org/10.1037/1040-3590.6.4.284
 - Koo, T. K., & Li, M. Y. (2016). A guideline of selecting and reporting intraclass correlation coefficients for reliability research. *Journal of Chiropractic Medicine, 15*(2), 155-163. https://doi.org/10.1016/j.jcm.2016.02.012
+- Bland, J. M., & Altman, D. (1986). Statistical methods for assessing agreement between two methods of clinical measurement. *The lancet, 327*(8476), 307-310. https://doi.org/10.1016/S0140-6736(86)90837-8
 
 ### R Packages
 ---

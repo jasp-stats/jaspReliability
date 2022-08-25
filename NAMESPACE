@@ -2,6 +2,7 @@
 
 export(intraclassCorrelation)
 export(raterAgreement)
+export(blandAltman)
 export(reliabilityUniDimBayesian)
 export(reliabilityUniDimFrequentist)
 importFrom(jaspBase,.quitAnalysis)
@@ -30,3 +31,4 @@ importFrom(stats,rgamma)
 importFrom(stats,rnorm)
 importFrom(stats,sd)
 importFrom(stats,var)
+

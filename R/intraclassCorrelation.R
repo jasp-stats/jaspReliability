@@ -123,3 +123,5 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
 
   return(jaspTable)
 }
+
+

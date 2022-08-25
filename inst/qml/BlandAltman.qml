@@ -29,64 +29,45 @@ Form
 
 		AvailableVariablesList { name: "allVariablesList" }
 
-		AssignedVariablesList
+		AssignedPairsVariablesList
 		{
-			name: 			"variables"
-			title: 			qsTr("Variables")
-			allowedColumns: ["scale", "ordinal"]
-		}
-	}
-
-	Group
-	{
-
-		RadioButtonGroup
-		{
-			title: qsTr("Each subject is rated by...")
-			name: "iccType"
-
-			RadioButton
-			{
-				value:   	"icc1"
-				label:  	qsTr("a different rater (randomly selected)")
-				checked: 	true
-			}
-
-			RadioButton
-			{
-				value:   	"icc2"
-				label:  	qsTr("the same set of randomly selected raters/tests")
-				checked: 	false
-			}
-
-			RadioButton
-			{
-				value:   	"icc3"
-				label:  	qsTr("the same fixed set of raters/tests")
-				checked: 	false
-			}
-		}
-
-		CheckBox
-		{
-			name:   	"iccRatingAverage"
-			label:  	qsTr("Ratings are averaged")
-			checked: 	false
+			id:					pairs
+			name:				"pairs"
+			title:				qsTr("Measurement Pairs")
+			suggestedColumns: 	["scale", "ordinal"]
 		}
 	}
 
 	CheckBox
 	{
-		name: 				"intervalOn"
+		name: 				"ci"
 		label:				qsTr("Confidence Interval")
-		checked: 			true
-		childrenOnSameRow: 	true
 
 		CIField
 		{
-			name: 		"confidenceIntervalValue";
-			label: 		"";
-			defaultValue: 95;
+			name:			"ciLevel";
+			label:			"";
+			defaultValue:	95;
 		}
+
+		CheckBox
+		{
+			name: 		"ciShading"
+			label:		qsTr("Shading")
+
+			CheckBox
+			{
+				name: 	"ciShadingWithColour"
+				label:	qsTr("Use colour")
+			}
+		}
+
+
+	}
+
+	CheckBox
+	{
+			name: 		"blandAltmanTable"
+			label:		qsTr("Bland-Altman table")
 	}
 }
