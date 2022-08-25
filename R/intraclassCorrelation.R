@@ -22,9 +22,6 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
 
   jaspResults[["table"]] <- .handleIntraclassCorrelation(dataset, options)
 
-  .descriptivesBlandAltman(     jaspResults, dataset, options)
-  .descriptivesBlandAltmanTable(jaspResults, dataset, options)
-
   return()
 }
 
