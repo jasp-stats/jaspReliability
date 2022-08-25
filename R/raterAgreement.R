@@ -27,7 +27,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
   if (options[["fleissKappa"]])
     jaspResults[["fleissKappa"]] <- .computeFleissKappaTable(dataset, options, ready)
   if (options[["krippendorffsAlpha"]]) {
-    if (options[["kappaIntervalOn"]])
+    if (options[["ci"]])
       .kripAlphaBoot(jaspResults, dataset, options, ready)
     jaspResults[["krippendorffsAlpha"]] <- .computeKrippendorffsAlphaTable(jaspResults, dataset, options, ready)
   }
@@ -46,7 +46,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
 .computeCohensKappaTable <- function(dataset, options, ready) {
 
-  weighted <- options[["cohensWeightedOrNot"]] == "cohensWeighted"
+  weighted <- options[["cohensKappaType"]] == "weighted"
 
   weightedString <- ifelse(weighted, "Weighted", "Unweighted")
 
@@ -61,15 +61,15 @@ raterAgreement <- function(jaspResults, dataset, options) {
     options = c(
       "variables",
       "cohensKappa",
-      "cohensWeightedOrNot",
-      "kappaIntervalOn",
-      "kappaConfidenceIntervalValue"
+      "cohensKappaType",
+      "ci",
+      "ciLevel"
     )
   )
 
 
   formattedCIPercent <- format(
-    100 * options[["kappaConfidenceIntervalValue"]],
+    100 * options[["ciLevel"]],
     digits = 3,
     drop0trailing = TRUE
   )
@@ -78,7 +78,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
   if (ready) {
     #calculate Cohen's Kappas
     nPairs <- ncol(dataset) * (ncol(dataset) - 1) / 2
-    out_kappa <- psych::cohen.kappa(dataset, alpha = 1 - options[["kappaConfidenceIntervalValue"]])
+    out_kappa <- psych::cohen.kappa(dataset, alpha = 1 - options[["ciLevel"]])
     if (nPairs == 1) {
       allKappaData <- list(out_kappa)
       allPairStrings <- paste(options[["variables"]], collapse = " - ")
@@ -108,7 +108,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
                       "cKappa" = c(averageKappa, allKappas))
     footnote <- gettextf('%i subjects/items and %i raters/measurements.', nrow(dataset), ncol(dataset))
 
-    if (options[["kappaIntervalOn"]]) {
+    if (options[["ci"]]) {
       jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
       jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
       jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
@@ -142,13 +142,13 @@ raterAgreement <- function(jaspResults, dataset, options) {
     options = c(
       "variables",
       "fleissKappa",
-      "kappaIntervalOn",
-      "kappaConfidenceIntervalValue"
+      "ci",
+      "ciLevel"
     )
   )
 
   formattedCIPercent <- format(
-    100 * options[["kappaConfidenceIntervalValue"]],
+    100 * options[["ciLevel"]],
     digits = 3,
     drop0trailing = TRUE
   )
@@ -160,7 +160,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
     categoryKappas <- allKappaData$detail[, 1]
     overallSE <- allKappaData$se
     categorySE <- allKappaData$se_cat
-    alpha <- 1 - options[["kappaConfidenceIntervalValue"]]
+    alpha <- 1 - options[["ciLevel"]]
 
     # for nominal text data we want the rating text to be displayed:
     # if the transformation to numeric goes wrong:
@@ -178,7 +178,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
                       "fKappa"  = c(overallKappa, categoryKappas))
     footnote <- gettextf('%i subjects/items and %i raters/measurements.', nrow(dataset), ncol(dataset))
 
-    if (options[["kappaIntervalOn"]]) {
+    if (options[["ci"]]) {
       nCategories <- length(categories)
       SE <- c(overallSE, rep(categorySE, nCategories))
       overallCI <- overallKappa + c(-1, 1) * qnorm(1 - alpha / 2) * overallSE
@@ -211,13 +211,13 @@ raterAgreement <- function(jaspResults, dataset, options) {
     options = c(
       "variables",
       "krippendorffsAlpha",
-      "kappaIntervalOn",
-      "kappaConfidenceIntervalValue"
+      "ci",
+      "ciLevel"
     )
   )
 
   formattedCIPercent <- format(
-    100 * options[["kappaConfidenceIntervalValue"]],
+    100 * options[["ciLevel"]],
     digits = 3,
     drop0trailing = TRUE
   )
@@ -225,16 +225,16 @@ raterAgreement <- function(jaspResults, dataset, options) {
   if (ready) {
     #calculate Krippendorff's alpha
     kAlphaData <- t(as.matrix(dataset))
-    method <- options[["alphaMethod"]]
+    method <- options[["krippendorffsAlphaMethod"]]
     kAlpha <- irr::kripp.alpha(kAlphaData, method)
 
     tableData <- list("method" = paste0(toupper(substr(method, 1, 1)), substr(method, 2, nchar(method))),
                       "kAlpha" = kAlpha$value)
     footnote <- gettextf('%i subjects/items and %i raters/measurements.', kAlpha$subjects, kAlpha$raters)
 
-    if (options[["kappaIntervalOn"]]) {
+    if (options[["ci"]]) {
       alphas <- jaspResults[["bootstrapSamples"]]$object
-      conf <- options[["kappaConfidenceIntervalValue"]]
+      conf <- options[["ciLevel"]]
       confs <- (1 + c(-conf, conf)) / 2
       CIs <- quantile(alphas, probs = confs)
 
@@ -258,7 +258,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
     return()
 
   bootstrapSamples <- createJaspState()
-  method <- options[["alphaMethod"]]
+  method <- options[["krippendorffsAlphaMethod"]]
   n <- nrow(dataset)
   alphas <- numeric(1e3)
   for (i in seq_len(1e3)) {
@@ -270,6 +270,6 @@ raterAgreement <- function(jaspResults, dataset, options) {
   jaspResults[["bootstrapSamples"]]$dependOn(options = c(
     "variables",
     "krippendorffsAlpha",
-    "kappaIntervalOn"))
+    "ci"))
   return()
 }

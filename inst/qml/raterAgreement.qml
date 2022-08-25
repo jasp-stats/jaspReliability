@@ -49,24 +49,20 @@ Form
 			
 			RadioButtonGroup
 			{
-			name:		"cohensWeightedOrNot"
-			
-			
-							RadioButton
+			name:		"cohensKappaType"
+
+				RadioButton
 				{
-				name:                               "cohensUnweighted"
-				label:                              qsTr("Unweighted")
-				checked:                            true
+				name:		"unweighted"
+				label:		qsTr("Unweighted")
+				checked:	true
 				}
 
 				RadioButton
 				{
-				name:                               "cohensWeighted"
-				label:                              qsTr("Weighted")
+				name:	"weighted"
+				label:	qsTr("Weighted")
 				}
-
-			
-
 			}
 			
 			
@@ -87,9 +83,8 @@ Form
 			
 			DropDown
 			{
-				name: "alphaMethod"
-				label: qsTr("Method")
-				id: alphaMethod
+				name:	"krippendorffsAlphaMethod"
+				label:	qsTr("Method")
 				values:
 				[
 					{label: qsTr("Nominal"),		value: "nominal"},
@@ -102,21 +97,19 @@ Form
 		
 	}
 	
-	
-	
 
 	CheckBox 
 	{
-		name: 				"kappaIntervalOn"
+		name: 				"ci"
 		label:				qsTr("Confidence Interval")
 		checked: 			true
 		childrenOnSameRow: 	true
 
 		CIField 
 		{      
-			name: 		"kappaConfidenceIntervalValue";   
-			label: 		"";
-			defaultValue: 95;
+			name:			"ciLevel"
+			label:			""
+			defaultValue:	95
 		}
 	}
 }

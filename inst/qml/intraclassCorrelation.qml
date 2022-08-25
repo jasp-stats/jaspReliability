@@ -69,7 +69,7 @@ Form
 
 		CheckBox
 		{
-			name:   	"iccRatingAverage"
+			name:   	"averagedRating"
 			label:  	qsTr("Ratings are averaged")
 			checked: 	false
 		}
@@ -77,16 +77,15 @@ Form
 
 	CheckBox
 	{
-		name: 				"intervalOn"
+		name: 				"ci"
 		label:				qsTr("Confidence Interval")
 		checked: 			true
 		childrenOnSameRow: 	true
-
 		CIField
 		{
-			name: 		"confidenceIntervalValue";
-			label: 		"";
-			defaultValue: 95;
+			name:			"ciLevel"
+			label:			""
+			defaultValue:	95
 		}
 	}
 }

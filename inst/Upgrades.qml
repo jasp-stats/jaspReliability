@@ -193,4 +193,67 @@ Upgrades
 		}
 	}
 
+
+	Upgrade
+	{
+		functionName: 		"raterAgreement"
+		fromVersion:		"0.16.3"
+		toVersion:			"0.16.4"
+
+		ChangeRename
+		{
+			from:	"cohensWeightedOrNot"
+			to:		"cohensKappaType"
+		}
+		ChangeJS
+		{
+			name:		"cohensKappaType"
+			jsFunction:	function(options)
+			{
+				switch(options["cohensKappaType"])
+				{
+					case "cohensUnweighted":	return "unweighted";
+					case "cohensWeighted":		return "weighted";
+				}
+			}
+		}
+		ChangeRename
+		{
+			from:	"alphaMethod"
+			to:		"krippendorffsAlphaMethod"
+		}
+		ChangeRename
+		{
+			from:	"kappaIntervalOn"
+			to:		"ci"
+		}
+		ChangeRename
+		{
+			from:	"kappaConfidenceIntervalValue"
+			to:		"ciLevel"
+		}
+	}
+
+	Upgrade
+	{
+		functionName: 		"intraclassCorrelation"
+		fromVersion:		"0.16.3"
+		toVersion:			"0.16.4"
+
+		ChangeRename
+		{
+			from:	"iccRatingAverage"
+			to:		"averagedRating"
+		}
+		ChangeRename
+		{
+			from:	"intervalOn"
+			to:		"ci"
+		}
+		ChangeRename
+		{
+			from:	"confidenceIntervalValue"
+			to:		"ciLevel"
+		}
+	}
 }

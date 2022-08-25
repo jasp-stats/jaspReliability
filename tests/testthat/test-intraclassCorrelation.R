@@ -2,13 +2,13 @@ options <- analysisOptions("intraclassCorrelation")
 # ==== Ensure results are unchanged on JASP debug data ====
 
 # Set options
-options$confidenceIntervalValue <- 0.95
+options$ciLevel <- 0.95
 options$variables <- c("contcor1", "contcor2", "contNormal")
 dataset <- "test.csv"
 
 test_that("Intraclass Correlation 1 table results are unchanged", {
   options$iccType <- "icc1"
-  options$iccRatingAverage <- FALSE
+  options$averagedRating <- FALSE
 
   results <- runAnalysis("intraclassCorrelation", dataset, options)
   table <- results[["results"]][["table"]][["data"]]
@@ -20,7 +20,7 @@ test_that("Intraclass Correlation 1 table results are unchanged", {
 
 test_that("Intraclass Correlation 2 table results are unchanged", {
   options$iccType <- "icc2"
-  options$iccRatingAverage <- FALSE
+  options$averagedRating <- FALSE
 
   results <- runAnalysis("intraclassCorrelation", dataset, options)
   table <- results[["results"]][["table"]][["data"]]
@@ -32,7 +32,7 @@ test_that("Intraclass Correlation 2 table results are unchanged", {
 
 test_that("Intraclass Correlation 3 table results are unchanged", {
   options$iccType <- "icc3"
-  options$iccRatingAverage <- FALSE
+  options$averagedRating <- FALSE
 
   results <- runAnalysis("intraclassCorrelation", dataset, options)
   table <- results[["results"]][["table"]][["data"]]
@@ -44,7 +44,7 @@ test_that("Intraclass Correlation 3 table results are unchanged", {
 
 test_that("Intraclass Correlation 1k table results are unchanged", {
   options$iccType <- "icc1"
-  options$iccRatingAverage <- TRUE
+  options$averagedRating <- TRUE
 
   results <- runAnalysis("intraclassCorrelation", dataset, options)
   table <- results[["results"]][["table"]][["data"]]
@@ -56,7 +56,7 @@ test_that("Intraclass Correlation 1k table results are unchanged", {
 
 test_that("Intraclass Correlation 2k table results are unchanged", {
   options$iccType <- "icc2"
-  options$iccRatingAverage <- TRUE
+  options$averagedRating <- TRUE
 
   results <- runAnalysis("intraclassCorrelation", dataset, options)
   table <- results[["results"]][["table"]][["data"]]
@@ -68,7 +68,7 @@ test_that("Intraclass Correlation 2k table results are unchanged", {
 
 test_that("Intraclass Correlation 3k table results are unchanged", {
   options$iccType <- "icc3"
-  options$iccRatingAverage <- TRUE
+  options$averagedRating <- TRUE
 
   results <- runAnalysis("intraclassCorrelation", dataset, options)
   table <- results[["results"]][["table"]][["data"]]
@@ -92,7 +92,7 @@ sf_data <- matrix(c(
 dataset <- as.data.frame(sf_data)
 
 # Set options
-options$confidenceIntervalValue <- 0.95
+options$ciLevel <- 0.95
 options$variables <- paste0("V", 1:4)
 
 test_that("ICC coefficients match the ones published in Shrout & Fleiss (1979)", {
@@ -110,7 +110,7 @@ test_that("ICC coefficients match the ones published in Shrout & Fleiss (1979)",
   for (icc_type in names(sf_coefs)) {
     # Remove the k if it is part of icc_type
     options$iccType <- substring(icc_type, 0, 4)
-    options$iccRatingAverage <- substring(icc_type, 5) == "k"
+    options$averagedRating <- substring(icc_type, 5) == "k"
 
     results <- runAnalysis("intraclassCorrelation", dataset, options)
     jasp_coefs[icc_type] <- results[["results"]][["table"]][["data"]][[1]]$ICC

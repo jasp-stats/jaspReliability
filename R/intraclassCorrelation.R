@@ -49,12 +49,12 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
   jaspTable$addColumnInfo(name = "type", title = gettext("Type"), type = "string")
   jaspTable$addColumnInfo(name = "ICC", title = gettext("Point Estimate"), type = "number")
   formattedCIPercent <- format(
-    100 * options[["confidenceIntervalValue"]],
+    100 * options[["ciLevel"]],
     digits = 3,
     drop0trailing = TRUE
   )
 
-  if (options[["intervalOn"]]) {
+  if (options[["ci"]]) {
     jaspTable$addColumnInfo(
       name = "lower bound",
       title = gettextf("Lower %s%% CI", formattedCIPercent),
@@ -69,10 +69,10 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
   jaspTable$dependOn(
     options = c(
       "variables",
-      "intervalOn",
-      "confidenceIntervalValue",
+      "ci",
+      "ciLevel",
       "iccType",
-      "iccRatingAverage"
+      "averagedRating"
     )
   )
 
@@ -81,7 +81,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
   if (ncol(dataset) >= 2) {
     # Get the ICC type e.g. "ICC1k"
     type <- toupper(options["iccType"])
-    if (options[["iccRatingAverage"]]) {
+    if (options[["averagedRating"]]) {
       type <- paste0(type, ",k")
     } else {
       type <- paste0(type, ",1")
@@ -90,7 +90,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
     # Compute the ICC
     full_results <- psych::ICC(
       dataset,
-      alpha = 1 - options[["confidenceIntervalValue"]]
+      alpha = 1 - options[["ciLevel"]]
     )
     icc_results <- full_results$results
     icc_results$type <- c("ICC1,1", "ICC2,1", "ICC3,1", "ICC1,k", "ICC2,k", "ICC3,k")
@@ -101,7 +101,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
     # Only report relevant columns
     cols <- c("type", "ICC")
     # Report CI
-    if (options[["intervalOn"]]) {
+    if (options[["ci"]]) {
       cols <- c(cols, "lower bound", "upper bound")
     }
     icc <- icc[, cols]
