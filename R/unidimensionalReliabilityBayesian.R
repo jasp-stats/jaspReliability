@@ -1643,7 +1643,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
           # use the coefficient item object in the model list, and the object directly before it,
           # which is always the corresponding scale object
           prevNumber <- which(names(model) == nm) - 1
-          name <- unlist(strsplit(nm, "Item"))
+          name <- unlist(strsplit(nm, "Deleted"))[2]
           coefPos <- grep(name, names(model[["scaleResults"]][["est"]]))
 
           p <- .makeIfItemPlot(model[[nm]], model[[prevNumber]],

@@ -514,3 +514,24 @@ test_that("Posterior Predictive Check Omega plot matches", {
   jaspTools::expect_equal_plots(testPlot, "posterior-predictive-check-omega")
 })
 
+
+
+options <- analysisOptions("unidimensionalReliabilityBayesian")
+options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss30")
+options$scaleAlpha <- TRUE
+options$itemDeletedAlpha <- TRUE
+options$itemDeletedPlot <- TRUE
+options$itemDeletedPlotOrdered <- TRUE
+options$itemDeletedPlotOrderedType <- "mean"
+options$inverseWishartPriorDf <- length(options$variables)
+options$inverseWishartPriorScale <- 0.0000000001
+options$samples <- 200
+options$chains <- 2
+set.seed(1)
+results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options)
+
+test_that("Cronbach's alpha plot item deleted plot matches ordered by mean", {
+  plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_plotContainerItem"]][["collection"]][["stateContainer_plotContainerItem_alpha"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "cronbach-s-alpha-item-mean-ordered")
+})
