@@ -595,3 +595,28 @@ msgstr "Posterior Punktschätzung"
 msgctxt "uniDimBayesian|"
 msgid "Median"
 msgstr "Median"
+
+msgctxt "Description|"
+msgid "Bland-Altman Plots"
+msgstr ""
+
+msgctxt "BlandAltman|"
+msgid "Measurement Pairs"
+msgstr ""
+
+#, fuzzy
+msgctxt "BlandAltman|"
+msgid "Confidence Interval"
+msgstr "Konfidenzintervall"
+
+msgctxt "BlandAltman|"
+msgid "Shading"
+msgstr ""
+
+msgctxt "BlandAltman|"
+msgid "Use colour"
+msgstr ""
+
+msgctxt "BlandAltman|"
+msgid "Bland-Altman table"
+msgstr ""

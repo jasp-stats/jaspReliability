@@ -596,3 +596,28 @@ msgstr "Estimación de Punto Posterior"
 msgctxt "uniDimBayesian|"
 msgid "Median"
 msgstr "Mediana"
+
+msgctxt "Description|"
+msgid "Bland-Altman Plots"
+msgstr ""
+
+msgctxt "BlandAltman|"
+msgid "Measurement Pairs"
+msgstr ""
+
+#, fuzzy
+msgctxt "BlandAltman|"
+msgid "Confidence Interval"
+msgstr "Intervalo de Confianza"
+
+msgctxt "BlandAltman|"
+msgid "Shading"
+msgstr ""
+
+msgctxt "BlandAltman|"
+msgid "Use colour"
+msgstr ""
+
+msgctxt "BlandAltman|"
+msgid "Bland-Altman table"
+msgstr ""

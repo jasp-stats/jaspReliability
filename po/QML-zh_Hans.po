@@ -594,3 +594,28 @@ msgstr "比率"
 msgctxt "raterAgreement|"
 msgid "Confidence Interval"
 msgstr "置信区间"
+
+msgctxt "Description|"
+msgid "Bland-Altman Plots"
+msgstr ""
+
+msgctxt "BlandAltman|"
+msgid "Measurement Pairs"
+msgstr ""
+
+#, fuzzy
+msgctxt "BlandAltman|"
+msgid "Confidence Interval"
+msgstr "置信区间"
+
+msgctxt "BlandAltman|"
+msgid "Shading"
+msgstr ""
+
+msgctxt "BlandAltman|"
+msgid "Use colour"
+msgstr ""
+
+msgctxt "BlandAltman|"
+msgid "Bland-Altman table"
+msgstr ""

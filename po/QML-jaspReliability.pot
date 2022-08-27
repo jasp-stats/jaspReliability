@@ -592,3 +592,27 @@ msgstr ""
 msgctxt "raterAgreement|"
 msgid "Confidence Interval"
 msgstr ""
+
+msgctxt "Description|"
+msgid "Bland-Altman Plots"
+msgstr ""
+
+msgctxt "BlandAltman|"
+msgid "Measurement Pairs"
+msgstr ""
+
+msgctxt "BlandAltman|"
+msgid "Confidence Interval"
+msgstr ""
+
+msgctxt "BlandAltman|"
+msgid "Shading"
+msgstr ""
+
+msgctxt "BlandAltman|"
+msgid "Use colour"
+msgstr ""
+
+msgctxt "BlandAltman|"
+msgid "Bland-Altman table"
+msgstr ""

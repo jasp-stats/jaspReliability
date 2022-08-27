@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
-"POT-Creation-Date: 2022-08-06 03:39\n"
+"POT-Creation-Date: 2022-08-27 04:07\n"
 "PO-Revision-Date: 2021-12-13 15:53+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -12,6 +12,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.10-dev\n"
+
+msgid "Bland-Altman Plots"
+msgstr ""
+
+msgid "Please provide another variable"
+msgstr ""
+
+msgid "Plotting not possible: %s"
+msgstr ""
+
+msgid "Bland-Altman Tables"
+msgstr ""
+
+msgid "Bias & Limits"
+msgstr ""
+
+#, fuzzy
+msgid "Point Value"
+msgstr "点推定"
+
+msgid "Mean difference - 1.96 SD"
+msgstr ""
+
+msgid "Mean difference + 1.96 SD"
+msgstr ""
+
+msgid "Mean difference"
+msgstr ""
+
+msgid "Lower %s%% CI"
+msgstr "下側 %s%% CI"
+
+msgid "Upper %s%% CI"
+msgstr "上側 %s%% CI"
+
+msgid "Calculations not possible: %s"
+msgstr ""
 
 msgid "getPointEstFun has no case for value:"
 msgstr "getPointEstFunには、値のケースはありません:"
@@ -24,12 +61,6 @@ msgstr "型"
 
 msgid "Point Estimate"
 msgstr "点推定"
-
-msgid "Lower %s%% CI"
-msgstr "下側 %s%% CI"
-
-msgid "Upper %s%% CI"
-msgstr "上側 %s%% CI"
 
 msgid ""
 "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "

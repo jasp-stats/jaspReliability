@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2022-08-06 03:39\n"
+"POT-Creation-Date: 2022-08-27 04:07\n"
 "PO-Revision-Date: 2022-06-03 15:14+0000\n"
 "Last-Translator: Don van den Bergh <donvdbergh@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
@@ -13,6 +13,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
 "X-Generator: Weblate 4.13-dev\n"
+
+msgid "Bland-Altman Plots"
+msgstr ""
+
+msgid "Please provide another variable"
+msgstr ""
+
+msgid "Plotting not possible: %s"
+msgstr ""
+
+msgid "Bland-Altman Tables"
+msgstr ""
+
+msgid "Bias & Limits"
+msgstr ""
+
+#, fuzzy
+msgid "Point Value"
+msgstr "Puntschatting"
+
+msgid "Mean difference - 1.96 SD"
+msgstr ""
+
+msgid "Mean difference + 1.96 SD"
+msgstr ""
+
+msgid "Mean difference"
+msgstr ""
+
+msgid "Lower %s%% CI"
+msgstr "Onder %s%% BI"
+
+msgid "Upper %s%% CI"
+msgstr "Boven %s%% BI"
+
+msgid "Calculations not possible: %s"
+msgstr ""
 
 msgid "getPointEstFun has no case for value:"
 msgstr "getPointEstFun heeft geen geval voor waarde:"
@@ -25,12 +62,6 @@ msgstr "Type"
 
 msgid "Point Estimate"
 msgstr "Puntschatting"
-
-msgid "Lower %s%% CI"
-msgstr "Onder %s%% BI"
-
-msgid "Upper %s%% CI"
-msgstr "Boven %s%% BI"
 
 msgid ""
 "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.16.4\n"
-"POT-Creation-Date: 2022-08-06 03:39\n"
+"POT-Creation-Date: 2022-08-27 04:07\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9,6 +9,42 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+
+msgid "Bland-Altman Plots"
+msgstr ""
+
+msgid "Please provide another variable"
+msgstr ""
+
+msgid "Plotting not possible: %s"
+msgstr ""
+
+msgid "Bland-Altman Tables"
+msgstr ""
+
+msgid "Bias & Limits"
+msgstr ""
+
+msgid "Point Value"
+msgstr ""
+
+msgid "Mean difference - 1.96 SD"
+msgstr ""
+
+msgid "Mean difference + 1.96 SD"
+msgstr ""
+
+msgid "Mean difference"
+msgstr ""
+
+msgid "Lower %s%% CI"
+msgstr ""
+
+msgid "Upper %s%% CI"
+msgstr ""
+
+msgid "Calculations not possible: %s"
+msgstr ""
 
 msgid "getPointEstFun has no case for value:"
 msgstr ""
@@ -20,12 +56,6 @@ msgid "Type"
 msgstr ""
 
 msgid "Point Estimate"
-msgstr ""
-
-msgid "Lower %s%% CI"
-msgstr ""
-
-msgid "Upper %s%% CI"
 msgstr ""
 
 msgid "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & Fleiss (1979)."

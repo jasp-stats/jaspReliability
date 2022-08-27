@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
-"POT-Creation-Date: 2022-08-06 03:39\n"
+"POT-Creation-Date: 2022-08-27 04:07\n"
 "PO-Revision-Date: 2021-10-31 14:35+0000\n"
 "Last-Translator: Changya Hu <changyahu@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -12,6 +12,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.9-dev\n"
+
+msgid "Bland-Altman Plots"
+msgstr ""
+
+msgid "Please provide another variable"
+msgstr ""
+
+msgid "Plotting not possible: %s"
+msgstr ""
+
+msgid "Bland-Altman Tables"
+msgstr ""
+
+msgid "Bias & Limits"
+msgstr ""
+
+#, fuzzy
+msgid "Point Value"
+msgstr "點估計"
+
+msgid "Mean difference - 1.96 SD"
+msgstr ""
+
+msgid "Mean difference + 1.96 SD"
+msgstr ""
+
+msgid "Mean difference"
+msgstr ""
+
+msgid "Lower %s%% CI"
+msgstr "%s%% 信賴區間下界"
+
+msgid "Upper %s%% CI"
+msgstr "%s%% 信賴區間上界"
+
+msgid "Calculations not possible: %s"
+msgstr ""
 
 msgid "getPointEstFun has no case for value:"
 msgstr ""
@@ -24,12 +61,6 @@ msgstr "類型"
 
 msgid "Point Estimate"
 msgstr "點估計"
-
-msgid "Lower %s%% CI"
-msgstr "%s%% 信賴區間下界"
-
-msgid "Upper %s%% CI"
-msgstr "%s%% 信賴區間上界"
 
 #, fuzzy
 msgid ""

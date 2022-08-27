@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2022-08-06 03:39\n"
+"POT-Creation-Date: 2022-08-27 04:07\n"
 "PO-Revision-Date: 2021-09-03 13:32+0000\n"
 "Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
@@ -17,6 +17,43 @@ msgstr ""
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
 
+msgid "Bland-Altman Plots"
+msgstr ""
+
+msgid "Please provide another variable"
+msgstr ""
+
+msgid "Plotting not possible: %s"
+msgstr ""
+
+msgid "Bland-Altman Tables"
+msgstr ""
+
+msgid "Bias & Limits"
+msgstr ""
+
+#, fuzzy
+msgid "Point Value"
+msgstr "Estimativas por Ponto"
+
+msgid "Mean difference - 1.96 SD"
+msgstr ""
+
+msgid "Mean difference + 1.96 SD"
+msgstr ""
+
+msgid "Mean difference"
+msgstr ""
+
+msgid "Lower %s%% CI"
+msgstr "IC inferior a %s%%"
+
+msgid "Upper %s%% CI"
+msgstr "IC Superior a %s%%"
+
+msgid "Calculations not possible: %s"
+msgstr ""
+
 msgid "getPointEstFun has no case for value:"
 msgstr ""
 
@@ -28,12 +65,6 @@ msgstr "Tipo"
 
 msgid "Point Estimate"
 msgstr "Estimativas por Ponto"
-
-msgid "Lower %s%% CI"
-msgstr "IC inferior a %s%%"
-
-msgid "Upper %s%% CI"
-msgstr "IC Superior a %s%%"
 
 #, fuzzy
 msgid ""

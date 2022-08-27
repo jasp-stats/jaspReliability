@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
-"POT-Creation-Date: 2022-08-06 03:39\n"
+"POT-Creation-Date: 2022-08-27 04:07\n"
 "PO-Revision-Date: 2022-08-10 22:14+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
@@ -12,6 +12,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.14-dev\n"
+
+msgid "Bland-Altman Plots"
+msgstr ""
+
+msgid "Please provide another variable"
+msgstr ""
+
+msgid "Plotting not possible: %s"
+msgstr ""
+
+msgid "Bland-Altman Tables"
+msgstr ""
+
+msgid "Bias & Limits"
+msgstr ""
+
+#, fuzzy
+msgid "Point Value"
+msgstr "Estimación por Punto"
+
+msgid "Mean difference - 1.96 SD"
+msgstr ""
+
+msgid "Mean difference + 1.96 SD"
+msgstr ""
+
+msgid "Mean difference"
+msgstr ""
+
+msgid "Lower %s%% CI"
+msgstr "IC inferior al %s%%"
+
+msgid "Upper %s%% CI"
+msgstr "IC superior %s%%"
+
+msgid "Calculations not possible: %s"
+msgstr ""
 
 msgid "getPointEstFun has no case for value:"
 msgstr "getPointEstFun no tiene ningún caso que valorar:"
@@ -24,12 +61,6 @@ msgstr "Tipo"
 
 msgid "Point Estimate"
 msgstr "Estimación por Punto"
-
-msgid "Lower %s%% CI"
-msgstr "IC inferior al %s%%"
-
-msgid "Upper %s%% CI"
-msgstr "IC superior %s%%"
 
 msgid ""
 "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
