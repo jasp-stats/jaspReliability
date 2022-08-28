@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2022-08-29 04:19+0000\n"
+"Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"jasp/jaspreliability-qml/zh_Hans/>\n"
+"Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 "X-Language: zh_Hans\n"
 "X-Qt-Contexts: true\n"
 
@@ -597,25 +603,24 @@ msgstr "置信区间"
 
 msgctxt "Description|"
 msgid "Bland-Altman Plots"
-msgstr ""
+msgstr "Bland-Altman 图"
 
 msgctxt "BlandAltman|"
 msgid "Measurement Pairs"
-msgstr ""
+msgstr "测量对"
 
-#, fuzzy
 msgctxt "BlandAltman|"
 msgid "Confidence Interval"
 msgstr "置信区间"
 
 msgctxt "BlandAltman|"
 msgid "Shading"
-msgstr ""
+msgstr "阴影"
 
 msgctxt "BlandAltman|"
 msgid "Use colour"
-msgstr ""
+msgstr "使用颜色"
 
 msgctxt "BlandAltman|"
 msgid "Bland-Altman table"
-msgstr ""
+msgstr "Bland-Altman 表"
