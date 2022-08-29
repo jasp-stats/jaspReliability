@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2022-08-27 04:07\n"
-"PO-Revision-Date: 2022-08-09 21:59+0000\n"
+"PO-Revision-Date: 2022-08-29 10:28+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/gl/>\n"
@@ -16,38 +16,37 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 "X-Virgin-Header: remove this line if you change anything in the header.\n"
 "X-Language: gl_ES\n"
 "X-Source-Language: C\n"
 
 msgid "Bland-Altman Plots"
-msgstr ""
+msgstr "Gráficas de Bland-Altman"
 
 msgid "Please provide another variable"
-msgstr ""
+msgstr "Por favor, indica outra variable"
 
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "Non é posible facer a gráfica: %s"
 
 msgid "Bland-Altman Tables"
-msgstr ""
+msgstr "Táboas de Bland-Altman"
 
 msgid "Bias & Limits"
-msgstr ""
+msgstr "Nesgo & Límites"
 
-#, fuzzy
 msgid "Point Value"
-msgstr "Estimación Puntual"
+msgstr "Valor Puntual"
 
 msgid "Mean difference - 1.96 SD"
-msgstr ""
+msgstr "Diferenza media - 1.96 DP"
 
 msgid "Mean difference + 1.96 SD"
-msgstr ""
+msgstr "Diferenza media + 1.96 DP"
 
 msgid "Mean difference"
-msgstr ""
+msgstr "Diferenza media"
 
 msgid "Lower %s%% CI"
 msgstr "IC inferior a %s%%"
@@ -56,7 +55,7 @@ msgid "Upper %s%% CI"
 msgstr "IC superior a %s%%"
 
 msgid "Calculations not possible: %s"
-msgstr ""
+msgstr "Os cálculos non son posibles: %s"
 
 msgid "getPointEstFun has no case for value:"
 msgstr "getPointEstFun non ten ningún caso que valorar:"
