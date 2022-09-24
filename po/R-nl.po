@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2022-08-27 04:07\n"
-"PO-Revision-Date: 2022-09-24 09:25+0000\n"
+"PO-Revision-Date: 2022-09-25 10:24+0000\n"
 "Last-Translator: Don van den Bergh <donvdbergh@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/nl/>\n"
@@ -18,29 +18,28 @@ msgid "Bland-Altman Plots"
 msgstr "Bland-Altman Grafieken"
 
 msgid "Please provide another variable"
-msgstr ""
+msgstr "Geef een andere variabele"
 
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "Plotten niet mogelijk: %s"
 
 msgid "Bland-Altman Tables"
-msgstr ""
+msgstr "Bland-Altman tabellen"
 
 msgid "Bias & Limits"
-msgstr ""
+msgstr "Bias & Limieten"
 
-#, fuzzy
 msgid "Point Value"
 msgstr "Puntschatting"
 
 msgid "Mean difference - 1.96 SD"
-msgstr ""
+msgstr "Gemiddeld verschil - 1,96 SD"
 
 msgid "Mean difference + 1.96 SD"
-msgstr ""
+msgstr "Gemiddeld verschil + 1,96 SD"
 
 msgid "Mean difference"
-msgstr ""
+msgstr "Gemiddeld verschil"
 
 msgid "Lower %s%% CI"
 msgstr "Onder %s%% BI"
@@ -49,7 +48,7 @@ msgid "Upper %s%% CI"
 msgstr "Boven %s%% BI"
 
 msgid "Calculations not possible: %s"
-msgstr ""
+msgstr "Berekeningen niet mogelijk: %s"
 
 msgid "getPointEstFun has no case for value:"
 msgstr "getPointEstFun heeft geen geval voor waarde:"
@@ -261,14 +260,12 @@ msgstr ""
 "lambda6, glb] mislukt. Probeer over te schakelen op 'Exclude cases listwise' "
 "in Voorkeuren>Geavanceerd"
 
-#, fuzzy
 msgid ""
 "Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
 "lambda6, glb] failed."
 msgstr ""
-"Steekproef van de posterior-covariantiematrix voor een van [alpha, lambda2, "
-"lambda6, glb] mislukt. Probeer over te schakelen op 'Exclude cases listwise' "
-"in Voorkeuren>Geavanceerd"
+"Trekkingen van de posterior van de covariantiematrix voor een van [alpha, "
+"lambda2, lambda6, glb] is mislukt."
 
 msgid ""
 "Sampling the posterior factor model for omega failed. Try changing to "
