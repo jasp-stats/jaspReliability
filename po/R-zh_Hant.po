@@ -64,8 +64,8 @@ msgstr "點估計"
 
 #, fuzzy
 msgid ""
-"%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout & "
-"Fleiss (1979)."
+"%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout "
+"& Fleiss (1979)."
 msgstr "%1$s 被評者與 %2$s 評分者/測量。ICC類型請參見 Shrout & Fleiss (1979)。"
 
 msgid "Please select at least 2 columns"
@@ -84,7 +84,7 @@ msgid "%i subjects/items and %i raters/measurements."
 msgstr ""
 
 msgid "SE"
-msgstr ""
+msgstr "標準誤"
 
 msgid "Lower"
 msgstr ""
@@ -342,6 +342,15 @@ msgstr[0] "以下題項與量表為負相關：%s "
 msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "以下題項反向計分：%s "
+
+#, fuzzy
+msgid ""
+"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
+"Fleiss (1979)."
+msgstr "%s 被評者與 %s 評分者/測量。ICC類型請參見 Shrout & Fleiss (1979)。"
+
+msgid "%s Variables %s and %s correlated perfectly."
+msgstr "%s 變項 %s 與變項 %s 為完全相關"
 
 #~ msgid "Posterior Mean"
 #~ msgstr "事前平均數"
