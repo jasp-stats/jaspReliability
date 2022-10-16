@@ -47,7 +47,7 @@
     if (nrow(dataset) < old_n) { # this indicates listwise deletion
       model[["use.cases"]] <- "complete.obs"
       model[["pairwise"]] <- FALSE
-      model[["footnote"]] <- gettextf("%s Of the observations, %1.f complete cases were used. ",
+      model[["footnote"]] <- gettextf("%1$s Of the observations, %2$1.f complete cases were used. ",
                                       model[["footnote"]], nrow(dataset))
 
     } else if (anyNA(dataset)) { # when pairwise deletion

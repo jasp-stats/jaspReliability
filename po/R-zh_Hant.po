@@ -231,8 +231,8 @@ msgstr "單一因子模式配適指標"
 msgid "Standardized loading"
 msgstr ""
 
-msgid "%s Of the observations, %1.f complete cases were used."
-msgstr "從 %s 的觀察值中, 使用 %1.f 的完整資料"
+msgid "%1$s Of the observations, %2$1.f complete cases were used."
+msgstr "從 %1$s 的觀察值中, 使用 %2$1.f 的完整資料"
 
 msgid "%s Of the observations, pairwise complete cases were used."
 msgstr "從 %s 的觀察值中，以配對完整的個案進行分析"

@@ -246,8 +246,8 @@ msgstr "Cargas Tipificadas del Modelo de Factor Único"
 msgid "Standardized loading"
 msgstr "Carga tipificada"
 
-msgid "%s Of the observations, %1.f complete cases were used."
-msgstr "%s De las observaciones, se utilizaron %1.f casos completos."
+msgid "%1$s Of the observations, %2$1.f complete cases were used."
+msgstr "%1$s De las observaciones, se utilizaron %2$1.f casos completos."
 
 msgid "%s Of the observations, pairwise complete cases were used."
 msgstr "%s De las observaciones, se utilizaron casos completos por pares."

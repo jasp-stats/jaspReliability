@@ -244,8 +244,8 @@ msgstr "Gestandaardiseerde Ladingen van Enkele Factor Model"
 msgid "Standardized loading"
 msgstr "Gestandaardiseerde lading"
 
-msgid "%s Of the observations, %1.f complete cases were used."
-msgstr "%s van de observaties, zijn %1.f volledige observaties gebruikt."
+msgid "%1$s Of the observations, %2$1.f complete cases were used."
+msgstr "%1$s van de observaties, zijn %2$1.f volledige observaties gebruikt."
 
 msgid "%s Of the observations, pairwise complete cases were used."
 msgstr ""

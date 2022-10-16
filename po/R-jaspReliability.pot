@@ -205,7 +205,7 @@ msgstr ""
 msgid "Standardized loading"
 msgstr ""
 
-msgid "%s Of the observations, %1.f complete cases were used."
+msgid "%1$s Of the observations, %2$1.f complete cases were used."
 msgstr ""
 
 msgid "%s Of the observations, pairwise complete cases were used."
