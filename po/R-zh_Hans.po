@@ -1,0 +1,291 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: jaspReliability 0.17.0\n"
+"POT-Creation-Date: 2022-10-08 03:50\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh_Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Bland-Altman Plots"
+msgstr ""
+
+msgid "Please provide another variable"
+msgstr ""
+
+msgid "Plotting not possible: %s"
+msgstr ""
+
+msgid "Bland-Altman Tables"
+msgstr ""
+
+msgid "Bias & Limits"
+msgstr ""
+
+msgid "Point Value"
+msgstr ""
+
+msgid "Mean difference - 1.96 SD"
+msgstr ""
+
+msgid "Mean difference + 1.96 SD"
+msgstr ""
+
+msgid "Mean difference"
+msgstr ""
+
+msgid "Lower %s%% CI"
+msgstr ""
+
+msgid "Upper %s%% CI"
+msgstr ""
+
+msgid "Calculations not possible: %s"
+msgstr ""
+
+msgid "getPointEstFun has no case for value:"
+msgstr ""
+
+msgid "Intraclass Correlation"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Point Estimate"
+msgstr ""
+
+msgid "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & Fleiss (1979)."
+msgstr ""
+
+msgid "Please select at least 2 columns"
+msgstr ""
+
+msgid "Cohen's %s kappa"
+msgstr ""
+
+msgid "Ratings"
+msgstr ""
+
+msgid "%s kappa"
+msgstr ""
+
+msgid "%i subjects/items and %i raters/measurements."
+msgstr ""
+
+msgid "SE"
+msgstr ""
+
+msgid "Lower"
+msgstr ""
+
+msgid "%s%% CI"
+msgstr ""
+
+msgid "Upper"
+msgstr ""
+
+msgid "Confidence intervals are asymptotic."
+msgstr ""
+
+msgid "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
+msgstr ""
+
+msgid "Fleiss' kappa"
+msgstr ""
+
+msgid "Method"
+msgstr ""
+
+msgid "Confidence intervals are based on percentiles from 1000 bootstrap replications."
+msgstr ""
+
+msgid "Greatest Lower Bound"
+msgstr ""
+
+msgid "Item-rest correlation"
+msgstr ""
+
+msgid "mean"
+msgstr ""
+
+msgid "sd"
+msgstr ""
+
+msgid "Sampling the posterior null model failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
+msgstr ""
+
+msgid "Posterior Plots"
+msgstr ""
+
+msgid "Density"
+msgstr ""
+
+msgid "If Item Dropped Posterior Plots"
+msgstr ""
+
+msgid "Please enter at least 3 variables for the if item dropped plot"
+msgstr ""
+
+msgid "KLD ordering failed because two variables have perfect correlation"
+msgstr ""
+
+msgid "Item Dropped"
+msgstr ""
+
+msgid "Eigenvalue"
+msgstr ""
+
+msgid "Eigenvalue No."
+msgstr ""
+
+msgid "Convergence Traceplot"
+msgstr ""
+
+msgid "Iterations"
+msgstr ""
+
+msgid "Bayesian Scale Reliability Statistics"
+msgstr ""
+
+msgid "Estimate"
+msgstr ""
+
+msgid "%s lower bound"
+msgstr ""
+
+msgid "%s upper bound"
+msgstr ""
+
+msgid "Posterior %s"
+msgstr ""
+
+msgid "Bayesian Individual Item Reliability Statistics"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "%s (if item dropped)"
+msgstr ""
+
+msgid "%s Please enter at least 3 variables for the if item dropped statistics."
+msgstr ""
+
+msgid "The bounds you entered have been rearranged in increasing order to provide meaningful results."
+msgstr ""
+
+msgid "Probability that Reliability Statistic is Larger than %.2f and Smaller than %.2f"
+msgstr ""
+
+msgid "Probability"
+msgstr ""
+
+msgid "Statistic"
+msgstr ""
+
+msgid "Prior"
+msgstr ""
+
+msgid "Posterior"
+msgstr ""
+
+msgid "Fit Measures for the Single-Factor Model"
+msgstr ""
+
+msgid "'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller than\n                         the corresponding cutoff and the probabilities that the B-CFI/TLI are larger than the\n                         corresponding cutoff."
+msgstr ""
+
+msgid "Standardized Loadings of the Single-Factor Model"
+msgstr ""
+
+msgid "Standardized loading"
+msgstr ""
+
+msgid "%s Of the observations, %1.f complete cases were used."
+msgstr ""
+
+msgid "%s Of the observations, pairwise complete cases were used."
+msgstr ""
+
+msgid "Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
+msgstr ""
+
+msgid "Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed."
+msgstr ""
+
+msgid "Sampling the posterior factor model for omega failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
+msgstr ""
+
+msgid "Too few MCMC samples will remain after the removal of the burnin samples and thinning,\n                     please increase No.samples."
+msgstr ""
+
+msgid "%s"
+msgstr ""
+
+msgid "%s Variables %s and %s correlated perfectly."
+msgstr ""
+
+msgid "Please enter at least 2 variables to do an analysis"
+msgstr ""
+
+msgid "Omega item dropped statistics with CFA failed."
+msgstr ""
+
+msgid "Omega item dropped statistics with PFA failed."
+msgstr ""
+
+msgid "Lambda6 item dropped statistics failed."
+msgstr ""
+
+msgid "Omega calculation with CFA failed.\n                                                    Try changing to PFA in Advanced Options"
+msgstr ""
+
+msgid "Omega bootstrapped interval calculation with CFA failed.\n                                                            Try changing to PFA in 'Advanced Options'"
+msgstr ""
+
+msgid "Omega calculation with PFA failed."
+msgstr ""
+
+msgid "Omega interval calculation with PFA failed."
+msgstr ""
+
+msgid "Lambda6 calculation failed."
+msgstr ""
+
+msgid "Lambda6 interval calculation failed."
+msgstr ""
+
+msgid "Frequentist Scale Reliability Statistics"
+msgstr ""
+
+msgid "Point estimate"
+msgstr ""
+
+msgid "Frequentist Individual Item Reliability Statistics"
+msgstr ""
+
+msgid "If item dropped"
+msgstr ""
+
+msgid "Fit Measures of Single Factor Model Fit"
+msgstr ""
+
+msgid "Fit measure"
+msgstr ""
+
+msgid "Value"
+msgstr ""
+
+msgid "The following item correlated negatively with the scale: %s. "
+msgid_plural "The following items correlated negatively with the scale: %s. "
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "The following item was reverse scaled: %s. "
+msgid_plural "The following items were reverse scaled: %s. "
+msgstr[0] ""
+msgstr[1] ""
