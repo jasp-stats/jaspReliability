@@ -64,9 +64,9 @@ msgstr "點估計"
 
 #, fuzzy
 msgid ""
-"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
+"%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout & "
 "Fleiss (1979)."
-msgstr "%s 被評者與 %s 評分者/測量。ICC類型請參見 Shrout & Fleiss (1979)。"
+msgstr "%1$s 被評者與 %2$s 評分者/測量。ICC類型請參見 Shrout & Fleiss (1979)。"
 
 msgid "Please select at least 2 columns"
 msgstr "請至少選擇兩欄"
@@ -80,7 +80,7 @@ msgstr ""
 msgid "%s kappa"
 msgstr ""
 
-msgid "%i subjects/items and %i raters/measurements."
+msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr ""
 
 msgid "SE"
@@ -269,8 +269,8 @@ msgstr ""
 msgid "%s"
 msgstr "%s"
 
-msgid "%s Variables %s and %s correlated perfectly."
-msgstr "%s 變項 %s 與變項 %s 為完全相關"
+msgid "%1$s Variables %2$s and %3$s correlated perfectly."
+msgstr "%1$s 變項 %2$s 與變項 %3$s 為完全相關"
 
 msgid "Please enter at least 2 variables to do an analysis"
 msgstr "請輸入至少兩個變項"

@@ -68,10 +68,10 @@ msgstr "Estimativas por Ponto"
 
 #, fuzzy
 msgid ""
-"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
+"%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout & "
 "Fleiss (1979)."
 msgstr ""
-"%s sujeitos e %s juízes/medidas. Tipo de CCI referenciado por Shrout & "
+"%1$s sujeitos e %2$s juízes/medidas. Tipo de CCI referenciado por Shrout & "
 "Fleiss (1979)."
 
 msgid "Please select at least 2 columns"
@@ -86,7 +86,7 @@ msgstr ""
 msgid "%s kappa"
 msgstr ""
 
-msgid "%i subjects/items and %i raters/measurements."
+msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr ""
 
 msgid "SE"
@@ -291,8 +291,8 @@ msgstr ""
 msgid "%s"
 msgstr "%s"
 
-msgid "%s Variables %s and %s correlated perfectly."
-msgstr "%s As variáveis %s e %s se correlacionam perfeitamente."
+msgid "%1$s Variables %2$s and %3$s correlated perfectly."
+msgstr "%1$s As variáveis %2$s e %3$s se correlacionam perfeitamente."
 
 msgid "Please enter at least 2 variables to do an analysis"
 msgstr "Por favor, introduza ao menos 2 variáveis para realizar uma análise"

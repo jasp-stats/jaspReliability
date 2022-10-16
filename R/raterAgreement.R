@@ -106,7 +106,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
     tableData <- list("ratings" = c("Average kappa", allPairStrings),
                       "cKappa" = c(averageKappa, allKappas))
-    footnote <- gettextf('%i subjects/items and %i raters/measurements.', nrow(dataset), ncol(dataset))
+    footnote <- gettextf('%1$i subjects/items and %2$i raters/measurements.', nrow(dataset), ncol(dataset))
 
     if (options[["kappaIntervalOn"]]) {
       jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
@@ -176,7 +176,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
     tableData <- list("ratings" = ratings,
                       "fKappa"  = c(overallKappa, categoryKappas))
-    footnote <- gettextf('%i subjects/items and %i raters/measurements.', nrow(dataset), ncol(dataset))
+    footnote <- gettextf('%1$i subjects/items and %2$i raters/measurements.', nrow(dataset), ncol(dataset))
 
     if (options[["kappaIntervalOn"]]) {
       nCategories <- length(categories)
@@ -230,7 +230,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
     tableData <- list("method" = paste0(toupper(substr(method, 1, 1)), substr(method, 2, nchar(method))),
                       "kAlpha" = kAlpha$value)
-    footnote <- gettextf('%i subjects/items and %i raters/measurements.', kAlpha$subjects, kAlpha$raters)
+    footnote <- gettextf('%1$i subjects/items and %2$i raters/measurements.', kAlpha$subjects, kAlpha$raters)
 
     if (options[["kappaIntervalOn"]]) {
       alphas <- jaspResults[["bootstrapSamples"]]$object
