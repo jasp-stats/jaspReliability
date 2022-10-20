@@ -729,7 +729,7 @@ Upgrades
 			{
 				switch(options["coefficientType"])
 				{
-					case "unstand":	return "undstandardized";
+					case "unstand":	return "unstandardized";
 					case "stand":	return "standardized";
 				}
 			}
