@@ -262,8 +262,8 @@ test_that("Krippendorff's alpha table results match", {
 # Set options
 options <- analysisOptions("raterAgreement")
 options$variables <- c("facGender", "facExperim", "debBinMiss20")
-options$kappaConfidenceIntervalValue <- 0.99
-options$cohensWeightedOrNot <- "cohensWeighted"
+options$ciLevel <- 0.99
+options$cohensKappaType <- "weighted"
 set.seed(1)
 results <- runAnalysis("raterAgreement", "test.csv", options)
 
@@ -304,7 +304,7 @@ test_that("Fleiss' kappa table results match", {
   options <- analysisOptions("raterAgreement")
   options$variables <- c("V1", "V2", "V3", "V4", "V5", "V6")
   options$cohensKappa <- FALSE
-  options$kappaIntervalOn <- FALSE
+  options$ci <- FALSE
   set.seed(1)
   results <- runAnalysis("raterAgreement", "Fleiss1971.csv", options)
   table <- results[["results"]][["fleissKappa"]][["data"]]

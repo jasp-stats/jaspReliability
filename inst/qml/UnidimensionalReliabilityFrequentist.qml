@@ -47,7 +47,7 @@ Form
 
 			CheckBox
 			{
-				name: 				"intervalOn"
+				name: 				"ci"
 				label:				qsTr("Confidence Interval")
 				checked: 			true
 				childrenOnSameRow: 	true
@@ -55,7 +55,7 @@ Form
 
 				CIField
 				{
-					name:			"confidenceIntervalValue";
+					name:			"ciLevel";
 					label:			"";
 					defaultValue:	95;
 				}
@@ -64,7 +64,7 @@ Form
 			CheckBox
 			{
 				id:			omega
-				name:		"omegaScale"
+				name:		"scaleOmega"
 				label:		qsTr("McDonald's ω")
 				checked:	true
 			}
@@ -72,43 +72,43 @@ Form
 			CheckBox
 			{
 				id: 	alpha
-				name: 	"alphaScale";
+				name: 	"scaleAlpha";
 				label: 	qsTr("Cronbach's α");
 			}
 
 			CheckBox
 			{
 				id: 	lambda2
-				name: 	"lambda2Scale";
+				name: 	"scaleLambda2";
 				label: 	qsTr("Guttman's λ2");
 			}
 
 			CheckBox
 			{
 				id: 	lambda6
-				name: 	"lambda6Scale";
+				name: 	"scaleLambda6";
 				label: 	qsTr("Guttman's λ6");
 			}
 
 			CheckBox
 			{
 				id: 	glb
-				name: 	"glbScale";
+				name: 	"scaleGreatestLowerBound";
 				label: 	qsTr("Greatest lower bound");
 			}
 
-			CheckBox { name: "averageInterItemCor";	label: qsTr("Average interitem correlation")}
+			CheckBox { name: "averageInterItemCorrelation";	label: qsTr("Average interitem correlation")}
 
 			RowLayout {
-				CheckBox { name: "meanScale";	label: qsTr("Mean");	id: mean}
-				CheckBox { name: "sdScale";		label: qsTr("SD");		id: sd}
+				CheckBox { name: "scaleMean";	label: qsTr("Mean");	id: mean}
+				CheckBox { name: "scaleSd";		label: qsTr("SD");		id: sd}
 
 			}
 			RadioButtonGroup
 			{
 				indent:		true
 				enabled:	mean.checked || sd.checked
-				name:		"scoresMethod"
+				name:		"meanSdScoresMethod"
 
 				RadioButton { value: "sumScores";	label: qsTr("of participants' sum scores"); checked: true}
 				RadioButton { value: "meanScores";	label: qsTr("of participants' mean scores")}
@@ -122,42 +122,42 @@ Form
 
 			CheckBox
 			{
-				name: 		"omegaItem";
+				name: 		"itemDeletedOmega";
 				label: 		qsTr("McDonald's ω  (if item dropped)");
 				enabled: 	omega.checked
 			}
 
 			CheckBox
 			{
-				name: 		"alphaItem";
+				name: 		"itemDeletedAlpha";
 				label: 		qsTr("Cronbach's α (if item dropped)");
 				enabled: 	alpha.checked
 			}
 
 			CheckBox
 			{
-				name: 		"lambda2Item";
+				name: 		"itemDeletedLambda2";
 				label: 		qsTr("Guttman's λ2 (if item dropped)");
 				enabled: 	lambda2.checked
 			}
 
 			CheckBox
 			{
-				name: 		"lambda6Item";
+				name: 		"itemDeletedLambda6";
 				label: 		qsTr("Guttman's λ6 (if item dropped)");
 				enabled: 	lambda6.checked
 			}
 
 			CheckBox
 			{
-				name: 		"glbItem";
+				name: 		"itemDeletedGreatestLowerBound";
 				label: 		qsTr("Greatest lower bound (if item dropped)");
 				enabled: 	glb.checked
 			}
 
-			CheckBox { name: "itemRestCor";	label: qsTr("Item-rest correlation")		}
-			CheckBox { name: "meanItem";	label: qsTr("Mean")							}
-			CheckBox { name: "sdItem";		label: qsTr("Standard deviation")			}
+			CheckBox { name: "itemRestCorrelation";	label: qsTr("Item-rest correlation")		}
+			CheckBox { name: "itemMean";			label: qsTr("Mean")							}
+			CheckBox { name: "itemSd";			label: qsTr("Standard deviation")			}
 		}
 	}
 
@@ -181,10 +181,10 @@ Form
 		RadioButtonGroup
 		{
 				title: 	qsTr("Missing Values")
-				name: 	"missingValues"
+				name: 	"naAction"
 
-				RadioButton { value: "excludeCasesPairwise"; label: qsTr("Exclude cases pairwise"); checked: true}
-				RadioButton { value: "excludeCasesListwise"; label: qsTr("Exclude cases listwise")}
+				RadioButton { value: "pairwise"; label: qsTr("Exclude cases pairwise"); checked: true}
+				RadioButton { value: "listwise"; label: qsTr("Exclude cases listwise")}
 		}
 
 	Group
@@ -193,7 +193,7 @@ Form
 
 			IntegerField
 			{
-				name: 			"noSamples"
+				name: 			"bootstrapSamples"
 				label: 			qsTr("No. of bootstrap samples")
 				defaultValue: 	1000
 				fieldWidth: 	50
@@ -204,7 +204,7 @@ Form
 			RadioButtonGroup
 			{
 				title:		""
-				name:		"bootType"
+				name:		"bootstrapType"
 				enabled:	interval.checked
 
 				RadioButton {value: "nonParametric"; label: qsTr("Non-parametric bootstrap"); checked: true}
@@ -216,7 +216,7 @@ Form
 		RadioButtonGroup
 		{
 			title: 		qsTr("McDonald's ω Estimation")
-			name: 		"omegaMethod"
+			name: 		"omegaEstimationMethod"
 			enabled: 	omega.checked
 
 			RadioButton
@@ -225,34 +225,38 @@ Form
 				label: 		qsTr("CFA")
 				checked: 	true
 
-					CheckBox
+				CheckBox
+				{
+					name: 		"omegaFitMeasures"
+					label: 		qsTr("Single factor model fit")
+				}
+
+				RadioButtonGroup
+				{
+					title:		qsTr("Interval")
+					name:		"omegaIntervalMethod"
+					enabled:	interval.checked
+
+					RadioButton
 					{
-						name: 		"fitMeasures"
-						label: 		qsTr("Single factor model fit")
+
+						value: 		"analytic"
+						label: 		qsTr("Analytic interval")
+						checked: 	true
 					}
 
-					RadioButtonGroup
+					RadioButton
 					{
-						title:		qsTr("Interval")
-						name:		"omegaInterval"
-						enabled:	interval.checked
-
-						RadioButton
-						{
-
-							value: 		"omegaAnalytic"
-							label: 		qsTr("Analytic interval")
-							checked: 	true
-						}
-
-						RadioButton
-						{
-							value: 	"omegaBoot"
-							label: 	qsTr("Bootstrapped interval")
-						}
+						value: 	"bootstrapped"
+						label: 	qsTr("Bootstrapped interval")
 					}
 				}
-				RadioButton { value: "pfa"; label: qsTr("PFA")}
+			}
+			RadioButton
+			{
+				value: "pfa"
+				label: qsTr("PFA")
+			}
 		}
 
 		Group
@@ -263,18 +267,18 @@ Form
 			RadioButtonGroup
 			{
 				title:	""
-				name: 	"alphaMethod"
+				name: 	"alphaType"
 
 				RadioButton
 				{
-					value:		"alphaUnstand"
+					value:		"unstandardized"
 					label:		qsTr("Unstandardized")
 					checked:	true
 				}
 
 				RadioButton
 				{
-					value:	"alphaStand"
+					value:	"standardized"
 					label:	qsTr("Standardized")
 				}
 			}
@@ -282,19 +286,19 @@ Form
 			RadioButtonGroup
 			{
 				title:		qsTr("Interval")
-				name:		"alphaInterval"
+				name:		"alphaIntervalMethod"
 				enabled:	interval.checked
 
 				RadioButton
 				{
-					value:		"alphaAnalytic"
+					value:		"analytic"
 					label:		qsTr("Analytic interval")
 					checked:	true
 				}
 
 				RadioButton
 				{
-					value: 	"alphaBoot"
+					value: 	"bootstrapped"
 					label: 	qsTr("Bootstrapped interval")
 				}
 			}
@@ -330,14 +334,14 @@ Form
 			{
 				CheckBox
 				{
-					name:				"disableSampleSave"
-					label:				qsTr("Disable saving samples")
+					name:				"samplesSavingDisabled"
+					label:				qsTr("Do not save samples")
 					checked:			false
 				}
 				HelpButton
 				{
-					toolTip: 						qsTr("Click to learn more about saving the samples.")
-					helpPage:						"toolTip/sampleSavingFreq"
+					toolTip: 			qsTr("Click to learn more about saving the samples.")
+					helpPage:			"toolTip/sampleSavingFreq"
 				}
 			}
 

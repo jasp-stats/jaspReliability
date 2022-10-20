@@ -46,7 +46,7 @@ Form
 
 			CIField
 			{
-				name:			"credibleIntervalValueScale";
+				name:			"scaleCiLevel";
 				label:			qsTr("Credible interval");
 				defaultValue:	95
 			}
@@ -54,7 +54,7 @@ Form
 			CheckBox
 			{
 				id:			omega
-				name:		"omegaScale"
+				name:		"scaleOmega"
 				label:		qsTr("McDonald's ω")
 				checked:	true
 			}
@@ -62,43 +62,43 @@ Form
 			CheckBox
 			{
 				id:		alpha
-				name:	"alphaScale";
+				name:	"scaleAlpha";
 				label:	qsTr("Cronbach's α");
 			}
 
 			CheckBox
 			{
 				id:		lambda2
-				name:	"lambda2Scale";
+				name:	"scaleLambda2";
 				label:	qsTr("Guttman's λ2");
 			}
 
 			CheckBox
 			{
 				id:		lambda6
-				name:	"lambda6Scale";
+				name:	"scaleLambda6";
 				label:	qsTr("Guttman's λ6");
 			}
 
 			CheckBox
 			{
 				id:		glb
-				name:	"glbScale";
+				name:	"scaleGreatestLowerBound";
 				label:	qsTr("Greatest lower bound");
 			}
 
-			CheckBox { name: "averageInterItemCor";	label: qsTr("Average interitem correlation")	}
+			CheckBox { name: "averageInterItemCorrelation";	label: qsTr("Average interitem correlation")	}
 
 			RowLayout {
-				CheckBox { name: "meanScale";	label: qsTr("Mean");	id: mean}
-				CheckBox { name: "sdScale";		label: qsTr("SD");		id: sd}
+				CheckBox { name: "scaleMean";	label: qsTr("Mean");	id: mean}
+				CheckBox { name: "scaleSd";		label: qsTr("SD");		id: sd}
 
 			}
 			RadioButtonGroup
 			{
 				indent:		true
 				enabled:	mean.checked || sd.checked
-				name:		"scoresMethod"
+				name:		"meanSdScoresMethod"
 
 				RadioButton { value: "sumScores";	label: qsTr("of participants' sum scores"); checked: true}
 				RadioButton { value: "meanScores";	label: qsTr("of participants' mean scores")}
@@ -112,7 +112,7 @@ Form
 
 			CIField
 			{
-				name: 			"credibleIntervalValueItem";
+				name: 			"itemCiLevel";
 				label: 			qsTr("Credible interval");
 				defaultValue: 	95
 			}
@@ -120,7 +120,7 @@ Form
 			CheckBox
 			{
 				id: 		omegaItem
-				name: 		"omegaItem";
+				name: 		"itemDeletedOmega";
 				label: 		qsTr("McDonald's ω  (if item dropped)");
 				enabled: 	omega.checked
 			}
@@ -128,7 +128,7 @@ Form
 			CheckBox
 			{
 				id: 		alphaItem
-				name: 		"alphaItem";
+				name: 		"itemDeletedAlpha";
 				label: 		qsTr("Cronbach's α (if item dropped)");
 				enabled: 	alpha.checked
 			}
@@ -136,7 +136,7 @@ Form
 			CheckBox
 			{
 				id: 		lambda2Item
-				name: 		"lambda2Item";
+				name: 		"itemDeletedLambda2";
 				label: 		qsTr("Guttman's λ2 (if item dropped)");
 				enabled: 	lambda2.checked
 			}
@@ -144,7 +144,7 @@ Form
 			CheckBox
 			{
 				id: 		lambda6Item
-				name: 		"lambda6Item"
+				name: 		"itemDeletedLambda6"
 				label: 		qsTr("Guttman's λ6 (if item dropped)");
 				enabled: 	lambda6.checked
 			}
@@ -152,58 +152,58 @@ Form
 			CheckBox
 			{
 				id: 		glbItem
-				name: 		"glbItem";
+				name: 		"itemDeletedGreatestLowerBound";
 				label: 		qsTr("Greatest lower bound (if item dropped)");
 				enabled: 	glb.checked
 			}
 
 			CheckBox
 			{
-				id: 		plotItem
-				name: 		"plotItem";
+				id: 		itemPlot
+				name: 		"itemDeletedPlot";
 				label: 		qsTr("If item dropped plot");
 				enabled: 	omegaItem.checked || alphaItem.checked || lambda2Item.checked || lambda6Item.checked || glbItem.checked;
 
 				CheckBox
 				{
-					name: 		"orderItem";
+					name: 		"itemDeletedPlotOrdered";
 					label: 		qsTr("Order items");
-					enabled: 	plotItem.checked
+					enabled: 	itemPlot.checked
 
 					RadioButtonGroup
 					{
 						title: 	""
-						name: 	"orderType"
+						name: 	"itemDeletedPlotOrderedType"
 
-						RadioButton { value: "orderItemMean"; 	label: qsTr("Order items by mean");			checked: true	}
-						RadioButton { value: "orderItemKL"; 	label: qsTr("Order items by KL-divergence")					}
-						RadioButton { value: "orderItemKS"; 	label: qsTr("Order items by KS-distance")					}
+						RadioButton { value: "mean";				label: qsTr("Order items by mean");			checked: true	}
+						RadioButton { value: "kullbackLeibler"; 	label: qsTr("Order items by KL-divergence")					}
+						RadioButton { value: "kolmogorovSmirnov"; 	label: qsTr("Order items by KS-distance")					}
 					}
 				}
 			}
 
-			CheckBox { name: "itemRestCor";						label: qsTr("Item-rest correlation")			}
-			CheckBox { name: "meanItem";						label: qsTr("Mean")								}
-			CheckBox { name: "sdItem";							label: qsTr("Standard deviation")				}
+			CheckBox { name: "itemRestCorrelation";				label: qsTr("Item-rest correlation")			}
+			CheckBox { name: "itemMean";						label: qsTr("Mean")								}
+			CheckBox { name: "itemSd";							label: qsTr("Standard deviation")				}
 		}
 
 		Group
 		{
 			CheckBox
 			{
-				name: 	"plotPosterior";
+				name: 	"posteriorPlot";
 				label: 	qsTr("Plot Posteriors");
 				id:		postPlot
 
 				CheckBox
 				{
-					name: 	"fixXRange";
+					name: 	"posteriorPlotFixedRange";
 					label: 	qsTr("Fix range to 0-1")
 				}
 
 				CheckBox
 				{
-					name: 	"dispPrior";
+					name: 	"posteriorPlotPriorDisplayed";
 					label: 	qsTr("Display Priors")
 				}
 
@@ -215,7 +215,7 @@ Form
 			CheckBox
 			{
 				id:					probTable
-				name:				"probTable"
+				name:				"probabilityTable"
 				label:				qsTr("Probability for:")
 				childrenOnSameRow:	true
 
@@ -223,8 +223,7 @@ Form
 				{
 					DoubleField
 					{
-						id:				probTableValueLow
-						name:			"probTableValueLow"
+						name:			"probabilityTableLowerBound"
 						label:			""
 						defaultValue:	0.70
 						min:			0
@@ -238,7 +237,7 @@ Form
 
 					DoubleField
 					{
-						name:			"probTableValueHigh"
+						name:			"probabilityTableUpperBound"
 						label:			""
 						defaultValue:	.90
 						min:			0
@@ -258,7 +257,7 @@ Form
 				CheckBox
 				{
 					id:			shadePlots
-					name:		"shadePlots";
+					name:		"posteriorPlotShaded";
 					indent:		true
 					label:		qsTr("Shade posterior region in plot");
 					enabled:	probTable.checked & postPlot.checked
@@ -278,8 +277,7 @@ Form
 
 			IntegerField
 			{
-				id:				noSamples
-				name: 			"noSamples"
+				name: 			"samples"
 				label: 			qsTr("No. samples")
 				defaultValue: 	1000
 				fieldWidth: 	100
@@ -289,8 +287,7 @@ Form
 
 			IntegerField
 			{
-				id:				noBurnin
-				name: 			"noBurnin"
+				name: 			"burnin"
 				label: 			qsTr("No. burnin samples")
 				defaultValue: 	50
 				fieldWidth: 	100
@@ -300,8 +297,7 @@ Form
 
 			IntegerField
 			{
-				id:				noThin
-				name: 			"noThin"
+				name: 			"thinning"
 				label: 			qsTr("Thinning")
 				defaultValue: 	1
 				fieldWidth: 	100
@@ -311,7 +307,7 @@ Form
 
 			IntegerField
 			{
-				name: 			"noChains"
+				name: 			"chains"
 				label: 			qsTr("No. chains")
 				defaultValue: 	3
 				fieldWidth: 	100
@@ -356,7 +352,7 @@ Form
 
 			CheckBox
 			{
-				name:				"disableSampleSave"
+				name:				"samplesSavingDisabled"
 				label:				qsTr("Disable saving samples")
 				checked:			false
 			}
@@ -388,7 +384,7 @@ Form
 
 			FormulaField
 			{
-				name:			"iwScale"
+				name:			"inverseWishartPriorScale"
 				label:			qsTr("Inverse Wishart scale")
 				defaultValue:	"1e-10"
 				min:			0
@@ -397,7 +393,7 @@ Form
 			}
 			DoubleField
 			{
-				name:			"iwDf"
+				name:			"inverseWishartPriorDf"
 				label:			qsTr("Inverse Wishart df")
 				defaultValue:	vars.count
 				min:			vars.count
@@ -417,7 +413,7 @@ Form
 
 				IntegerField
 				{
-					name:			"igShape"
+					name:			"inverseGammaPriorShape"
 					label:			qsTr("shape")
 					defaultValue:	2
 					min:			0
@@ -428,7 +424,7 @@ Form
 
 				IntegerField
 				{
-					name:			"igScale"
+					name:			"inverseGammaPriorScale"
 					label:			qsTr("scale")
 					defaultValue:	1
 					min:			0
@@ -443,7 +439,7 @@ Form
 
 				DoubleField
 				{
-					name:			"loadMean"
+					name:			"normalPriorMean"
 					label:			qsTr("mean")
 					defaultValue:	0
 					min:			-10
@@ -464,10 +460,10 @@ Form
 			title: qsTr("Missing Values")
 			RadioButtonGroup
 			{
-				name: 	"missingValues"
+				name: 	"naAction"
 
-				RadioButton { value: "excludeCasesPairwise"; label: qsTr("Bayesian imputation"); checked: true}
-				RadioButton { value: "excludeCasesListwise"; label: qsTr("Exclude cases listwise")}
+				RadioButton { value: "imputation";	label: qsTr("Bayesian imputation"); checked: true	}
+				RadioButton { value: "listwise";	label: qsTr("Exclude cases listwise")				}
 			}
 		}
 
@@ -477,24 +473,24 @@ Form
 			enabled: omega.checked
 			CheckBox
 			{
-				name:		"dispPPC"
+				name:		"omegaPosteriorPredictiveCheck"
 				label:		qsTr("Posterior predictive check");
 			}
 			CheckBox
 			{
-				name:		"fitMeasures"
+				name:		"omegaFitMeasures"
 				label:		qsTr("Fit measures");
 
 				CIField
 				{
-					name:			"credibleIntervalValueFitMeasures";
+					name:			"omegaFitMeasuresCiLevel";
 					label:			qsTr("Credible interval");
 					defaultValue:	90
 				}
 
 				DoubleField
 				{
-					name:			"fitCutoffSat"
+					name:			"omegaFitMeasuresCutoffRmsea"
 					label:			qsTr("p(RMSEA <")
 					defaultValue:	.08
 					min:			0
@@ -504,7 +500,7 @@ Form
 				}
 				DoubleField
 				{
-					name:			"fitCutoffNull"
+					name:			"omegaFitMeasuresCutoffCfiTli"
 					label:			qsTr("p(CFI/TLI >")
 					defaultValue:	.9
 					min:			0
@@ -515,7 +511,7 @@ Form
 			}
 			CheckBox
 			{
-				name:		"dispLoadings"
+				name:		"standardizedLoadings"
 				label:		qsTr("Standardized factor loadings");
 			}
 		}
@@ -525,10 +521,10 @@ Form
 			RadioButtonGroup
 			{
 				title: qsTr("Coefficients")
-				name: "stdCoeffs"
+				name: "coefficientType"
 
-				RadioButton{ value: "unstand"; label: qsTr("Unstandardized"); checked: true }
-				RadioButton{ value: "stand"; label: qsTr("Standardized");
+				RadioButton{ value: "unstandardized"; label: qsTr("Unstandardized"); checked: true }
+				RadioButton{ value: "standardized";	label: qsTr("Standardized");
 				}
 
 			}
@@ -537,10 +533,10 @@ Form
 		{
 			RadioButtonGroup
 			{
-				name: "pointEst"
+				name: "pointEstimate"
 				title: qsTr("Posterior Point Estimate")
-				RadioButton{ value: "mean"; label: qsTr("Mean"); checked: true }
-				RadioButton{ value: "median"; label: qsTr("Median") }
+				RadioButton{ value: "mean";		label: qsTr("Mean"); checked: true	}
+				RadioButton{ value: "median";	label: qsTr("Median")				}
 			}
 		}
 

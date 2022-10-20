@@ -33,60 +33,83 @@ Form
 		{
 			name: 			"variables"
 			title: 			qsTr("Variables")
-			allowedColumns: ["scale", "ordinal"]
+			allowedColumns: ["scale", "nominal", "nominalText", "ordinal"]
 		}
 	}
 
 	Group
 	{
 
-		RadioButtonGroup
-		{
-			title: qsTr("Each subject is rated by...")
-			name: "iccType"
-
-			RadioButton
-			{
-				value:   	"icc1"
-				label:  	qsTr("a different rater (randomly selected)")
-				checked: 	true
-			}
-
-			RadioButton
-			{
-				value:   	"icc2"
-				label:  	qsTr("the same set of randomly selected raters/tests")
-				checked: 	false
-			}
-
-			RadioButton
-			{
-				value:   	"icc3"
-				label:  	qsTr("the same fixed set of raters/tests")
-				checked: 	false
-			}
-		}
 
 		CheckBox
 		{
-			name:   	"iccRatingAverage"
-			label:  	qsTr("Ratings are averaged")
-			checked: 	false
-		}
-	}
+			name:   	"cohensKappa"
+			label:  	qsTr("Cohen's kappa")
+			checked: 	true
+			
+			RadioButtonGroup
+			{
+			name:		"cohensKappaType"
 
-	CheckBox
+				RadioButton
+				{
+				name:		"unweighted"
+				label:		qsTr("Unweighted")
+				checked:	true
+				}
+
+				RadioButton
+				{
+				name:	"weighted"
+				label:	qsTr("Weighted")
+				}
+			}
+			
+			
+		}
+		
+		CheckBox
+		{
+			name:   	"fleissKappa"
+			label:  	qsTr("Fleiss' kappa")
+			checked: 	true
+		}
+		
+		CheckBox
+		{
+			name:   	"krippendorffsAlpha"
+			label:  	qsTr("Krippendorff's alpha")
+			checked: 	true
+			
+			DropDown
+			{
+				name:	"krippendorffsAlphaMethod"
+				label:	qsTr("Method")
+				values:
+				[
+					{label: qsTr("Nominal"),		value: "nominal"},
+					{label: qsTr("Ordinal"),		value: "ordinal"},
+					{label: qsTr("Interval"),		value: "interval"},
+					{label: qsTr("Ratio"),			value: "ratio"}
+				]
+			}
+		}
+		
+	}
+	
+
+	CheckBox 
 	{
-		name: 				"intervalOn"
+		name: 				"ci"
 		label:				qsTr("Confidence Interval")
 		checked: 			true
 		childrenOnSameRow: 	true
 
-		CIField
-		{
-			name: 		"confidenceIntervalValue";
-			label: 		"";
-			defaultValue: 95;
+		CIField 
+		{      
+			name:			"ciLevel"
+			label:			""
+			defaultValue:	95
 		}
 	}
 }

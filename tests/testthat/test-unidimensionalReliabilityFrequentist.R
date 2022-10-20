@@ -1,27 +1,27 @@
-options <- analysisOptions("reliabilityUniDimFrequentist")
-options$alphaItem <- TRUE
-options$alphaScale <- TRUE
-options$averageInterItemCor <- TRUE
-options$confidenceIntervalValue <- 0.9
-options$fitMeasures <- TRUE
-options$glbItem <- TRUE
-options$glbScale <- TRUE
-options$lambda2Item <- TRUE
-options$lambda2Scale <- TRUE
-options$lambda6Item <- TRUE
-options$lambda6Scale <- TRUE
-options$itemRestCor <- TRUE
-options$omegaItem <- TRUE
-options$omegaMethod <- "pfa"
-options$meanItem <- TRUE
-options$meanScale <- TRUE
-options$noSamples <- 300
-options$sdItem <- TRUE
-options$sdScale <- TRUE
+options <- analysisOptions("unidimensionalReliabilityFrequentist")
+options$itemDeletedAlpha <- TRUE
+options$scaleAlpha <- TRUE
+options$averageInterItemCorrelation <- TRUE
+options$ciLevel <- 0.9
+options$omegafitMeasures <- TRUE
+options$itemDeletedGreatestLowerBound <- TRUE
+options$scaleGreatestLowerBound <- TRUE
+options$itemDeletedLambda2 <- TRUE
+options$scaleLambda2 <- TRUE
+options$itemDeletedLambda6 <- TRUE
+options$scaleLambda6 <- TRUE
+options$itemRestCorrelation <- TRUE
+options$itemDeletedOmega <- TRUE
+options$omegaEstimationMethod <- "pfa"
+options$itemMean <- TRUE
+options$scaleMean <- TRUE
+options$bootstrapSamples <- 300
+options$itemSd <- TRUE
+options$scaleSd <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimFrequentist", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options)
 
 
 test_that("Frequentist Individual Item Reliability Statistics table results match for main options", {
@@ -50,33 +50,33 @@ test_that("Frequentist Scale Reliability Statistics table results match", {
                                       3.3927286604094, 3.16486028196314, "90% CI upper bound"))
 })
 
-options <- analysisOptions("reliabilityUniDimFrequentist")
-options$alphaInterval <- "alphaBoot"
-options$alphaItem <- TRUE
-options$alphaMethod <- "alphaStand"
-options$alphaScale <- TRUE
-options$averageInterItemCor <- TRUE
-options$bootType <- "parametric"
-options$glbItem <- TRUE
-options$glbScale <- TRUE
-options$lambda2Item <- TRUE
-options$lambda2Scale <- TRUE
-options$lambda6Item <- TRUE
-options$lambda6Scale <- TRUE
-options$itemRestCor <- TRUE
-options$omegaItem <- TRUE
-options$omegaMethod <- "pfa"
-options$meanItem <- TRUE
-options$meanScale <- TRUE
-options$scoresMethod <- "meanScores"
-options$noSamples <- 300
+options <- analysisOptions("unidimensionalReliabilityFrequentist")
+options$alphaIntervalMethod <- "bootstrapped"
+options$itemDeletedAlpha <- TRUE
+options$alphaType <- "standardized"
+options$scaleAlpha <- TRUE
+options$averageInterItemCorrelation <- TRUE
+options$bootstrapType <- "parametric"
+options$itemDeletedGreatestLowerBound <- TRUE
+options$scaleGreatestLowerBound <- TRUE
+options$itemDeletedLambda2 <- TRUE
+options$scaleLambda2 <- TRUE
+options$itemDeletedLambda6 <- TRUE
+options$scaleLambda6 <- TRUE
+options$itemRestCorrelation <- TRUE
+options$itemDeletedOmega <- TRUE
+options$omegaEstimationMethod <- "pfa"
+options$itemMean <- TRUE
+options$scaleMean <- TRUE
+options$meanSdScoresMethod <- "meanScores"
+options$bootstrapSamples <- 300
 options$reverseScaledItems <- "debMiss30"
-options$sdItem <- TRUE
-options$sdScale <- TRUE
+options$itemSd <- TRUE
+options$scaleSd <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "debMiss30")
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimFrequentist", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options)
 
 
 test_that("Frequentist Individual Item Reliability Statistics table results match for special options", {
@@ -107,20 +107,19 @@ test_that("Frequentist Scale Reliability Statistics table results match for spec
 })
 
 
+options <- analysisOptions("unidimensionalReliabilityFrequentist")
+options$omegaFitMeasures <- TRUE
+options$bootstrapSamples <- 100
+options$omegaIntervalMethod <- "bootstrapped"
+options$naAction <- "listwise"
+options$bootstrapType <- "parametric"
+options$omegaEstimationMethod <- "cfa"
+options$setSeed <- TRUE
+options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
+set.seed(1)
+results <- runAnalysis("unidimensionalReliabilityFrequentist", "asrm_mis.csv", options)
 
 test_that("Frequentist omega results match for CFA with bootstrapping", {
-  options <- analysisOptions("reliabilityUniDimFrequentist")
-  options$fitMeasures <- TRUE
-  options$noSamples <- 100
-  options$omegaInterval <- "omegaBoot"
-  options$missingValues <- "excludeCasesListwise"
-  options$bootType <- "parametric"
-  options$omegaMethod <- "cfa"
-  options$setSeed <- TRUE
-  options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
-  set.seed(1)
-  results <- runAnalysis("reliabilityUniDimFrequentist", "asrm_mis.csv", options)
-
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_fitTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list("Chi-Square", 12.788508304247, "df", 5, "p.value", 0.0254433712709828,
@@ -129,37 +128,37 @@ test_that("Frequentist omega results match for CFA with bootstrapping", {
                                  ))
 
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
-  jaspTools::expect_equal_tables(table,
+  expect_equal_tables(table,
                                  list(0.7917101, "Point estimate", 0.6791257, "95% CI lower bound",
                                       0.8494223, "95% CI upper bound"))
 })
 
 
-options <- analysisOptions("reliabilityUniDimFrequentist")
-options$alphaItem <- TRUE
-options$alphaScale <- TRUE
-options$averageInterItemCor <- TRUE
-options$confidenceIntervalValue <- 0.9
-options$fitMeasures <- TRUE
-options$glbItem <- TRUE
-options$glbScale <- TRUE
-options$lambda2Item <- TRUE
-options$lambda2Scale <- TRUE
-options$lambda6Item <- TRUE
-options$lambda6Scale <- TRUE
-options$itemRestCor <- TRUE
-options$omegaItem <- TRUE
-options$omegaMethod <- "pfa"
-options$meanItem <- TRUE
-options$meanScale <- TRUE
-options$noSamples <- 300
-options$sdItem <- TRUE
-options$disableSampleSave <- TRUE
-options$sdScale <- TRUE
+options <- analysisOptions("unidimensionalReliabilityFrequentist")
+options$itemDeletedAlpha <- TRUE
+options$scaleAlpha <- TRUE
+options$averageInterItemCorrelation <- TRUE
+options$ciLevel <- 0.9
+options$omegafitMeasures <- TRUE
+options$itemDeletedGreatestLowerBound <- TRUE
+options$scaleGreatestLowerBound <- TRUE
+options$itemDeletedLambda2 <- TRUE
+options$scaleLambda2 <- TRUE
+options$itemDeletedLambda6 <- TRUE
+options$scaleLambda6 <- TRUE
+options$itemRestCorrelation <- TRUE
+options$itemDeletedOmega <- TRUE
+options$omegaEstimationMethod <- "pfa"
+options$itemMean <- TRUE
+options$scaleMean <- TRUE
+options$bootstrapSamples <- 300
+options$itemSd <- TRUE
+options$samplesSavingDisabled <- TRUE
+options$scaleSd <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimFrequentist", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options)
 
 
 test_that("Frequentist Individual Item Reliability Statistics table results match for main options with disabled sample saving", {

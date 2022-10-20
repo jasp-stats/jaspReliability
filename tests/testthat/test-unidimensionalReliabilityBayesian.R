@@ -1,41 +1,41 @@
-options <- analysisOptions("reliabilityUniDimBayesian")
+options <- analysisOptions("unidimensionalReliabilityBayesian")
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss30")
-options$alphaScale <- TRUE
-options$lambda2Scale <- TRUE
-options$lambda6Scale <- TRUE
-options$glbScale <- TRUE
-options$averageInterItemCor <- TRUE
-options$meanScale <- TRUE
-options$sdScale <- TRUE
-options$scoresMethod <- "meanScores"
-options$credibleIntervalValueItem <- 0.9
-options$omegaItem <- TRUE
-options$alphaItem <- TRUE
-options$lambda2Item <- TRUE
-options$lambda6Item <- TRUE
-options$glbItem <- TRUE
-options$plotItem <- TRUE
-options$orderItem <- TRUE
-options$itemRestCor <- TRUE
-options$meanItem <- TRUE
-options$sdItem <- TRUE
-options$plotPosterior <- TRUE
-options$fixXRange <- TRUE
-options$dispPrior <- TRUE
-options$probTable <- TRUE
-options$probTableValueLow <- 0.1
-options$probTableValueHigh <- 0.3
-options$shadePlots <- TRUE
-options$noSamples <- 200
+options$scaleAlpha <- TRUE
+options$scaleLambda2 <- TRUE
+options$scaleLambda6 <- TRUE
+options$scaleGreatestLowerBound <- TRUE
+options$averageInterItemCorrelation <- TRUE
+options$scaleMean <- TRUE
+options$scaleSd <- TRUE
+options$meanSdScoresMethod <- "meanScores"
+options$itemCiLevel <- 0.9
+options$itemDeletedOmega <- TRUE
+options$itemDeletedAlpha <- TRUE
+options$itemDeletedLambda2 <- TRUE
+options$itemDeletedLambda6 <- TRUE
+options$itemDeletedGreatestLowerBound <- TRUE
+options$itemDeletedPlot <- TRUE
+options$itemDeletedPlotOrdered <- TRUE
+options$itemRestCorrelation <- TRUE
+options$itemMean <- TRUE
+options$itemSd <- TRUE
+options$posteriorPlot <- TRUE
+options$posteriorPlotFixedRange <- TRUE
+options$posteriorPlotPriorDisplayed <- TRUE
+options$probabilityTable <- TRUE
+options$probabilityTableLowerBound <- 0.1
+options$probabilityTableUpperBound <- 0.3
+options$posteriorPlotShaded <- TRUE
+options$samples <- 200
 options$rHat <- TRUE
 options$tracePlot <- TRUE
 options$setSeed <- TRUE
 options$reverseScaledItems <- "debMiss30"
-options$orderType <- "orderItemKL"
-options$iwDf <- length(options$variables)
-options$iwScale <- 0.0000000001
+options$itemDeletedPlotOrderedType <- "kullbackLeibler"
+options$inverseWishartPriorDf <- length(options$variables)
+options$inverseWishartPriorScale <- 0.0000000001
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimBayesian", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options)
 
 test_that("Bayesian Individual Item Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
@@ -163,7 +163,7 @@ test_that("McDonald's omega traceplot plot matches", {
 })
 
 test_that("Probability that Reliability Statistic is Larger than 0.10 and Smaller than 0.30 table results match", {
-  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_probTable"]][["data"]]
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_probabilityTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list(0.0577777777777778, 0.257612007091332, "McDonald's <unicode>",
                                       0.02, 0.2157426951971, "Cronbach's <unicode>", 0.0466666666666667,
@@ -188,40 +188,40 @@ test_that("Bayesian Scale Reliability Statistics table results match", {
 
 
 
-options <- analysisOptions("reliabilityUniDimBayesian")
+options <- analysisOptions("unidimensionalReliabilityBayesian")
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss30")
-options$alphaScale <- TRUE
-options$lambda2Scale <- TRUE
-options$lambda6Scale <- TRUE
-options$glbScale <- TRUE
-options$averageInterItemCor <- TRUE
-options$meanScale <- TRUE
-options$sdScale <- TRUE
-options$scoresMethod <- "meanScores"
-options$credibleIntervalValueItem <- 0.9
-options$omegaItem <- TRUE
-options$alphaItem <- TRUE
-options$lambda2Item <- TRUE
-options$lambda6Item <- TRUE
-options$glbItem <- TRUE
-options$orderItem <- TRUE
-options$itemRestCor <- TRUE
-options$meanItem <- TRUE
-options$sdItem <- TRUE
-options$probTable <- TRUE
-options$probTableValueLow <- 0.1
-options$probTableValueHigh <- 0.3
-options$shadePlots <- TRUE
-options$noSamples <- 200
+options$scaleAlpha <- TRUE
+options$scaleLambda2 <- TRUE
+options$scaleLambda6 <- TRUE
+options$scaleGreatestLowerBound <- TRUE
+options$averageInterItemCorrelation <- TRUE
+options$scaleMean <- TRUE
+options$scaleSd <- TRUE
+options$meanSdScoresMethod <- "meanScores"
+options$itemCiLevel <- 0.9
+options$itemDeletedOmega <- TRUE
+options$itemDeletedAlpha <- TRUE
+options$itemDeletedLambda2 <- TRUE
+options$itemDeletedLambda6 <- TRUE
+options$itemDeletedGreatestLowerBound <- TRUE
+options$itemDeletedPlotOrdered <- TRUE
+options$itemRestCorrelation <- TRUE
+options$itemMean <- TRUE
+options$itemSd <- TRUE
+options$probabilityTable <- TRUE
+options$probabilityTableLowerBound <- 0.1
+options$probabilityTableUpperBound <- 0.3
+options$posteriorPlotShaded <- TRUE
+options$samples <- 200
 options$rHat <- TRUE
-options$disableSampleSave <- TRUE
+options$samplesSavingDisabled <- TRUE
 options$setSeed <- TRUE
 options$reverseScaledItems <- "debMiss30"
-options$iwDf <- length(options$variables)
-options$iwScale <- 0.0000000001
+options$inverseWishartPriorDf <- length(options$variables)
+options$inverseWishartPriorScale <- 0.0000000001
 
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimBayesian", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options)
 
 test_that("Bayesian Individual Item Reliability Statistics table results match with disabled sample saving", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
@@ -259,7 +259,7 @@ test_that("Bayesian Individual Item Reliability Statistics table results match w
 })
 
 test_that("Probability that Reliability Statistic is Larger than 0.10 and Smaller than 0.30 table results match with disabled sample saving", {
-  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_probTable"]][["data"]]
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_probabilityTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list(0.0577777777777778, 0.257612007091332, "McDonald's <unicode>",
                                       0.02, 0.2157426951971, "Cronbach's <unicode>", 0.0466666666666667,
@@ -285,35 +285,35 @@ test_that("Bayesian Scale Reliability Statistics table results match with disabl
 
 
 
-options <- analysisOptions("reliabilityUniDimBayesian")
+options <- analysisOptions("unidimensionalReliabilityBayesian")
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
-options$omegaScale <- TRUE
-options$lambda2Scale <- TRUE
-options$averageInterItemCor <- TRUE
-options$credibleIntervalValueItem <- 0.95
-options$omegaItem <- TRUE
-options$lambda2Item <- TRUE
-options$itemRestCor <- TRUE
-options$plotPosterior <- TRUE
-options$fixXRange <- TRUE
-options$dispPrior <- TRUE
-options$probTable <- TRUE
-options$probTableValueLow <- 0.7
-options$probTableValueHigh <- 1
-options$noSamples <- 100
-options$noChains <- 2
+options$scaleOmega <- TRUE
+options$scaleLambda2 <- TRUE
+options$averageInterItemCorrelation <- TRUE
+options$itemCiLevel <- 0.95
+options$itemDeletedOmega <- TRUE
+options$itemDeletedLambda2 <- TRUE
+options$itemRestCorrelation <- TRUE
+options$posteriorPlot <- TRUE
+options$posteriorPlotFixedRange <- TRUE
+options$posteriorPlotPriorDisplayed <- TRUE
+options$probabilityTable <- TRUE
+options$probabilityTableLowerBound <- 0.7
+options$probabilityTableUpperBound <- 1
+options$samples <- 100
+options$chains <- 2
 options$rHat <- TRUE
 options$setSeed <- TRUE
-options$missingValues <- "excludeCasesListwise"
-options$iwScale <- 1
-options$iwDf <- 10
-options$igShape <- 6
-options$igScale <- 10
-options$loadMean <- 1
+options$naAction <- "listwise"
+options$inverseWishartPriorScale <- 1
+options$inverseWishartPriorDf <- 10
+options$inverseGammaPriorShape <- 6
+options$inverseGammaPriorScale <- 10
+options$normalPriorMean <- 1
 
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimBayesian", "asrm_mis.csv", options)
-# results <- runAnalysis("reliabilityUniDimBayesian", Bayesrel::asrm_mis, options)
+results <- runAnalysis("unidimensionalReliabilityBayesian", "asrm_mis.csv", options)
+# results <- runAnalysis("unidimensionalReliabilityBayesian", Bayesrel::asrm_mis, options)
 
 
 
@@ -348,7 +348,7 @@ test_that("McDonald's omega plot matches with adjusted priors", {
 })
 
 test_that("Probability that Reliability Statistic is Larger than 0.70 and Smaller than 1.00 table results match with adjusted priors", {
-  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_probTable"]][["data"]]
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_probabilityTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list(0.3, 0.523746083410163, "McDonald's <unicode>", 0.99, 0.101557273983737,
                                       "Guttman's <unicode>2"))
@@ -366,34 +366,34 @@ test_that("Bayesian Scale Reliability Statistics table results match with adjust
 
 
 
-options <- analysisOptions("reliabilityUniDimBayesian")
+options <- analysisOptions("unidimensionalReliabilityBayesian")
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
-options$alphaScale <- TRUE
-options$lambda2Scale <- TRUE
-options$lambda6Scale <- TRUE
-options$glbScale <- TRUE
-options$averageInterItemCor <- TRUE
-options$omegaItem <- TRUE
-options$alphaItem <- TRUE
-options$lambda2Item <- TRUE
-options$lambda6Item <- TRUE
-options$glbItem <- TRUE
-options$plotPosterior <- TRUE
-options$dispPrior <- TRUE
-options$probTable <- TRUE
-options$probTableValueLow <- 0.2
-options$probTableValueHigh <- 0.5
-options$shadePlots <- TRUE
-options$noSamples <- 200
+options$scaleAlpha <- TRUE
+options$scaleLambda2 <- TRUE
+options$scaleLambda6 <- TRUE
+options$scaleGreatestLowerBound <- TRUE
+options$averageInterItemCorrelation <- TRUE
+options$itemDeletedOmega <- TRUE
+options$itemDeletedAlpha <- TRUE
+options$itemDeletedLambda2 <- TRUE
+options$itemDeletedLambda6 <- TRUE
+options$itemDeletedGreatestLowerBound <- TRUE
+options$posteriorPlot <- TRUE
+options$posteriorPlotPriorDisplayed <- TRUE
+options$probabilityTable <- TRUE
+options$probabilityTableLowerBound <- 0.2
+options$probabilityTableUpperBound <- 0.5
+options$posteriorPlotShaded <- TRUE
+options$samples <- 200
 options$rHat <- TRUE
 options$setSeed <- TRUE
-options$iwDf <- length(options$variables)
-options$iwScale <- 0.0000000001
-options$dispLoadings <- TRUE
-options$stdCoeffs <- "stand"
-options$pointEst <- "median"
+options$inverseWishartPriorDf <- length(options$variables)
+options$inverseWishartPriorScale <- 0.0000000001
+options$standardizedLoadings <- TRUE
+options$coefficientType <- "standardized"
+options$pointEstimate <- "median"
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimBayesian", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options)
 
 test_that("Bayesian Individual Item Reliability Statistics table results match with standardization and median", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
@@ -458,7 +458,7 @@ test_that("McDonald's omega plot matches", {
 
 
 test_that("Probability that Reliability Statistic is Larger than 0.20 and Smaller than 0.50 table results match with standardization and median", {
-  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_probTable"]][["data"]]
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_probabilityTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list(0.211111111111111, 0.322277450512426, "McDonald's <unicode>",
                                       0.546666666666667, 0.327282806190898, "Cronbach's <unicode>",
@@ -482,21 +482,20 @@ test_that("Bayesian Scale Reliability Statistics table results match with standa
 })
 
 
-# results were compared to blavFitIndices and lavaan fitmeasures with the same data but 2000 obs
-options <- analysisOptions("reliabilityUniDimBayesian")
+# results were compared to blavFitIndices and lavaan omegaFitMeasures with the same data but 2000 obs
+options <- analysisOptions("unidimensionalReliabilityBayesian")
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
-options$omegaScale <- TRUE
-options$noSamples <- 200
-options$noChains <- 3
+options$scaleOmega <- TRUE
+options$samples <- 200
+options$chains <- 3
 options$setSeed <- TRUE
-options$fitMeasures <- TRUE
-options$fitCutoffSat <- .1
-options$fitCutoffNull <- .85
-options$dispPPC <- TRUE
-
+options$omegaFitMeasures <- TRUE
+options$omegaFitMeasuresCutoffRmsea <- .1
+options$omegaFitMeasuresCutoffCfiTli <- .85
+options$omegaPosteriorPredictiveCheck <- TRUE
 
 set.seed(1)
-results <- runAnalysis("reliabilityUniDimBayesian", "asrm.csv", options)
+results <- runAnalysis("unidimensionalReliabilityBayesian", "asrm.csv", options)
 
 
 test_that("Fit Measures for the Single-Factor Model table results match", {
@@ -515,3 +514,24 @@ test_that("Posterior Predictive Check Omega plot matches", {
   jaspTools::expect_equal_plots(testPlot, "posterior-predictive-check-omega")
 })
 
+
+
+options <- analysisOptions("unidimensionalReliabilityBayesian")
+options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss30")
+options$scaleAlpha <- TRUE
+options$itemDeletedAlpha <- TRUE
+options$itemDeletedPlot <- TRUE
+options$itemDeletedPlotOrdered <- TRUE
+options$itemDeletedPlotOrderedType <- "mean"
+options$inverseWishartPriorDf <- length(options$variables)
+options$inverseWishartPriorScale <- 0.0000000001
+options$samples <- 200
+options$chains <- 2
+set.seed(1)
+results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options)
+
+test_that("Cronbach's alpha plot item deleted plot matches ordered by mean", {
+  plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_plotContainerItem"]][["collection"]][["stateContainer_plotContainerItem_alpha"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "cronbach-s-alpha-item-mean-ordered")
+})
