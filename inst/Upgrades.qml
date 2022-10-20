@@ -197,8 +197,8 @@ Upgrades
 	Upgrade
 	{
 		functionName: 		"raterAgreement"
-		fromVersion:		"0.16.3"
-		toVersion:			"0.16.4"
+		fromVersion:		"0.16.4"
+		toVersion:			"0.17.0"
 
 		ChangeRename
 		{
@@ -237,8 +237,8 @@ Upgrades
 	Upgrade
 	{
 		functionName: 		"intraclassCorrelation"
-		fromVersion:		"0.16.3"
-		toVersion:			"0.16.4"
+		fromVersion:		"0.16.4"
+		toVersion:			"0.17.0"
 
 		ChangeRename
 		{
@@ -261,8 +261,8 @@ Upgrades
 	{
 		functionName: 		"reliabilityUniDimFrequentist"
 		newFunctionName:	"unidimensionalReliabilityFrequentist"
-		fromVersion:		"0.16.3"
-		toVersion:			"0.16.4"
+		fromVersion:		"0.16.4"
+		toVersion:			"0.17.0"
 
 		ChangeRename
 		{
@@ -459,8 +459,8 @@ Upgrades
 	{
 		functionName: 		"reliabilityUniDimBayesian"
 		newFunctionName:	"unidimensionalReliabilityBayesian"
-		fromVersion:		"0.16.3"
-		toVersion:			"0.16.4"
+		fromVersion:		"0.16.4"
+		toVersion:			"0.17.0"
 
 		ChangeRename
 		{
