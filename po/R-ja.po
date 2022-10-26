@@ -63,10 +63,10 @@ msgid "Point Estimate"
 msgstr "点推定"
 
 msgid ""
-"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
+"%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout & "
 "Fleiss (1979)."
 msgstr ""
-"%s の参加者と %s の判定者/測定者. Shrout & Fleiss (1979) にて参照されている"
+"%1$s の参加者と %2$s の判定者/測定者. Shrout & Fleiss (1979) にて参照されている"
 "ICC タイプ."
 
 msgid "Please select at least 2 columns"
@@ -280,8 +280,8 @@ msgstr ""
 msgid "%s"
 msgstr "%s"
 
-msgid "%s Variables %s and %s correlated perfectly."
-msgstr "%s 変数 %s と %s は完全に相関しています。"
+msgid "%1$s Variables %2$s and %3$s correlated perfectly."
+msgstr "%1$s 変数 %2$s と %3$s は完全に相関しています。"
 
 msgid "Please enter at least 2 variables to do an analysis"
 msgstr "分析を行うためには、少なくとも2つの変数を入力してください"

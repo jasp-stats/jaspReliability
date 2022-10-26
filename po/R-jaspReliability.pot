@@ -58,7 +58,7 @@ msgstr ""
 msgid "Point Estimate"
 msgstr ""
 
-msgid "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & Fleiss (1979)."
+msgid "%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout & Fleiss (1979)."
 msgstr ""
 
 msgid "Please select at least 2 columns"
@@ -226,7 +226,7 @@ msgstr ""
 msgid "%s"
 msgstr ""
 
-msgid "%s Variables %s and %s correlated perfectly."
+msgid "%1$s Variables %2$s and %3$s correlated perfectly."
 msgstr ""
 
 msgid "Please enter at least 2 variables to do an analysis"
