@@ -1197,7 +1197,7 @@ gettextf <- function(fmt, ..., domain = NULL)  {
       footnote <- gettextf("%s", footnote)
     } else {
       for (i in seq_len(nrow(pos))) {
-        footnote <- gettextf("%s Variables %s and %s correlated perfectly. ",
+        footnote <- gettextf("%1$s Variables %2$s and %3$s correlated perfectly. ",
                              footnote, variables[pos[i, 1]], variables[pos[i, 2]])
       }
     }
