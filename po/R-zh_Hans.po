@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
 "POT-Creation-Date: 2022-10-08 03:50\n"
-"PO-Revision-Date: 2022-10-16 10:38+0000\n"
+"PO-Revision-Date: 2022-11-03 13:04+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "jasp/jaspreliability-r/zh_Hans/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 
 msgid "Bland-Altman Plots"
 msgstr "Bland-Altman 图"
@@ -65,10 +65,10 @@ msgid "%s subjects and %s raters/measurements. ICC type as referenced by Shrout 
 msgstr ""
 
 msgid "Please select at least 2 columns"
-msgstr ""
+msgstr "请选择至少2个变量"
 
 msgid "Cohen's %s kappa"
-msgstr ""
+msgstr "Cohen's %s kappa"
 
 msgid "Ratings"
 msgstr ""
@@ -83,19 +83,19 @@ msgid "SE"
 msgstr ""
 
 msgid "Lower"
-msgstr ""
+msgstr "下界"
 
 msgid "%s%% CI"
 msgstr ""
 
 msgid "Upper"
-msgstr ""
+msgstr "上界"
 
 msgid "Confidence intervals are asymptotic."
-msgstr ""
+msgstr "置信区间是渐近的。"
 
 msgid "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
-msgstr ""
+msgstr "如果只有 2 个水平，加权 kappa 等于未加权 kappa。"
 
 msgid "Fleiss' kappa"
 msgstr ""
