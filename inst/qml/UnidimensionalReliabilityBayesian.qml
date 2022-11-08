@@ -19,7 +19,7 @@
 import QtQuick 			2.8
 import JASP.Controls 	1.0
 import JASP.Theme 		1.0
-import JASP.Widgets		1.0
+import QtQuick.Layouts	1.3
 
 Form
 {
@@ -212,6 +212,7 @@ Form
 
 		Group
 		{
+			columns: 1
 			CheckBox
 			{
 				id:					probTable
@@ -248,21 +249,14 @@ Form
 				}
 			}
 
-
-			Item
+			CheckBox
 			{
-				width:	shadePlots.width + Theme.subOptionOffset
-				height: shadePlots.height
-
-				CheckBox
-				{
-					id:			shadePlots
-					name:		"posteriorPlotShaded";
-					indent:		true
-					label:		qsTr("Shade posterior region in plot");
-					enabled:	probTable.checked & postPlot.checked
-					x:			Theme.subOptionOffset
-				}
+				id:			shadePlots
+				name:		"posteriorPlotShaded";
+				indent:		true
+				label:		qsTr("Shade posterior region in plot");
+				enabled:	probTable.checked & postPlot.checked
+				Layout.leftMargin:	childControlsArea.anchors.leftMargin
 			}
 		}
 	}
