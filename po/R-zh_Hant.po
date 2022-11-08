@@ -271,8 +271,8 @@ msgstr ""
 msgid "%s"
 msgstr "%s"
 
-msgid "%1$s Variables %2$s and %3$s correlated perfectly."
-msgstr "%1$s 變項 %2$s 與變項 %3$s 為完全相關"
+msgid "%1$sVariables %2$s and %3$s correlated perfectly."
+msgstr "%1$s變項 %2$s 與變項 %3$s 為完全相關"
 
 msgid "Please enter at least 2 variables to do an analysis"
 msgstr "請輸入至少兩個變項"

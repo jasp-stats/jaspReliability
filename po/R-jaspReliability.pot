@@ -226,7 +226,7 @@ msgstr ""
 msgid "%s"
 msgstr ""
 
-msgid "%1$s Variables %2$s and %3$s correlated perfectly."
+msgid "%1$sVariables %2$s and %3$s correlated perfectly."
 msgstr ""
 
 msgid "Please enter at least 2 variables to do an analysis"

@@ -280,8 +280,8 @@ msgstr ""
 msgid "%s"
 msgstr "%s"
 
-msgid "%1$s Variables %2$s and %3$s correlated perfectly."
-msgstr "%1$s 変数 %2$s と %3$s は完全に相関しています。"
+msgid "%1$sVariables %2$s and %3$s correlated perfectly."
+msgstr "%1$s変数 %2$s と %3$s は完全に相関しています。"
 
 msgid "Please enter at least 2 variables to do an analysis"
 msgstr "分析を行うためには、少なくとも2つの変数を入力してください"

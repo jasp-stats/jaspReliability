@@ -1193,13 +1193,9 @@ gettextf <- function(fmt, ..., domain = NULL)  {
     cr <- cor(dataset, use = "pairwise.complete.obs")
     cr[lower.tri(cr, diag = TRUE)] <- 0
     pos <- which(round(cr, 3) == 1, arr.ind = TRUE)
-    if (length(pos) == 0) {
-      footnote <- footnote
-    } else {
-      for (i in seq_len(nrow(pos))) {
-        footnote <- gettextf("%1$s Variables %2$s and %3$s correlated perfectly. ",
-                             footnote, variables[pos[i, 1]], variables[pos[i, 2]])
-      }
+    for (i in seq_len(nrow(pos))) {
+      footnote <- gettextf("%1$sVariables %2$s and %3$s correlated perfectly. ",
+                           footnote, variables[pos[i, 1]], variables[pos[i, 2]])
     }
 
     return(footnote)
