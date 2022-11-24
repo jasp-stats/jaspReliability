@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
 "POT-Creation-Date: 2022-08-27 04:07\n"
-"PO-Revision-Date: 2022-11-14 06:44+0000\n"
+"PO-Revision-Date: 2022-11-25 07:47+0000\n"
 "Last-Translator: Changya Hu <changyahu@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "jasp/jaspreliability-r/zh_Hant/>\n"
@@ -89,6 +89,7 @@ msgstr "標準誤"
 msgid "Lower"
 msgstr "下限"
 
+#, fuzzy
 msgid "%s%% CI"
 msgstr "%s%% 信賴區間"
 
@@ -134,6 +135,7 @@ msgstr "無法抽樣事後模型之omega值。建議在'進階設定'中選擇'�
 msgid "Posterior Plots"
 msgstr "事後機率圖"
 
+#, fuzzy
 msgid "Density"
 msgstr "密度"
 
