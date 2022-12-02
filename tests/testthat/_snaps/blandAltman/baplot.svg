@@ -36,9 +36,9 @@
 <line x1='60.77' y1='298.87' x2='720.00' y2='298.87' style='stroke-width: 1.07; stroke-dasharray: 5.69,5.69; stroke-linecap: butt;' />
 <line x1='60.77' y1='194.60' x2='720.00' y2='194.60' style='stroke-width: 1.07; stroke-dasharray: 5.69,5.69; stroke-linecap: butt;' />
 <line x1='60.77' y1='144.06' x2='720.00' y2='144.06' style='stroke-width: 1.07; stroke-dasharray: 5.69,5.69; stroke-linecap: butt;' />
-<rect x='60.77' y='298.87' width='659.23' height='29.18' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #BEBEBE; fill-opacity: 0.30;' />
-<rect x='60.77' y='144.06' width='659.23' height='50.55' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #BEBEBE; fill-opacity: 0.30;' />
-<rect x='60.77' y='432.33' width='659.23' height='50.55' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #BEBEBE; fill-opacity: 0.30;' />
+<rect x='60.77' y='298.87' width='659.23' height='29.18' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BEBEBE; fill-opacity: 0.30;' />
+<rect x='60.77' y='144.06' width='659.23' height='50.55' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BEBEBE; fill-opacity: 0.30;' />
+<rect x='60.77' y='432.33' width='659.23' height='50.55' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BEBEBE; fill-opacity: 0.30;' />
 <circle cx='510.36' cy='308.42' r='3.56' style='stroke-width: 0.71; fill: #7F7F7F;' />
 <circle cx='215.17' cy='302.90' r='3.56' style='stroke-width: 0.71; fill: #7F7F7F;' />
 <circle cx='275.97' cy='339.86' r='3.56' style='stroke-width: 0.71; fill: #7F7F7F;' />
