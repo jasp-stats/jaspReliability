@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2022-08-27 04:07\n"
+"POT-Creation-Date: 2022-12-03 03:30\n"
 "PO-Revision-Date: 2021-09-03 13:32+0000\n"
 "Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
@@ -54,9 +54,6 @@ msgstr "IC Superior a %s%%"
 msgid "Calculations not possible: %s"
 msgstr ""
 
-msgid "getPointEstFun has no case for value:"
-msgstr ""
-
 msgid "Intraclass Correlation"
 msgstr "Correlação Intraclasse"
 
@@ -68,8 +65,8 @@ msgstr "Estimativas por Ponto"
 
 #, fuzzy
 msgid ""
-"%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout & "
-"Fleiss (1979)."
+"%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout "
+"& Fleiss (1979)."
 msgstr ""
 "%1$s sujeitos e %2$s juízes/medidas. Tipo de CCI referenciado por Shrout & "
 "Fleiss (1979)."
@@ -131,6 +128,37 @@ msgstr "média"
 msgid "sd"
 msgstr "padrão"
 
+msgid "%s Of the observations, %1.f complete cases were used."
+msgstr "Dos %s de observações, foram utilizado %1.f dos casos completos."
+
+msgid "%s Of the observations, pairwise complete cases were used."
+msgstr "Dos %s de observações, foram utilizados casos completos por pares."
+
+msgid ""
+"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
+"lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
+"Options'"
+msgstr ""
+"Amostragem para matriz posterior de covariância para algum destes [alpha, "
+"lambda2, lambda6, glb] falhou. Tente trocar para 'Exclusão listwise' em "
+"'Opções Avançadas'"
+
+#, fuzzy
+msgid ""
+"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
+"lambda6, glb] failed."
+msgstr ""
+"Amostragem para matriz posterior de covariância para algum destes [alpha, "
+"lambda2, lambda6, glb] falhou. Tente trocar para 'Exclusão listwise' em "
+"'Opções Avançadas'"
+
+msgid ""
+"Sampling the posterior factor model for omega failed. Try changing to "
+"'Exclude cases listwise' in 'Advanced Options'"
+msgstr ""
+"A amostragem do modelo de fator posterior para ômega falhou. Tente trocar "
+"para 'Excluir casos listwise' em 'Opções avançadas'"
+
 #, fuzzy
 msgid ""
 "Sampling the posterior null model failed. Try changing to 'Exclude cases "
@@ -138,39 +166,6 @@ msgid ""
 msgstr ""
 "A amostragem do modelo de fator posterior para ômega falhou. Tente trocar "
 "para 'Excluir casos listwise' em 'Opções avançadas'"
-
-msgid "Posterior Plots"
-msgstr "Gráficos Posteriores"
-
-msgid "Density"
-msgstr "Densidade"
-
-msgid "If Item Dropped Posterior Plots"
-msgstr "Gráficos posteriores caso o item seja eliminado"
-
-msgid "Please enter at least 3 variables for the if item dropped plot"
-msgstr ""
-"Por favor, introduza ao menos 3 variáveis para 'Gráficos Posteriores caso o "
-"item seja eliminado'"
-
-msgid "KLD ordering failed because two variables have perfect correlation"
-msgstr ""
-"O ordenamento KLD falhou pois as duas variáveis tem correlação perfeita"
-
-msgid "Item Dropped"
-msgstr "Item eliminado"
-
-msgid "Eigenvalue"
-msgstr "Autovalor"
-
-msgid "Eigenvalue No."
-msgstr "N.º de valor próprio."
-
-msgid "Convergence Traceplot"
-msgstr "Traçado de convergência"
-
-msgid "Iterations"
-msgstr "Iterações"
 
 msgid "Bayesian Scale Reliability Statistics"
 msgstr "Estatísticas bayesianas de confiabilidade"
@@ -248,54 +243,41 @@ msgstr "Medidas de ajuste para modelo de um único fator"
 msgid "Standardized loading"
 msgstr ""
 
-msgid "%s Of the observations, %1.f complete cases were used."
-msgstr "Dos %s de observações, foram utilizado %1.f dos casos completos."
+msgid "Posterior Plots"
+msgstr "Gráficos Posteriores"
 
-msgid "%s Of the observations, pairwise complete cases were used."
-msgstr "Dos %s de observações, foram utilizados casos completos por pares."
+msgid "Density"
+msgstr "Densidade"
 
-msgid ""
-"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
-"lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
-"Options'"
+msgid "If Item Dropped Posterior Plots"
+msgstr "Gráficos posteriores caso o item seja eliminado"
+
+msgid "Please enter at least 3 variables for the if item dropped plot"
 msgstr ""
-"Amostragem para matriz posterior de covariância para algum destes [alpha, "
-"lambda2, lambda6, glb] falhou. Tente trocar para 'Exclusão listwise' em "
-"'Opções Avançadas'"
+"Por favor, introduza ao menos 3 variáveis para 'Gráficos Posteriores caso o "
+"item seja eliminado'"
 
-#, fuzzy
-msgid ""
-"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
-"lambda6, glb] failed."
+msgid "KLD ordering failed because two variables have perfect correlation"
 msgstr ""
-"Amostragem para matriz posterior de covariância para algum destes [alpha, "
-"lambda2, lambda6, glb] falhou. Tente trocar para 'Exclusão listwise' em "
-"'Opções Avançadas'"
+"O ordenamento KLD falhou pois as duas variáveis tem correlação perfeita"
 
-msgid ""
-"Sampling the posterior factor model for omega failed. Try changing to "
-"'Exclude cases listwise' in 'Advanced Options'"
+msgid "Item Dropped"
+msgstr "Item eliminado"
+
+msgid "Eigenvalue"
+msgstr "Autovalor"
+
+msgid "Eigenvalue No."
+msgstr "N.º de valor próprio."
+
+msgid "Convergence Traceplot"
+msgstr "Traçado de convergência"
+
+msgid "Iterations"
+msgstr "Iterações"
+
+msgid "getPointEstFun has no case for value:"
 msgstr ""
-"A amostragem do modelo de fator posterior para ômega falhou. Tente trocar "
-"para 'Excluir casos listwise' em 'Opções avançadas'"
-
-msgid ""
-"Too few MCMC samples will remain after the removal of the burnin samples and "
-"thinning,\n"
-"                     please increase No.samples."
-msgstr ""
-"Restaram poucas amostras MCMC após os processos de remoção das amostras "
-"burnin e do processo de thinning\n"
-"                     por favor, aumentar o número de amostras."
-
-msgid "%s"
-msgstr "%s"
-
-msgid "%1$sVariables %2$s and %3$s correlated perfectly."
-msgstr "%1$sAs variáveis %2$s e %3$s se correlacionam perfeitamente."
-
-msgid "Please enter at least 2 variables to do an analysis"
-msgstr "Por favor, introduza ao menos 2 variáveis para realizar uma análise"
 
 msgid "Omega item dropped statistics with CFA failed."
 msgstr "As estatísticas Ômega com item eliminado e CFA falharam."
@@ -358,6 +340,21 @@ msgstr "Medidas Adicionais de Ajuste"
 msgid "Value"
 msgstr "Valor"
 
+msgid ""
+"Too few MCMC samples will remain after the removal of the burnin samples and "
+"thinning,\n"
+"                     please increase No.samples."
+msgstr ""
+"Restaram poucas amostras MCMC após os processos de remoção das amostras "
+"burnin e do processo de thinning\n"
+"                     por favor, aumentar o número de amostras."
+
+msgid "%1$sVariables %2$s and %3$s correlated perfectly."
+msgstr "%1$sAs variáveis %2$s e %3$s se correlacionam perfeitamente."
+
+msgid "Please enter at least 2 variables to do an analysis"
+msgstr "Por favor, introduza ao menos 2 variáveis para realizar uma análise"
+
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
 msgstr[0] "O seguinte item se correlacionou negativamente com a escala: %s "
@@ -368,6 +365,9 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "O seguinte item foi escalado de forma invertida: %s "
 msgstr[1] "Os seguintes itens foram escalados de forma invertida: %s "
+
+#~ msgid "%s"
+#~ msgstr "%s"
 
 #~ msgid "Posterior Mean"
 #~ msgstr "Media posterior"

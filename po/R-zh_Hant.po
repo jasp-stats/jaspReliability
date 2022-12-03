@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
-"POT-Creation-Date: 2022-08-27 04:07\n"
+"POT-Creation-Date: 2022-12-03 03:30\n"
 "PO-Revision-Date: 2022-11-25 07:47+0000\n"
 "Last-Translator: Changya Hu <changyahu@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -48,9 +48,6 @@ msgid "Upper %s%% CI"
 msgstr "%s%% 信賴區間上界"
 
 msgid "Calculations not possible: %s"
-msgstr ""
-
-msgid "getPointEstFun has no case for value:"
 msgstr ""
 
 msgid "Intraclass Correlation"
@@ -126,42 +123,38 @@ msgstr "平均數"
 msgid "sd"
 msgstr "標準差"
 
+msgid "%s Of the observations, %1.f complete cases were used."
+msgstr "從 %s 的觀察值中, 使用 %1.f 的完整資料"
+
+msgid "%s Of the observations, pairwise complete cases were used."
+msgstr "從 %s 的觀察值中，以配對完整的個案進行分析"
+
+msgid ""
+"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
+"lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
+"Options'"
+msgstr ""
+"無法成功抽樣事後共變數矩陣中的以下數值[alpha, lambda2, lambda6, glb]。建議"
+"在'進階設定'中選擇'完全排除法'。"
+
+#, fuzzy
+msgid ""
+"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
+"lambda6, glb] failed."
+msgstr ""
+"無法成功抽樣事後共變數矩陣中的以下數值[alpha, lambda2, lambda6, glb]。建議"
+"在'進階設定'中選擇'完全排除法'。"
+
+msgid ""
+"Sampling the posterior factor model for omega failed. Try changing to "
+"'Exclude cases listwise' in 'Advanced Options'"
+msgstr "無法抽樣事後模型之omega值。建議在'進階設定'中選擇'完全排除法'"
+
 #, fuzzy
 msgid ""
 "Sampling the posterior null model failed. Try changing to 'Exclude cases "
 "listwise' in 'Advanced Options'"
 msgstr "無法抽樣事後模型之omega值。建議在'進階設定'中選擇'完全排除法'"
-
-msgid "Posterior Plots"
-msgstr "事後機率圖"
-
-#, fuzzy
-msgid "Density"
-msgstr "密度"
-
-msgid "If Item Dropped Posterior Plots"
-msgstr "此題刪除後的事後機率圖"
-
-msgid "Please enter at least 3 variables for the if item dropped plot"
-msgstr "請至少選擇三個變項，以繪製此題刪除後的事後機率圖"
-
-msgid "KLD ordering failed because two variables have perfect correlation"
-msgstr "因為有兩個變項為完全相關，故KLD排序失敗。"
-
-msgid "Item Dropped"
-msgstr "排除提項"
-
-msgid "Eigenvalue"
-msgstr "特徵值"
-
-msgid "Eigenvalue No."
-msgstr "特徵值編號"
-
-msgid "Convergence Traceplot"
-msgstr "聚合跡數圖"
-
-msgid "Iterations"
-msgstr "迭代"
 
 msgid "Bayesian Scale Reliability Statistics"
 msgstr "貝氏量表信度統計數"
@@ -233,49 +226,39 @@ msgstr "單一因子模式配適指標"
 msgid "Standardized loading"
 msgstr ""
 
-msgid "%s Of the observations, %1.f complete cases were used."
-msgstr "從 %s 的觀察值中, 使用 %1.f 的完整資料"
-
-msgid "%s Of the observations, pairwise complete cases were used."
-msgstr "從 %s 的觀察值中，以配對完整的個案進行分析"
-
-msgid ""
-"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
-"lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
-"Options'"
-msgstr ""
-"無法成功抽樣事後共變數矩陣中的以下數值[alpha, lambda2, lambda6, glb]。建議"
-"在'進階設定'中選擇'完全排除法'。"
+msgid "Posterior Plots"
+msgstr "事後機率圖"
 
 #, fuzzy
-msgid ""
-"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
-"lambda6, glb] failed."
+msgid "Density"
+msgstr "密度"
+
+msgid "If Item Dropped Posterior Plots"
+msgstr "此題刪除後的事後機率圖"
+
+msgid "Please enter at least 3 variables for the if item dropped plot"
+msgstr "請至少選擇三個變項，以繪製此題刪除後的事後機率圖"
+
+msgid "KLD ordering failed because two variables have perfect correlation"
+msgstr "因為有兩個變項為完全相關，故KLD排序失敗。"
+
+msgid "Item Dropped"
+msgstr "排除提項"
+
+msgid "Eigenvalue"
+msgstr "特徵值"
+
+msgid "Eigenvalue No."
+msgstr "特徵值編號"
+
+msgid "Convergence Traceplot"
+msgstr "聚合跡數圖"
+
+msgid "Iterations"
+msgstr "迭代"
+
+msgid "getPointEstFun has no case for value:"
 msgstr ""
-"無法成功抽樣事後共變數矩陣中的以下數值[alpha, lambda2, lambda6, glb]。建議"
-"在'進階設定'中選擇'完全排除法'。"
-
-msgid ""
-"Sampling the posterior factor model for omega failed. Try changing to "
-"'Exclude cases listwise' in 'Advanced Options'"
-msgstr "無法抽樣事後模型之omega值。建議在'進階設定'中選擇'完全排除法'"
-
-msgid ""
-"Too few MCMC samples will remain after the removal of the burnin samples and "
-"thinning,\n"
-"                     please increase No.samples."
-msgstr ""
-"刪去刨除以及資料瘦身後，MCMC樣本數過少。,\n"
-"                     請增加樣本數。"
-
-msgid "%s"
-msgstr "%s"
-
-msgid "%1$sVariables %2$s and %3$s correlated perfectly."
-msgstr "%1$s變項 %2$s 與變項 %3$s 為完全相關"
-
-msgid "Please enter at least 2 variables to do an analysis"
-msgstr "請輸入至少兩個變項"
 
 #, fuzzy
 msgid "Omega item dropped statistics with CFA failed."
@@ -337,6 +320,20 @@ msgstr "配適指標"
 msgid "Value"
 msgstr "值"
 
+msgid ""
+"Too few MCMC samples will remain after the removal of the burnin samples and "
+"thinning,\n"
+"                     please increase No.samples."
+msgstr ""
+"刪去刨除以及資料瘦身後，MCMC樣本數過少。,\n"
+"                     請增加樣本數。"
+
+msgid "%1$sVariables %2$s and %3$s correlated perfectly."
+msgstr "%1$s變項 %2$s 與變項 %3$s 為完全相關"
+
+msgid "Please enter at least 2 variables to do an analysis"
+msgstr "請輸入至少兩個變項"
+
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
 msgstr[0] "以下題項與量表為負相關：%s "
@@ -345,14 +342,17 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "以下題項反向計分：%s "
 
-#, fuzzy
-msgid ""
-"%s subjects and %s raters/measurements. ICC type as referenced by Shrout & "
-"Fleiss (1979)."
-msgstr "%s 被評者與 %s 評分者/測量。ICC類型請參見 Shrout & Fleiss (1979)。"
+#~ msgid "%s"
+#~ msgstr "%s"
 
-msgid "%s Variables %s and %s correlated perfectly."
-msgstr "%s 變項 %s 與變項 %s 為完全相關"
+#, fuzzy
+#~ msgid ""
+#~ "%s subjects and %s raters/measurements. ICC type as referenced by Shrout "
+#~ "& Fleiss (1979)."
+#~ msgstr "%s 被評者與 %s 評分者/測量。ICC類型請參見 Shrout & Fleiss (1979)。"
+
+#~ msgid "%s Variables %s and %s correlated perfectly."
+#~ msgstr "%s 變項 %s 與變項 %s 為完全相關"
 
 #~ msgid "Posterior Mean"
 #~ msgstr "事前平均數"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
-"POT-Creation-Date: 2022-10-08 03:50\n"
+"POT-Creation-Date: 2022-12-03 03:30\n"
 "PO-Revision-Date: 2022-11-07 09:04+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -49,9 +49,6 @@ msgstr "%s%% CI 上界"
 msgid "Calculations not possible: %s"
 msgstr "无法计算: %s"
 
-msgid "getPointEstFun has no case for value:"
-msgstr ""
-
 msgid "Intraclass Correlation"
 msgstr "组内相关性"
 
@@ -61,7 +58,9 @@ msgstr "类型"
 msgid "Point Estimate"
 msgstr "点估计"
 
-msgid "%s subjects and %s raters/measurements. ICC type as referenced by Shrout & Fleiss (1979)."
+msgid ""
+"%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout "
+"& Fleiss (1979)."
 msgstr ""
 
 msgid "Please select at least 2 columns"
@@ -94,7 +93,8 @@ msgstr "上界"
 msgid "Confidence intervals are asymptotic."
 msgstr "置信区间是渐近的。"
 
-msgid "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
+msgid ""
+"If there are only 2 levels, weighted kappa is equal to unweighted kappa."
 msgstr "如果只有 2 个水平，加权 kappa 等于未加权 kappa。"
 
 msgid "Fleiss' kappa"
@@ -103,7 +103,9 @@ msgstr ""
 msgid "Method"
 msgstr ""
 
-msgid "Confidence intervals are based on percentiles from 1000 bootstrap replications."
+msgid ""
+"Confidence intervals are based on percentiles from 1000 bootstrap "
+"replications."
 msgstr ""
 
 msgid "Greatest Lower Bound"
@@ -118,7 +120,98 @@ msgstr ""
 msgid "sd"
 msgstr ""
 
-msgid "Sampling the posterior null model failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
+msgid "%s Of the observations, %1.f complete cases were used."
+msgstr ""
+
+msgid "%s Of the observations, pairwise complete cases were used."
+msgstr ""
+
+msgid ""
+"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
+"lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
+"Options'"
+msgstr ""
+
+msgid ""
+"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
+"lambda6, glb] failed."
+msgstr ""
+
+msgid ""
+"Sampling the posterior factor model for omega failed. Try changing to "
+"'Exclude cases listwise' in 'Advanced Options'"
+msgstr ""
+
+msgid ""
+"Sampling the posterior null model failed. Try changing to 'Exclude cases "
+"listwise' in 'Advanced Options'"
+msgstr ""
+
+msgid "Bayesian Scale Reliability Statistics"
+msgstr ""
+
+msgid "Estimate"
+msgstr ""
+
+msgid "%s lower bound"
+msgstr ""
+
+msgid "%s upper bound"
+msgstr ""
+
+msgid "Posterior %s"
+msgstr ""
+
+msgid "Bayesian Individual Item Reliability Statistics"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "%s (if item dropped)"
+msgstr ""
+
+msgid ""
+"%s Please enter at least 3 variables for the if item dropped statistics."
+msgstr ""
+
+msgid ""
+"The bounds you entered have been rearranged in increasing order to provide "
+"meaningful results."
+msgstr ""
+
+msgid ""
+"Probability that Reliability Statistic is Larger than %.2f and Smaller than "
+"%.2f"
+msgstr ""
+
+msgid "Probability"
+msgstr ""
+
+msgid "Statistic"
+msgstr ""
+
+msgid "Prior"
+msgstr ""
+
+msgid "Posterior"
+msgstr ""
+
+msgid "Fit Measures for the Single-Factor Model"
+msgstr ""
+
+msgid ""
+"'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
+"than\n"
+"                         the corresponding cutoff and the probabilities that "
+"the B-CFI/TLI are larger than the\n"
+"                         corresponding cutoff."
+msgstr ""
+
+msgid "Standardized Loadings of the Single-Factor Model"
+msgstr ""
+
+msgid "Standardized loading"
 msgstr ""
 
 msgid "Posterior Plots"
@@ -151,88 +244,7 @@ msgstr ""
 msgid "Iterations"
 msgstr ""
 
-msgid "Bayesian Scale Reliability Statistics"
-msgstr ""
-
-msgid "Estimate"
-msgstr ""
-
-msgid "%s lower bound"
-msgstr ""
-
-msgid "%s upper bound"
-msgstr ""
-
-msgid "Posterior %s"
-msgstr ""
-
-msgid "Bayesian Individual Item Reliability Statistics"
-msgstr ""
-
-msgid "Item"
-msgstr ""
-
-msgid "%s (if item dropped)"
-msgstr ""
-
-msgid "%s Please enter at least 3 variables for the if item dropped statistics."
-msgstr ""
-
-msgid "The bounds you entered have been rearranged in increasing order to provide meaningful results."
-msgstr ""
-
-msgid "Probability that Reliability Statistic is Larger than %.2f and Smaller than %.2f"
-msgstr ""
-
-msgid "Probability"
-msgstr ""
-
-msgid "Statistic"
-msgstr ""
-
-msgid "Prior"
-msgstr ""
-
-msgid "Posterior"
-msgstr ""
-
-msgid "Fit Measures for the Single-Factor Model"
-msgstr ""
-
-msgid "'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller than\n                         the corresponding cutoff and the probabilities that the B-CFI/TLI are larger than the\n                         corresponding cutoff."
-msgstr ""
-
-msgid "Standardized Loadings of the Single-Factor Model"
-msgstr ""
-
-msgid "Standardized loading"
-msgstr ""
-
-msgid "%s Of the observations, %1.f complete cases were used."
-msgstr ""
-
-msgid "%s Of the observations, pairwise complete cases were used."
-msgstr ""
-
-msgid "Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
-msgstr ""
-
-msgid "Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed."
-msgstr ""
-
-msgid "Sampling the posterior factor model for omega failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
-msgstr ""
-
-msgid "Too few MCMC samples will remain after the removal of the burnin samples and thinning,\n                     please increase No.samples."
-msgstr ""
-
-msgid "%s"
-msgstr ""
-
-msgid "%s Variables %s and %s correlated perfectly."
-msgstr ""
-
-msgid "Please enter at least 2 variables to do an analysis"
+msgid "getPointEstFun has no case for value:"
 msgstr ""
 
 msgid "Omega item dropped statistics with CFA failed."
@@ -244,10 +256,16 @@ msgstr ""
 msgid "Lambda6 item dropped statistics failed."
 msgstr ""
 
-msgid "Omega calculation with CFA failed.\n                                                    Try changing to PFA in Advanced Options"
+msgid ""
+"Omega calculation with CFA failed.\n"
+"                                                    Try changing to PFA in "
+"Advanced Options"
 msgstr ""
 
-msgid "Omega bootstrapped interval calculation with CFA failed.\n                                                            Try changing to PFA in 'Advanced Options'"
+msgid ""
+"Omega bootstrapped interval calculation with CFA failed.\n"
+"                                                            Try changing to "
+"PFA in 'Advanced Options'"
 msgstr ""
 
 msgid "Omega calculation with PFA failed."
@@ -281,6 +299,18 @@ msgid "Fit measure"
 msgstr ""
 
 msgid "Value"
+msgstr ""
+
+msgid ""
+"Too few MCMC samples will remain after the removal of the burnin samples and "
+"thinning,\n"
+"                     please increase No.samples."
+msgstr ""
+
+msgid "%1$sVariables %2$s and %3$s correlated perfectly."
+msgstr ""
+
+msgid "Please enter at least 2 variables to do an analysis"
 msgstr ""
 
 msgid "The following item correlated negatively with the scale: %s. "

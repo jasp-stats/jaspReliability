@@ -1,15 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-11-08 09:33+0000\n"
-"Last-Translator: Changya Hu <changyahu@gmail.com>\n"
-"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
-"jasp/jaspreliability-qml/zh_Hant/>\n"
-"Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14.2\n"
 "X-Language: zh_Hant\n"
 "X-Qt-Contexts: true\n"
 
@@ -37,585 +31,12 @@ msgctxt "Description|"
 msgid "Bayesian Unidimensional Reliability"
 msgstr "貝氏單向度信度"
 
-msgctxt "uniDimBayesian|"
-msgid "Variables"
-msgstr "變項"
-
-msgctxt "uniDimBayesian|"
-msgid "Analysis"
-msgstr "分析"
-
-msgctxt "uniDimBayesian|"
-msgid "Scale Statistics"
-msgstr "量表統計數"
-
-msgctxt "uniDimBayesian|"
-msgid "Credible interval"
-msgstr "可靠區間"
-
-msgctxt "uniDimBayesian|"
-msgid "McDonald's ω"
-msgstr "McDonald's ω 信度係數"
-
-#, fuzzy
-msgctxt "uniDimBayesian|"
-msgid "Posterior predictive check"
-msgstr "事後預測檢查"
-
-msgctxt "uniDimBayesian|"
-msgid "Cronbach's α"
-msgstr "Cronbach's α 信度係數"
-
-msgctxt "uniDimBayesian|"
-msgid "Guttman's λ2"
-msgstr "Guttman's λ2 信度係數"
-
-msgctxt "uniDimBayesian|"
-msgid "Guttman's λ6"
-msgstr "Guttman's λ6 信度係數"
-
-msgctxt "uniDimBayesian|"
-msgid "Greatest lower bound"
-msgstr "最大下界"
-
-msgctxt "uniDimBayesian|"
-msgid "Average interitem correlation"
-msgstr "平均題項相關"
-
-msgctxt "uniDimBayesian|"
-msgid "Mean"
-msgstr "平均數"
-
-msgctxt "uniDimBayesian|"
-msgid "Standard deviation"
-msgstr "標準差"
-
-msgctxt "uniDimBayesian|"
-msgid "Individual Item Statistics"
-msgstr "個別題項統計數"
-
-msgctxt "uniDimBayesian|"
-msgid "McDonald's ω  (if item dropped)"
-msgstr "刪除此題後的 McDonald's ω   信度係數"
-
-msgctxt "uniDimBayesian|"
-msgid "Cronbach's α (if item dropped)"
-msgstr "刪除此題後的 Cronbach's α 信度係數"
-
-msgctxt "uniDimBayesian|"
-msgid "Guttman's λ2 (if item dropped)"
-msgstr "刪除此題後的 Guttman's λ2 信度係數"
-
-msgctxt "uniDimBayesian|"
-msgid "Guttman's λ6 (if item dropped)"
-msgstr "刪除此題後的 Guttman's λ6 信度係數"
-
-msgctxt "uniDimBayesian|"
-msgid "Greatest lower bound (if item dropped)"
-msgstr "刪除此題後的最大下界"
-
-msgctxt "uniDimBayesian|"
-msgid "If item dropped plot"
-msgstr "刪除此題之信度係數圖"
-
-msgctxt "uniDimBayesian|"
-msgid "Order items"
-msgstr "題項排序"
-
-msgctxt "uniDimBayesian|"
-msgid "Order items by mean"
-msgstr "以平均數排序題項"
-
-msgctxt "uniDimBayesian|"
-msgid "Order items by KL-divergence"
-msgstr "以題項 KL-divergence 排序"
-
-msgctxt "uniDimBayesian|"
-msgid "Order items by KS-distance"
-msgstr "以題項 KS-distance 排序"
-
-msgctxt "uniDimBayesian|"
-msgid "Item-rest correlation"
-msgstr "此題項項-所有其他題項之相關"
-
-msgctxt "uniDimBayesian|"
-msgid "Plot Posteriors"
-msgstr "圖示事後機率"
-
-msgctxt "uniDimBayesian|"
-msgid "Fix range to 0-1"
-msgstr "將數值限制在0與1之間"
-
-msgctxt "uniDimBayesian|"
-msgid "Display Priors"
-msgstr "顯示事前機率"
-
-msgctxt "uniDimBayesian|"
-msgid "Probability for:"
-msgstr "的機率"
-
-msgctxt "uniDimBayesian|"
-msgid "< Reliability <"
-msgstr "<信度 <"
-
-msgctxt "uniDimBayesian|"
-msgid "Shade posterior region in plot"
-msgstr "在圖中顯示事後機率區"
-
-msgctxt "uniDimBayesian|"
-msgid "Convergence"
-msgstr "聚合"
-
-msgctxt "uniDimBayesian|"
-msgid "MCMC parameters"
-msgstr "MCMC 參數"
-
-msgctxt "uniDimBayesian|"
-msgid "No. samples"
-msgstr "樣本數"
-
-msgctxt "uniDimBayesian|"
-msgid "No. burnin samples"
-msgstr "burnin 樣本數"
-
-#, fuzzy
-msgctxt "uniDimBayesian|"
-msgid "Thinning"
-msgstr "資料瘦身"
-
-msgctxt "uniDimBayesian|"
-msgid "No. chains"
-msgstr "鍊數"
-
-msgctxt "uniDimBayesian|"
-msgid "Diagnostics"
-msgstr "診斷指標"
-
-msgctxt "uniDimBayesian|"
-msgid "R-hat"
-msgstr "R-hat 向量"
-
-msgctxt "uniDimBayesian|"
-msgid "Traceplots"
-msgstr "描線圖"
-
-#, fuzzy
-msgctxt "uniDimBayesian|"
-msgid "Repeatability"
-msgstr "再測信度"
-
-msgctxt "uniDimBayesian|"
-msgid "Set seed"
-msgstr "設定Seed起始值"
-
-msgctxt "uniDimBayesian|"
-msgid "Samples"
-msgstr "樣本"
-
-msgctxt "uniDimBayesian|"
-msgid "Disable saving samples"
-msgstr "不使用節省樣本功能"
-
-msgctxt "uniDimBayesian|"
-msgid "Reverse-Scaled Items"
-msgstr "反向計分題"
-
-msgctxt "uniDimBayesian|"
-msgid "Normal-Scaled Items"
-msgstr ""
-
-msgctxt "uniDimBayesian|"
-msgid "Missing Values"
-msgstr "遺漏值"
-
-msgctxt "uniDimBayesian|"
-msgid "Exclude cases listwise"
-msgstr "完全排除法"
-
-msgctxt "uniDimFrequentist|"
-msgid "Variables"
-msgstr "變項"
-
-msgctxt "uniDimFrequentist|"
-msgid "Analysis"
-msgstr "分析"
-
-msgctxt "uniDimFrequentist|"
-msgid "Scale Statistics"
-msgstr "量表統計數"
-
-msgctxt "uniDimFrequentist|"
-msgid "Confidence Interval"
-msgstr "信賴區間"
-
-msgctxt "uniDimFrequentist|"
-msgid "McDonald's ω"
-msgstr "McDonald's ω 信度係數"
-
-msgctxt "uniDimFrequentist|"
-msgid "Cronbach's α"
-msgstr "Cronbach's α 信度係數"
-
-msgctxt "uniDimFrequentist|"
-msgid "Guttman's λ2"
-msgstr "Guttman's λ2 信度係數"
-
-msgctxt "uniDimFrequentist|"
-msgid "Guttman's λ6"
-msgstr "Guttman's λ6 信度係數"
-
-msgctxt "uniDimFrequentist|"
-msgid "Greatest lower bound"
-msgstr "最大下界"
-
-msgctxt "uniDimFrequentist|"
-msgid "Average interitem correlation"
-msgstr "變項間平均相關"
-
-msgctxt "uniDimFrequentist|"
-msgid "Mean"
-msgstr "平均數"
-
-msgctxt "uniDimFrequentist|"
-msgid "Standard deviation"
-msgstr "標準差"
-
-msgctxt "uniDimFrequentist|"
-msgid "Individual Item Statistics"
-msgstr "個別題項統計數"
-
-msgctxt "uniDimFrequentist|"
-msgid "McDonald's ω  (if item dropped)"
-msgstr "此題刪除後之 McDonald's ω 信度係數"
-
-msgctxt "uniDimFrequentist|"
-msgid "Cronbach's α (if item dropped)"
-msgstr "此題刪除後之 Cronbach's α 信度係數"
-
-msgctxt "uniDimFrequentist|"
-msgid "Guttman's λ2 (if item dropped)"
-msgstr "此題刪除後之 Guttman's λ2 信度係數"
-
-msgctxt "uniDimFrequentist|"
-msgid "Guttman's λ6 (if item dropped)"
-msgstr "此題刪除後之 Guttman's λ6 信度係數"
-
-msgctxt "uniDimFrequentist|"
-msgid "Greatest lower bound (if item dropped)"
-msgstr "此題刪除後之最大下界"
-
-msgctxt "uniDimFrequentist|"
-msgid "Item-rest correlation"
-msgstr "此題項-所有其他題項之相關"
-
-msgctxt "uniDimFrequentist|"
-msgid "Reverse-Scaled Items"
-msgstr "反向計分題"
-
-msgctxt "uniDimFrequentist|"
-msgid "Normal-Scaled Items"
-msgstr ""
-
-msgctxt "uniDimFrequentist|"
-msgid "Advanced Options"
-msgstr "進階選項"
-
-msgctxt "uniDimFrequentist|"
-msgid "Missing Values"
-msgstr "遺漏值"
-
-msgctxt "uniDimFrequentist|"
-msgid "Exclude cases pairwise"
-msgstr "成對排除法"
-
-msgctxt "uniDimFrequentist|"
-msgid "Exclude cases listwise"
-msgstr "完全排除法"
-
-msgctxt "uniDimFrequentist|"
-msgid "Bootstrap"
-msgstr "拔靴法"
-
-msgctxt "uniDimFrequentist|"
-msgid "No. of bootstrap samples"
-msgstr "拔靴法樣本數"
-
-msgctxt "uniDimFrequentist|"
-msgid "Non-parametric bootstrap"
-msgstr "無母數拔靴法"
-
-msgctxt "uniDimFrequentist|"
-msgid "Parametric bootstrap"
-msgstr "有母數拔靴法"
-
-msgctxt "uniDimFrequentist|"
-msgid "McDonald's ω Estimation"
-msgstr "McDonald's ω 估計值"
-
-msgctxt "uniDimFrequentist|"
-msgid "CFA"
-msgstr "驗證性因素分析"
-
-msgctxt "uniDimFrequentist|"
-msgid "Single factor model fit"
-msgstr "單一因素模式配適"
-
-msgctxt "uniDimFrequentist|"
-msgid "Interval"
-msgstr "區間"
-
-msgctxt "uniDimFrequentist|"
-msgid "Analytic interval"
-msgstr "分析區間"
-
-msgctxt "uniDimFrequentist|"
-msgid "Bootstrapped interval"
-msgstr "拔靴法區間"
-
-msgctxt "uniDimFrequentist|"
-msgid "PFA"
-msgstr "主軸因子分析"
-
-msgctxt "uniDimFrequentist|"
-msgid "Cronbach's α Estimation"
-msgstr "Cronbach's α 估計值"
-
-msgctxt "uniDimFrequentist|"
-msgid "Unstandardized"
-msgstr "未標準化"
-
-msgctxt "uniDimFrequentist|"
-msgid "Standardized"
-msgstr "標準化"
-
-msgctxt "uniDimFrequentist|"
-msgid "Repeatability"
-msgstr "可重複性"
-
-msgctxt "uniDimFrequentist|"
-msgid "Set seed"
-msgstr "設定Seed初始值"
-
-msgctxt "uniDimFrequentist|"
-msgid "Samples"
-msgstr "樣本"
-
-msgctxt "uniDimFrequentist|"
-msgid "Disable saving samples"
-msgstr "不使用節省樣本功能"
-
-msgctxt "uniDimFrequentist|"
-msgid "Click to learn more about saving the samples."
-msgstr "按此鍵以了解更多有關節省樣本"
-
-msgctxt "uniDimBayesian|"
-msgid "SD"
-msgstr "標準差"
-
-msgctxt "uniDimBayesian|"
-msgid "of participants' sum scores"
-msgstr "研究參與者的測驗總分"
-
-msgctxt "uniDimBayesian|"
-msgid "of participants' mean scores"
-msgstr "研究參與者的測驗平均分數"
-
-msgctxt "uniDimFrequentist|"
-msgid "SD"
-msgstr "標準差"
-
-msgctxt "uniDimFrequentist|"
-msgid "of participants' sum scores"
-msgstr "研究參與者的測驗總分"
-
-msgctxt "uniDimFrequentist|"
-msgid "of participants' mean scores"
-msgstr "研究參與者的測驗平均分數"
-
 msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
 msgstr ""
 
 msgctxt "Description|"
 msgid "Rater Agreement"
-msgstr ""
-
-#, fuzzy
-msgctxt "intraclassCorrelation|"
-msgid "Variables"
-msgstr "變項"
-
-#, fuzzy
-msgctxt "intraclassCorrelation|"
-msgid "Each subject is rated by..."
-msgstr "每位被評者被多少人評分..."
-
-#, fuzzy
-msgctxt "intraclassCorrelation|"
-msgid "a different rater (randomly selected)"
-msgstr "(隨機選取)評分者"
-
-#, fuzzy
-msgctxt "intraclassCorrelation|"
-msgid "the same set of randomly selected raters/tests"
-msgstr "同一群隨機選取的評分者/測驗"
-
-#, fuzzy
-msgctxt "intraclassCorrelation|"
-msgid "the same fixed set of raters/tests"
-msgstr "相同的固定評分者/測驗"
-
-#, fuzzy
-msgctxt "intraclassCorrelation|"
-msgid "Ratings are averaged"
-msgstr "評分 (取其平均數)"
-
-#, fuzzy
-msgctxt "intraclassCorrelation|"
-msgid "Confidence Interval"
-msgstr "信賴區間"
-
-#, fuzzy
-msgctxt "raterAgreement|"
-msgid "Variables"
-msgstr "變項"
-
-msgctxt "raterAgreement|"
-msgid "Cohen's kappa"
-msgstr ""
-
-msgctxt "raterAgreement|"
-msgid "Unweighted"
-msgstr ""
-
-msgctxt "raterAgreement|"
-msgid "Weighted"
-msgstr ""
-
-msgctxt "raterAgreement|"
-msgid "Fleiss' kappa"
-msgstr ""
-
-msgctxt "raterAgreement|"
-msgid "Krippendorff's alpha"
-msgstr ""
-
-msgctxt "raterAgreement|"
-msgid "Method"
-msgstr ""
-
-msgctxt "raterAgreement|"
-msgid "Nominal"
-msgstr ""
-
-msgctxt "raterAgreement|"
-msgid "Ordinal"
-msgstr ""
-
-#, fuzzy
-msgctxt "raterAgreement|"
-msgid "Interval"
-msgstr "區間"
-
-msgctxt "raterAgreement|"
-msgid "Ratio"
-msgstr ""
-
-#, fuzzy
-msgctxt "raterAgreement|"
-msgid "Confidence Interval"
-msgstr "信賴區間"
-
-msgctxt "uniDimBayesian|"
-msgid "Priors"
-msgstr ""
-
-msgctxt "uniDimBayesian|"
-msgid "CTT-Coefficients (α, λ2, λ6, glb)"
-msgstr ""
-
-msgctxt "uniDimBayesian|"
-msgid "Inverse Wishart scale"
-msgstr ""
-
-msgctxt "uniDimBayesian|"
-msgid "Inverse Wishart df"
-msgstr ""
-
-msgctxt "uniDimBayesian|"
-msgid "Inverse gamma:"
-msgstr ""
-
-msgctxt "uniDimBayesian|"
-msgid "shape"
-msgstr ""
-
-msgctxt "uniDimBayesian|"
-msgid "scale"
-msgstr ""
-
-msgctxt "uniDimBayesian|"
-msgid "Normal:"
-msgstr ""
-
-msgctxt "uniDimBayesian|"
-msgid "mean"
-msgstr ""
-
-#, fuzzy
-msgctxt "uniDimBayesian|"
-msgid "Advanced Options"
-msgstr "進階選項"
-
-msgctxt "uniDimBayesian|"
-msgid "Bayesian imputation"
-msgstr ""
-
-#, fuzzy
-msgctxt "uniDimBayesian|"
-msgid "McDonald's ω Estimation"
-msgstr "McDonald's ω 估計值"
-
-msgctxt "uniDimBayesian|"
-msgid "Fit measures"
-msgstr ""
-
-msgctxt "uniDimBayesian|"
-msgid "p(RMSEA <"
-msgstr ""
-
-msgctxt "uniDimBayesian|"
-msgid ")"
-msgstr ""
-
-msgctxt "uniDimBayesian|"
-msgid "p(CFI/TLI >"
-msgstr ""
-
-msgctxt "uniDimBayesian|"
-msgid "Standardized factor loadings"
-msgstr ""
-
-msgctxt "uniDimBayesian|"
-msgid "Coefficients"
-msgstr ""
-
-#, fuzzy
-msgctxt "uniDimBayesian|"
-msgid "Unstandardized"
-msgstr "未標準化"
-
-#, fuzzy
-msgctxt "uniDimBayesian|"
-msgid "Standardized"
-msgstr "標準化"
-
-msgctxt "uniDimBayesian|"
-msgid "Posterior Point Estimate"
-msgstr ""
-
-msgctxt "uniDimBayesian|"
-msgid "Median"
 msgstr ""
 
 msgctxt "Description|"
@@ -642,3 +63,652 @@ msgstr ""
 msgctxt "BlandAltman|"
 msgid "Bland-Altman table"
 msgstr ""
+
+#, fuzzy
+msgctxt "IntraclassCorrelation|"
+msgid "Variables"
+msgstr "變項"
+
+#, fuzzy
+msgctxt "IntraclassCorrelation|"
+msgid "Each subject is rated by..."
+msgstr "每位被評者被多少人評分..."
+
+#, fuzzy
+msgctxt "IntraclassCorrelation|"
+msgid "a different rater (randomly selected)"
+msgstr "(隨機選取)評分者"
+
+#, fuzzy
+msgctxt "IntraclassCorrelation|"
+msgid "the same set of randomly selected raters/tests"
+msgstr "同一群隨機選取的評分者/測驗"
+
+#, fuzzy
+msgctxt "IntraclassCorrelation|"
+msgid "the same fixed set of raters/tests"
+msgstr "相同的固定評分者/測驗"
+
+#, fuzzy
+msgctxt "IntraclassCorrelation|"
+msgid "Ratings are averaged"
+msgstr "評分 (取其平均數)"
+
+#, fuzzy
+msgctxt "IntraclassCorrelation|"
+msgid "Confidence Interval"
+msgstr "信賴區間"
+
+#, fuzzy
+msgctxt "RaterAgreement|"
+msgid "Variables"
+msgstr "變項"
+
+msgctxt "RaterAgreement|"
+msgid "Cohen's kappa"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Unweighted"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Weighted"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Fleiss' kappa"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Krippendorff's alpha"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Method"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Nominal"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Ordinal"
+msgstr ""
+
+#, fuzzy
+msgctxt "RaterAgreement|"
+msgid "Interval"
+msgstr "區間"
+
+msgctxt "RaterAgreement|"
+msgid "Ratio"
+msgstr ""
+
+#, fuzzy
+msgctxt "RaterAgreement|"
+msgid "Confidence Interval"
+msgstr "信賴區間"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Variables"
+msgstr "變項"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Analysis"
+msgstr "分析"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Scale Statistics"
+msgstr "量表統計數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Credible interval"
+msgstr "可靠區間"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω"
+msgstr "McDonald's ω 信度係數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Cronbach's α"
+msgstr "Cronbach's α 信度係數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Guttman's λ2"
+msgstr "Guttman's λ2 信度係數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Guttman's λ6"
+msgstr "Guttman's λ6 信度係數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Greatest lower bound"
+msgstr "最大下界"
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Average interitem correlation"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Mean"
+msgstr "平均數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "SD"
+msgstr "標準差"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "of participants' sum scores"
+msgstr "研究參與者的測驗總分"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "of participants' mean scores"
+msgstr "研究參與者的測驗平均分數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Individual Item Statistics"
+msgstr "個別題項統計數"
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Cronbach's α (if item dropped)"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Guttman's λ2 (if item dropped)"
+msgstr "此題刪除後之 Guttman's λ6 信度係數 {2 ?}"
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Guttman's λ6 (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Greatest lower bound (if item dropped)"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "If item dropped plot"
+msgstr "刪除此題之信度係數圖"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Order items"
+msgstr "題項排序"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Order items by mean"
+msgstr "以平均數排序題項"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Order items by KL-divergence"
+msgstr "以題項 KL-divergence 排序"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Order items by KS-distance"
+msgstr "以題項 KS-distance 排序"
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Item-rest correlation"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Standard deviation"
+msgstr "標準差"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Plot Posteriors"
+msgstr "圖示事後機率"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Fix range to 0-1"
+msgstr "將數值限制在0與1之間"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Display Priors"
+msgstr "顯示事前機率"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Probability for:"
+msgstr "的機率"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "< Reliability <"
+msgstr "<信度 <"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Shade posterior region in plot"
+msgstr "在圖中顯示事後機率區"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Convergence"
+msgstr "聚合"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "MCMC parameters"
+msgstr "MCMC 參數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "No. samples"
+msgstr "樣本數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "No. burnin samples"
+msgstr "burnin 樣本數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Thinning"
+msgstr "資料瘦身"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "No. chains"
+msgstr "鍊數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Diagnostics"
+msgstr "診斷指標"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "R-hat"
+msgstr "R-hat 向量"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Traceplots"
+msgstr "描線圖"
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Repeatability"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Set seed"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Samples"
+msgstr "樣本"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Disable saving samples"
+msgstr "不使用節省樣本功能"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Reverse-Scaled Items"
+msgstr "反向計分題"
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Normal-Scaled Items"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Priors"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "CTT-Coefficients (α, λ2, λ6, glb)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Inverse Wishart scale"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Inverse Wishart df"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Inverse gamma:"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "shape"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "scale"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Normal:"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "mean"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Advanced Options"
+msgstr "進階選項"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Missing Values"
+msgstr "遺漏值"
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Bayesian imputation"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Exclude cases listwise"
+msgstr "完全排除法"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω Estimation"
+msgstr "McDonald's ω 估計值"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Posterior predictive check"
+msgstr "事後預測檢查"
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Fit measures"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "p(RMSEA <"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid ")"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "p(CFI/TLI >"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Standardized factor loadings"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficients"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Unstandardized"
+msgstr "未標準化"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Standardized"
+msgstr "標準化"
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Posterior Point Estimate"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Median"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Variables"
+msgstr "變項"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Analysis"
+msgstr "分析"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Scale Statistics"
+msgstr "量表統計數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Confidence Interval"
+msgstr "信賴區間"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "McDonald's ω"
+msgstr "McDonald's ω 信度係數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Cronbach's α"
+msgstr "Cronbach's α 信度係數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Guttman's λ2"
+msgstr "Guttman's λ2 信度係數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Guttman's λ6"
+msgstr "Guttman's λ6 信度係數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Greatest lower bound"
+msgstr "最大下界"
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Average interitem correlation"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Mean"
+msgstr "平均數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "SD"
+msgstr "標準差"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "of participants' sum scores"
+msgstr "研究參與者的測驗總分"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "of participants' mean scores"
+msgstr "研究參與者的測驗平均分數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Individual Item Statistics"
+msgstr "個別題項統計數"
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Cronbach's α (if item dropped)"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Guttman's λ2 (if item dropped)"
+msgstr "此題刪除後之 Guttman's λ6 信度係數 {2 ?}"
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Guttman's λ6 (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Greatest lower bound (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Item-rest correlation"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Standard deviation"
+msgstr "標準差"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Reverse-Scaled Items"
+msgstr "反向計分題"
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Normal-Scaled Items"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Advanced Options"
+msgstr "進階選項"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Missing Values"
+msgstr "遺漏值"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Exclude cases pairwise"
+msgstr "成對排除法"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Exclude cases listwise"
+msgstr "完全排除法"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Bootstrap"
+msgstr "拔靴法"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "No. of bootstrap samples"
+msgstr "拔靴法樣本數"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Non-parametric bootstrap"
+msgstr "無母數拔靴法"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Parametric bootstrap"
+msgstr "有母數拔靴法"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "McDonald's ω Estimation"
+msgstr "McDonald's ω 估計值"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "CFA"
+msgstr "驗證性因素分析"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Single factor model fit"
+msgstr "單一因素模式配適"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Interval"
+msgstr "區間"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Analytic interval"
+msgstr "分析區間"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Bootstrapped interval"
+msgstr "拔靴法區間"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "PFA"
+msgstr "主軸因子分析"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Cronbach's α Estimation"
+msgstr "Cronbach's α 估計值"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Unstandardized"
+msgstr "未標準化"
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Standardized"
+msgstr "標準化"
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Repeatability"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Set seed"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Samples"
+msgstr "樣本"
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Do not save samples"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Click to learn more about saving the samples."
+msgstr "按此鍵以了解更多有關節省樣本"
