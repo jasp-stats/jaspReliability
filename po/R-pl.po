@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
 "POT-Creation-Date: 2022-12-03 03:30\n"
-"PO-Revision-Date: 2022-11-26 00:43+0000\n"
+"PO-Revision-Date: 2022-12-13 19:48+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/pl/>\n"
@@ -80,16 +80,16 @@ msgid "%i subjects/items and %i raters/measurements."
 msgstr ""
 
 msgid "SE"
-msgstr ""
+msgstr "SE"
 
 msgid "Lower"
-msgstr ""
+msgstr "Dolny"
 
 msgid "%s%% CI"
 msgstr "%s%% CI"
 
 msgid "Upper"
-msgstr ""
+msgstr "Górny"
 
 msgid "Confidence intervals are asymptotic."
 msgstr ""
@@ -190,7 +190,7 @@ msgid "Probability"
 msgstr ""
 
 msgid "Statistic"
-msgstr ""
+msgstr "Statystyka"
 
 msgid "Prior"
 msgstr "Prior"
