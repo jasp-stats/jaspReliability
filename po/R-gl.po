@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-12-03 03:30\n"
+"POT-Creation-Date: 2022-12-17 03:30\n"
 "PO-Revision-Date: 2022-08-29 10:28+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
@@ -279,9 +279,6 @@ msgstr "Gráfica de Trazos da Converxencia"
 msgid "Iterations"
 msgstr "Iteracións"
 
-msgid "getPointEstFun has no case for value:"
-msgstr "getPointEstFun non ten ningún caso que valorar:"
-
 msgid "Omega item dropped statistics with CFA failed."
 msgstr "Fallaron os estatísticos do elemento Omega eliminado con CFA."
 
@@ -367,6 +364,9 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "O seguinte elemento está escalado do revés : %s. "
 msgstr[1] "Os seguintes elementos están escalados do revés : %s. "
+
+#~ msgid "getPointEstFun has no case for value:"
+#~ msgstr "getPointEstFun non ten ningún caso que valorar:"
 
 #~ msgid "%s"
 #~ msgstr "%s"

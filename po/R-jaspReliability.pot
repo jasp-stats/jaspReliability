@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
-"POT-Creation-Date: 2022-12-03 03:30\n"
+"POT-Creation-Date: 2022-12-17 03:30\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -216,9 +216,6 @@ msgid "Convergence Traceplot"
 msgstr ""
 
 msgid "Iterations"
-msgstr ""
-
-msgid "getPointEstFun has no case for value:"
 msgstr ""
 
 msgid "Omega item dropped statistics with CFA failed."

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
-"POT-Creation-Date: 2022-12-03 03:30\n"
+"POT-Creation-Date: 2022-12-17 03:30\n"
 "PO-Revision-Date: 2022-08-29 10:28+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
@@ -272,9 +272,6 @@ msgstr "Traceplot de convergencia"
 msgid "Iterations"
 msgstr "Iteraciones"
 
-msgid "getPointEstFun has no case for value:"
-msgstr "getPointEstFun no tiene ningún caso que valorar:"
-
 msgid "Omega item dropped statistics with CFA failed."
 msgstr "Fallaron los estadísticos del elemento Omega eliminado con CFA."
 
@@ -360,6 +357,9 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "El siguiente ítem fue escalado en forma inversa: %s. "
 msgstr[1] "Los siguientes ítems fueron escalados en forma inversa: %s. "
+
+#~ msgid "getPointEstFun has no case for value:"
+#~ msgstr "getPointEstFun no tiene ningún caso que valorar:"
 
 #~ msgid "%s"
 #~ msgstr "%s"
