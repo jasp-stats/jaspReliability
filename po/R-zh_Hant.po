@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
 "POT-Creation-Date: 2022-12-17 03:30\n"
-"PO-Revision-Date: 2022-11-25 07:47+0000\n"
+"PO-Revision-Date: 2022-12-20 20:17+0000\n"
 "Last-Translator: Changya Hu <changyahu@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "jasp/jaspreliability-r/zh_Hant/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 msgid "Bland-Altman Plots"
 msgstr ""
@@ -42,10 +42,10 @@ msgid "Mean difference"
 msgstr ""
 
 msgid "Lower %s%% CI"
-msgstr "%s%% 信賴區間下界"
+msgstr "%s%%信賴區間下界"
 
 msgid "Upper %s%% CI"
-msgstr "%s%% 信賴區間上界"
+msgstr "%s%%信賴區間上界"
 
 msgid "Calculations not possible: %s"
 msgstr ""
@@ -83,15 +83,17 @@ msgstr ""
 msgid "SE"
 msgstr "標準誤"
 
+#, fuzzy
 msgid "Lower"
-msgstr "下限"
+msgstr "下界"
 
 #, fuzzy
 msgid "%s%% CI"
 msgstr "%s%% 信賴區間"
 
+#, fuzzy
 msgid "Upper"
-msgstr "上限"
+msgstr "上界"
 
 msgid "Confidence intervals are asymptotic."
 msgstr ""
@@ -229,7 +231,6 @@ msgstr ""
 msgid "Posterior Plots"
 msgstr "事後機率圖"
 
-#, fuzzy
 msgid "Density"
 msgstr "密度"
 
