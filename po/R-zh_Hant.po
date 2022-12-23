@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
 "POT-Creation-Date: 2022-12-17 03:30\n"
-"PO-Revision-Date: 2022-12-20 20:17+0000\n"
+"PO-Revision-Date: 2022-12-24 03:27+0000\n"
 "Last-Translator: Changya Hu <changyahu@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "jasp/jaspreliability-r/zh_Hant/>\n"
@@ -19,8 +19,9 @@ msgstr ""
 msgid "Please provide another variable"
 msgstr ""
 
+#, fuzzy
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "無法繪圖: %s"
 
 msgid "Bland-Altman Tables"
 msgstr ""
@@ -162,7 +163,7 @@ msgid "Bayesian Scale Reliability Statistics"
 msgstr "貝氏量表信度統計數"
 
 msgid "Estimate"
-msgstr "估計數"
+msgstr "估計"
 
 msgid "%s lower bound"
 msgstr "%s 下界"
@@ -201,13 +202,13 @@ msgid "Probability"
 msgstr "機率"
 
 msgid "Statistic"
-msgstr "統計數"
+msgstr "統計"
 
 msgid "Prior"
 msgstr "先驗"
 
 msgid "Posterior"
-msgstr "事後"
+msgstr "後驗"
 
 #, fuzzy
 msgid "Fit Measures for the Single-Factor Model"
