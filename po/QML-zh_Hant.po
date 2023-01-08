@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-01-09 04:16+0000\n"
+"Last-Translator: Changya Hu <changyahu@gmail.com>\n"
+"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
+"jasp/jaspreliability-qml/zh_Hant/>\n"
+"Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 "X-Language: zh_Hant\n"
 "X-Qt-Contexts: true\n"
 
@@ -33,19 +39,20 @@ msgstr "貝氏單向度信度"
 
 msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
-msgstr ""
+msgstr "量化測驗分數之信度"
 
 msgctxt "Description|"
 msgid "Rater Agreement"
-msgstr ""
+msgstr "評分者同意度"
 
 msgctxt "Description|"
 msgid "Bland-Altman Plots"
-msgstr ""
+msgstr "Bland-Altman圖"
 
+#, fuzzy
 msgctxt "BlandAltman|"
 msgid "Measurement Pairs"
-msgstr ""
+msgstr "測量對"
 
 #, fuzzy
 msgctxt "BlandAltman|"
@@ -54,20 +61,20 @@ msgstr "信賴區間"
 
 msgctxt "BlandAltman|"
 msgid "Shading"
-msgstr ""
+msgstr "陰影"
 
+#, fuzzy
 msgctxt "BlandAltman|"
 msgid "Use colour"
-msgstr ""
+msgstr "使用顏色"
 
 msgctxt "BlandAltman|"
 msgid "Bland-Altman table"
-msgstr ""
+msgstr "Bland-Altman 表"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Variables"
-msgstr "變項"
+msgstr "變數"
 
 #, fuzzy
 msgctxt "IntraclassCorrelation|"
@@ -106,15 +113,17 @@ msgstr "變項"
 
 msgctxt "RaterAgreement|"
 msgid "Cohen's kappa"
-msgstr ""
+msgstr "Cohen's K"
 
+#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Unweighted"
-msgstr ""
+msgstr "未加權的"
 
+#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Weighted"
-msgstr ""
+msgstr "加權"
 
 msgctxt "RaterAgreement|"
 msgid "Fleiss' kappa"
