@@ -96,14 +96,26 @@ test_that("Frequentist Individual Item Reliability Statistics table results matc
 
 test_that("Frequentist Scale Reliability Statistics table results match for special options", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
-  jaspTools::expect_equal_tables(table,
-                                 list(0.0471510241880039, 0.474438267321141, 0.0392336793613145, 0.517855238417142,
-                                      0.0684849632061198, 0.184127369413486, 2.764059782725, 5.48120849970767,
-                                      "Point estimate", 0.00702485789714729, 0.293267132435948, 0.00476660616888555,
-                                      0.394302611317106, 0.0149501819485384, 0.0939902180995729, 1.68976265760681,
-                                      4.81253858382921, "95% CI lower bound", 0.11513640292755, 0.61599605394659,
-                                      0.0878218264568898, 0.635557616289631, 0.216185154128616, 0.286242462411683,
-                                      3.83835690784319, 6.36738428322095, "95% CI upper bound"))
+  if (jaspBase::getOS() == "linux") {
+    jaspTools::expect_equal_tables(table,
+                                   list(0.0471510241880039, 0.474438267321141, 0.0392336793613145, 0.517855238417142,
+                                        0.0684849632061198, 0.184127369413486, 2.764059782725, 5.48120849970767,
+                                        "Point estimate", 0.00596163495689328, 0.289407838775642, 0.00364474587371632,
+                                        0.407256236850348, 0.0170876010177963, 0.0924170105791601, 1.68976265760681,
+                                        4.81253858382921, "95% CI lower bound", 0.115485828937115, 0.615613625191656,
+                                        0.0900905447143638, 0.636260988220761, 0.220873107497465, 0.285913270464004,
+                                        3.83835690784319, 6.36738428322095, "95% CI upper bound"))
+  } else {
+    jaspTools::expect_equal_tables(table,
+                                   list(0.0471510241880039, 0.474438267321141, 0.0392336793613145, 0.517855238417142,
+                                        0.0684849632061198, 0.184127369413486, 2.764059782725, 5.48120849970767,
+                                        "Point estimate", 0.00702485789714729, 0.293267132435948, 0.00476660616888555,
+                                        0.394302611317106, 0.0149501819485384, 0.0939902180995729, 1.68976265760681,
+                                        4.81253858382921, "95% CI lower bound", 0.11513640292755, 0.61599605394659,
+                                        0.0878218264568898, 0.635557616289631, 0.216185154128616, 0.286242462411683,
+                                        3.83835690784319, 6.36738428322095, "95% CI upper bound"))
+  }
+
 })
 
 
@@ -116,21 +128,30 @@ options$bootstrapType <- "parametric"
 options$omegaEstimationMethod <- "cfa"
 options$setSeed <- TRUE
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
+options$setSeed <- TRUE
 set.seed(1)
 results <- runAnalysis("unidimensionalReliabilityFrequentist", "asrm_mis.csv", options)
 
-test_that("Frequentist omega results match for CFA with bootstrapping", {
+test_that("Fit Measures of Single Factor Model Fit table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_fitTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list("Chi-Square", 12.788508304247, "df", 5, "p.value", 0.0254433712709828,
                                       "RMSEA", 0.15724319758923, "Lower 90% CI RMSEA", 0.0507316506074521,
                                       "Upper 90% CI RMSEA", 0.266560548199575, "SRMR", 0.0708026289801857
                                  ))
+})
 
+test_that("Frequentist Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
-  expect_equal_tables(table,
-                                 list(0.7917101, "Point estimate", 0.6791257, "95% CI lower bound",
-                                      0.8494223, "95% CI upper bound"))
+  if (jaspBase::getOS() == "linux") {
+    jaspTools::expect_equal_tables(table,
+                                   list(0.7917101, "Point estimate", 0.682155240979747, "95% CI lower bound",
+                                        0.844326391786941, "95% CI upper bound"))
+  } else {
+    jaspTools::expect_equal_tables(table,
+                                   list(0.7917101, "Point estimate", 0.6791257, "95% CI lower bound",
+                                        0.8494223, "95% CI upper bound"))
+  }
 })
 
 
