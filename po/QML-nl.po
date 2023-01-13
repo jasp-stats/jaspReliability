@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-13 12:30+0000\n"
+"PO-Revision-Date: 2023-01-14 03:27+0000\n"
 "Last-Translator: Don van den Bergh <donvdbergh@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/nl/>\n"
@@ -74,414 +74,334 @@ msgctxt "IntraclassCorrelation|"
 msgid "Variables"
 msgstr "Variabelen"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Each subject is rated by..."
 msgstr "Ieder subject is gescoord door..."
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "a different rater (randomly selected)"
 msgstr "een andere beoordelaar (willekeurig geselecteerd)"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
 msgstr "dezelfde willekeurig gekozen beoordelaars/ metingen"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
 msgstr "dezelfde vaste set van beoordelaars/ metingen"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Ratings are averaged"
 msgstr "Scores zijn gemiddeld"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Confidence Interval"
 msgstr "Betrouwbaarheidsinterval"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Variables"
 msgstr "Variabelen"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Cohen's kappa"
 msgstr "Cohen's kappa"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Unweighted"
 msgstr "Ongewogen"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Weighted"
 msgstr "Gewogen"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Fleiss' kappa"
 msgstr "Fleiss' kappa"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Krippendorff's alpha"
 msgstr "Krippendorff's alpha"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Method"
 msgstr "Methode"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Nominal"
 msgstr "Nominaal"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Ordinal"
 msgstr "Ordinaal"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Interval"
 msgstr "Interval"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Ratio"
 msgstr "Verhouding"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Confidence Interval"
 msgstr "Betrouwbaarheidsinterval"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Variables"
 msgstr "Variabelen"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Analysis"
 msgstr "Analyse"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Scale Statistics"
 msgstr "Schaalstatistieken"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Credible interval"
 msgstr "Geloofwaardigheidsinterval"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω"
 msgstr "McDonald's ω"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α"
 msgstr "Cronbach's α"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2"
 msgstr "Guttman's λ2"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ6"
 msgstr "Guttman's λ6"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Greatest lower bound"
 msgstr "Grootste ondergrens"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Average interitem correlation"
 msgstr "Gemiddelde inter-item correlatie"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Mean"
 msgstr "Gemiddelde"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "SD"
 msgstr "SD"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "of participants' sum scores"
 msgstr "van somscores van participanten"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "of participants' mean scores"
 msgstr "van gemiddelde scores van participanten"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Individual Item Statistics"
 msgstr "Individuele Itemstatistieken"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω  (if item dropped)"
 msgstr "McDonald's ω  (als item is verwijderd)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α (if item dropped)"
 msgstr "Cronbach's α (als item is verwijderd)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2 (if item dropped)"
 msgstr "Guttman's λ2 (als item is verwijderd)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ6 (if item dropped)"
 msgstr "Guttman's λ6 (als item is verwijderd)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Greatest lower bound (if item dropped)"
 msgstr "Grootste ondergrens (als item is verwijderd)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "If item dropped plot"
 msgstr "Plot als item is verwijderd"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items"
 msgstr "Rangschik items"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by mean"
 msgstr "Rangschik items naar gemiddelde"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by KL-divergence"
 msgstr "Rangschik items naar KL-divergentie"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by KS-distance"
 msgstr "Rangschik items naar KS-afstand"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Item-rest correlation"
 msgstr "Item-rest correlatie"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Standard deviation"
 msgstr "Standaardafwijking"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Plot Posteriors"
 msgstr "Grafiek Posteriors"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Fix range to 0-1"
 msgstr "Zet bereik vast op 0-1"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Display Priors"
 msgstr "Toon Priors"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Probability for:"
 msgstr "Kans op:"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "< Reliability <"
 msgstr "< Betrouwbaarheid <"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Shade posterior region in plot"
 msgstr "Markeer posterior gebied in grafiek"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Convergence"
 msgstr "Convergentie"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "MCMC parameters"
 msgstr "MCMC parameters"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. samples"
 msgstr "Aantal steekproeven"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. burnin samples"
 msgstr "Aantal opwarmsteekproeven"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Thinning"
 msgstr "Uitdunnen"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. chains"
 msgstr "Aantal ketens"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Diagnostics"
 msgstr "Diagnostieken"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "R-hat"
-msgstr "R-dakje"
+msgstr "R-hat"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Traceplots"
 msgstr "Spoordiagrammen"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Repeatability"
 msgstr "Herhaalbaarheid"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Set seed"
 msgstr "Gebruik toevalsgenerator beginwaarde"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Samples"
 msgstr "Steekproeven"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Disable saving samples"
-msgstr ""
+msgstr "Steekproeven opslaan uitschakelen"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Reverse-Scaled Items"
 msgstr "Omgekeerd Geschaalde Items"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Normal-Scaled Items"
 msgstr "Normaal Geschaalde Items"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Priors"
 msgstr "Priors"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "CTT-Coefficients (α, λ2, λ6, glb)"
 msgstr "CTT-Coëfficiënten (α, λ2, λ6, glb)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse Wishart scale"
 msgstr "Inverse Wishart schaal"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse Wishart df"
 msgstr "Inverse Wishart df"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse gamma:"
 msgstr "Inverse gamma:"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "shape"
 msgstr "vorm"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "scale"
 msgstr "schaal"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Normal:"
 msgstr "Normaal:"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "mean"
 msgstr "gemiddelde"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Advanced Options"
 msgstr "Geavanceerde Opties"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Missing Values"
-msgstr ""
+msgstr "Ontbrekende waarden"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Bayesian imputation"
 msgstr "Bayesiaanse imputatie"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Exclude cases listwise"
-msgstr ""
+msgstr "Sluit waarnemingen uit per rij"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω Estimation"
 msgstr "McDonald's ω Schatting"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior predictive check"
 msgstr "Posterior voorspellende verificatie"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Fit measures"
 msgstr "Pasmaten"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "p(RMSEA <"
 msgstr "p(RMSEA <"
@@ -508,7 +428,7 @@ msgstr "Coëfficiënten"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Unstandardized"
-msgstr ""
+msgstr "Ongestandaardiseerd"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
@@ -652,7 +572,7 @@ msgstr "Geavanceerde Opties"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Missing Values"
-msgstr ""
+msgstr "Ontbrekende waarden"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
@@ -661,7 +581,7 @@ msgstr "Sluit observaties paarsgewijs uit"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Exclude cases listwise"
-msgstr ""
+msgstr "Sluit waarnemingen uit per rij"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
@@ -725,7 +645,7 @@ msgstr "Cronbach's α Schatting"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Unstandardized"
-msgstr ""
+msgstr "Ongestandaardiseerd"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
@@ -749,7 +669,7 @@ msgstr "Steekproeven"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Do not save samples"
-msgstr ""
+msgstr "Sla geen samples op"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
