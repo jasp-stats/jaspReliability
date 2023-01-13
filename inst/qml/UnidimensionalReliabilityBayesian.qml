@@ -121,7 +121,7 @@ Form
 			{
 				id: 		omegaItem
 				name: 		"itemDeletedOmega";
-				label: 		qsTr("McDonald's ω  (if item dropped)");
+				label: 		qsTr("McDonald's ω (if item dropped)");
 				enabled: 	omega.checked
 			}
 
