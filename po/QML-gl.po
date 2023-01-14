@@ -201,10 +201,6 @@ msgid "Individual Item Statistics"
 msgstr "Estatísticos de Elementos Individuais"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω  (if item dropped)"
-msgstr "ω de McDonald (ao quitar elementos)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α (if item dropped)"
 msgstr "α de Cronbach (ao quitar elementos)"
 
@@ -619,3 +615,7 @@ msgstr "Non gardar as mostras"
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Click to learn more about saving the samples."
 msgstr "Fai clic para saber máis sobre gardar as mostras."
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω (if item dropped)"
+msgstr ""

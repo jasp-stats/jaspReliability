@@ -226,10 +226,6 @@ msgid "Individual Item Statistics"
 msgstr "個別項目の統計量"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω  (if item dropped)"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α (if item dropped)"
 msgstr ""
 
@@ -739,3 +735,7 @@ msgstr ""
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Click to learn more about saving the samples."
 msgstr "サンプルの保存については、こちらをクリックしてください."
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω (if item dropped)"
+msgstr ""

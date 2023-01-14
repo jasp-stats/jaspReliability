@@ -198,10 +198,6 @@ msgid "Individual Item Statistics"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω  (if item dropped)"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α (if item dropped)"
 msgstr ""
 
@@ -615,4 +611,8 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Click to learn more about saving the samples."
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω (if item dropped)"
 msgstr ""

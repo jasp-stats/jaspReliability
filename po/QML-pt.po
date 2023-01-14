@@ -237,11 +237,6 @@ msgstr "Estatísticas por item"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω  (if item dropped)"
-msgstr "Ômega de McDonald ω (excluindo esse item)"
-
-#, fuzzy
-msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α (if item dropped)"
 msgstr "α de Cronbach (excluindo esse item)"
 
@@ -730,3 +725,7 @@ msgstr ""
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Click to learn more about saving the samples."
 msgstr "Clique para saber mais sobre salvar as amostras."
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω (if item dropped)"
+msgstr ""

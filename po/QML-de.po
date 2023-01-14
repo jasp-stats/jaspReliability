@@ -201,10 +201,6 @@ msgid "Individual Item Statistics"
 msgstr "Individuelle Item-Statistiken"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω  (if item dropped)"
-msgstr "McDonalds ω (falls Item gelöscht)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α (if item dropped)"
 msgstr "Cronbachs α (falls Item gelöscht)"
 
@@ -620,3 +616,7 @@ msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Click to learn more about saving the samples."
 msgstr ""
 "Klicken Sie hier, um mehr über das Speichern von Stichproben zu erfahren."
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω (if item dropped)"
+msgstr ""
