@@ -236,7 +236,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
       alphas <- jaspResults[["bootstrapSamples"]]$object
       conf <- options[["ciLevel"]]
       confs <- (1 + c(-conf, conf)) / 2
-      CIs <- quantile(alphas, probs = confs)
+      CIs <- quantile(alphas, probs = confs, na.rm = TRUE)
 
       jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
       jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
