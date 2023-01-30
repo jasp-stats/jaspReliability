@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
 "POT-Creation-Date: 2022-12-17 03:30\n"
-"PO-Revision-Date: 2023-01-29 17:08+0000\n"
+"PO-Revision-Date: 2023-01-31 20:42+0000\n"
 "Last-Translator: fedder <fedor.derish@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/ru/>\n"
@@ -81,13 +81,13 @@ msgid "SE"
 msgstr ""
 
 msgid "Lower"
-msgstr ""
+msgstr "Нижний"
 
 msgid "%s%% CI"
 msgstr ""
 
 msgid "Upper"
-msgstr ""
+msgstr "Верхний"
 
 msgid "Confidence intervals are asymptotic."
 msgstr ""
@@ -138,7 +138,7 @@ msgid "Bayesian Scale Reliability Statistics"
 msgstr ""
 
 msgid "Estimate"
-msgstr ""
+msgstr "Оценка"
 
 msgid "%s lower bound"
 msgstr ""
@@ -171,7 +171,7 @@ msgid "Probability"
 msgstr ""
 
 msgid "Statistic"
-msgstr ""
+msgstr "Статистика"
 
 msgid "Prior"
 msgstr ""
@@ -210,7 +210,7 @@ msgid "Item Dropped"
 msgstr ""
 
 msgid "Eigenvalue"
-msgstr ""
+msgstr "Собственное значение"
 
 msgid "Eigenvalue No."
 msgstr ""
@@ -267,7 +267,7 @@ msgid "Fit measure"
 msgstr ""
 
 msgid "Value"
-msgstr ""
+msgstr "Значение"
 
 msgid "Too few MCMC samples will remain after the removal of the burnin samples and thinning,\n                     please increase No.samples."
 msgstr ""
