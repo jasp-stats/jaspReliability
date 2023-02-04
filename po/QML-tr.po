@@ -1,15 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-31 20:42+0000\n"
-"Last-Translator: Ünal Halit ÖZDEN <uozden@ticaret.edu.tr>\n"
-"Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
-"jaspreliability-qml/tr/>\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.16-dev\n"
 "X-Language: tr\n"
 "X-Qt-Contexts: true\n"
 
@@ -141,13 +135,15 @@ msgctxt "RaterAgreement|"
 msgid "Ratio"
 msgstr ""
 
+#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Confidence Interval"
-msgstr ""
+msgstr "Güven aralığı"
 
+#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Variables"
-msgstr ""
+msgstr "Değişkenler"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Analysis"
@@ -433,9 +429,10 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Median"
 msgstr ""
 
+#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Variables"
-msgstr ""
+msgstr "Değişkenler"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Analysis"
@@ -445,9 +442,10 @@ msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Scale Statistics"
 msgstr ""
 
+#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Confidence Interval"
-msgstr ""
+msgstr "Güven aralığı"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "McDonald's ω"
