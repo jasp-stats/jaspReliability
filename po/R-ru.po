@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
 "POT-Creation-Date: 2022-12-17 03:30\n"
-"PO-Revision-Date: 2023-01-31 20:42+0000\n"
+"PO-Revision-Date: 2023-02-09 18:37+0000\n"
 "Last-Translator: fedder <fedor.derish@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/ru/>\n"
@@ -41,11 +41,13 @@ msgstr ""
 msgid "Mean difference"
 msgstr ""
 
+#, fuzzy
 msgid "Lower %s%% CI"
-msgstr ""
+msgstr "Нижняя граница ДИ %s%%"
 
+#, fuzzy
 msgid "Upper %s%% CI"
-msgstr ""
+msgstr "Верхняя граница ДИ %s%%"
 
 msgid "Calculations not possible: %s"
 msgstr ""
@@ -78,16 +80,18 @@ msgid "%i subjects/items and %i raters/measurements."
 msgstr ""
 
 msgid "SE"
-msgstr ""
+msgstr "SE"
 
+#, fuzzy
 msgid "Lower"
-msgstr "Нижний"
+msgstr "Нижняя граница"
 
 msgid "%s%% CI"
 msgstr ""
 
+#, fuzzy
 msgid "Upper"
-msgstr "Верхний"
+msgstr "Верхняя граница"
 
 msgid "Confidence intervals are asymptotic."
 msgstr ""
@@ -173,11 +177,13 @@ msgstr ""
 msgid "Statistic"
 msgstr "Статистика"
 
+#, fuzzy
 msgid "Prior"
-msgstr ""
+msgstr "Приор"
 
+#, fuzzy
 msgid "Posterior"
-msgstr ""
+msgstr "Постериор"
 
 msgid "Fit Measures for the Single-Factor Model"
 msgstr ""
@@ -194,8 +200,9 @@ msgstr ""
 msgid "Posterior Plots"
 msgstr ""
 
+#, fuzzy
 msgid "Density"
-msgstr ""
+msgstr "Плотность"
 
 msgid "If Item Dropped Posterior Plots"
 msgstr ""
