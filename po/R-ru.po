@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
 "POT-Creation-Date: 2022-12-17 03:30\n"
-"PO-Revision-Date: 2023-02-09 18:37+0000\n"
+"PO-Revision-Date: 2023-02-18 03:27+0000\n"
 "Last-Translator: fedder <fedor.derish@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/ru/>\n"
@@ -82,14 +82,13 @@ msgstr ""
 msgid "SE"
 msgstr "SE"
 
-#, fuzzy
 msgid "Lower"
 msgstr "Нижняя граница"
 
-msgid "%s%% CI"
-msgstr ""
-
 #, fuzzy
+msgid "%s%% CI"
+msgstr "%s%% ДИ"
+
 msgid "Upper"
 msgstr "Верхняя граница"
 
