@@ -244,7 +244,6 @@ raterAgreement <- function(jaspResults, dataset, options) {
       tableData[["SE"]] <- sd(alphas)
       tableData[["CIL"]] <- CIs[1]
       tableData[["CIU"]] <- CIs[2]
-      footnote <- paste(footnote, gettext('Confidence intervals are based on percentiles from 1000 bootstrap replications.'))
     }
     jaspTable$setData(tableData)
     jaspTable$addFootnote(footnote)
@@ -260,8 +259,11 @@ raterAgreement <- function(jaspResults, dataset, options) {
   bootstrapSamples <- createJaspState()
   method <- options[["krippendorffsAlphaMethod"]]
   n <- nrow(dataset)
-  alphas <- numeric(1e3)
-  for (i in seq_len(1e3)) {
+  alphas <- numeric(options[["krippendorffsAlphaBootstrapSamplesForCI"]])
+
+  jaspBase::.setSeedJASP(options)
+
+  for (i in seq_len(options[["krippendorffsAlphaBootstrapSamplesForCI"]])) {
     bootData <- as.matrix(dataset[sample.int(n, size = n, replace = TRUE), ])
     alphas[i] <- irr::kripp.alpha(t(bootData), method = method)$value
   }
@@ -270,7 +272,9 @@ raterAgreement <- function(jaspResults, dataset, options) {
   jaspResults[["bootstrapSamples"]]$dependOn(options = c(
     "variables",
     "krippendorffsAlpha",
-    "ci"))
+    "ci",
+    "krippendorffsAlphaBootstrapSamplesForCI",
+    "setSeed", "seed"))
   return()
 }
 

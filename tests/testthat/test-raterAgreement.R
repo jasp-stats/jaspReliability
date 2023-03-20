@@ -264,6 +264,8 @@ options <- analysisOptions("raterAgreement")
 options$variables <- c("facGender", "facExperim", "debBinMiss20")
 options$ciLevel <- 0.99
 options$cohensKappaType <- "weighted"
+options$krippendorffsAlphaBootstrapSamplesForCI <- 200
+options$setSeed <- TRUE
 set.seed(1)
 results <- runAnalysis("raterAgreement", "test.csv", options)
 
@@ -295,7 +297,7 @@ test_that("Fleiss' kappa table results match", {
 test_that("Krippendorff's alpha table results match", {
   table <- results[["results"]][["krippendorffsAlpha"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(-0.210559277301944, -0.197092068692018, 0.00282684600279606, -0.199079048349962,
+                                 list(-0.212534930259255, -0.197193484221555, 0.00279613421372955, -0.199079048349962,
                                       "Nominal"))
 })
 
