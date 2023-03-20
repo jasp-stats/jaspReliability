@@ -28,6 +28,7 @@ options$probabilityTableUpperBound <- 0.3
 options$posteriorPlotShaded <- TRUE
 options$samples <- 200
 options$rHat <- TRUE
+options$effectiveSampleSize <- TRUE
 options$tracePlot <- TRUE
 options$setSeed <- TRUE
 options$reverseScaledItems <- "debMiss30"
@@ -184,9 +185,10 @@ test_that("Bayesian Scale Reliability Statistics table results match", {
                                       0.0925517739486723, 0.109789052574058, 0.618692688177314, 0.26368113845796,
                                       0.221618551302267, "", "", "95% CI upper bound", 1.03110267965238,
                                       1.02512927209581, 1.04150159018568, 1.02543279542889, 1.07445147891652,
-                                      1.01625374834437, "", "", "R-hat"))
+                                      1.01625374834437, "", "", "R-hat", 261.905719143696, 278.717853339024,
+                                      271.566230782654, 450, 380.420178581031, 414.536145329943, "",
+                                      "", "ESS"))
 })
-
 
 
 options <- analysisOptions("unidimensionalReliabilityBayesian")

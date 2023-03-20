@@ -818,7 +818,8 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
       jaspBase::.setSeedJASP(options)
       out[["itemSamp"]] <- .itemRestCorrelation(dataset, options[["samples"]], options[["burnin"]],
                                         options[["thinning"]], options[["chains"]], model[["pairwise"]],
-                                        callback = progressbarTick, options[["inverseWishartPriorScale"]])
+                                        callback = progressbarTick, options[["inverseWishartPriorScale"]],
+                                        options[["inverseWishartPriorDf"]])
     }
 
     if (options[["samplesSavingDisabled"]])
@@ -904,6 +905,11 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
         coda::gelman.diag(coda::as.mcmc.list(lapply(seq_len(nrow(x)), function(i) coda::mcmc(x[i, ]))))[["psrf"]][, 1]
       })
     }
+    if (options[["effectiveSampleSize"]]) {
+      out[["effectiveSampleSize"]] <- lapply(samps, function(x) {
+        sum(coda::effectiveSize(t(x)))
+      })
+    }
 
     if (options[["standardizedLoadings"]]) {
       out[["loadingsStd"]] <- apply(model[["scaleOmega"]][["loadingsStdSamp"]], 3, .getPointEstFun(options[["pointEstimate"]]))
@@ -916,12 +922,18 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
       if (options[["rHat"]]) {
         out[["rHat"]][["scaleMean"]] <- NA_real_
       }
+      if (options[["effectiveSampleSize"]]) {
+        out[["effectiveSampleSize"]][["scaleMean"]] <- NA_real_
+      }
     }
     if ("scaleSd" %in% selected) {
       out[["est"]][["scaleSd"]] <- model[["scaleSd"]][["est"]]
       out[["cred"]][["scaleSd"]] <- model[["scaleSd"]][["cred"]]
       if (options[["rHat"]]) {
         out[["rHat"]][["scaleSd"]] <- NA_real_
+      }
+      if (options[["effectiveSampleSize"]]) {
+        out[["effectiveSampleSize"]][["scaleSd"]] <- NA_real_
       }
     }
 
@@ -934,7 +946,8 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
                                                                                  "meanSdScoresMethod", "inverseWishartPriorScale", "inverseWishartPriorDf",
                                                                                  "inverseGammaPriorShape", "inverseGammaPriorScale",
                                                                                  "coefficientType", "pointEstimate",
-                                                                                 "normalPriorMean", "standardizedLoadings"))
+                                                                                 "normalPriorMean", "standardizedLoadings",
+                                                                                 "effectiveSampleSize"))
 
   }
 
@@ -1102,7 +1115,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   scaleTable <- createJaspTable(gettext("Bayesian Scale Reliability Statistics"))
   scaleTable$dependOn(options = c("scaleCiLevel", "scaleMean", "scaleSd", "rHat",
                                   "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6", "scaleGreatestLowerBound",
-                                  "averageInterItemCorrelation", "meanSdScoresMethod"))
+                                  "averageInterItemCorrelation", "meanSdScoresMethod", "effectiveSampleSize"))
 
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
 
@@ -1113,10 +1126,12 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   pointEstimate <- gettextf("Posterior %s", options[["pointEstimate"]])
 
+  allData <- data.frame(estimate = c(pointEstimate, intervalLow, intervalUp))
   if (options[["rHat"]]) {
-    allData <- data.frame(estimate = c(pointEstimate, intervalLow, intervalUp, "R-hat"))
-  } else {
-    allData <- data.frame(estimate = c(pointEstimate, intervalLow, intervalUp))
+    allData <- rbind(allData, "R-hat")
+  }
+  if (options[["effectiveSampleSize"]]) {
+    allData <- rbind(allData, "ESS")
   }
 
   derivedOptions <- model[["derivedOptions"]]
@@ -1148,6 +1163,9 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
     if (options[["rHat"]]) {
       newData <- rbind(newData, model[["scaleResults"]][["rHat"]][[nm]])
+    }
+    if (options[["effectiveSampleSize"]]) {
+      newData <- rbind(newData, model[["scaleResults"]][["effectiveSampleSize"]][[nm]])
     }
     colnames(newData) <- paste0(colnames(newData), i)
     allData <- cbind(allData, newData)
@@ -1970,20 +1988,20 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
 
 
-.itemRestCorrelation <- function(dataset, n.iter, n.burnin, thin, n.chains, pairwise, callback, k0) {
+.itemRestCorrelation <- function(dataset, n.iter, n.burnin, thin, n.chains, pairwise, callback, k0, df0) {
 
   ircor_samp <- matrix(0, n.chains * length(seq(1, n.iter - n.burnin, thin)), ncol(dataset))
   for (i in seq(ncol(dataset))) {
     help_dat <- cbind(as.matrix(dataset[, i]), rowMeans(as.matrix(dataset[, -i]), na.rm = TRUE))
     ircor_samp[, i] <- .WishartCorTransform(help_dat, n.iter = n.iter, n.burnin = n.burnin, thin = thin,
-                                            n.chains = n.chains, pairwise = pairwise, callback = callback, k0)
+                                            n.chains = n.chains, pairwise = pairwise, callback = callback, k0, df0)
   }
 
   return(ircor_samp)
 }
 
-.WishartCorTransform <- function(x, n.iter, n.burnin, thin, n.chains, pairwise, callback, k0) {
-  tmp_cov <- Bayesrel:::covSamp(x, n.iter, n.burnin, thin, n.chains, pairwise, callback, k0 = k0, df0 = NULL)$cov_mat
+.WishartCorTransform <- function(x, n.iter, n.burnin, thin, n.chains, pairwise, callback, k0, df0) {
+  tmp_cov <- Bayesrel:::covSamp(x, n.iter, n.burnin, thin, n.chains, pairwise, callback, k0 = k0, df0 = df0)$cov_mat
   dd <- dim(tmp_cov)
   tmp_cov <- array(tmp_cov, c(dd[1] * dd[2], dd[3], dd[4]))
   tmp_cor <- apply(tmp_cov, c(1), cov2cor)

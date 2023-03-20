@@ -314,8 +314,9 @@ Form
 		{
 			title: qsTr("Diagnostics")
 
-			CheckBox {	name: "rHat";		label: qsTr("R-hat");		}
-			CheckBox {	name: "tracePlot";	label: qsTr("Traceplots");	}
+			CheckBox {	name: "rHat";									label: qsTr("R-hat");		}
+			CheckBox {	name: "tracePlot";						label: qsTr("Traceplots");	}
+			CheckBox {	name: "effectiveSampleSize"; 	label: qsTr("ESS")}
 		}
 
 		Group
