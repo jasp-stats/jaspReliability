@@ -12,8 +12,8 @@ The Bayesian unidimensional reliability analysis allows the user to test the sca
 
 ### Scale Statistics
 - Credible interval: default is 95%
-- McDonald's omega
-- Cronbach's alpha
+- McDonald's omega (for unidimensional data, based on the single-factor model)
+- Cronbach's alpha (for binary items the coefficient equals KR20)
 - Guttman's lambda 2
 - Guttman's lambda 6
 - Greatest lower bound
