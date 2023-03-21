@@ -93,20 +93,17 @@ Form
 					{label: qsTr("Ratio"),			value: "ratio"}
 				]
 			}
-
-			RowLayout
+			IntegerField
 			{
-				IntegerField
-				{
-					name: 			"krippendorffsAlphaBootstrapSamplesForCI"
-					label: 			qsTr("No. of bootstrap samples for CI")
-					defaultValue: 	1000
-					fieldWidth: 	50
-					min: 			100
-					max: 			1e7
-				}
+				name: 			"krippendorffsAlphaBootstrapSamplesForCI"
+				label: 			qsTr("No. of bootstrap samples for CI")
+				defaultValue: 	1000
+				fieldWidth: 	50
+				min: 			100
+				max: 			1e7
+			}
 
-				CheckBox
+			CheckBox
 				{
 					name: 				"setSeed"
 					label: 				qsTr("Set seed")
@@ -117,12 +114,11 @@ Form
 						name: 			"seed"
 						label: 			""
 						defaultValue: 	1234
-						fieldWidth: 	100
+						fieldWidth: 	80
 						min: 			1
 						max: 			1e9
 					}
 				}
-			}
 		}
 	}
 
