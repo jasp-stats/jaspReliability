@@ -1,10 +1,16 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-03-26 15:38+0000\n"
+"Last-Translator: Катя <katakxx@mail.ru>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/ru/>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.17-dev\n"
 "X-Language: ru\n"
 "X-Qt-Contexts: true\n"
 
@@ -30,7 +36,7 @@ msgstr "Внутриклассовая корреляция"
 
 msgctxt "Description|"
 msgid "Rater Agreement"
-msgstr ""
+msgstr "Межоценочная надежность"
 
 msgctxt "Description|"
 msgid "Bland-Altman Plots"
@@ -46,7 +52,7 @@ msgstr "Байесовская одномерная надежность"
 
 msgctxt "BlandAltman|"
 msgid "Measurement Pairs"
-msgstr ""
+msgstr "Пары измерений"
 
 msgctxt "BlandAltman|"
 msgid "Confidence Interval"
@@ -68,10 +74,9 @@ msgctxt "IntraclassCorrelation|"
 msgid "Variables"
 msgstr "Переменные"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Each subject is rated by..."
-msgstr "Оценивать по"
+msgstr "Оценивать по..."
 
 msgctxt "IntraclassCorrelation|"
 msgid "a different rater (randomly selected)"
@@ -79,15 +84,15 @@ msgstr "другой показатель (выбирается случайны
 
 msgctxt "IntraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
-msgstr ""
+msgstr "один и тот же набор случайно выбранных оценщиков/тестеров"
 
 msgctxt "IntraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
-msgstr ""
+msgstr "одинаковый фиксированный набор оценок/тестов"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Ratings are averaged"
-msgstr ""
+msgstr "Рейтинги усреднены"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Confidence Interval"
