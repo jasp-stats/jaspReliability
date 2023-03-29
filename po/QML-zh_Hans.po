@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-03-30 01:42+0000\n"
+"Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"jasp/jaspreliability-qml/zh_Hans/>\n"
+"Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.17-dev\n"
 "X-Language: zh_Hans\n"
 "X-Qt-Contexts: true\n"
 
@@ -63,241 +69,194 @@ msgctxt "BlandAltman|"
 msgid "Bland-Altman table"
 msgstr "Bland-Altman 表"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Variables"
 msgstr "变量"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Each subject is rated by..."
 msgstr "每个科目的评分是由..."
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "a different rater (randomly selected)"
 msgstr "不同的评分者（随机选择）"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
 msgstr "同一组随机选择的评分者/试验"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
 msgstr "同一组固定的评分者/试验"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Ratings are averaged"
 msgstr "评分已平均化"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Confidence Interval"
 msgstr "置信区间"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Variables"
 msgstr "变量"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Cohen's kappa"
 msgstr "Cohen's kappa"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Unweighted"
 msgstr "未加权"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Weighted"
 msgstr "已加权"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Fleiss' kappa"
 msgstr "Fleiss' kappa"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Krippendorff's alpha"
 msgstr "Krippendorff's alpha"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Method"
 msgstr "方法"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Nominal"
 msgstr "名义"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Ordinal"
 msgstr "定序"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Interval"
 msgstr "区间"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Ratio"
 msgstr "比率"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Confidence Interval"
 msgstr "置信区间"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Variables"
 msgstr "变量"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Analysis"
 msgstr "分析"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Scale Statistics"
 msgstr "尺度统计量"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Credible interval"
 msgstr "可信区间"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω"
 msgstr "McDonald's ω"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α"
 msgstr "Cronbach's α"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2"
 msgstr "Guttman's λ2"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ6"
 msgstr "Guttman's λ6"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Greatest lower bound"
 msgstr "最大下界"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Average interitem correlation"
 msgstr "平均项目间相关性"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Mean"
 msgstr "均值"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "SD"
 msgstr "标准差"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "of participants' sum scores"
 msgstr "参与者的总分"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "of participants' mean scores"
 msgstr "参与者的平均分"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Individual Item Statistics"
 msgstr "个别项目统计量"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α (if item dropped)"
 msgstr "Cronbach's α (如果排除此项目后)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2 (if item dropped)"
 msgstr "Guttman's λ2 (如果排除此项目后)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ6 (if item dropped)"
 msgstr "Guttman's λ6 (如果排除此项目后)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Greatest lower bound (if item dropped)"
-msgstr ""
+msgstr "最大下界 (如果排除此项目后)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "If item dropped plot"
 msgstr "当排除此项目后的图"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items"
 msgstr "项目排序"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by mean"
 msgstr "按均值排序项目"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by KL-divergence"
-msgstr "按 KL-divergence 排序项目"
+msgstr "按 KL-散度 排序项目"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by KS-distance"
-msgstr "按 KS-distance 排序项目"
+msgstr "按 KS-距离 排序项目"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Item-rest correlation"
 msgstr "此项目与其余项目相关性"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Standard deviation"
 msgstr "标准差"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Plot Posteriors"
 msgstr "绘制后验图"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Fix range to 0-1"
 msgstr "将范围固定为 0-1"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Display Priors"
 msgstr "显示先验"
