@@ -1,10 +1,16 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-04-13 21:51+0000\n"
+"Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/pl/>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.17-dev\n"
 "X-Language: pl\n"
 "X-Qt-Contexts: true\n"
 
@@ -64,7 +70,6 @@ msgctxt "BlandAltman|"
 msgid "Bland-Altman table"
 msgstr "Tabela Blanda-Altmana"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Variables"
 msgstr "Zmienne"
@@ -89,126 +94,102 @@ msgctxt "IntraclassCorrelation|"
 msgid "Ratings are averaged"
 msgstr ""
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Confidence Interval"
 msgstr "Przedział ufności"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Variables"
 msgstr "Zmienne"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Cohen's kappa"
 msgstr "Kappa Cohena"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Unweighted"
 msgstr "Nieważone"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Weighted"
 msgstr "Ważone"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Fleiss' kappa"
 msgstr "Kappa Fleissa"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Krippendorff's alpha"
 msgstr "alfa Krippendorffa"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Method"
 msgstr "Metoda"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Nominal"
 msgstr "Nominalna"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Ordinal"
 msgstr "Porządkowa"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Interval"
 msgstr "Przedział"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Ratio"
 msgstr "Stosunek"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Confidence Interval"
 msgstr "Przedział ufności"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Variables"
 msgstr "Zmienne"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Analysis"
 msgstr "Analiza"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Scale Statistics"
 msgstr "Statystyki dla skali"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Credible interval"
 msgstr "Przedział wiarygodności"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω"
 msgstr "ω McDonalda"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α"
 msgstr "α Cronbacha"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2"
 msgstr "λ2 Guttmana"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ6"
 msgstr "λ6 Guttmana"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Greatest lower bound"
-msgstr ""
+msgstr "Najniższa dolna granica"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Average interitem correlation"
 msgstr "Średnia korelacja między pozycjami"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Mean"
 msgstr "Średnia"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "SD"
 msgstr "SD"
@@ -221,45 +202,38 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "of participants' mean scores"
 msgstr ""
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Individual Item Statistics"
 msgstr "Statystyki dla poszczególnych pozycji"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω (if item dropped)"
-msgstr ""
+msgstr "ω McDonalda (bez danej pozycji)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α (if item dropped)"
 msgstr "α Cronbacha (bez danej pozycji)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2 (if item dropped)"
 msgstr "λ2 Guttmana (bez danej pozycji)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ6 (if item dropped)"
 msgstr "λ6 Guttmana (bez danej pozycji)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Greatest lower bound (if item dropped)"
-msgstr ""
+msgstr "Najniższa dolna granica (bez danej pozycji)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "If item dropped plot"
-msgstr "Wykres z pominięciem poszczególnych pozycji"
+msgstr "Wykres z pominięciem danej pozycji"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items"
-msgstr "Uporządkuj pozycje"
+msgstr "Uporządkuj pozycje testowe"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by mean"
 msgstr "Uporządkuj pozycje według średniej"
@@ -272,12 +246,10 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by KS-distance"
 msgstr ""
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Item-rest correlation"
 msgstr "Korelacja pozycji z wynikiem ogólnym"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Standard deviation"
 msgstr "Odchylenie standardowe"
