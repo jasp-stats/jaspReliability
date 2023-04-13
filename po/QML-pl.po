@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-13 21:51+0000\n"
+"PO-Revision-Date: 2023-04-14 22:51+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/pl/>\n"
@@ -256,24 +256,20 @@ msgstr "Odchylenie standardowe"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Plot Posteriors"
-msgstr ""
+msgstr "Wykresy a posteriori"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Fix range to 0-1"
 msgstr "Ustaw zakres na 0-1"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Display Priors"
-msgstr "Wyświetl priory"
+msgstr "Wyświetl rozkłady a priori"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Probability for:"
 msgstr "Prawdopodobieństwo dla:"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "< Reliability <"
 msgstr "< Rzetelność <"
@@ -286,12 +282,10 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Convergence"
 msgstr ""
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "MCMC parameters"
 msgstr "Parametry MCMC"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. samples"
 msgstr "Liczba próbek"
@@ -304,17 +298,14 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Thinning"
 msgstr ""
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. chains"
 msgstr "Liczba łańcuchów"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Diagnostics"
 msgstr "Diagnostyka"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "R-hat"
 msgstr "R-hat"
@@ -323,42 +314,34 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Traceplots"
 msgstr ""
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Repeatability"
 msgstr "Powtarzalność"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Set seed"
 msgstr "Ustaw ziarno generatora"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Samples"
 msgstr "Próbki"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Disable saving samples"
 msgstr "Wyłącz zapisywanie próbek"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Reverse-Scaled Items"
 msgstr "Pozycje kodowane odwrotnie"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Normal-Scaled Items"
 msgstr "Pozycje kodowane wprost"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Priors"
-msgstr "Priory"
+msgstr "Rozkład a priori"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "CTT-Coefficients (α, λ2, λ6, glb)"
 msgstr "Współczynniki CTT (α, λ2, λ6, glb)"
@@ -375,31 +358,26 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse gamma:"
 msgstr ""
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "shape"
 msgstr "kształt"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "scale"
 msgstr "skala"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Normal:"
-msgstr ""
+msgstr "Normalna:"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "mean"
 msgstr "średnia"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Advanced Options"
 msgstr "Opcje zaawansowane"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Missing Values"
 msgstr "Braki danych"
@@ -408,12 +386,10 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Bayesian imputation"
 msgstr ""
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Exclude cases listwise"
 msgstr "Wyklucz obserwacje ze wszystkich analiz"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω Estimation"
 msgstr "Oszacowanie ω McDonalda"
@@ -422,110 +398,90 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior predictive check"
 msgstr ""
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Fit measures"
 msgstr "Miary dopasowania"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "p(RMSEA <"
 msgstr "p(RMSEA <"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ")"
 msgstr ")"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "p(CFI/TLI >"
 msgstr "p(CFI/TLI >"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Standardized factor loadings"
 msgstr "Standaryzowane ładunki czynnikowe"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Coefficients"
 msgstr "Współczyniki"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Unstandardized"
 msgstr "Niestandaryzowane"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Standardized"
 msgstr "Standaryzowane"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior Point Estimate"
-msgstr ""
+msgstr "Estymacja punktowa a posteriori"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Median"
 msgstr "Mediana"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Variables"
 msgstr "Zmienne"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Analysis"
 msgstr "Analiza"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Scale Statistics"
 msgstr "Statystyki dla skali"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Confidence Interval"
 msgstr "Przedział ufności"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "McDonald's ω"
 msgstr "ω McDonalda"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Cronbach's α"
 msgstr "α Cronbacha"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2"
 msgstr "λ2 Guttmana"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ6"
 msgstr "λ6 Guttmana"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Greatest lower bound"
-msgstr ""
+msgstr "Najmniejsza dolna granica"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Average interitem correlation"
 msgstr "Średnia korelacja między pozycjami"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Mean"
 msgstr "Średnia"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "SD"
 msgstr "SD"
@@ -538,61 +494,50 @@ msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "of participants' mean scores"
 msgstr ""
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Individual Item Statistics"
 msgstr "Statystyki dla poszczególnych pozycji"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "McDonald's ω  (if item dropped)"
 msgstr "ω McDonalda (bez danej pozycji)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Cronbach's α (if item dropped)"
 msgstr "α Cronbacha (bez danej pozycji)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2 (if item dropped)"
 msgstr "λ2 Guttmana (bez danej pozycji)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ6 (if item dropped)"
 msgstr "λ6 Guttmana (bez danej pozycji)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Greatest lower bound (if item dropped)"
-msgstr ""
+msgstr "Najniższa dolna granica (bez danej pozycji)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Item-rest correlation"
 msgstr "Korelacja pozycji z wynikiem ogólnym"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Standard deviation"
 msgstr "Odchylenie standardowe"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Reverse-Scaled Items"
 msgstr "Pozycje kodowane odwrotnie"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Normal-Scaled Items"
 msgstr "Pozycje kodowane wprost"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Advanced Options"
 msgstr "Opcje zaawansowane"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Missing Values"
 msgstr "Braki danych"
@@ -601,46 +546,38 @@ msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Exclude cases pairwise"
 msgstr "Sprawdzaj dla każdej analizy oddzielnie"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Exclude cases listwise"
 msgstr "Wyklucz obserwacje ze wszystkich analiz"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Bootstrap"
 msgstr "Bootstrap"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "No. of bootstrap samples"
 msgstr "Liczba próbek bootstrapowych"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Non-parametric bootstrap"
-msgstr "Nieparametryczny bootstrap"
+msgstr "Bootstrap nieparametryczny"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Parametric bootstrap"
-msgstr "Parametryczny bootstrap"
+msgstr "Bootstrap parametryczny"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "McDonald's ω Estimation"
 msgstr "Oszacowanie ω McDonalda"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "CFA"
 msgstr "CFA"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Single factor model fit"
-msgstr ""
+msgstr "Dopasowanie modelu jednoczynnikowego"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Interval"
 msgstr "Przedział"
@@ -649,51 +586,42 @@ msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Analytic interval"
 msgstr ""
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Bootstrapped interval"
-msgstr "Interwał bootstrapowany"
+msgstr "Interwał bootstrapowy"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "PFA"
 msgstr "PFA"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Cronbach's α Estimation"
 msgstr "Oszacowanie α Cronbacha"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Unstandardized"
 msgstr "Niestandaryzowane"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Standardized"
 msgstr "Standaryzowane"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Repeatability"
 msgstr "Powtarzalność"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Set seed"
 msgstr "Ustaw ziarno generatora"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Samples"
 msgstr "Próbki"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Do not save samples"
-msgstr ""
+msgstr "Nie zapisuj próbek"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Click to learn more about saving the samples."
-msgstr "Kliknij, aby dowiedzieć się więcej o zapisywaniu próbek."
+msgstr "Kliknij, aby dowiedzieć się więcej na temat zapisywania próbek."
