@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
 "POT-Creation-Date: 2022-12-17 03:30\n"
-"PO-Revision-Date: 2023-01-13 12:30+0000\n"
+"PO-Revision-Date: 2023-04-14 22:49+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/pl/>\n"
@@ -12,13 +12,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 msgid "Bland-Altman Plots"
 msgstr ""
 
 msgid "Please provide another variable"
-msgstr ""
+msgstr "Proszę podać inną zmienną"
 
 msgid "Plotting not possible: %s"
 msgstr "Nie można utworzyć wykresu: %s"
@@ -30,34 +30,34 @@ msgid "Bias & Limits"
 msgstr ""
 
 msgid "Point Value"
-msgstr ""
+msgstr "Wartość punktowa"
 
 msgid "Mean difference - 1.96 SD"
-msgstr ""
+msgstr "Różnica średnich - 1,96 SD"
 
 msgid "Mean difference + 1.96 SD"
-msgstr ""
+msgstr "Różnica średnich + 1,96 SD"
 
 msgid "Mean difference"
-msgstr ""
+msgstr "Różnica średnich"
 
 msgid "Lower %s%% CI"
-msgstr ""
+msgstr "Dolny %s%% PU"
 
 msgid "Upper %s%% CI"
 msgstr "Górny %s%% PU"
 
 msgid "Calculations not possible: %s"
-msgstr ""
+msgstr "Wykonanie obliczeń nie jest możliwe: %s"
 
 msgid "Intraclass Correlation"
 msgstr ""
 
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 msgid "Point Estimate"
-msgstr ""
+msgstr "Oszacowanie punktowe"
 
 msgid ""
 "%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout "
@@ -65,16 +65,16 @@ msgid ""
 msgstr ""
 
 msgid "Please select at least 2 columns"
-msgstr ""
+msgstr "Należy wybrać co najmniej 2 kolumny"
 
 msgid "Cohen's %s kappa"
-msgstr ""
+msgstr "%s kappa Cohena"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Oceny"
 
 msgid "%s kappa"
-msgstr ""
+msgstr "%s kappa"
 
 msgid "%i subjects/items and %i raters/measurements."
 msgstr ""
@@ -92,14 +92,14 @@ msgid "Upper"
 msgstr "Górny"
 
 msgid "Confidence intervals are asymptotic."
-msgstr ""
+msgstr "Przedziały ufności są asymptotyczne."
 
 msgid ""
 "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
-msgstr ""
+msgstr "Dla 2 poziomów kappa ważona jest równa kappie nieważonej."
 
 msgid "Fleiss' kappa"
-msgstr ""
+msgstr "Kappa Fleissa"
 
 msgid "Method"
 msgstr "Metoda"
@@ -108,18 +108,20 @@ msgid ""
 "Confidence intervals are based on percentiles from 1000 bootstrap "
 "replications."
 msgstr ""
+"Przedziały ufności oparte są na percentylach z 1000 replikacji "
+"bootstrapowych."
 
 msgid "Greatest Lower Bound"
-msgstr ""
+msgstr "Największa dolna granica"
 
 msgid "Item-rest correlation"
-msgstr ""
+msgstr "Korelacja pozycji z wynikiem ogólnym"
 
 msgid "mean"
-msgstr ""
+msgstr "średnia"
 
 msgid "sd"
-msgstr ""
+msgstr "sd"
 
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr ""
@@ -149,28 +151,28 @@ msgid ""
 msgstr ""
 
 msgid "Bayesian Scale Reliability Statistics"
-msgstr ""
+msgstr "Bayesowskie statystyki rzetelności dla skal"
 
 msgid "Estimate"
-msgstr ""
+msgstr "Oszacowanie"
 
 msgid "%s lower bound"
-msgstr ""
+msgstr "%s dolna granica"
 
 msgid "%s upper bound"
-msgstr ""
+msgstr "%s górna granica"
 
 msgid "Posterior %s"
-msgstr ""
+msgstr "Posterior %s"
 
 msgid "Bayesian Individual Item Reliability Statistics"
-msgstr ""
+msgstr "Bayesowskie statystyki rzetelności dla pojedynczych itemów"
 
 msgid "Item"
-msgstr ""
+msgstr "Pozycja testowa"
 
 msgid "%s (if item dropped)"
-msgstr ""
+msgstr "%s (bez danej pozycji)"
 
 msgid ""
 "%s Please enter at least 3 variables for the if item dropped statistics."
@@ -196,10 +198,10 @@ msgid "Prior"
 msgstr "Prior"
 
 msgid "Posterior"
-msgstr ""
+msgstr "Posterior"
 
 msgid "Fit Measures for the Single-Factor Model"
-msgstr ""
+msgstr "Miary dopasowania dla modelu jednoczynnikowego"
 
 msgid ""
 "'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
@@ -210,40 +212,41 @@ msgid ""
 msgstr ""
 
 msgid "Standardized Loadings of the Single-Factor Model"
-msgstr ""
+msgstr "Standaryzowane ładunki dla modelu jednoczynnikowego"
 
 msgid "Standardized loading"
-msgstr ""
+msgstr "Ładunki standaryzowane"
 
 msgid "Posterior Plots"
-msgstr ""
+msgstr "Wykresy a posteriori"
 
 msgid "Density"
 msgstr "Gęstość"
 
 msgid "If Item Dropped Posterior Plots"
-msgstr ""
+msgstr "Wykresy a posteriory bez danej pozycji"
 
 msgid "Please enter at least 3 variables for the if item dropped plot"
 msgstr ""
+"Należy wprowadzić co najmniej 3 zmienne, aby uzyskać wykres bez danej pozycji"
 
 msgid "KLD ordering failed because two variables have perfect correlation"
 msgstr ""
 
 msgid "Item Dropped"
-msgstr ""
+msgstr "Bez danej pozycji"
 
 msgid "Eigenvalue"
 msgstr "Wartość własna"
 
 msgid "Eigenvalue No."
-msgstr ""
+msgstr "Nr wartości własnej"
 
 msgid "Convergence Traceplot"
 msgstr ""
 
 msgid "Iterations"
-msgstr ""
+msgstr "Iteracje"
 
 msgid "Omega item dropped statistics with CFA failed."
 msgstr ""
@@ -259,45 +262,51 @@ msgid ""
 "                                                    Try changing to PFA in "
 "Advanced Options"
 msgstr ""
+"Nie udało się obliczyć Omega dla CFA.\n"
+"                                                    W Opcjach zaawansowanych "
+"wybierz PFA i spróbuj ponownie"
 
 msgid ""
 "Omega bootstrapped interval calculation with CFA failed.\n"
 "                                                            Try changing to "
 "PFA in 'Advanced Options'"
 msgstr ""
+"Nie udało się obliczyć przedziału bootstrapowego dla Omega z CFA.\n"
+"                                                    W Opcjach zaawansowanych "
+"wybierz PFA i spróbuj ponownie"
 
 msgid "Omega calculation with PFA failed."
-msgstr ""
+msgstr "Obliczanie Omega z PFA nie powiodło się."
 
 msgid "Omega interval calculation with PFA failed."
-msgstr ""
+msgstr "Obliczanie przedziału dla Omega z PFA nie powiodło się."
 
 msgid "Lambda6 calculation failed."
-msgstr ""
+msgstr "Obliczenie lambda6 nie powiodło się."
 
 msgid "Lambda6 interval calculation failed."
-msgstr ""
+msgstr "Obliczenie przedziału dla lambda6 nie powiodło się."
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr ""
 
 msgid "Point estimate"
-msgstr ""
+msgstr "Oszacowanie punktowe"
 
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr ""
 
 msgid "If item dropped"
-msgstr ""
+msgstr "Bez danej pozycji"
 
 msgid "Fit Measures of Single Factor Model Fit"
-msgstr ""
+msgstr "Miary dopasowania dla modelu jednoczynnikowego"
 
 msgid "Fit measure"
-msgstr ""
+msgstr "Miary dopasowania"
 
 msgid "Value"
-msgstr ""
+msgstr "Wartość"
 
 msgid ""
 "Too few MCMC samples will remain after the removal of the burnin samples and "
@@ -309,14 +318,16 @@ msgid "%1$sVariables %2$s and %3$s correlated perfectly."
 msgstr ""
 
 msgid "Please enter at least 2 variables to do an analysis"
-msgstr ""
+msgstr "Aby wykonać analizę należy wprowadzić co najmniej 2 zmienne"
 
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Następująca pozycja jest skorelowana ujemnie z wynikiem ogólnym: %s. "
+msgstr[1] "Następujące pozycje są skorelowane ujemnie z wynikiem ogólnym: %s. "
+msgstr[2] "Następujące pozycje są skorelowane ujemnie z wynikiem ogólnym: %s. "
 
 msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Następująca pozycja była zakodowana odwrotnie: %s. "
+msgstr[1] "Następujące pozycje były zakodowane odwrotnie: %s. "
+msgstr[2] "Następujące pozycje były zakodowane odwrotnie: %s. "
