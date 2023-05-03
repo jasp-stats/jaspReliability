@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-05-02 05:11+0000\n"
+"PO-Revision-Date: 2023-05-04 19:40+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/pl/>\n"
@@ -544,7 +544,7 @@ msgstr "Braki danych"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Exclude cases pairwise"
-msgstr "Sprawdzaj dla każdej analizy oddzielnie"
+msgstr "Sprawdzaj oddzielnie dla każdej analizy"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Exclude cases listwise"
