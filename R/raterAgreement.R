@@ -212,7 +212,8 @@ raterAgreement <- function(jaspResults, dataset, options) {
       "variables",
       "krippendorffsAlpha",
       "ci",
-      "ciLevel"
+      "ciLevel",
+      "krippenDorffsAlphaDataStructure"
     )
   )
 
@@ -224,7 +225,11 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   if (ready) {
     #calculate Krippendorff's alpha
-    kAlphaData <- t(as.matrix(dataset))
+    if (options[["krippendorffsAlphaDataStructure"]] == "ratersInColumns") {
+      kAlphaData <- t(as.matrix(dataset))
+    } else { # raters in rows
+      kAlphaData <- as.matrix(dataset)
+    }
     method <- options[["krippendorffsAlphaMethod"]]
     kAlpha <- irr::kripp.alpha(kAlphaData, method)
 

@@ -5,6 +5,7 @@
 # Set options
 options <- analysisOptions("raterAgreement")
 options$variables <- c("V1", "facFifty", "contNormal")
+options$krippendorffsAlphaDataStructure <- "ratersInColumns"
 set.seed(1)
 results <- runAnalysis("raterAgreement", "test.csv", options)
 
@@ -265,6 +266,7 @@ options$variables <- c("facGender", "facExperim", "debBinMiss20")
 options$ciLevel <- 0.99
 options$cohensKappaType <- "weighted"
 options$krippendorffsAlphaBootstrapSamplesForCI <- 200
+options$krippendorffsAlphaDataStructure <- "ratersInColumns"
 options$setSeed <- TRUE
 set.seed(1)
 results <- runAnalysis("raterAgreement", "test.csv", options)

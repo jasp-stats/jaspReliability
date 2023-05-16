@@ -50,7 +50,6 @@ Form
 			RadioButtonGroup
 			{
 			name:		"cohensKappaType"
-
 				RadioButton
 				{
 				name:		"unweighted"
@@ -80,6 +79,24 @@ Form
 			name:   	"krippendorffsAlpha"
 			label:  	qsTr("Krippendorff's alpha")
 			checked: 	true
+
+			RadioButtonGroup
+			{
+				name: "krippendorffsAlphaDataStructure"
+				title: qsTr("Data Structure")
+				RadioButton
+				{
+				name:		"ratersInColumns"
+				label:		qsTr("Raters are in columns")
+				checked:	true
+				}
+
+				RadioButton
+				{
+				name:	"ratersInRows"
+				label:	qsTr("Raters are in rows")
+				}
+			}
 			
 			DropDown
 			{
