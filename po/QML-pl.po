@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-05-30 13:49+0000\n"
+"PO-Revision-Date: 2023-06-02 20:48+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/pl/>\n"
@@ -356,7 +356,7 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse gamma:"
-msgstr ""
+msgstr "Odwrotność gamma:"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "shape"
