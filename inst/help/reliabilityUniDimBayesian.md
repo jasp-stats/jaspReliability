@@ -12,8 +12,8 @@ The Bayesian unidimensional reliability analysis allows the user to test the sca
 
 ### Scale Statistics
 - Credible interval: default is 95%
-- McDonald's omega
-- Cronbach's alpha
+- McDonald's omega (for unidimensional data, based on the single-factor model)
+- Cronbach's alpha (for binary items the coefficient equals KR20)
 - Guttman's lambda 2
 - Guttman's lambda 6
 - Greatest lower bound
@@ -61,6 +61,7 @@ Display the posterior densities of the reliability coeffcients
 ### Diagnostics
 - R-hat: also called potential scale reduction factor
 - Traceplots: display a traceplot per coefficient
+- ESS: Effective sample size
 
 ### Repeatability
 Since sampling from the posterior distribution is subjected to random processes, one can set a seed so that the background calculations in R yield equal results for equal seeds
@@ -131,6 +132,7 @@ Warrens, M.J. Some relationships between Cronbach’s alpha and the Spearman-Bro
   - lower bound: The lower bound of the credible interval. 
   - upper bound: The upper bound of the credible interval. 
 - R-hat: indicates the factor by how much the between chain variance would be reduced when the sampling would continue infinitely long, should be close to 1 and not larger than 1.1
+- ESS: Indicates the number of independent posterior samples that contain as much information as the complete set of autocorrelated posterior samples 
 
 #### Bayesian Individual Item Reliability Statistics:
 - The first column contains all the variables included in the analysis. 
@@ -186,6 +188,7 @@ Warrens, M.J. Some relationships between Cronbach’s alpha and the Spearman-Bro
 ---
 - Cronbach, L. J. (1951). Coefficient alpha and the internal structure of tests. *Psychometrika, 16*(3), 297–334. https://doi.org/10.1007/BF02310555
 - Garnier-Villarreal M., & Jorgensen T. D. (2020). Adapting fit indices for Bayesian structural equation modeling: Comparison to maximum likelihood. *Psychological Methods. 25*(1), 46-70. https://doi.org/10.1037/met0000224.
+- Geyer, C. (2011). Introduction to Markov chain Monte Carlo. In S. Brooks, A. Gelman, G. Jones, & X-L. Meng (Eds.), *Handbook of Markov chain Monte Carlo* (1st ed.). Chapman and Hall/CRC. https://doi.org/10.1201/b10905-2
 - Gelman, A., & Rubin, D. B. (1992). Inference from iterative simulation using multiple sequences. *Statistical Science, 7*(4), 457–472. https://doi.org/10.1214/ss/1177011136
 - Guttman, L. (1945). A basis for analyzing test-retest reliability. *Psychometrika, 10*(4), 255–282. https://doi.org/10.1007/BF02288892
 - Kolmogorov, A. N. (1933). Sulla determinazione empirica di une legge di distribuzion. *Instituto Italiano degli Attuari, Giornale, 4*, 83–91.

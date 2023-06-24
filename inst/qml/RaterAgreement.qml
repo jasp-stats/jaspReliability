@@ -50,7 +50,6 @@ Form
 			RadioButtonGroup
 			{
 			name:		"cohensKappaType"
-
 				RadioButton
 				{
 				name:		"unweighted"
@@ -80,6 +79,24 @@ Form
 			name:   	"krippendorffsAlpha"
 			label:  	qsTr("Krippendorff's alpha")
 			checked: 	true
+
+			RadioButtonGroup
+			{
+				name: "krippendorffsAlphaDataStructure"
+				title: qsTr("Data Structure")
+				RadioButton
+				{
+				name:		"ratersInColumns"
+				label:		qsTr("Raters are in columns")
+				checked:	true
+				}
+
+				RadioButton
+				{
+				name:	"ratersInRows"
+				label:	qsTr("Raters are in rows")
+				}
+			}
 			
 			DropDown
 			{
@@ -93,10 +110,34 @@ Form
 					{label: qsTr("Ratio"),			value: "ratio"}
 				]
 			}
+			IntegerField
+			{
+				name: 			"krippendorffsAlphaBootstrapSamplesForCI"
+				label: 			qsTr("No. of bootstrap samples for CI")
+				defaultValue: 	1000
+				fieldWidth: 	50
+				min: 			100
+				max: 			1e7
+			}
+
+			CheckBox
+				{
+					name: 				"setSeed"
+					label: 				qsTr("Set seed")
+					childrenOnSameRow: 	true
+
+					IntegerField
+					{
+						name: 			"seed"
+						label: 			""
+						defaultValue: 	1234
+						fieldWidth: 	80
+						min: 			1
+						max: 			1e9
+					}
+				}
 		}
-		
 	}
-	
 
 	CheckBox 
 	{

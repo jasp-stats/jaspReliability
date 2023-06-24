@@ -19,6 +19,7 @@ For Cohen's kappa the maximum number of raters  is 2. If more than 2 variables/r
 - Fleiss' kappa: Whether Fleiss' kappa is calculated.
 
 - Krippendorff's alpha: Whether Krippendorff's alpha is calculated.
+  - Data Structure: By default, Krippendorffs's alpha expects the raters (coders) to be in the columns and the units that are rated (coded) in the rows. As the irr package expects the raters to be rows, the data is then transposed before estimation under the hood.
   - Method: Krippendorff's alpha is calculated differently depending on the level of measurement of the variables. This option allows to select the method corresponding to the correct level of measurement. The available levels are nominal, ordinal, interval, and ratio.
 
 - Confidence Interval: Whether a confidence interval should be reported for Cohen's and Fleiss' kappa and Krippendorff's alpha and the width of the interval.

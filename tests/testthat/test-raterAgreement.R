@@ -5,6 +5,7 @@
 # Set options
 options <- analysisOptions("raterAgreement")
 options$variables <- c("V1", "facFifty", "contNormal")
+options$krippendorffsAlphaDataStructure <- "ratersInColumns"
 set.seed(1)
 results <- runAnalysis("raterAgreement", "test.csv", options)
 
@@ -264,6 +265,9 @@ options <- analysisOptions("raterAgreement")
 options$variables <- c("facGender", "facExperim", "debBinMiss20")
 options$ciLevel <- 0.99
 options$cohensKappaType <- "weighted"
+options$krippendorffsAlphaBootstrapSamplesForCI <- 200
+options$krippendorffsAlphaDataStructure <- "ratersInColumns"
+options$setSeed <- TRUE
 set.seed(1)
 results <- runAnalysis("raterAgreement", "test.csv", options)
 
@@ -271,11 +275,12 @@ results <- runAnalysis("raterAgreement", "test.csv", options)
 test_that("Cohen's Weighted kappa table results match", {
   table <- results[["results"]][["cohensKappa"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list("", "", "", -0.00184386638316336, "Average kappa", 0.0177777777777777,
-                                      0.0177777777777777, 0, 0.0177777777777777, "facGender - facExperim",
-                                      -0.00617957106506728, -0.00617957106506728, 0, -0.00617957106506728,
-                                      "facGender - debBinMiss20", -0.0171298058622005, -0.0171298058622005,
-                                      0, -0.0171298058622005, "facExperim - debBinMiss20"))
+                                 list("", "", "", -0.00184386638316336, "Average kappa", -0.0105967225936691,
+                                      0.0461522781492244, 0.0110156757407617, 0.0177777777777777,
+                                      "facGender - facExperim", -0.0393585273220366, 0.026999385191902,
+                                      0.012880883143637, -0.00617957106506728, "facGender - debBinMiss20",
+                                      -0.0516244390801057, 0.0173648273557048, 0.0133916611517617,
+                                      -0.0171298058622005, "facExperim - debBinMiss20"))
 })
 
 test_that("Fleiss' kappa table results match", {
@@ -294,7 +299,7 @@ test_that("Fleiss' kappa table results match", {
 test_that("Krippendorff's alpha table results match", {
   table <- results[["results"]][["krippendorffsAlpha"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(-0.210559277301944, -0.197092068692018, 0.00282684600279606, -0.199079048349962,
+                                 list(-0.212534930259255, -0.197193484221555, 0.00279613421372955, -0.199079048349962,
                                       "Nominal"))
 })
 
