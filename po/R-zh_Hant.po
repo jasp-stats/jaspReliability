@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
-"POT-Creation-Date: 2022-12-17 03:30\n"
+"POT-Creation-Date: 2023-07-01 03:36\n"
 "PO-Revision-Date: 2022-12-31 15:47+0000\n"
 "Last-Translator: Sau-chin Chen <pmsp96@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -107,11 +107,6 @@ msgid "Fleiss' kappa"
 msgstr ""
 
 msgid "Method"
-msgstr ""
-
-msgid ""
-"Confidence intervals are based on percentiles from 1000 bootstrap "
-"replications."
 msgstr ""
 
 msgid "Greatest Lower Bound"

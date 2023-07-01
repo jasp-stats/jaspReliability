@@ -739,3 +739,28 @@ msgstr "サンプルの保存については、こちらをクリックしてく
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω (if item dropped)"
 msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Data Structure"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Raters are in columns"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Raters are in rows"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "No. of bootstrap samples for CI"
+msgstr ""
+
+#, fuzzy
+msgctxt "RaterAgreement|"
+msgid "Set seed"
+msgstr "seedの設定"
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "ESS"
+msgstr ""

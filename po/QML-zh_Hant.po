@@ -715,3 +715,27 @@ msgstr "按此鍵以了解更多有關節省樣本"
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω (if item dropped)"
 msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Data Structure"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Raters are in columns"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Raters are in rows"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "No. of bootstrap samples for CI"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Set seed"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "ESS"
+msgstr ""

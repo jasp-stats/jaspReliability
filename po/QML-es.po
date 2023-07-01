@@ -620,3 +620,28 @@ msgstr "Hacer clic para saber más sobre guardar las muestras."
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω (if item dropped)"
 msgstr "ω de McDonald (al quitar elementos)"
+
+msgctxt "RaterAgreement|"
+msgid "Data Structure"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Raters are in columns"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Raters are in rows"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "No. of bootstrap samples for CI"
+msgstr ""
+
+#, fuzzy
+msgctxt "RaterAgreement|"
+msgid "Set seed"
+msgstr "Establecer semilla"
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "ESS"
+msgstr ""

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
-"POT-Creation-Date: 2022-12-17 03:30\n"
+"POT-Creation-Date: 2023-07-01 03:36\n"
 "PO-Revision-Date: 2023-04-21 17:50+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -104,11 +104,6 @@ msgid "Fleiss' kappa"
 msgstr ""
 
 msgid "Method"
-msgstr ""
-
-msgid ""
-"Confidence intervals are based on percentiles from 1000 bootstrap "
-"replications."
 msgstr ""
 
 msgid "Greatest Lower Bound"

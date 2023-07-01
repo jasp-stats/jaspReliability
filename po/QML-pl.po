@@ -619,3 +619,28 @@ msgstr "Nie zapisuj próbek"
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Click to learn more about saving the samples."
 msgstr "Kliknij, aby dowiedzieć się więcej na temat zapisywania próbek."
+
+msgctxt "RaterAgreement|"
+msgid "Data Structure"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Raters are in columns"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Raters are in rows"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "No. of bootstrap samples for CI"
+msgstr ""
+
+#, fuzzy
+msgctxt "RaterAgreement|"
+msgid "Set seed"
+msgstr "Ustaw ziarno generatora"
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "ESS"
+msgstr ""

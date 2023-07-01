@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.2\n"
-"POT-Creation-Date: 2023-04-22 03:28\n"
+"POT-Creation-Date: 2023-07-01 03:36\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,9 +96,6 @@ msgid "Fleiss' kappa"
 msgstr ""
 
 msgid "Method"
-msgstr ""
-
-msgid "Confidence intervals are based on percentiles from 1000 bootstrap replications."
 msgstr ""
 
 msgid "Greatest Lower Bound"
