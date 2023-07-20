@@ -75,8 +75,8 @@ msgstr ""
 msgid "%s kappa"
 msgstr "%s kappa"
 
-msgid "%i subjects/items and %i raters/measurements."
-msgstr "%i 个被试/项目和 %i 个评分者/测量值。"
+msgid "%1$i subjects/items and %2$i raters/measurements."
+msgstr "%1$i 个被试/项目和 %2$i 个评分者/测量值。"
 
 msgid "SE"
 msgstr "SE"

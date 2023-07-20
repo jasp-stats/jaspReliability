@@ -85,8 +85,8 @@ msgstr "Calificacións"
 msgid "%s kappa"
 msgstr "Kappa %s"
 
-msgid "%i subjects/items and %i raters/measurements."
-msgstr "%i suxeitos/elementos e %i cualificadores/medidas."
+msgid "%1$i subjects/items and %2$i raters/measurements."
+msgstr "%1$i suxeitos/elementos e %2$i cualificadores/medidas."
 
 msgid "SE"
 msgstr "EP"

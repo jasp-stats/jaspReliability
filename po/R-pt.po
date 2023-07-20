@@ -83,7 +83,7 @@ msgstr ""
 msgid "%s kappa"
 msgstr ""
 
-msgid "%i subjects/items and %i raters/measurements."
+msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr ""
 
 msgid "SE"
