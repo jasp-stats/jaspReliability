@@ -78,8 +78,8 @@ msgstr "Scores"
 msgid "%s kappa"
 msgstr "%s kappa"
 
-msgid "%i subjects/items and %i raters/measurements."
-msgstr "%i subjecten/items and %i beoordelaars/metingen."
+msgid "%1$i subjects/items and %2$i raters/measurements."
+msgstr "%1$i subjecten/items and %2$i beoordelaars/metingen."
 
 msgid "SE"
 msgstr "Std. Fout"

@@ -78,8 +78,8 @@ msgstr "Beurteilungen"
 msgid "%s kappa"
 msgstr "%s Kappa"
 
-msgid "%i subjects/items and %i raters/measurements."
-msgstr "%i Messobjekte/Items und %i Beurteilern/Messungen."
+msgid "%1$i subjects/items and %2$i raters/measurements."
+msgstr "%1$i Messobjekte/Items und %2$i Beurteilern/Messungen."
 
 msgid "SE"
 msgstr "Standardfehler"
