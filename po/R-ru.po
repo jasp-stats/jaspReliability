@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
-"POT-Creation-Date: 2023-07-01 03:36\n"
+"POT-Creation-Date: 2023-07-20 13:38\n"
 "PO-Revision-Date: 2023-03-26 15:41+0000\n"
 "Last-Translator: Катя <katakxx@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
@@ -78,7 +78,7 @@ msgstr ""
 msgid "%s kappa"
 msgstr ""
 
-msgid "%i subjects/items and %i raters/measurements."
+msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr ""
 
 msgid "SE"
