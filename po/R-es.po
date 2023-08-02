@@ -157,7 +157,7 @@ msgid "Bayesian Scale Reliability Statistics"
 msgstr "Estadísticas de confiabilidad de escala bayesiana"
 
 msgid "Estimate"
-msgstr "Estimar"
+msgstr "Estimación"
 
 msgid "%s lower bound"
 msgstr "%s límite inferior"
