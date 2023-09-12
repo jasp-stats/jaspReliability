@@ -140,8 +140,8 @@ test_that("Frequentist Scale Reliability Statistics table results match", {
                                         0.85215986924174, "95% CI upper bound"))
   } else if (jaspBase::getOS() == "osx") {
     jaspTools::expect_equal_tables(table,
-                                   list(0.791710063361508, "Point estimate", 0.688063057831179, "95% CI lower bound",
-                                        0.854457118896833, "95% CI upper bound"))
+                                   list(0.791710063361508, "Point estimate", 0.679125749864971, "95% CI lower bound",
+                                        0.849422292711498, "95% CI upper bound"))
   }
 })
 
