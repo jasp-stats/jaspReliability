@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-09-27 19:01+0000\n"
+"PO-Revision-Date: 2023-09-28 11:09+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/pl/>\n"
@@ -76,19 +76,19 @@ msgstr "Zmienne"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Each subject is rated by..."
-msgstr ""
+msgstr "Każdy przypadek jest oceniany przez..."
 
 msgctxt "IntraclassCorrelation|"
 msgid "a different rater (randomly selected)"
-msgstr ""
+msgstr "innego sędziego (dobranego losowo)"
 
 msgctxt "IntraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
-msgstr ""
+msgstr "ten sam zestaw losowo dobranych sędziów/testów"
 
 msgctxt "IntraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
-msgstr ""
+msgstr "ten sam zestaw ręcznie wybranych sędziów/testów"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Ratings are averaged"
@@ -196,11 +196,11 @@ msgstr "SD"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "of participants' sum scores"
-msgstr ""
+msgstr "sumy wyników"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "of participants' mean scores"
-msgstr ""
+msgstr "średniej wyników"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Individual Item Statistics"
@@ -488,11 +488,11 @@ msgstr "SD"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "of participants' sum scores"
-msgstr "sumy wyników uczestnika"
+msgstr "sumy wyników"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "of participants' mean scores"
-msgstr ""
+msgstr "średniej wyników"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Individual Item Statistics"
@@ -628,25 +628,24 @@ msgstr "Kliknij, aby dowiedzieć się więcej na temat zapisywania próbek."
 
 msgctxt "RaterAgreement|"
 msgid "Data Structure"
-msgstr ""
+msgstr "Struktura danych"
 
 msgctxt "RaterAgreement|"
 msgid "Raters are in columns"
-msgstr ""
+msgstr "Sędziowie są w kolumnach"
 
 msgctxt "RaterAgreement|"
 msgid "Raters are in rows"
-msgstr ""
+msgstr "Sędziowie są w rzędach"
 
 msgctxt "RaterAgreement|"
 msgid "No. of bootstrap samples for CI"
-msgstr ""
+msgstr "Liczba próbek bootstrapowych dla PU"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Set seed"
 msgstr "Ustaw ziarno generatora"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "ESS"
-msgstr ""
+msgstr "ESS"
