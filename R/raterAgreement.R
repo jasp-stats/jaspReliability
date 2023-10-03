@@ -263,13 +263,20 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   bootstrapSamples <- createJaspState()
   method <- options[["krippendorffsAlphaMethod"]]
-  n <- nrow(dataset)
+
+  if (options[["krippendorffsAlphaDataStructure"]] == "ratersInColumns") {
+    kAlphaData <- as.matrix(dataset)
+  } else { # raters in rows
+    kAlphaData <- t(as.matrix(dataset))
+  }
+
+  n <- nrow(kAlphaData)
   alphas <- numeric(options[["krippendorffsAlphaBootstrapSamplesForCI"]])
 
   jaspBase::.setSeedJASP(options)
 
   for (i in seq_len(options[["krippendorffsAlphaBootstrapSamplesForCI"]])) {
-    bootData <- as.matrix(dataset[sample.int(n, size = n, replace = TRUE), ])
+    bootData <- as.matrix(kAlphaData[sample.int(n, size = n, replace = TRUE), ])
     alphas[i] <- irr::kripp.alpha(t(bootData), method = method)$value
   }
   bootstrapSamples$object <- alphas
@@ -279,6 +286,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
     "krippendorffsAlpha",
     "ci",
     "krippendorffsAlphaBootstrapSamplesForCI",
+    "krippendorffsAlphaDataStructure",
     "setSeed", "seed"))
   return()
 }
