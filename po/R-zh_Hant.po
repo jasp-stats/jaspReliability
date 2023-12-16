@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
 "POT-Creation-Date: 2023-07-20 13:38\n"
-"PO-Revision-Date: 2022-12-31 15:47+0000\n"
-"Last-Translator: Sau-chin Chen <pmsp96@gmail.com>\n"
+"PO-Revision-Date: 2023-12-16 03:25+0000\n"
+"Last-Translator: Ginger Shu-Ying Yeh <gingershuying@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "jasp/jaspreliability-r/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 5.3\n"
 
 msgid "Bland-Altman Plots"
 msgstr ""
@@ -19,9 +19,8 @@ msgstr ""
 msgid "Please provide another variable"
 msgstr ""
 
-#, fuzzy
 msgid "Plotting not possible: %s"
-msgstr "無法繪圖: %s"
+msgstr "無法繪圖：%s"
 
 msgid "Bland-Altman Tables"
 msgstr ""
@@ -84,15 +83,12 @@ msgstr ""
 msgid "SE"
 msgstr "標準誤"
 
-#, fuzzy
 msgid "Lower"
 msgstr "下界"
 
-#, fuzzy
 msgid "%s%% CI"
 msgstr "%s%% 信賴區間"
 
-#, fuzzy
 msgid "Upper"
 msgstr "上界"
 
