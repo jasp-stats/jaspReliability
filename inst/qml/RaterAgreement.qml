@@ -49,18 +49,25 @@ Form
 			
 			RadioButtonGroup
 			{
-			name:		"cohensKappaType"
+				name:		"cohensKappaType"
 				RadioButton
 				{
-				name:		"unweighted"
-				label:		qsTr("Unweighted")
-				checked:	true
+					name:		"unweighted"
+					label:		qsTr("Unweighted")
+					checked:	true
 				}
 
 				RadioButton
 				{
-				name:	"weighted"
-				label:	qsTr("Weighted")
+					name:	"weighted"
+					label:	qsTr("Weighted")
+
+					RadioButtonGroup
+					{
+						name: "weightType"
+						RadioButton { name: "quadratic"; label: qsTr("Quadratic weights")}
+						RadioButton { name: "linear"; label: qsTr("Linear weights")}
+					}
 				}
 			}
 			

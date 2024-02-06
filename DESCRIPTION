@@ -20,7 +20,8 @@ Imports:
   LaplacesDemon,
   lme4,
   MASS,
-  psych
+  psych,
+  irr
 Remotes:
   jasp-stats/jaspBase,
   jasp-stats/jaspGraphs
