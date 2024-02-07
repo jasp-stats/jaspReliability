@@ -54,6 +54,7 @@ The number of times bootstrapped data sets are created and statistics are calcul
 		- Analytic interval: Wald-CI from the CFA
 		- Bootstrapped interval: CI from bootstrapped CFA
 - PFA: The single factor model is fit in a principal factor analysis. 
+- Standardized factor loadings: Display a table with the standardized loadings of the single-factor model
 	
 ### Cronbach's alpha Estimation: 
 - Unstandardized: Cronbach's alpha is calculated from the data covariance matrix
@@ -94,6 +95,9 @@ In case you want to save space for your output file, you can check this box. Bew
 - RMSEA: root mean square error of approximation, a value close to 0 is desired
 - Lower and Upper CI RMSEA: the lower and upper bound of the confidence interval of the RMSEA value
 - SRMR: standardized root mean square residual, a value close to 0 is desired 
+
+#### Standardized loadings of the Single-Factor Model:
+- Contains the standardized single-factor loadings
 
 ## References
 ---

@@ -252,10 +252,17 @@ Form
 					}
 				}
 			}
+			
 			RadioButton
 			{
 				value: "pfa"
 				label: qsTr("PFA")
+			}
+
+			CheckBox
+			{
+				name:		"standardizedLoadings"
+				label:		qsTr("Standardized factor loadings");
 			}
 		}
 

@@ -127,6 +127,7 @@ options$omegaIntervalMethod <- "bootstrapped"
 options$naAction <- "listwise"
 options$bootstrapType <- "parametric"
 options$omegaEstimationMethod <- "cfa"
+options$standardizedLoadings <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
 options$setSeed <- TRUE
@@ -153,6 +154,14 @@ test_that("Frequentist Scale Reliability Statistics table results match", {
                                    list(0.791710063361508, "Point estimate", 0.679125749864971, "95% CI lower bound",
                                         0.849422292711498, "95% CI upper bound"))
   }
+})
+
+test_that("Standardized Loadings of the Single-Factor Model table results match", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_loadTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.844967739355576, "asrm_1", 0.754980853055071, "asrm_2", 0.443805410137925,
+                                      "asrm_3", 0.551535460946667, "asrm_4", 0.654599358675392, "asrm_5"
+                                 ))
 })
 
 

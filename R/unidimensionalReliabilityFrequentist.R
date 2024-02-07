@@ -40,6 +40,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   .frequentistScaleTable(jaspResults, model, options)
   .frequentistItemTable(jaspResults, model, options)
   .frequentistSingleFactorFitTable(jaspResults, model, options)
+  .frequentistLoadingsTable(jaspResults, model, options)
 
 
   return()
@@ -77,6 +78,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   return(jaspResults[["stateContainer"]])
 }
 
+
 .freqItemDroppedStats <- function(Cov, f = function(){}) {
 
   out <- numeric(ncol(Cov))
@@ -89,8 +91,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
 
 
-# -------------------------------------------
-#       Frequentist precalculate results
+# ##### Frequentist precalculate results #####
 # -------------------------------------------
 
 .frequentistPreCalc <- function(jaspResults, dataset, options) {
@@ -218,9 +219,10 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
 
 
-# -------------------------------------------
-#       Frequentist calculate coefficients
-# -------------------------------------------
+# ##### Frequentist calculate coefficients #####
+#'
+#' So the structure here is to first calculcate the bootstrap samples per coefficient
+#' And in the computeScaleResults function to summarize the results
 
 
 .frequentistOmegaScale <- function(jaspResults, dataset, options, model) {
@@ -245,6 +247,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
                                                 pairwise = model[["pairwise"]], parametric = parametric,
                                                 n.boot = options[["bootstrapSamples"]], callback = progressbarTick)
           out[["samp"]] <- omegaboot[["omega_boot"]]
+
         }
       }
     } else { # omega with pfa
@@ -786,10 +789,18 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
               }
             }
           }
+
+          if (options[["standardizedLoadings"]]) {
+
+            lavObj <- omegaO$fit.object
+            loads <- lavaan::inspect(lavObj, what = "std")$lambda
+            out[["loadings"]] <- loads
+          }
         }
       } else { # omega method is pfa
-        out[["est"]][["scaleOmega"]] <- Bayesrel:::applyomegaPFA(model[["data_cov"]])
-        if (is.na(out[["est"]][["scaleOmega"]])) {
+        omOut <- applyomegaPFA(model[["data_cov"]], loadings = TRUE)
+        out[["est"]][["scaleOmega"]] <- omOut[["om"]]
+        if (is.na(omOut[["om"]])) {
           out[["error"]][["scaleOmega"]] <- gettext("Omega calculation with PFA failed.")
           out[["est"]][["scaleOmega"]] <- NaN
         } else {
@@ -804,6 +815,10 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
                 out[["conf"]][["scaleOmega"]] <- NaN
               }
             }
+          }
+
+          if (options[["standardizedLoadings"]]) {
+            out[["loadings"]] <- omOut[["loadings"]]
           }
         }
       }
@@ -1120,9 +1135,39 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 }
 
 
+.frequentistLoadingsTable <- function(jaspResults, model, options) {
 
-# ----------------------------------------------
-#       Common unidim. reliability functions
+  if (!is.null(.getStateContainerF(jaspResults)[["loadTable"]]$object) ||
+      is.null(model[["scaleResults"]][["loadings"]]) || !options[["standardizedLoadings"]])
+    return()
+
+  loadTable <- createJaspTable(gettext("Standardized Loadings of the Single-Factor Model"))
+
+  loadTable$dependOn(options = c("scaleOmega", "standardizedLoadings", "omegaEstimationMethod", "variables",
+                                 "naAction", "reverseScaledItems"))
+
+  loadTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
+  loadTable$addColumnInfo(name = "loadings", title = gettext("Standardized loading"), type = "number")
+
+  if (options[["scaleOmega"]] && options[["standardizedLoadings"]] && is.null(model[["empty"]])) {
+
+    df <- data.frame(
+      variable = options[["variables"]],
+      loadings = c(model[["scaleResults"]][["loadings"]]))
+    loadTable$setData(df)
+
+    loadTable$position <- 4
+    stateContainer <- .getStateContainerF(jaspResults)
+    stateContainer[["loadTable"]] <- loadTable
+  }
+
+  return()
+}
+
+
+
+# ####  Some common and not so common helper functions ####
+# unidim. reliability functions
 #       put here because there is space
 # ----------------------------------------------
 
@@ -1292,4 +1337,36 @@ gettextf <- function(fmt, ..., domain = NULL)  {
   samps[lengths(samps) == 0] <- NULL
   return(samps)
 }
+
+
+# have this here instead of the Bayesrel package
+applyomegaPFA <- function(m, callback = function(){}, loadings = FALSE){
+
+  f <- try(Bayesrel:::pfaArma(m), silent = TRUE)
+  if (inherits(f, "try-error")) {
+    om <- NaN
+    l_fa <- NaN
+    warning("singular bootstrapped covariance matrices encountered when computing omega")
+  } else {
+    l_fa <- f$loadings
+    er_fa <- f$err_var
+    om <- sum(l_fa)^2 / (sum(l_fa)^2 + sum(er_fa))
+    if (om < 0 || om > 1 || is.na(om)) om <- NaN
+
+    if (loadings) {
+      mm <- cov2cor(m)
+      ff <- try(Bayesrel:::pfaArma(mm), silent = TRUE)
+      l_fa <- ff$loadings
+    }
+  }
+
+  callback()
+
+  if (loadings) {
+    return(list(om = om, loadings = l_fa))
+  } else {
+    return(om)
+  }
+}
+
 
