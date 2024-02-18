@@ -79,7 +79,10 @@ raterAgreement <- function(jaspResults, dataset, options) {
     possiblePairs <- combn(ncol(dataset), 2)
     nPairs <- ncol(possiblePairs)
 
-    out_kappa <- psych::cohen.kappa(dataset, alpha = 1 - options[["ciLevel"]], weight = weight)
+    out_kappa <- psych::cohen.kappa(dataset, alpha = 1 - options[["ciLevel"]],
+                                    w.exp = ifelse(options[["weightType"]] == "quadratic", 2, 1))
+    # if weightType = linear, the exponent should be 1
+
     if (nPairs == 1) {
       allKappaData <- list(out_kappa)
       allPairStrings <- paste(options[["variables"]], collapse = " - ")
