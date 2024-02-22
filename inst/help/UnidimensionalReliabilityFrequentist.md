@@ -12,8 +12,8 @@ The frequentist unidimensional reliability analysis allows the user to test the 
 
 ### Scale Statistics
 - Confidence interval: default is 95%
-- McDonald's omega (for unidimensional data, based on the single-factor model)
-- Cronbach's alpha (for binary items the coefficient equals KR20)
+- Coefficient omega (for unidimensional data, based on the single-factor model)
+- Coefficient alpha (for binary items the coefficient equals KR20)
 - Guttman's lambda 2
 - Guttman's lambda 6
 - Greatest lower bound
@@ -26,7 +26,8 @@ The frequentist unidimensional reliability analysis allows the user to test the 
 	- of the mean scores of participants
 	
 ### Individual Item Statistics
-- McDonald's omega
+- Coefficient omega
+- Coefficient alpha
 - Guttman's lambda 2
 - Guttman's lambda 6
 - Greatest lower bound
