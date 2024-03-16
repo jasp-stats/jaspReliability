@@ -644,3 +644,8 @@ msgstr "Gebruik toevalsgenerator beginwaarde"
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "ESS"
 msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Standardized factor loadings"
+msgstr "Gestandaardiseerde factorladingen"

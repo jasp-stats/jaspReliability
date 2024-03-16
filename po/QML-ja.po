@@ -764,3 +764,8 @@ msgstr "seedの設定"
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "ESS"
 msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Standardized factor loadings"
+msgstr "標準化因子負荷量"

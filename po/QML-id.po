@@ -647,3 +647,7 @@ msgstr ""
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "ESS"
 msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Standardized factor loadings"
+msgstr ""

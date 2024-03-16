@@ -754,3 +754,8 @@ msgstr "Definir semente"
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "ESS"
 msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Standardized factor loadings"
+msgstr "Cargas fatoriais padronizadas"
