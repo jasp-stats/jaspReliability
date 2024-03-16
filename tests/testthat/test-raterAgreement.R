@@ -319,3 +319,19 @@ test_that("Fleiss' kappa table results match", {
 })
 
 
+test_that("Cohen's kappa table results match with linear weighting", {
+  options <- analysisOptions("raterAgreement")
+  options$variables <- c("V1", "V2")
+  options$fleissKappa <- FALSE
+  options$krippendorffsAlpha <- FALSE
+  options$ci <- FALSE
+  options$cohensKappaType <- "weighted"
+  options$weightType <- "linear"
+  set.seed(1)
+  results <- runAnalysis("raterAgreement", "Fleiss1971.csv", options)
+  table <- results[["results"]][["cohensKappa"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.633093525179856, "Average kappa", 0.633093525179856, "V1 - V2"
+                                 ))
+})
+
