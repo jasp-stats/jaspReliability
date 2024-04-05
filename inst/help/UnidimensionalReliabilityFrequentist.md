@@ -12,7 +12,7 @@ The frequentist unidimensional reliability analysis allows the user to test the 
 
 ### Scale Statistics
 - Confidence interval: default is 95%
-- Coefficient omega (for unidimensional data, based on the single-factor model)
+- Coefficient omega (for unidimensional data, based on the single-factor model). Note the total test variance in the denominator of the reliability equation is the model implied total variance, that is, the summed model implied covariance matrix
 - Coefficient alpha (for binary items the coefficient equals KR20)
 - Guttman's lambda 2
 - Guttman's lambda 6
