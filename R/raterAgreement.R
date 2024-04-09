@@ -48,12 +48,10 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   weighted <- options[["cohensKappaType"]] == "weighted"
 
-  weightedString <- ifelse(weighted, "Weighted", "Unweighted")
-
   # Create the JASP Table
-  jaspTable <- createJaspTable(title = gettextf("Cohen's %s kappa", weightedString))
+  jaspTable <- createJaspTable(title = gettext("Cohen's kappa"))
   jaspTable$addColumnInfo(name = "ratings", title = gettext("Ratings"), type = "string")
-  jaspTable$addColumnInfo(name = "cKappa", title = gettextf("%s kappa", weightedString), type = "number")
+  jaspTable$addColumnInfo(name = "cKappa", title = gettextf("kappa"), type = "number")
   jaspTable$position <- 1
 
   #dependencies
@@ -63,7 +61,8 @@ raterAgreement <- function(jaspResults, dataset, options) {
       "cohensKappa",
       "cohensKappaType",
       "ci",
-      "ciLevel"
+      "ciLevel",
+      "weightType"
     )
   )
 
@@ -77,8 +76,13 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   if (ready) {
     #calculate Cohen's Kappas
-    nPairs <- ncol(dataset) * (ncol(dataset) - 1) / 2
-    out_kappa <- psych::cohen.kappa(dataset, alpha = 1 - options[["ciLevel"]])
+    possiblePairs <- combn(ncol(dataset), 2)
+    nPairs <- ncol(possiblePairs)
+
+    out_kappa <- psych::cohen.kappa(dataset, alpha = 1 - options[["ciLevel"]],
+                                    w.exp = ifelse(options[["weightType"]] == "quadratic", 2, 1))
+    # if weightType = linear, the exponent should be 1
+
     if (nPairs == 1) {
       allKappaData <- list(out_kappa)
       allPairStrings <- paste(options[["variables"]], collapse = " - ")

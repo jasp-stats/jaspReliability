@@ -12,8 +12,8 @@ The Bayesian unidimensional reliability analysis allows the user to test the sca
 
 ### Scale Statistics
 - Credible interval: default is 95%
-- McDonald's omega (for unidimensional data, based on the single-factor model)
-- Cronbach's alpha (for binary items the coefficient equals KR20)
+- Coefficient omega (for unidimensional data, based on the single-factor model). Note the total test score variance in the denominator of the reliability equation is the model implied test score variance, that is, the summed model implied covariance matrix.
+- Coefficient alpha (for binary items the coefficient equals Kuder-Richardson Formula 20, KR20)
 - Guttman's lambda 2
 - Guttman's lambda 6
 - Greatest lower bound
@@ -29,7 +29,8 @@ The CTT-coefficients alpha, lambda 2, lambda 6, and the glb are computed from th
 Coefficient omega is computed from the centered data matrix.
 	
 ### Individual Item Statistics
-- McDonald's omega
+- Coefficient omega
+- Coefficient alpha
 - Guttman's lambda 2
 - Guttman's lambda 6
 - Greatest lower bound
