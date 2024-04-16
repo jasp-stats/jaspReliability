@@ -33,7 +33,7 @@ Form
 		{
 			name: 			"variables"
 			title: 			qsTr("Variables")
-			allowedColumns: ["scale", "nominal", "nominalText", "ordinal"]
+			allowedColumns: ["scale", "nominal", "ordinal"]
 		}
 	}
 
