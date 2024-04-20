@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2023-07-01 03:36\n"
+"POT-Creation-Date: 2024-04-20 03:27\n"
 "PO-Revision-Date: 2023-01-15 11:47+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -69,13 +69,15 @@ msgstr ""
 msgid "Please select at least 2 columns"
 msgstr "Bitte wähle mindestens 2 Spalten aus"
 
-msgid "Cohen's %s kappa"
+#, fuzzy
+msgid "Cohen's kappa"
 msgstr "Cohens %s Kappa"
 
 msgid "Ratings"
 msgstr "Beurteilungen"
 
-msgid "%s kappa"
+#, fuzzy
+msgid "kappa"
 msgstr "%s Kappa"
 
 msgid "%1$i subjects/items and %2$i raters/measurements."

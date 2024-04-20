@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
-"POT-Creation-Date: 2023-07-20 13:38\n"
+"POT-Creation-Date: 2024-04-20 03:27\n"
 "PO-Revision-Date: 2023-12-16 03:25+0000\n"
 "Last-Translator: Ginger Shu-Ying Yeh <gingershuying@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -68,13 +68,13 @@ msgstr "%1$s 被評者與 %2$s 評分者/測量。ICC類型請參見 Shrout & Fl
 msgid "Please select at least 2 columns"
 msgstr "請至少選擇兩欄"
 
-msgid "Cohen's %s kappa"
+msgid "Cohen's kappa"
 msgstr ""
 
 msgid "Ratings"
 msgstr ""
 
-msgid "%s kappa"
+msgid "kappa"
 msgstr ""
 
 msgid "%1$i subjects/items and %2$i raters/measurements."

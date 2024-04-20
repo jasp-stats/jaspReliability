@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
-"POT-Creation-Date: 2023-07-01 03:36\n"
+"POT-Creation-Date: 2024-04-20 03:27\n"
 "PO-Revision-Date: 2023-06-11 13:48+0000\n"
 "Last-Translator: mingqianguo <dubliners@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -66,13 +66,15 @@ msgstr ""
 msgid "Please select at least 2 columns"
 msgstr "请选择至少2个变量"
 
-msgid "Cohen's %s kappa"
+#, fuzzy
+msgid "Cohen's kappa"
 msgstr "Cohen's %s kappa"
 
 msgid "Ratings"
 msgstr ""
 
-msgid "%s kappa"
+#, fuzzy
+msgid "kappa"
 msgstr "%s kappa"
 
 msgid "%1$i subjects/items and %2$i raters/measurements."

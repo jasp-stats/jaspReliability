@@ -158,14 +158,6 @@ msgid "Credible interval"
 msgstr "Intervalo de credibilidad"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω"
-msgstr "ω de McDonald"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Cronbach's α"
-msgstr "α de Cronbach"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2"
 msgstr "λ2 de Guttman"
 
@@ -200,10 +192,6 @@ msgstr "de las medias de las puntuaciones de los participantes"
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Individual Item Statistics"
 msgstr "Estadísticos de Elementos Individuales"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Cronbach's α (if item dropped)"
-msgstr "α de Cronbach (al quitar elementos)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2 (if item dropped)"
@@ -382,10 +370,6 @@ msgid "Exclude cases listwise"
 msgstr "Excluir casos según lista"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω Estimation"
-msgstr "Estimación de ω de McDonald"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior predictive check"
 msgstr "Control predictivo posterior"
 
@@ -446,14 +430,6 @@ msgid "Confidence Interval"
 msgstr "Intervalo de Confianza"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "McDonald's ω"
-msgstr "ω de McDonald"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Cronbach's α"
-msgstr "α de Cronbach"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2"
 msgstr "λ2 de Guttman"
 
@@ -488,14 +464,6 @@ msgstr "de las medias de las puntuaciones de los participantes"
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Individual Item Statistics"
 msgstr "Estadísticos de Elementos Individuales"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "McDonald's ω  (if item dropped)"
-msgstr "ω de McDonald (al quitar elementos)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Cronbach's α (if item dropped)"
-msgstr "α de Cronbach (al quitar elementos)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2 (if item dropped)"
@@ -558,10 +526,6 @@ msgid "Parametric bootstrap"
 msgstr "Bootstrap paramétrico"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "McDonald's ω Estimation"
-msgstr "Estimación de ω de McDonald"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "CFA"
 msgstr "CFA"
 
@@ -584,10 +548,6 @@ msgstr "Intervalo de Bootstrap"
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "PFA"
 msgstr "PFA"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Cronbach's α Estimation"
-msgstr "Estimación α de Cronbach"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Unstandardized"
@@ -617,10 +577,6 @@ msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Click to learn more about saving the samples."
 msgstr "Hacer clic para saber más sobre guardar las muestras."
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω (if item dropped)"
-msgstr "ω de McDonald (al quitar elementos)"
-
 msgctxt "RaterAgreement|"
 msgid "Data Structure"
 msgstr "Estructura de los Datos"
@@ -648,3 +604,55 @@ msgstr "ESS"
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Standardized factor loadings"
 msgstr "Cargas de los factores tipificados"
+
+msgctxt "RaterAgreement|"
+msgid "Quadratic weights"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Linear weights"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient ω (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient ω Estimation"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient ω  (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient ω Estimation"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient α Estimation"
+msgstr ""

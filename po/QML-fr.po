@@ -1,15 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-10 11:01+0000\n"
-"Last-Translator: robachowyk <kaya.robach@gmail.com>\n"
-"Language-Team: French <https://hosted.weblate.org/projects/jasp/"
-"jaspreliability-qml/fr/>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Language: fr\n"
 "X-Qt-Contexts: true\n"
 
@@ -53,9 +47,10 @@ msgctxt "BlandAltman|"
 msgid "Measurement Pairs"
 msgstr ""
 
+#, fuzzy
 msgctxt "BlandAltman|"
 msgid "Confidence Interval"
-msgstr ""
+msgstr "Intervalle de Confiance"
 
 msgctxt "BlandAltman|"
 msgid "Shading"
@@ -97,9 +92,10 @@ msgctxt "IntraclassCorrelation|"
 msgid "Confidence Interval"
 msgstr "Intervalle de Confiance"
 
+#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Variables"
-msgstr ""
+msgstr "Variables"
 
 msgctxt "RaterAgreement|"
 msgid "Cohen's kappa"
@@ -141,13 +137,15 @@ msgctxt "RaterAgreement|"
 msgid "Ratio"
 msgstr ""
 
+#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Confidence Interval"
-msgstr ""
+msgstr "Intervalle de Confiance"
 
+#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Variables"
-msgstr ""
+msgstr "Variables"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Analysis"
@@ -159,14 +157,6 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Credible interval"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Cronbach's α"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
@@ -203,10 +193,6 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Individual Item Statistics"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Cronbach's α (if item dropped)"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
@@ -386,10 +372,6 @@ msgid "Exclude cases listwise"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω Estimation"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior predictive check"
 msgstr ""
 
@@ -433,9 +415,10 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Median"
 msgstr ""
 
+#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Variables"
-msgstr ""
+msgstr "Variables"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Analysis"
@@ -445,17 +428,10 @@ msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Scale Statistics"
 msgstr ""
 
+#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Confidence Interval"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "McDonald's ω"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Cronbach's α"
-msgstr ""
+msgstr "Intervalle de Confiance"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2"
@@ -491,14 +467,6 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Individual Item Statistics"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "McDonald's ω  (if item dropped)"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Cronbach's α (if item dropped)"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
@@ -562,10 +530,6 @@ msgid "Parametric bootstrap"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "McDonald's ω Estimation"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "CFA"
 msgstr ""
 
@@ -587,10 +551,6 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "PFA"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Cronbach's α Estimation"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
@@ -621,10 +581,6 @@ msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Click to learn more about saving the samples."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω (if item dropped)"
-msgstr ""
-
 msgctxt "RaterAgreement|"
 msgid "Data Structure"
 msgstr ""
@@ -651,4 +607,56 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Standardized factor loadings"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Quadratic weights"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Linear weights"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient ω (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient ω Estimation"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient ω  (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient ω Estimation"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient α Estimation"
 msgstr ""

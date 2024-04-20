@@ -172,16 +172,6 @@ msgstr "信用区間"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω"
-msgstr "マクドナルド(McDonald's)のω"
-
-#, fuzzy
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Cronbach's α"
-msgstr "クロンバック(Cronbach)のα"
-
-#, fuzzy
-msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2"
 msgstr "ガットマン(Guttman)のλ2"
 
@@ -224,10 +214,6 @@ msgstr "参加者の平均スコアを用いた"
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Individual Item Statistics"
 msgstr "個別項目の統計量"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Cronbach's α (if item dropped)"
-msgstr ""
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
@@ -448,11 +434,6 @@ msgstr "ケースをリストワイズで除外"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω Estimation"
-msgstr "マクドナルド(McDonald)のωの推定"
-
-#, fuzzy
-msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior predictive check"
 msgstr "事後予測チェック"
 
@@ -528,16 +509,6 @@ msgstr "信頼区間"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "McDonald's ω"
-msgstr "マクドナルド(McDonald's)のω"
-
-#, fuzzy
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Cronbach's α"
-msgstr "クロンバック(Cronbach)のα"
-
-#, fuzzy
-msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2"
 msgstr "ガットマン(Guttman)のλ2"
 
@@ -580,14 +551,6 @@ msgstr "参加者の平均スコアを用いた"
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Individual Item Statistics"
 msgstr "個別項目の統計量"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "McDonald's ω  (if item dropped)"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Cronbach's α (if item dropped)"
-msgstr ""
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
@@ -664,11 +627,6 @@ msgstr "パラメトリックブートストラップ"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "McDonald's ω Estimation"
-msgstr "マクドナルド(McDonald)のωの推定"
-
-#, fuzzy
-msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "CFA"
 msgstr "CFA"
 
@@ -696,11 +654,6 @@ msgstr "ブートストラップ区間"
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "PFA"
 msgstr "PFA"
-
-#, fuzzy
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Cronbach's α Estimation"
-msgstr "クロンバック(Cronbach)のα推定"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
@@ -736,10 +689,6 @@ msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Click to learn more about saving the samples."
 msgstr "サンプルの保存については、こちらをクリックしてください."
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω (if item dropped)"
-msgstr ""
-
 msgctxt "RaterAgreement|"
 msgid "Data Structure"
 msgstr ""
@@ -769,3 +718,55 @@ msgstr ""
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Standardized factor loadings"
 msgstr "標準化因子負荷量"
+
+msgctxt "RaterAgreement|"
+msgid "Quadratic weights"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Linear weights"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient ω (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient ω Estimation"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient ω  (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient ω Estimation"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient α Estimation"
+msgstr ""

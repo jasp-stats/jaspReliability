@@ -175,16 +175,6 @@ msgstr "可靠區間"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω"
-msgstr "McDonald's ω 信度係數"
-
-#, fuzzy
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Cronbach's α"
-msgstr "Cronbach's α 信度係數"
-
-#, fuzzy
-msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2"
 msgstr "Guttman's λ2 信度係數"
 
@@ -226,10 +216,6 @@ msgstr "研究參與者的測驗平均分數"
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Individual Item Statistics"
 msgstr "個別題項統計數"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Cronbach's α (if item dropped)"
-msgstr ""
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
@@ -437,11 +423,6 @@ msgstr "完全排除法"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω Estimation"
-msgstr "McDonald's ω 估計值"
-
-#, fuzzy
-msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior predictive check"
 msgstr "事後預測檢查"
 
@@ -509,16 +490,6 @@ msgstr "信賴區間"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "McDonald's ω"
-msgstr "McDonald's ω 信度係數"
-
-#, fuzzy
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Cronbach's α"
-msgstr "Cronbach's α 信度係數"
-
-#, fuzzy
-msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2"
 msgstr "Guttman's λ2 信度係數"
 
@@ -560,14 +531,6 @@ msgstr "研究參與者的測驗平均分數"
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Individual Item Statistics"
 msgstr "個別題項統計數"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "McDonald's ω  (if item dropped)"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Cronbach's α (if item dropped)"
-msgstr ""
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
@@ -642,11 +605,6 @@ msgstr "有母數拔靴法"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "McDonald's ω Estimation"
-msgstr "McDonald's ω 估計值"
-
-#, fuzzy
-msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "CFA"
 msgstr "驗證性因素分析"
 
@@ -674,11 +632,6 @@ msgstr "拔靴法區間"
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "PFA"
 msgstr "主軸因子分析"
-
-#, fuzzy
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Cronbach's α Estimation"
-msgstr "Cronbach's α 估計值"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
@@ -712,10 +665,6 @@ msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Click to learn more about saving the samples."
 msgstr "按此鍵以了解更多有關節省樣本"
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω (if item dropped)"
-msgstr ""
-
 msgctxt "RaterAgreement|"
 msgid "Data Structure"
 msgstr ""
@@ -742,4 +691,56 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Standardized factor loadings"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Quadratic weights"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Linear weights"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient ω (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient ω Estimation"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient ω  (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient ω Estimation"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient α Estimation"
 msgstr ""
