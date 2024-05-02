@@ -1,7 +1,7 @@
 Package: jaspReliability
 Type: Package
 Title: Reliability Module for JASP
-Version: 0.18.3
+Version: 0.19.0
 Date: 2022-05-16
 Author: Julius M. Pfadt, Don van den Bergh, Jonas Petter, Jan Simson & Eric-Jan Wagenmakers
 Website: https://github.com/jasp-stats/Reliability
