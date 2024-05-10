@@ -42,8 +42,9 @@ Form
 	IntegerField
 	{
 		name: "responseCategories"
-		label: qsTr("Number of response categories")
+		label: qsTr("<b>Number of response categories</b>")
 		defaultValue: 2
+		id:responseCategories
 	}
 
 	Group{}
@@ -67,19 +68,31 @@ Form
 				name: "feldtNumberOfSplits"
 				label: qsTr("Number of splits")
 				min: 2
-				max: variables.count()
+				max: variables.count > 1 ? variables.count : 2
 				defaultValue: 2
 			}
 		}
 		CheckBox
 		{
-			name:   	"mollenkopf"
-			label:  	qsTr("Mollenkopf method")
-		}
-		CheckBox
-		{
 			name:   	"mollenkopfFeldt"
 			label:  	qsTr("Mollenkopf-Feldt method")
+			IntegerField
+			{
+				name: "mollenkopfFeldtNumberOfSplits"
+				label: qsTr("Number of splits")
+				min: 2
+				max: variables.count > 1 ? variables.count : 2
+				defaultValue: 2
+			}
+			IntegerField
+			{
+				name: "mollenkopfFeldtPolyDegree"
+				label: qsTr("Degree of polynomial")
+				min: 2
+				max: 10
+				defaultValue: 3
+			}
+
 		}
 	}
 
@@ -106,17 +119,27 @@ Form
 		{
 			name:   	"lord"
 			label:  	qsTr("Lord method")
-			
+			enabled: responseCategories.value == 2
 		}
 		CheckBox
 		{
 			name:   	"keats"
 			label:  	qsTr("Keats method")
+			enabled: responseCategories.value == 2
 		}
 		CheckBox
 		{
 			name:   	"lord2"
 			label:  	qsTr("Lord-2 method")
+			enabled: responseCategories.value == 2
+			IntegerField
+			{
+				name: "lord2NumberOfSplits"
+				label: qsTr("Number of splits")
+				min: 2
+				max: variables.count > 1 ? (variables.count/2) : 2
+				defaultValue: 2
+			}
 		}
 	}
 
