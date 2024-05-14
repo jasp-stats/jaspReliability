@@ -39,15 +39,6 @@ Form
 		}
 	}
 
-	IntegerField
-	{
-		name: "responseCategories"
-		label: qsTr("<b>Number of response categories</b>")
-		defaultValue: 2
-		id:responseCategories
-	}
-
-	Group{}
 	Group
 	{
 		Layout.rowSpan: 2
