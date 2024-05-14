@@ -60,24 +60,11 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 .semErrorCheck <- function(dataset, options, ready) {
 
   if (!ready) return()
-  .semCheckCategories <- function() {
-
-    nc <- length(unique(c(as.matrix(dataset))))
-    ncSupplied <- options[["responseCategories"]]
-
-    if (nc > ncSupplied) {
-      return(gettext("It seems the number of response categories in the data is higher than the ones you specified."))
-    } else {
-      return(NULL)
-    }
-
-  }
 
   .hasErrors(dataset = dataset,
              type = c('missingValues', "variance", "infinity", "variance"),
              missingValues.target = options$variables,
-             exitAnalysisIfErrors = TRUE,
-             custom = .semCheckCategories)
+             exitAnalysisIfErrors = TRUE)
 }
 
 
@@ -87,9 +74,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (!is.null(jaspResults[["semMainContainer"]])) return()
 
-  semMainContainer <- createJaspContainer(dependencies = c("variables", "responseCategories"))
+  semMainContainer <- createJaspContainer(dependencies = "variables")
   jaspResults[["semMainContainer"]] <- semMainContainer
-
 
   return()
 }
@@ -100,9 +86,11 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (!ready) return()
 
-  nc <- options[["responseCategories"]]
-  counts <- .semCounts(dataset, nc)
-  countsState <- createJaspState(counts, dependencies = NULL)
+  nc <- length(unique(c(as.matrix(dataset))))
+  scrs <- .semCounts(dataset, nc)
+  counts <- scrs$counts
+  scores <- scrs$scores
+  countsState <- createJaspState(scrs, dependencies = NULL)
   jaspResults[["semMainContainer"]][["countsState"]] <- countsState
 
   # first the average sem
@@ -119,7 +107,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (options[["thorndike"]]) {
     if (is.null(jaspResults[["semMainContainer"]][["thorndikeState"]])) {
-      out <- .semThorn(dataset, K = 2, nc = nc, caseMin = options[["minimumGroupSize"]], splits = NULL, counts)
+      out <- .semThorn(dataset, K = 2, nc = nc, caseMin = options[["minimumGroupSize"]], splits = NULL, scrs)
       thorndikeState <- createJaspState(out, dependencies = c("thorndike", "minimumGroupSize"))
       jaspResults[["semMainContainer"]][["thorndikeState"]] <- thorndikeState
     }
@@ -128,7 +116,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   if (options[["feldt"]]) {
     if (is.null(jaspResults[["semMainContainer"]][["feldtState"]])) {
       out <- .semFeldt(dataset, K = options[["feldtNumberOfSplits"]], nc = nc, caseMin = options[["minimumGroupSize"]],
-                       splits = NULL, counts)
+                       splits = NULL, scrs)
       feldtState <- createJaspState(out, dependencies = c("feldt", "feldtNumberOfSplits", "minimumGroupSize"))
       jaspResults[["semMainContainer"]][["feldtState"]] <- feldtState
     }
@@ -137,7 +125,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   if (options[["mollenkopfFeldt"]]) {
     if (is.null(jaspResults[["semMainContainer"]][["mfState"]])) {
       out <- .semMF(dataset, K = options[["mollenkopfFeldtNumberOfSplits"]], nc = nc,
-                    n_poly = options[["mollenkopfFeldtPolyDegree"]], splits = NULL, counts)
+                    n_poly = options[["mollenkopfFeldtPolyDegree"]], splits = NULL, scrs)
       mfState <- createJaspState(out, dependencies = c("mollenkopfFeldt", "mollenkopfFeldtNumberOfSplits",
                                                           "mollenkopfFeldtPolyDegree"))
       jaspResults[["semMainContainer"]][["mfState"]] <- mfState
@@ -146,7 +134,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (options[["anova"]]) {
     if (is.null(jaspResults[["semMainContainer"]][["anovaState"]])) {
-      out <- .semAnova(dataset, nc = nc, caseMin = options[["minimumGroupSize"]], counts)
+      out <- .semAnova(dataset, nc = nc, caseMin = options[["minimumGroupSize"]], scrs)
       anovaState <- createJaspState(out, dependencies = c("anova", "minimumGroupSize"))
       jaspResults[["semMainContainer"]][["anovaState"]] <- anovaState
     }
@@ -155,39 +143,40 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   # works for both data types
   if (options[["irt"]]) {
     if (is.null(jaspResults[["semMainContainer"]][["irtState"]])) {
-      out <- .semIrt(dataset, nc = nc)
+      out <- .semIRT(dataset, nc = nc, scores)
       irtState <- createJaspState(out, dependencies = "irt")
       jaspResults[["semMainContainer"]][["irtState"]] <- irtState
     }
   }
 
-  if (nc == 2) {
-    # only for binary data
-    if (options[["lord"]]) {
-      if (is.null(jaspResults[["semMainContainer"]][["lordState"]])) {
-        out <- .semLord(ncol(dataset))
-        lordState <- createJaspState(out, dependencies = "lord")
-        jaspResults[["semMainContainer"]][["lordState"]] <- lordState
-      }
-    }
+  if (any(options[["lord"]], options[["keats"]], options[["lord2"]]) && nc > 2) {
+    .quitAnalysis(gettext("The Lord, Keats, and Lord-2 methods are only available for binary data."))
+  }
 
-    if (options[["keats"]]) {
-      if (is.null(jaspResults[["semMainContainer"]][["keatsState"]])) {
-        out <- .semKeats(dataset, options)
-        keatsState <- createJaspState(out, dependencies = "keats")
-        jaspResults[["semMainContainer"]][["keatsState"]] <- keatsState
-      }
-    }
-
-    if (options[["lord2"]]) {
-      if (is.null(jaspResults[["semMainContainer"]][["lord2State"]])) {
-        out <- .semLord2(dataset, options[["lord2NumberOfSplits"]], counts, options[["minimumGroupSize"]])
-        lord2State <- createJaspState(out, dependencies = c("lord2", "lord2NumberOfSplits", "minimumGroupSize"))
-        jaspResults[["semMainContainer"]][["lord2State"]] <- lord2State
-      }
+  # only for binary data
+  if (options[["lord"]]) {
+    if (is.null(jaspResults[["semMainContainer"]][["lordState"]])) {
+      out <- .semLord(ncol(dataset), scrs)
+      lordState <- createJaspState(out, dependencies = "lord")
+      jaspResults[["semMainContainer"]][["lordState"]] <- lordState
     }
   }
 
+  if (options[["keats"]]) {
+    if (is.null(jaspResults[["semMainContainer"]][["keatsState"]])) {
+      out <- .semKeats(dataset, options, scrs)
+      keatsState <- createJaspState(out, dependencies = "keats")
+      jaspResults[["semMainContainer"]][["keatsState"]] <- keatsState
+    }
+  }
+
+  if (options[["lord2"]]) {
+    if (is.null(jaspResults[["semMainContainer"]][["lord2State"]])) {
+      out <- .semLord2(dataset, options[["lord2NumberOfSplits"]], scrs, options[["minimumGroupSize"]])
+      lord2State <- createJaspState(out, dependencies = c("lord2", "lord2NumberOfSplits", "minimumGroupSize"))
+      jaspResults[["semMainContainer"]][["lord2State"]] <- lord2State
+    }
+  }
 
  return()
 }
@@ -227,8 +216,9 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     coefficientTable$addColumnInfo(name = "counts", title = gettext("Counts"), type = "string")
     coefficientTable$addColumnInfo(name = "average", title = gettext("Average"), type = "number")
 
-    dtFill <- data.frame(score = 0:(ncol(dataset) * (options[["responseCategories"]] - 1)))
-    counts <- jaspResults[["semMainContainer"]][["countsState"]]$object
+    scrs <- jaspResults[["semMainContainer"]][["countsState"]]$object
+    counts <- scrs$counts
+    dtFill <- data.frame(score = scrs$scores)
     dtFill$counts <- counts
     dtFill$average <- average
 
@@ -259,25 +249,24 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
       dtFill$irt <- out[, 2]
     }
 
-    if (options[["responseCategories"]] == 2) {
-      if (options[["lord"]]) {
-        out <- jaspResults[["semMainContainer"]][["lordState"]]$object
-        coefficientTable$addColumnInfo(name = "lord", title = gettext("Lord"), type = "number")
-        dtFill$lord <- out[, 2]
-      }
-
-      if (options[["keats"]]) {
-        out <- jaspResults[["semMainContainer"]][["keatsState"]]$object
-        coefficientTable$addColumnInfo(name = "keats", title = gettext("Keats"), type = "number")
-        dtFill$keats <- out[, 2]
-      }
-
-      if (options[["lord2"]]) {
-        out <- jaspResults[["semMainContainer"]][["lord2State"]]$object
-        coefficientTable$addColumnInfo(name = "lord2", title = gettext("Lord-2"), type = "number")
-        dtFill$lord2 <- out[, 2]
-      }
+    if (options[["lord"]]) {
+      out <- jaspResults[["semMainContainer"]][["lordState"]]$object
+      coefficientTable$addColumnInfo(name = "lord", title = gettext("Lord"), type = "number")
+      dtFill$lord <- out[, 2]
     }
+
+    if (options[["keats"]]) {
+      out <- jaspResults[["semMainContainer"]][["keatsState"]]$object
+      coefficientTable$addColumnInfo(name = "keats", title = gettext("Keats"), type = "number")
+      dtFill$keats <- out[, 2]
+    }
+
+    if (options[["lord2"]]) {
+      out <- jaspResults[["semMainContainer"]][["lord2State"]]$object
+      coefficientTable$addColumnInfo(name = "lord2", title = gettext("Lord-2"), type = "number")
+      dtFill$lord2 <- out[, 2]
+    }
+
 
   }
 
@@ -355,28 +344,27 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     pointPlotsContainer[["irtPlot"]] <- pl
   }
 
-  if (options[["responseCategories"]] == 2) {
-    if (options[["lord"]]) {
-      pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["lordState"]],
-                                    title = gettext("Lord method point plot"))
+  if (options[["lord"]]) {
+    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["lordState"]],
+                                  title = gettext("Lord method point plot"))
 
-      pointPlotsContainer[["lordPlot"]] <- pl
-    }
-
-    if (options[["keats"]]) {
-      pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["keatsState"]],
-                                    title = gettext("Keats method point plot"))
-
-      pointPlotsContainer[["keatsPlot"]] <- pl
-    }
-
-    if (options[["lord2"]]) {
-      pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["lord2State"]],
-                                    title = gettext("Lord-2 method point plot"))
-
-      pointPlotsContainer[["lordPlot"]] <- pl
-    }
+    pointPlotsContainer[["lordPlot"]] <- pl
   }
+
+  if (options[["keats"]]) {
+    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["keatsState"]],
+                                  title = gettext("Keats method point plot"))
+
+    pointPlotsContainer[["keatsPlot"]] <- pl
+  }
+
+  if (options[["lord2"]]) {
+    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["lord2State"]],
+                                  title = gettext("Lord-2 method point plot"))
+
+    pointPlotsContainer[["lordPlot"]] <- pl
+  }
+
 
 
   return()
@@ -417,10 +405,10 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
             options[["irt"]], options[["lord"]], options[["keats"]], options[["lord2"]]))) {
 
     nit <- ncol(dataset)
-    nc <- options[["responseCategories"]]
-    scores <- 0:(nit * (nc - 1))
+    nc <- length(unique(c(as.matrix(dataset))))
+    scores <- jaspResults[["semMainContainer"]][["countsState"]]$object$scores
     dt <- data.frame(score = integer(), sem = double(), Type = character())
-    dtIrt <- NULL
+    dtIRT <- NULL
 
     if (options[["thorndike"]]) {
       out <- jaspResults[["semMainContainer"]][["thorndikeState"]]$object
@@ -446,28 +434,27 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
     if (options[["irt"]]) {
       out <- jaspResults[["semMainContainer"]][["irtState"]]$object$unbinned
-      dtIrt <- data.frame(score = out[, 1], sem = out[, 2], Type = gettext("IRT"))
+      dtIRT <- data.frame(score = out[, 1], sem = out[, 2], Type = gettext("IRT"))
     }
 
-    if (options[["responseCategories"]] == 2) {
-      if (options[["lord"]]) {
-        out <- jaspResults[["semMainContainer"]][["lordState"]]$object
-        dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("Lord"))
-        dt <- rbind(dt, dtBind)
-      }
-
-      if (options[["keats"]]) {
-        out <- jaspResults[["semMainContainer"]][["keatsState"]]$object
-        dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("Keats"))
-        dt <- rbind(dt, dtBind)
-      }
-
-      if (options[["lord2"]]) {
-        out <- jaspResults[["semMainContainer"]][["lord2State"]]$object
-        dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("Lord-2"))
-        dt <- rbind(dt, dtBind)
-      }
+    if (options[["lord"]]) {
+      out <- jaspResults[["semMainContainer"]][["lordState"]]$object
+      dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("Lord"))
+      dt <- rbind(dt, dtBind)
     }
+
+    if (options[["keats"]]) {
+      out <- jaspResults[["semMainContainer"]][["keatsState"]]$object
+      dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("Keats"))
+      dt <- rbind(dt, dtBind)
+    }
+
+    if (options[["lord2"]]) {
+      out <- jaspResults[["semMainContainer"]][["lord2State"]]$object
+      dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("Lord-2"))
+      dt <- rbind(dt, dtBind)
+    }
+
 
     # so that the legend does not become alphabetically ordered:
     levs <- unique(dt$Type)
@@ -477,9 +464,9 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
       ggplot2::geom_point(data = dt, ggplot2::aes(x = score, y = sem, shape = Type), size = 2.5) +
       ggplot2::labs(x = "Test Score", y = "sem")
 
-    if (!is.null(dtIrt)) {
-      pl <- pl + ggplot2::geom_line(data = dtIrt, ggplot2::aes(x = score, y = sem, linetype = ""), color = "black", linewidth = 1) +
-        ggplot2::scale_linetype_discrete(name = "", labels = dtIrt[1, 3])
+    if (!is.null(dtIRT)) {
+      pl <- pl + ggplot2::geom_line(data = dtIRT, ggplot2::aes(x = score, y = sem, linetype = ""), color = "black", linewidth = 1) +
+        ggplot2::scale_linetype_discrete(name = "", labels = dtIRT[1, 3])
       # move the legend of IRT underneath the other:
       pl <- pl + ggplot2::guides(linetype = ggplot2::guide_legend(order = 0),
              shape = ggplot2::guide_legend(order = 1))
@@ -491,8 +478,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     jaspResults[["semMainContainer"]][["combinedPlot"]] <- plot
   }
 
-
-
   return()
 }
 
@@ -501,7 +486,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 ##### Sem compute functions #####
 
 
-.semIrt <- function(X, nc) {
+.semIRT <- function(X, nc, scores) {
 
   if (nc == 2) {
     ity <- "2PL"
@@ -545,7 +530,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
       outIRT[i, 2] <- sqrt(sum(dev * probs))
     }
   }
-  discScores <- 0:(nit * (nc - 1))
+
+  discScores <- scores
 
   # because the irt method does not produce score groups but a continuous score along the scale, we need to group it
   outDt <- as.data.frame(outIRT)
@@ -560,12 +546,13 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 }
 
 
-.semThorn <- function(X, K, nc, caseMin, splits = NULL, counts) {
+.semThorn <- function(X, K, nc, caseMin, splits = NULL, scrs) {
 
   prep <- .semPrepareSumScores(X, K, splits = NULL)
   partSUMS <- prep$partSUMS
   S <- prep$S
-  out <- .semPrepareOutMatrix(ncol(X), nc, counts)
+  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
+  print(out)
   fun <- function(partSUMS, ind, cc) {
     return(sd(partSUMS[ind, 1] - partSUMS[ind, 2]))
   }
@@ -576,13 +563,13 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 }
 
 
-.semFeldt <- function(X, K, nc, caseMin, splits = NULL, counts) {
+.semFeldt <- function(X, K, nc, caseMin, splits = NULL, scrs) {
 
   prep <- .semPrepareSumScores(X, K, splits = NULL)
   partSUMS <- prep$partSUMS
   S <- prep$S
   d <- prep$d
-  out <- .semPrepareOutMatrix(ncol(X), nc, counts)
+  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
   fun <- function(partSUMS, ind, cc) {
     K <- ncol(partSUMS)
     mean_diff <- partSUMS[ind, ] - rowMeans(partSUMS[ind, ]) - matrix(colMeans(partSUMS[ind, ]), length(ind), K, TRUE) + mean(partSUMS[ind, ])
@@ -595,14 +582,14 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 }
 
 
-.semMF <- function(X, K, nc, n_poly, splits = NULL, counts) {
+.semMF <- function(X, K, nc, n_poly, splits = NULL, scrs) {
 
   prep <- .semPrepareSumScores(X, K, splits = NULL)
   partSUMS <- prep$partSUMS
   S <- prep$S
   d <- prep$d
   N <- nrow(X)
-  out <- .semPrepareOutMatrix(ncol(X), nc, counts)
+  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
   scores <- out[, 1]
 
   rawDiffK <- d *
@@ -616,12 +603,12 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 }
 
 
-.semAnova <- function(X, nc, caseMin, counts) {
+.semAnova <- function(X, nc, caseMin, scrs) {
 
   prep <- .semPrepareSumScores(X, K = 1, splits = NULL)
   S <- prep$S
 
-  out <- .semPrepareOutMatrix(ncol(X), nc, counts)
+  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
   fun <- function(X, ind, cc) {
     nit <- ncol(X)
     return(sqrt(nit / (nit - 1) * sum(diag(cov(X[ind, ])))))
@@ -632,16 +619,16 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 }
 
 
-.semLord <- function(nit) {
-  x <- 0:nit
+.semLord <- function(nit, scrs) {
+  x <- scrs$scores
   out_binom <- sqrt((x) * (nit - (x)) / (nit - 1))
-  return(cbind(0:nit, out_binom))
+  return(cbind(x, out_binom))
 }
 
-.semKeats <- function(X, options) {
+.semKeats <- function(X, options, scrs) {
 
   nit <- ncol(X)
-  x <- 0:nit
+  x <- scrs$scores
   S <- rowSums(X)
   KR21 <- nit / (nit - 1) * (1 - (mean(S) * (nit - mean(S))) / (nit * var(S)))
   if (options[["userReliability"]]) {
@@ -652,12 +639,12 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   correction <- (1 - rel) / (1 - KR21)
   ou_binom2 <- sqrt((x) * (nit - (x)) / (nit - 1) * correction)
 
-  return(cbind(0:nit, ou_binom2))
+  return(cbind(x, ou_binom2))
 }
 
 
 # X = dataset, K = number of splits, counts = counts per score group
-.semLord2 <- function(X, K, counts, caseMin, splits = NULL) {
+.semLord2 <- function(X, K, scrs, caseMin, splits = NULL) {
 
   nc <- 2
   prep <- .semPrepareSumScores(X, K, splits = NULL)
@@ -665,7 +652,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   S <- prep$S
   cc <- prep$cc
 
-  out <- .semPrepareOutMatrix(ncol(X), nc, counts)
+  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
 
   fun <- function(partSUMS, ind, cc) {
     ccmat <- matrix(cc, length(ind), length(cc), byrow = TRUE)
@@ -684,14 +671,16 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 .semCounts <- function(X, nc) {
   nit <- ncol(X)
   S <- rowSums(X)
-  scores <- 0:(nit * (nc - 1))
+  scoreRange <- range(S)
+  print(scoreRange)
+  scores <- scoreRange[1]:scoreRange[2]
   # create a matrix that counts the scores and also checks the caseMins
   counts <- numeric(length(scores))
   # first count all the different sum score occurences
   for (i in seq_len(length(counts))) {
     counts[i] <- sum(S == scores[i])
   }
-  return(counts)
+  return(list(counts = counts, scores = scores))
 }
 
 .semPrepareSumScores <- function(X, K, splits) {
@@ -729,10 +718,10 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 }
 
 
-.semPrepareOutMatrix <- function(nit, nc, counts) {
-
-  out <- matrix(NA, (nit * (nc - 1)) + 1, 4)
-  scores <- 0:(nit * (nc - 1))
+.semPrepareOutMatrix <- function(nit, nc, scrs) {
+  scores <- scrs$scores
+  counts <- scrs$counts
+  out <- matrix(NA, length(scores), 4)
   out[, 1] <- scores
   out[, 3] <- counts
   out[, 4] <- FALSE
