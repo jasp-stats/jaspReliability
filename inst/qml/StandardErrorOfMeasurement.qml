@@ -185,7 +185,13 @@ Form
 		CheckBox
 		{
 			name: "pointPlots"
-			label: qsTr("Point plots per method")
+			label: qsTr("Points plot per method")
+		}
+
+		CheckBox
+		{
+			name: "combinedPointPlot"
+			label: qsTr("Combined point plot")
 		}	
 	}
 

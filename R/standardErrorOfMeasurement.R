@@ -38,6 +38,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   .semPointPlots(jaspResults, dataset, options, ready)
 
+  .semCombinedPointPlot(jaspResults, dataset, options, ready)
+
   return()
 }
 
@@ -99,7 +101,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   if (!ready) return()
 
   nc <- options[["responseCategories"]]
-  counts <- .counts(dataset, nc)
+  counts <- .semCounts(dataset, nc)
   countsState <- createJaspState(counts, dependencies = NULL)
   jaspResults[["semMainContainer"]][["countsState"]] <- countsState
 
@@ -117,7 +119,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (options[["thorndike"]]) {
     if (is.null(jaspResults[["semMainContainer"]][["thorndikeState"]])) {
-      out <- .semThorn(dataset, nc = nc, caseMin = options[["minimumGroupSize"]], splits = NULL, counts)
+      out <- .semThorn(dataset, K = 2, nc = nc, caseMin = options[["minimumGroupSize"]], splits = NULL, counts)
       thorndikeState <- createJaspState(out, dependencies = c("thorndike", "minimumGroupSize"))
       jaspResults[["semMainContainer"]][["thorndikeState"]] <- thorndikeState
     }
@@ -159,30 +161,33 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     }
   }
 
-  # only for binary data
-  if (options[["lord"]]) {
-    if (is.null(jaspResults[["semMainContainer"]][["lordState"]])) {
-      out <- .semLord(ncol(dataset))
-      lordState <- createJaspState(out, dependencies = "lord")
-      jaspResults[["semMainContainer"]][["lordState"]] <- lordState
+  if (nc == 2) {
+    # only for binary data
+    if (options[["lord"]]) {
+      if (is.null(jaspResults[["semMainContainer"]][["lordState"]])) {
+        out <- .semLord(ncol(dataset))
+        lordState <- createJaspState(out, dependencies = "lord")
+        jaspResults[["semMainContainer"]][["lordState"]] <- lordState
+      }
+    }
+
+    if (options[["keats"]]) {
+      if (is.null(jaspResults[["semMainContainer"]][["keatsState"]])) {
+        out <- .semKeats(dataset, options)
+        keatsState <- createJaspState(out, dependencies = "keats")
+        jaspResults[["semMainContainer"]][["keatsState"]] <- keatsState
+      }
+    }
+
+    if (options[["lord2"]]) {
+      if (is.null(jaspResults[["semMainContainer"]][["lord2State"]])) {
+        out <- .semLord2(dataset, options[["lord2NumberOfSplits"]], counts, options[["minimumGroupSize"]])
+        lord2State <- createJaspState(out, dependencies = c("lord2", "lord2NumberOfSplits", "minimumGroupSize"))
+        jaspResults[["semMainContainer"]][["lord2State"]] <- lord2State
+      }
     }
   }
 
-  if (options[["keats"]]) {
-    if (is.null(jaspResults[["semMainContainer"]][["keatsState"]])) {
-      out <- .semKeats(dataset, options)
-      keatsState <- createJaspState(out, dependencies = "keats")
-      jaspResults[["semMainContainer"]][["keatsState"]] <- keatsState
-    }
-  }
-
-  if (options[["lord2"]]) {
-    if (is.null(jaspResults[["semMainContainer"]][["lord2State"]])) {
-      out <- .semLord2(dataset, options[["lord2NumberOfSplits"]], counts)
-      lord2State <- createJaspState(out, dependencies = c("lord2", "lord2NumberOfSplits"))
-      jaspResults[["semMainContainer"]][["lord2State"]] <- lord2State
-    }
-  }
 
  return()
 }
@@ -249,35 +254,31 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     }
 
     if (options[["irt"]]) {
-      out <- jaspResults[["semMainContainer"]][["irtState"]]$object
-      # because the irt method does not produce score groups but a continous score along the scale, we need to group it
-      outDt <- data.frame(scores = out$scores, sems = out$sems)
-      outOrdered <- outDt[order(outDt$scores, decreasing = FALSE), ]
-      uniqueOutOrdered <- unique(outOrdered)
-      print(str(out))
-      irtBinned <- approx(uniqueOutOrdered$scores, uniqueOutOrdered$sems, xout = out$discScores)$y
-
+      out <- jaspResults[["semMainContainer"]][["irtState"]]$object$binned
       coefficientTable$addColumnInfo(name = "irt", title = gettext("IRT"), type = "number")
-      dtFill$irt <- irtBinned
+      dtFill$irt <- out[, 2]
     }
 
-    if (options[["lord"]]) {
-      out <- jaspResults[["semMainContainer"]][["lordState"]]$object
-      coefficientTable$addColumnInfo(name = "lord", title = gettext("Lord"), type = "number")
-      dtFill$lord <- out[, 2]
+    if (options[["responseCategories"]] == 2) {
+      if (options[["lord"]]) {
+        out <- jaspResults[["semMainContainer"]][["lordState"]]$object
+        coefficientTable$addColumnInfo(name = "lord", title = gettext("Lord"), type = "number")
+        dtFill$lord <- out[, 2]
+      }
+
+      if (options[["keats"]]) {
+        out <- jaspResults[["semMainContainer"]][["keatsState"]]$object
+        coefficientTable$addColumnInfo(name = "keats", title = gettext("Keats"), type = "number")
+        dtFill$keats <- out[, 2]
+      }
+
+      if (options[["lord2"]]) {
+        out <- jaspResults[["semMainContainer"]][["lord2State"]]$object
+        coefficientTable$addColumnInfo(name = "lord2", title = gettext("Lord-2"), type = "number")
+        dtFill$lord2 <- out[, 2]
+      }
     }
 
-    if (options[["keats"]]) {
-      out <- jaspResults[["semMainContainer"]][["keatsState"]]$object
-      coefficientTable$addColumnInfo(name = "keats", title = gettext("Keats"), type = "number")
-      dtFill$keats <- out[, 2]
-    }
-
-    if (options[["lord2"]]) {
-      out <- jaspResults[["semMainContainer"]][["lord2State"]]$object
-      coefficientTable$addColumnInfo(name = "lord2", title = gettext("Lord-2"), type = "number")
-      dtFill$lord2 <- out[, 2]
-    }
   }
 
   coefficientTable$setData(dtFill)
@@ -311,19 +312,70 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 .semPointPlots <- function(jaspResults, dataset, options, ready) {
 
-  if (!is.null(jaspResults[["semMainContainer"]][["pointPlots"]]) || !options[["pointPlots"]]) return()
+  if (!is.null(jaspResults[["semMainContainer"]][["pointPlots"]]) || !options[["pointPlots"]]
+      || !ready || jaspResults[["semMainContainer"]]$getError()) {return()}
 
-  if (!ready || jaspResults[["semMainContainer"]]$getError()) return()
 
   pointPlotsContainer <- createJaspContainer(title = gettext("Point plots"))
   pointPlotsContainer$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]])
   jaspResults[["semMainContainer"]][["pointPlotsContainer"]] <- pointPlotsContainer
 
   if (options[["thorndike"]]) {
-    pl <- .makeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["thorndikeState"]]$object,
-                               title = gettext("Thorndike method point plot"), dep = "thorndike")
+    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["thorndikeState"]],
+                               title = gettext("Thorndike method point plot"))
 
     pointPlotsContainer[["thorndikePlot"]] <- pl
+  }
+
+  if (options[["feldt"]]) {
+    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["feldtState"]],
+                               title = gettext("Feldt method point plot"))
+
+    pointPlotsContainer[["feldtPlot"]] <- pl
+  }
+
+  if (options[["mollenkopfFeldt"]]) {
+    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["mfState"]],
+                               title = gettext("Mollenkopf-Feldt method point plot"))
+
+    pointPlotsContainer[["mfPlot"]] <- pl
+  }
+
+  if (options[["anova"]]) {
+    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["anovaState"]],
+                               title = gettext("ANOVA method point plot"))
+
+    pointPlotsContainer[["anovaPlot"]] <- pl
+  }
+
+  if (options[["irt"]]) {
+    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["irtState"]],
+                               title = gettext("IRT method point plot"), irt = TRUE)
+
+    pointPlotsContainer[["irtPlot"]] <- pl
+  }
+
+  if (options[["responseCategories"]] == 2) {
+    if (options[["lord"]]) {
+      pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["lordState"]],
+                                    title = gettext("Lord method point plot"))
+
+      pointPlotsContainer[["lordPlot"]] <- pl
+    }
+
+    if (options[["keats"]]) {
+      pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["keatsState"]],
+                                    title = gettext("Keats method point plot"))
+
+      pointPlotsContainer[["keatsPlot"]] <- pl
+    }
+
+    if (options[["lord2"]]) {
+      pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["lord2State"]],
+                                    title = gettext("Lord-2 method point plot"))
+
+      pointPlotsContainer[["lordPlot"]] <- pl
+    }
   }
 
 
@@ -331,35 +383,122 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 }
 
-.makeSinglePointPlot <- function(resultsObject, title, dep) {
+.semMakeSinglePointPlot <- function(resultsObject, title, irt = FALSE) {
 
-  dat <- as.data.frame(resultsObject)
-  colnames(dat) <- c("score", "sem", "counts", "merged")
+  if (!irt) {
+    dat <- as.data.frame(resultsObject$object)
+  } else {
+    dat <- as.data.frame(resultsObject$object$unbinned)
+  }
+  colnames(dat) <- c("score", "sem")
   pl <- ggplot2::ggplot(dat) +
     ggplot2::geom_point(ggplot2::aes(x = score, y = sem), size = 2.5) +
     ggplot2::labs(x = "Test Score", y = "sem")
 
-  outPlot <- createJaspPlot(jaspGraphs::themeJasp(pl), title = title, dependencies = dep)
+  outPlot <- createJaspPlot(jaspGraphs::themeJasp(pl), title = title, width = 400)
+  outPlot$dependOn(optionsFromObject = resultsObject)
 
   return(outPlot)
 
 }
 
+.semCombinedPointPlot <- function(jaspResults, dataset, options, ready) {
 
-##### sem compute functions #####
-
-.counts <- function(X, nc) {
-  nit <- ncol(X)
-  S <- rowSums(X)
-  scores <- 0:(nit * (nc - 1))
-  # create a matrix that counts the scores and also checks the caseMins
-  counts <- numeric(length(scores))
-  # first count all the different sum score occurences
-  for (i in seq_len(length(counts))) {
-    counts[i] <- sum(S == scores[i])
+  if (!options[["combinedPointPlot"]]
+      || !is.null(jaspResults[["semMainContainer"]][["combinedPlot"]])
+      || !ready
+      || jaspResults[["semMainContainer"]]$getError()) {
+    return()
   }
-  return(counts)
+
+
+
+  if (any(c(options[["thorndike"]], options[["feldt"]], options[["mollenkopfFeldt"]], options[["anova"]],
+            options[["irt"]], options[["lord"]], options[["keats"]], options[["lord2"]]))) {
+
+    nit <- ncol(dataset)
+    nc <- options[["responseCategories"]]
+    scores <- 0:(nit * (nc - 1))
+    dt <- data.frame(score = integer(), sem = double(), Type = character())
+    dtIrt <- NULL
+
+    if (options[["thorndike"]]) {
+      out <- jaspResults[["semMainContainer"]][["thorndikeState"]]$object
+      dtBind <- data.frame(score = scores, sem = out[, 2], Type = "Thorndike")
+      dt <- rbind(dt, dtBind)
+    }
+
+    if (options[["feldt"]]) {
+      out <- jaspResults[["semMainContainer"]][["feldtState"]]$object
+      dtBind <- data.frame(score = scores, sem = out[, 2], Type = "Feldt")
+      dt <- rbind(dt, dtBind)
+    }
+    if (options[["mollenkopfFeldt"]]) {
+      out <- jaspResults[["semMainContainer"]][["mfState"]]$object
+      dtBind <- data.frame(score = scores, sem = out[, 2], Type = "MF")
+      dt <- rbind(dt, dtBind)
+    }
+    if (options[["anova"]]) {
+      out <- jaspResults[["semMainContainer"]][["anovaState"]]$object
+      dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("ANOVA"))
+      dt <- rbind(dt, dtBind)
+    }
+
+    if (options[["irt"]]) {
+      out <- jaspResults[["semMainContainer"]][["irtState"]]$object$unbinned
+      dtIrt <- data.frame(score = out[, 1], sem = out[, 2], Type = gettext("IRT"))
+    }
+
+    if (options[["responseCategories"]] == 2) {
+      if (options[["lord"]]) {
+        out <- jaspResults[["semMainContainer"]][["lordState"]]$object
+        dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("Lord"))
+        dt <- rbind(dt, dtBind)
+      }
+
+      if (options[["keats"]]) {
+        out <- jaspResults[["semMainContainer"]][["keatsState"]]$object
+        dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("Keats"))
+        dt <- rbind(dt, dtBind)
+      }
+
+      if (options[["lord2"]]) {
+        out <- jaspResults[["semMainContainer"]][["lord2State"]]$object
+        dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("Lord-2"))
+        dt <- rbind(dt, dtBind)
+      }
+    }
+
+    # so that the legend does not become alphabetically ordered:
+    levs <- unique(dt$Type)
+    dt$Type <- factor(dt$Type, levels = levs, ordered = FALSE, labels = levs)
+
+    pl <- ggplot2::ggplot() +
+      ggplot2::geom_point(data = dt, ggplot2::aes(x = score, y = sem, shape = Type), size = 2.5) +
+      ggplot2::labs(x = "Test Score", y = "sem")
+
+    if (!is.null(dtIrt)) {
+      pl <- pl + ggplot2::geom_line(data = dtIrt, ggplot2::aes(x = score, y = sem, linetype = ""), color = "black", linewidth = 1) +
+        ggplot2::scale_linetype_discrete(name = "", labels = dtIrt[1, 3])
+      # move the legend of IRT underneath the other:
+      pl <- pl + ggplot2::guides(linetype = ggplot2::guide_legend(order = 0),
+             shape = ggplot2::guide_legend(order = 1))
+    }
+
+    plot <- createJaspPlot(jaspGraphs::themeJasp(pl, legend.position = "right"), title = gettext("Combined point plot"),
+                           width = 600)
+    plot$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]])
+    jaspResults[["semMainContainer"]][["combinedPlot"]] <- plot
+  }
+
+
+
+  return()
 }
+
+
+
+##### Sem compute functions #####
 
 
 .semIrt <- function(X, nc) {
@@ -371,109 +510,67 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   }
 
   res <- mirt::mirt(X, 1, itemtype=ity)
-  # x <- mirt::fscores(res)
+  x <- mirt::fscores(res)
   x <- seq(-5, 5, by = 0.1)
 
   cofs <- mirt::coef(res, IRTpars=TRUE)
   cofs$GroupPars <- NULL
   cof_mat <- t(sapply(cofs, function(x) x))
-  cof_mat <- cof_mat[, c(2:nc, 1)]
+  # make data frame just so that all columns are named and we dont have to be explicit
+  cof_mat <- as.data.frame(cof_mat)
   colnames(cof_mat) <- c("a", paste0("b", 1:(nc-1)))
 
   a <- cof_mat[, "a"]
   nit <- length(a)
-  outIRT <- list(scores = numeric(length(x)), sems = numeric(length(x)))
+  outIRT <- matrix(NA, length(x), 2)
 
   if (nc == 2) {
     b <- cof_mat[, "b1"]
     for (i in 1:length(x)) {
-      outIRT$scores[i] <- sum(plogis(a * (x[i] - b)))
-      outIRT$sems[i] <- sqrt(sum(plogis(a * (x[i] - b)) * (1 - plogis(a * (x[i] - b)))))
+      outIRT[i, 1] <- sum(plogis(a * (x[i] - b)))
+      outIRT[i, 2] <- sqrt(sum(plogis(a * (x[i] - b)) * (1 - plogis(a * (x[i] - b)))))
     }
 
   } else {
-    b <- cbind(-Inf, cof_mat[, 1:(nc - 1)], Inf)
+    b <- cbind(-Inf, cof_mat[, paste0("b", 1:(nc-1))], Inf)
     probs <- matrix(NA, nit, nc)
     for (i in 1:length(x)) {
-      for (j in 1:(nc)) {
+      for (j in 1:nc) {
         probs[, j] <- plogis(a * (x[i] - b[, j])) - plogis(a * (x[i] - b[, j + 1]))
       }
       ev <- rowSums(t(t(probs) * (0:(nc - 1))))
       dev <- (matrix(0:(nc - 1), nit, nc, TRUE) - ev)^2
 
-      outIRT$scores[i] <- sum(ev)
-      outIRT$sems[i] <- sqrt(sum(dev * probs))
+      outIRT[i, 1] <- sum(ev)
+      outIRT[i, 2] <- sqrt(sum(dev * probs))
     }
   }
+  discScores <- 0:(nit * (nc - 1))
 
+  # because the irt method does not produce score groups but a continuous score along the scale, we need to group it
+  outDt <- as.data.frame(outIRT)
+  outOrdered <- outDt[order(outDt[, 1], decreasing = FALSE), ]
+  uniqueOutOrdered <- unique(outOrdered)
+  irtBinned <- approx(uniqueOutOrdered[, 1], uniqueOutOrdered[, 2], xout = discScores)$y
+  outBinned <- data.frame(scores = discScores, sem = irtBinned)
 
-  outIRT$discScores <- 0:(nit * (nc - 1))
-
+  outIRT <- list(unbinned = outIRT, binned = outBinned)
   return(outIRT)
+
 }
 
 
+.semThorn <- function(X, K, nc, caseMin, splits = NULL, counts) {
 
-.semThorn <- function(X, nc, caseMin = 3, splits = NULL, counts) {
-
-  nit <- ncol(X)
-  N <- nrow(X)
-
-  S <- rowSums(X)
-
-  if (is.null(splits)) {
-    # when no specific splits are defined, we just evenly distribute the items among the number of splits
-    k <- split(seq_len(nit), 1:2)
+  prep <- .semPrepareSumScores(X, K, splits = NULL)
+  partSUMS <- prep$partSUMS
+  S <- prep$S
+  out <- .semPrepareOutMatrix(ncol(X), nc, counts)
+  fun <- function(partSUMS, ind, cc) {
+    return(sd(partSUMS[ind, 1] - partSUMS[ind, 2]))
   }
 
-  partSUMS1 <- rowSums(X[, k[[1]], drop = FALSE])
-  partSUMS2 <- rowSums(X[, k[[2]], drop = FALSE])
-
-  out <- matrix(NA, (nit * (nc - 1)) + 1, 4)
-  scores <- 0:(nit * (nc - 1))
-  out[, 1] <- scores
-  out[, 3] <- counts
-  out[, 4] <- FALSE
-  ii <- 1
-
-  while (ii <= nrow(out)) {
-    if (counts[ii] >= caseMin) {
-      ind <- which(S == scores[ii])
-      out[ii, 2] <- sd(partSUMS1[ind] - partSUMS2[ind])
-      ii <- ii + 1
-    } else {
-      csum <- cumsum(counts[ii:length(counts)])
-      # index of the first score that surpasses the min size in the submatrix with the cumulative sums
-      firstInd <- which(csum >= caseMin)
-      # at the higher end of the score groups, we might encounter that merging groups will not reach the
-      # minsize anymore, so we need to check
-      if (length(firstInd) > 0) {
-        firstInd <- firstInd[1]
-        # actual index in the scores and out matrix
-        nextInd <- ii + (firstInd - 1)
-        ind <- which(S %in% scores[ii:nextInd])
-        out[ii:nextInd, 2] <- sd(partSUMS1[ind] - partSUMS2[ind])
-        out[ii:nextInd, 4] <- TRUE
-        ii <- nextInd + 1
-      } else {
-        break
-      }
-    }
-  }
-
-  # now lets also do kind of the same from the back to capture the cases at the end that dont reach the min size
-  backInd <- nrow(out)
-  if (counts[backInd] < caseMin) {
-    csum <- cumsum(counts[backInd:1])
-    # index of the first score that surpasses the min size in the submatrix with the cumulative sums
-    firstInd <- which(csum >= caseMin)
-    firstInd <- firstInd[1]
-    # actual index in the scores and out matrix
-    nextInd <- backInd - (firstInd - 1)
-    ind <- which(S %in% scores[backInd:nextInd])
-    out[backInd:nextInd, 2] <- sd(partSUMS1[ind] - partSUMS2[ind])
-    out[backInd:nextInd, 4] <- TRUE
-  }
+  out <- .semComputeWithCaseMin(out, S, caseMin, partSUMS, fun)
 
   return(out)
 }
@@ -481,81 +578,18 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 .semFeldt <- function(X, K, nc, caseMin, splits = NULL, counts) {
 
-  nit <- ncol(X)
-  N <- nrow(X)
-
-  S <- rowSums(X)
-  partSUMS <- matrix(NA, N, K)
-
-  if (K < nit) {
-    if (is.null(splits)) {
-      # when no specific splits are defined, we just evenly distribute the items among the number of splits
-      k <- split(seq_len(nit), 1:K)
-      for (i in 1:K) {
-        partSUMS[, i] <- rowSums(X[, k[[i]], drop = FALSE])
-      }
-    } else {
-      # TODO: implement the specified splits
-    }
-
-    d <- nit / mean(sapply(k, length))
-  }
-
-  if (K == nit) {
-    for (i in 1:K) {
-      partSUMS[, i] <- X[, i]
-    }
-    d <- nit
-  }
-
-  out <- matrix(NA, (nit * (nc - 1)) + 1, 4)
-  scores <- 0:(nit * (nc - 1))
-  out[, 1] <- scores
-  out[, 3] <- counts
-  out[, 4] <- FALSE
-  ii <- 1
-
-  while (ii <= nrow(out)) {
-    if (counts[ii] >= caseMin) {
-      ind <- which(S == scores[ii])
-      mean_diff <- partSUMS[ind, ] - rowMeans(partSUMS[ind, ]) - matrix(colMeans(partSUMS[ind, ]), length(ind), K, TRUE) + mean(partSUMS[ind, ])
-      out[ii, 2] <- sqrt(d * sum(rowSums(mean_diff^2) / (K - 1)) / length(ind))
-      ii <- ii + 1
-    } else {
-      csum <- cumsum(counts[ii:length(counts)])
-      # index of the first score that surpasses the min size in the submatrix with the cumulative sums
-      firstInd <- which(csum >= caseMin)
-      # at the higher end of the score groups, we might encounter that merging groups will not reach the
-      # minsize anymore, so we need to check
-      if (length(firstInd) > 0) {
-        firstInd <- firstInd[1]
-        # actual index in the scores and out matrix
-        nextInd <- ii + (firstInd - 1)
-        ind <- which(S %in% scores[ii:nextInd])
-        mean_diff <- partSUMS[ind, ] - rowMeans(partSUMS[ind, ]) - matrix(colMeans(partSUMS[ind, ]), length(ind), K, TRUE) + mean(partSUMS[ind, ])
-        out[ii:nextInd, 2] <- sqrt(d * sum(rowSums(mean_diff^2) / (K - 1)) / length(ind))
-        out[ii:nextInd, 4] <- TRUE
-        ii <- nextInd + 1
-      } else {
-        break
-      }
-    }
-  }
-
-  # now lets also do kind of the same from the back to capture the cases at the end that dont reach the min size
-  backInd <- nrow(out)
-  if (counts[backInd] < caseMin) {
-    csum <- cumsum(counts[backInd:1])
-    # index of the first score that surpasses the min size in the submatrix with the cumulative sums
-    firstInd <- which(csum >= caseMin)
-    firstInd <- firstInd[1]
-    # actual index in the scores and out matrix
-    nextInd <- backInd - (firstInd - 1)
-    ind <- which(S %in% scores[backInd:nextInd])
+  prep <- .semPrepareSumScores(X, K, splits = NULL)
+  partSUMS <- prep$partSUMS
+  S <- prep$S
+  d <- prep$d
+  out <- .semPrepareOutMatrix(ncol(X), nc, counts)
+  fun <- function(partSUMS, ind, cc) {
+    K <- ncol(partSUMS)
     mean_diff <- partSUMS[ind, ] - rowMeans(partSUMS[ind, ]) - matrix(colMeans(partSUMS[ind, ]), length(ind), K, TRUE) + mean(partSUMS[ind, ])
-    out[backInd:nextInd, 2] <- sqrt(d * sum(rowSums(mean_diff^2) / (K - 1)) / length(ind))
-    out[backInd:nextInd, 4] <- TRUE
+    ret <- sqrt(d * sum(rowSums(mean_diff^2) / (K - 1)) / length(ind))
+    return(ret)
   }
+  out <- .semComputeWithCaseMin(out, S, caseMin, partSUMS, fun)
 
   return(out)
 }
@@ -563,38 +597,13 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 .semMF <- function(X, K, nc, n_poly, splits = NULL, counts) {
 
-
-  nit <- ncol(X)
+  prep <- .semPrepareSumScores(X, K, splits = NULL)
+  partSUMS <- prep$partSUMS
+  S <- prep$S
+  d <- prep$d
   N <- nrow(X)
-
-  S <- rowSums(X)
-  partSUMS <- matrix(NA, N, K)
-
-  if (K < nit) {
-    if (is.null(splits)) {
-      # when no specific splits are defined, we just evenly distribute the items among the number of splits
-      k <- split(seq_len(nit), 1:K)
-      for (i in 1:K) {
-        partSUMS[, i] <- rowSums(X[, k[[i]], drop = FALSE])
-      }
-    } else {
-      # TODO: implement the specified splits
-    }
-
-    d <- nit / mean(sapply(k, length))
-  }
-
-  if (K == nit) {
-    for (i in 1:K) {
-      partSUMS[, i] <- X[, i]
-    }
-    d <- nit
-  }
-
-  out <- matrix(NA, (nit * (nc - 1)) + 1, 4)
-  scores <- 0:(nit * (nc - 1))
-  out[, 1] <- scores
-  out[, 3] <- counts
+  out <- .semPrepareOutMatrix(ncol(X), nc, counts)
+  scores <- out[, 1]
 
   rawDiffK <- d *
     rowSums((partSUMS - matrix(colMeans(partSUMS), N, K, TRUE) - rowMeans(partSUMS) + mean(partSUMS))^2) /
@@ -609,56 +618,15 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 .semAnova <- function(X, nc, caseMin, counts) {
 
-  nit <- ncol(X)
-  N <- nrow(X)
+  prep <- .semPrepareSumScores(X, K = 1, splits = NULL)
+  S <- prep$S
 
-  S <- rowSums(X)
-
-  out <- matrix(NA, (nit * (nc - 1)) + 1, 4)
-  scores <- 0:(nit * (nc - 1))
-  out[, 1] <- scores
-  out[, 3] <- counts
-  out[, 4] <- FALSE
-  ii <- 1
-
-  while (ii <= nrow(out)) {
-    if (counts[ii] >= caseMin) {
-      ind <- which(S == scores[ii])
-      out[ii, 2] <- sqrt(nit / (nit - 1) * sum(diag(cov(X[ind, ]))))
-      ii <- ii + 1
-    } else {
-      csum <- cumsum(counts[ii:length(counts)])
-      # index of the first score that surpasses the min size in the submatrix with the cumulative sums
-      firstInd <- which(csum >= caseMin)
-      # at the higher end of the score groups, we might encounter that merging groups will not reach the
-      # minsize anymore, so we need to check
-      if (length(firstInd) > 0) {
-        firstInd <- firstInd[1]
-        # actual index in the scores and out matrix
-        nextInd <- ii + (firstInd - 1)
-        ind <- which(S %in% scores[ii:nextInd])
-        out[ii:nextInd, 2] <- sqrt(nit / (nit - 1) * sum(diag(cov(X[ind, ]))))
-        out[ii:nextInd, 4] <- TRUE
-        ii <- nextInd + 1
-      } else {
-        break
-      }
-    }
+  out <- .semPrepareOutMatrix(ncol(X), nc, counts)
+  fun <- function(X, ind, cc) {
+    nit <- ncol(X)
+    return(sqrt(nit / (nit - 1) * sum(diag(cov(X[ind, ])))))
   }
-
-  # now lets also do kind of the same from the back to capture the cases at the end that dont reach the min size
-  backInd <- nrow(out)
-  if (counts[backInd] < caseMin) {
-    csum <- cumsum(counts[backInd:1])
-    # index of the first score that surpasses the min size in the submatrix with the cumulative sums
-    firstInd <- which(csum >= caseMin)
-    firstInd <- firstInd[1]
-    # actual index in the scores and out matrix
-    nextInd <- backInd - (firstInd - 1)
-    ind <- which(S %in% scores[backInd:nextInd])
-    out[backInd:nextInd, 2] <- sqrt(nit / (nit - 1) * sum(diag(cov(X[ind, ]))))
-    out[backInd:nextInd, 4] <- TRUE
-  }
+  out <- .semComputeWithCaseMin(out, S, caseMin, X, fun)
 
   return(out)
 }
@@ -689,12 +657,49 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 
 # X = dataset, K = number of splits, counts = counts per score group
-.semLord2 <- function(X, K, counts, splits = NULL) {
+.semLord2 <- function(X, K, counts, caseMin, splits = NULL) {
+
+  nc <- 2
+  prep <- .semPrepareSumScores(X, K, splits = NULL)
+  partSUMS <- prep$partSUMS
+  S <- prep$S
+  cc <- prep$cc
+
+  out <- .semPrepareOutMatrix(ncol(X), nc, counts)
+
+  fun <- function(partSUMS, ind, cc) {
+    ccmat <- matrix(cc, length(ind), length(cc), byrow = TRUE)
+    ret <- sqrt(mean(rowSums(partSUMS[ind, ] * (ccmat - partSUMS[ind, ]) / (ccmat - 1))))
+    return(ret)
+  }
+  out <- .semComputeWithCaseMin(out, S, caseMin, partSUMS, fun, cc)
+
+  return(out)
+
+}
+
+
+
+#### Helper functions ####
+.semCounts <- function(X, nc) {
+  nit <- ncol(X)
+  S <- rowSums(X)
+  scores <- 0:(nit * (nc - 1))
+  # create a matrix that counts the scores and also checks the caseMins
+  counts <- numeric(length(scores))
+  # first count all the different sum score occurences
+  for (i in seq_len(length(counts))) {
+    counts[i] <- sum(S == scores[i])
+  }
+  return(counts)
+}
+
+.semPrepareSumScores <- function(X, K, splits) {
 
   nit <- ncol(X)
   N <- nrow(X)
-  S <- rowSums(X)
 
+  S <- rowSums(X)
   partSUMS <- matrix(NA, N, K)
 
   if (K < nit) {
@@ -704,32 +709,81 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
       for (i in 1:K) {
         partSUMS[, i] <- rowSums(X[, k[[i]], drop = FALSE])
       }
-      cc <- sapply(k, length)
     } else {
       # TODO: implement the specified splits
     }
+    cc <- sapply(k, length)
+    d <- nit / mean(cc)
+
   }
 
   if (K == nit) {
-    for (j in 1:K) {
-      partSUMS[, j] <- X[, j]
+    for (i in 1:K) {
+      partSUMS[, i] <- X[, i]
     }
     cc <- rep(1, K)
+    d <- nit
   }
 
-  scores <- 0:nit
-  out2 <- numeric(length(scores))
-  ii <- 1
-  while (ii <= length(scores)) {
-    ind <- which(S == scores[ii])
-    ccmat <- matrix(cc, length(ind), length(cc), byrow = TRUE)
-    out2[ii] <- sqrt(mean(rowSums(partSUMS[ind, ] * (ccmat - partSUMS[ind, ]) / (ccmat - 1))))
-    ii <- ii + 1
-  }
-
-  return(cbind(0:nit, out2))
-
+  return(list(S = S, partSUMS = partSUMS, d = d, cc = cc))
 }
 
 
+.semPrepareOutMatrix <- function(nit, nc, counts) {
 
+  out <- matrix(NA, (nit * (nc - 1)) + 1, 4)
+  scores <- 0:(nit * (nc - 1))
+  out[, 1] <- scores
+  out[, 3] <- counts
+  out[, 4] <- FALSE
+
+  return(out)
+}
+
+
+.semComputeWithCaseMin <- function(out, S, caseMin, partSUMS, fun, cc = NULL) {
+
+  scores <- out[, 1]
+  counts <- out[, 3]
+  ii <- 1
+  while (ii <= nrow(out)) {
+    if (counts[ii] >= caseMin) {
+      ind <- which(S == scores[ii])
+      out[ii, 2] <- fun(partSUMS, ind, cc)
+      ii <- ii + 1
+    } else {
+      csum <- cumsum(counts[ii:length(counts)])
+      # index of the first score that surpasses the min size in the submatrix with the cumulative sums
+      firstInd <- which(csum >= caseMin)
+      # at the higher end of the score groups, we might encounter that merging groups will not reach the
+      # minsize anymore, so we need to check
+      if (length(firstInd) > 0) {
+        firstInd <- firstInd[1]
+        # actual index in the scores and out matrix
+        nextInd <- ii + (firstInd - 1)
+        ind <- which(S %in% scores[ii:nextInd])
+        out[ii:nextInd, 2] <- fun(partSUMS, ind)
+        out[ii:nextInd, 4] <- TRUE
+        ii <- nextInd + 1
+      } else {
+        break
+      }
+    }
+  }
+
+  # now lets also do kind of the same from the back to capture the cases at the end that dont reach the min size
+  backInd <- nrow(out)
+  if (counts[backInd] < caseMin) {
+    csum <- cumsum(counts[backInd:1])
+    # index of the first score that surpasses the min size in the submatrix with the cumulative sums
+    firstInd <- which(csum >= caseMin)
+    firstInd <- firstInd[1]
+    # actual index in the scores and out matrix
+    nextInd <- backInd - (firstInd - 1)
+    ind <- which(S %in% scores[backInd:nextInd])
+    out[backInd:nextInd, 2] <- fun(partSUMS, ind)
+    out[backInd:nextInd, 4] <- TRUE
+  }
+
+  return(out)
+}
