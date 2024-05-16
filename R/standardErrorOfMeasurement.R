@@ -19,8 +19,8 @@
 standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 
-  sink(file = "~/Downloads/log.txt")
-  on.exit(sink(NULL))
+  # sink(file = "~/Downloads/log.txt")
+  # on.exit(sink(NULL))
 
   ready <- length(options[["variables"]]) > 1
 
@@ -499,34 +499,46 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   cofs <- mirt::coef(res, IRTpars=TRUE)
   cofs$GroupPars <- NULL
-  cof_mat <- t(sapply(cofs, function(x) x))
-  # make data frame just so that all columns are named and we dont have to be explicit
-  cof_mat <- as.data.frame(cof_mat)
-  colnames(cof_mat) <- c("a", paste0("b", 1:(nc-1)))
 
-  a <- cof_mat[, "a"]
-  nit <- length(a)
+  # we need to go with lists here because with ordinal items, we may encounter that
+  # some items have a reduced number of answering categories because not all were chosen
+  as <- sapply(cofs, function(x) x[, "a"])
+  bs <- lapply(cofs, function(x) x[, grep("b", colnames(x))])
+  bMulti <- lapply(bs, function(x) 0:length(x))
+
+  nit <- length(as)
   outIRT <- matrix(NA, length(x), 2)
 
   if (nc == 2) {
-    b <- cof_mat[, "b1"]
+  # we dont assume that for binary data items will end up with different number of answering categories
+  # that would mean an item with no variance
+    bs <- unlist(bs)
     for (i in 1:length(x)) {
-      outIRT[i, 1] <- sum(plogis(a * (x[i] - b)))
-      outIRT[i, 2] <- sqrt(sum(plogis(a * (x[i] - b)) * (1 - plogis(a * (x[i] - b)))))
+      outIRT[i, 1] <- sum(plogis(as * (x[i] - bs)))
+      outIRT[i, 2] <- sqrt(sum(plogis(as * (x[i] - bs)) * (1 - plogis(as * (x[i] - bs)))))
     }
 
   } else {
-    b <- cbind(-Inf, cof_mat[, paste0("b", 1:(nc-1))], Inf)
-    probs <- matrix(NA, nit, nc)
+
+    bsInf <- lapply(bs, function(x) c(-Inf, x, Inf))
+    probs <- vector("list", length = nit)
+
     for (i in 1:length(x)) {
-      for (j in 1:nc) {
-        probs[, j] <- plogis(a * (x[i] - b[, j])) - plogis(a * (x[i] - b[, j + 1]))
+      for (k in 1:nit) {
+        blen <- length(bsInf[[k]]) - 1
+        probs[[k]] <- numeric(blen)
+        for (j in 1:blen) {
+          probs[[k]][j] <- plogis(as[k] * (x[i] - bsInf[[k]][j])) - plogis(as[k] * (x[i] - bsInf[[k]][j + 1]))
+        }
       }
-      ev <- rowSums(t(t(probs) * (0:(nc - 1))))
-      dev <- (matrix(0:(nc - 1), nit, nc, TRUE) - ev)^2
+      pprobs <- Map("*", probs, bMulti)
+      ev <- sapply(pprobs, sum)
+      dev <- Map("-", bMulti, ev)
+      dev <- lapply(dev, function(x) x^2)
+      devPr <- Map("*", dev, probs)
 
       outIRT[i, 1] <- sum(ev)
-      outIRT[i, 2] <- sqrt(sum(dev * probs))
+      outIRT[i, 2] <- sqrt(sum(unlist(devPr)))
     }
   }
 
