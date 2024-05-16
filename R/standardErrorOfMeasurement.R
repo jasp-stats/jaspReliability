@@ -150,7 +150,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   }
 
   if (any(options[["lord"]], options[["keats"]], options[["lord2"]]) && nc > 2) {
-    .quitAnalysis(gettext("The Lord, Keats, and Lord-2 methods are only available for binary data."))
+    .quitAnalysis(gettext("The Lord, Keats, and Lord's compound methods are only available for binary data."))
   }
 
   # only for binary data
@@ -188,11 +188,14 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   coefficientTable <- createJaspTable(gettext("Standard error of measurement"),
                                       dependencies = c("thorndike", "feldt", "mollenkopfFeldt",
-                                                       "anova", "irt", "lord", "keats", "lord2"))
+                                                       "anova", "irt", "lord", "keats", "lord2", "hideTable",
+                                                       "feldtNumberOfSplits", "mollenkopfFeldtNumberOfSplits",
+                                                       "mollenkopfFeldtPolyDegree", "minimumGroupSize",
+                                                       "lord2NumberOfSplits"))
   jaspResults[["semMainContainer"]][["coefficientTable"]] <- coefficientTable
 
-  coefficientTable$addColumnInfo(name = "score", title = gettext("Score"), type = "string")
-  coefficientTable$addColumnInfo(name = "average", title = gettext("Average"), type = "number")
+  coefficientTable$addColumnInfo(name = "score", title = gettext("Sum score"), type = "string")
+  coefficientTable$addColumnInfo(name = "average", title = gettext("Traditional"), type = "number")
 
   if (!ready || jaspResults[["semMainContainer"]]$getError()) return()
 
@@ -200,74 +203,69 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   average <- jaspResults[["semMainContainer"]][["averageState"]]$object
   dtFill$average <- average
 
-  if (any(c(options[["thorndike"]], options[["feldt"]], options[["mollenkopfFeldt"]], options[["anova"]],
-            options[["irt"]], options[["lord"]], options[["keats"]], options[["lord2"]]))) {
+  if (!options[["hideTable"]]) {
+    if (any(c(options[["thorndike"]], options[["feldt"]], options[["mollenkopfFeldt"]], options[["anova"]],
+              options[["irt"]], options[["lord"]], options[["keats"]], options[["lord2"]]))) {
 
-    # the repetition of this seems annoying...
-    coefficientTable <- createJaspTable(gettext("Standard error of measurement"),
-                                        dependencies = c("thorndike", "feldt", "mollenkopfFeldt",
-                                                         "anova", "irt", "feldtNumberOfSplits",
-                                                         "mollenkopfFeldtNumberOfSplits", "mollenkopfFeldtPolyDegree",
-                                                         "minimumGroupSize",
-                                                         "lord", "keats", "lord2", "lord2NumberOfSplits"))
-    jaspResults[["semMainContainer"]][["coefficientTable"]] <- coefficientTable
+      # the repetition of this seems annoying...
+      coefficientTable <- createJaspTable(gettext("Standard error of measurement"))
+      coefficientTable$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]])
+      jaspResults[["semMainContainer"]][["coefficientTable"]] <- coefficientTable
 
-    coefficientTable$addColumnInfo(name = "score", title = gettext("Score"), type = "string")
-    coefficientTable$addColumnInfo(name = "counts", title = gettext("Counts"), type = "string")
-    coefficientTable$addColumnInfo(name = "average", title = gettext("Average"), type = "number")
+      coefficientTable$addColumnInfo(name = "score", title = gettext("Sum score"), type = "string")
+      coefficientTable$addColumnInfo(name = "counts", title = gettext("Counts"), type = "string")
+      coefficientTable$addFootnote(message = gettextf("The traditional sem value equals %1$1.3f.", average))
 
-    scrs <- jaspResults[["semMainContainer"]][["countsState"]]$object
-    counts <- scrs$counts
-    dtFill <- data.frame(score = scrs$scores)
-    dtFill$counts <- counts
-    dtFill$average <- average
+      scrs <- jaspResults[["semMainContainer"]][["countsState"]]$object
+      counts <- scrs$counts
+      dtFill <- data.frame(score = scrs$scores)
+      dtFill$counts <- counts
 
-    if (options[["thorndike"]]) {
-      out <- jaspResults[["semMainContainer"]][["thorndikeState"]]$object
-      coefficientTable$addColumnInfo(name = "thorndike", title = gettext("Thorndike"), type = "number")
-      dtFill$thorndike <- out[, 2]
+      if (options[["thorndike"]]) {
+        out <- jaspResults[["semMainContainer"]][["thorndikeState"]]$object
+        coefficientTable$addColumnInfo(name = "thorndike", title = gettext("Thorndike"), type = "number")
+        dtFill$thorndike <- out[, 2]
+      }
+      if (options[["feldt"]]) {
+        out <- jaspResults[["semMainContainer"]][["feldtState"]]$object
+        coefficientTable$addColumnInfo(name = "feldt", title = gettext("Feldt"), type = "number")
+        dtFill$feldt <- out[, 2]
+      }
+      if (options[["mollenkopfFeldt"]]) {
+        out <- jaspResults[["semMainContainer"]][["mfState"]]$object
+        coefficientTable$addColumnInfo(name = "moll", title = gettext("Mollenkopf-Feldt"), type = "number")
+        dtFill$moll <- out[, 2]
+      }
+      if (options[["anova"]]) {
+        out <- jaspResults[["semMainContainer"]][["anovaState"]]$object
+        coefficientTable$addColumnInfo(name = "anova", title = gettext("ANOVA"), type = "number")
+        dtFill$anova <- out[, 2]
+      }
+
+      if (options[["irt"]]) {
+        out <- jaspResults[["semMainContainer"]][["irtState"]]$object$binned
+        coefficientTable$addColumnInfo(name = "irt", title = gettext("IRT"), type = "number")
+        dtFill$irt <- out[, 2]
+      }
+
+      if (options[["lord"]]) {
+        out <- jaspResults[["semMainContainer"]][["lordState"]]$object
+        coefficientTable$addColumnInfo(name = "lord", title = gettext("Lord"), type = "number")
+        dtFill$lord <- out[, 2]
+      }
+
+      if (options[["keats"]]) {
+        out <- jaspResults[["semMainContainer"]][["keatsState"]]$object
+        coefficientTable$addColumnInfo(name = "keats", title = gettext("Keats"), type = "number")
+        dtFill$keats <- out[, 2]
+      }
+
+      if (options[["lord2"]]) {
+        out <- jaspResults[["semMainContainer"]][["lord2State"]]$object
+        coefficientTable$addColumnInfo(name = "lord2", title = gettext("Lord's compound"), type = "number")
+        dtFill$lord2 <- out[, 2]
+      }
     }
-    if (options[["feldt"]]) {
-      out <- jaspResults[["semMainContainer"]][["feldtState"]]$object
-      coefficientTable$addColumnInfo(name = "feldt", title = gettext("Feldt"), type = "number")
-      dtFill$feldt <- out[, 2]
-    }
-    if (options[["mollenkopfFeldt"]]) {
-      out <- jaspResults[["semMainContainer"]][["mfState"]]$object
-      coefficientTable$addColumnInfo(name = "moll", title = gettext("Mollenkopf-Feldt"), type = "number")
-      dtFill$moll <- out[, 2]
-    }
-    if (options[["anova"]]) {
-      out <- jaspResults[["semMainContainer"]][["anovaState"]]$object
-      coefficientTable$addColumnInfo(name = "anova", title = gettext("ANOVA"), type = "number")
-      dtFill$anova <- out[, 2]
-    }
-
-    if (options[["irt"]]) {
-      out <- jaspResults[["semMainContainer"]][["irtState"]]$object$binned
-      coefficientTable$addColumnInfo(name = "irt", title = gettext("IRT"), type = "number")
-      dtFill$irt <- out[, 2]
-    }
-
-    if (options[["lord"]]) {
-      out <- jaspResults[["semMainContainer"]][["lordState"]]$object
-      coefficientTable$addColumnInfo(name = "lord", title = gettext("Lord"), type = "number")
-      dtFill$lord <- out[, 2]
-    }
-
-    if (options[["keats"]]) {
-      out <- jaspResults[["semMainContainer"]][["keatsState"]]$object
-      coefficientTable$addColumnInfo(name = "keats", title = gettext("Keats"), type = "number")
-      dtFill$keats <- out[, 2]
-    }
-
-    if (options[["lord2"]]) {
-      out <- jaspResults[["semMainContainer"]][["lord2State"]]$object
-      coefficientTable$addColumnInfo(name = "lord2", title = gettext("Lord-2"), type = "number")
-      dtFill$lord2 <- out[, 2]
-    }
-
-
   }
 
   coefficientTable$setData(dtFill)
@@ -289,10 +287,10 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   p <- ggplot2::ggplot(ss) +
     ggplot2::geom_histogram(ggplot2::aes(scores), bins = nrow(unique(ss)), binwidth = .5) +
     ggplot2::ylab(gettext("Counts")) +
-    ggplot2::xlab(gettext("Scores"))
+    ggplot2::xlab(gettext("Sum scores"))
   p <- jaspGraphs::themeJasp(p)
 
-  histPlot <- createJaspPlot(plot = p, title = gettext("Histogram of counts per score group"))
+  histPlot <- createJaspPlot(plot = p, title = gettext("Histogram of counts per sum score group"))
   jaspResults[["semMainContainer"]][["histPlot"]] <- histPlot
 
   return()
@@ -305,62 +303,62 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
       || !ready || jaspResults[["semMainContainer"]]$getError()) {return()}
 
 
-  pointPlotsContainer <- createJaspContainer(title = gettext("Point plots"))
-  pointPlotsContainer$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]])
+  pointPlotsContainer <- createJaspContainer(title = gettext("Plots"))
+  pointPlotsContainer$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]], options = "pointPlots")
   jaspResults[["semMainContainer"]][["pointPlotsContainer"]] <- pointPlotsContainer
 
   if (options[["thorndike"]]) {
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["thorndikeState"]],
-                               title = gettext("Thorndike method point plot"))
+                                  title = "Thorndike")
 
     pointPlotsContainer[["thorndikePlot"]] <- pl
   }
 
   if (options[["feldt"]]) {
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["feldtState"]],
-                               title = gettext("Feldt method point plot"))
+                               title = "Feldt")
 
     pointPlotsContainer[["feldtPlot"]] <- pl
   }
 
   if (options[["mollenkopfFeldt"]]) {
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["mfState"]],
-                               title = gettext("Mollenkopf-Feldt method point plot"))
+                               title = "Mollenkopf-Feldt")
 
     pointPlotsContainer[["mfPlot"]] <- pl
   }
 
   if (options[["anova"]]) {
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["anovaState"]],
-                               title = gettext("ANOVA method point plot"))
+                               title = gettext("ANOVA"))
 
     pointPlotsContainer[["anovaPlot"]] <- pl
   }
 
   if (options[["irt"]]) {
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["irtState"]],
-                               title = gettext("IRT method point plot"), irt = TRUE)
+                               title = gettext("IRT"), irt = TRUE)
 
     pointPlotsContainer[["irtPlot"]] <- pl
   }
 
   if (options[["lord"]]) {
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["lordState"]],
-                                  title = gettext("Lord method point plot"))
+                                  title = "Lord")
 
     pointPlotsContainer[["lordPlot"]] <- pl
   }
 
   if (options[["keats"]]) {
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["keatsState"]],
-                                  title = gettext("Keats method point plot"))
+                                  title = "Keats")
 
     pointPlotsContainer[["keatsPlot"]] <- pl
   }
 
   if (options[["lord2"]]) {
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["lord2State"]],
-                                  title = gettext("Lord-2 method point plot"))
+                                  title = gettext("Lord's compound"))
 
     pointPlotsContainer[["lordPlot"]] <- pl
   }
@@ -381,7 +379,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   colnames(dat) <- c("score", "sem")
   pl <- ggplot2::ggplot(dat) +
     ggplot2::geom_point(ggplot2::aes(x = score, y = sem), size = 2.5) +
-    ggplot2::labs(x = "Test Score", y = "sem")
+    ggplot2::labs(x = "Sum Score", y = "sem")
 
   outPlot <- createJaspPlot(jaspGraphs::themeJasp(pl), title = title, width = 400)
   outPlot$dependOn(optionsFromObject = resultsObject)
@@ -451,7 +449,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
     if (options[["lord2"]]) {
       out <- jaspResults[["semMainContainer"]][["lord2State"]]$object
-      dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("Lord-2"))
+      dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("Lord's compound"))
       dt <- rbind(dt, dtBind)
     }
 
@@ -462,7 +460,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
     pl <- ggplot2::ggplot() +
       ggplot2::geom_point(data = dt, ggplot2::aes(x = score, y = sem, shape = Type), size = 2.5) +
-      ggplot2::labs(x = "Test Score", y = "sem")
+      ggplot2::labs(x = "Sum Score", y = "sem") +
+      ggplot2::theme(plot.margin = ggplot2::margin(t=1,r=5,b=1.5,l=1, "cm"))
 
     if (!is.null(dtIRT)) {
       pl <- pl + ggplot2::geom_line(data = dtIRT, ggplot2::aes(x = score, y = sem, linetype = ""), color = "black", linewidth = 1) +
@@ -472,7 +471,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
              shape = ggplot2::guide_legend(order = 1))
     }
 
-    plot <- createJaspPlot(jaspGraphs::themeJasp(pl, legend.position = "right"), title = gettext("Combined point plot"),
+    plot <- createJaspPlot(jaspGraphs::themeJasp(pl, legend.position = "right"), title = gettext("Combined plot"),
                            width = 600)
     plot$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]])
     jaspResults[["semMainContainer"]][["combinedPlot"]] <- plot
@@ -494,8 +493,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     ity <- "graded"
   }
 
-  res <- mirt::mirt(X, 1, itemtype=ity)
-  x <- mirt::fscores(res)
+  res <- mirt::mirt(X, model = 1, itemtype = ity)
+  # x <- mirt::fscores(res)
   x <- seq(-5, 5, by = 0.1)
 
   cofs <- mirt::coef(res, IRTpars=TRUE)
@@ -552,7 +551,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   partSUMS <- prep$partSUMS
   S <- prep$S
   out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
-  print(out)
   fun <- function(partSUMS, ind, cc) {
     return(sd(partSUMS[ind, 1] - partSUMS[ind, 2]))
   }
@@ -672,7 +670,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   nit <- ncol(X)
   S <- rowSums(X)
   scoreRange <- range(S)
-  print(scoreRange)
   scores <- scoreRange[1]:scoreRange[2]
   # create a matrix that counts the scores and also checks the caseMins
   counts <- numeric(length(scores))

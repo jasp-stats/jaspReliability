@@ -47,13 +47,13 @@ Form
 		CheckBox
 		{
 			name:   	"thorndike"
-			label:  	qsTr("Thorndike method")
+			label:  	qsTr("Thorndike")
 			
 		}
 		CheckBox
 		{
 			name:   	"feldt"
-			label:  	qsTr("Feldt method")
+			label:  	qsTr("Feldt")
 			IntegerField
 			{
 				name: "feldtNumberOfSplits"
@@ -66,7 +66,7 @@ Form
 		CheckBox
 		{
 			name:   	"mollenkopfFeldt"
-			label:  	qsTr("Mollenkopf-Feldt method")
+			label:  	qsTr("Mollenkopf-Feldt")
 			IntegerField
 			{
 				name: "mollenkopfFeldtNumberOfSplits"
@@ -92,13 +92,13 @@ Form
 		CheckBox
 		{
 			name:   	"anova"
-			label:  	qsTr("ANOVA method")
+			label:  	qsTr("ANOVA")
 		}
 		
 		CheckBox
 		{
 			name:   	"irt"
-			label:  	qsTr("IRT method")
+			label:  	qsTr("IRT")
 		}
 	}
 
@@ -109,26 +109,23 @@ Form
 		CheckBox
 		{
 			name:   	"lord"
-			label:  	qsTr("Lord method")
-			enabled: responseCategories.value == 2
+			label:  	qsTr("Lord")
 		}
 		CheckBox
 		{
 			name:   	"keats"
-			label:  	qsTr("Keats method")
-			enabled: responseCategories.value == 2
+			label:  	qsTr("Keats")
 		}
 		CheckBox
 		{
 			name:   	"lord2"
-			label:  	qsTr("Lord-2 method")
-			enabled: responseCategories.value == 2
+			label:  	qsTr("Lord's compound")
 			IntegerField
 			{
 				name: "lord2NumberOfSplits"
 				label: qsTr("Number of splits")
 				min: 2
-				max: variables.count > 1 ? (variables.count/2) : 2
+				max: variables.count > 3 ? (variables.count/2) : 2
 				defaultValue: 2
 			}
 		}
@@ -141,7 +138,7 @@ Form
 		CheckBox 
 		{
 			name: "userReliability"
-			label: qsTr("Use own reliability")
+			label: qsTr("User defined reliability")
 			childrenOnSameRow: true
 
 			DoubleField
@@ -160,6 +157,12 @@ Form
 			min: 1
 			defaultValue: 10
 		}
+
+		CheckBox 
+		{
+			name: "hideTable"
+			label: qsTr("Hide table")
+		}
 		
 	}
 
@@ -170,19 +173,19 @@ Form
 		CheckBox
 		{
 			name: "histogramCounts"
-			label: qsTr("Histogram of score counts")
+			label: qsTr("Histogram of sum score counts")
 		}	
 
 		CheckBox
 		{
 			name: "pointPlots"
-			label: qsTr("Points plot per method")
+			label: qsTr("Plot per method")
 		}
 
 		CheckBox
 		{
 			name: "combinedPointPlot"
-			label: qsTr("Combined point plot")
+			label: qsTr("Combined plot")
 		}	
 	}
 
