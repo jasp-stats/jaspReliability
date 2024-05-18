@@ -18,9 +18,9 @@
 #' @export
 standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
-
-  # sink(file = "~/Downloads/log.txt")
-  # on.exit(sink(NULL))
+#
+# sink(file = "~/Downloads/log.txt")
+# on.exit(sink(NULL))
 
   ready <- length(options[["variables"]]) > 1
 
@@ -101,7 +101,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
       rel <- Bayesrel:::applyalpha(cov(dataset))
     }
     average <- as.numeric(sd(rowSums(dataset)) * sqrt(1 - rel))
-    averageState <- createJaspState(average, dependencies = NULL)
+    averageState <- createJaspState(average, dependencies = c("userReliability", "reliabilityValue"))
     jaspResults[["semMainContainer"]][["averageState"]] <- averageState
   }
 
@@ -191,8 +191,10 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
                                                        "anova", "irt", "lord", "keats", "lord2", "hideTable",
                                                        "feldtNumberOfSplits", "mollenkopfFeldtNumberOfSplits",
                                                        "mollenkopfFeldtPolyDegree", "minimumGroupSize",
-                                                       "lord2NumberOfSplits"))
+                                                       "lord2NumberOfSplits", "userReliability", "reliabilityValue"))
   jaspResults[["semMainContainer"]][["coefficientTable"]] <- coefficientTable
+
+  nc <- length(unique(c(as.matrix(dataset)))) # may be needed for IRT
 
   coefficientTable$addColumnInfo(name = "score", title = gettext("Sum score"), type = "string")
   coefficientTable$addColumnInfo(name = "average", title = gettext("Traditional"), type = "number")
@@ -243,8 +245,9 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
       }
 
       if (options[["irt"]]) {
+        irtTitle <- ifelse(nc == 2, gettext("IRT-2PL"), gettext("IRT-GRM"))
         out <- jaspResults[["semMainContainer"]][["irtState"]]$object$binned
-        coefficientTable$addColumnInfo(name = "irt", title = gettext("IRT"), type = "number")
+        coefficientTable$addColumnInfo(name = "irt", title = irtTitle, type = "number")
         dtFill$irt <- out[, 2]
       }
 
@@ -302,11 +305,11 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   if (!is.null(jaspResults[["semMainContainer"]][["pointPlots"]]) || !options[["pointPlots"]]
       || !ready || jaspResults[["semMainContainer"]]$getError()) {return()}
 
+  nc <- length(unique(c(as.matrix(dataset)))) # may be needed for IRT
 
   pointPlotsContainer <- createJaspContainer(title = gettext("Plots"))
   pointPlotsContainer$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]], options = "pointPlots")
   jaspResults[["semMainContainer"]][["pointPlotsContainer"]] <- pointPlotsContainer
-
   if (options[["thorndike"]]) {
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["thorndikeState"]],
                                   title = "Thorndike")
@@ -336,8 +339,9 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   }
 
   if (options[["irt"]]) {
+    irtTitle <- ifelse(nc == 2, gettext("IRT-2PL"), gettext("IRT-GRM"))
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["irtState"]],
-                               title = gettext("IRT"), irt = TRUE)
+                               title = irtTitle, irt = TRUE)
 
     pointPlotsContainer[["irtPlot"]] <- pl
   }
@@ -345,7 +349,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   if (options[["lord"]]) {
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["lordState"]],
                                   title = "Lord")
-
     pointPlotsContainer[["lordPlot"]] <- pl
   }
 
@@ -760,7 +763,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
         # actual index in the scores and out matrix
         nextInd <- ii + (firstInd - 1)
         ind <- which(S %in% scores[ii:nextInd])
-        out[ii:nextInd, 2] <- fun(partSUMS, ind)
+        out[ii:nextInd, 2] <- fun(partSUMS, ind, cc)
         out[ii:nextInd, 4] <- TRUE
         ii <- nextInd + 1
       } else {
@@ -779,7 +782,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     # actual index in the scores and out matrix
     nextInd <- backInd - (firstInd - 1)
     ind <- which(S %in% scores[backInd:nextInd])
-    out[backInd:nextInd, 2] <- fun(partSUMS, ind)
+    out[backInd:nextInd, 2] <- fun(partSUMS, ind, cc)
     out[backInd:nextInd, 4] <- TRUE
   }
 
