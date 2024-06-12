@@ -293,7 +293,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     ggplot2::xlab(gettext("Sum scores"))
   p <- jaspGraphs::themeJasp(p)
 
-  histPlot <- createJaspPlot(plot = p, title = gettext("Histogram of counts per sum score group"))
+  histPlot <- createJaspPlot(plot = p, title = gettext("Histogram of counts per sum score group"), width = 500)
   jaspResults[["semMainContainer"]][["histPlot"]] <- histPlot
 
   return()
@@ -376,13 +376,17 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (!irt) {
     dat <- as.data.frame(resultsObject$object)
+    colnames(dat) <- c("score", "sem")
+    pl <- ggplot2::ggplot(dat) +
+      ggplot2::geom_point(ggplot2::aes(x = score, y = sem), size = 2.5) +
+      ggplot2::labs(x = "Sum Score", y = "sem")
   } else {
     dat <- as.data.frame(resultsObject$object$unbinned)
+    colnames(dat) <- c("score", "sem")
+    pl <- ggplot2::ggplot(dat) +
+      ggplot2::geom_line(ggplot2::aes(x = score, y = sem), size = 2.5) +
+      ggplot2::labs(x = "Sum Score", y = "sem")
   }
-  colnames(dat) <- c("score", "sem")
-  pl <- ggplot2::ggplot(dat) +
-    ggplot2::geom_point(ggplot2::aes(x = score, y = sem), size = 2.5) +
-    ggplot2::labs(x = "Sum Score", y = "sem")
 
   outPlot <- createJaspPlot(jaspGraphs::themeJasp(pl), title = title, width = 400)
   outPlot$dependOn(optionsFromObject = resultsObject)
@@ -434,8 +438,9 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     }
 
     if (options[["irt"]]) {
+      irtTitle <- ifelse(nc == 2, gettext("IRT-2PL"), gettext("IRT-GRM"))
       out <- jaspResults[["semMainContainer"]][["irtState"]]$object$unbinned
-      dtIRT <- data.frame(score = out[, 1], sem = out[, 2], Type = gettext("IRT"))
+      dtIRT <- data.frame(score = out[, 1], sem = out[, 2], Type = irtTitle)
     }
 
     if (options[["lord"]]) {
@@ -552,6 +557,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   outOrdered <- outDt[order(outDt[, 1], decreasing = FALSE), ]
   uniqueOutOrdered <- unique(outOrdered)
   irtBinned <- approx(uniqueOutOrdered[, 1], uniqueOutOrdered[, 2], xout = discScores)$y
+  # take the value from the continous sems for the smallest latent trait value
+  irtBinned[is.na(irtBinned)] <- uniqueOutOrdered[1, 2]
   outBinned <- data.frame(scores = discScores, sem = irtBinned)
 
   outIRT <- list(unbinned = outIRT, binned = outBinned)
