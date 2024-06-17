@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
 "POT-Creation-Date: 2024-04-20 03:27\n"
-"PO-Revision-Date: 2023-12-02 03:25+0000\n"
+"PO-Revision-Date: 2024-06-18 14:09+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/ja/>\n"
@@ -11,35 +11,34 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.3-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 msgid "Bland-Altman Plots"
-msgstr ""
+msgstr "Bland-Altman プロット"
 
 msgid "Please provide another variable"
-msgstr ""
+msgstr "別の変数を提供してください"
 
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "プロットできません: %s"
 
 msgid "Bland-Altman Tables"
-msgstr ""
+msgstr "Bland-Altman 表"
 
 msgid "Bias & Limits"
-msgstr ""
+msgstr "Bias & Limits"
 
-#, fuzzy
 msgid "Point Value"
 msgstr "点推定"
 
 msgid "Mean difference - 1.96 SD"
-msgstr ""
+msgstr "平均値差 -1.96SD"
 
 msgid "Mean difference + 1.96 SD"
-msgstr ""
+msgstr "平均値差 +1.96SD"
 
 msgid "Mean difference"
-msgstr ""
+msgstr "平均値差"
 
 msgid "Lower %s%% CI"
 msgstr "下側 %s%% CI"
@@ -48,7 +47,7 @@ msgid "Upper %s%% CI"
 msgstr "上側 %s%% CI"
 
 msgid "Calculations not possible: %s"
-msgstr ""
+msgstr "計算できません: %s"
 
 msgid "Intraclass Correlation"
 msgstr "級内相関"
@@ -70,19 +69,19 @@ msgid "Please select at least 2 columns"
 msgstr "少なくとも2列選択してください"
 
 msgid "Cohen's kappa"
-msgstr ""
+msgstr "Cohen's kappa"
 
 msgid "Ratings"
-msgstr ""
+msgstr "評価"
 
 msgid "kappa"
-msgstr ""
+msgstr "カッパ"
 
 msgid "%1$i subjects/items and %2$i raters/measurements."
-msgstr ""
+msgstr "%1$i 参加者/項目 and %2$i 評価者/測定値."
 
 msgid "SE"
-msgstr ""
+msgstr "標準誤差"
 
 msgid "Lower"
 msgstr "下限"
@@ -94,14 +93,14 @@ msgid "Upper"
 msgstr "上限"
 
 msgid "Confidence intervals are asymptotic."
-msgstr ""
+msgstr "信頼区間は漸近的です."
 
 msgid ""
 "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
-msgstr ""
+msgstr "もし2水準しかないならば、重み付けカッパと重み無しカッパは等しくなる."
 
 msgid "Fleiss' kappa"
-msgstr ""
+msgstr "Fleiss' kappa"
 
 msgid "Method"
 msgstr "方法"
@@ -133,14 +132,13 @@ msgstr ""
 "しました。 '詳細オプション'で'ケースをリストワイズで除外'に変更してみてくださ"
 "い"
 
-#, fuzzy
 msgid ""
 "Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
 "lambda6, glb] failed."
 msgstr ""
 "[alpha、lambda2、lambda6、glb]のいずれかの事後共分散行列のサンプリングに失敗"
-"しました。 '詳細オプション'で'ケースをリストワイズで除外'に変更してみてくださ"
-"い"
+"しました。 "
+"'詳細オプション'で'ケースをリストワイズで除外'に変更してみてください."
 
 msgid ""
 "Sampling the posterior factor model for omega failed. Try changing to "
@@ -211,7 +209,6 @@ msgstr "事後分布"
 msgid "Fit Measures for the Single-Factor Model"
 msgstr "単一因子モデルの適合度指標"
 
-#, fuzzy
 msgid ""
 "'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
 "than\n"
@@ -219,9 +216,9 @@ msgid ""
 "the B-CFI/TLI are larger than the\n"
 "                         corresponding cutoff."
 msgstr ""
-"'カットオフに対して'-列は、B-RMSEAが対応するカットオフよりも小さい確率を示"
-"し\n"
-"                         B-CFI / TLIが対応するカットオフ寄りも\n"
+"'カットオフに対して'-列は、B-"
+"RMSEAが対応するカットオフよりも小さい確率を示し\n"
+"                         B-CFI / TLIが対応するカットオフよりも\n"
 "                         大きい確率を表しています."
 
 msgid "Standardized Loadings of the Single-Factor Model"
