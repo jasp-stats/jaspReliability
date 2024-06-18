@@ -34,7 +34,7 @@ Form
 			id:					pairs
 			name:				"pairs"
 			title:				qsTr("Measurement Pairs")
-			suggestedColumns: 	["scale", "ordinal"]
+			allowedColumns: 	"scale"
 		}
 	}
 
