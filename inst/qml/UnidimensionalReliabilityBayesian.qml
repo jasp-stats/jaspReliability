@@ -31,7 +31,7 @@ Form
 		{
 			name:			"variables"
 			title:			qsTr("Variables")
-			allowedColumns:	["scale", "ordinal"]
+			allowedColumns:	["scale"]
 			id:				vars
 		}
 	}
