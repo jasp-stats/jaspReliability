@@ -16,10 +16,10 @@
 // <http://www.gnu.org/licenses/>.
 //
 
-import QtQuick 			2.8
-import JASP.Controls 	1.0
-import JASP.Theme		1.0
-import JASP.Widgets 	1.0
+import QtQuick 
+import JASP.Controls 
+import JASP.Theme	
+import JASP.Widgets
 
 Form
 {
@@ -178,71 +178,171 @@ Form
 	{
 		title: qsTr("Advanced Options")
 
-		RadioButtonGroup
+
+		ColumnLayout 
 		{
+			Group
+			{
+
+				title: qsTr("Bootstrap")
+
+				IntegerField
+				{
+					name: 			"bootstrapSamples"
+					label: 			qsTr("No. of bootstrap samples")
+					defaultValue: 	1000
+					fieldWidth: 	50
+					min: 			100
+					max: 			1e7
+				}
+
+				RadioButtonGroup
+				{
+					title:		""
+					name:		"bootstrapType"
+					enabled:	interval.checked
+
+					RadioButton {value: "nonParametric"; label: qsTr("Non-parametric bootstrap"); checked: true}
+					RadioButton {value: "parametric"; label: qsTr("Parametric bootstrap")}
+				}
+
+			}
+
+			RadioButtonGroup
+			{
+				title: qsTr("Coefficients")
+				name: "coefficientType"
+
+				RadioButton{ value: "unstandardized"; label: qsTr("Unstandardized"); checked: true }
+				RadioButton{ value: "standardized";	label: qsTr("Standardized")}
+
+			}
+			RadioButtonGroup
+			{
 				title: 	qsTr("Missing Values")
 				name: 	"naAction"
 
 				RadioButton { value: "pairwise"; label: qsTr("Exclude cases pairwise"); checked: true}
 				RadioButton { value: "listwise"; label: qsTr("Exclude cases listwise")}
-		}
-
-	Group
-	{
-			title: qsTr("Bootstrap")
-
-			IntegerField
-			{
-				name: 			"bootstrapSamples"
-				label: 			qsTr("No. of bootstrap samples")
-				defaultValue: 	1000
-				fieldWidth: 	50
-				min: 			100
-				max: 			1e7
 			}
 
-			RadioButtonGroup
+			Group	
 			{
-				title:		""
-				name:		"bootstrapType"
-				enabled:	interval.checked
-
-				RadioButton {value: "nonParametric"; label: qsTr("Non-parametric bootstrap"); checked: true}
-				RadioButton {value: "parametric"; label: qsTr("Parametric bootstrap")}
-			}
-
-		}
-
-		RadioButtonGroup
-		{
-			title: 		qsTr("Coefficient ω Estimation")
-			name: 		"omegaEstimationMethod"
-			enabled: 	omega.checked
-
-			RadioButton
-			{
-				value: 		"cfa"
-				label: 		qsTr("CFA")
-				checked: 	true
+				title: qsTr("Repeatability")
 
 				CheckBox
 				{
-					name: 		"omegaFitMeasures"
-					label: 		qsTr("Single factor model fit")
+					name: 				"setSeed"
+					label: 				qsTr("Set seed")
+					childrenOnSameRow: 	true
+
+					IntegerField
+					{
+						name: 			"seed"
+						label: 			""
+						defaultValue: 	1234
+						fieldWidth: 	100
+						min: 			1
+						max: 			1e9
+					}
 				}
+			}
+
+			Group
+			{
+				title: qsTr("Samples")
+
+				RowLayout
+				{
+					CheckBox
+					{
+						name:				"samplesSavingDisabled"
+						label:				qsTr("Do not save samples")
+						checked:			false
+					}
+					HelpButton
+					{
+						toolTip: 			qsTr("Click to learn more about saving the samples.")
+						helpPage:			"toolTip/sampleSavingFreq"
+					}
+				}
+			}
+
+		}
+		
+		ColumnLayout 
+		{
+			RadioButtonGroup
+			{
+
+				title: 		qsTr("Coefficient ω Estimation")
+				name: 		"omegaEstimationMethod"
+				enabled: 	omega.checked
+
+				RadioButton
+				{
+					value: 		"cfa"
+					label: 		qsTr("CFA")
+					checked: 	true
+
+					CheckBox
+					{
+						name: 		"omegaFitMeasures"
+						label: 		qsTr("Single factor model fit")
+					}
+
+					RadioButtonGroup
+					{
+						title:		qsTr("Interval")
+						name:		"omegaIntervalMethod"
+						enabled:	interval.checked
+
+						RadioButton
+						{
+
+							value: 		"analytic"
+							label: 		qsTr("Analytic interval")
+							checked: 	true
+						}
+
+						RadioButton
+						{
+							value: 	"bootstrapped"
+							label: 	qsTr("Bootstrapped interval")
+						}
+					}
+				}
+				
+				RadioButton
+				{
+					value: "pfa"
+					label: qsTr("PFA")
+				}
+
+				CheckBox
+				{
+					name:		"standardizedLoadings"
+					label:		qsTr("Standardized factor loadings");
+				}
+			}
+
+			Group
+			{
+				title: 		qsTr("Coefficient α Estimation")
+				enabled: 	alpha.checked
+
 
 				RadioButtonGroup
 				{
 					title:		qsTr("Interval")
-					name:		"omegaIntervalMethod"
+					name:		"alphaIntervalMethod"
 					enabled:	interval.checked
 
 					RadioButton
 					{
-
-						value: 		"analytic"
-						label: 		qsTr("Analytic interval")
-						checked: 	true
+						value:		"analytic"
+						label:		qsTr("Analytic interval")
+						checked:	true
 					}
 
 					RadioButton
@@ -252,107 +352,7 @@ Form
 					}
 				}
 			}
-			
-			RadioButton
-			{
-				value: "pfa"
-				label: qsTr("PFA")
-			}
-
-			CheckBox
-			{
-				name:		"standardizedLoadings"
-				label:		qsTr("Standardized factor loadings");
-			}
 		}
-
-		Group
-		{
-			title: 		qsTr("Coefficient α Estimation")
-			enabled: 	alpha.checked
-
-			RadioButtonGroup
-			{
-				title:	""
-				name: 	"alphaType"
-
-				RadioButton
-				{
-					value:		"unstandardized"
-					label:		qsTr("Unstandardized")
-					checked:	true
-				}
-
-				RadioButton
-				{
-					value:	"standardized"
-					label:	qsTr("Standardized")
-				}
-			}
-
-			RadioButtonGroup
-			{
-				title:		qsTr("Interval")
-				name:		"alphaIntervalMethod"
-				enabled:	interval.checked
-
-				RadioButton
-				{
-					value:		"analytic"
-					label:		qsTr("Analytic interval")
-					checked:	true
-				}
-
-				RadioButton
-				{
-					value: 	"bootstrapped"
-					label: 	qsTr("Bootstrapped interval")
-				}
-			}
-		}
-
-		Group
-		{
-			title: qsTr("Repeatability")
-
-			CheckBox
-			{
-				name: 				"setSeed"
-				label: 				qsTr("Set seed")
-				childrenOnSameRow: 	true
-
-				IntegerField
-				{
-					name: 			"seed"
-					label: 			""
-					defaultValue: 	1234
-					fieldWidth: 	100
-					min: 			1
-					max: 			1e9
-				}
-			}
-		}
-
-		Group
-		{
-			title: qsTr("Samples")
-
-			RowLayout
-			{
-				CheckBox
-				{
-					name:				"samplesSavingDisabled"
-					label:				qsTr("Do not save samples")
-					checked:			false
-				}
-				HelpButton
-				{
-					toolTip: 			qsTr("Click to learn more about saving the samples.")
-					helpPage:			"toolTip/sampleSavingFreq"
-				}
-			}
-
-
-		}
+		
 	}
 }

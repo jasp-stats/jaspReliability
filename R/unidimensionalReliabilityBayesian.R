@@ -7,6 +7,9 @@
 #' @export
 unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
+  # sink(file="~/Downloads/log.txt")
+  # on.exit(sink(NULL))
+
   options <- jaspBase::.parseAndStoreFormulaOptions(jaspResults, options, "inverseWishartPriorScale")
 
   dataset <- .readData(dataset, options)
@@ -227,7 +230,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
         }
       }
       stateContainer <- .getStateContainerB(jaspResults)
-      stateContainer[["gibbsCorObj"]] <- createJaspState(out, dependencies = "coefficientType")
+      stateContainer[["gibbsCor"]] <- createJaspState(out, dependencies = "coefficientType")
     }
   }
   return(out)

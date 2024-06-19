@@ -208,3 +208,45 @@ test_that("Frequentist Scale Reliability Statistics table results match with dis
                                       0.60076050080959, 0.628395738756313, 0.685340010046143, 0.28002617012781,
                                       3.3927286604094, 3.16486028196314, "90% CI upper bound"))
 })
+
+
+
+# standardized coefficients work
+options <- analysisOptions("unidimensionalReliabilityFrequentist")
+options$itemDeletedAlpha <- TRUE
+options$scaleAlpha <- TRUE
+options$ciLevel <- 0.9
+options$itemDeletedGreatestLowerBound <- TRUE
+options$scaleGreatestLowerBound <- TRUE
+options$itemDeletedLambda2 <- TRUE
+options$scaleLambda2 <- TRUE
+options$itemDeletedLambda6 <- TRUE
+options$scaleLambda6 <- TRUE
+options$itemDeletedOmega <- TRUE
+options$omegaEstimationMethod <- "cfa"
+options$coefficientType <- "standardized"
+options$setSeed <- TRUE
+options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4")
+set.seed(1)
+results <- runAnalysis("unidimensionalReliabilityFrequentist", "asrm.csv", options)
+
+test_that("Frequentist Individual Item Reliability Statistics table results match", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list("NaN", 0.609462461310165, 0.617228009973447, 0.52769184665367,
+                                      0.642387807945509, "asrm_1", "NaN", 0.639830176986499, 0.639938573049249,
+                                      0.542449531754453, 0.640141524121903, "asrm_2", "NaN", 0.751857116024424,
+                                      0.759115178994372, 0.695179838774755, 0.769749236027054, "asrm_3",
+                                      "NaN", 0.682331846089402, 0.704706497328503, 0.652354218514771,
+                                      0.752853317147852, "asrm_4"))
+})
+
+test_that("Frequentist Scale Reliability Statistics table results match", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.743458875550109, 0.734183438809739, 0.744181125723515, 0.716789824521776,
+                                      0.8294570351729, "Point estimate", 0.672822439743217, 0.640779977294671,
+                                      0.664398305962096, 0.636643371523977, 0.761544518156545, "90% CI lower bound",
+                                      0.814095311357002, 0.808311623280789, 0.810030822878403, 0.795798240988806,
+                                      0.879805257042507, "90% CI upper bound"))
+})
