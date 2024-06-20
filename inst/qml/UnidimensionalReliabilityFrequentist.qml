@@ -122,6 +122,22 @@ Form
 
 			CheckBox
 			{
+				name: 				"itemCi"
+				label:				qsTr("Credible Interval")
+				checked: 			true
+				childrenOnSameRow: 	true
+				id:					itemInterval
+
+				CIField
+				{
+					name:			"itemCiLevel";
+					label:			"";
+					defaultValue:	95;
+				}
+			}
+			
+			CheckBox
+			{
 				name: 		"itemDeletedOmega";
 				label: 		qsTr("Coefficient ω  (if item dropped)");
 				enabled: 	omega.checked

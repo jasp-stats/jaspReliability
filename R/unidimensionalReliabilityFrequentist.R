@@ -4,9 +4,6 @@
 #' @export
 unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) {
 
-  # sink(file="~/Downloads/log.txt")
-  # on.exit(sink(NULL))
-  #
   dataset <- .readData(dataset, options)
 
   if (length(options[["reverseScaledItems"]]) > 0L) {

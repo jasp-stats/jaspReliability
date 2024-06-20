@@ -7,8 +7,6 @@
 #' @export
 unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
-  # sink(file="~/Downloads/log.txt")
-  # on.exit(sink(NULL))
 
   options <- jaspBase::.parseAndStoreFormulaOptions(jaspResults, options, "inverseWishartPriorScale")
 
@@ -1116,7 +1114,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     return()
 
   scaleTable <- createJaspTable(gettext("Bayesian Scale Reliability Statistics"))
-  scaleTable$dependOn(options = c("scaleCiLevel", "scaleMean", "scaleSd", "rHat",
+  scaleTable$dependOn(options = c("scaleCiLevel", "scaleMean", "scaleSd", "rHat", "scaleCi",
                                   "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6", "scaleGreatestLowerBound",
                                   "averageInterItemCorrelation", "meanSdScoresMethod", "effectiveSampleSize"))
 
@@ -1129,7 +1127,12 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   pointEstimate <- gettextf("Posterior %s", options[["pointEstimate"]])
 
-  allData <- data.frame(estimate = c(pointEstimate, intervalLow, intervalUp))
+  if (options[["scaleCi"]]) {
+    allData <- data.frame(estimate = c(pointEstimate, intervalLow, intervalUp))
+  } else {
+    allData <- data.frame(estimate = c(pointEstimate))
+  }
+
   if (options[["rHat"]]) {
     allData <- rbind(allData, "R-hat")
   }
@@ -1161,8 +1164,13 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     i <- idxSelected[j]
     nm <- names(idxSelected[j])
 
-    newData <- data.frame(est = c(unlist(model[["scaleResults"]][["est"]][[nm]], use.names = FALSE),
-                                  unlist(model[["scaleResults"]][["cred"]][[nm]], use.names = FALSE)))
+    if (options[["scaleCi"]]) {
+      newData <- data.frame(est = c(unlist(model[["scaleResults"]][["est"]][[nm]], use.names = FALSE),
+                                    unlist(model[["scaleResults"]][["cred"]][[nm]], use.names = FALSE)))
+
+    } else {
+      newData <- data.frame(est = unlist(model[["scaleResults"]][["est"]][[nm]], use.names = FALSE))
+    }
 
     if (options[["rHat"]]) {
       newData <- rbind(newData, model[["scaleResults"]][["rHat"]][[nm]])
@@ -1198,9 +1206,11 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   itemTable <- createJaspTable(gettext("Bayesian Individual Item Reliability Statistics"))
 
-  itemTable$dependOn(options = c("itemDeletedOmega",  "itemDeletedAlpha",  "itemDeletedLambda2",  "itemDeletedLambda6", "itemDeletedGreatestLowerBound",
+  itemTable$dependOn(options = c("itemDeletedOmega",  "itemDeletedAlpha",  "itemDeletedLambda2",
+                                 "itemDeletedLambda6", "itemDeletedGreatestLowerBound",
                                  "itemCiLevel", "itemRestCorrelation", "itemMean", "itemSd",
-                                 "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6", "scaleGreatestLowerBound"))
+                                 "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6", "scaleGreatestLowerBound",
+                                 "itemCi"))
 
   itemTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
 
@@ -1232,17 +1242,22 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
       if (estimators[i] == "Item-rest correlation") { # no item deleted for item rest cor
         itemTable$addColumnInfo(name = paste0("postMean", i), title = pointEstimate, type = "number",
                                 overtitle = gettext("Item-rest correlation"))
-        itemTable$addColumnInfo(name = paste0("lower", i), title = gettextf("Lower %s%% CI", cred), type = "number",
-                                overtitle = gettext("Item-rest correlation"))
-        itemTable$addColumnInfo(name = paste0("upper", i), title = gettextf("Upper %s%% CI", cred), type = "number",
-                                overtitle = gettext("Item-rest correlation"))
+        if (options[["itemCi"]]) {
+          itemTable$addColumnInfo(name = paste0("lower", i), title = gettextf("Lower %s%% CI", cred), type = "number",
+                                  overtitle = gettext("Item-rest correlation"))
+          itemTable$addColumnInfo(name = paste0("upper", i), title = gettextf("Upper %s%% CI", cred), type = "number",
+                                  overtitle = gettext("Item-rest correlation"))
+        }
+
       } else {
         itemTable$addColumnInfo(name = paste0("postMean", i), title = pointEstimate, type = "number",
                                 overtitle = overTitles[i])
-        itemTable$addColumnInfo(name = paste0("lower", i), title = gettextf("Lower %s%% CI", cred), type = "number",
-                                overtitle = overTitles[i])
-        itemTable$addColumnInfo(name = paste0("upper", i), title = gettextf("Upper %s%% CI", cred), type = "number",
-                                overtitle = overTitles[i])
+        if (options[["itemCi"]]) {
+          itemTable$addColumnInfo(name = paste0("lower", i), title = gettextf("Lower %s%% CI", cred), type = "number",
+                                  overtitle = overTitles[i])
+          itemTable$addColumnInfo(name = paste0("upper", i), title = gettextf("Upper %s%% CI", cred), type = "number",
+                                  overtitle = overTitles[i])
+        }
         fewItemProblem <- TRUE
       }
     } else {
@@ -1260,9 +1275,17 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
       if (i %in% 1:6) {
         rows <- length(options[["variables"]])
         if (rows < 3 && nm != "itemRestCorrelation") {
-          newtb <- cbind(postMean = rep(NaN, rows), matrix(NaN, rows, 2, dimnames = list(NULL, c("lower", "upper"))))
+          if (options[["itemCi"]]) {
+            newtb <- cbind(postMean = rep(NaN, rows), matrix(NaN, rows, 2, dimnames = list(NULL, c("lower", "upper"))))
+          } else {
+            newtb <- cbind(postMean = rep(NaN, rows))
+          }
         } else {
-          newtb <- cbind(postMean = model[["itemResults"]][["est"]][[nm]], model[["itemResults"]][["cred"]][[nm]])
+          if (options[["itemCi"]]) {
+            newtb <- cbind(postMean = model[["itemResults"]][["est"]][[nm]], model[["itemResults"]][["cred"]][[nm]])
+          } else {
+            newtb <- cbind(postMean = model[["itemResults"]][["est"]][[nm]])
+          }
         }
       } else {
         newtb <- cbind(postMean = model[["itemResults"]][["est"]][[nm]])
@@ -1518,7 +1541,8 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
         p <- .makeSinglePosteriorPlot(model[[nm]], model[["scaleResults"]][["cred"]][[nm]], nmsLabs[[i]],
                                       options[["posteriorPlotFixedRange"]], posteriorPlotShaded,
-                                      options[["posteriorPlotPriorDisplayed"]], prior)
+                                      options[["posteriorPlotPriorDisplayed"]], prior,
+                                      ciDisplay = options[["scaleCi"]])
         plotObj <- createJaspPlot(plot = p, title = nmsObjs[i])
         plotObj$dependOn(options = names(idxSelected[i]))
         plotObj$position <- i
@@ -1534,7 +1558,8 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   return()
 }
 
-.makeSinglePosteriorPlot <- function(coefList, coefResults, nms, posteriorPlotFixedRange, shade = NULL, priorTrue, priorSample) {
+.makeSinglePosteriorPlot <- function(coefList, coefResults, nms, posteriorPlotFixedRange, shade = NULL,
+                                     priorTrue, priorSample, ciDisplay = TRUE) {
 
   # TODO: consider precomputing all densities (maybe with kernsmooth?) and reducing memory that way
 
@@ -1596,12 +1621,16 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   g <- ggplot2::ggplot(data = datDens, mapping = ggplot2::aes(x = x, y = y)) +
     ggplot2::geom_line(size = .85) +
-    ggplot2::geom_errorbarh(data = datCri, mapping = ggplot2::aes(xmin = xmin, xmax = xmax, y = y),
-                            height = height, inherit.aes = FALSE) +
-    ggplot2::geom_text(data = datTxt, mapping = ggplot2::aes(x = x, y = y, label = label), inherit.aes = FALSE,
-                       size = 5) +
     ggplot2::scale_y_continuous(name = gettext("Density"), breaks = yBreaks, limits = range(yBreaks)) +
     ggplot2::scale_x_continuous(name = nms, breaks = xBreaks, expand = xExpand, limits = range(xBreaks))
+
+  if (ciDisplay) {
+    g <- g +
+      ggplot2::geom_errorbarh(data = datCri, mapping = ggplot2::aes(xmin = xmin, xmax = xmax, y = y),
+                              height = height, inherit.aes = FALSE) +
+      ggplot2::geom_text(data = datTxt, mapping = ggplot2::aes(x = x, y = y, label = label), inherit.aes = FALSE,
+                         size = 5)
+  }
 
   if (!is.null(shade)) {
     datFilter <- datDens[datDens[["x"]] >= shade[1] & datDens[["x"]] <= shade[2], ]

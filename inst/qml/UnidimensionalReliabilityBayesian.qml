@@ -44,11 +44,20 @@ Form
 		{
 			title: qsTr("Scale Statistics")
 
-			CIField
+			CheckBox
 			{
-				name:			"scaleCiLevel";
-				label:			qsTr("Credible interval");
-				defaultValue:	95
+				name: 				"scaleCi"
+				label:				qsTr("Credible Interval")
+				checked: 			true
+				childrenOnSameRow: 	true
+				id:					interval
+
+				CIField
+				{
+					name:			"scaleCiLevel";
+					label:			"";
+					defaultValue:	95;
+				}
 			}
 
 			CheckBox
@@ -110,12 +119,23 @@ Form
 		{
 			title: qsTr("Individual Item Statistics")
 
-			CIField
-			{
-				name: 			"itemCiLevel";
-				label: 			qsTr("Credible interval");
-				defaultValue: 	95
-			}
+			// toDo: add confidence interval to item statistics
+			// CheckBox
+			// {
+			// 	name: 				"itemCi"
+			// 	label:				qsTr("Credible Interval")
+			// 	checked: 			true
+			// 	childrenOnSameRow: 	true
+			// 	id:					itemInterval
+
+			// 	CIField
+			// 	{
+			// 		name:			"itemCiLevel";
+			// 		label:			"";
+			// 		defaultValue:	95;
+			// 	}
+			// }
+
 
 			CheckBox
 			{
