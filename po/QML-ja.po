@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2024-07-02 17:09+0000\n"
+"Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/ja/>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.7-dev\n"
 "X-Language: ja\n"
 "X-Qt-Contexts: true\n"
 
@@ -328,7 +334,6 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Diagnostics"
 msgstr "診断"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "R-hat"
 msgstr "R-hat"
@@ -442,7 +447,6 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Fit measures"
 msgstr "適合度指標"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "p(RMSEA <"
 msgstr "p(RMSEA <"
@@ -452,7 +456,6 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ")"
 msgstr ")"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "p(CFI/TLI >"
 msgstr "p(CFI/TLI >"
