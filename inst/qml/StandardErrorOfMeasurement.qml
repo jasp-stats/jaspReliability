@@ -34,8 +34,23 @@ Form
 		{
 			name: 			"variables"
 			title: 			qsTr("Variables")
-			allowedColumns: ["nominal", "nominalText", "ordinal"]
+			allowedColumns: ["nominal", "ordinal"]
 			id: variables
+			onCountChanged: 
+			{
+				var newValues = []
+				for (var i = 2; i <= variables.count; i++)
+				{
+					if (variables.count % i == 0)
+					{
+						newValues.push(i)
+					}
+				}
+				feldtNumberOfSplits.values = newValues
+				mollenkopfFeldtNumberOfSplits.values = newValues
+				lord2NumberOfSplits.values = newValues
+
+			}
 		}
 	}
 
@@ -54,26 +69,24 @@ Form
 		{
 			name:   	"feldt"
 			label:  	qsTr("Feldt")
-			IntegerField
+			DropDown 
 			{
 				name: "feldtNumberOfSplits"
 				label: qsTr("Number of splits")
-				min: 2
-				max: variables.count > 1 ? variables.count : 2
-				defaultValue: 2
+				values: []
+				id: feldtNumberOfSplits
 			}
 		}
 		CheckBox
 		{
 			name:   	"mollenkopfFeldt"
 			label:  	qsTr("Mollenkopf-Feldt")
-			IntegerField
+			DropDown 
 			{
 				name: "mollenkopfFeldtNumberOfSplits"
 				label: qsTr("Number of splits")
-				min: 2
-				max: variables.count > 1 ? variables.count : 2
-				defaultValue: 2
+				values: []
+				id: mollenkopfFeldtNumberOfSplits
 			}
 			IntegerField
 			{
@@ -120,13 +133,12 @@ Form
 		{
 			name:   	"lord2"
 			label:  	qsTr("Lord's compound")
-			IntegerField
+			DropDown 
 			{
 				name: "lord2NumberOfSplits"
 				label: qsTr("Number of splits")
-				min: 2
-				max: variables.count > 3 ? (variables.count/2) : 2
-				defaultValue: 2
+				values: []
+				id: lord2NumberOfSplits
 			}
 		}
 	}
