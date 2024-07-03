@@ -18,7 +18,7 @@
 #' @export
 standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
-#
+
 # sink(file = "~/Downloads/log.txt")
 # on.exit(sink(NULL))
 
@@ -107,7 +107,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (options[["thorndike"]]) {
     if (is.null(jaspResults[["semMainContainer"]][["thorndikeState"]])) {
-      out <- .semThorn(dataset, K = 2, nc = nc, caseMin = options[["minimumGroupSize"]], splits = NULL, scrs)
+      out <- .semThorn(dataset, K = 2, nc = nc, caseMin = options[["minimumGroupSize"]], scrs)
       thorndikeState <- createJaspState(out, dependencies = c("thorndike", "minimumGroupSize"))
       jaspResults[["semMainContainer"]][["thorndikeState"]] <- thorndikeState
     }
@@ -115,8 +115,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (options[["feldt"]]) {
     if (is.null(jaspResults[["semMainContainer"]][["feldtState"]])) {
-      out <- .semFeldt(dataset, K = options[["feldtNumberOfSplits"]], nc = nc, caseMin = options[["minimumGroupSize"]],
-                       splits = NULL, scrs)
+      out <- .semFeldt(dataset, K = as.numeric(options[["feldtNumberOfSplits"]]), nc = nc, caseMin = options[["minimumGroupSize"]],
+                       scrs)
       feldtState <- createJaspState(out, dependencies = c("feldt", "feldtNumberOfSplits", "minimumGroupSize"))
       jaspResults[["semMainContainer"]][["feldtState"]] <- feldtState
     }
@@ -124,8 +124,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (options[["mollenkopfFeldt"]]) {
     if (is.null(jaspResults[["semMainContainer"]][["mfState"]])) {
-      out <- .semMF(dataset, K = options[["mollenkopfFeldtNumberOfSplits"]], nc = nc,
-                    n_poly = options[["mollenkopfFeldtPolyDegree"]], splits = NULL, scrs)
+      out <- .semMF(dataset, K = as.numeric(options[["mollenkopfFeldtNumberOfSplits"]]), nc = nc,
+                    n_poly = options[["mollenkopfFeldtPolyDegree"]], scrs)
       mfState <- createJaspState(out, dependencies = c("mollenkopfFeldt", "mollenkopfFeldtNumberOfSplits",
                                                           "mollenkopfFeldtPolyDegree"))
       jaspResults[["semMainContainer"]][["mfState"]] <- mfState
@@ -143,7 +143,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   # works for both data types
   if (options[["irt"]]) {
     if (is.null(jaspResults[["semMainContainer"]][["irtState"]])) {
-      out <- .semIRT(dataset, nc = nc, scores)
+      out <- .semIrt(dataset, nc = nc, scores)
       irtState <- createJaspState(out, dependencies = "irt")
       jaspResults[["semMainContainer"]][["irtState"]] <- irtState
     }
@@ -172,7 +172,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (options[["lord2"]]) {
     if (is.null(jaspResults[["semMainContainer"]][["lord2State"]])) {
-      out <- .semLord2(dataset, options[["lord2NumberOfSplits"]], scrs, options[["minimumGroupSize"]])
+      out <- .semLord2(dataset, as.numeric(options[["lord2NumberOfSplits"]]), scrs, options[["minimumGroupSize"]])
       lord2State <- createJaspState(out, dependencies = c("lord2", "lord2NumberOfSplits", "minimumGroupSize"))
       jaspResults[["semMainContainer"]][["lord2State"]] <- lord2State
     }
@@ -493,7 +493,79 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 ##### Sem compute functions #####
 
 
-.semIRT <- function(X, nc, scores) {
+.semThorn <- function(X, K, nc, caseMin, scrs) {
+
+  prep <- .semPrepareSumScores(X, K)
+  partSUMS <- prep$partSUMS
+  S <- prep$S
+  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
+  fun <- function(partSUMS, ind, cc) {
+    return(sd(partSUMS[ind, 1] - partSUMS[ind, 2]))
+  }
+
+  out <- .semComputeWithCaseMin(out, S, caseMin, partSUMS, fun)
+
+  return(out)
+}
+
+
+.semFeldt <- function(X, K, nc, caseMin, scrs) {
+
+  prep <- .semPrepareSumScores(X, K)
+  partSUMS <- prep$partSUMS
+  S <- prep$S
+  d <- prep$d
+  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
+  fun <- function(partSUMS, ind, cc) {
+    K <- ncol(partSUMS)
+    mean_diff <- partSUMS[ind, ] - rowMeans(partSUMS[ind, ]) - matrix(colMeans(partSUMS[ind, ]), length(ind), K, TRUE) + mean(partSUMS[ind, ])
+    ret <- sqrt(d * sum(rowSums(mean_diff^2) / (K - 1)) / length(ind))
+    return(ret)
+  }
+  out <- .semComputeWithCaseMin(out, S, caseMin, partSUMS, fun)
+
+  return(out)
+}
+
+
+.semMF <- function(X, K, nc, n_poly, scrs) {
+
+  prep <- .semPrepareSumScores(X, K)
+  partSUMS <- prep$partSUMS
+  S <- prep$S
+  d <- prep$d
+  N <- nrow(X)
+  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
+  scores <- out[, 1]
+
+  rawDiffK <- d *
+    rowSums((partSUMS - matrix(colMeans(partSUMS), N, K, TRUE) - rowMeans(partSUMS) + mean(partSUMS))^2) /
+    (K - 1)
+  betaK <- coef(lm(rawDiffK ~ poly(S, n_poly, raw = TRUE)))
+  scrs <- sqrt(betaK[1] + rowSums(matrix(betaK[-1], length(scores), n_poly, TRUE) * poly(scores, n_poly, raw = TRUE)))
+  out[, 2] <- scrs
+
+  return(out)
+}
+
+
+.semAnova <- function(X, nc, caseMin, scrs) {
+
+  prep <- .semPrepareSumScores(X, K = 1)
+  S <- prep$S
+
+  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
+  fun <- function(X, ind, cc) {
+    nit <- ncol(X)
+    return(sqrt(nit / (nit - 1) * sum(diag(cov(X[ind, ])))))
+  }
+  out <- .semComputeWithCaseMin(out, S, caseMin, X, fun)
+
+  return(out)
+}
+
+
+.semIrt <- function(X, nc, scores) {
 
   if (nc == 2) {
     ity <- "2PL"
@@ -518,8 +590,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   outIRT <- matrix(NA, length(x), 2)
 
   if (nc == 2) {
-  # we dont assume that for binary data items will end up with different number of answering categories
-  # that would mean an item with no variance
+    # we dont assume that for binary data items will end up with different number of answering categories
+    # that would mean an item with no variance
     bs <- unlist(bs)
     for (i in 1:length(x)) {
       outIRT[i, 1] <- sum(plogis(as * (x[i] - bs)))
@@ -566,77 +638,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 }
 
-
-.semThorn <- function(X, K, nc, caseMin, splits = NULL, scrs) {
-
-  prep <- .semPrepareSumScores(X, K, splits = NULL)
-  partSUMS <- prep$partSUMS
-  S <- prep$S
-  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
-  fun <- function(partSUMS, ind, cc) {
-    return(sd(partSUMS[ind, 1] - partSUMS[ind, 2]))
-  }
-
-  out <- .semComputeWithCaseMin(out, S, caseMin, partSUMS, fun)
-
-  return(out)
-}
-
-
-.semFeldt <- function(X, K, nc, caseMin, splits = NULL, scrs) {
-
-  prep <- .semPrepareSumScores(X, K, splits = NULL)
-  partSUMS <- prep$partSUMS
-  S <- prep$S
-  d <- prep$d
-  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
-  fun <- function(partSUMS, ind, cc) {
-    K <- ncol(partSUMS)
-    mean_diff <- partSUMS[ind, ] - rowMeans(partSUMS[ind, ]) - matrix(colMeans(partSUMS[ind, ]), length(ind), K, TRUE) + mean(partSUMS[ind, ])
-    ret <- sqrt(d * sum(rowSums(mean_diff^2) / (K - 1)) / length(ind))
-    return(ret)
-  }
-  out <- .semComputeWithCaseMin(out, S, caseMin, partSUMS, fun)
-
-  return(out)
-}
-
-
-.semMF <- function(X, K, nc, n_poly, splits = NULL, scrs) {
-
-  prep <- .semPrepareSumScores(X, K, splits = NULL)
-  partSUMS <- prep$partSUMS
-  S <- prep$S
-  d <- prep$d
-  N <- nrow(X)
-  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
-  scores <- out[, 1]
-
-  rawDiffK <- d *
-    rowSums((partSUMS - matrix(colMeans(partSUMS), N, K, TRUE) - rowMeans(partSUMS) + mean(partSUMS))^2) /
-    (K - 1)
-  betaK <- coef(lm(rawDiffK ~ poly(S, n_poly, raw = TRUE)))
-  scrs <- sqrt(betaK[1] + rowSums(matrix(betaK[-1], length(scores), n_poly, TRUE) * poly(scores, n_poly, raw = TRUE)))
-  out[, 2] <- scrs
-
-  return(out)
-}
-
-
-.semAnova <- function(X, nc, caseMin, scrs) {
-
-  prep <- .semPrepareSumScores(X, K = 1, splits = NULL)
-  S <- prep$S
-
-  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
-  fun <- function(X, ind, cc) {
-    nit <- ncol(X)
-    return(sqrt(nit / (nit - 1) * sum(diag(cov(X[ind, ])))))
-  }
-  out <- .semComputeWithCaseMin(out, S, caseMin, X, fun)
-
-  return(out)
-}
 
 
 .semLord <- function(nit, scrs) {
@@ -702,7 +703,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   return(list(counts = counts, scores = scores))
 }
 
-.semPrepareSumScores <- function(X, K, splits) {
+.semPrepareSumScores <- function(X, K) {
 
   nit <- ncol(X)
   N <- nrow(X)
@@ -711,15 +712,19 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   partSUMS <- matrix(NA, N, K)
 
   if (K < nit) {
-    if (is.null(splits)) {
-      # when no specific splits are defined, we just evenly distribute the items among the number of splits
-      k <- split(seq_len(nit), 1:K)
-      for (i in 1:K) {
-        partSUMS[, i] <- rowSums(X[, k[[i]], drop = FALSE])
-      }
-    } else {
-      # TODO: implement the specified splits
+
+    firstSplit <- ceiling(nit / K)
+
+    if (K == 2) {
+      k <- list(1:firstSplit, (firstSplit + 1):nit)
+    } else { # K is larger than 2, so the items have to be evenly split
+      k <- split(seq_len(nit), rep(1:K, each = firstSplit))
     }
+
+    for (i in 1:K) {
+      partSUMS[, i] <- rowSums(X[, k[[i]], drop = FALSE])
+    }
+
     cc <- sapply(k, length)
     d <- nit / mean(cc)
 
