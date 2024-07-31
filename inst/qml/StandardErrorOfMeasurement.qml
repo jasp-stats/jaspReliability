@@ -149,6 +149,19 @@ Form
 
 		CheckBox 
 		{
+			name: "sumScoreCiTable"
+			label: qsTr("Sum score table")
+			childrenOnSameRow: true
+			CIField
+			{
+				name:			"ciLevelTable";
+				label:			qsTr("CI:");
+				defaultValue:	95;
+			}
+		}
+
+		CheckBox 
+		{
 			name: "userReliability"
 			label: qsTr("User defined reliability")
 			childrenOnSameRow: true
@@ -173,7 +186,7 @@ Form
 		CheckBox 
 		{
 			name: "hideTable"
-			label: qsTr("Hide table")
+			label: qsTr("Hide sem table")
 		}
 		
 	}
@@ -198,7 +211,42 @@ Form
 		{
 			name: "combinedPointPlot"
 			label: qsTr("Combined plot")
-		}	
+		}
+
+		Group {
+			CheckBox
+			{
+				name: "sumScoreCiPlots"
+				label: qsTr("Sum score plots")
+				childrenOnSameRow: true
+				CIField
+				{
+					name:			"ciLevelPlots";
+					label:			qsTr("CI");
+					defaultValue:	95;
+				}
+			}
+			RowLayout
+			{
+				Label
+				{
+						text: ""
+						Layout.leftMargin: 2.5 // Adjust the value as needed for the desired indentation
+				}
+				CheckBox
+				{
+					name: "sumScoreCiPlotsCutoff"
+					label: qsTr("Display cutoff score")
+					childrenOnSameRow: true
+					DoubleField
+					{
+						name: "sumScoreCiPlotsCutoffValue"
+					}
+				}
+			}
+		}
+
+
 	}
 
 

@@ -32,13 +32,19 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   .semComputeCoefficients(jaspResults, dataset, options, ready)
 
+  .semComputeSumScoresCi(jaspResults, dataset, options, ready)
+
   .semCoefficientsTable(jaspResults, dataset, options, ready)
+
+  .semSumScoreCiTable(jaspResults, dataset, options, ready)
 
   .semHistPlot(jaspResults, dataset, options, ready)
 
   .semPointPlots(jaspResults, dataset, options, ready)
 
   .semCombinedPointPlot(jaspResults, dataset, options, ready)
+
+  .semSumScoreCiPlots(jaspResults, dataset, options, ready)
 
   return()
 }
@@ -100,7 +106,9 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     } else {
       rel <- Bayesrel:::applyalpha(cov(dataset))
     }
-    average <- as.numeric(sd(rowSums(dataset)) * sqrt(1 - rel))
+
+    average <- list(est = as.numeric(sd(rowSums(dataset)) * sqrt(1 - rel)))
+
     averageState <- createJaspState(average, dependencies = c("userReliability", "reliabilityValue"))
     jaspResults[["semMainContainer"]][["averageState"]] <- averageState
   }
@@ -108,7 +116,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   if (options[["thorndike"]]) {
     if (is.null(jaspResults[["semMainContainer"]][["thorndikeState"]])) {
       out <- .semThorn(dataset, K = 2, nc = nc, caseMin = options[["minimumGroupSize"]], scrs)
-      thorndikeState <- createJaspState(out, dependencies = c("thorndike", "minimumGroupSize"))
+      thorndikeState <- createJaspState(out, dependencies = c("thorndike", "minimumGroupSize", "ciLevel"))
       jaspResults[["semMainContainer"]][["thorndikeState"]] <- thorndikeState
     }
   }
@@ -181,6 +189,107 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
  return()
 }
 
+
+.semComputeSumScoresCi <- function(jaspResults, dataset, options, ready) {
+
+  if (!is.null(jaspResults[["semMainContainer"]][["sumScoreState"]]) ||
+      !ready) return()
+
+  if (!options[["sumScoreCiTable"]] && !options[["sumScoreCiPlots"]]) return()
+
+  if (!any(c(options[["thorndike"]], options[["feldt"]], options[["mollenkopfFeldt"]], options[["anova"]],
+            options[["irt"]], options[["lord"]], options[["keats"]], options[["lord2"]]))) return()
+
+  scrs <- jaspResults[["semMainContainer"]][["countsState"]]$object
+  dtFill <- list(table = data.frame(score = scrs$scores), plots = data.frame(score = scrs$scores))
+
+  # all of this should be so fast we do not need dependency checks...
+  if (options[["thorndike"]]) {
+    out <- jaspResults[["semMainContainer"]][["thorndikeState"]]$object
+    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
+    dtFill$table$lowerThorn <- cis[, 1]
+    dtFill$table$upperThorn <- cis[, 2]
+    dtFill$plots$lowerThorn <- cis[, 3]
+    dtFill$plots$upperThorn <- cis[, 4]
+  }
+
+  if (options[["feldt"]]) {
+    out <- jaspResults[["semMainContainer"]][["feldtState"]]$object
+    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
+    dtFill$table$lowerFeldt <- cis[, 1]
+    dtFill$table$upperFeldt <- cis[, 2]
+    dtFill$plots$lowerFeldt <- cis[, 3]
+    dtFill$plots$upperFeldt <- cis[, 4]
+  }
+
+  if (options[["mollenkopfFeldt"]]) {
+    out <- jaspResults[["semMainContainer"]][["mfState"]]$object
+    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
+    dtFill$table$lowerMoll <- cis[, 1]
+    dtFill$table$upperMoll <- cis[, 2]
+    dtFill$plots$lowerMoll <- cis[, 3]
+    dtFill$plots$upperMoll <- cis[, 4]
+  }
+
+  if (options[["anova"]]) {
+    out <- jaspResults[["semMainContainer"]][["anovaState"]]$object
+    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
+    dtFill$table$lowerAnova <- cis[, 1]
+    dtFill$table$upperAnova <- cis[, 2]
+    dtFill$plots$lowerAnova <- cis[, 3]
+    dtFill$plots$upperAnova <- cis[, 4]
+  }
+
+  if (options[["irt"]]) {
+    nc <- length(unique(c(as.matrix(dataset)))) # needed for IRT
+    out <- jaspResults[["semMainContainer"]][["irtState"]]$object$binned
+    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
+    dtFill$table$lowerIrt <- cis[, 1]
+    dtFill$table$upperIrt <- cis[, 2]
+    dtFill$plots$lowerIrt <- cis[, 3]
+    dtFill$plots$upperIrt <- cis[, 4]
+  }
+
+  if (options[["lord"]]) {
+    out <- jaspResults[["semMainContainer"]][["lordState"]]$object
+    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
+    dtFill$table$lowerLord <- cis[, 1]
+    dtFill$table$upperLord <- cis[, 2]
+    dtFill$plots$lowerLord <- cis[, 3]
+    dtFill$plots$upperLord <- cis[, 4]
+  }
+
+  if (options[["keats"]]) {
+    out <- jaspResults[["semMainContainer"]][["keatsState"]]$object
+    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
+    dtFill$table$lowerKeats <- cis[, 1]
+    dtFill$table$upperKeats <- cis[, 2]
+    dtFill$plots$lowerKeats <- cis[, 3]
+    dtFill$plots$upperKeats <- cis[, 4]
+  }
+
+  if (options[["lord2"]]) {
+    out <- jaspResults[["semMainContainer"]][["lord2State"]]$object
+    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
+    dtFill$table$lowerLord2 <- cis[, 1]
+    dtFill$table$upperLord2 <- cis[, 2]
+    dtFill$plots$lowerLord2 <- cis[, 3]
+    dtFill$plots$upperLord2 <- cis[, 4]
+  }
+
+  ciDataState <- createJaspState(dtFill,
+                                 dependencies = c("thorndike", "feldt", "mollenkopfFeldt",
+                                                  "anova", "irt", "lord", "keats", "lord2", "hideTable",
+                                                  "feldtNumberOfSplits", "mollenkopfFeldtNumberOfSplits",
+                                                  "mollenkopfFeldtPolyDegree", "minimumGroupSize",
+                                                  "lord2NumberOfSplits", "userReliability", "reliabilityValue",
+                                                  "sumScoreCiTable", "sumScoreCiPlots",
+                                                  "ciLevelTable", "ciLevelPlots"))
+  jaspResults[["semMainContainer"]][["ciDataState"]] <- ciDataState
+
+  return()
+}
+
 ##### Output tables #####
 .semCoefficientsTable <- function(jaspResults, dataset, options, ready) {
 
@@ -192,9 +301,10 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
                                                        "feldtNumberOfSplits", "mollenkopfFeldtNumberOfSplits",
                                                        "mollenkopfFeldtPolyDegree", "minimumGroupSize",
                                                        "lord2NumberOfSplits", "userReliability", "reliabilityValue"))
+  coefficientTable$position <- 1
   jaspResults[["semMainContainer"]][["coefficientTable"]] <- coefficientTable
 
-  nc <- length(unique(c(as.matrix(dataset)))) # may be needed for IRT
+  nc <- length(unique(c(as.matrix(dataset)))) # needed for IRT
 
   coefficientTable$addColumnInfo(name = "score", title = gettext("Sum score"), type = "string")
   coefficientTable$addColumnInfo(name = "average", title = gettext("Traditional"), type = "number")
@@ -203,7 +313,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   dtFill <- data.frame(score = "all")
   average <- jaspResults[["semMainContainer"]][["averageState"]]$object
-  dtFill$average <- average
+  dtFill$average <- average$est
 
   if (!options[["hideTable"]]) {
     if (any(c(options[["thorndike"]], options[["feldt"]], options[["mollenkopfFeldt"]], options[["anova"]],
@@ -212,16 +322,19 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
       # the repetition of this seems annoying...
       coefficientTable <- createJaspTable(gettext("Standard error of measurement"))
       coefficientTable$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]])
+      coefficientTable$position <- 1
       jaspResults[["semMainContainer"]][["coefficientTable"]] <- coefficientTable
 
       coefficientTable$addColumnInfo(name = "score", title = gettext("Sum score"), type = "string")
       coefficientTable$addColumnInfo(name = "counts", title = gettext("Counts"), type = "string")
-      coefficientTable$addFootnote(message = gettextf("The traditional sem value equals %1$1.3f.", average))
+      coefficientTable$addFootnote(message = gettextf("The traditional sem value equals %1$1.3f.", average$est))
 
       scrs <- jaspResults[["semMainContainer"]][["countsState"]]$object
       counts <- scrs$counts
       dtFill <- data.frame(score = scrs$scores)
       dtFill$counts <- counts
+
+      ci <- format(100 * options[["ciLevel"]], digits = 3, drop0trailing = TRUE)
 
       if (options[["thorndike"]]) {
         out <- jaspResults[["semMainContainer"]][["thorndikeState"]]$object
@@ -278,6 +391,87 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 }
 
 
+.semSumScoreCiTable <- function(jaspResults, dataset, options, ready) {
+  if (!is.null(jaspResults[["semMainContainer"]][["ciTable"]]) ||
+      !ready) return()
+
+  if (!options[["sumScoreCiTable"]] || is.null(jaspResults[["semMainContainer"]][["ciDataState"]])) return()
+
+  ciTable <- createJaspTable(gettext("Sum score CI table"))
+  ciTable$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]],
+                   options = c("ciLevelTable", "sumScoreCiTable"))
+  ciTable$position <- 2
+  jaspResults[["semMainContainer"]][["ciTable"]] <- ciTable
+
+
+  ciTable$addColumnInfo(name = "score", title = gettext("Sum score"), type = "string")
+  ci <- format(100 * options[["ciLevelTable"]], digits = 3, drop0trailing = TRUE)
+
+  ciData <- jaspResults[["semMainContainer"]][["ciDataState"]]$object$table
+  if (options[["thorndike"]]) {
+    ciTable$addColumnInfo(name = "lowerThorn", title = gettextf("Lower %s%% CI", ci), type = "number",
+                                   overtitle = gettext("Thorndike"))
+    ciTable$addColumnInfo(name = "upperThorn", title = gettextf("Upper %s%% CI", ci), type = "number",
+                                   overtitle = gettext("Thorndike"))
+  }
+
+  if (options[["feldt"]]) {
+    ciTable$addColumnInfo(name = "lowerFeldt", title = gettextf("Lower %s%% CI", ci), type = "number",
+                          overtitle = gettext("Feldt"))
+    ciTable$addColumnInfo(name = "upperFeldt", title = gettextf("Upper %s%% CI", ci), type = "number",
+                          overtitle = gettext("Feldt"))
+  }
+
+  if (options[["mollenkopfFeldt"]]) {
+    ciTable$addColumnInfo(name = "lowerMoll", title = gettextf("Lower %s%% CI", ci), type = "number",
+                          overtitle = gettext("Mollenkopf-Feldt"))
+    ciTable$addColumnInfo(name = "upperMoll", title = gettextf("Upper %s%% CI", ci), type = "number",
+                          overtitle = gettext("Mollenkopf-Feldt"))
+  }
+
+  if (options[["anova"]]) {
+    ciTable$addColumnInfo(name = "lowerAnova", title = gettextf("Lower %s%% CI", ci), type = "number",
+                          overtitle = gettext("Anova"))
+    ciTable$addColumnInfo(name = "upperAnova", title = gettextf("Upper %s%% CI", ci), type = "number",
+                          overtitle = gettext("Anova"))
+  }
+
+  if (options[["irt"]]) {
+    nc <- length(unique(c(as.matrix(dataset)))) # needed for IRT
+    irtTitle <- ifelse(nc == 2, gettext("IRT-2PL"), gettext("IRT-GRM"))
+    ciTable$addColumnInfo(name = "lowerIrt", title = gettextf("Lower %s%% CI", ci), type = "number",
+                          overtitle = irtTitle)
+    ciTable$addColumnInfo(name = "upperIrt", title = gettextf("Upper %s%% CI", ci), type = "number",
+                          overtitle = irtTitle)
+  }
+
+  if (options[["lord"]]) {
+    ciTable$addColumnInfo(name = "lowerLord", title = gettextf("Lower %s%% CI", ci), type = "number",
+                          overtitle = gettext("Lord"))
+    ciTable$addColumnInfo(name = "upperLord", title = gettextf("Upper %s%% CI", ci), type = "number",
+                          overtitle = gettext("Lord"))
+  }
+
+  if (options[["keats"]]) {
+    ciTable$addColumnInfo(name = "lowerKeats", title = gettextf("Lower %s%% CI", ci), type = "number",
+                          overtitle = gettext("Keats"))
+    ciTable$addColumnInfo(name = "upperKeats", title = gettextf("Upper %s%% CI", ci), type = "number",
+                          overtitle = gettext("Keats"))
+  }
+
+  if (options[["lord2"]]) {
+    ciTable$addColumnInfo(name = "lowerLord2", title = gettextf("Lower %s%% CI", ci), type = "number",
+                          overtitle = gettext("Lord's compound"))
+    ciTable$addColumnInfo(name = "upperLord2", title = gettextf("Upper %s%% CI", ci), type = "number",
+                          overtitle = gettext("Lord's compound"))
+  }
+
+  ciTable$setData(ciData)
+
+  return()
+}
+
+
 #### Output plots ####
 
 .semHistPlot <- function(jaspResults, dataset, options, ready) {
@@ -291,7 +485,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     ggplot2::geom_histogram(ggplot2::aes(scores), bins = nrow(unique(ss)), binwidth = .5) +
     ggplot2::ylab(gettext("Counts")) +
     ggplot2::xlab(gettext("Sum scores"))
-  p <- jaspGraphs::themeJasp(p)
+  p <- p + jaspGraphs::themeJaspRaw() + jaspGraphs::geom_rangeframe()
 
   histPlot <- createJaspPlot(plot = p, title = gettext("Histogram of counts per sum score group"), width = 500)
   jaspResults[["semMainContainer"]][["histPlot"]] <- histPlot
@@ -312,21 +506,21 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   jaspResults[["semMainContainer"]][["pointPlotsContainer"]] <- pointPlotsContainer
   if (options[["thorndike"]]) {
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["thorndikeState"]],
-                                  title = "Thorndike")
+                                  title = gettext("Thorndike"))
 
     pointPlotsContainer[["thorndikePlot"]] <- pl
   }
 
   if (options[["feldt"]]) {
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["feldtState"]],
-                               title = "Feldt")
+                               title = gettext("Feldt"))
 
     pointPlotsContainer[["feldtPlot"]] <- pl
   }
 
   if (options[["mollenkopfFeldt"]]) {
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["mfState"]],
-                               title = "Mollenkopf-Feldt")
+                               title = gettext("Mollenkopf-Feldt"))
 
     pointPlotsContainer[["mfPlot"]] <- pl
   }
@@ -348,13 +542,13 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (options[["lord"]]) {
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["lordState"]],
-                                  title = "Lord")
+                                  title = gettext("Lord"))
     pointPlotsContainer[["lordPlot"]] <- pl
   }
 
   if (options[["keats"]]) {
     pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["keatsState"]],
-                                  title = "Keats")
+                                  title = gettext("Keats"))
 
     pointPlotsContainer[["keatsPlot"]] <- pl
   }
@@ -365,8 +559,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
     pointPlotsContainer[["lordPlot"]] <- pl
   }
-
-
 
   return()
 
@@ -379,16 +571,17 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     colnames(dat) <- c("score", "sem")
     pl <- ggplot2::ggplot(dat) +
       ggplot2::geom_point(ggplot2::aes(x = score, y = sem), size = 2.5) +
-      ggplot2::labs(x = "Sum Score", y = "sem")
+      ggplot2::labs(x = gettext("Sum Score"), y = gettext("sem"))
   } else {
     dat <- as.data.frame(resultsObject$object$unbinned)
     colnames(dat) <- c("score", "sem")
     pl <- ggplot2::ggplot(dat) +
       ggplot2::geom_line(ggplot2::aes(x = score, y = sem), size = 2.5) +
-      ggplot2::labs(x = "Sum Score", y = "sem")
+      ggplot2::labs(x = gettext("Sum Score"), y = gettext("sem"))
   }
 
-  outPlot <- createJaspPlot(jaspGraphs::themeJasp(pl), title = title, width = 400)
+  pl <- pl + jaspGraphs::themeJaspRaw() + jaspGraphs::geom_rangeframe()
+  outPlot <- createJaspPlot(pl, title = title, width = 400)
   outPlot$dependOn(optionsFromObject = resultsObject)
 
   return(outPlot)
@@ -479,7 +672,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
              shape = ggplot2::guide_legend(order = 1))
     }
 
-    plot <- createJaspPlot(jaspGraphs::themeJasp(pl, legend.position = "right"), title = gettext("Combined plot"),
+    plot <- createJaspPlot(jaspGraphs::themeJaspRaw(pl, legend.position = "right"), title = gettext("Combined plot"),
                            width = 600)
     plot$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]])
     jaspResults[["semMainContainer"]][["combinedPlot"]] <- plot
@@ -488,6 +681,117 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   return()
 }
 
+
+.semSumScoreCiPlots <- function(jaspResults, dataset, options, ready) {
+
+  if (!is.null(jaspResults[["semMainContainer"]][["ciPlots"]]) || !options[["sumScoreCiPlots"]]
+      || !ready || jaspResults[["semMainContainer"]]$getError()) {return()}
+
+  nc <- length(unique(c(as.matrix(dataset)))) # may be needed for IRT
+
+  ciPlotsContainer <- createJaspContainer(title = gettext("Sum Score CI Plots"))
+  ciPlotsContainer$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]],
+                            options = c("sumScoreCiPlots", "sumScoreCiPlotsCutoff", "sumScoreCiPlotsCutoffValue", "ciLevelPlots"))
+  jaspResults[["semMainContainer"]][["ciPlotsContainer"]] <- ciPlotsContainer
+
+  ciData <- jaspResults[["semMainContainer"]][["ciDataState"]]$object$plots
+  scores <- jaspResults[["semMainContainer"]][["countsState"]]$object$scores
+
+  if (options[["thorndike"]]) {
+    ciDataUse <- ciData[, c("score", "lowerThorn", "upperThorn")]
+    pl <- .semMakeSingleCiPlot(title = gettext("Thorndike"), ciData = ciDataUse,
+                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
+    ciPlotsContainer[["thorndikePlot"]] <- pl
+  }
+
+  if (options[["feldt"]]) {
+    ciDataUse <- ciData[, c("score", "lowerFeldt", "upperFeldt")]
+    pl <- .semMakeSingleCiPlot(title = gettext("Feldt"), ciData = ciDataUse,
+                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
+    ciPlotsContainer[["feldtPlot"]] <- pl
+  }
+
+  if (options[["mollenkopfFeldt"]]) {
+    ciDataUse <- ciData[, c("score", "lowerMoll", "upperMoll")]
+    pl <- .semMakeSingleCiPlot(title = gettext("Mollenkopf-Feldt"), ciData = ciDataUse,
+                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
+    ciPlotsContainer[["mfPlot"]] <- pl
+  }
+
+  if (options[["anova"]]) {
+    ciDataUse <- ciData[, c("score", "lowerAnova", "upperAnova")]
+    pl <- .semMakeSingleCiPlot(title = gettext("Anova"), ciData = ciDataUse,
+                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
+    ciPlotsContainer[["anovaPlot"]] <- pl
+  }
+
+  if (options[["irt"]]) {
+    irtTitle <- ifelse(nc == 2, gettext("IRT-2PL"), gettext("IRT-GRM"))
+    outUnbinned <- jaspResults[["semMainContainer"]][["irtState"]]$object$unbinned
+    cis <- .semComputeCis(outUnbinned, outUnbinned[, 1], options[["ciLevel"]])
+    lowerIrtUnbinned <- cis[, 1]
+    upperIrtUnbinned <- cis[, 2]
+    ciDataUse <- cbind(outUnbinned[, 1], lowerIrtUnbinned, upperIrtUnbinned)
+    pl <- .semMakeSingleCiPlot(title = irtTitle, ciData = ciDataUse, irt = TRUE,
+                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
+    ciPlotsContainer[["irtPlot"]] <- pl
+  }
+
+  if (options[["lord"]]) {
+    ciDataUse <- ciData[, c("score", "lowerLord", "upperLord")]
+    pl <- .semMakeSingleCiPlot(title = gettext("Lord"), ciData = ciDataUse,
+                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
+    ciPlotsContainer[["lordPlot"]] <- pl
+  }
+
+  if (options[["keats"]]) {
+    ciDataUse <- ciData[, c("score", "lowerKeats", "upperKeats")]
+    pl <- .semMakeSingleCiPlot(title = gettext("Keats"), ciData = ciDataUse,
+                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
+    ciPlotsContainer[["keatsPlot"]] <- pl
+  }
+
+  if (options[["lord2"]]) {
+    ciDataUse <- ciData[, c("score", "lowerLord2", "upperLord2")]
+    pl <- .semMakeSingleCiPlot(title = gettext("Lord2"), ciData = ciDataUse,
+                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
+    ciPlotsContainer[["lord2Plot"]] <- pl
+  }
+
+  return()
+
+}
+
+
+.semMakeSingleCiPlot <- function(ciData, title, irt = FALSE, cutoff = NA) {
+
+  if (!irt) {
+    dat <- as.data.frame(ciData)
+    colnames(dat)[2:3] <- c("lower", "upper")
+    dat$tscore <- dat$score
+    pl <- ggplot2::ggplot(dat) +
+      ggplot2::geom_point(ggplot2::aes(x = score, y = tscore), size = 2.5) +
+      ggplot2::geom_errorbar(ggplot2::aes(x = score, ymin = lower, ymax = upper), width = 0.5) +
+      ggplot2::labs(x = gettext("Sum Score"), y = gettext("True Score"))
+  } else {
+    dat <- as.data.frame(ciData)
+    colnames(dat) <- c("score", "lower", "upper")
+    dat$tscore <- dat$score
+    pl <- ggplot2::ggplot(dat) +
+      ggplot2::geom_ribbon(ggplot2::aes(x = score, ymin = lower, ymax = upper), fill = "grey80") +
+      ggplot2::geom_line(ggplot2::aes(x = score, y = tscore)) +
+      ggplot2::labs(x = gettext("Sum Score"), y = gettext("True Score"))
+  }
+
+  if (!is.na(cutoff)) {
+    pl <- pl + ggplot2::geom_hline(yintercept = cutoff, linetype = "dashed", color = "red")
+  }
+  pl <- pl + jaspGraphs::themeJaspRaw() + jaspGraphs::geom_rangeframe()
+  outPlot <- createJaspPlot(pl, title = title, width = 400, height = 400)
+
+  return(outPlot)
+
+}
 
 
 ##### Sem compute functions #####
@@ -665,10 +969,10 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 
 # X = dataset, K = number of splits, counts = counts per score group
-.semLord2 <- function(X, K, scrs, caseMin, splits = NULL) {
+.semLord2 <- function(X, K, scrs, caseMin) {
 
   nc <- 2
-  prep <- .semPrepareSumScores(X, K, splits = NULL)
+  prep <- .semPrepareSumScores(X, K)
   partSUMS <- prep$partSUMS
   S <- prep$S
   cc <- prep$cc
@@ -713,13 +1017,9 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (K < nit) {
 
-    firstSplit <- ceiling(nit / K)
+    # firstSplit <- ceiling(nit / K)
 
-    if (K == 2) {
-      k <- list(1:firstSplit, (firstSplit + 1):nit)
-    } else { # K is larger than 2, so the items have to be evenly split
-      k <- split(seq_len(nit), rep(1:K, each = firstSplit))
-    }
+    k <- split(seq_len(nit), 1:K)
 
     for (i in 1:K) {
       partSUMS[, i] <- rowSums(X[, k[[i]], drop = FALSE])
@@ -799,4 +1099,18 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   }
 
   return(out)
+}
+
+
+.semComputeCis <- function(out, scores, ciLevelTable, ciLevelPlots) {
+
+  cis <- matrix(NA, nrow(out), 4)
+  zValueTable <- qnorm(1 - (1 - ciLevelTable) / 2)
+  zValuePlots <- qnorm(1 - (1 - ciLevelPlots) / 2)
+  for (i in 1:nrow(out)) {
+    cis[i, ] <- c(scores[i] - zValueTable * out[i, 2], scores[i] + zValueTable * out[i, 2],
+                   scores[i] - zValuePlots * out[i, 2], scores[i] + zValuePlots * out[i, 2])
+  }
+
+  return(cis)
 }
