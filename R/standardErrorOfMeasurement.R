@@ -49,6 +49,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   return()
 }
 
+
+#### the common functions ####
 # Read in the dataset
 .semReadData <- function(dataset, options) {
 
@@ -61,7 +63,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   return(dataset)
 }
 
-
 # check errors
 .semErrorCheck <- function(dataset, options, ready) {
 
@@ -72,8 +73,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
              missingValues.target = options$variables,
              exitAnalysisIfErrors = TRUE)
 }
-
-
 
 # create Main container
 .semCreateMainContainer <- function(jaspResults, options) {
@@ -88,6 +87,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 
 ##### Computation #####
+
 .semComputeCoefficients <- function(jaspResults, dataset, options, ready) {
 
   if (!ready) return()
@@ -115,7 +115,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (options[["thorndike"]]) {
     if (is.null(jaspResults[["semMainContainer"]][["thorndikeState"]])) {
-      out <- .semThorn(dataset, K = 2, nc = nc, caseMin = options[["minimumGroupSize"]], scrs)
+      out <- .semThorn(dataset, nc = nc, caseMin = options[["minimumGroupSize"]], scrs)
       thorndikeState <- createJaspState(out, dependencies = c("thorndike", "minimumGroupSize", "ciLevel"))
       jaspResults[["semMainContainer"]][["thorndikeState"]] <- thorndikeState
     }
@@ -188,7 +188,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
  return()
 }
-
 
 .semComputeSumScoresCi <- function(jaspResults, dataset, options, ready) {
 
@@ -389,7 +388,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   return()
 
 }
-
 
 .semSumScoreCiTable <- function(jaspResults, dataset, options, ready) {
   if (!is.null(jaspResults[["semMainContainer"]][["ciTable"]]) ||
@@ -681,7 +679,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   return()
 }
 
-
 .semSumScoreCiPlots <- function(jaspResults, dataset, options, ready) {
 
   if (!is.null(jaspResults[["semMainContainer"]][["ciPlots"]]) || !options[["sumScoreCiPlots"]]
@@ -762,7 +759,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 }
 
-
 .semMakeSingleCiPlot <- function(ciData, title, irt = FALSE, cutoff = NA) {
 
   if (!irt) {
@@ -794,32 +790,36 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 }
 
 
-##### Sem compute functions #####
+##### the functions to compute the sems #####
 
+#' if not stated otherwise:
+#' X is the data matrix
+#' K is the number of splits
+#' nc is the number of response categories
+#' caseMin is the minimum number of cases in a group
+#' scrs is a vector of sum scores
 
-.semThorn <- function(X, K, nc, caseMin, scrs) {
+.semThorn <- function(X, nc, caseMin, scoresObj) {
 
-  prep <- .semPrepareSumScores(X, K)
+  prep <- .semPrepareSumScores(X, K = 2)
   partSUMS <- prep$partSUMS
   S <- prep$S
-  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
+  out <- .semPrepareOutMatrix(ncol(X), nc, scoresObj)
   fun <- function(partSUMS, ind, cc) {
     return(sd(partSUMS[ind, 1] - partSUMS[ind, 2]))
   }
 
   out <- .semComputeWithCaseMin(out, S, caseMin, partSUMS, fun)
-
   return(out)
 }
 
-
-.semFeldt <- function(X, K, nc, caseMin, scrs) {
+.semFeldt <- function(X, K, nc, caseMin, scoresObj) {
 
   prep <- .semPrepareSumScores(X, K)
   partSUMS <- prep$partSUMS
   S <- prep$S
   d <- prep$d
-  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
+  out <- .semPrepareOutMatrix(ncol(X), nc, scoresObj)
   fun <- function(partSUMS, ind, cc) {
     K <- ncol(partSUMS)
     mean_diff <- partSUMS[ind, ] - rowMeans(partSUMS[ind, ]) - matrix(colMeans(partSUMS[ind, ]), length(ind), K, TRUE) + mean(partSUMS[ind, ])
@@ -827,19 +827,17 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     return(ret)
   }
   out <- .semComputeWithCaseMin(out, S, caseMin, partSUMS, fun)
-
   return(out)
 }
 
-
-.semMF <- function(X, K, nc, n_poly, scrs) {
+.semMF <- function(X, K, nc, n_poly, scoresObj) {
 
   prep <- .semPrepareSumScores(X, K)
   partSUMS <- prep$partSUMS
   S <- prep$S
   d <- prep$d
   N <- nrow(X)
-  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
+  out <- .semPrepareOutMatrix(ncol(X), nc, scoresObj)
   scores <- out[, 1]
 
   rawDiffK <- d *
@@ -852,13 +850,12 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   return(out)
 }
 
-
-.semAnova <- function(X, nc, caseMin, scrs) {
+.semAnova <- function(X, nc, caseMin, scoresObj) {
 
   prep <- .semPrepareSumScores(X, K = 1)
   S <- prep$S
 
-  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
+  out <- .semPrepareOutMatrix(ncol(X), nc, scoresObj)
   fun <- function(X, ind, cc) {
     nit <- ncol(X)
     return(sqrt(nit / (nit - 1) * sum(diag(cov(X[ind, ])))))
@@ -867,7 +864,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   return(out)
 }
-
 
 .semIrt <- function(X, nc, scores) {
 
@@ -925,7 +921,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
       outIRT[i, 2] <- sqrt(sum(unlist(devPr)))
     }
   }
-
+  colnames(outIRT) <- c("scores", "sem")
   discScores <- scores
 
   # because the irt method does not produce score groups but a continuous score along the scale, we need to group it
@@ -938,22 +934,21 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   outBinned <- data.frame(scores = discScores, sem = irtBinned)
 
   outIRT <- list(unbinned = outIRT, binned = outBinned)
+
   return(outIRT)
 
 }
 
-
-
-.semLord <- function(nit, scrs) {
-  x <- scrs$scores
+.semLord <- function(nit, scoresObj) {
+  x <- scoresObj$scores
   out_binom <- sqrt((x) * (nit - (x)) / (nit - 1))
   return(cbind(x, out_binom))
 }
 
-.semKeats <- function(X, options, scrs) {
+.semKeats <- function(X, options, scoresObj) {
 
   nit <- ncol(X)
-  x <- scrs$scores
+  x <- scoresObj$scores
   S <- rowSums(X)
   KR21 <- nit / (nit - 1) * (1 - (mean(S) * (nit - mean(S))) / (nit * var(S)))
   if (options[["userReliability"]]) {
@@ -967,9 +962,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   return(cbind(x, ou_binom2))
 }
 
-
 # X = dataset, K = number of splits, counts = counts per score group
-.semLord2 <- function(X, K, scrs, caseMin) {
+.semLord2 <- function(X, K, scoresObj, caseMin) {
 
   nc <- 2
   prep <- .semPrepareSumScores(X, K)
@@ -977,7 +971,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   S <- prep$S
   cc <- prep$cc
 
-  out <- .semPrepareOutMatrix(ncol(X), nc, scrs)
+  out <- .semPrepareOutMatrix(ncol(X), nc, scoresObj)
 
   fun <- function(partSUMS, ind, cc) {
     ccmat <- matrix(cc, length(ind), length(cc), byrow = TRUE)
@@ -993,6 +987,11 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 
 #### Helper functions ####
+#' X is the data matrix
+#' nc is the number of response categories
+#' K is the number of splits
+
+#' this function counts the sum scores and returns the scores and their counts
 .semCounts <- function(X, nc) {
   nit <- ncol(X)
   S <- rowSums(X)
@@ -1007,6 +1006,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   return(list(counts = counts, scores = scores))
 }
 
+#' this function prepares the sum scores for the SEM computations:
+#' for some functions it implements the split and saves the sum scores of the test parts
 .semPrepareSumScores <- function(X, K) {
 
   nit <- ncol(X)
@@ -1016,8 +1017,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   partSUMS <- matrix(NA, N, K)
 
   if (K < nit) {
-
-    # firstSplit <- ceiling(nit / K)
 
     k <- split(seq_len(nit), 1:K)
 
@@ -1041,7 +1040,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   return(list(S = S, partSUMS = partSUMS, d = d, cc = cc))
 }
 
-
+#' this function prepares the output matrix for the SEM computations
 .semPrepareOutMatrix <- function(nit, nc, scrs) {
   scores <- scrs$scores
   counts <- scrs$counts
@@ -1053,7 +1052,13 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   return(out)
 }
 
-
+#' this function computes the SEMs for the different score groups
+#' there is a special treatment to collapse some scores into groups if they do not reach the min size
+#' out is the output matrix from the previous function
+#' S is a vector with the sum scores
+#' partSUMS is a matrix with the sum scores of the test parts
+#' fun is the function that computes the SEM, this one differs for each method
+#' cc is a vector with the number of items in each test part, this is only needed for the Lord's compound method
 .semComputeWithCaseMin <- function(out, S, caseMin, partSUMS, fun, cc = NULL) {
 
   scores <- out[, 1]
@@ -1071,8 +1076,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
       # at the higher end of the score groups, we might encounter that merging groups will not reach the
       # minsize anymore, so we need to check
       if (length(firstInd) > 0) {
+        # actual index in the scores and out-matrix
         firstInd <- firstInd[1]
-        # actual index in the scores and out matrix
         nextInd <- ii + (firstInd - 1)
         ind <- which(S %in% scores[ii:nextInd])
         out[ii:nextInd, 2] <- fun(partSUMS, ind, cc)
@@ -1098,10 +1103,17 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     out[backInd:nextInd, 4] <- TRUE
   }
 
+  colnames(out) <- c("score", "sem", "counts", "collapsed")
+
   return(out)
 }
 
-
+#' this function computes the confidence intervals for the sum scores
+#' computes two CIs, one for the table and one for the plot in JASP
+#' out is the output matrix from the sem functions, that is, it contains the sem values
+#' scores is a vector with the sum scores
+#' ciLevelTable is the confidence level for the table
+#' ciLevelPlots is the confidence level for the plots
 .semComputeCis <- function(out, scores, ciLevelTable, ciLevelPlots) {
 
   cis <- matrix(NA, nrow(out), 4)
