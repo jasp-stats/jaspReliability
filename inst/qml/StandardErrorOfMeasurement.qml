@@ -178,7 +178,7 @@ Form
 		IntegerField
 		{
 			name: "minimumGroupSize"
-			label: qsTr("Minimum observations per group") 
+			label: qsTr("Minimum number of observations per score group") 
 			min: 1
 			defaultValue: 10
 		}
