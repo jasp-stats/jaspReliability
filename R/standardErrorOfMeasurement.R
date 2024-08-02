@@ -30,6 +30,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   .semCreateMainContainer(jaspResults, options)
 
+  options <- .semOptionsHelper(options, dataset)
+
   .semComputeCoefficients(jaspResults, dataset, options, ready)
 
   .semComputeSumScoresCi(jaspResults, dataset, options, ready)
@@ -92,11 +94,12 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (!ready) return()
 
-  nc <- length(unique(c(as.matrix(dataset))))
   scrs <- .semCounts(dataset, nc)
   counts <- scrs$counts
   scores <- scrs$scores
   countsState <- createJaspState(scrs, dependencies = NULL)
+  nc <- length(unique(c(as.matrix(dataset)))) # may be needed for IRT
+
   jaspResults[["semMainContainer"]][["countsState"]] <- countsState
 
   # first the average sem
@@ -113,76 +116,20 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     jaspResults[["semMainContainer"]][["averageState"]] <- averageState
   }
 
-  if (options[["thorndike"]]) {
-    if (is.null(jaspResults[["semMainContainer"]][["thorndikeState"]])) {
-      out <- .semThorn(dataset, nc = nc, caseMin = options[["minimumGroupSize"]], scrs)
-      thorndikeState <- createJaspState(out, dependencies = c("thorndike", "minimumGroupSize", "ciLevel"))
-      jaspResults[["semMainContainer"]][["thorndikeState"]] <- thorndikeState
-    }
-  }
+  selected <- options[["selected"]]
 
-  if (options[["feldt"]]) {
-    if (is.null(jaspResults[["semMainContainer"]][["feldtState"]])) {
-      out <- .semFeldt(dataset, K = as.numeric(options[["feldtNumberOfSplits"]]), nc = nc, caseMin = options[["minimumGroupSize"]],
-                       scrs)
-      feldtState <- createJaspState(out, dependencies = c("feldt", "feldtNumberOfSplits", "minimumGroupSize"))
-      jaspResults[["semMainContainer"]][["feldtState"]] <- feldtState
-    }
-  }
-
-  if (options[["mollenkopfFeldt"]]) {
-    if (is.null(jaspResults[["semMainContainer"]][["mfState"]])) {
-      out <- .semMF(dataset, K = as.numeric(options[["mollenkopfFeldtNumberOfSplits"]]), nc = nc,
-                    n_poly = options[["mollenkopfFeldtPolyDegree"]], scrs)
-      mfState <- createJaspState(out, dependencies = c("mollenkopfFeldt", "mollenkopfFeldtNumberOfSplits",
-                                                          "mollenkopfFeldtPolyDegree"))
-      jaspResults[["semMainContainer"]][["mfState"]] <- mfState
-    }
-  }
-
-  if (options[["anova"]]) {
-    if (is.null(jaspResults[["semMainContainer"]][["anovaState"]])) {
-      out <- .semAnova(dataset, nc = nc, caseMin = options[["minimumGroupSize"]], scrs)
-      anovaState <- createJaspState(out, dependencies = c("anova", "minimumGroupSize"))
-      jaspResults[["semMainContainer"]][["anovaState"]] <- anovaState
-    }
-  }
-
-  # works for both data types
-  if (options[["irt"]]) {
-    if (is.null(jaspResults[["semMainContainer"]][["irtState"]])) {
-      out <- .semIrt(dataset, nc = nc, scores)
-      irtState <- createJaspState(out, dependencies = "irt")
-      jaspResults[["semMainContainer"]][["irtState"]] <- irtState
-    }
-  }
-
-  if (any(options[["lord"]], options[["keats"]], options[["lord2"]]) && nc > 2) {
-    .quitAnalysis(gettext("The Lord, Keats, and Lord's compound methods are only available for binary data."))
-  }
-
-  # only for binary data
-  if (options[["lord"]]) {
-    if (is.null(jaspResults[["semMainContainer"]][["lordState"]])) {
-      out <- .semLord(ncol(dataset), scrs)
-      lordState <- createJaspState(out, dependencies = "lord")
-      jaspResults[["semMainContainer"]][["lordState"]] <- lordState
-    }
-  }
-
-  if (options[["keats"]]) {
-    if (is.null(jaspResults[["semMainContainer"]][["keatsState"]])) {
-      out <- .semKeats(dataset, options, scrs)
-      keatsState <- createJaspState(out, dependencies = "keats")
-      jaspResults[["semMainContainer"]][["keatsState"]] <- keatsState
-    }
-  }
-
-  if (options[["lord2"]]) {
-    if (is.null(jaspResults[["semMainContainer"]][["lord2State"]])) {
-      out <- .semLord2(dataset, as.numeric(options[["lord2NumberOfSplits"]]), scrs, options[["minimumGroupSize"]])
-      lord2State <- createJaspState(out, dependencies = c("lord2", "lord2NumberOfSplits", "minimumGroupSize"))
-      jaspResults[["semMainContainer"]][["lord2State"]] <- lord2State
+  if (length(selected) > 0) {
+    method <- names(selected)
+    # at least one method is selected
+    for (i in 1:length(selected)) {
+      if (is.na(selected[[i]][["name"]])) {
+        .quitAnalysis(gettext("The Lord, Keats, and Lord's compound method are only available for binary data."))
+      }
+      if (is.null(jaspResults[["semMainContainer"]][[paste0(method[i], "State")]])) {
+        out <- eval(parse(text = selected[[i]][["funString"]]))
+        state <- createJaspState(out, dependencies = selected[[i]][["dependencies"]])
+        jaspResults[["semMainContainer"]][[paste0(method[i], "State")]] <- state
+      }
     }
   }
 
@@ -196,84 +143,27 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (!options[["sumScoreCiTable"]] && !options[["sumScoreCiPlots"]]) return()
 
-  if (!any(c(options[["thorndike"]], options[["feldt"]], options[["mollenkopfFeldt"]], options[["anova"]],
-            options[["irt"]], options[["lord"]], options[["keats"]], options[["lord2"]]))) return()
-
   scrs <- jaspResults[["semMainContainer"]][["countsState"]]$object
+
   dtFill <- list(table = data.frame(score = scrs$scores), plots = data.frame(score = scrs$scores))
 
-  # all of this should be so fast we do not need dependency checks...
-  if (options[["thorndike"]]) {
-    out <- jaspResults[["semMainContainer"]][["thorndikeState"]]$object
-    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
-    dtFill$table$lowerThorn <- cis[, 1]
-    dtFill$table$upperThorn <- cis[, 2]
-    dtFill$plots$lowerThorn <- cis[, 3]
-    dtFill$plots$upperThorn <- cis[, 4]
-  }
+  selected <- options[["selected"]]
+  if (length(selected) > 0) {
+    method <- names(selected)
+    # at least one method is selected
+    for (i in 1:length(selected)) {
+      out <- jaspResults[["semMainContainer"]][[paste0(method[i], "State")]]$object
 
-  if (options[["feldt"]]) {
-    out <- jaspResults[["semMainContainer"]][["feldtState"]]$object
-    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
-    dtFill$table$lowerFeldt <- cis[, 1]
-    dtFill$table$upperFeldt <- cis[, 2]
-    dtFill$plots$lowerFeldt <- cis[, 3]
-    dtFill$plots$upperFeldt <- cis[, 4]
-  }
+      if (!is.null(names(out))) { # then we have IRT and actually need to decide which of the scores to take
+        out <- out$binned
+      }
 
-  if (options[["mollenkopfFeldt"]]) {
-    out <- jaspResults[["semMainContainer"]][["mfState"]]$object
-    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
-    dtFill$table$lowerMoll <- cis[, 1]
-    dtFill$table$upperMoll <- cis[, 2]
-    dtFill$plots$lowerMoll <- cis[, 3]
-    dtFill$plots$upperMoll <- cis[, 4]
-  }
-
-  if (options[["anova"]]) {
-    out <- jaspResults[["semMainContainer"]][["anovaState"]]$object
-    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
-    dtFill$table$lowerAnova <- cis[, 1]
-    dtFill$table$upperAnova <- cis[, 2]
-    dtFill$plots$lowerAnova <- cis[, 3]
-    dtFill$plots$upperAnova <- cis[, 4]
-  }
-
-  if (options[["irt"]]) {
-    nc <- length(unique(c(as.matrix(dataset)))) # needed for IRT
-    out <- jaspResults[["semMainContainer"]][["irtState"]]$object$binned
-    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
-    dtFill$table$lowerIrt <- cis[, 1]
-    dtFill$table$upperIrt <- cis[, 2]
-    dtFill$plots$lowerIrt <- cis[, 3]
-    dtFill$plots$upperIrt <- cis[, 4]
-  }
-
-  if (options[["lord"]]) {
-    out <- jaspResults[["semMainContainer"]][["lordState"]]$object
-    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
-    dtFill$table$lowerLord <- cis[, 1]
-    dtFill$table$upperLord <- cis[, 2]
-    dtFill$plots$lowerLord <- cis[, 3]
-    dtFill$plots$upperLord <- cis[, 4]
-  }
-
-  if (options[["keats"]]) {
-    out <- jaspResults[["semMainContainer"]][["keatsState"]]$object
-    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
-    dtFill$table$lowerKeats <- cis[, 1]
-    dtFill$table$upperKeats <- cis[, 2]
-    dtFill$plots$lowerKeats <- cis[, 3]
-    dtFill$plots$upperKeats <- cis[, 4]
-  }
-
-  if (options[["lord2"]]) {
-    out <- jaspResults[["semMainContainer"]][["lord2State"]]$object
-    cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
-    dtFill$table$lowerLord2 <- cis[, 1]
-    dtFill$table$upperLord2 <- cis[, 2]
-    dtFill$plots$lowerLord2 <- cis[, 3]
-    dtFill$plots$upperLord2 <- cis[, 4]
+      cis <- .semComputeCis(out, scrs$scores, options[["ciLevelTable"]], options[["ciLevelPlots"]])
+      dtFill[["table"]][[paste0("lower", method[i])]] <- cis[, 1]
+      dtFill[["table"]][[paste0("upper", method[i])]] <- cis[, 2]
+      dtFill[["plots"]][[paste0("lower", method[i])]] <- cis[, 3]
+      dtFill[["plots"]][[paste0("upper", method[i])]] <- cis[, 4]
+    }
   }
 
   ciDataState <- createJaspState(dtFill,
@@ -303,8 +193,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   coefficientTable$position <- 1
   jaspResults[["semMainContainer"]][["coefficientTable"]] <- coefficientTable
 
-  nc <- length(unique(c(as.matrix(dataset)))) # needed for IRT
-
   coefficientTable$addColumnInfo(name = "score", title = gettext("Sum score"), type = "string")
   coefficientTable$addColumnInfo(name = "average", title = gettext("Traditional"), type = "number")
 
@@ -315,10 +203,10 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   dtFill$average <- average$est
 
   if (!options[["hideTable"]]) {
-    if (any(c(options[["thorndike"]], options[["feldt"]], options[["mollenkopfFeldt"]], options[["anova"]],
-              options[["irt"]], options[["lord"]], options[["keats"]], options[["lord2"]]))) {
 
-      # the repetition of this seems annoying...
+    selected <- options[["selected"]]
+    if (length(selected) > 0) {  # at least one method is selected
+
       coefficientTable <- createJaspTable(gettext("Standard error of measurement"))
       coefficientTable$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]])
       coefficientTable$position <- 1
@@ -332,53 +220,18 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
       counts <- scrs$counts
       dtFill <- data.frame(score = scrs$scores)
       dtFill$counts <- counts
-
       ci <- format(100 * options[["ciLevel"]], digits = 3, drop0trailing = TRUE)
 
-      if (options[["thorndike"]]) {
-        out <- jaspResults[["semMainContainer"]][["thorndikeState"]]$object
-        coefficientTable$addColumnInfo(name = "thorndike", title = gettext("Thorndike"), type = "number")
-        dtFill$thorndike <- out[, 2]
-      }
-      if (options[["feldt"]]) {
-        out <- jaspResults[["semMainContainer"]][["feldtState"]]$object
-        coefficientTable$addColumnInfo(name = "feldt", title = gettext("Feldt"), type = "number")
-        dtFill$feldt <- out[, 2]
-      }
-      if (options[["mollenkopfFeldt"]]) {
-        out <- jaspResults[["semMainContainer"]][["mfState"]]$object
-        coefficientTable$addColumnInfo(name = "moll", title = gettext("Mollenkopf-Feldt"), type = "number")
-        dtFill$moll <- out[, 2]
-      }
-      if (options[["anova"]]) {
-        out <- jaspResults[["semMainContainer"]][["anovaState"]]$object
-        coefficientTable$addColumnInfo(name = "anova", title = gettext("ANOVA"), type = "number")
-        dtFill$anova <- out[, 2]
-      }
+      method <- names(selected)
 
-      if (options[["irt"]]) {
-        irtTitle <- ifelse(nc == 2, gettext("IRT-2PL"), gettext("IRT-GRM"))
-        out <- jaspResults[["semMainContainer"]][["irtState"]]$object$binned
-        coefficientTable$addColumnInfo(name = "irt", title = irtTitle, type = "number")
-        dtFill$irt <- out[, 2]
-      }
+      for (i in 1:length(selected)) {
+        out <- jaspResults[["semMainContainer"]][[paste0(method[i], "State")]]$object
 
-      if (options[["lord"]]) {
-        out <- jaspResults[["semMainContainer"]][["lordState"]]$object
-        coefficientTable$addColumnInfo(name = "lord", title = gettext("Lord"), type = "number")
-        dtFill$lord <- out[, 2]
-      }
-
-      if (options[["keats"]]) {
-        out <- jaspResults[["semMainContainer"]][["keatsState"]]$object
-        coefficientTable$addColumnInfo(name = "keats", title = gettext("Keats"), type = "number")
-        dtFill$keats <- out[, 2]
-      }
-
-      if (options[["lord2"]]) {
-        out <- jaspResults[["semMainContainer"]][["lord2State"]]$object
-        coefficientTable$addColumnInfo(name = "lord2", title = gettext("Lord's compound"), type = "number")
-        dtFill$lord2 <- out[, 2]
+        if (!is.null(names(out))) { # then we have IRT and actually need to decide which of the scores to take
+          out <- out$binned
+        }
+        coefficientTable$addColumnInfo(name = method[i], title = selected[[i]][["name"]], type = "number")
+        dtFill[[method[i]]] <- out[, 2]
       }
     }
   }
@@ -401,67 +254,21 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   ciTable$position <- 2
   jaspResults[["semMainContainer"]][["ciTable"]] <- ciTable
 
-
   ciTable$addColumnInfo(name = "score", title = gettext("Sum score"), type = "string")
   ci <- format(100 * options[["ciLevelTable"]], digits = 3, drop0trailing = TRUE)
 
   ciData <- jaspResults[["semMainContainer"]][["ciDataState"]]$object$table
-  if (options[["thorndike"]]) {
-    ciTable$addColumnInfo(name = "lowerThorn", title = gettextf("Lower %s%% CI", ci), type = "number",
-                                   overtitle = gettext("Thorndike"))
-    ciTable$addColumnInfo(name = "upperThorn", title = gettextf("Upper %s%% CI", ci), type = "number",
-                                   overtitle = gettext("Thorndike"))
-  }
 
-  if (options[["feldt"]]) {
-    ciTable$addColumnInfo(name = "lowerFeldt", title = gettextf("Lower %s%% CI", ci), type = "number",
-                          overtitle = gettext("Feldt"))
-    ciTable$addColumnInfo(name = "upperFeldt", title = gettextf("Upper %s%% CI", ci), type = "number",
-                          overtitle = gettext("Feldt"))
-  }
+  selected <- options[["selected"]]
 
-  if (options[["mollenkopfFeldt"]]) {
-    ciTable$addColumnInfo(name = "lowerMoll", title = gettextf("Lower %s%% CI", ci), type = "number",
-                          overtitle = gettext("Mollenkopf-Feldt"))
-    ciTable$addColumnInfo(name = "upperMoll", title = gettextf("Upper %s%% CI", ci), type = "number",
-                          overtitle = gettext("Mollenkopf-Feldt"))
-  }
-
-  if (options[["anova"]]) {
-    ciTable$addColumnInfo(name = "lowerAnova", title = gettextf("Lower %s%% CI", ci), type = "number",
-                          overtitle = gettext("Anova"))
-    ciTable$addColumnInfo(name = "upperAnova", title = gettextf("Upper %s%% CI", ci), type = "number",
-                          overtitle = gettext("Anova"))
-  }
-
-  if (options[["irt"]]) {
-    nc <- length(unique(c(as.matrix(dataset)))) # needed for IRT
-    irtTitle <- ifelse(nc == 2, gettext("IRT-2PL"), gettext("IRT-GRM"))
-    ciTable$addColumnInfo(name = "lowerIrt", title = gettextf("Lower %s%% CI", ci), type = "number",
-                          overtitle = irtTitle)
-    ciTable$addColumnInfo(name = "upperIrt", title = gettextf("Upper %s%% CI", ci), type = "number",
-                          overtitle = irtTitle)
-  }
-
-  if (options[["lord"]]) {
-    ciTable$addColumnInfo(name = "lowerLord", title = gettextf("Lower %s%% CI", ci), type = "number",
-                          overtitle = gettext("Lord"))
-    ciTable$addColumnInfo(name = "upperLord", title = gettextf("Upper %s%% CI", ci), type = "number",
-                          overtitle = gettext("Lord"))
-  }
-
-  if (options[["keats"]]) {
-    ciTable$addColumnInfo(name = "lowerKeats", title = gettextf("Lower %s%% CI", ci), type = "number",
-                          overtitle = gettext("Keats"))
-    ciTable$addColumnInfo(name = "upperKeats", title = gettextf("Upper %s%% CI", ci), type = "number",
-                          overtitle = gettext("Keats"))
-  }
-
-  if (options[["lord2"]]) {
-    ciTable$addColumnInfo(name = "lowerLord2", title = gettextf("Lower %s%% CI", ci), type = "number",
-                          overtitle = gettext("Lord's compound"))
-    ciTable$addColumnInfo(name = "upperLord2", title = gettextf("Upper %s%% CI", ci), type = "number",
-                          overtitle = gettext("Lord's compound"))
+  if (length(selected) > 0) { # at least one method is selected
+    method <- names(selected)
+    for (i in 1:length(selected)) {
+      ciTable$addColumnInfo(name = paste0("lower", method[i]), title = gettextf("Lower %s%% CI", ci), type = "number",
+                            overtitle = selected[[i]][["name"]])
+      ciTable$addColumnInfo(name = paste0("upper", method[i]), title = gettextf("Upper %s%% CI", ci), type = "number",
+                            overtitle = selected[[i]][["name"]])
+    }
   }
 
   ciTable$setData(ciData)
@@ -497,65 +304,25 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   if (!is.null(jaspResults[["semMainContainer"]][["pointPlots"]]) || !options[["pointPlots"]]
       || !ready || jaspResults[["semMainContainer"]]$getError()) {return()}
 
-  nc <- length(unique(c(as.matrix(dataset)))) # may be needed for IRT
-
   pointPlotsContainer <- createJaspContainer(title = gettext("Plots"))
   pointPlotsContainer$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]], options = "pointPlots")
   jaspResults[["semMainContainer"]][["pointPlotsContainer"]] <- pointPlotsContainer
-  if (options[["thorndike"]]) {
-    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["thorndikeState"]],
-                                  title = gettext("Thorndike"))
 
-    pointPlotsContainer[["thorndikePlot"]] <- pl
-  }
+  selected <- options[["selected"]]
+  if (length(selected) > 0) {
+    method <- names(selected)
+    # at least one method is selected
+    for (i in 1:length(selected)) {
+      out <- jaspResults[["semMainContainer"]][[paste0(method[i], "State")]]
+      irt <- FALSE
+      if (!is.null(names(out$object))) { # then we have IRT and actually need to decide which of the scores to take
+        irt <- TRUE
+      }
 
-  if (options[["feldt"]]) {
-    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["feldtState"]],
-                               title = gettext("Feldt"))
-
-    pointPlotsContainer[["feldtPlot"]] <- pl
-  }
-
-  if (options[["mollenkopfFeldt"]]) {
-    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["mfState"]],
-                               title = gettext("Mollenkopf-Feldt"))
-
-    pointPlotsContainer[["mfPlot"]] <- pl
-  }
-
-  if (options[["anova"]]) {
-    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["anovaState"]],
-                               title = gettext("ANOVA"))
-
-    pointPlotsContainer[["anovaPlot"]] <- pl
-  }
-
-  if (options[["irt"]]) {
-    irtTitle <- ifelse(nc == 2, gettext("IRT-2PL"), gettext("IRT-GRM"))
-    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["irtState"]],
-                               title = irtTitle, irt = TRUE)
-
-    pointPlotsContainer[["irtPlot"]] <- pl
-  }
-
-  if (options[["lord"]]) {
-    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["lordState"]],
-                                  title = gettext("Lord"))
-    pointPlotsContainer[["lordPlot"]] <- pl
-  }
-
-  if (options[["keats"]]) {
-    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["keatsState"]],
-                                  title = gettext("Keats"))
-
-    pointPlotsContainer[["keatsPlot"]] <- pl
-  }
-
-  if (options[["lord2"]]) {
-    pl <- .semMakeSinglePointPlot(resultsObject = jaspResults[["semMainContainer"]][["lord2State"]],
-                                  title = gettext("Lord's compound"))
-
-    pointPlotsContainer[["lordPlot"]] <- pl
+      pl <- .semMakeSinglePointPlot(resultsObject = out,
+                                    title = selected[[i]][["name"]], irt = irt)
+      pointPlotsContainer[[paste0(method[i], "Plot")]] <- pl
+    }
   }
 
   return()
@@ -566,13 +333,13 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (!irt) {
     dat <- as.data.frame(resultsObject$object)
-    colnames(dat) <- c("score", "sem")
+    colnames(dat)[1:2] <- c("score", "sem")
     pl <- ggplot2::ggplot(dat) +
       ggplot2::geom_point(ggplot2::aes(x = score, y = sem), size = 2.5) +
       ggplot2::labs(x = gettext("Sum Score"), y = gettext("sem"))
   } else {
     dat <- as.data.frame(resultsObject$object$unbinned)
-    colnames(dat) <- c("score", "sem")
+    colnames(dat)[1:2] <- c("score", "sem")
     pl <- ggplot2::ggplot(dat) +
       ggplot2::geom_line(ggplot2::aes(x = score, y = sem), size = 2.5) +
       ggplot2::labs(x = gettext("Sum Score"), y = gettext("sem"))
@@ -595,10 +362,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     return()
   }
 
-
-
-  if (any(c(options[["thorndike"]], options[["feldt"]], options[["mollenkopfFeldt"]], options[["anova"]],
-            options[["irt"]], options[["lord"]], options[["keats"]], options[["lord2"]]))) {
+  selected <- options[["selected"]]
+  if (length(selected) > 0) { # at least one method is selected
 
     nit <- ncol(dataset)
     nc <- length(unique(c(as.matrix(dataset))))
@@ -606,52 +371,17 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     dt <- data.frame(score = integer(), sem = double(), Type = character())
     dtIRT <- NULL
 
-    if (options[["thorndike"]]) {
-      out <- jaspResults[["semMainContainer"]][["thorndikeState"]]$object
-      dtBind <- data.frame(score = scores, sem = out[, 2], Type = "Thorndike")
-      dt <- rbind(dt, dtBind)
+    method <- names(selected)
+    for (i in 1:length(selected)) {
+      out <- jaspResults[["semMainContainer"]][[paste0(method[i], "State")]]$object
+      if (!is.null(names(out))) { # then we have IRT and actually need to decide which of the scores to take
+        out <- out$unbinned
+        dtIRT <- data.frame(score = out[, 1], sem = out[, 2], Type = selected[[i]][["name"]])
+      } else {
+        dtBind <- data.frame(score = scores, sem = out[, 2], Type = selected[[i]][["name"]])
+        dt <- rbind(dt, dtBind)
+      }
     }
-
-    if (options[["feldt"]]) {
-      out <- jaspResults[["semMainContainer"]][["feldtState"]]$object
-      dtBind <- data.frame(score = scores, sem = out[, 2], Type = "Feldt")
-      dt <- rbind(dt, dtBind)
-    }
-    if (options[["mollenkopfFeldt"]]) {
-      out <- jaspResults[["semMainContainer"]][["mfState"]]$object
-      dtBind <- data.frame(score = scores, sem = out[, 2], Type = "MF")
-      dt <- rbind(dt, dtBind)
-    }
-    if (options[["anova"]]) {
-      out <- jaspResults[["semMainContainer"]][["anovaState"]]$object
-      dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("ANOVA"))
-      dt <- rbind(dt, dtBind)
-    }
-
-    if (options[["irt"]]) {
-      irtTitle <- ifelse(nc == 2, gettext("IRT-2PL"), gettext("IRT-GRM"))
-      out <- jaspResults[["semMainContainer"]][["irtState"]]$object$unbinned
-      dtIRT <- data.frame(score = out[, 1], sem = out[, 2], Type = irtTitle)
-    }
-
-    if (options[["lord"]]) {
-      out <- jaspResults[["semMainContainer"]][["lordState"]]$object
-      dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("Lord"))
-      dt <- rbind(dt, dtBind)
-    }
-
-    if (options[["keats"]]) {
-      out <- jaspResults[["semMainContainer"]][["keatsState"]]$object
-      dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("Keats"))
-      dt <- rbind(dt, dtBind)
-    }
-
-    if (options[["lord2"]]) {
-      out <- jaspResults[["semMainContainer"]][["lord2State"]]$object
-      dtBind <- data.frame(score = scores, sem = out[, 2], Type = gettext("Lord's compound"))
-      dt <- rbind(dt, dtBind)
-    }
-
 
     # so that the legend does not become alphabetically ordered:
     levs <- unique(dt$Type)
@@ -660,19 +390,21 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     pl <- ggplot2::ggplot() +
       ggplot2::geom_point(data = dt, ggplot2::aes(x = score, y = sem, shape = Type), size = 2.5) +
       ggplot2::labs(x = "Sum Score", y = "sem") +
-      ggplot2::theme(plot.margin = ggplot2::margin(t=1,r=5,b=1.5,l=1, "cm"))
+      ggplot2::theme(plot.margin = ggplot2::margin(t=1,r=5,b=1.5,l=1, "cm")) +
+      jaspGraphs::themeJaspRaw(legend.position = "right") + jaspGraphs::geom_rangeframe()
 
     if (!is.null(dtIRT)) {
       pl <- pl + ggplot2::geom_line(data = dtIRT, ggplot2::aes(x = score, y = sem, linetype = ""), color = "black", linewidth = 1) +
         ggplot2::scale_linetype_discrete(name = "", labels = dtIRT[1, 3])
       # move the legend of IRT underneath the other:
       pl <- pl + ggplot2::guides(linetype = ggplot2::guide_legend(order = 0),
-             shape = ggplot2::guide_legend(order = 1))
+                                 shape = ggplot2::guide_legend(order = 1))
     }
 
-    plot <- createJaspPlot(jaspGraphs::themeJaspRaw(pl, legend.position = "right"), title = gettext("Combined plot"),
+    plot <- createJaspPlot(pl, title = gettext("Combined plot"),
                            width = 600)
-    plot$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]])
+    plot$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]],
+                  options = "combinedPointPlot")
     jaspResults[["semMainContainer"]][["combinedPlot"]] <- plot
   }
 
@@ -694,65 +426,35 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   ciData <- jaspResults[["semMainContainer"]][["ciDataState"]]$object$plots
   scores <- jaspResults[["semMainContainer"]][["countsState"]]$object$scores
 
-  if (options[["thorndike"]]) {
-    ciDataUse <- ciData[, c("score", "lowerThorn", "upperThorn")]
-    pl <- .semMakeSingleCiPlot(title = gettext("Thorndike"), ciData = ciDataUse,
-                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
-    ciPlotsContainer[["thorndikePlot"]] <- pl
-  }
+  selected <- options[["selected"]]
+  if (length(selected) > 0) { # at least one method is selected
 
-  if (options[["feldt"]]) {
-    ciDataUse <- ciData[, c("score", "lowerFeldt", "upperFeldt")]
-    pl <- .semMakeSingleCiPlot(title = gettext("Feldt"), ciData = ciDataUse,
-                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
-    ciPlotsContainer[["feldtPlot"]] <- pl
-  }
+    nit <- ncol(dataset)
+    nc <- length(unique(c(as.matrix(dataset))))
+    scores <- jaspResults[["semMainContainer"]][["countsState"]]$object$scores
+    dt <- data.frame(score = integer(), sem = double(), Type = character())
+    dtIRT <- NULL
 
-  if (options[["mollenkopfFeldt"]]) {
-    ciDataUse <- ciData[, c("score", "lowerMoll", "upperMoll")]
-    pl <- .semMakeSingleCiPlot(title = gettext("Mollenkopf-Feldt"), ciData = ciDataUse,
-                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
-    ciPlotsContainer[["mfPlot"]] <- pl
-  }
+    method <- names(selected)
+    for (i in 1:length(selected)) {
 
-  if (options[["anova"]]) {
-    ciDataUse <- ciData[, c("score", "lowerAnova", "upperAnova")]
-    pl <- .semMakeSingleCiPlot(title = gettext("Anova"), ciData = ciDataUse,
-                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
-    ciPlotsContainer[["anovaPlot"]] <- pl
-  }
+      if (method[i] == "irt") { # then we have IRT and actually need to decide which of the scores to take
+        outUnbinned <- jaspResults[["semMainContainer"]][["irtState"]]$object$unbinned
+        cis <- .semComputeCis(outUnbinned, outUnbinned[, 1], ciLevelTable = options[["ciLevelTable"]],
+                              ciLevelPlots = options[["ciLevelPlots"]])
+        lowerIrtUnbinned <- cis[, 3]
+        upperIrtUnbinned <- cis[, 4]
+        ciDataUse <- cbind(outUnbinned[, 1], lowerIrtUnbinned, upperIrtUnbinned)
+        irt <- TRUE
+      } else {
+        ciDataUse <- ciData[, c("score", paste0("lower", method[i]), paste0("upper", method[i]))]
+        irt <- FALSE
+      }
+      pl <- .semMakeSingleCiPlot(title = selected[[i]][["name"]], ciData = ciDataUse, irt = irt,
+                                 cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
+      ciPlotsContainer[[paste0(method[i], "Plot")]] <- pl
 
-  if (options[["irt"]]) {
-    irtTitle <- ifelse(nc == 2, gettext("IRT-2PL"), gettext("IRT-GRM"))
-    outUnbinned <- jaspResults[["semMainContainer"]][["irtState"]]$object$unbinned
-    cis <- .semComputeCis(outUnbinned, outUnbinned[, 1], options[["ciLevel"]])
-    lowerIrtUnbinned <- cis[, 1]
-    upperIrtUnbinned <- cis[, 2]
-    ciDataUse <- cbind(outUnbinned[, 1], lowerIrtUnbinned, upperIrtUnbinned)
-    pl <- .semMakeSingleCiPlot(title = irtTitle, ciData = ciDataUse, irt = TRUE,
-                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
-    ciPlotsContainer[["irtPlot"]] <- pl
-  }
-
-  if (options[["lord"]]) {
-    ciDataUse <- ciData[, c("score", "lowerLord", "upperLord")]
-    pl <- .semMakeSingleCiPlot(title = gettext("Lord"), ciData = ciDataUse,
-                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
-    ciPlotsContainer[["lordPlot"]] <- pl
-  }
-
-  if (options[["keats"]]) {
-    ciDataUse <- ciData[, c("score", "lowerKeats", "upperKeats")]
-    pl <- .semMakeSingleCiPlot(title = gettext("Keats"), ciData = ciDataUse,
-                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
-    ciPlotsContainer[["keatsPlot"]] <- pl
-  }
-
-  if (options[["lord2"]]) {
-    ciDataUse <- ciData[, c("score", "lowerLord2", "upperLord2")]
-    pl <- .semMakeSingleCiPlot(title = gettext("Lord2"), ciData = ciDataUse,
-                               cutoff = ifelse(options[["sumScoreCiPlotsCutoff"]], options[["sumScoreCiPlotsCutoffValue"]], NA))
-    ciPlotsContainer[["lord2Plot"]] <- pl
+    }
   }
 
   return()
@@ -830,7 +532,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   return(out)
 }
 
-.semMF <- function(X, K, nc, n_poly, scoresObj) {
+.semMollenkopfFeldt <- function(X, K, nc, n_poly, scoresObj) {
 
   prep <- .semPrepareSumScores(X, K)
   partSUMS <- prep$partSUMS
@@ -1126,3 +828,63 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   return(cis)
 }
+
+#' this might be the most important function :-
+.semOptionsHelper <- function(options, dataset) {
+
+  nc <- length(unique(c(as.matrix(dataset))))
+
+  # Define the options and their corresponding pretty names
+  optionsFull <- list(
+    thorndike = list(name = "Thorndike",
+                     funString = ".semThorn(dataset, nc = nc, caseMin = options$minimumGroupSize, scrs)",
+                     dependencies = c("thorndike", "minimumGroupSize")),
+    feldt = list(name = "Feldt",
+                 funString = ".semFeldt(dataset, K = as.numeric(options$feldtNumberOfSplits), nc = nc, caseMin = options$minimumGroupSize, scrs)",
+                 dependencies = c("feldt", "feldtNumberOfSplits", "minimumGroupSize")),
+    mollenkopfFeldt = list(name = "Mollenkopf-Feldt",
+                           funString = ".semMollenkopfFeldt(dataset, K = as.numeric(options$mollenkopfFeldtNumberOfSplits), nc = nc, n_poly = options$mollenkopfFeldtPolyDegree, scrs)",
+                           dependencies = c("mollenkopfFeldt", "mollenkopfFeldtNumberOfSplits", "mollenkopfFeldtPolyDegree")),
+    anova = list(name = "ANOVA",
+                 funString = ".semAnova(dataset, nc = nc, caseMin = options$minimumGroupSize, scrs)",
+                 dependencies = c("anova", "minimumGroupSize")),
+    irt = list(name = ifelse(nc == 2, "IRT-2PLM", "IRT-GRM"),
+               funString = ".semIrt(dataset, nc = nc, scores)",
+               dependencies = "irt"),
+    lord = switch(as.character(nc),
+                  "2" = list(name = "Lord",
+                             funString = ".semLord(ncol(dataset), scrs)",
+                             dependencies = "lord"),
+                  list(name = NA,
+                       funString = NA,
+                       dependencies = NA)),
+    keats = switch(as.character(nc),
+                   "2" = list(name = "Keats",
+                              funString = ".semKeats(dataset, options, scrs)",
+                              dependencies = "keats"),
+                   list(name = NA,
+                        funString = NA,
+                        dependencies = NA)),
+    lord2 = switch(as.character(nc),
+                   "2" = list(name = "Lord's compound",
+                              funString = ".semLord2(dataset, as.numeric(options$lord2NumberOfSplits), scrs, options$minimumGroupSize)",
+                              dependencies = c("lord2", "lord2NumberOfSplits", "minimumGroupSize")),
+                   list(name = NA,
+                        funString = NA,
+                        dependencies = NA))
+
+  )
+
+  # Initialize the output list
+  outList <- list()
+  # Loop through the options and append to the list if the option is selected
+  for (option in names(optionsFull)) {
+    if (options[[option]]) {
+      outList[[option]] <- optionsFull[[option]]
+    }
+  }
+
+  options[["selected"]] <- outList
+  return(options)
+}
+
