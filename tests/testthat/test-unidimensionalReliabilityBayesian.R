@@ -351,7 +351,7 @@ test_that("McDonald's omega plot matches with adjusted priors", {
 test_that("Probability that Reliability Statistic is Larger than 0.70 and Smaller than 1.00 table results match with adjusted priors", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_probabilityTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.3, 0.521665798540962, "McDonald's <unicode>", 0.99, 0.103854227264579,
+                                 list(0.3, 0.521665798540962, "McDonald's <unicode>", 0.99, 0.103837082022117,
                                       "Guttman's <unicode>2"))
 })
 
@@ -465,7 +465,7 @@ test_that("Probability that Reliability Statistic is Larger than 0.20 and Smalle
   jaspTools::expect_equal_tables(table,
                                  list(0.211111111111111, 0.322277450512426, "McDonald's <unicode>",
                                       0.546666666666667, 0.327282806190898, "Cronbach's <unicode>",
-                                      0.206666666666667, 0.233873326185613, "Guttman's <unicode>2",
+                                      0.206666666666667, 0.233840603713808, "Guttman's <unicode>2",
                                       0.328888888888889, 0.20968370679484, "Guttman's <unicode>6",
                                       0.00666666666666671, 0.0557055139950303, "Greatest Lower Bound"
                                  ))
