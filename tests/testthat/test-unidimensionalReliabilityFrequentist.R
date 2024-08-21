@@ -41,15 +41,20 @@ test_that("Frequentist Individual Item Reliability Statistics table results matc
 test_that("Frequentist Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.525637056655306, 0.448585203881531, 0.490572327059451, 0.516365401424283,
-                                      0.567466299403832, 0.191748160936288, 2.93348815617, 2.79198402042951,
-                                      "Point estimate", 0.403771687499453, 0.279137827611668, 0.359901964004142,
-                                      0.396402831936408, 0.459081486688799, 0.0950770018748302, 2.4742476519306,
-                                      2.50253823732555, "90% CI lower bound", 0.626298737852686, 0.586595705707241,
-                                      0.60076050080959, 0.628395738756313, 0.685340010046143, 0.28002617012781,
-                                      3.3927286604094, 3.16486028196314, "90% CI upper bound"))
+                                 list("McDonald's <unicode>", 0.525637056655307, 0.403771687499453,
+                                      "", 0.626298737852686, "Cronbach's <unicode>", 0.448585203881531,
+                                      0.279137827611669, "", 0.586595705707241, "Guttman's <unicode>2",
+                                      0.516365401424283, 0.396402831936408, "", 0.628395738756312,
+                                      "Guttman's <unicode>6", 0.490572327059451, 0.359901964004142,
+                                      "", 0.60076050080959, "Greatest Lower Bound", 0.567466299403832,
+                                      0.459081486688803, "", 0.685340010046143, "Average interitem correlation",
+                                      0.191748160936288, 0.0950770018748302, "", 0.280026170127809,
+                                      "mean", 2.93348815617, 2.4742476519306, "", 3.3927286604094,
+                                      "sd", 2.79198402042951, 2.50253823732555, "", 3.16486028196314
+                                 ))
 })
 
+# special options test
 options <- analysisOptions("unidimensionalReliabilityFrequentist")
 options$alphaIntervalMethod <- "bootstrapped"
 options$itemDeletedAlpha <- TRUE
@@ -79,7 +84,7 @@ set.seed(1)
 results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options)
 
 
-test_that("Frequentist Individual Item Reliability Statistics table results match for special options", {
+test_that("Frequentist Individual Item Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list(0.0192598705478672, 0.499115899922193, 0.0162871794638591, 0.529785814609134,
@@ -94,23 +99,24 @@ test_that("Frequentist Individual Item Reliability Statistics table results matc
                                  ))
 })
 
-test_that("Frequentist Scale Reliability Statistics table results match for special options", {
+test_that("Frequentist Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
-
-
   jaspTools::expect_equal_tables(table,
-                                 list(0.0471510241880039, 0.474438267321141, 0.0392336793613145, 0.517855238417142,
-                                      0.0684849632061198, 0.184127369413486, 2.764059782725, 5.48120849970767,
-                                      "Point estimate", 0.00702485789714729, 0.293267132435948, 0.00476660616888555,
-                                      0.394302611317106, 0.0149501819485384, 0.0939902180995729, 1.68976265760681,
-                                      4.81253858382921, "95% CI lower bound", 0.11513640292755, 0.61599605394659,
-                                      0.0878218264568898, 0.635557616289631, 0.216185154128616, 0.286242462411683,
-                                      3.83835690784319, 6.36738428322095, "95% CI upper bound"))
-
-
+                                 list("McDonald's <unicode>", 0.0471510241880039, 0.00702485789714753,
+                                      "", 0.115136402927551, "Cronbach's <unicode>", 0.474438267321141,
+                                      0.293267132435947, "", 0.615996053946591, "Guttman's <unicode>2",
+                                      0.517855238417142, 0.394302611317104, "", 0.63555761628963,
+                                      "Guttman's <unicode>6", 0.0392336793613145, 0.0047666061688859,
+                                      "", 0.0878218264568904, "Greatest Lower Bound", 0.0684849632061841,
+                                      0.0149501819485268, "", 0.216185154128673, "Average interitem correlation",
+                                      0.184127369413486, 0.0939902180995728, "", 0.286242462411683,
+                                      "mean", 2.764059782725, 1.68976265760682, "", 3.83835690784319,
+                                      "sd", 5.48120849970767, 4.81253858382921, "", 6.36738428322095
+                                 ))
 })
 
 
+# omega test
 options <- analysisOptions("unidimensionalReliabilityFrequentist")
 options$omegaFitMeasures <- TRUE
 options$bootstrapSamples <- 100
@@ -138,12 +144,12 @@ test_that("Frequentist Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   if (jaspBase::getOS() == "linux") {
     jaspTools::expect_equal_tables(table,
-                                   list(0.7917101, "Point estimate", 0.694692780642854, "95% CI lower bound",
-                                        0.85215986924174, "95% CI upper bound"))
+                                   list("McDonald's <unicode>", 0.7917101, 0.694692780642854,
+                                        "", 0.85215986924174))
   } else if (jaspBase::getOS() == "osx") {
     jaspTools::expect_equal_tables(table,
-                                   list(0.791710063361508, "Point estimate", 0.688063057831179, "95% CI lower bound",
-                                        0.854457118896833, "95% CI upper bound"))
+                                   list("McDonald's <unicode>", 0.791710063361508, 0.688063057831179,
+                                        "", 0.854457118896833))
   }
 })
 
@@ -156,6 +162,8 @@ test_that("Standardized Loadings of the Single-Factor Model table results match"
 })
 
 
+
+# disabled sample saving test
 options <- analysisOptions("unidimensionalReliabilityFrequentist")
 options$itemDeletedAlpha <- TRUE
 options$scaleAlpha <- TRUE
@@ -197,14 +205,18 @@ test_that("Frequentist Individual Item Reliability Statistics table results matc
                                       0.139002685382132, 3, 1.4213381090374, "facFive"))
 })
 
-test_that("Frequentist Scale Reliability Statistics table results match with disabled sample saving", {
+test_that("Frequentist Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.525637056655306, 0.448585203881531, 0.490572327059451, 0.516365401424283,
-                                      0.567466299403832, 0.191748160936288, 2.93348815617, 2.79198402042951,
-                                      "Point estimate", 0.403771687499453, 0.279137827611668, 0.359901964004142,
-                                      0.396402831936408, 0.459081486688799, 0.0950770018748302, 2.4742476519306,
-                                      2.50253823732555, "90% CI lower bound", 0.626298737852686, 0.586595705707241,
-                                      0.60076050080959, 0.628395738756313, 0.685340010046143, 0.28002617012781,
-                                      3.3927286604094, 3.16486028196314, "90% CI upper bound"))
+                                 list("McDonald's <unicode>", 0.525637056655307, 0.403771687499453,
+                                      "", 0.626298737852686, "Cronbach's <unicode>", 0.448585203881531,
+                                      0.279137827611669, "", 0.586595705707241, "Guttman's <unicode>2",
+                                      0.516365401424283, 0.396402831936408, "", 0.628395738756312,
+                                      "Guttman's <unicode>6", 0.490572327059451, 0.359901964004142,
+                                      "", 0.60076050080959, "Greatest Lower Bound", 0.567466299403832,
+                                      0.459081486688803, "", 0.685340010046143, "Average interitem correlation",
+                                      0.191748160936288, 0.0950770018748302, "", 0.280026170127809,
+                                      "mean", 2.93348815617, 2.4742476519306, "", 3.3927286604094,
+                                      "sd", 2.79198402042951, 2.50253823732555, "", 3.16486028196314
+                                 ))
 })
