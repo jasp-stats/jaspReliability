@@ -45,21 +45,14 @@ Form
 		{
 			title: qsTr("Scale Statistics")
 
-			CheckBox
-			{
-				name: 				"ci"
-				label:				qsTr("Confidence Interval")
-				checked: 			true
-				childrenOnSameRow: 	true
-				id:					interval
 
-				CIField
-				{
-					name:			"ciLevel";
-					label:			"";
-					defaultValue:	95;
-				}
+			CIField
+			{
+				name:			"ciLevel";
+				label:			qsTr("Confidence Interval");
+				defaultValue:	95;
 			}
+			
 
 			CheckBox
 			{
@@ -205,7 +198,6 @@ Form
 			{
 				title:		""
 				name:		"bootstrapType"
-				enabled:	interval.checked
 
 				RadioButton {value: "nonParametric"; label: qsTr("Non-parametric bootstrap"); checked: true}
 				RadioButton {value: "parametric"; label: qsTr("Parametric bootstrap")}
@@ -235,7 +227,6 @@ Form
 				{
 					title:		qsTr("Interval")
 					name:		"omegaIntervalMethod"
-					enabled:	interval.checked
 
 					RadioButton
 					{
