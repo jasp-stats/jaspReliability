@@ -951,10 +951,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   selected <- derivedOptions[["selectedEstimators"]]
   idxSelected <- which(selected)
 
-  print(opts);
-  print(selected)
-  print(idxSelected)
-
   dt <- data.frame(matrix(".", nrow = length(idxSelected), ncol = 0))
   if (any(selected)) {
     for (i in 1:length(idxSelected)) {
@@ -965,16 +961,9 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   # if no coefficients selected or not enough variables:
   if (!.is.empty(model)) {
     dt$se <- NA
-    dt$estimate <- unlist(model[["scaleResults"]][["est"]][idxSelected], use.names = FALSE)
-    # for (j in seq_along(idxSelected)) {
-    #   i <- idxSelected[j]
-    #   nm <- names(idxSelected[j])
-    #
-    #   newData <- data.frame(est = c(unlist(model[["scaleResults"]][["est"]][[nm]], use.names = FALSE),
-    #                                 unlist(model[["scaleResults"]][["conf"]][[nm]], use.names = FALSE)))
-    #   colnames(newData) <- paste0(colnames(newData), i)
-    #   allData <- cbind(allData, newData)
-    # }
+    dt$estimate <- unlist(model[["scaleResults"]][["est"]], use.names = FALSE)
+    dt$lower <- sapply(model[["scaleResults"]][["conf"]], function(x) x[1])
+    dt$upper <- sapply(model[["scaleResults"]][["conf"]], function(x) x[2])
 
   }
 
