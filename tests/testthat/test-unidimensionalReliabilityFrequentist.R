@@ -4,12 +4,8 @@ options$scaleAlpha <- TRUE
 options$averageInterItemCorrelation <- TRUE
 options$ciLevel <- 0.9
 options$omegafitMeasures <- TRUE
-options$itemDeletedGreatestLowerBound <- TRUE
-options$scaleGreatestLowerBound <- TRUE
 options$itemDeletedLambda2 <- TRUE
 options$scaleLambda2 <- TRUE
-options$itemDeletedLambda6 <- TRUE
-options$scaleLambda6 <- TRUE
 options$itemRestCorrelation <- TRUE
 options$itemDeletedOmega <- TRUE
 options$omegaEstimationMethod <- "pfa"
@@ -21,37 +17,32 @@ options$scaleSd <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options, makeTests = F)
+results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options, makeTests = FALSE)
 
 
-test_that("Frequentist Individual Item Reliability Statistics table results match for main options", {
+test_that("Frequentist Individual Item Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.55175372583945, 0.484048636403245, 0.525547257736439, 0.552088397696874,
-                                      0.560933950469576, 0.133621852799609, -0.18874858754, 1.05841360919316,
-                                      "contNormal", 0.230256036016286, 0.189422705634724, 0.196049691047581,
-                                      0.134230003173562, 0.223967986152454, 0.458747451806099, 0.05254867287,
+                                 list(0.55175372583945, 0.484048636403245, 0.525547257736439, 0.133621852799609,
+                                      -0.18874858754, 1.05841360919316, "contNormal", 0.230256036016288,
+                                      0.189422705634723, 0.196049691047581, 0.458747451806099, 0.05254867287,
                                       1.01183864387684, "contcor1", 0.28356284370461, 0.282664399460191,
-                                      0.283087797840773, 0.222670519008231, 0.284134273672075, 0.363943642284291,
-                                      0.06968807084, 1.0041493380131, "contcor2", 0.671633441261486,
-                                      0.535041083185576, 0.600687137005109, 0.558313196445623, 0.685678770613101,
+                                      0.283087797840773, 0.363943642284291, 0.06968807084, 1.0041493380131,
+                                      "contcor2", 0.671633441261487, 0.535041083185576, 0.60068713700511,
                                       0.139002685382132, 3, 1.4213381090374, "facFive"))
 })
 
 test_that("Frequentist Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list("McDonald's <unicode>", 0.525637056655307, 0.403771687499453,
-                                      "", 0.626298737852686, "Cronbach's <unicode>", 0.448585203881531,
+                                 list("Coefficient <unicode>", 0.525637056655307, 0.403771687499453,
+                                      "", 0.626298737852686, "Coefficient <unicode>", 0.448585203881531,
                                       0.279137827611669, "", 0.586595705707241, "Guttman's <unicode>2",
-                                      0.516365401424283, 0.396402831936408, "", 0.628395738756312,
-                                      "Guttman's <unicode>6", 0.490572327059451, 0.359901964004142,
-                                      "", 0.60076050080959, "Greatest Lower Bound", 0.567466299403832,
-                                      0.459081486688803, "", 0.685340010046143, "Average interitem correlation",
-                                      0.191748160936288, 0.0950770018748302, "", 0.280026170127809,
-                                      "mean", 2.93348815617, 2.4742476519306, "", 3.3927286604094,
-                                      "sd", 2.79198402042951, 2.50253823732555, "", 3.16486028196314
-                                 ))
+                                      0.490572327059451, 0.359901964004142, "", 0.60076050080959,
+                                      "Average interitem correlation", 0.191748160936288, 0.0950770018748302,
+                                      "", 0.280026170127809, "mean", 2.93348815617, 2.4742476519306,
+                                      "", 3.3927286604094, "sd", 2.79198402042951, 2.50253823732555,
+                                      "", 3.16486028196314))
 })
 
 # special options test
@@ -62,12 +53,8 @@ options$alphaType <- "standardized"
 options$scaleAlpha <- TRUE
 options$averageInterItemCorrelation <- TRUE
 options$bootstrapType <- "parametric"
-options$itemDeletedGreatestLowerBound <- TRUE
-options$scaleGreatestLowerBound <- TRUE
 options$itemDeletedLambda2 <- TRUE
 options$scaleLambda2 <- TRUE
-options$itemDeletedLambda6 <- TRUE
-options$scaleLambda6 <- TRUE
 options$itemRestCorrelation <- TRUE
 options$itemDeletedOmega <- TRUE
 options$omegaEstimationMethod <- "pfa"
@@ -81,20 +68,17 @@ options$scaleSd <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "debMiss30")
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options)
-
+results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options, makeTests = FALSE)
 
 test_that("Frequentist Individual Item Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.0192598705478672, 0.499115899922193, 0.0162871794638591, 0.529785814609134,
-                                      0.0265192931578479, 0.197671423943988, -0.18874858754, 1.05841360919316,
-                                      "contNormal", 0.0309308512589049, 0.173583399426978, 0.02887162264849,
-                                      0.142434129645294, 0.0490584701419857, 0.180747669167931, 0.05254867287,
-                                      1.01183864387684, "contcor1", 0.0466790689222427, 0.325209102320569,
-                                      0.0377062864873144, 0.252472824196733, 0.0611690101495298, 0.0513962438424752,
-                                      0.06968807084, 1.0041493380131, "contcor2", 0.671633441261486,
-                                      0.542545781005174, 0.600687137005109, 0.558313196445623, 0.685678770613101,
+                                 list(0.0192598705478673, 0.499115899922193, 0.0162871794638591, 0.197671423943988,
+                                      -0.18874858754, 1.05841360919316, "contNormal", 0.030930851258905,
+                                      0.173583399426978, 0.02887162264849, 0.180747669167931, 0.05254867287,
+                                      1.01183864387684, "contcor1", 0.0466790689222428, 0.325209102320569,
+                                      0.0377062864873144, 0.0513962438424752, 0.06968807084, 1.0041493380131,
+                                      "contcor2", 0.671633441261487, 0.542545781005174, 0.60068713700511,
                                       0.122450817493202, 15.9882068024571, 24.0657052758223, "debMiss30"
                                  ))
 })
@@ -102,17 +86,14 @@ test_that("Frequentist Individual Item Reliability Statistics table results matc
 test_that("Frequentist Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list("McDonald's <unicode>", 0.0471510241880039, 0.00702485789714753,
-                                      "", 0.115136402927551, "Cronbach's <unicode>", 0.474438267321141,
+                                 list("Coefficient <unicode>", 0.0471510241880039, 0.00702485789714753,
+                                      "", 0.115136402927551, "Coefficient <unicode>", 0.474438267321141,
                                       0.293267132435947, "", 0.615996053946591, "Guttman's <unicode>2",
-                                      0.517855238417142, 0.394302611317104, "", 0.63555761628963,
-                                      "Guttman's <unicode>6", 0.0392336793613145, 0.0047666061688859,
-                                      "", 0.0878218264568904, "Greatest Lower Bound", 0.0684849632061841,
-                                      0.0149501819485268, "", 0.216185154128673, "Average interitem correlation",
-                                      0.184127369413486, 0.0939902180995728, "", 0.286242462411683,
-                                      "mean", 2.764059782725, 1.68976265760682, "", 3.83835690784319,
-                                      "sd", 5.48120849970767, 4.81253858382921, "", 6.36738428322095
-                                 ))
+                                      0.0392336793613145, 0.0047666061688859, "", 0.0878218264568904,
+                                      "Average interitem correlation", 0.184127369413486, 0.0939902180995728,
+                                      "", 0.286242462411683, "mean", 2.764059782725, 1.68976265760682,
+                                      "", 3.83835690784319, "sd", 5.48120849970767, 4.81253858382921,
+                                      "", 6.36738428322095))
 })
 
 
@@ -170,12 +151,8 @@ options$scaleAlpha <- TRUE
 options$averageInterItemCorrelation <- TRUE
 options$ciLevel <- 0.9
 options$omegafitMeasures <- TRUE
-options$itemDeletedGreatestLowerBound <- TRUE
-options$scaleGreatestLowerBound <- TRUE
 options$itemDeletedLambda2 <- TRUE
 options$scaleLambda2 <- TRUE
-options$itemDeletedLambda6 <- TRUE
-options$scaleLambda6 <- TRUE
 options$itemRestCorrelation <- TRUE
 options$itemDeletedOmega <- TRUE
 options$omegaEstimationMethod <- "pfa"
@@ -188,35 +165,30 @@ options$scaleSd <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options, makeTests = FALSE)
 
 
-test_that("Frequentist Individual Item Reliability Statistics table results match for main options with disabled sample saving", {
+test_that("Frequentist Individual Item Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.55175372583945, 0.484048636403245, 0.525547257736439, 0.552088397696874,
-                                      0.560933950469576, 0.133621852799609, -0.18874858754, 1.05841360919316,
-                                      "contNormal", 0.230256036016286, 0.189422705634724, 0.196049691047581,
-                                      0.134230003173562, 0.223967986152454, 0.458747451806099, 0.05254867287,
+                                 list(0.55175372583945, 0.484048636403245, 0.525547257736439, 0.133621852799609,
+                                      -0.18874858754, 1.05841360919316, "contNormal", 0.230256036016288,
+                                      0.189422705634723, 0.196049691047581, 0.458747451806099, 0.05254867287,
                                       1.01183864387684, "contcor1", 0.28356284370461, 0.282664399460191,
-                                      0.283087797840773, 0.222670519008231, 0.284134273672075, 0.363943642284291,
-                                      0.06968807084, 1.0041493380131, "contcor2", 0.671633441261486,
-                                      0.535041083185576, 0.600687137005109, 0.558313196445623, 0.685678770613101,
+                                      0.283087797840773, 0.363943642284291, 0.06968807084, 1.0041493380131,
+                                      "contcor2", 0.671633441261487, 0.535041083185576, 0.60068713700511,
                                       0.139002685382132, 3, 1.4213381090374, "facFive"))
 })
 
 test_that("Frequentist Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list("McDonald's <unicode>", 0.525637056655307, 0.403771687499453,
-                                      "", 0.626298737852686, "Cronbach's <unicode>", 0.448585203881531,
+                                 list("Coefficient <unicode>", 0.525637056655307, 0.403771687499453,
+                                      "", 0.626298737852686, "Coefficient <unicode>", 0.448585203881531,
                                       0.279137827611669, "", 0.586595705707241, "Guttman's <unicode>2",
-                                      0.516365401424283, 0.396402831936408, "", 0.628395738756312,
-                                      "Guttman's <unicode>6", 0.490572327059451, 0.359901964004142,
-                                      "", 0.60076050080959, "Greatest Lower Bound", 0.567466299403832,
-                                      0.459081486688803, "", 0.685340010046143, "Average interitem correlation",
-                                      0.191748160936288, 0.0950770018748302, "", 0.280026170127809,
-                                      "mean", 2.93348815617, 2.4742476519306, "", 3.3927286604094,
-                                      "sd", 2.79198402042951, 2.50253823732555, "", 3.16486028196314
-                                 ))
+                                      0.490572327059451, 0.359901964004142, "", 0.60076050080959,
+                                      "Average interitem correlation", 0.191748160936288, 0.0950770018748302,
+                                      "", 0.280026170127809, "mean", 2.93348815617, 2.4742476519306,
+                                      "", 3.3927286604094, "sd", 2.79198402042951, 2.50253823732555,
+                                      "", 3.16486028196314))
 })

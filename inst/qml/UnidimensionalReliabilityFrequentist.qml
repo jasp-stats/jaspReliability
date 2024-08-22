@@ -76,20 +76,6 @@ Form
 				label: 	qsTr("Guttman's λ2");
 			}
 
-			CheckBox
-			{
-				id: 	lambda6
-				name: 	"scaleLambda6";
-				label: 	qsTr("Guttman's λ6");
-			}
-
-			CheckBox
-			{
-				id: 	glb
-				name: 	"scaleGreatestLowerBound";
-				label: 	qsTr("Greatest lower bound");
-			}
-
 			CheckBox { name: "averageInterItemCorrelation";	label: qsTr("Average interitem correlation")}
 
 			RowLayout {
@@ -134,19 +120,6 @@ Form
 				enabled: 	lambda2.checked
 			}
 
-			CheckBox
-			{
-				name: 		"itemDeletedLambda6";
-				label: 		qsTr("Guttman's λ6 (if item dropped)");
-				enabled: 	lambda6.checked
-			}
-
-			CheckBox
-			{
-				name: 		"itemDeletedGreatestLowerBound";
-				label: 		qsTr("Greatest lower bound (if item dropped)");
-				enabled: 	glb.checked
-			}
 
 			CheckBox { name: "itemRestCorrelation";	label: qsTr("Item-rest correlation")		}
 			CheckBox { name: "itemMean";			label: qsTr("Mean")							}
