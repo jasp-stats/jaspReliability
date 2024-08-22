@@ -26,10 +26,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   model[["itemDeletedAlpha"]] <- .frequentistAlphaItem(jaspResults, dataset, options, model)
   model[["scaleLambda2"]] <- .frequentistLambda2Scale(jaspResults, dataset, options, model)
   model[["itemDeletedLambda2"]] <- .frequentistLambda2Item(jaspResults, dataset, options, model)
-  model[["scaleLambda6"]] <- .frequentistLambda6Scale(jaspResults, dataset, options, model)
-  model[["itemDeletedLambda6"]] <- .frequentistLambda6Item(jaspResults, dataset, options, model)
-  model[["scaleGreatestLowerBound"]] <- .frequentistGlbScale(jaspResults, dataset, options, model)
-  model[["itemDeletedGreatestLowerBound"]] <- .frequentistGlbItem(jaspResults, dataset, options, model)
 
   model[["averageInterItemCorrelation"]] <- .frequentistAverageCor(jaspResults, dataset, options, model)
   model[["scaleMean"]] <- .frequentistMean(jaspResults, dataset, options, model)
@@ -53,17 +49,16 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 .frequentistDerivedOptions <- function(options) {
 
   derivedOptions <- list(
-    selectedEstimators  = unlist(options[c("scaleOmega", "scaleAlpha", "scaleLambda2", "scaleLambda6",
-                                           "scaleGreatestLowerBound", "averageInterItemCorrelation", "scaleMean", "scaleSd")]),
-    itemDroppedSelected = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedLambda6",
-                                           "itemDeletedGreatestLowerBound", "itemRestCorrelation", "itemMean", "itemSd")]),
+    selectedEstimators  = unlist(options[c("scaleOmega", "scaleAlpha", "scaleLambda2",
+                                           "averageInterItemCorrelation", "scaleMean", "scaleSd")]),
+    itemDroppedSelected = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2",
+                                           "itemRestCorrelation", "itemMean", "itemSd")]),
     namesEstimators     = list(
-      tables = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
-                 "Greatest Lower Bound", "Average interitem correlation", "mean", "sd"),
-      tables_item = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
-                      gettext("Greatest Lower Bound"), gettext("Item-rest correlation"), gettext("mean"), gettext("sd")),
-      coefficients = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
-                       gettext("Greatest Lower Bound")))
+      tables = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2",
+                 "Average interitem correlation", "mean", "sd"),
+      tables_item = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2",
+                      gettext("Item-rest correlation"), gettext("mean"), gettext("sd")),
+      coefficients = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2"))
   )
   return(derivedOptions)
 }
@@ -94,8 +89,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
 
 
-# ##### Frequentist precalculate results #####
-# -------------------------------------------
+###### Precalculate results #####
 
 .frequentistPreCalc <- function(jaspResults, dataset, options) {
 
@@ -103,7 +97,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     if (!is.null(.getStateContainerF(jaspResults)[["modelObj"]]$object$bootSamp))
       return(.getStateContainerF(jaspResults)[["modelObj"]]$object)
   }
-
 
 
   derivedOptions <- .frequentistDerivedOptions(options)
@@ -180,8 +173,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         (options[["scaleOmega"]] && options[["omegaEstimationMethod"]] == "pfa") ||
         (options[["scaleAlpha"]] && !(options[["alphaIntervalMethod"]] == "analytic")) ||
         options[["scaleLambda2"]] ||
-        options[["scaleLambda6"]] ||
-        options[["scaleGreatestLowerBound"]] ||
         options[["averageInterItemCorrelation"]]
       )
   ) {
@@ -451,124 +442,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["itemDeletedLambda2Obj"]] <- createJaspState(out, dependencies = "itemDeletedLambda2")
-  }
-  return(out)
-}
-
-
-.frequentistLambda6Scale <- function(jaspResults, dataset, options, model) {
-
-  if (!is.null(.getStateContainerF(jaspResults)[["scaleLambda6Obj"]]$object))
-    return(.getStateContainerF(jaspResults)[["scaleLambda6Obj"]]$object)
-
-  out <- model[["scaleLambda6"]]
-  if (is.null(out))
-    out <- list()
-  # is coefficient even checked?
-  if (options[["scaleLambda6"]]  && is.null(model[["empty"]])) {
-    if (is.null(out[["samp"]])) {
-      startProgressbar(options[["bootstrapSamples"]])
-      out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applylambda6, callback = progressbarTick)
-    }
-
-    if (options[["samplesSavingDisabled"]])
-      return(out)
-
-    stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["scaleLambda6Obj"]] <- createJaspState(out, dependencies = "scaleLambda6")
-  }
-  return(out)
-}
-
-.frequentistLambda6Item <- function(jaspResults, dataset, options, model) {
-
-  if (!is.null(.getStateContainerF(jaspResults)[["itemDeletedLambda6Obj"]]$object))
-    return(.getStateContainerF(jaspResults)[["itemDeletedLambda6Obj"]]$object)
-
-  out <- model[["itemDeletedLambda6"]]
-  if (is.null(out))
-    out <- list()
-  # is coefficient even checked?
-  if (options[["itemDeletedLambda6"]]  && is.null(model[["empty"]])) {
-
-    if (ncol(dataset) == 2) {
-      out[["itemDropped"]] <- c(NaN, NaN)
-      return(out)
-    }
-
-    if (is.null(out[["itemDropped"]]))
-      out[["itemDropped"]] <- .freqItemDroppedStats(model[["data_cov"]], Bayesrel:::applylambda6)
-    if (anyNA(out[["itemDropped"]])) {
-      out[["error"]] <- gettext("Lambda6 item dropped statistics failed.")
-      out[["itemDropped"]] <- rep(NaN, ncol(dataset))
-    }
-    if (options[["samplesSavingDisabled"]])
-      return(out)
-
-    stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["itemDeletedLambda6Obj"]] <- createJaspState(out, dependencies = "itemDeletedLambda6")
-  }
-  return(out)
-}
-
-
-# check the error handling of the glb !!!!!!!!
-.frequentistGlbScale <- function(jaspResults, dataset, options, model) {
-
-  if (!is.null(.getStateContainerF(jaspResults)[["scaleGreatestLowerBoundObj"]]$object))
-    return(.getStateContainerF(jaspResults)[["scaleGreatestLowerBoundObj"]]$object)
-
-  out <- model[["scaleGreatestLowerBound"]]
-  if (is.null(out))
-    out <- list()
-  # is coefficient even checked?
-  if (options[["scaleGreatestLowerBound"]]  && is.null(model[["empty"]])) {
-    if (is.null(out[["samp"]])) {
-      startProgressbar(4)
-      out[["samp"]] <- Bayesrel:::glbOnArrayCustom(model[["bootSamp"]], callback = progressbarTick)
-    }
-
-
-    if (options[["samplesSavingDisabled"]])
-      return(out)
-
-    stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["scaleGreatestLowerBoundObj"]] <- createJaspState(out, dependencies = "scaleGreatestLowerBound")
-  }
-  return(out)
-}
-
-.frequentistGlbItem <- function(jaspResults, dataset, options, model) {
-
-  if (!is.null(.getStateContainerF(jaspResults)[["itemDeletedGreatestLowerBoundObj"]]$object))
-    return(.getStateContainerF(jaspResults)[["itemDeletedGreatestLowerBoundObj"]]$object)
-
-  out <- model[["itemDeletedGreatestLowerBound"]]
-  if (is.null(out))
-    out <- list()
-  # is coefficient even checked?
-  if (options[["itemDeletedGreatestLowerBound"]]  && is.null(model[["empty"]])) {
-
-    if (ncol(dataset) == 2) {
-      out[["itemDropped"]] <- c(NaN, NaN)
-      return(out)
-    }
-
-    # do we have to compute item dropped values
-    if (is.null(out[["itemDropped"]])) {
-      # special case glb since it has build in array functionality, but it might be only slightly faster
-      itemDroppedCovs <- array(0, c(model[["k"]], model[["k"]]-1, model[["k"]]-1))
-      for (i in seq_len(model[["k"]])) {
-        itemDroppedCovs[i, , ] <- model[["data_cov"]][-i, -i]
-      }
-      out[["itemDropped"]] <- c(Bayesrel:::glbOnArrayCustom(itemDroppedCovs))
-    }
-
-    if (options[["samplesSavingDisabled"]])
-      return(out)
-
-    stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["itemDeletedGreatestLowerBoundObj"]] <- createJaspState(out, dependencies = "itemDeletedGreatestLowerBound")
   }
   return(out)
 }
@@ -844,24 +717,9 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
       }
     }
 
-    # #### lambda 6 ####
-    if (options[["scaleLambda6"]]) {
-      out[["est"]][["scaleLambda6"]] <- Bayesrel:::applylambda6(model[["data_cov"]])
-      if (is.na(out[["est"]][["scaleLambda6"]])) {
-        out[["error"]][["scaleLambda6"]] <- gettext("Lambda6 calculation failed.")
-      }
-
-      if (sum(!is.na(model[["scaleLambda6"]][["samp"]])) >= 2) {
-        out[["conf"]][["scaleLambda6"]] <- quantile(model[["scaleLambda6"]][["samp"]],
-                                                    probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
-      } else {
-        out[["error"]][["scaleLambda6"]] <- gettext("Lambda6 interval calculation failed.")
-      }
-
-    }
 
     # the intervals for coefficients with bootstrap samples can be done generic
-    bootCoeffs <- c("scaleLambda2", "scaleGreatestLowerBound", "averageInterItemCorrelation")
+    bootCoeffs <- c("scaleLambda2", "averageInterItemCorrelation")
     selected <- bootCoeffs[bootCoeffs %in% names(which(model[["derivedOptions"]][["selectedEstimators"]]))]
 
     sampellist <- model[selected]
@@ -872,9 +730,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     # point estimates
     if (options[["scaleLambda2"]]) {
       out[["est"]][["scaleLambda2"]] <- Bayesrel:::applylambda2(model[["data_cov"]])
-    }
-    if (options[["scaleGreatestLowerBound"]]) {
-      out[["est"]][["scaleGreatestLowerBound"]] <- Bayesrel:::glbOnArrayCustom(model[["data_cov"]])
     }
     if (options[["averageInterItemCorrelation"]]) {
       out[["est"]][["averageInterItemCorrelation"]] <- mean(model[["data_cor"]][lower.tri(model[["data_cor"]])])
@@ -895,8 +750,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     stateContainer[["scaleResultsObj"]] <- createJaspState(out, dependencies = c("ciLevel",
                                                                                  "scaleMean", "scaleSd",
                                                                                  "scaleAlpha", "scaleOmega",
-                                                                                 "scaleLambda2", "scaleLambda6",
-                                                                                 "scaleGreatestLowerBound","averageInterItemCorrelation",
+                                                                                 "scaleLambda2",
+                                                                                 "averageInterItemCorrelation",
                                                                                  "meanSdScoresMethod",
                                                                                  "omegaEstimationMethod", "omegaIntervalMethod",
                                                                                  "alphaIntervalMethod", "alphaType"))
@@ -911,10 +766,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
 
 
-# -------------------------------------------
-#       Frequentist output tables
-# -------------------------------------------
-
+##### Output tables ####
 
 .frequentistScaleTable <- function(jaspResults, model, options) {
 
@@ -923,13 +775,13 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
   scaleTable <- createJaspTable(gettext("Frequentist Scale Reliability Statistics"))
 
-  scaleTable$dependOn(options = c("scaleOmega", "scaleAlpha", "scaleLambda2", "scaleLambda6", "scaleGreatestLowerBound",
+  scaleTable$dependOn(options = c("scaleOmega", "scaleAlpha", "scaleLambda2",
                                   "averageInterItemCorrelation", "scaleMean", "scaleSd", "meanSdScoresMethod",
                                   "omegaEstimationMethod", "omegaIntervalMethod", "alphaType", "alphaIntervalMethod",
                                   "ciLevel"))
   scaleTable$addColumnInfo(name = "coefficient", title = gettext("Coefficient"), type = "string")
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "number")
-  scaleTable$addColumnInfo(name = "se", title = gettext("Std.error"), type = "number")
+  scaleTable$addColumnInfo(name = "se", title = gettext("Std. error"), type = "number")
   ci <- format(100 * options[["ciLevel"]], digits = 3, drop0trailing = TRUE)
   scaleTable$addColumnInfo(name = "lower", title = "Lower", type = "number", overtitle = gettextf("%s%% CI", ci))
   scaleTable$addColumnInfo(name = "upper", title = "Upper", type = "number", overtitle = gettextf("%s%% CI", ci))
@@ -987,9 +839,9 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   derivedOptions <- model[["derivedOptions"]]
 
   itemTable <- createJaspTable(gettext("Frequentist Individual Item Reliability Statistics"))
-  itemTable$dependOn(options = c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedLambda6", "itemDeletedGreatestLowerBound",
+  itemTable$dependOn(options = c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2",
                                  "itemMean", "itemRestCorrelation", "itemSd",
-                                 "scaleOmega", "scaleAlpha", "scaleLambda2", "scaleLambda6", "scaleGreatestLowerBound"))
+                                 "scaleOmega", "scaleAlpha", "scaleLambda2"))
   # adding the scale options fixes a bug, where the item table would remain displayed
   # after one had checked a scale coefficient box and the item coefficient box and then unchecked the scale coeff box
 
@@ -1123,14 +975,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
 # ####  Some common and not so common helper functions ####
 # unidim. reliability functions
-#       put here because there is space
-# ----------------------------------------------
+# put here because there is space
 
-# This is a temporary fix
-# TODO: remove it when R will solve this problem!
-gettextf <- function(fmt, ..., domain = NULL)  {
-  return(sprintf(gettext(fmt, domain = domain), ...))
-}
 
 .readData <- function(dataset, options) {
 
@@ -1261,10 +1107,6 @@ gettextf <- function(fmt, ..., domain = NULL)  {
     opts[["itemDeletedAlpha"]] <- FALSE
   if (!options[["scaleLambda2"]])
     opts[["itemDeletedLambda2"]] <- FALSE
-  if (!options[["scaleLambda6"]])
-    opts[["itemDeletedLambda6"]] <- FALSE
-  if (!options[["scaleGreatestLowerBound"]])
-    opts[["itemDeletedGreatestLowerBound"]] <- FALSE
 
   return(opts)
 

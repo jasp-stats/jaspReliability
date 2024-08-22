@@ -57,6 +57,6 @@
 <text transform='translate(19.77,323.86) rotate(-90)' style='font-size: 20.40px; font-family: sans;' textLength='102.57px' lengthAdjust='spacingAndGlyphs'>Cronbach's</text>
 <text transform='translate(19.77,221.29) rotate(-90)' style='font-size: 20.40px; font-family: sans;' textLength='5.10px' lengthAdjust='spacingAndGlyphs'> </text>
 <text transform='translate(19.77,216.18) rotate(-90)' style='font-size: 20.40px; font-family: sans;' textLength='12.24px' lengthAdjust='spacingAndGlyphs'>α</text>
-<text x='404.22' y='11.70' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='61.43px' lengthAdjust='spacingAndGlyphs'>alpha-tp</text>
+<text x='404.22' y='11.70' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='143.65px' lengthAdjust='spacingAndGlyphs'>coefficient-alpha-tp</text>
 </g>
 </svg>
