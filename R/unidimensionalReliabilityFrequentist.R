@@ -58,11 +58,11 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     itemDroppedSelected = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedLambda6",
                                            "itemDeletedGreatestLowerBound", "itemRestCorrelation", "itemMean", "itemSd")]),
     namesEstimators     = list(
-      tables = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
+      tables = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
                  "Greatest Lower Bound", "Average interitem correlation", "mean", "sd"),
-      tables_item = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
+      tables_item = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
                       gettext("Greatest Lower Bound"), gettext("Item-rest correlation"), gettext("mean"), gettext("sd")),
-      coefficients = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
+      coefficients = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
                        gettext("Greatest Lower Bound")))
   )
   return(derivedOptions)
@@ -94,8 +94,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
 
 
-# ##### Frequentist precalculate results #####
-# -------------------------------------------
+###### Precalculate results #####
 
 .frequentistPreCalc <- function(jaspResults, dataset, options) {
 
@@ -911,10 +910,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
 
 
-# -------------------------------------------
-#       Frequentist output tables
-# -------------------------------------------
-
+##### Output tables ####
 
 .frequentistScaleTable <- function(jaspResults, model, options) {
 
@@ -1123,14 +1119,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
 # ####  Some common and not so common helper functions ####
 # unidim. reliability functions
-#       put here because there is space
-# ----------------------------------------------
+# put here because there is space
 
-# This is a temporary fix
-# TODO: remove it when R will solve this problem!
-gettextf <- function(fmt, ..., domain = NULL)  {
-  return(sprintf(gettext(fmt, domain = domain), ...))
-}
 
 .readData <- function(dataset, options) {
 

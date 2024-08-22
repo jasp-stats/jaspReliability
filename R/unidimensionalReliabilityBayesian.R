@@ -76,13 +76,13 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
                                                "itemDeletedGreatestLowerBound")]),
 
     namesEstimators     = list(
-      tables = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
+      tables = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
                  "Greatest Lower Bound", "Average interitem correlation", "mean", "sd"),
-      tables_item = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
+      tables_item = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
                       gettext("Greatest Lower Bound"), gettext("Item-rest correlation"), gettext("mean"), gettext("sd")),
-      coefficients = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
+      coefficients = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
                        gettext("Greatest Lower Bound"), gettext("Item-rest correlation")),
-      plots = list(expression("McDonald's"~omega), expression("Cronbach\'s"~alpha), expression("Guttman's"~lambda[2]),
+      plots = list(expression("Coefficient"~omega), expression("Cronbach\'s"~alpha), expression("Guttman's"~lambda[2]),
                    expression("Guttman's"~lambda[6]), gettext("Greatest Lower Bound")),
       plotsNoGreek = c("omega", "alpha", "lambda2", "lambda6", "glb")
     )
@@ -92,9 +92,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 }
 
 
-# -------------------------------------------
-#       Bayesian precalulate results
-# -------------------------------------------
+#### Precalulate results ####
 
 
 .BayesianPreCalc <- function(jaspResults, dataset, options) {
@@ -336,10 +334,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
 
 
-# -------------------------------------------
-#       Bayesian calculate coefficients
-# -------------------------------------------
-
+#### Calculate coefficients ####
 
 .BayesianOmegaScale <- function(jaspResults, dataset, options, model) {
   if (!is.null(.getStateContainerB(jaspResults)[["scaleOmegaObj"]]$object))
@@ -1102,10 +1097,8 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
 
 
-# ------------------------------------------- #
-#       Bayesian output tables
-# ------------------------------------------- #
 
+#### Output tables ####
 
 .BayesianScaleTable <- function(jaspResults, model, options) {
 
@@ -1117,69 +1110,56 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
                                   "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6", "scaleGreatestLowerBound",
                                   "averageInterItemCorrelation", "meanSdScoresMethod", "effectiveSampleSize"))
 
-  scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
-
-  interval <- gettextf("%s%% CI",
-                       format(100 * options[["scaleCiLevel"]], digits = 3, drop0trailing = TRUE))
-  intervalLow <- gettextf("%s lower bound", interval)
-  intervalUp <- gettextf("%s upper bound", interval)
-
   pointEstimate <- gettextf("Posterior %s", options[["pointEstimate"]])
 
-  allData <- data.frame(estimate = c(pointEstimate, intervalLow, intervalUp))
+  scaleTable$addColumnInfo(name = "coefficient", title = gettext("Coefficient"), type = "string")
+  scaleTable$addColumnInfo(name = "estimate", title = pointEstimate, type = "number")
+  ci <- format(100 * options[["scaleCiLevel"]], digits = 3, drop0trailing = TRUE)
+  scaleTable$addColumnInfo(name = "lower", title = "Lower", type = "number", overtitle = gettextf("%s%% CI", ci))
+  scaleTable$addColumnInfo(name = "upper", title = "Upper", type = "number", overtitle = gettextf("%s%% CI", ci))
+
   if (options[["rHat"]]) {
-    allData <- rbind(allData, "R-hat")
+    scaleTable$addColumnInfo(name = "rHat", title = gettext("R-hat"), type = "number")
   }
   if (options[["effectiveSampleSize"]]) {
-    allData <- rbind(allData, "ESS")
+    scaleTable$addColumnInfo(name = "ess", title = gettext("ESS"), type = "number")
   }
+
+  scaleTable$position <- 1
+  stateContainer <- .getStateContainerB(jaspResults)
+  stateContainer[["scaleTable"]] <- scaleTable
 
   derivedOptions <- model[["derivedOptions"]]
   opts     <- derivedOptions[["namesEstimators"]][["tables"]]
   selected <- derivedOptions[["selectedEstimators"]]
   idxSelected <- which(selected)
 
-  for (i in idxSelected) {
-    scaleTable$addColumnInfo(name = paste0("est", i), title = opts[i], type = "number")
-  }
-
-  if (.is.empty(model)) {
-    scaleTable$setData(allData)
-    if (model[["footnote"]] != "") {
-      scaleTable$addFootnote(model[["footnote"]])
+  dt <- data.frame(matrix(".", nrow = length(idxSelected), ncol = 0))
+  if (any(selected)) {
+    for (i in 1:length(idxSelected)) {
+      dt$coefficient[i] <- opts[idxSelected[i]]
     }
-    scaleTable$position <- 1
-    stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["scaleTable"]] <- scaleTable
-    return()
   }
 
-  for (j in seq_along(idxSelected)) {
-    i <- idxSelected[j]
-    nm <- names(idxSelected[j])
-
-    newData <- data.frame(est = c(unlist(model[["scaleResults"]][["est"]][[nm]], use.names = FALSE),
-                                  unlist(model[["scaleResults"]][["cred"]][[nm]], use.names = FALSE)))
+  # if no coefficients selected or not enough variables:
+  if (!.is.empty(model)) {
+    dt$estimate <- unlist(model[["scaleResults"]][["est"]], use.names = FALSE)
+    dt$lower <- sapply(model[["scaleResults"]][["cred"]], function(x) x[1])
+    dt$upper <- sapply(model[["scaleResults"]][["cred"]], function(x) x[2])
 
     if (options[["rHat"]]) {
-      newData <- rbind(newData, model[["scaleResults"]][["rHat"]][[nm]])
+      dt$rHat <- unlist(model[["scaleResults"]][["rHat"]], use.names = FALSE)
     }
     if (options[["effectiveSampleSize"]]) {
-      newData <- rbind(newData, model[["scaleResults"]][["effectiveSampleSize"]][[nm]])
+      dt$ess <- unlist(model[["scaleResults"]][["effectiveSampleSize"]], use.names = FALSE)
     }
-    colnames(newData) <- paste0(colnames(newData), i)
-    allData <- cbind(allData, newData)
   }
 
-  scaleTable$setData(allData)
+  scaleTable$setData(dt)
 
   if (model[["footnote"]] != "") {
     scaleTable$addFootnote(model[["footnote"]])
   }
-
-  scaleTable$position <- 1
-  stateContainer <- .getStateContainerB(jaspResults)
-  stateContainer[["scaleTable"]] <- scaleTable
 
   return()
 }
@@ -1303,11 +1283,11 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     footnote <- ""
   }
   probabilityTable <- createJaspTable(
-    gettextf("Probability that Reliability Statistic is Larger than %.2f and Smaller than %.2f", low, high))
+    gettextf("Probability that Reliability Coefficient is Larger than %.2f and Smaller than %.2f", low, high))
   probabilityTable$dependOn(options = c("probabilityTableLowerBound", "probabilityTable", "probabilityTableUpperBound"))
 
   overTitle <- gettext("Probability")
-  probabilityTable$addColumnInfo(name = "statistic", title = gettext("Statistic"), type = "string")
+  probabilityTable$addColumnInfo(name = "statistic", title = gettext("Coefficient"), type = "string")
   probabilityTable$addColumnInfo(name = "prior", title = gettext("Prior"), type = "number", overtitle = overTitle)
   probabilityTable$addColumnInfo(name = "posterior", title = gettext("Posterior"), type = "number", overtitle = overTitle)
 
@@ -1456,11 +1436,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
 
 
-
-# -------------------------------------------
-#       Bayesian output plots
-# -------------------------------------------
-
+#### Output plots ####
 
 .BayesianPosteriorPlot <- function(jaspResults, model, options) {
 
@@ -1888,9 +1864,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
 
 
-# -------------------------------------------
-#       Bayesian help functions
-# -------------------------------------------
+#### Help functions ####
 
 
 .getStateContainerB <- function(jaspResults) {

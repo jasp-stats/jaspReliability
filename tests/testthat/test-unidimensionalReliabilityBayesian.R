@@ -176,17 +176,18 @@ test_that("Probability that Reliability Statistic is Larger than 0.10 and Smalle
 test_that("Bayesian Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.0335378719395441, 0.0379993015242684, 0.0509632083185619, 0.507213118664045,
-                                      0.125134713254144, 0.142232495514273, 2.8581975155295, 4.39188432578635,
-                                      "Posterior mean", 4.88588161069134e-07, -0.0247593284030748,
-                                      0.00211400244586846, 0.358233671861917, 0.0351173024406283,
-                                      0.0612110191516504, "", "", "95% CI lower bound", 0.107247682851598,
-                                      0.0925517739486723, 0.109789052574058, 0.618692688177314, 0.26368113845796,
-                                      0.221618551302267, "", "", "95% CI upper bound", 1.03110267965238,
-                                      1.02512927209581, 1.04150159018568, 1.02543279542889, 1.07445147891652,
-                                      1.01625374834437, "", "", "R-hat", 261.905719143696, 278.717853339024,
-                                      271.566230782654, 450, 380.420178581031, 414.536145329943, "",
-                                      "", "ESS"))
+                                 list("Coefficient <unicode>", 261.905719143696, 0.0335378719395442,
+                                      4.88588161068121e-07, 1.03110267965238, 0.107247682851598, "Coefficient <unicode>",
+                                      278.717853339024, 0.0379993015242684, -0.0247593284030748, 1.02512927209581,
+                                      0.0925517739486723, "Guttman's <unicode>2", 271.566230782654,
+                                      0.0509632083185619, 0.00211400244586848, 1.04150159018568, 0.109789052574058,
+                                      "Guttman's <unicode>6", 450, 0.507213118664046, 0.358233671861917,
+                                      1.02543279542889, 0.618692688177315, "Greatest Lower Bound",
+                                      380.420178580333, 0.125134713254168, 0.035117302440636, 1.07445147891782,
+                                      0.263681138457567, "Average interitem correlation", 414.536145329942,
+                                      0.142232495514273, 0.0612110191516504, 1.01625374834437, 0.221618551302267,
+                                      "mean", "", 2.8581975155295, "", "", "", "sd", "", 4.39188432578635,
+                                      "", "", ""))
 })
 
 
@@ -223,7 +224,7 @@ options$inverseWishartPriorDf <- length(options$variables)
 options$inverseWishartPriorScale <- 0.0000000001
 
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options, makeTests = F)
 
 test_that("Bayesian Individual Item Reliability Statistics table results match with disabled sample saving", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
@@ -270,22 +271,24 @@ test_that("Probability that Reliability Statistic is Larger than 0.10 and Smalle
 })
 
 
-test_that("Bayesian Scale Reliability Statistics table results match with disabled sample saving", {
+test_that("Bayesian Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.0335378719395441, 0.0379993015242684, 0.0509632083185619, 0.507213118664045,
-                                      0.125134713254144, 0.142232495514273, 2.8581975155295, 4.39188432578635,
-                                      "Posterior mean", 4.88588161069134e-07, -0.0247593284030748,
-                                      0.00211400244586846, 0.358233671861917, 0.0351173024406283,
-                                      0.0612110191516504, "", "", "95% CI lower bound", 0.107247682851598,
-                                      0.0925517739486723, 0.109789052574058, 0.618692688177314, 0.26368113845796,
-                                      0.221618551302267, "", "", "95% CI upper bound", 1.03110267965238,
-                                      1.02512927209581, 1.04150159018568, 1.02543279542889, 1.07445147891652,
-                                      1.01625374834437, "", "", "R-hat"))
+                                 list("Coefficient <unicode>", 0.0335378719395442, 4.88588161068121e-07,
+                                      1.03110267965238, 0.107247682851598, "Coefficient <unicode>",
+                                      0.0379993015242684, -0.0247593284030748, 1.02512927209581, 0.0925517739486723,
+                                      "Guttman's <unicode>2", 0.0509632083185619, 0.00211400244586848,
+                                      1.04150159018568, 0.109789052574058, "Guttman's <unicode>6",
+                                      0.507213118664046, 0.358233671861917, 1.02543279542889, 0.618692688177315,
+                                      "Greatest Lower Bound", 0.125134713254168, 0.035117302440636,
+                                      1.07445147891782, 0.263681138457567, "Average interitem correlation",
+                                      0.142232495514273, 0.0612110191516504, 1.01625374834437, 0.221618551302267,
+                                      "mean", 2.8581975155295, "", "", "", "sd", 4.39188432578635,
+                                      "", "", ""))
 })
 
 
-
+# adjusted priors
 options <- analysisOptions("unidimensionalReliabilityBayesian")
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
 options$scaleOmega <- TRUE
@@ -351,23 +354,24 @@ test_that("McDonald's omega plot matches with adjusted priors", {
 test_that("Probability that Reliability Statistic is Larger than 0.70 and Smaller than 1.00 table results match with adjusted priors", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_probabilityTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.3, 0.521665798540962, "McDonald's <unicode>", 0.99, 0.103854227264579,
+                                 list(0.3, 0.521665798540962, "McDonald's <unicode>", 0.99, 0.103837082022117,
                                       "Guttman's <unicode>2"))
 })
 
 
-test_that("Bayesian Scale Reliability Statistics table results match with adjusted priors", {
+test_that("Bayesian Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.658799634973158, 0.789270505536385, 0.419218581777162, "Posterior mean",
-                                      0.526011816625903, 0.715215558587289, 0.316743509774531, "95% CI lower bound",
-                                      0.795894536283031, 0.859660650371794, 0.507230342509293, "95% CI upper bound",
-                                      1.02778087840674, 0.990343839523617, 0.997596520647971, "R-hat"
-                                 ))
+                                 list("Coefficient <unicode>", 0.658799634973158, 0.526011816625903,
+                                      1.02778087840674, 0.795894536283031, "Guttman's <unicode>2",
+                                      0.789270505536385, 0.71521555858729, 0.990343839523617, 0.859660650371794,
+                                      "Average interitem correlation", 0.419218581777162, 0.316743509774531,
+                                      0.997596520647971, 0.507230342509293))
 })
 
 
 
+# standardization and median
 options <- analysisOptions("unidimensionalReliabilityBayesian")
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
 options$scaleAlpha <- TRUE
@@ -395,7 +399,7 @@ options$standardizedLoadings <- TRUE
 options$coefficientType <- "standardized"
 options$pointEstimate <- "median"
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options, makeTests = F)
 
 test_that("Bayesian Individual Item Reliability Statistics table results match with standardization and median", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
@@ -465,26 +469,29 @@ test_that("Probability that Reliability Statistic is Larger than 0.20 and Smalle
   jaspTools::expect_equal_tables(table,
                                  list(0.211111111111111, 0.322277450512426, "McDonald's <unicode>",
                                       0.546666666666667, 0.327282806190898, "Cronbach's <unicode>",
-                                      0.206666666666667, 0.233873326185613, "Guttman's <unicode>2",
+                                      0.206666666666667, 0.233840603713808, "Guttman's <unicode>2",
                                       0.328888888888889, 0.20968370679484, "Guttman's <unicode>6",
                                       0.00666666666666671, 0.0557055139950303, "Greatest Lower Bound"
                                  ))
 })
 
-test_that("Bayesian Scale Reliability Statistics table results match with standardization and median", {
+test_that("Bayesian Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.549475923084279, 0.485978025107501, 0.553414961378168, 0.527639174641981,
-                                      0.649735352170137, 0.191174460794261, "Posterior median", 0.435706048978678,
-                                      0.322525692701179, 0.443001980608279, 0.391309056840046, 0.530738963961284,
-                                      0.106359073588414, "95% CI lower bound", 0.664754350432929,
-                                      0.639694091225906, 0.669397876270056, 0.636673491920215, 0.743596201899069,
-                                      0.307409602568225, "95% CI upper bound", 1.00879071329335, 1.00688014001917,
-                                      1.00846765229577, 1.00873819260755, 1.01603809839108, 1.01104129919821,
-                                      "R-hat"))
+                                 list("Coefficient <unicode>", 0.549475923084279, 0.435706048978678,
+                                      1.00879071329335, 0.664754350432929, "Coefficient <unicode>",
+                                      0.485978025107501, 0.32252569270118, 1.00688014001917, 0.639694091225906,
+                                      "Guttman's <unicode>2", 0.553414961378168, 0.443001980608279,
+                                      1.00846765229577, 0.669397876270056, "Guttman's <unicode>6",
+                                      0.527639174641981, 0.391309056840046, 1.00873819260756, 0.636673491920215,
+                                      "Greatest Lower Bound", 0.649735352170141, 0.530738963961284,
+                                      1.01603809839109, 0.743596201899071, "Average interitem correlation",
+                                      0.191174460794261, 0.106359073588414, 1.01104129919821, 0.307409602568224
+                                 ))
 })
 
 
+# fit indices
 # results were compared to blavFitIndices and lavaan omegaFitMeasures with the same data but 2000 obs
 options <- analysisOptions("unidimensionalReliabilityBayesian")
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
@@ -499,6 +506,8 @@ options$omegaPosteriorPredictiveCheck <- TRUE
 
 set.seed(1)
 results <- runAnalysis("unidimensionalReliabilityBayesian", "asrm.csv", options)
+# results <- runAnalysis("unidimensionalReliabilityBayesian", Bayesrel::asrm, options, makeTests = T)
+
 
 
 test_that("Fit Measures for the Single-Factor Model table results match", {
@@ -518,7 +527,7 @@ test_that("Posterior Predictive Check Omega plot matches", {
 })
 
 
-
+# item plot ordered by mean
 options <- analysisOptions("unidimensionalReliabilityBayesian")
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss30")
 options$scaleAlpha <- TRUE
