@@ -19,8 +19,6 @@
 standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 
-# sink(file = "~/Downloads/log.txt")
-# on.exit(sink(NULL))
 
   ready <- length(options[["variables"]]) > 1
 
@@ -74,6 +72,10 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
              type = c('missingValues', "variance", "infinity", "variance"),
              missingValues.target = options$variables,
              exitAnalysisIfErrors = TRUE)
+
+  if (options[["lord2"]] && options[["lord2NumberOfSplits"]] == "") {
+    .quitAnalysis(gettext("For the Lord's compound method, the test could not be split in equally sized parts with more than 1 item per part. Consider adding or removing items."))
+  }
 }
 
 # create Main container

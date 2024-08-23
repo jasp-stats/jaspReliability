@@ -48,8 +48,17 @@ Form
 				}
 				feldtNumberOfSplits.values = newValues
 				mollenkopfFeldtNumberOfSplits.values = newValues
-				lord2NumberOfSplits.values = newValues
 
+				var newValuesLord = []
+				for (var ii = 2; ii < variables.count; ii++)
+				{
+					if (variables.count % ii == 0)
+					{
+						newValuesLord.push(ii)
+					}
+				}
+
+				lord2NumberOfSplits.values = newValuesLord
 			}
 		}
 	}
