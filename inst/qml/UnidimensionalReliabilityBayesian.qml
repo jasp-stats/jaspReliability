@@ -73,20 +73,6 @@ Form
 				label:	qsTr("Guttman's λ2");
 			}
 
-			CheckBox
-			{
-				id:		lambda6
-				name:	"scaleLambda6";
-				label:	qsTr("Guttman's λ6");
-			}
-
-			CheckBox
-			{
-				id:		glb
-				name:	"scaleGreatestLowerBound";
-				label:	qsTr("Greatest lower bound");
-			}
-
 			CheckBox { name: "averageInterItemCorrelation";	label: qsTr("Average interitem correlation")	}
 
 			RowLayout {
@@ -139,22 +125,6 @@ Form
 				name: 		"itemDeletedLambda2";
 				label: 		qsTr("Guttman's λ2 (if item dropped)");
 				enabled: 	lambda2.checked
-			}
-
-			CheckBox
-			{
-				id: 		lambda6Item
-				name: 		"itemDeletedLambda6"
-				label: 		qsTr("Guttman's λ6 (if item dropped)");
-				enabled: 	lambda6.checked
-			}
-
-			CheckBox
-			{
-				id: 		glbItem
-				name: 		"itemDeletedGreatestLowerBound";
-				label: 		qsTr("Greatest lower bound (if item dropped)");
-				enabled: 	glb.checked
 			}
 
 			CheckBox
@@ -375,7 +345,7 @@ Form
 		title: qsTr("Priors")
 		Group
 		{
-			title: qsTr("CTT-Coefficients (α, λ2, λ6, glb)")
+			title: qsTr("CTT-Coefficients (α, λ2)")
 
 			FormulaField
 			{

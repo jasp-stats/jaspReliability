@@ -33,10 +33,6 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   model[["itemDeletedAlpha"]] <- .BayesianAlphaItem(jaspResults, dataset, options, model)
   model[["scaleLambda2"]] <- .BayesianLambda2Scale(jaspResults, dataset, options, model)
   model[["itemDeletedLambda2"]] <- .BayesianLambda2Item(jaspResults, dataset, options, model)
-  model[["scaleLambda6"]] <- .BayesianLambda6Scale(jaspResults, dataset, options, model)
-  model[["itemDeletedLambda6"]] <- .BayesianLambda6Item(jaspResults, dataset, options, model)
-  model[["scaleGreatestLowerBound"]] <- .BayesianGlbScale(jaspResults, dataset, options, model)
-  model[["itemDeletedGreatestLowerBound"]] <- .BayesianGlbItem(jaspResults, dataset, options, model)
   model[["averageInterItemCorrelation"]] <- .BayesianAverageCor(jaspResults, dataset, options, model)
   model[["scaleMean"]] <- .BayesianMean(jaspResults, dataset, options, model)
   model[["scaleSd"]] <- .BayesianStdDev(jaspResults, dataset, options, model)
@@ -66,25 +62,22 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   # order of appearance in Bayesrel
   derivedOptions <- list(
-    selectedEstimators  = unlist(options[c("scaleOmega", "scaleAlpha", "scaleLambda2", "scaleLambda6", "scaleGreatestLowerBound",
+    selectedEstimators  = unlist(options[c("scaleOmega", "scaleAlpha", "scaleLambda2",
                                            "averageInterItemCorrelation", "scaleMean", "scaleSd")]),
-    selectedEstimatorsPlots  = unlist(options[c("scaleOmega", "scaleAlpha", "scaleLambda2", "scaleLambda6",
-                                                "scaleGreatestLowerBound")]),
-    itemDroppedSelected = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedLambda6", "itemDeletedGreatestLowerBound",
+    selectedEstimatorsPlots  = unlist(options[c("scaleOmega", "scaleAlpha", "scaleLambda2")]),
+    itemDroppedSelected = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2",
                                            "itemRestCorrelation", "itemMean", "itemSd")]),
-    itemDroppedSelectedItem = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedLambda6",
-                                               "itemDeletedGreatestLowerBound")]),
+    itemDroppedSelectedItem = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2")]),
 
     namesEstimators     = list(
-      tables = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
-                 "Greatest Lower Bound", "Average interitem correlation", "mean", "sd"),
-      tables_item = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
-                      gettext("Greatest Lower Bound"), gettext("Item-rest correlation"), gettext("mean"), gettext("sd")),
-      coefficients = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", "Guttman's \u03BB6",
-                       gettext("Greatest Lower Bound"), gettext("Item-rest correlation")),
-      plots = list(expression("Coefficient"~omega), expression("Cronbach\'s"~alpha), expression("Guttman's"~lambda[2]),
-                   expression("Guttman's"~lambda[6]), gettext("Greatest Lower Bound")),
-      plotsNoGreek = c("omega", "alpha", "lambda2", "lambda6", "glb")
+      tables = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2",
+                 "Average interitem correlation", "mean", "sd"),
+      tables_item = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2",
+                      gettext("Item-rest correlation"), gettext("mean"), gettext("sd")),
+      coefficients = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2",
+                       gettext("Item-rest correlation")),
+      plots = list(expression("Coefficient"~omega), expression("Cronbach\'s"~alpha), expression("Guttman's"~lambda[2])),
+      plotsNoGreek = c("omega", "alpha", "lambda2")
     )
 
   )
@@ -169,7 +162,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   # check if posterior cov sample already exists and any of the relevant coefficients are checked
   if (is.null(model[["gibbsSamp"]]) &&
-      (options[["scaleAlpha"]] || options[["scaleLambda2"]] || options[["scaleLambda6"]] || options[["scaleGreatestLowerBound"]] ||
+      (options[["scaleAlpha"]] || options[["scaleLambda2"]] ||
        options[["averageInterItemCorrelation"]])
   ) {
 
@@ -565,151 +558,6 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 }
 
 
-
-.BayesianLambda6Scale <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["scaleLambda6Obj"]]$object))
-    return(.getStateContainerB(jaspResults)[["scaleLambda6Obj"]]$object)
-
-  out <- model[["scaleLambda6"]]
-  if (is.null(out))
-    out <- list()
-
-  if (options[["scaleLambda6"]] && is.null(model[["empty"]])) {
-
-    if (is.null(out[["samp"]])) {
-      startProgressbar(model[["progressbarLength"]])
-
-      out[["samp"]] <- coda::mcmc(apply(model[[if (options[["coefficientType"]] == "unstandardized") "gibbsSamp" else "gibbsCor"]],
-                                        MARGIN = c(1, 2), Bayesrel:::applylambda6, progressbarTick))
-    }
-
-    if (options[["samplesSavingDisabled"]])
-      return(out)
-
-    stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["scaleLambda6Obj"]] <- createJaspState(out, dependencies = c("scaleLambda6", "inverseWishartPriorScale", "inverseWishartPriorDf",
-                                                                                 "coefficientType"))
-  }
-
-  return(out)
-}
-
-.BayesianLambda6Item <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["itemDeletedLambda6Obj"]]$object))
-    return(.getStateContainerB(jaspResults)[["itemDeletedLambda6Obj"]]$object)
-
-  out <- model[["itemDeletedLambda6"]]
-  if (is.null(out))
-    out <- list()
-
-  if (options[["itemDeletedLambda6"]] && is.null(model[["empty"]])) {
-    if (ncol(dataset) == 2) {
-      out[["itemEst"]] <- c(NaN, NaN)
-      out[["itemCred"]] <- matrix(NaN, 2, 2)
-      colnames(out[["itemCred"]]) <- c("lower", "upper")
-
-      return(out)
-    }
-
-    if (is.null(out[["itemSamp"]])) {
-      startProgressbar(model[["progressbarLength"]] * ncol(dataset))
-
-      out[["itemSamp"]] <- .BayesItemDroppedStats(model[[if (options[["coefficientType"]] == "unstandardized") "gibbsSamp" else "gibbsCor"]],
-                                                  Bayesrel:::applylambda6, progressbarTick)
-    }
-
-    if (options[["samplesSavingDisabled"]])
-      return(out)
-
-    stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["itemDeletedLambda6Obj"]] <- createJaspState(out, dependencies = c("itemDeletedLambda6", "inverseWishartPriorScale", "inverseWishartPriorDf",
-                                                                                "coefficientType"))
-  }
-
-  return(out)
-}
-
-
-.BayesianGlbScale <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["scaleGreatestLowerBoundObj"]]$object))
-    return(.getStateContainerB(jaspResults)[["scaleGreatestLowerBoundObj"]]$object)
-
-  out <- model[["scaleGreatestLowerBound"]]
-  if (is.null(out))
-    out <- list()
-
-  if (options[["scaleGreatestLowerBound"]] && is.null(model[["empty"]])) {
-
-    if (is.null(out[["samp"]])) {
-
-      dd <- dim(model[["gibbsSamp"]])
-      out[["samp"]] <- matrix(0, dd[1], dd[2])
-
-      startProgressbar(dd[1] * 3)
-
-      for (i in seq_len(dd[1])) {
-        out[["samp"]][i, ] <- Bayesrel:::glbOnArrayCustom(model[[if (options[["coefficientType"]] == "unstandardized") "gibbsSamp" else "gibbsCor"]][i, , , ],
-                                                          callback = progressbarTick)
-      }
-
-
-
-    }
-
-    if (options[["samplesSavingDisabled"]])
-      return(out)
-
-    stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["scaleGreatestLowerBoundObj"]] <- createJaspState(out, dependencies = c("scaleGreatestLowerBound", "inverseWishartPriorScale", "inverseWishartPriorDf",
-                                                                             "coefficientType"))
-  }
-
-  return(out)
-}
-
-.BayesianGlbItem <- function(jaspResults, dataset, options, model) {
-  if (!is.null(.getStateContainerB(jaspResults)[["itemDeletedGreatestLowerBoundObj"]]$object))
-    return(.getStateContainerB(jaspResults)[["itemDeletedGreatestLowerBoundObj"]]$object)
-
-  out <- model[["itemDeletedGreatestLowerBound"]]
-  if (is.null(out))
-    out <- list()
-
-  if (options[["itemDeletedGreatestLowerBound"]] && is.null(model[["empty"]])) {
-    if (ncol(dataset) == 2) {
-      out[["itemEst"]] <- c(NaN, NaN)
-      out[["itemCred"]] <- matrix(NaN, 2, 2)
-      colnames(out[["itemCred"]]) <- c("lower", "upper")
-
-      return(out)
-    }
-
-    if (is.null(out[["itemSamp"]])) {
-      # special case glb, because it works with arrays not only matrices, small speedup...
-      dd <- dim(model[["gibbsSamp"]])
-      out[["itemSamp"]] <- matrix(0, dd[1] * dd[2], dd[3])
-
-      startProgressbar(3 * ncol(dataset))
-
-      cov_samp <- array(model[[if (options[["coefficientType"]] == "unstandardized") "gibbsSamp" else "gibbsCor"]],
-                        c(dd[1] * dd[2], dd[3], dd[3]))
-      for (i in seq_len(dd[3])) {
-        out[["itemSamp"]][, i] <- Bayesrel:::glbOnArrayCustom(cov_samp[, -i, -i], callback = progressbarTick)
-      }
-
-    }
-
-    if (options[["samplesSavingDisabled"]])
-      return(out)
-
-    stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["itemDeletedGreatestLowerBoundObj"]] <- createJaspState(out, dependencies = c("itemDeletedGreatestLowerBound", "inverseWishartPriorScale", "inverseWishartPriorDf", "coefficientType"))
-  }
-
-  return(out)
-}
-
-
 .BayesianAverageCor <- function(jaspResults, dataset, options, model) {
   if (!is.null(.getStateContainerB(jaspResults)[["avgCorObj"]]$object))
     return(.getStateContainerB(jaspResults)[["avgCorObj"]]$object)
@@ -936,8 +784,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     stateContainer[["scaleResultsObj"]] <- createJaspState(out, dependencies = c("scaleCiLevel",
                                                                                  "scaleMean", "scaleSd", "rHat",
                                                                                  "scaleAlpha", "scaleOmega",
-                                                                                 "scaleLambda2", "scaleLambda6",
-                                                                                 "scaleGreatestLowerBound","averageInterItemCorrelation",
+                                                                                 "scaleLambda2", "averageInterItemCorrelation",
                                                                                  "meanSdScoresMethod", "inverseWishartPriorScale", "inverseWishartPriorDf",
                                                                                  "inverseGammaPriorShape", "inverseGammaPriorScale",
                                                                                  "coefficientType", "pointEstimate",
@@ -991,8 +838,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["itemResultsObj"]] <- createJaspState(out, dependencies = c("itemDeletedOmega",  "itemDeletedAlpha",
-                                                                                "itemDeletedLambda2",  "itemDeletedLambda6",
-                                                                                "itemDeletedGreatestLowerBound","itemCiLevel",
+                                                                                "itemDeletedLambda2", "itemCiLevel",
                                                                                 "itemRestCorrelation", "itemMean", "itemSd",
                                                                                 "inverseWishartPriorScale", "inverseWishartPriorDf", "inverseGammaPriorShape", "inverseGammaPriorScale",
                                                                                 "coefficientType", "pointEstimate", "normalPriorMean"))
@@ -1107,7 +953,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   scaleTable <- createJaspTable(gettext("Bayesian Scale Reliability Statistics"))
   scaleTable$dependOn(options = c("scaleCiLevel", "scaleMean", "scaleSd", "rHat",
-                                  "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6", "scaleGreatestLowerBound",
+                                  "scaleAlpha", "scaleOmega", "scaleLambda2",
                                   "averageInterItemCorrelation", "meanSdScoresMethod", "effectiveSampleSize"))
 
   pointEstimate <- gettextf("Posterior %s", options[["pointEstimate"]])
@@ -1175,9 +1021,9 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   itemTable <- createJaspTable(gettext("Bayesian Individual Item Reliability Statistics"))
 
-  itemTable$dependOn(options = c("itemDeletedOmega",  "itemDeletedAlpha",  "itemDeletedLambda2",  "itemDeletedLambda6", "itemDeletedGreatestLowerBound",
+  itemTable$dependOn(options = c("itemDeletedOmega",  "itemDeletedAlpha",  "itemDeletedLambda2",
                                  "itemCiLevel", "itemRestCorrelation", "itemMean", "itemSd",
-                                 "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6", "scaleGreatestLowerBound"))
+                                 "scaleAlpha", "scaleOmega", "scaleLambda2"))
 
   itemTable$addColumnInfo(name = "variable", title = gettext("Item"), type = "string")
 
@@ -1446,7 +1292,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   plotContainer <- createJaspContainer(gettext("Posterior Plots"))
   plotContainer$dependOn(options = c("posteriorPlot", "posteriorPlotShaded", "probabilityTable", "probabilityTableLowerBound",
                                      "probabilityTableUpperBound", "posteriorPlotFixedRange", "posteriorPlotPriorDisplayed", "scaleCiLevel",
-                                     "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6", "scaleGreatestLowerBound"))
+                                     "scaleAlpha", "scaleOmega", "scaleLambda2"))
 
   derivedOptions <- model[["derivedOptions"]]
   selected <- derivedOptions[["selectedEstimatorsPlots"]]
@@ -1607,7 +1453,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   plotContainerItem <- createJaspContainer(gettext("If Item Dropped Posterior Plots"))
   plotContainerItem$dependOn(options = c("variables", "itemDeletedPlot",
                                          "itemCiLevel", "itemDeletedPlotOrderedType", "itemDeletedPlotOrdered",
-                                         "itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedLambda6", "itemDeletedGreatestLowerBound"))
+                                         "itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2"))
 
   derivedOptions <- model[["derivedOptions"]]
 
@@ -1801,8 +1647,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   if (is.null(model[["empty"]]) && options[["tracePlot"]]) {
 
     plotContainerTP <- createJaspContainer(gettext("Convergence Traceplot"))
-    plotContainerTP$dependOn(options = c("tracePlot", "scaleAlpha", "scaleOmega", "scaleLambda2", "scaleLambda6",
-                                         "scaleGreatestLowerBound"))
+    plotContainerTP$dependOn(options = c("tracePlot", "scaleAlpha", "scaleOmega", "scaleLambda2"))
 
     derivedOptions <- model[["derivedOptions"]]
     selected <- derivedOptions[["selectedEstimatorsPlots"]]

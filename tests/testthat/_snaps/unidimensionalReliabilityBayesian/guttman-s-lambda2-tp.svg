@@ -58,6 +58,6 @@
 <text transform='translate(19.80,229.44) rotate(-90)' style='font-size: 20.40px; font-family: sans;' textLength='5.10px' lengthAdjust='spacingAndGlyphs'> </text>
 <text transform='translate(19.80,224.34) rotate(-90)' style='font-size: 20.40px; font-family: sans;' textLength='10.39px' lengthAdjust='spacingAndGlyphs'>λ</text>
 <text transform='translate(23.58,213.95) rotate(-90)' style='font-size: 14.28px; font-family: sans;' textLength='7.94px' lengthAdjust='spacingAndGlyphs'>2</text>
-<text x='403.17' y='11.70' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='85.06px' lengthAdjust='spacingAndGlyphs'>lambda2-tp</text>
+<text x='403.17' y='11.70' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='166.32px' lengthAdjust='spacingAndGlyphs'>guttman-s-lambda2-tp</text>
 </g>
 </svg>
