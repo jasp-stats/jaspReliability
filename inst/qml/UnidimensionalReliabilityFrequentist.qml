@@ -16,11 +16,11 @@
 // <http://www.gnu.org/licenses/>.
 //
 
-import QtQuick 			2.15
-import QtQuick.Layouts 			1.15
-import JASP.Controls 	1.0
-import JASP.Theme		1.0
-import JASP.Widgets 	1.0
+import QtQuick 
+import QtQuick.Layouts 
+import JASP.Controls 
+import JASP.Theme	
+import JASP.Widgets 
 
 Form
 {
