@@ -19,7 +19,6 @@
 standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 
-
   ready <- length(options[["variables"]]) > 1
 
   dataset <- .semReadData(dataset, options)
@@ -198,6 +197,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   coefficientTable$addColumnInfo(name = "score", title = gettext("Sum score"), type = "string")
   coefficientTable$addColumnInfo(name = "average", title = gettext("Traditional"), type = "number")
 
+  footnote <- ""
+
   if (!ready || jaspResults[["semMainContainer"]]$getError()) return()
 
   dtFill <- data.frame(score = "all")
@@ -216,8 +217,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
       coefficientTable$addColumnInfo(name = "score", title = gettext("Sum score"), type = "string")
       coefficientTable$addColumnInfo(name = "counts", title = gettext("Counts"), type = "string")
-      coefficientTable$addFootnote(message = gettextf("The traditional sem value equals %1$1.3f.", average$est))
-
+      footnote <- gettextf("%1$s The traditional sem value equals %2$1.3f.", footnote, average$est)
       scrs <- jaspResults[["semMainContainer"]][["countsState"]]$object
       counts <- scrs$counts
       dtFill <- data.frame(score = scrs$scores)
@@ -233,11 +233,16 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
           out <- out$binned
         }
         coefficientTable$addColumnInfo(name = method[i], title = selected[[i]][["name"]], type = "number")
-        dtFill[[method[i]]] <- out[, 2]
+        sem <- out[, 2]
+        dtFill[[method[i]]] <- sem
+        if (all(is.na(sem))) {
+          footnote <- gettextf("%1$s Estimating the %2$s method failed. If possible, you might try changing the method's parameters.", footnote, selected[[i]][["name"]])
+        }
       }
     }
   }
 
+  coefficientTable$addFootnote(footnote)
   coefficientTable$setData(dtFill)
 
   return()
@@ -294,7 +299,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     ggplot2::xlab(gettext("Sum scores"))
   p <- p + jaspGraphs::themeJaspRaw() + jaspGraphs::geom_rangeframe()
 
-  histPlot <- createJaspPlot(plot = p, title = gettext("Histogram of counts per sum score group"), width = 500)
+  histPlot <- createJaspPlot(plot = p, title = gettext("Histogram of counts per sum score group"), width = 500,
+                             dependencies = "histogramCounts")
   jaspResults[["semMainContainer"]][["histPlot"]] <- histPlot
 
   return()

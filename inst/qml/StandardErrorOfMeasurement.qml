@@ -35,6 +35,7 @@ Form
 			name: 			"variables"
 			title: 			qsTr("Variables")
 			allowedColumns: ["nominal", "ordinal"]
+			maxLevels: 50
 			id: variables
 			onCountChanged: 
 			{
@@ -219,7 +220,7 @@ Form
 		CheckBox
 		{
 			name: "combinedPointPlot"
-			label: qsTr("Combined plot")
+			label: qsTr("Plot all sems")
 		}
 
 		Group {
@@ -227,6 +228,7 @@ Form
 			{
 				name: "sumScoreCiPlots"
 				label: qsTr("Sum score plots")
+				id: sumScoreCiPlots
 				childrenOnSameRow: true
 				CIField
 				{
@@ -246,6 +248,7 @@ Form
 				{
 					name: "sumScoreCiPlotsCutoff"
 					label: qsTr("Display cutoff score")
+					enabled: sumScoreCiPlots.checked
 					childrenOnSameRow: true
 					DoubleField
 					{
