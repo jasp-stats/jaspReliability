@@ -218,7 +218,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
         }
       }
       stateContainer <- .getStateContainerB(jaspResults)
-      stateContainer[["gibbsCorObj"]] <- createJaspState(out, dependencies = "coefficientType")
+      stateContainer[["gibbsCor"]] <- createJaspState(out, dependencies = "coefficientType")
     }
   }
   return(out)
