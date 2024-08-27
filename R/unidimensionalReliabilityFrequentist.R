@@ -4,8 +4,8 @@
 #' @export
 unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) {
 
-  sink(file = "~/Downloads/log.txt")
-  on.exit(sink(NULL))
+  # sink(file = "~/Downloads/log.txt")
+  # on.exit(sink(NULL))
 
   dataset <- .readData(dataset, options)
 
@@ -20,6 +20,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   options <- .scaleItemBoxAlign(options)
 
   model[["derivedOptions"]] <- .frequentistDerivedOptions(options)
+  model[["bootCor"]] <- .frequentistStdCov(jaspResults, dataset, options, model)
   model[["scaleOmega"]] <- .frequentistOmegaScale(jaspResults, dataset, options, model)
   model[["itemDeletedOmega"]] <- .frequentistOmegaItem(jaspResults, dataset, options, model)
   model[["scaleAlpha"]] <- .frequentistAlphaScale(jaspResults, dataset, options, model)
@@ -146,8 +147,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     } else if (anyNA(dataset)) { # when pairwise deletion
       model[["use.cases"]] <- "pairwise.complete.obs"
       model[["pairwise"]] <- TRUE
-      model[["footnote"]] <- gettextf("%s Of the observations, pairwise complete cases were used. ",
-                                      model[["footnote"]])
 
     } else {
       model[["use.cases"]] <- "everything"
@@ -212,6 +211,29 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 }
 
 
+.frequentistStdCov <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerF(jaspResults)[["bootCor"]]$object))
+    return(.getStateContainerF(jaspResults)[["bootCor"]]$object)
+
+  if (is.null(model[["bootSamp"]])) {
+    return()
+  } else {
+    if (options[["coefficientType"]] == "unstandardized") {
+      return()
+    } else { # standardized
+      out <- model[["bootSamp"]]
+      startProgressbar(options[["bootstrapSamples"]])
+      for (i in seq_len(nrow(model[["bootSamp"]]))) {
+        out[i, , ] <- .cov2cor.callback(model[["bootSamp"]][i, , ], progressbarTick)
+      }
+      stateContainer <- .getStateContainerF(jaspResults)
+      stateContainer[["bootCor"]] <- createJaspState(out, dependencies = "coefficientType")
+    }
+  }
+  return(out)
+}
+
+
 
 
 # ##### Frequentist calculate coefficients #####
@@ -238,17 +260,21 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         if (is.null(omegaboot)) {
           startProgressbar(options[["bootstrapSamples"]])
           jaspBase::.setSeedJASP(options)
-          omegaboot <- Bayesrel:::omegaFreqData(dataset, interval = ciValue, omega.int.analytic = FALSE,
-                                                pairwise = model[["pairwise"]], parametric = parametric,
-                                                n.boot = options[["bootstrapSamples"]], callback = progressbarTick)
+          omegaboot <- .omegaFreqData(dataset,
+                                     interval = ciValue,
+                                     omega.int.analytic = FALSE,
+                                     pairwise = model[["pairwise"]], parametric = parametric,
+                                     n.boot = options[["bootstrapSamples"]], callback = progressbarTick,
+                                     standardized = options[["coefficientType"]] == "standardized")
 
           out[["samp"]] <- omegaboot[["omega_boot"]]
         }
       }
     } else { # omega with pfa
       if (is.null(out[["samp"]])) {
+        type <- ifelse(options[["coefficientType"]] == "unstandardized", "bootSamp", "bootCor")
         startProgressbar(options[["bootstrapSamples"]])
-        out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applyomegaPFA, callback = progressbarTick)
+        out[["samp"]] <- apply(model[[type]], 1, .applyomegaPFA, callback = progressbarTick)
       }
     }
 
@@ -256,7 +282,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["scaleOmegaObj"]] <- createJaspState(out, dependencies = c("scaleOmega", "omegaEstimationMethod"))
+    stateContainer[["scaleOmegaObj"]] <- createJaspState(out, dependencies = c("scaleOmega", "omegaEstimationMethod",
+                                                                               "coefficientType"))
   }
 
   return(out)
@@ -294,9 +321,14 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
       }
 
     } else { # omega with pfa
+      if (options[["coefficientType"]] == "unstandardized") {
+        cc <- model[["data_cov"]]
+      } else {
+        cc <- model[["data_cor"]]
+      }
       # do we have to compute item dropped values
       if (is.null(out[["itemDropped"]]))
-        out[["itemDropped"]] <- .freqItemDroppedStats(model[["data_cov"]], Bayesrel:::applyomegaPFA)
+        out[["itemDropped"]] <- .freqItemDroppedStats(cc, .applyomegaPFA)
 
       if (anyNA(out[["itemDropped"]]))
         out[["error"]] <- gettext("Omega item dropped statistics with PFA failed.")
@@ -307,7 +339,10 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["itemDeletedOmegaObj"]] <- createJaspState(out, dependencies = c("itemDeletedOmega", "omegaEstimationMethod"))
+    stateContainer[["itemDeletedOmegaObj"]] <- createJaspState(out,
+                                                               dependencies = c("itemDeletedOmega",
+                                                                                "omegaEstimationMethod",
+                                                                                "coefficientType"))
   }
 
   return(out)
@@ -324,34 +359,21 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
   if (options[["scaleAlpha"]] && is.null(model[["empty"]])) {
 
-    # alpha unstandardized
-    if (options[["alphaType"]] == "unstandardized") {
-      # should the interval be bootstrapped
-      if (options[["intervalMethod"]] == "bootstrapped") {
-        if (is.null(out[["samp"]])) {
-          startProgressbar(options[["bootstrapSamples"]])
-          out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applyalpha, callback = progressbarTick)
-        }
+    # should the interval be bootstrapped
+    if (options[["intervalMethod"]] == "bootstrapped") {
+      if (is.null(out[["samp"]])) {
+        startProgressbar(options[["bootstrapSamples"]])
+        out[["samp"]] <- apply(model[[if (options[["coefficientType"]] == "unstandardized") "bootSamp" else "bootCor"]],
+                               1, Bayesrel:::applyalpha, callback = progressbarTick)
       }
-
-    } else { # alpha standardized
-      # should the interval be bootstrapped
-      if (options[["intervalMethod"]] == "bootstrapped") {
-        if (is.null(out[["sampCor"]])) {
-          out[["sampCor"]] <- numeric(options[["bootstrapSamples"]])
-          for (i in seq_len(options[["bootstrapSamples"]])) {
-            out[["sampCor"]][i] <- Bayesrel:::applyalpha(cov2cor(model[["bootSamp"]][i, , ]))
-          }
-        }
-      }
-
     }
 
     if (options[["samplesSavingDisabled"]])
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["scaleAlphaObj"]] <- createJaspState(out, dependencies = c("scaleAlpha", "alphaType"))
+    stateContainer[["scaleAlphaObj"]] <- createJaspState(out, dependencies = c("scaleAlpha",
+                                                                               "coefficientType"))
   }
   return(out)
 }
@@ -371,22 +393,22 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
       return(out)
     }
 
-    if (options[["alphaType"]] == "unstandardized") { # alpha unstandardized
-      # do we have to compute item dropped values
-      if (is.null(out[["itemDropped"]]))
-        out[["itemDropped"]] <- .freqItemDroppedStats(model[["data_cov"]], Bayesrel:::applyalpha)
-
-    } else { # alpha standardized
-      if (is.null(out[["itemDropped"]])) {
-        out[["itemDropped"]] <- .freqItemDroppedStats(model[["data_cor"]], Bayesrel:::applyalpha)
-      }
+    if (options[["coefficientType"]] == "unstandardized") { # alpha unstandardized
+      cc <- model[["data_cov"]]
+    } else {
+      cc <- model[["data_cor"]]
+    }
+    # do we have to compute item dropped values
+    if (is.null(out[["itemDropped"]])) {
+      out[["itemDropped"]] <- .freqItemDroppedStats(cc, Bayesrel:::applyalpha)
     }
 
     if (options[["samplesSavingDisabled"]])
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["itemDeletedAlphaObj"]] <- createJaspState(out, dependencies = c("itemDeletedAlpha", "alphaType"))
+    stateContainer[["itemDeletedAlphaObj"]] <- createJaspState(out,
+                                                               dependencies = c("itemDeletedAlpha", "coefficientType"))
   }
   return(out)
 }
@@ -403,17 +425,20 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   # is coefficient even checked?
   if (options[["scaleLambda2"]]  && is.null(model[["empty"]])) {
 
-    if (is.null(out[["samp"]])) {
-      startProgressbar(options[["bootstrapSamples"]])
-      out[["samp"]] <- apply(model[["bootSamp"]], 1, Bayesrel:::applylambda2, callback = progressbarTick)
-    }
+    type <- ifelse(options[["coefficientType"]] == "unstandardized", "bootSamp", "bootCor")
 
+    if (options[["intervalMethod"]] == "bootstrapped") {
+      if (is.null(out[["samp"]])) {
+          startProgressbar(options[["bootstrapSamples"]])
+          out[["samp"]] <- apply(model[[type]], 1, Bayesrel:::applylambda2, callback = progressbarTick)
+      }
+    }
 
     if (options[["samplesSavingDisabled"]])
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["scaleLambda2Obj"]] <- createJaspState(out, dependencies = "scaleLambda2")
+    stateContainer[["scaleLambda2Obj"]] <- createJaspState(out, dependencies = c("scaleLambda2", "coefficientType"))
   }
   return(out)
 }
@@ -434,14 +459,20 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
       return(out)
     }
 
+    if (options[["coefficientType"]] == "unstandardized") {
+      cc <- model[["data_cov"]]
+    } else {
+      cc <- model[["data_cor"]]
+    }
+
     if (is.null(out[["itemDropped"]]))
-      out[["itemDropped"]] <- .freqItemDroppedStats(model[["data_cov"]], Bayesrel:::applylambda2)
+      out[["itemDropped"]] <- .freqItemDroppedStats(cc, Bayesrel:::applylambda2)
 
     if (options[["samplesSavingDisabled"]])
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["itemDeletedLambda2Obj"]] <- createJaspState(out, dependencies = "itemDeletedLambda2")
+    stateContainer[["itemDeletedLambda2Obj"]] <- createJaspState(out, dependencies = c("itemDeletedLambda2", "coefficientType"))
   }
   return(out)
 }
@@ -471,8 +502,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
       return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["avgObj"]] <- createJaspState(out,
-                                                  dependencies = c("averageInterItemCorrelation"))
+    stateContainer[["avgObj"]] <- createJaspState(out, dependencies = "averageInterItemCorrelation")
   }
   return(out)
 }
@@ -689,13 +719,22 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
     ciValue <- options[["ciLevel"]]
 
+    if (options[["coefficientType"]] == "unstandardized") {
+      cc <- model[["data_cov"]]
+    } else {
+      cc <- model[["data_cor"]]
+    }
+
     # go one coefficient at a time, because there are too many special options for a generic solution
     # omega
     if (options[["scaleOmega"]]) {
       if (options[["omegaEstimationMethod"]] == "cfa") {
         datasetOmega <- scale(dataset, scale = FALSE)
-        omegaO <- Bayesrel:::omegaFreqData(datasetOmega, interval = ciValue, omega.int.analytic = TRUE,
-                                           pairwise = model[["pairwise"]])
+        omegaO <- .omegaFreqData(datasetOmega,
+                                interval = ciValue,
+                                omega.int.analytic = TRUE,
+                                pairwise = model[["pairwise"]],
+                                standardized = options[["coefficientType"]] == "standardized")
         if (is.na(omegaO[["omega"]])) {
           out[["error"]][["scaleOmega"]] <- gettext("Omega calculation with CFA failed.
                                                     Try changing to PFA in Advanced Options")
@@ -709,17 +748,15 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
             out[["se"]][["scaleOmega"]] <- pp[pp$label == "omega", "se"]
             out[["conf"]][["scaleOmega"]] <- c(omegaO$omega_lower, omegaO$omega_upper)
           } else { # omega interval bootstrapped
-            if (!is.null(model[["scaleOmega"]][["samp"]])) {
-              if (sum(!is.na(model[["scaleOmega"]][["samp"]])) >= 2) {
-                out[["conf"]][["scaleOmega"]] <- quantile(model[["scaleOmega"]][["samp"]],
-                                                          probs = c((1 - ciValue)/2, 1 - (1 - ciValue) / 2),
-                                                          na.rm = TRUE)
-                out[["se"]][["scaleOmega"]] <- sd(model[["scaleOmega"]][["samp"]], na.rm = TRUE)
-              } else {
-                out[["error"]][["scaleOmega"]] <- gettext("Omega bootstrapped interval calculation with CFA failed.
-                                                          Try changing to PFA in 'Advanced Options'")
-                out[["conf"]][["scaleOmega"]] <- NA
-              }
+            if (sum(!is.na(model[["scaleOmega"]][["samp"]])) >= 2) {
+              out[["conf"]][["scaleOmega"]] <- quantile(model[["scaleOmega"]][["samp"]],
+                                                        probs = c((1 - ciValue)/2, 1 - (1 - ciValue) / 2),
+                                                        na.rm = TRUE)
+              out[["se"]][["scaleOmega"]] <- sd(model[["scaleOmega"]][["samp"]], na.rm = TRUE)
+            } else {
+              out[["error"]][["scaleOmega"]] <- gettext("Omega bootstrapped interval calculation with CFA failed.
+                                                        Try changing to PFA in 'Advanced Options'")
+              out[["conf"]][["scaleOmega"]] <- NA
             }
           }
 
@@ -731,28 +768,27 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
           }
         }
       } else { # omega method is pfa
-        omOut <- applyomegaPFA(model[["data_cov"]], loadings = TRUE)
+        omOut <- .applyomegaPFA(cc, loadings = TRUE)
         out[["est"]][["scaleOmega"]] <- omOut[["om"]]
         if (is.na(omOut[["om"]])) {
           out[["error"]][["scaleOmega"]] <- gettext("Omega calculation with PFA failed.")
           out[["est"]][["scaleOmega"]] <- NA
         } else {
-          if (!is.null(model[["scaleOmega"]][["samp"]])) {
-            if (sum(!is.na(model[["scaleOmega"]][["samp"]])) >= 2) {
-              if (options[["intervalMethod"]] == "analytic") {
-                out[["conf"]][["scaleOmega"]] <- c(NA, NA)
-                out[["error"]][["scaleOmega"]] <- gettext("The analytic confidence interval is not available for coefficient omega obtained with PFA.")
-              } else {
-                out[["conf"]][["scaleOmega"]] <- quantile(model[["scaleOmega"]][["samp"]],
-                                                          probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2),
-                                                          na.rm = TRUE)
-                out[["se"]][["scaleOmega"]] <- sd(model[["scaleOmega"]][["samp"]], na.rm = TRUE)
-              }
 
+          if (sum(!is.na(model[["scaleOmega"]][["samp"]])) >= 2) {
+            if (options[["intervalMethod"]] == "analytic") {
+              out[["conf"]][["scaleOmega"]] <- c(NA, NA)
+              out[["error"]][["scaleOmega"]] <- gettext("The analytic confidence interval is not available for coefficient omega obtained with PFA.")
             } else {
-              out[["error"]][["scaleOmega"]] <- gettext("Omega interval calculation with PFA failed.")
-              out[["conf"]][["scaleOmega"]] <- NA
+              out[["conf"]][["scaleOmega"]] <- quantile(model[["scaleOmega"]][["samp"]],
+                                                        probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2),
+                                                        na.rm = TRUE)
+              out[["se"]][["scaleOmega"]] <- sd(model[["scaleOmega"]][["samp"]], na.rm = TRUE)
             }
+
+          } else {
+            out[["error"]][["scaleOmega"]] <- gettext("Omega interval calculation with PFA failed.")
+            out[["conf"]][["scaleOmega"]] <- NA
           }
 
           if (options[["standardizedLoadings"]]) {
@@ -764,45 +800,19 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
     # alpha
     if (options[["scaleAlpha"]]) {
-      # alpha unstandardized
-      if (options[["alphaType"]] == "unstandardized") {
-        out[["est"]][["scaleAlpha"]] <- Bayesrel:::applyalpha(model[["data_cov"]])
 
-        # should the interval be analytic
-        if (options[["intervalMethod"]] == "analytic") {
-          out[["se"]][["scaleAlpha"]] <- .seLambda3(dataset)
-          out[["conf"]][["scaleAlpha"]] <- out[["est"]][["scaleAlpha"]] + c(-1, 1) * out[["se"]][["scaleAlpha"]] * qnorm(1 - (1 - ciValue) / 2)
-        } else { # alpha interval bootstrapped
-          if (!is.null(model[["scaleAlpha"]][["samp"]])) {
-            out[["conf"]][["scaleAlpha"]] <- quantile(model[["scaleAlpha"]][["samp"]],
-                                                      probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2),
-                                                      na.rm = TRUE)
-            out[["se"]][["scaleAlpha"]] <- sd(model[["scaleAlpha"]][["samp"]], na.rm = TRUE)
-          }
-        }
+      out[["est"]][["scaleAlpha"]] <- Bayesrel:::applyalpha(cc)
+      if (options[["intervalMethod"]] == "bootstrapped") {
+        samp <- model[["scaleLambda2"]][["samp"]]
+        out[["conf"]][["scaleAlpha"]] <- quantile(samp,
+                                                    probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2),
+                                                    na.rm = TRUE)
+        out[["se"]][["scaleAlpha"]] <- sd(samp, na.rm = TRUE)
 
-      } else { # alpha standardized
-        ccor <- model[["data_cor"]]
-        out[["est"]][["scaleAlpha"]] <- Bayesrel:::applyalpha(ccor)
-
-        # should the interval be analytic
-        if (options[["intervalMethod"]] == "analytic") {
-
-          # TODO: need to scale the dataset, but for now this leads to an error,
-          # however, there is another PR with standardized coefficients anyways, so leave this for now.
-          # out[["se"]][["scaleAlpha"]] <- .seLambda3(scale(dataset))
-          out[["se"]][["scaleAlpha"]] <- NA
-          out[["conf"]][["scaleAlpha"]] <- out[["est"]][["scaleAlpha"]] + c(-1, 1) * out[["se"]][["scaleAlpha"]] * qnorm(1 - (1 - ciValue) / 2)
-
-        } else {
-          if (!is.null(model[["scaleAlpha"]][["sampCor"]])) {
-            out[["conf"]][["scaleAlpha"]] <- quantile(model[["scaleAlpha"]][["sampCor"]],
-                                                      probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2),
-                                                      na.rm = TRUE)
-            out[["se"]][["scaleAlpha"]] <- sd(model[["scaleAlpha"]][["sampCor"]], na.rm = TRUE)
-          }
-        }
-
+      } else { # alpha interval analytic
+        # TODO standardization?
+        out[["se"]][["scaleAlpha"]] <- .seLambda3(dataset)
+        out[["conf"]][["scaleAlpha"]] <- out[["est"]][["scaleAlpha"]] + c(-1, 1) * out[["se"]][["scaleAlpha"]] * qnorm(1 - (1 - ciValue) / 2)
       }
     }
 
@@ -815,6 +825,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         out[["conf"]][["scaleLambda2"]] <- quantile(samp, probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
         out[["se"]][["scaleLambda2"]] <- sd(samp, na.rm = TRUE)
       } else { # interval analytic
+        # TODO standardization?
         out[["se"]][["scaleLambda2"]] <- .seLambda2(dataset)
         out[["conf"]][["scaleLambda2"]] <- out[["est"]][["scaleLambda2"]] + c(-1, 1) * out[["se"]][["scaleLambda2"]] * qnorm(1 - (1 - ciValue) / 2)
       }
@@ -863,7 +874,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
                                                                                  "averageInterItemCorrelation",
                                                                                  "meanSdScoresMethod",
                                                                                  "omegaEstimationMethod", "intervalMethod",
-                                                                                 "intervalMethodVar", "alphaType"))
+                                                                                 "intervalMethodVar", "coefficientType"))
 
 
   }
@@ -886,7 +897,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
   scaleTable$dependOn(options = c("scaleOmega", "scaleAlpha", "scaleLambda2",
                                   "averageInterItemCorrelation", "scaleMean", "scaleSd", "meanSdScoresMethod",
-                                  "omegaEstimationMethod", "intervalMethod", "alphaType", "intervalMethodVar",
+                                  "omegaEstimationMethod", "intervalMethod", "intervalMethodVar",
                                   "ciLevel"))
   scaleTable$addColumnInfo(name = "coefficient", title = gettext("Coefficient"), type = "string")
   scaleTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "number")
@@ -1242,7 +1253,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
 
 # have this here instead of the Bayesrel package
-applyomegaPFA <- function(m, callback = function(){}, loadings = FALSE){
+.applyomegaPFA <- function(m, callback = function(){}, loadings = FALSE){
 
   f <- try(Bayesrel:::pfaArma(m), silent = TRUE)
   if (inherits(f, "try-error")) {
@@ -1269,6 +1280,137 @@ applyomegaPFA <- function(m, callback = function(){}, loadings = FALSE){
   } else {
     return(om)
   }
+}
+
+.omegaFreqData <- function(
+    data,
+    interval,
+    omega.int.analytic,
+    pairwise,
+    n.boot = 1e3,
+    parametric = FALSE,
+    callback = function(){},
+    standardized = FALSE) {
+
+  p <- ncol(data)
+  n <- nrow(data)
+  file <- Bayesrel:::lavOneFile(data)
+  colnames(data) <- file$names
+
+  lam_names <- paste("l", 1:p, sep = "")
+  err_names <- paste("e", 1:p, sep = "")
+  model <- paste0("f1 =~ ")
+  loadings <- paste(paste(lam_names, "*", file$names, sep = ""),
+                    collapse = " + ")
+  errors <- paste(paste(file$names, " ~~ ", err_names, "*",
+                        file$names, sep = ""), collapse = "\n")
+  sum_loads <- paste("loading :=", paste(lam_names, collapse = " + "),
+                     "\n")
+  sum_errs <- paste("error :=", paste(err_names, collapse = " + "),
+                    "\n")
+  omega <- "omega := (loading^2) / ((loading^2) + error) \n"
+  mod <- paste(model, loadings, "\n", errors,
+               "\n", sum_loads, sum_errs, omega)
+
+  if (pairwise) {
+    fit <-  Bayesrel:::fitmodelMis(mod, data)
+  } else {
+    fit <-  Bayesrel:::fitmodel(mod, data)
+  }
+
+  if (is.null(fit)) {
+    return(list(omega = NA, fit.object = NULL))
+  } else {
+    if (standardized) {
+      params <- lavaan::standardizedsolution(fit, level = interval)
+      omega <- params$est.std[params$lhs == "omega"]
+    } else {
+      params <- lavaan::parameterestimates(fit, level = interval)
+      omega <- params$est[params$lhs == "omega"]
+    }
+
+    if (omega.int.analytic) {
+      om_low <- params$ci.lower[params$lhs == "omega"]
+      om_up <- params$ci.upper[params$lhs == "omega"]
+      om_obj <- NA
+    } else { # omega cfa with bootstrapping:
+      if (parametric) {
+        if (pairwise) {
+          cc <- cov(data, use = "pairwise.complete.obs")
+        } else {
+          cc <- cov(data)
+        }
+        om_obj <- numeric(n.boot)
+        for (i in 1:n.boot){
+          boot_data <- MASS::mvrnorm(n, colMeans(data, na.rm = TRUE), cc)
+          fit <-  Bayesrel:::fitmodel(mod, boot_data)
+          callback()
+          if (!is.null(fit)) {
+            if (standardized) {
+              params <- lavaan::standardizedsolution(fit, level = interval)
+              om_obj[i] <- params$est.std[params$lhs == "omega"]
+            } else {
+              params <- lavaan::parameterestimates(fit, level = interval)
+              om_obj[i] <- params$est[params$lhs == "omega"]
+            }
+
+          } else {
+            om_obj[i] <- NA
+          }
+        }
+
+        if (sum(!is.na(om_obj)) > 1) {
+          om_low <- quantile(om_obj, prob = (1 - interval) / 2, na.rm = TRUE)
+          om_up <- quantile(om_obj, prob = interval + (1 - interval) / 2, na.rm = TRUE)
+        } else {
+          om_low <- NA
+          om_up <- NA
+          om_obj <- NA
+        }
+
+      } else { # bootstrap non parametric
+
+        om_obj <- numeric(n.boot)
+        for (i in 1:n.boot){
+          boot_data <- as.matrix(data[sample.int(n, size = n, replace = TRUE), ])
+          if (pairwise) {
+            fit <- Bayesrel:::fitmodelMis(mod, boot_data)
+          } else {
+            fit <-  Bayesrel:::fitmodel(mod, boot_data)
+          }
+          callback()
+          if (!is.null(fit)) {
+            if (standardized) {
+              params <- lavaan::standardizedsolution(fit, level = interval)
+              om_obj[i] <- params$est.std[params$lhs=="omega"]
+            } else {
+              params <- lavaan::parameterestimates(fit, level = interval)
+              om_obj[i] <- params$est[params$lhs=="omega"]
+            }
+
+          } else {
+            om_obj[i] <- NA
+          }
+        }
+
+        if (sum(!is.na(om_obj)) > 1) {
+          om_low <- quantile(om_obj, prob = (1 - interval) / 2, na.rm = TRUE)
+          om_up <- quantile(om_obj, prob = interval + (1 - interval) / 2, na.rm = TRUE)
+        } else {
+          om_low <- NA
+          om_up <- NA
+          om_obj <- NA
+        }
+      }
+    }
+
+    fit_tmp <- lavaan::fitMeasures(fit)
+    indic <- c(fit_tmp["chisq"], fit_tmp["df"], fit_tmp["pvalue"],
+               fit_tmp["rmsea"], fit_tmp["rmsea.ci.lower"], fit_tmp["rmsea.ci.upper"],
+               fit_tmp["srmr"])
+  }
+  return(list(omega = omega, omega_lower = om_low, omega_upper = om_up, indices = indic, fit.object = fit,
+              omega_boot = om_obj))
 }
 
 

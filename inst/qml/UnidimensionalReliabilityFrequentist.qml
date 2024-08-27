@@ -237,26 +237,16 @@ Form
 
 		Group
 		{
-			title: 		qsTr("Coefficient α Estimation")
+			title: 		qsTr("Coefficients")
 			enabled: 	alpha.checked
 
 			RadioButtonGroup
-			{
-				title:	""
-				name: 	"alphaType"
+ 			{
+ 				title: ""
+ 				name: "coefficientType"
 
-				RadioButton
-				{
-					value:		"unstandardized"
-					label:		qsTr("Unstandardized")
-					checked:	true
-				}
-
-				RadioButton
-				{
-					value:	"standardized"
-					label:	qsTr("Standardized")
-				}
+ 				RadioButton{ value: "unstandardized"; label: qsTr("Unstandardized"); checked: true }
+ 				RadioButton{ value: "standardized";	label: qsTr("Standardized")}
 			}
 		}
 
