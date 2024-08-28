@@ -19,17 +19,17 @@ options$variables <- c(paste("Question", c(1, 4:8), sep="_0"),
 
 set.seed(1)
 
-results <- jaspTools::runAnalysis("unidimensionalReliabilityFrequentist", testthat::test_path("Reliability.csv"), options, makeTests = FALSE)
+results <- jaspTools::runAnalysis("unidimensionalReliabilityFrequentist", testthat::test_path("Reliability.csv"), options, makeTests = F)
 
 test_that("Main (scale) table results match R, SPSS, SAS and MiniTab", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list("Coefficient <unicode>", 0.762830469875068, 0.748803468173598,
-                                      "", 0.776857471576537, "Coefficient <unicode>", 0.757381263545318,
-                                      0.742939526669925, "", 0.771189756266616, "Guttman's <unicode>2",
-                                      0.764552908800386, 0.749596669466725, "", 0.778248039401737,
-                                      "mean", 2.50730677335111, 2.48349947134054, "", 2.53111407536169
-                                 ))
+                                      0.00715676502839475, 0.776857471576537, "Coefficient <unicode>",
+                                      0.757381263545318, 0.742450705275325, 0.00761777174874793, 0.77231182181531,
+                                      "Guttman's <unicode>2", 0.764552908800386, 0.750193337649084,
+                                      0.0073264464370614, 0.778912479951688, "Mean", 2.50730677335111,
+                                      2.48349947134054, 0.012146805858866, 2.53111407536169))
 })
 
 test_that("Main (item) table results match R, SPSS, SAS and MiniTab", {

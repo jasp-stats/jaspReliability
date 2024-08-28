@@ -77,6 +77,13 @@ Form
 				label: 	qsTr("Guttman's λ2");
 			}
 
+			CheckBox
+			{
+				id: 	splithalf
+				name: 	"scaleSplithalf";
+				label: 	qsTr("Split-half coefficient");
+			}
+
 			CheckBox { name: "averageInterItemCorrelation";	label: qsTr("Average interitem correlation")}
 
 			RowLayout {
@@ -120,6 +127,13 @@ Form
 				name: 		"itemDeletedLambda2";
 				label: 		qsTr("Guttman's λ2 (if item dropped)");
 				enabled: 	lambda2.checked
+			}
+
+			CheckBox
+			{
+				name: 		"itemDeletedSplithalf";
+				label: 		qsTr("Split-half coefficient (if item dropped)");
+				enabled: 	splithalf.checked
 			}
 			
 			CheckBox { name: "itemRestCorrelation";	label: qsTr("Item-rest correlation")		}
@@ -238,7 +252,6 @@ Form
 		Group
 		{
 			title: 		qsTr("Coefficients")
-			enabled: 	alpha.checked
 
 			RadioButtonGroup
  			{
