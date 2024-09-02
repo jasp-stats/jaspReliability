@@ -894,7 +894,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         out[["se"]][["scaleAlpha"]] <- sd(samp, na.rm = TRUE)
 
       } else { # alpha interval analytic
-        # TODO standardization?
         out[["se"]][["scaleAlpha"]] <- try(.seLambda3(dtUse))
         if (isTryError(out[["se"]][["scaleAlpha"]])) {
           out[["se"]][["scaleAlpha"]] <- NA
@@ -913,7 +912,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         out[["conf"]][["scaleLambda2"]] <- quantile(samp, probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
         out[["se"]][["scaleLambda2"]] <- sd(samp, na.rm = TRUE)
       } else { # interval analytic
-        # TODO standardization?
         out[["se"]][["scaleLambda2"]] <- try(.seLambda2(dtUse))
         if (isTryError(out[["se"]][["scaleLambda2"]])) {
           out[["se"]][["scaleLambda2"]] <- NA
@@ -1615,8 +1613,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
   X2nR <- function(X){
     if (!is.matrix(X)) X <- as.matrix(X)
-    n <- as.matrix(table(apply(X, 1, paste, collapse="-")))
-    R <- matrix(as.numeric(unlist(strsplit(dimnames(n)[[1]], "-"))), ncol = ncol(X), byrow = TRUE)
+    n <- as.matrix(table(apply(X, 1, paste, collapse=",")))                               # MODIFIED on 30-aug-2024
+    R <- matrix(as.numeric(unlist(strsplit(dimnames(n)[[1]], ","))), ncol = ncol(X), byrow = TRUE)
     return(list(n = n, R = R))
   }
   D <- function(x) diag(as.numeric(x))
@@ -1632,6 +1630,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     }
   }
 
+  X <- X - min(X) + 1                                                                      # MODIFIED on 30-aug-2024
   res <- X2nR(X)
   R <- res$R
   n <- res$n
@@ -1639,6 +1638,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   K <- length(n)
   marg.default <- list()
   for (j in 1 : J) marg.default[[j]] <- sort(unique(R[, j]))
+  marg <- marg.default # remove line when not testing
+  eps <- 1e-16         # remove line when not testing
 
   A2 <- matrix(c(1, 0, 0, 0,  1, 0, 0, 0,  0, 1, 0, 0,  -1, 0, 1, 1,  0, 0, 0, -1), 4, 5)
   A3 <- matrix(c(-1, 0,  1, 0,  0, 1,  0, -1), 2, 4)
