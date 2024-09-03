@@ -137,9 +137,12 @@ Form
 			}
 			
 			CheckBox { name: "itemRestCorrelation";	label: qsTr("Item-rest correlation")		}
-			CheckBox { name: "itemMean";			label: qsTr("Mean")							}
-			CheckBox { name: "itemVar";			label: qsTr("Variance")			}
-			CheckBox { name: "itemSd";			label: qsTr("Standard deviation")			}
+			RowLayout {
+				CheckBox { name: "itemMean";			label: qsTr("Mean")							}
+				CheckBox { name: "itemVar";			label: qsTr("Variance")			}
+				CheckBox { name: "itemSd";			label: qsTr("SD")			}
+			}
+
 		}
 	}
 

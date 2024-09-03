@@ -710,7 +710,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   if (options[["itemRestCorrelation"]]  && is.null(model[["empty"]])) {
     out[["itemDropped"]] <- numeric(ncol(dataset))
     for (i in seq_len(ncol(dataset))) {
-      out[["itemDropped"]][i] <- cor(as.matrix(dataset[, i]), rowMeans(as.matrix(dataset[, -i]), na.rm = TRUE),
+      out[["itemDropped"]][i] <- cor(as.matrix(dataset[, i]), rowSums(as.matrix(dataset[, -i]), na.rm = TRUE),
                                      use = model[["use.cases"]])
     }
 
