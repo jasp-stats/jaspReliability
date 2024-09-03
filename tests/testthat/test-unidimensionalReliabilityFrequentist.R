@@ -21,7 +21,7 @@ options$scaleSd <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options)
+results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options, makeTests = F)
 
 
 test_that("Frequentist Individual Item Reliability Statistics table results match for main options", {
