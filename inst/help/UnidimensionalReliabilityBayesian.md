@@ -15,8 +15,6 @@ The Bayesian unidimensional reliability analysis allows the user to test the sca
 - Coefficient omega (for unidimensional data, based on the single-factor model). Note the total test score variance in the denominator of the reliability equation is the model implied test score variance, that is, the summed model implied covariance matrix.
 - Coefficient alpha (for binary items the coefficient equals Kuder-Richardson Formula 20, KR20)
 - Guttman's lambda 2
-- Guttman's lambda 6
-- Greatest lower bound
 - Average interitem correlation
 - Mean:
 	- of the sum scores of participants

@@ -77,13 +77,13 @@ Form
 
 			RowLayout {
 				CheckBox { name: "scaleMean";	label: qsTr("Mean");	id: mean}
+				CheckBox { name: "scaleVar";	label: qsTr("Variance"); id: variance}
 				CheckBox { name: "scaleSd";		label: qsTr("SD");		id: sd}
-
 			}
 			RadioButtonGroup
 			{
 				indent:		true
-				enabled:	mean.checked || sd.checked
+				enabled:	mean.checked || sd.checked || variance.checked
 				name:		"meanSdScoresMethod"
 
 				RadioButton { value: "sumScores";	label: qsTr("of participants' sum scores"); checked: true}
@@ -132,7 +132,7 @@ Form
 				id: 		itemPlot
 				name: 		"itemDeletedPlot";
 				label: 		qsTr("If item dropped plot");
-				enabled: 	omegaItem.checked || alphaItem.checked || lambda2Item.checked || lambda6Item.checked || glbItem.checked;
+				enabled: 	omegaItem.checked || alphaItem.checked || lambda2Item.checked
 
 				CheckBox
 				{
@@ -153,8 +153,12 @@ Form
 			}
 
 			CheckBox { name: "itemRestCorrelation";				label: qsTr("Item-rest correlation")			}
-			CheckBox { name: "itemMean";						label: qsTr("Mean")								}
-			CheckBox { name: "itemSd";							label: qsTr("Standard deviation")				}
+			RowLayout {
+				CheckBox { name: "itemMean";						label: qsTr("Mean")								}
+				CheckBox { name: "itemVar";						label: qsTr("Variance")								}
+				CheckBox { name: "itemSd";							label: qsTr("SD")				}
+			}
+
 		}
 
 		Group
