@@ -20,7 +20,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   model <- .BayesianPreCalc(jaspResults, dataset, options)
 
-  options <- .scaleItemBoxAlign(options)
+  options <- .scaleItemBoxAlignB(options)
 
 
   model[["derivedOptions"]] <- .BayesianDerivedOptions(options)
@@ -1920,4 +1920,18 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
                 "median" = median,
                 stop("getPointEstFun has no case for value: ", pointEstimateFunString))
   )
+}
+
+# change options when scale box is unchecked
+.scaleItemBoxAlignB <- function(options) {
+  opts <- options
+  if (!options[["scaleOmega"]])
+    opts[["itemDeletedOmega"]] <- FALSE
+  if (!options[["scaleAlpha"]])
+    opts[["itemDeletedAlpha"]] <- FALSE
+  if (!options[["scaleLambda2"]])
+    opts[["itemDeletedLambda2"]] <- FALSE
+
+  return(opts)
+
 }
