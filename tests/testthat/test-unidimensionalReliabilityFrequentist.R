@@ -1,5 +1,6 @@
 # analytic confidence interval
 options <- analysisOptions("unidimensionalReliabilityFrequentist")
+options$scaleOmega <- FALSE
 options$itemDeletedAlpha <- TRUE
 options$scaleAlpha <- TRUE
 options$averageInterItemCorrelation <- TRUE
@@ -10,45 +11,42 @@ options$scaleLambda2 <- TRUE
 options$scaleSplithalf <- TRUE
 options$itemSplithalf <- TRUE
 options$itemRestCorrelation <- TRUE
-options$itemDeletedOmega <- TRUE
-options$omegaEstimationMethod <- "pfa"
 options$itemMean <- TRUE
 options$scaleMean <- TRUE
 options$scaleVar <- TRUE
-options$bootstrapSamples <- 300
 options$itemSd <- TRUE
 options$scaleSd <- TRUE
 options$setSeed <- TRUE
-options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
+options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options, makeTests = F)
+results <- runAnalysis("unidimensionalReliabilityFrequentist", testthat::test_path("asrm.csv"), options, makeTests = F)
 
 
 test_that("Frequentist Individual Item Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.55175372583945, 0.484048636403245, 0.525547257736439, 0.133621852799609,
-                                      -0.18874858754, 1.05841360919316, "contNormal", 0.230256036016288,
-                                      0.189422705634723, 0.196049691047581, 0.458747451806099, 0.05254867287,
-                                      1.01183864387684, "contcor1", 0.28356284370461, 0.282664399460191,
-                                      0.283087797840773, 0.363943642284291, 0.06968807084, 1.0041493380131,
-                                      "contcor2", 0.671633441261487, 0.535041083185576, 0.60068713700511,
-                                      0.139002685382132, 3, 1.4213381090374, "facFive"))
+                                 list(0.722847443345244, 0.729317086131165, 0.649992231778526, 2.67948717948718,
+                                      0.904441992620488, "asrm_1", 0.731880726916123, 0.734730750315596,
+                                      0.630980009291163, 2.58974358974359, 0.828641470508619, "asrm_2",
+                                      0.793001084660615, 0.797208661700744, 0.433320479366847, 1.94871794871795,
+                                      0.895840835489655, "asrm_3", 0.765425655300394, 0.77443685066795,
+                                      0.519890282401405, 2.46153846153846, 0.832650402814226, "asrm_4",
+                                      0.73282849740501, 0.742662751599646, 0.620653571262307, 2.85897435897436,
+                                      0.97666752473882, "asrm_5"))
 })
 
 test_that("Frequentist Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list("Coefficient <unicode>", 0.525637056655307, "", "", "", "Coefficient <unicode>",
-                                      0.448585203881531, 0.320211309556907, 0.0780457860937745, 0.576959098206155,
-                                      "Guttman's <unicode>2", 0.490572327059451, 0.383889412214683,
-                                      0.0648586069281382, 0.597255241904219, "Split-half coefficient",
-                                      0.576970187390583, 0.435670122838468, 0.0859043395940329, 0.7182702519427,
-                                      "Average interitem correlation", 0.191748160936288, "", "",
-                                      "", "Mean", 2.93348815617, 2.4742476519306, 0.279198402042951,
-                                      3.3927286604094, "Variance", 7.79517477033372, 6.26269762927648,
-                                      1.16186834179699, 10.0163406043478, "SD", 2.79198402042951,
-                                      2.50253823732555, 0.208072168983663, 3.16486028196314))
+                                 list("Coefficient <unicode>", 0.789985434486178, 0.707653368279996,
+                                      0.0500543421354605, 0.87231750069236, "Guttman's <unicode>2",
+                                      0.796033564448564, 0.716973502479691, 0.048065104805344, 0.875093626417437,
+                                      "Split-half coefficient", 0.78330036202316, 0.700984258147298,
+                                      0.0500446377276892, 0.865616465899022, "Average interitem correlation",
+                                      0.430268419211834, "", "", "", "Mean", 12.5384615384615, 11.9279578200137,
+                                      0.371159906537889, 13.1489652569094, "Variance", 10.7452547452547,
+                                      8.401175763325, 1.790538872243, 14.3179701120402, "SD", 3.27799553771123,
+                                      2.8984781805846, 0.273114903855726, 3.78390936889881))
 })
 
 # special options test
