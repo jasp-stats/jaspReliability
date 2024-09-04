@@ -11,35 +11,37 @@ The Bayesian unidimensional reliability analysis allows the user to test the sca
 - Variables: All variables of interest that are ordinally or metrically scaled
 
 ### Scale Statistics
+- The CTT-coefficients alpha, lambda 2, and the split-half coefficient are computed from the data covariance matrix. Coefficient omega is computed from the centered data matrix.
 - Credible interval: default is 95%
-- Coefficient omega (for unidimensional data, based on the single-factor model). Note the total test score variance in the denominator of the reliability equation is the model implied test score variance, that is, the summed model implied covariance matrix.
-- Coefficient alpha (for binary items the coefficient equals Kuder-Richardson Formula 20, KR20)
+- Coefficient omega (for unidimensional data, based on the single-factor model). Note the total test variance in the denominator of the reliability equation is the model implied total variance, that is, the summed model implied covariance matrix.
+- Coefficient alpha (for binary items the coefficient equals KR20)
 - Guttman's lambda 2
+- Split-half coefficient: Correlates the sum scores of two test-halves. By default the variables are split into odd and even numbered items in order or appearance in the variables window. If another split is desired the variables just need to be reordered.
 - Average interitem correlation
 - Mean:
+	- of the sum scores of participants
+	- of the mean scores of participants
+- Variance:
 	- of the sum scores of participants
 	- of the mean scores of participants
 - Standard deviation: 
 	- of the sum scores of participants
 	- of the mean scores of participants
 
-The CTT-coefficients alpha, lambda 2, lambda 6, and the glb are computed from the data covariance matrix.
-Coefficient omega is computed from the centered data matrix.
-	
 ### Individual Item Statistics
 - Coefficient omega
 - Coefficient alpha
 - Guttman's lambda 2
-- Guttman's lambda 6
-- Greatest lower bound
+- Split-half coefficient
 - If item dropped plot: display posterior densities of the reliability of the remaining items when a particular item is dropped
 	- Order items:
 		- Order items by mean: The densities are ordered so that the deletion of the item correpsonding to the topmost density brings the biggest change to the mean of the posterior distribution compared to the original distribution.
 		- Order items by KL-divergence: Same principle as for the mean, except that the densities are now compared to the original distribution not by the mean but by the Kullback-Leibler divergence
 		- Order items by KS-distance: Same principle as above, except that the densities are now compared to the original distribution by the Kolmogorov-Smirnov distance
 - Item-rest correlation: The item-rest correlation indicates how the item correlates with the rest of the items
-- Mean of the items
-- Standard deviation of the items
+- Mean of each item
+- Variance of each item
+- Standard deviation of each item
 
 ### Plot posteriors
 Display the posterior densities of the reliability coeffcients
@@ -104,19 +106,12 @@ Bayesian LR, B-RMSEA, B-CFI, B-TLI
 
 #### Coefficients
 - Unstandardized (the default)
-- Standardized: The use of standardized coefficients is not undisputed in psychometric literature. 
-Keep in mind, that the covariance matrix, given the item scales are equal, is more informative about the measurement. 
-See:
-
-Carl F. Falk & Victoria Savalei (2011) The relationship between unstandardized and standardized alpha, true reliability, and the underlying measurement model, *Journal of Personality Assessment, 93*(5), 445-453. https://doi.org/10.1080/00223891.2011.594129
-
-Hayashi, K. and Kamata, A. 2005. A note on the estimator of the alpha coefficient for standardized variables under normality. *Psychometrika, 70*, 579–586.
-
-Sun, W., Chou, C. P., Stacy, A. W., Ma, H., Unger, J. and Gallaher, P. 2007. SAS and SPSS macros to calculate standardized Cronbach's alpha using the upper bound of the phi coefficient for dichotomous items. *Behavior Research Methods, 39*, 71–81.
-
-Moss, J. (2020). Please avoid the standardized alpha and the ordinal alpha. https://doi.org/10.31234/osf.io/nvg5d
-
-Warrens, M.J. Some relationships between Cronbach’s alpha and the Spearman-Brown formula. *Journal of Classification, 32*, 127–137 (2015). https://doi.org/10.1007/s00357-015-9168-0
+- Standardized: The use of standardized coefficients is not undisputed in psychometric literature. Keep in mind, that the covariance matrix, given the item scales are equal, is more informative about the measurement. See:	
+	- Carl F. Falk & Victoria Savalei (2011) The relationship between unstandardized and standardized alpha, true reliability, and the underlying measurement model, *Journal of Personality Assessment, 93*(5), 445-453. https://doi.org/10.1080/00223891.2011.594129
+	- Hayashi, K. and Kamata, A. 2005. A note on the estimator of the alpha coefficient for standardized variables under normality. *Psychometrika, 70*, 579–586.
+	- Sun, W., Chou, C. P., Stacy, A. W., Ma, H., Unger, J. and Gallaher, P. 2007. SAS and SPSS macros to calculate standardized Cronbach's alpha using the upper bound of the phi coefficient for dichotomous items. *Behavior Research Methods, 39*, 71–81.
+	- Moss, J. (2020). Please avoid the standardized alpha and the ordinal alpha. https://doi.org/10.31234/osf.io/nvg5d
+	- Warrens, M.J. Some relationships between Cronbach’s alpha and the Spearman-Brown formula. *Journal of Classification, 32*, 127–137 (2015). https://doi.org/10.1007/s00357-015-9168-0
 
 #### Posterior point estimate
 - Mean (the default)
@@ -136,9 +131,10 @@ Warrens, M.J. Some relationships between Cronbach’s alpha and the Spearman-Bro
 #### Bayesian Individual Item Reliability Statistics:
 - The first column contains all the variables included in the analysis. 
 - If item dropped: 
-	- mean of the posterior distribution of the coefficient for the remaining items
+	- mean or median of the posterior distribution of the coefficient for the remaining items
 	- Lower `...` credible interval
 	- Upper `...` credible interval
+- Item-rest correlation, Mean, Variance and SD
 
 #### Probability that Reliability Statistic is Larger Than...:
 - Statistic: reliability coefficient 
