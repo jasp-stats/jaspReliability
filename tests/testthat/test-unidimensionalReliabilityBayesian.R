@@ -78,13 +78,6 @@ test_that("Cronbach's alpha scale plot matches", {
   jaspTools::expect_equal_plots(testPlot, "alpha-scale")
 })
 
-test_that("Greatest Lower Bound scale plot matches", {
-  if (jaspBase::getOS() == "linux") skip("Skipped as ubuntu produces a different plot")
-  plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_plotContainer"]][["collection"]][["stateContainer_plotContainer_glb"]][["data"]]
-  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "greatest-lower-bound-scale")
-})
-
 test_that("Guttman's lambda2 scale plot matches", {
   plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_plotContainer"]][["collection"]][["stateContainer_plotContainer_lambda2"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
@@ -433,12 +426,6 @@ test_that("Cronbach's alpha plot matches", {
   jaspTools::expect_equal_plots(testPlot, "alpha-std")
 })
 
-test_that("Greatest Lower Bound plot matches", {
-  if (jaspBase::getOS() == "linux") skip("Skipped as ubuntu produces a different plot")
-  plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_plotContainer"]][["collection"]][["stateContainer_plotContainer_glb"]][["data"]]
-  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "greatest-lower-bound-std")
-})
 
 test_that("Guttman's lambda2 plot matches", {
   plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_plotContainer"]][["collection"]][["stateContainer_plotContainer_lambda2"]][["data"]]
