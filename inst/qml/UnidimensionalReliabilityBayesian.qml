@@ -73,6 +73,13 @@ Form
 				label:	qsTr("Guttman's λ2");
 			}
 
+			CheckBox
+			{
+				id:		splithalf
+				name:	"splithalf";
+				label:	qsTr("Split-half coefficient");
+			}
+
 			CheckBox { name: "averageInterItemCorrelation";	label: qsTr("Average interitem correlation")	}
 
 			RowLayout {
@@ -129,10 +136,18 @@ Form
 
 			CheckBox
 			{
+				id: 		splithalfItem
+				name: 		"itemDeletedSplithalf";
+				label: 		qsTr("Split-half coefficient (if item dropped)");
+				enabled: 	splithalf.checked
+			}
+
+			CheckBox
+			{
 				id: 		itemPlot
 				name: 		"itemDeletedPlot";
 				label: 		qsTr("If item dropped plot");
-				enabled: 	omegaItem.checked || alphaItem.checked || lambda2Item.checked
+				enabled: 	omegaItem.checked || alphaItem.checked || lambda2Item.checked || splithalfItem.checked
 
 				CheckBox
 				{
