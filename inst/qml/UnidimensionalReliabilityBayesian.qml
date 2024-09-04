@@ -76,7 +76,7 @@ Form
 			CheckBox
 			{
 				id:		splithalf
-				name:	"splithalf";
+				name:	"scaleSplithalf";
 				label:	qsTr("Split-half coefficient");
 			}
 

@@ -7,8 +7,8 @@
 #' @export
 unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
-  sink(file = "~/Downloads/log.txt")
-  on.exit(sink(NULL))
+  # sink(file = "~/Downloads/log.txt")
+  # on.exit(sink(NULL))
 
   options <- jaspBase::.parseAndStoreFormulaOptions(jaspResults, options, "inverseWishartPriorScale")
 
@@ -36,11 +36,13 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   model[["itemDeletedAlpha"]] <- .BayesianAlphaItem(jaspResults, dataset, options, model)
   model[["scaleLambda2"]] <- .BayesianLambda2Scale(jaspResults, dataset, options, model)
   model[["itemDeletedLambda2"]] <- .BayesianLambda2Item(jaspResults, dataset, options, model)
+  model[["scaleSplithalf"]] <- .BayesianSplithalfScale(jaspResults, dataset, options, model)
+  model[["itemDeletedSplithalf"]] <- .BayesianSplithalfItem(jaspResults, dataset, options, model)
   model[["averageInterItemCorrelation"]] <- .BayesianAverageCor(jaspResults, dataset, options, model)
   model[["scaleMean"]] <- .BayesianMean(jaspResults, dataset, options, model)
   model[["scaleVar"]] <- .BayesianVar(jaspResults, dataset, options, model)
   model[["scaleSd"]] <- .BayesianStdDev(jaspResults, dataset, options, model)
-  model[["itemRestCorrelation"]] <- .BayesianitemRestCorrelation(jaspResults, dataset, options, model)
+  model[["itemRestCorrelation"]] <- .BayesianItemRestCorrelation(jaspResults, dataset, options, model)
   model[["itemMean"]] <- .BayesianMeanItem(jaspResults, dataset, options, model)
   model[["itemVar"]] <- .BayesianVarItem(jaspResults, dataset, options, model)
   model[["itemSd"]] <- .BayesianSdItem(jaspResults, dataset, options, model)
@@ -67,22 +69,23 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   # order of appearance in Bayesrel
   derivedOptions <- list(
-    selectedEstimators  = unlist(options[c("scaleOmega", "scaleAlpha", "scaleLambda2",
+    selectedEstimators  = unlist(options[c("scaleOmega", "scaleAlpha", "scaleLambda2", "scaleSplithalf",
                                            "averageInterItemCorrelation", "scaleMean", "scaleVar", "scaleSd")]),
-    selectedEstimatorsPlots  = unlist(options[c("scaleOmega", "scaleAlpha", "scaleLambda2")]),
-    itemDroppedSelected = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2",
+    selectedEstimatorsPlots  = unlist(options[c("scaleOmega", "scaleAlpha", "scaleLambda2", "scaleSplithalf")]),
+    itemDroppedSelected = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedSplithalf",
                                            "itemRestCorrelation", "itemMean", "itemVar", "itemSd")]),
-    itemDroppedSelectedItem = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2")]),
+    itemDroppedSelectedItem = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedSplithalf")]),
 
     namesEstimators     = list(
-      tables = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2",
+      tables = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", "Split-half coefficient",
                  "Average interitem correlation", "Mean", "Variance", "SD"),
-      tables_item = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2",
+      tables_item = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
                       gettext("Item-rest correlation"), gettext("Mean"), gettext("Variance"), gettext("SD")),
-      coefficients = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2",
+      coefficients = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
                        gettext("Item-rest correlation")),
-      plots = list(expression("Coefficient"~omega), expression("Cronbach\'s"~alpha), expression("Guttman's"~lambda[2])),
-      plotsNoGreek = c("omega", "alpha", "lambda2")
+      plots = list(expression("Coefficient"~omega), expression("Cronbach\'s"~alpha), expression("Guttman's"~lambda[2]),
+                   gettext("Split-half coefficient")),
+      plotsNoGreek = c("omega", "alpha", "lambda2", "splithalf")
     )
 
   )
@@ -166,7 +169,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
   # check if posterior cov sample already exists and any of the relevant coefficients are checked
   if (is.null(model[["gibbsSamp"]]) &&
-      (options[["scaleAlpha"]] || options[["scaleLambda2"]] ||
+      (options[["scaleAlpha"]] || options[["scaleLambda2"]] || options[["scaleSplithalf"]] ||
        options[["averageInterItemCorrelation"]])
   ) {
 
@@ -211,9 +214,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   if (is.null(model[["gibbsSamp"]])) {
     return()
   } else {
-    if (options[["coefficientType"]] == "unstandardized") {
-      return()
-    } else { # standardized
+    if (options[["coefficientType"]] == "standardized" || options[["averageInterItemCorrelation"]] || options[["scaleSplithalf"]]) {
       out <- model[["gibbsSamp"]]
       startProgressbar(model[["progressbarLength"]])
       for (i in seq_len(nrow(model[["gibbsSamp"]]))) {
@@ -222,7 +223,9 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
         }
       }
       stateContainer <- .getStateContainerB(jaspResults)
-      stateContainer[["gibbsCor"]] <- createJaspState(out, dependencies = "coefficientType")
+      stateContainer[["gibbsCor"]] <- createJaspState(out, dependencies = c("coefficientType", "averageInterItemCorrelation", "scaleSplithalf"))
+    } else {
+      return()
     }
   }
   return(out)
@@ -562,6 +565,70 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 }
 
 
+.BayesianSplithalfScale <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["scaleSplithalfObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["scaleSplithalfObj"]]$object)
+
+  out <- model[["scaleSplithalf"]]
+  if (is.null(out))
+    out <- list()
+
+  if (options[["scaleSplithalf"]] && is.null(model[["empty"]]) && !is.null(model[["gibbsCor"]])) {
+
+    nit <- ncol(dataset)
+    splits <- split(seq_len(nit), 1:2)
+    startProgressbar(model[["progressbarLength"]])
+    out[["samp"]] <- matrix(NA, nrow(model[["gibbsCor"]]), ncol(model[["gibbsCor"]]))
+    for (i in seq_len(nrow(model[["gibbsCor"]]))) {
+      for (j in seq_len(ncol(model[["gibbsCor"]]))) {
+        out[["samp"]][i, j] <- .splithalfCor(model[["gibbsCor"]][i, j, , ], splits, progressbarTick)
+      }
+    }
+
+    if (options[["samplesSavingDisabled"]])
+      return(out)
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["scaleSplithalfObj"]] <- createJaspState(out, dependencies = c("scaleSplithalf", "inverseWishartPriorScale", "inverseWishartPriorDf"))
+  }
+
+  return(out)
+}
+
+.BayesianSplithalfItem <- function(jaspResults, dataset, options, model) {
+  if (!is.null(.getStateContainerB(jaspResults)[["itemDeletedSplithalfObj"]]$object))
+    return(.getStateContainerB(jaspResults)[["itemDeletedSplithalfObj"]]$object)
+
+  out <- model[["itemDeletedSplithalf"]]
+  if (is.null(out))
+    out <- list()
+
+  if (options[["itemDeletedSplithalf"]] && is.null(model[["empty"]])) {
+    if (ncol(dataset) < 3) {
+      out[["itemEst"]] <- c(NaN, NaN)
+      out[["itemCred"]] <- matrix(NaN, 2, 2)
+      colnames(out[["itemCred"]]) <- c("lower", "upper")
+
+      return(out)
+    }
+
+    if (is.null(out[["itemSamp"]])) {
+      startProgressbar(model[["progressbarLength"]] * ncol(dataset))
+
+      out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsCor"]], .splithalfCor, progressbarTick, splithalf = TRUE)
+    }
+
+    if (options[["samplesSavingDisabled"]])
+      return(out)
+
+    stateContainer <- .getStateContainerB(jaspResults)
+    stateContainer[["itemDeletedSplithalfObj"]] <- createJaspState(out, dependencies = c("itemDeletedSplithalf", "inverseWishartPriorScale", "inverseWishartPriorDf",
+                                                                                       "coefficientType"))
+  }
+
+  return(out)
+}
+
 .BayesianAverageCor <- function(jaspResults, dataset, options, model) {
   if (!is.null(.getStateContainerB(jaspResults)[["avgCorObj"]]$object))
     return(.getStateContainerB(jaspResults)[["avgCorObj"]]$object)
@@ -578,7 +645,6 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
       lowerTriangleIndex <- which(lower.tri(model[["gibbsSamp"]][1, 1, , ]))
       for (i in seq_len(nrow(model[["gibbsSamp"]]))) {
         for (j in seq_len(ncol(model[["gibbsSamp"]]))) {
-
           corm <- .cov2cor.callback(model[["gibbsSamp"]][i, j, , ], progressbarTick)
           out[["samp"]][i, j] <- mean(corm[lowerTriangleIndex])
         }
@@ -673,7 +739,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
 
 
-.BayesianitemRestCorrelation <- function(jaspResults, dataset, options, model) {
+.BayesianItemRestCorrelation <- function(jaspResults, dataset, options, model) {
   if (!is.null(.getStateContainerB(jaspResults)[["itemRestObj"]]$object))
     return(.getStateContainerB(jaspResults)[["itemRestObj"]]$object)
 
@@ -1840,33 +1906,37 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     return(out)
 
   }
-  if (estimate == "scaleLambda6") {
-    priorlambda6 <- apply(m, MARGIN = 1, Bayesrel:::applylambda6, callback)
-    out <- density(priorlambda6, from = 0, to = 1, n = 512)
-    return(out)
 
-  }
-  if (estimate == "scaleGreatestLowerBound") {
-    priorglb <- Bayesrel:::glbOnArrayCustom(m, callback)
-    out <- density(priorglb, from = 0, to = 1, n = 512)
+  if (estimate == "scaleSplithalf") {
+    nit <- k
+    splits <- split(seq_len(nit), 1:2)
+    priorsplithalf<- apply(m, MARGIN = 1, .splithalfCor, splits = splits, callback)
+    out <- density(priorsplithalf, from = 0, to = 1, n = 512)
     return(out)
 
   }
 
 }
 
-.BayesItemDroppedStats <- function(cov_samp, f1 = function(){}, callback = function(){}) {
+.BayesItemDroppedStats <- function(cov_samp, f1 = function(){}, callback = function(){}, splithalf = FALSE) {
 
   dd <- dim(cov_samp)
+  nit <- dd[3] - 1
+  splits <- split(seq_len(nit), 1:2)
   out <- matrix(0, dd[1] * dd[2], dd[3])
   cov_samp <- array(cov_samp, c(dd[1] * dd[2], dd[3], dd[3]))
-  for (i in seq_len(dd[3])) {
-    out[, i] <- apply(cov_samp[, -i, -i], c(1), f1, callback)
+  if (splithalf) {
+    for (i in seq_len(dd[3])) {
+      out[, i] <- apply(cov_samp[, -i, -i], c(1), f1, callback = callback, splits = splits)
+    }
+  } else {
+    for (i in seq_len(dd[3])) {
+      out[, i] <- apply(cov_samp[, -i, -i], c(1), f1, callback = callback)
+    }
   }
 
   return(out)
 }
-
 
 
 .itemRestCorrelation <- function(dataset, n.iter, n.burnin, thin, n.chains, pairwise, callback, k0, df0) {
@@ -1890,7 +1960,6 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   callback()
   return(out)
 }
-
 
 .colMedians <- function(x) {
   return(apply(x, 2, median))
