@@ -36,6 +36,7 @@ Form
 			title: 			qsTr("Variables")
 			allowedColumns: ["nominal", "ordinal"]
 			maxLevels: 50
+			minNumericLevels: 2
 			id: variables
 			onCountChanged: 
 			{
