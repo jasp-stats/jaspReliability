@@ -12,13 +12,15 @@ The frequentist unidimensional reliability analysis allows the user to test the 
 
 ### Scale Statistics
 - Confidence interval: default is 95%
-- Coefficient omega (for unidimensional data, based on the single-factor model). Note the total test variance in the denominator of the reliability equation is the model implied total variance, that is, the summed model implied covariance matrix
+- Coefficient omega (for unidimensional data, based on the single-factor model). Note the total test variance in the denominator of the reliability equation is the model implied total variance, that is, the summed model implied covariance matrix.
 - Coefficient alpha (for binary items the coefficient equals KR20)
 - Guttman's lambda 2
-- Guttman's lambda 6
-- Greatest lower bound
+- Split-half coefficient: Correlates the sum scores of two test-halves. By default the variables are split into odd and even numbered items in order or appearance in the variables window. If another split is desired the variables just need to be reordered.
 - Average interitem correlation
 - Mean:
+	- of the sum scores of participants
+	- of the mean scores of participants
+- Variance:
 	- of the sum scores of participants
 	- of the mean scores of participants
 - Standard deviation: 
@@ -29,65 +31,62 @@ The frequentist unidimensional reliability analysis allows the user to test the 
 - Coefficient omega
 - Coefficient alpha
 - Guttman's lambda 2
-- Guttman's lambda 6
-- Greatest lower bound
+- Split-half coefficient
 - Item-rest correlation: The item-rest correlation indicates how the item correlates with the rest of the items
-- Mean of the items
-- Standard deviation of the items
+- Mean of each item
+- Variance of each item
+- Standard deviation of each item
 
 ## Reverse-Scaled Items
 - This allows the user to select reverse-scaled items that need to be recoded.
 
 ## Advanced Options
-### Missing Values
+### Confidence Intervals
+- Reliability coefficients: Control over the confidence intervals for the reliability coefficients
+	- Analytic: Interval is created using the analytically derived standard error in a Wald-type CI, that is, normal-theory based. The standard errors are from van der Ark (2024)
+	- Bootstrapped: Interval is created through bootstrapping and is percentile type:
+		- No. of bootstrap samples: The number of times bootstrapped data sets are created and statistics are calculated.
+		- Non-parametric bootstrap: The bootstrapped data sets are created by resampling with replacement 
+		- Parametric bootstrap: The bootstrapped data sets are created by repeatedly sampling from a multivariate Normal with the original data as parameters
+- Variance and SD: Confidence intervals for the variance and standard deviation may be based on the chi-square distribution or non-parametric (see van der Ark, 2024)
+- The CI for the mean is always analytic and thus Wald-type.
+
+### Missing values
  - Exclude cases pairwise: For the data covariance matrix, each covariance will be computed using all cases with valid data for the corresponding variables. Sample sizes may therefore vary across the covariances.
 - Exclude cases listwise: Each row in the data set with one or more missing values will be deleted. Subsequently, the analysis continues with a data set with reduced observations.
 
-### Bootstrap 
-The number of times bootstrapped data sets are created and statistics are calculated. The bootstrapped intervals are percentile type.
-- Non-parametric bootstrap: The bootstrapped data sets are created by resampling with replacement 
-- Parametric bootstrap: The bootstrapped data sets are created by repeatedly sampling from a multivariate Normal with the original data as parameters
-	
-### McDonald's omega Estimation: 
+### Samples
+- Disable the saving of bootstrap samples: In case you want to save space for your output file, you can check this box. Beware that this will also lead to a loss in speed for the analysis. This happens because some samples inside the reliability module are precomputed and stored, so that the analysis can move forward in a much faster way. However, this also results in an increased size of the output object, and if you decide to save your analysis the resulting file will contain these samples. If you decide to run the analysis with a large number of bootstrap samples you might want to check that box if you do not want an increased file size for your output. 
+
+### Coefficient omega estimation: 
 - CFA: The single factor model is fit in a confirmatory factor analysis. 
 	- Single Factor Model Fit: common fit indices of a CFA
-	Interval: 
-		- Analytic interval: Wald-CI from the CFA
-		- Bootstrapped interval: CI from bootstrapped CFA
 - PFA: The single factor model is fit in a principal factor analysis. 
 - Standardized factor loadings: Display a table with the standardized loadings of the single-factor model
 	
-### Cronbach's alpha Estimation: 
-- Unstandardized: Cronbach's alpha is calculated from the data covariance matrix
-- Standardized: Cronbach's alpha is calculated from the data correlation matrix
-- Interval: 
-	- Analytic interval: The interval is calculated by means of the method from (Bonett & Wright, 2015)
-	- Bootstrapped interval: The interval is calculated by means of the percentile interval based on alpha's bootstrapped sample
-		
-### Repeatability
-When bootstrapping is involved, set a seed, so that the background calculations in R yield equal results for equal seeds
+### Coefficients: 
+- Unstandardized
+- Standardized
 
-### Samples
-- Disable the saving of bootstrap samples:
-In case you want to save space for your output file, you can check this box. Beware that this will also lead to a loss in speed for the analysis. This happens because some samples inside the reliability module are precomputed and stored, so that the analysis can move forward in a much faster way. However, this also results in an increased size of the output object, and if you decide to save your analysis the resulting file will contain these samples. If you decide to run the analysis with a large number of bootstrap samples you might want to check that box if you do not want an increased file size for your output. 
+### Repeatability
+When bootstrapping is involved, set a seed, so that the background calculations in R yield equal results for equal seeds.
+
+
 
 ## Output 
 --- 
 ### Tables
 #### Frequentist Scale Reliability Statistics: 
-- Point estimate: 
-- `...`% CI:
-  - lower bound: The lower bound of the confidence interval. 
-  - upper bound: The upper bound of the confidence interval. 
-- McDonald's omega: by default the method to obtain the point estimate is a CFA, and to obtain the interval it is the Wald-CI
-- Cronbach's alpha: by default the point estimate is unstandardized, the interval is by default analytic
-- Guttman's lambda 2: the confidence interval is bootstrapped
-- Guttman's lambda 6: the confidence interval is bootstrapped
-- Greatest lower bound: the confidence interval is bootstrapped
+- Coefficient
+- Estimate: point estimate value
+- Std. error and CI: Analytic or bootstrapped
 
 #### Frequentist Individual Item Reliability Statistics: 
 - The first column contains all the variables included in the analysis. 
 - If item dropped: reliability coefficients if a particular item is dropped
+- May also show: 
+	- the correlation of each item with the rest of the scale
+	- the mean, variance, and standard deviation of each item
 
 #### Fit Measures of Single Factor Model Fit
 - Chi-Square: test statistic of model fit
@@ -102,7 +101,7 @@ In case you want to save space for your output file, you can check this box. Bew
 
 ## References
 ---
-
+- van der Ark, A. (2024). Standard Errors for Reliability Coefficients. [Manuscript under revision]
 - Bonett, D. G., & Wright, T. A. (2015). Cronbach's alpha reliability: Interval estimation, hypothesis testing, and sample size planning. *Journal of Organizational Behavior, 36*(1), 3-15. https://doi.org/10.1002/job.1960
 - Cronbach, L. J. (1951). Coefficient alpha and the internal structure of tests. *Psychometrika, 16*(3), 297–334. https://doi.org/10.1007/BF02310555
 - Guttman, L. (1945). A basis for analyzing test-retest reliability. *Psychometrika, 10*(4), 255–282. https://doi.org/10.1007/BF02288892
