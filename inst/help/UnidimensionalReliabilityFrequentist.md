@@ -48,7 +48,7 @@ The frequentist unidimensional reliability analysis allows the user to test the 
 		- No. of bootstrap samples: The number of times bootstrapped data sets are created and statistics are calculated.
 		- Non-parametric bootstrap: The bootstrapped data sets are created by resampling with replacement 
 		- Parametric bootstrap: The bootstrapped data sets are created by repeatedly sampling from a multivariate Normal with the original data as parameters
-- Variance and SD: Confidence intervals for the variance and standard deviation may be based on the chi-square distribution or the multinomial distribution (see van der Ark, 2024)
+- Variance and SD: Confidence intervals for the variance and standard deviation may be based on the chi-square distribution or non-parametric (see van der Ark, 2024)
 - The CI for the mean is always analytic and thus Wald-type.
 
 ### Missing values
