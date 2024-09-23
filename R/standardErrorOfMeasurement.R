@@ -18,7 +18,6 @@
 #' @export
 standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
-
   ready <- length(options[["variables"]]) > 1
 
   dataset <- .semReadData(dataset, options)
@@ -275,6 +274,9 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
                             overtitle = selected[[i]][["name"]])
       ciTable$addColumnInfo(name = paste0("upper", method[i]), title = gettextf("Upper %s%% CI", ci), type = "number",
                             overtitle = selected[[i]][["name"]])
+      if (all(is.na(ciData[, paste0("lower", method[i])])) && all(is.na(ciData[, paste0("upper", method[i])]))) {
+        ciTable$addFootnote(gettextf("Estimating the %s method failed. If possible, you might try changing the method's parameters.", selected[[i]][["name"]]))
+      }
     }
   }
 
@@ -312,7 +314,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   if (!is.null(jaspResults[["semMainContainer"]][["pointPlots"]]) || !options[["pointPlots"]]
       || !ready || jaspResults[["semMainContainer"]]$getError()) {return()}
 
-  pointPlotsContainer <- createJaspContainer(title = gettext("Plots"))
+  pointPlotsContainer <- createJaspContainer(title = gettext("Point Plots"))
   pointPlotsContainer$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]], options = "pointPlots")
   jaspResults[["semMainContainer"]][["pointPlotsContainer"]] <- pointPlotsContainer
 
