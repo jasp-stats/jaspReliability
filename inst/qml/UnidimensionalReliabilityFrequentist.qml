@@ -108,6 +108,13 @@ Form
 		{
 			title: qsTr("Individual Item Statistics")
 
+			CIField
+			{
+				name: 			"itemCiLevel";
+				label: 			qsTr("Confidence interval");
+				defaultValue: 	95
+			}
+
 			CheckBox
 			{
 				name: 		"itemDeletedOmega";
@@ -214,7 +221,7 @@ Form
 				RadioButton
 				{
 					value: 	"twostep"
-					label: 	qsTr("Multinomial-based")
+					label: 	qsTr("Non-parametric")
 
 				}
 			}

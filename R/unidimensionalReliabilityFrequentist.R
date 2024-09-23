@@ -4,8 +4,8 @@
 #' @export
 unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) {
 
-  # sink(file = "~/Downloads/log.txt")
-  # on.exit(sink(NULL))
+  sink(file = "~/Downloads/log.txt")
+  on.exit(sink(NULL))
 
   dataset <- .readData(dataset, options)
 
@@ -62,7 +62,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
                  gettext("Average interitem correlation"), gettext("Mean"), gettext("Variance"), gettext("SD")),
       tables_item = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
                       gettext("Item-rest correlation"), gettext("Mean"), gettext("Variance"), gettext("SD")),
-      coefficients = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient")))
+      coefficients = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
+                       gettext("Item-rest correlation")))
   )
 
   return(derivedOptions)
@@ -288,7 +289,10 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   if (options[["itemDeletedOmega"]] && is.null(model[["empty"]])) {
 
     if (ncol(dataset) == 2) {
-      out[["itemDropped"]] <- c(NA, NA)
+      out[["itemDropped"]][["est"]] <- c(NA, NA)
+      out[["itemDropped"]][["lower"]] <- c(NA, NA)
+      out[["itemDropped"]][["upper"]] <- c(NA, NA)
+
       return(out)
     }
 
@@ -297,15 +301,39 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
       dataset <- scale(dataset, scale = FALSE)
       # do we have to compute item dropped values
       if (is.null(out[["itemDropped"]])) {
-        out[["itemDropped"]] <- numeric(ncol(dataset))
-        for (i in seq_len(ncol(dataset))) {
-          out[["itemDropped"]][i] <- Bayesrel:::applyomegaCFAData(dataset[, -i], interval = .95,
-                                                                  pairwise = model[["pairwise"]])
+        out[["itemDropped"]][["est"]] <- numeric(ncol(dataset))
+        if (options[["intervalMethod"]] == "analytic") {
+          for (i in seq_len(ncol(dataset))) {
+            outTmp <- .omegaFreqData(data = dataset[, -i], interval = options[["itemCiLevel"]],
+                                     pairwise = model[["pairwise"]],
+                                     omega.int.analytic = TRUE,
+                                     standardized = options[["coefficientType"]] == "standardized")
+            out[["itemDropped"]][["est"]][i] <- outTmp$omega
+            out[["itemDropped"]][["lower"]][i] <- outTmp$omega_lower
+            out[["itemDropped"]][["upper"]][i] <- outTmp$omega_upper
+          }
+        } else { # bootstrapped
+          startProgressbar(options[["bootstrapSamples"]]*ncol(dataset))
+          for (i in seq_len(ncol(dataset))) {
+            outTmp <- .omegaFreqData(data = dataset[, -i], interval = options[["itemCiLevel"]],
+                                     pairwise = model[["pairwise"]],
+                                     omega.int.analytic = FALSE,
+                                     n.boot = options[["bootstrapSamples"]],
+                                     parametric = options[["bootstrapType"]] == "parametric",
+                                     standardized = options[["coefficientType"]] == "standardized",
+                                     callback = progressbarTick)
+            out[["itemDropped"]][["est"]][i] <- outTmp$omega
+            out[["itemDropped"]][["lower"]][i] <- outTmp$omega_lower
+            out[["itemDropped"]][["upper"]][i] <- outTmp$omega_upper
+          }
         }
+
       }
-      if (anyNA(out[["itemDropped"]])) {
+      if (anyNA(c(out[["itemDropped"]][["est"]], out[["itemDropped"]][["lower"]], out[["itemDropped"]][["upper"]]))) {
         out[["error"]] <- gettext("Omega item dropped statistics with CFA failed.")
-        out[["itemDropped"]] <- rep(NA, ncol(dataset))
+        out[["itemDropped"]][["est"]] <- rep(NA, ncol(dataset))
+        out[["itemDropped"]][["lower"]] <- rep(NA, ncol(dataset))
+        out[["itemDropped"]][["upper"]] <- rep(NA, ncol(dataset))
       }
 
     } else { # omega with pfa
@@ -316,7 +344,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
       }
       # do we have to compute item dropped values
       if (is.null(out[["itemDropped"]]))
-        out[["itemDropped"]] <- .freqItemDroppedStats(cc, .applyomegaPFA)
+        out[["itemDropped"]][["est"]] <- .freqItemDroppedStats(cc, .applyomegaPFA)
 
       if (anyNA(out[["itemDropped"]]))
         out[["error"]] <- gettext("Omega item dropped statistics with PFA failed.")
@@ -639,14 +667,15 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     }
 
     out[["est"]] <- var(xx)
-    out[["se"]] <- .seVar(x = xx)
 
     if (options[["intervalMethodVar"]] == "chisq") {
+      out[["se"]] <- out[["est"]] * sqrt(2 / (model[["n"]] - 1))
       chiValueLow <- qchisq(1 - (1 - ciValue) / 2, df = model[["n"]] - 1)
       chiValueHigh <- qchisq((1 - ciValue) / 2, df = model[["n"]] - 1)
       out[["conf"]] <- c(((model[["n"]] - 1) * out[["est"]]) / chiValueLow,
                          ((model[["n"]] - 1) * out[["est"]]) / chiValueHigh)
     } else { # wald interval
+      out[["se"]] <- .seVar(x = xx)
       out[["conf"]] <- out[["est"]] + c(-1, 1) * qnorm(1 - (1 - ciValue) / 2) * out[["se"]]
     }
 
@@ -979,7 +1008,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     stateContainer[["scaleResultsObj"]] <- createJaspState(out, dependencies = c("ciLevel",
                                                                                  "scaleMean", "scaleSd", "scaleVar",
                                                                                  "scaleAlpha", "scaleOmega",
-                                                                                 "scaleLambda2",
+                                                                                 "scaleLambda2", "scaleSplithalf",
                                                                                  "averageInterItemCorrelation",
                                                                                  "meanSdScoresMethod",
                                                                                  "omegaEstimationMethod", "intervalMethod",
@@ -1045,6 +1074,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
   }
 
+
   scaleTable$setData(dt)
 
   if (model[["footnote"]] != "") {
@@ -1076,6 +1106,10 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   stateContainer <- .getStateContainerF(jaspResults)
   stateContainer[["itemTable"]] <- itemTable
 
+  overTitles <- format(derivedOptions[["namesEstimators"]][["tables_item"]], digits = 3, drop0trailing = TRUE)
+  overTitles <- gettextf("%s (if item dropped)", overTitles)
+  ci <- format(100 * options[["itemCiLevel"]], digits = 3, drop0trailing = TRUE)
+
   footnote <- ""
 
   if (!is.null(model[["itemDeletedOmega"]][["error"]])) {
@@ -1083,8 +1117,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   }
 
   selected <- derivedOptions[["itemDroppedSelected"]]
-  coefficientsTable <- derivedOptions[["namesEstimators"]][["tables_item"]]
-  overTitle <- gettext("If item dropped")
+  estimators <- derivedOptions[["namesEstimators"]][["tables_item"]]
   idxSelected <- which(selected)
   coefficients <- derivedOptions[["namesEstimators"]][["coefficients"]]
 
@@ -1097,12 +1130,25 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
   fewItemProblem <- FALSE
   for (i in idxSelected) {
-    if (coefficientsTable[i] %in% coefficients) {
-      itemTable$addColumnInfo(name = paste0("pointEstimate", i), title = coefficientsTable[i], type = "number",
-                              overtitle = overTitle)
-      fewItemProblem <- TRUE
+    if (estimators[i] %in% coefficients) {
+      if (estimators[i] == "Item-rest correlation") { # no item deleted for item rest cor
+        itemTable$addColumnInfo(name = paste0("pointEstimate", i), title = gettext("Estimate"), type = "number",
+                                overtitle = gettext("Item-rest correlation"))
+        itemTable$addColumnInfo(name = paste0("lower", i), title = gettextf("Lower %s%% CI", ci), type = "number",
+                                overtitle = gettext("Item-rest correlation"))
+        itemTable$addColumnInfo(name = paste0("upper", i), title = gettextf("Upper %s%% CI", ci), type = "number",
+                                overtitle = gettext("Item-rest correlation"))
+      } else {
+        itemTable$addColumnInfo(name = paste0("pointEstimate", i), title = gettext("Estimate"), type = "number",
+                                overtitle = overTitles[i])
+        itemTable$addColumnInfo(name = paste0("lower", i), title = gettextf("Lower %s%% CI", ci), type = "number",
+                                overtitle = overTitles[i])
+        itemTable$addColumnInfo(name = paste0("upper", i), title = gettextf("Upper %s%% CI", ci), type = "number",
+                                overtitle = overTitles[i])
+        fewItemProblem <- TRUE
+      }
     } else {
-      itemTable$addColumnInfo(name = paste0("pointEstimate", i), title = coefficientsTable[i], type = "number")
+      itemTable$addColumnInfo(name = paste0("postMean", i), title = estimators[i], type = "number")
     }
   }
 
@@ -1112,7 +1158,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     for (j in seq_along(idxSelected)) {
       i <- idxSelected[j]
       nm <- names(idxSelected[j])
-      newtb <- cbind(pointEstimate = model[[nm]][["itemDropped"]])
+      newtb <- cbind(pointEstimate = model[[nm]][["itemDropped"]][["est"]])
       colnames(newtb) <- paste0(colnames(newtb), i)
       tb <- cbind(tb, newtb)
     }
@@ -1439,7 +1485,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   }
 
   if (is.null(fit)) {
-    return(list(omega = NA, fit.object = NULL))
+    return(list(omega = NA, omega_lower = NA, omega_upper = NA, fit.object = NULL))
   } else {
     if (standardized) {
       params <- lavaan::standardizedsolution(fit, level = interval)
@@ -1463,14 +1509,14 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         om_obj <- numeric(n.boot)
         for (i in 1:n.boot){
           boot_data <- MASS::mvrnorm(n, colMeans(data, na.rm = TRUE), cc)
-          fit <-  Bayesrel:::fitmodel(mod, boot_data)
+          fitTmp <-  Bayesrel:::fitmodel(mod, boot_data)
           callback()
-          if (!is.null(fit)) {
+          if (!is.null(fitTmp)) {
             if (standardized) {
-              params <- lavaan::standardizedsolution(fit, level = interval)
+              params <- lavaan::standardizedsolution(fitTmp, level = interval)
               om_obj[i] <- params$est.std[params$lhs == "omega"]
             } else {
-              params <- lavaan::parameterestimates(fit, level = interval)
+              params <- lavaan::parameterestimates(fitTmp, level = interval)
               om_obj[i] <- params$est[params$lhs == "omega"]
             }
 
@@ -1494,17 +1540,17 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         for (i in 1:n.boot){
           boot_data <- as.matrix(data[sample.int(n, size = n, replace = TRUE), ])
           if (pairwise) {
-            fit <- Bayesrel:::fitmodelMis(mod, boot_data)
+            fitTmp <- Bayesrel:::fitmodelMis(mod, boot_data)
           } else {
-            fit <-  Bayesrel:::fitmodel(mod, boot_data)
+            fitTmp <-  Bayesrel:::fitmodel(mod, boot_data)
           }
           callback()
-          if (!is.null(fit)) {
+          if (!is.null(fitTmp)) {
             if (standardized) {
-              params <- lavaan::standardizedsolution(fit, level = interval)
+              params <- lavaan::standardizedsolution(fitTmp, level = interval)
               om_obj[i] <- params$est.std[params$lhs=="omega"]
             } else {
-              params <- lavaan::parameterestimates(fit, level = interval)
+              params <- lavaan::parameterestimates(fitTmp, level = interval)
               om_obj[i] <- params$est[params$lhs=="omega"]
             }
 
