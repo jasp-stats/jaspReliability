@@ -6,8 +6,8 @@ Description
 	name		: "jaspReliability"
 	title		: qsTr("Reliability")
 	description	: qsTr("Quantify the reliability of test scores")
-	version			: "0.19.0"
-	author		: "Julius M. Pfadt, Don van den Bergh & Eric-Jan Wagenmakers"
+	version			: "0.19.1"
+	author		: "JASP Team"
 	maintainer	: "Julius M. Pfadt <julius.pfadt@gmail.com>"
 	website		: "https://github.com/jasp-stats/jaspReliability"
 	license		: "GPL (>= 2)"
