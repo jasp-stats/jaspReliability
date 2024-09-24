@@ -34,17 +34,24 @@ Description
 		func: 	"intraclassCorrelation"
 	}
 
-		Analysis
+	Analysis
 	{
 		title:	qsTr("Rater Agreement")
 		qml: 	"RaterAgreement.qml"
 		func: 	"raterAgreement"
 	}
-		Analysis
+	Analysis
 	{
 		title:	qsTr("Bland-Altman Plots")
 		qml: 	"BlandAltman.qml"
 		func: 	"blandAltman"
+	}
+
+	Analysis
+	{
+		title:	qsTr("Standard Error of Measurement")
+		qml: 	"StandardErrorOfMeasurement.qml"
+		func: 	"standardErrorOfMeasurement"
 	}
 
 	Separator {}

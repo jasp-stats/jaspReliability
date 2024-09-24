@@ -3,6 +3,7 @@
 export(blandAltman)
 export(intraclassCorrelation)
 export(raterAgreement)
+export(standardErrorOfMeasurement)
 export(unidimensionalReliabilityBayesian)
 export(unidimensionalReliabilityFrequentist)
 importFrom(jaspBase,.quitAnalysis)
