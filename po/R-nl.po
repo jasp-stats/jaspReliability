@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2024-04-20 03:27\n"
+"POT-Creation-Date: 2024-09-28 03:32\n"
 "PO-Revision-Date: 2024-05-22 16:42+0000\n"
 "Last-Translator: Koen Derks <koen-derks@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
@@ -107,6 +107,69 @@ msgstr "Fleiss' kappa"
 
 msgid "Method"
 msgstr "Methode"
+
+msgid ""
+"For the Lord's compound method, the test could not be split in equally sized "
+"parts with more than 1 item per part. Consider adding or removing items."
+msgstr ""
+
+msgid ""
+"The Lord, Keats, and Lord's compound method are only available for binary "
+"data."
+msgstr ""
+
+msgid "Standard error of measurement"
+msgstr ""
+
+msgid "Sum score"
+msgstr ""
+
+msgid "Traditional"
+msgstr ""
+
+msgid "Counts"
+msgstr ""
+
+msgid "%1$s The traditional sem value equals %2$1.3f."
+msgstr ""
+
+msgid ""
+"%1$s Estimating the %2$s method failed. If possible, you might try changing "
+"the method's parameters."
+msgstr ""
+
+msgid "Sum score CI table"
+msgstr ""
+
+msgid ""
+"Estimating the %s method failed. If possible, you might try changing the "
+"method's parameters."
+msgstr ""
+
+msgid "Sum scores"
+msgstr ""
+
+msgid "Histogram of counts per sum score group"
+msgstr ""
+
+#, fuzzy
+msgid "Point Plots"
+msgstr "Posterior Grafieken"
+
+msgid "Sum Score"
+msgstr ""
+
+msgid "sem"
+msgstr ""
+
+msgid "Combined plot"
+msgstr ""
+
+msgid "Sum Score CI Plots"
+msgstr ""
+
+msgid "True Score"
+msgstr ""
 
 msgid "Greatest Lower Bound"
 msgstr "Hoogste Ondergrens"

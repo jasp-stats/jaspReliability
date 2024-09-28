@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
-"POT-Creation-Date: 2024-04-20 03:27\n"
+"POT-Creation-Date: 2024-09-28 03:32\n"
 "PO-Revision-Date: 2024-06-18 14:09+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -105,6 +105,69 @@ msgstr "Fleiss' kappa"
 msgid "Method"
 msgstr "方法"
 
+msgid ""
+"For the Lord's compound method, the test could not be split in equally sized "
+"parts with more than 1 item per part. Consider adding or removing items."
+msgstr ""
+
+msgid ""
+"The Lord, Keats, and Lord's compound method are only available for binary "
+"data."
+msgstr ""
+
+msgid "Standard error of measurement"
+msgstr ""
+
+msgid "Sum score"
+msgstr ""
+
+msgid "Traditional"
+msgstr ""
+
+msgid "Counts"
+msgstr ""
+
+msgid "%1$s The traditional sem value equals %2$1.3f."
+msgstr ""
+
+msgid ""
+"%1$s Estimating the %2$s method failed. If possible, you might try changing "
+"the method's parameters."
+msgstr ""
+
+msgid "Sum score CI table"
+msgstr ""
+
+msgid ""
+"Estimating the %s method failed. If possible, you might try changing the "
+"method's parameters."
+msgstr ""
+
+msgid "Sum scores"
+msgstr ""
+
+msgid "Histogram of counts per sum score group"
+msgstr ""
+
+#, fuzzy
+msgid "Point Plots"
+msgstr "事後分布プロット"
+
+msgid "Sum Score"
+msgstr ""
+
+msgid "sem"
+msgstr ""
+
+msgid "Combined plot"
+msgstr ""
+
+msgid "Sum Score CI Plots"
+msgstr ""
+
+msgid "True Score"
+msgstr ""
+
 msgid "Greatest Lower Bound"
 msgstr "最大下界"
 
@@ -137,8 +200,8 @@ msgid ""
 "lambda6, glb] failed."
 msgstr ""
 "[alpha、lambda2、lambda6、glb]のいずれかの事後共分散行列のサンプリングに失敗"
-"しました。 "
-"'詳細オプション'で'ケースをリストワイズで除外'に変更してみてください."
+"しました。 '詳細オプション'で'ケースをリストワイズで除外'に変更してみてくださ"
+"い."
 
 msgid ""
 "Sampling the posterior factor model for omega failed. Try changing to "
@@ -216,8 +279,8 @@ msgid ""
 "the B-CFI/TLI are larger than the\n"
 "                         corresponding cutoff."
 msgstr ""
-"'カットオフに対して'-列は、B-"
-"RMSEAが対応するカットオフよりも小さい確率を示し\n"
+"'カットオフに対して'-列は、B-RMSEAが対応するカットオフよりも小さい確率を示"
+"し\n"
 "                         B-CFI / TLIが対応するカットオフよりも\n"
 "                         大きい確率を表しています."
 

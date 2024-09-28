@@ -655,3 +655,112 @@ msgstr "Schatting van Coëfficiënt ω"
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficient α Estimation"
 msgstr "Schatting van Coëfficiënt α"
+
+msgctxt "Description|"
+msgid "Standard Error of Measurement"
+msgstr ""
+
+#, fuzzy
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Variables"
+msgstr "Variabelen"
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Split-test methods"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Thorndike"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Feldt"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Number of splits"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Mollenkopf-Feldt"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Degree of polynomial"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "ANOVA"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "IRT"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Binomial methods"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Lord"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Keats"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Lord's compound"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Options"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Sum score table"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "CI:"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "User defined reliability"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Minimum number of observations per score group"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Hide sem table"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Plots"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Histogram of sum score counts"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Plot per method"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Plot all sems"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Sum score plots"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "CI"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Display cutoff score"
+msgstr ""
