@@ -75,29 +75,22 @@ Form
 
 			CheckBox
 			{
-				id:		lambda6
-				name:	"scaleLambda6";
-				label:	qsTr("Guttman's λ6");
-			}
-
-			CheckBox
-			{
-				id:		glb
-				name:	"scaleGreatestLowerBound";
-				label:	qsTr("Greatest lower bound");
+				id:		splithalf
+				name:	"scaleSplithalf";
+				label:	qsTr("Split-half coefficient");
 			}
 
 			CheckBox { name: "averageInterItemCorrelation";	label: qsTr("Average interitem correlation")	}
 
 			RowLayout {
 				CheckBox { name: "scaleMean";	label: qsTr("Mean");	id: mean}
+				CheckBox { name: "scaleVar";	label: qsTr("Variance"); id: variance}
 				CheckBox { name: "scaleSd";		label: qsTr("SD");		id: sd}
-
 			}
 			RadioButtonGroup
 			{
 				indent:		true
-				enabled:	mean.checked || sd.checked
+				enabled:	mean.checked || sd.checked || variance.checked
 				name:		"meanSdScoresMethod"
 
 				RadioButton { value: "sumScores";	label: qsTr("of participants' sum scores"); checked: true}
@@ -143,18 +136,10 @@ Form
 
 			CheckBox
 			{
-				id: 		lambda6Item
-				name: 		"itemDeletedLambda6"
-				label: 		qsTr("Guttman's λ6 (if item dropped)");
-				enabled: 	lambda6.checked
-			}
-
-			CheckBox
-			{
-				id: 		glbItem
-				name: 		"itemDeletedGreatestLowerBound";
-				label: 		qsTr("Greatest lower bound (if item dropped)");
-				enabled: 	glb.checked
+				id: 		splithalfItem
+				name: 		"itemDeletedSplithalf";
+				label: 		qsTr("Split-half coefficient (if item dropped)");
+				enabled: 	splithalf.checked
 			}
 
 			CheckBox
@@ -162,7 +147,7 @@ Form
 				id: 		itemPlot
 				name: 		"itemDeletedPlot";
 				label: 		qsTr("If item dropped plot");
-				enabled: 	omegaItem.checked || alphaItem.checked || lambda2Item.checked || lambda6Item.checked || glbItem.checked;
+				enabled: 	omegaItem.checked || alphaItem.checked || lambda2Item.checked || splithalfItem.checked
 
 				CheckBox
 				{
@@ -183,8 +168,12 @@ Form
 			}
 
 			CheckBox { name: "itemRestCorrelation";				label: qsTr("Item-rest correlation")			}
-			CheckBox { name: "itemMean";						label: qsTr("Mean")								}
-			CheckBox { name: "itemSd";							label: qsTr("Standard deviation")				}
+			RowLayout {
+				CheckBox { name: "itemMean";						label: qsTr("Mean")								}
+				CheckBox { name: "itemVar";						label: qsTr("Variance")								}
+				CheckBox { name: "itemSd";							label: qsTr("SD")				}
+			}
+
 		}
 
 		Group
@@ -375,7 +364,7 @@ Form
 		title: qsTr("Priors")
 		Group
 		{
-			title: qsTr("CTT-Coefficients (α, λ2, λ6, glb)")
+			title: qsTr("CTT-Coefficients (α, λ2)")
 
 			FormulaField
 			{

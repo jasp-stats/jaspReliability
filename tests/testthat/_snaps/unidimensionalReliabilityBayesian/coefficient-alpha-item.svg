@@ -86,6 +86,6 @@
 <text x='470.43' y='566.54' style='font-size: 20.40px; font-family: sans;' textLength='5.10px' lengthAdjust='spacingAndGlyphs'> </text>
 <text x='475.53' y='566.54' style='font-size: 20.40px; font-family: sans;' textLength='12.24px' lengthAdjust='spacingAndGlyphs'>α</text>
 <text transform='translate(19.02,263.41) rotate(-90)' text-anchor='middle' style='font-size: 20.40px; font-family: sans;' textLength='123.61px' lengthAdjust='spacingAndGlyphs'>Item Dropped</text>
-<text x='427.82' y='11.70' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='79.38px' lengthAdjust='spacingAndGlyphs'>alpha-item</text>
+<text x='427.82' y='11.70' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='161.59px' lengthAdjust='spacingAndGlyphs'>coefficient-alpha-item</text>
 </g>
 </svg>
