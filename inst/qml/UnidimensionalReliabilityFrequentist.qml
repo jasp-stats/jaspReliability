@@ -50,7 +50,7 @@ Form
 			CIField
 			{
 				name:			"ciLevel";
-				label:			qsTr("Confidence Interval");
+				label:			qsTr("Confidence interval");
 				defaultValue:	95;
 			}
 			
@@ -87,9 +87,9 @@ Form
 			CheckBox { name: "averageInterItemCorrelation";	label: qsTr("Average interitem correlation")}
 
 			RowLayout {
-				CheckBox { name: "scaleMean";	label: qsTr("Mean");	id: mean}
-				CheckBox { name: "scaleVar";		label: qsTr("Variance"); id: variance}
-				CheckBox { name: "scaleSd";		label: qsTr("SD");		id: sd}
+				CheckBox { name: "scaleMean";		label: qsTr("Mean");			id: mean		}
+				CheckBox { name: "scaleVar";		label: qsTr("Variance"); 	id: variance}
+				CheckBox { name: "scaleSd";			label: qsTr("SD");				id: sd			}
 
 			}
 			RadioButtonGroup

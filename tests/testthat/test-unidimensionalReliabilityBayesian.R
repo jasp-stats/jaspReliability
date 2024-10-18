@@ -327,14 +327,9 @@ test_that("Standardized Loadings of the Single-Factor Model table results match"
 test_that("Coefficient alpha plot matches", {
   plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_plotContainer"]][["collection"]][["stateContainer_plotContainer_alpha"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-<<<<<<< HEAD
-  jaspTools::expect_equal_plots(testPlot, "alpha-std")
-})
 
-=======
   jaspTools::expect_equal_plots(testPlot, "coefficient-alpha-std")
 })
->>>>>>> b809c4f (remove lambda6 and glb)
 
 test_that("Guttman's lambda2 plot matches", {
   plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_plotContainer"]][["collection"]][["stateContainer_plotContainer_lambda2"]][["data"]]

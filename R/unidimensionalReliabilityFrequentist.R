@@ -4,8 +4,6 @@
 #' @export
 unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) {
 
-  sink(file = "~/Downloads/log.txt")
-  on.exit(sink(NULL))
 
   dataset <- .readData(dataset, options)
 
@@ -76,7 +74,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
   jaspResults[["stateContainer"]] <- createJaspContainer(dependencies = c("variables", "reverseScaledItems", "bootstrapSamples",
                                                                           "naAction", "bootstrapType", "setSeed",
-                                                                          "seed", "ci", "samplesSavingDisabled", "intervalMethod")
+                                                                          "seed", "ciLevel", "samplesSavingDisabled", "intervalMethod")
   )
 
   return(jaspResults[["stateContainer"]])
@@ -328,13 +326,12 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
           }
         }
 
+        if (anyNA(c(out[["itemDropped"]][["est"]], out[["itemDropped"]][["lower"]], out[["itemDropped"]][["upper"]]))) {
+          out[["error"]] <- gettext("Omega item dropped statistics with CFA failed.")
+        }
+
       }
-      if (anyNA(c(out[["itemDropped"]][["est"]], out[["itemDropped"]][["lower"]], out[["itemDropped"]][["upper"]]))) {
-        out[["error"]] <- gettext("Omega item dropped statistics with CFA failed.")
-        out[["itemDropped"]][["est"]] <- rep(NA, ncol(dataset))
-        out[["itemDropped"]][["lower"]] <- rep(NA, ncol(dataset))
-        out[["itemDropped"]][["upper"]] <- rep(NA, ncol(dataset))
-      }
+
 
     } else { # omega with pfa
       if (options[["coefficientType"]] == "unstandardized") {
@@ -343,12 +340,18 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         cc <- model[["data_cor"]]
       }
       # do we have to compute item dropped values
-      if (is.null(out[["itemDropped"]]))
+      if (is.null(out[["itemDropped"]])) {
         out[["itemDropped"]][["est"]] <- .freqItemDroppedStats(cc, .applyomegaPFA)
-
-      if (anyNA(out[["itemDropped"]]))
-        out[["error"]] <- gettext("Omega item dropped statistics with PFA failed.")
-
+        if (options[["intervalMethod"]] == "analytic") {
+          out[["itemDropped"]][["lower"]] <- rep(NA, ncol(dataset))
+          out[["itemDropped"]][["upper"]] <- rep(NA, ncol(dataset))
+          out[["error"]] <- gettext("The analytic confidence interval is not available for coefficient omega obtained with PFA.")
+        } else {
+          type <- ifelse(options[["coefficientType"]] == "unstandardized", "bootSamp", "bootCor")
+          startProgressbar(options[["bootstrapSamples"]] * ncol(dataset))
+          out[["samp"]] <- apply(model[[type]], 1, Bayesrel:::applylambda2, callback = progressbarTick)
+        }
+      }
     }
 
     if (options[["samplesSavingDisabled"]])
@@ -358,7 +361,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     stateContainer[["itemDeletedOmegaObj"]] <- createJaspState(out,
                                                                dependencies = c("itemDeletedOmega",
                                                                                 "omegaEstimationMethod",
-                                                                                "coefficientType"))
+                                                                                "coefficientType",
+                                                                                "itemCiLevel"))
   }
 
   return(out)
@@ -890,7 +894,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
           if (options[["intervalMethod"]] == "analytic") {
             out[["conf"]][["scaleOmega"]] <- c(NA, NA)
             out[["se"]][["scaleOmega"]] <- NA
-            out[["error"]][["scaleOmega"]] <- gettext("The analytic confidence interval is not available for coefficient omega obtained with PFA. ")
+            out[["error"]][["scaleOmega"]] <- gettext("The analytic confidence interval is not available for coefficient omega obtained with PFA.")
           } else {
             if (sum(!is.na(model[["scaleOmega"]][["samp"]])) >= 2) {
               out[["conf"]][["scaleOmega"]] <- quantile(model[["scaleOmega"]][["samp"]],
@@ -1096,7 +1100,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   itemTable <- createJaspTable(gettext("Frequentist Individual Item Reliability Statistics"))
   itemTable$dependOn(options = c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedSplithalf",
                                  "itemMean", "itemRestCorrelation", "itemSd", "itemVar",
-                                 "scaleOmega", "scaleAlpha", "scaleLambda2", "scaleSplithalf"))
+                                 "scaleOmega", "scaleAlpha", "scaleLambda2", "scaleSplithalf",
+                                 "itemCiLevel"))
   # adding the scale options fixes a bug, where the item table would remain displayed
   # after one had checked a scale coefficient box and the item coefficient box and then unchecked the scale coeff box
 
@@ -1111,7 +1116,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   ci <- format(100 * options[["itemCiLevel"]], digits = 3, drop0trailing = TRUE)
 
   footnote <- ""
-
   if (!is.null(model[["itemDeletedOmega"]][["error"]])) {
     footnote <- paste(footnote, model[["itemDeletedOmega"]][["error"]])
   }
@@ -1158,7 +1162,9 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     for (j in seq_along(idxSelected)) {
       i <- idxSelected[j]
       nm <- names(idxSelected[j])
-      newtb <- cbind(pointEstimate = model[[nm]][["itemDropped"]][["est"]])
+      newtb <- cbind(pointEstimate = model[[nm]][["itemDropped"]][["est"]],
+                     lower = model[[nm]][["itemDropped"]][["lower"]],
+                     upper = model[[nm]][["itemDropped"]][["upper"]])
       colnames(newtb) <- paste0(colnames(newtb), i)
       tb <- cbind(tb, newtb)
     }
@@ -1579,6 +1585,23 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
               omega_boot = om_obj))
 }
 
+.frequentistItemDroppedStats <- function(covSamp, f1 = function(){}, callback = function(){}, splithalf = FALSE) {
+  # covSamp will be an array with dimensions (n, p, p), where n is the number of bootstrap samples
+  dd <- dim(covSamp)
+  nit <- dd[2]
+  splits <- split(seq_len(nit), 1:2)
+  out <- matrix(0, dd[1], dd[2])
+  if (splithalf) {
+    for (i in seq_len(dd[2])) {
+      out[, i] <- apply(cov_samp[, -i, -i], c(1), f1, callback = callback, splits = splits)
+    }
+  } else {
+    for (i in seq_len(dd[2])) {
+      out[, i] <- apply(cov_samp[, -i, -i], c(1), f1, callback = callback)
+    }
+  }
+  return(out)
+}
 
 #### Functions from Andries ####
 # SE of sample variance
