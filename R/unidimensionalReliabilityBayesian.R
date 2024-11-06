@@ -481,7 +481,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
-      out[["itemSamp"]] <- .BayesItemDroppedStats(model[[if (options[["coefficientType"]] == "unstandardized") "gibbsSamp" else "gibbsCor"]],
+      out[["itemSamp"]] <- .BayesianItemDroppedStats(model[[if (options[["coefficientType"]] == "unstandardized") "gibbsSamp" else "gibbsCor"]],
                                                   Bayesrel:::applyalpha, progressbarTick)
 
 
@@ -549,7 +549,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
-      out[["itemSamp"]] <- .BayesItemDroppedStats(model[[if (options[["coefficientType"]] == "unstandardized") "gibbsSamp" else "gibbsCor"]],
+      out[["itemSamp"]] <- .BayesianItemDroppedStats(model[[if (options[["coefficientType"]] == "unstandardized") "gibbsSamp" else "gibbsCor"]],
                                                   Bayesrel:::applylambda2, progressbarTick)
     }
 
@@ -615,7 +615,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
-      out[["itemSamp"]] <- .BayesItemDroppedStats(model[["gibbsCor"]], .splithalfCor, progressbarTick, splithalf = TRUE)
+      out[["itemSamp"]] <- .BayesianItemDroppedStats(model[["gibbsCor"]], .splithalfCor, progressbarTick, splithalf = TRUE)
     }
 
     if (options[["samplesSavingDisabled"]])
@@ -1918,7 +1918,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
 }
 
-.BayesItemDroppedStats <- function(cov_samp, f1 = function(){}, callback = function(){}, splithalf = FALSE) {
+.BayesianItemDroppedStats <- function(cov_samp, f1 = function(){}, callback = function(){}, splithalf = FALSE) {
 
   dd <- dim(cov_samp)
   nit <- dd[3] - 1
