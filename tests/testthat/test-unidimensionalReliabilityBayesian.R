@@ -2,6 +2,7 @@
 # common options
 options <- analysisOptions("unidimensionalReliabilityBayesian")
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss30")
+# options$variables.types <- c("scale", "scale", "scale", "scale", "scale")
 options$scaleAlpha <- TRUE
 options$scaleLambda2 <- TRUE
 options$averageInterItemCorrelation <- TRUE
@@ -34,6 +35,7 @@ options$effectiveSampleSize <- TRUE
 options$tracePlot <- TRUE
 options$setSeed <- TRUE
 options$reverseScaledItems <- "debMiss30"
+# options$reverseScaledItems.types <- "scale"
 options$itemDeletedPlotOrderedType <- "kullbackLeibler"
 options$inverseWishartPriorDf <- length(options$variables)
 options$inverseWishartPriorScale <- 0.0000000001

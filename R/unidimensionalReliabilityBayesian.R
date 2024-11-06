@@ -7,21 +7,19 @@
 #' @export
 unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
-  # sink(file = "~/Downloads/log.txt")
-  # on.exit(sink(NULL))
-
   options <- jaspBase::.parseAndStoreFormulaOptions(jaspResults, options, "inverseWishartPriorScale")
 
-  dataset <- .readData(dataset, options)
+  # check for listwise deletion
+  datasetOld <- dataset
+  dataset <- .handleData(datasetOld, options)
 
   if (length(options[["reverseScaledItems"]]) > 0L) {
     dataset <- .reverseScoreItems(dataset, options)
   }
 
-
   .checkErrors(dataset, options, Bayes = TRUE)
 
-  model <- .BayesianPreCalc(jaspResults, dataset, options)
+  model <- .BayesianPreCalc(jaspResults, dataset, options, datasetOld)
 
   options <- .scaleItemBoxAlignB(options)
 
@@ -95,7 +93,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
 #### Precalulate results ####
 
-.BayesianPreCalc <- function(jaspResults, dataset, options) {
+.BayesianPreCalc <- function(jaspResults, dataset, options, datasetOld) {
 
   if (!is.null(.getStateContainerB(jaspResults)[["modelObj"]]$object)) {
     if (!is.null(.getStateContainerB(jaspResults)[["modelObj"]]$object$gibbsSamp))
@@ -133,13 +131,8 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
     # check for missings and determine the missing handling
 
-    # when listwise deletion is chosen the values are deleted upon reading in the data,
-    # before entering this whole analysis, without this we would never know the initial
-    # size of the data
-    tmp <- .readDataSetToEnd(columns.as.numeric = unlist(options[["variables"]]))
-    old_n <- nrow(tmp)
-
-    if (nrow(dataset) < old_n) { # this indicates listwise deletion
+    # check for missings and determine the missing handling
+    if (options[["naAction"]] == "listwise" && nrow(datasetOld) > nrow(dataset)) { # this indicates listwise deletion
       model[["use.cases"]] <- "complete.obs"
       model[["pairwise"]] <- FALSE
       model[["footnote"]] <- gettextf("%s Of the observations, %1.f complete cases were used. ",
@@ -1293,7 +1286,6 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
       } else {
         startProgressbar(4e3)
       }
-
       prior <- .samplePrior(n.item, nm, progressbarTick, options[["inverseWishartPriorScale"]], options[["inverseWishartPriorDf"]],
                             options[["inverseGammaPriorShape"]], options[["inverseGammaPriorScale"]], options[["normalPriorMean"]])
 

@@ -177,6 +177,7 @@ Form
 			{
 				title: qsTr("Reliability coefficients")
 				name:		"intervalMethod"
+				id: intervalMethod
 				RadioButton
 				{
 					value: 		"analytic"
@@ -250,6 +251,7 @@ Form
 			{
 				value: "pfa"
 				label: qsTr("PFA")
+				enabled: intervalMethod.value == "bootstrapped"
 			}
 
 			CheckBox
