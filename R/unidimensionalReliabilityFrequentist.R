@@ -4,8 +4,8 @@
 #' @export
 unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) {
 
-  sink("~/Downloads/log.txt")
-  on.exit(sink(NULL))
+  # sink("~/Downloads/log.txt")
+  # on.exit(sink(NULL))
 
   # check for listwise deletion
   datasetOld <- dataset
@@ -703,7 +703,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
       }
     }
 
-    print(str(out))
     if (options[["samplesSavingDisabled"]])
       return(out)
 
@@ -1560,8 +1559,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
                                          splits = NULL) {
 
   dd <- dim(covSamp)
-  nit <- dd[3] - 1
-  splits <- split(seq_len(nit), 1:2)
   out <- matrix(0, dd[1], dd[3])
   if (!is.null(splits)) { # split half
     for (i in seq_len(dd[3])) {
@@ -1871,7 +1868,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
 #### Functions from Andries ####
 # SE of sample variance
-.seVar <- function(x, eps = 1e-16){
+.seVar <- function(x, eps = 1e-16) {
+  x <- na.omit(x)
   N <- length(x)
   d <- ((x - mean(x))^2 - var(x)) / (N - 1)
   V <- sum(d^2) - sum(outer(d, d))/ N
@@ -1879,8 +1877,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 }
 
 # SE of sample standard deviation
-.seSd <- function(x, eps = 1e-16){
-  return(.seVar(x)/ (2 * sd(x)))
+.seSd <- function(x, eps = 1e-16) {
+  return(.seVar(x)/ (2 * sd(x, na.rm = TRUE)))
 }
 
 
