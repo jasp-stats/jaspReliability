@@ -4,8 +4,6 @@
 #' @export
 unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) {
 
-  # sink("~/Downloads/log.txt")
-  # on.exit(sink(NULL))
 
   # check for listwise deletion
   datasetOld <- dataset
@@ -42,9 +40,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
   model[["scaleResults"]] <- .frequentistComputeScaleResults(jaspResults, dataset, options, model)
   model[["itemResults"]] <- .frequentistComputeItemResults(jaspResults, dataset, options, model)
-
-  # print(str(options))
-  # print(str(model))
 
   .frequentistScaleTable(jaspResults, model, options)
   .frequentistItemTable(jaspResults, model, options)
