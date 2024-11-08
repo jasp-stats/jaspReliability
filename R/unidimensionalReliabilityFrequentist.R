@@ -605,8 +605,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
     if (options[["intervalMethodVar"]] == "chisq") {
       out[["se"]] <- out[["est"]] * sqrt(2 / (model[["n"]] - 1))
-      chiValueLow <- qchisq(1 - (1 - ciValue) / 2, df = model[["n"]] - 1)
-      chiValueHigh <- qchisq((1 - ciValue) / 2, df = model[["n"]] - 1)
+      chiValueLow <- stats::qchisq(1 - (1 - ciValue) / 2, df = model[["n"]] - 1)
+      chiValueHigh <- stats::qchisq((1 - ciValue) / 2, df = model[["n"]] - 1)
       out[["conf"]] <- c(((model[["n"]] - 1) * out[["est"]]) / chiValueLow,
                          ((model[["n"]] - 1) * out[["est"]]) / chiValueHigh)
     } else { # wald interval
@@ -644,8 +644,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     out[["se"]] <- .seSd(x = xx)
 
     if (options[["intervalMethodVar"]] == "chisq") {
-      chiValueLow <- qchisq(1 - (1 - ciValue) / 2, df = model[["n"]] - 1)
-      chiValueHigh <- qchisq((1 - ciValue) / 2, df = model[["n"]] - 1)
+      chiValueLow <- stats::qchisq(1 - (1 - ciValue) / 2, df = model[["n"]] - 1)
+      chiValueHigh <- stats::qchisq((1 - ciValue) / 2, df = model[["n"]] - 1)
       out[["conf"]] <- c(sqrt(((model[["n"]] - 1) * out[["est"]]^2) / chiValueLow),
                          sqrt(((model[["n"]] - 1) * out[["est"]]^2) / chiValueHigh))
     } else {
@@ -751,8 +751,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     out[["est"]] <- apply(dataset, 2, var, na.rm = TRUE)
 
     if (options[["intervalMethodVar"]] == "chisq") {
-      chiValueLow <- qchisq(1 - (1 - ciValue) / 2, df = model[["n"]] - 1)
-      chiValueHigh <- qchisq((1 - ciValue) / 2, df = model[["n"]] - 1)
+      chiValueLow <- stats::qchisq(1 - (1 - ciValue) / 2, df = model[["n"]] - 1)
+      chiValueHigh <- stats::qchisq((1 - ciValue) / 2, df = model[["n"]] - 1)
       out[["lower"]] <- ((model[["n"]] - 1) * out[["est"]]) / chiValueLow
       out[["upper"]] <- ((model[["n"]] - 1) * out[["est"]]) / chiValueHigh
     } else { # wald interval
@@ -786,8 +786,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     ses <- apply(dataset, 2, .seSd)
 
     if (options[["intervalMethodVar"]] == "chisq") {
-      chiValueLow <- qchisq(1 - (1 - ciValue) / 2, df = model[["n"]] - 1)
-      chiValueHigh <- qchisq((1 - ciValue) / 2, df = model[["n"]] - 1)
+      chiValueLow <- stats::qchisq(1 - (1 - ciValue) / 2, df = model[["n"]] - 1)
+      chiValueHigh <- stats::qchisq((1 - ciValue) / 2, df = model[["n"]] - 1)
       out[["lower"]] <- sqrt(((model[["n"]] - 1) * out[["est"]]^2) / chiValueLow)
       out[["upper"]] <- sqrt(((model[["n"]] - 1) * out[["est"]]^2) / chiValueHigh)
     } else {
@@ -1693,8 +1693,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   file <- Bayesrel:::lavOneFile(data)
   colnames(data) <- file$names
 
-  lam_names <- paste("l", 1:p, sep = "")
-  err_names <- paste("e", 1:p, sep = "")
+  lam_names <- paste0("l", 1:p)
+  err_names <- paste0("e", 1:p)
   model <- paste0("f1 =~ ")
   loadings <- paste(paste(lam_names, "*", file$names, sep = ""),
                     collapse = " + ")
@@ -1820,8 +1820,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   file <- Bayesrel:::lavOneFile(cc)
   colnames(cc) <- file$names
 
-  lam_names <- paste("l", 1:p, sep = "")
-  err_names <- paste("e", 1:p, sep = "")
+  lam_names <- paste0("l", 1:p)
+  err_names <- paste0("e", 1:p)
   model <- paste0("f1 =~ ")
   loadings <- paste(paste(lam_names, "*", file$names, sep = ""),
                     collapse = " + ")
