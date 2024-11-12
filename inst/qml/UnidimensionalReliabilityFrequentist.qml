@@ -16,10 +16,11 @@
 // <http://www.gnu.org/licenses/>.
 //
 
-import QtQuick 			2.8
-import JASP.Controls 	1.0
-import JASP.Theme		1.0
-import JASP.Widgets 	1.0
+import QtQuick 
+import QtQuick.Layouts 
+import JASP.Controls 
+import JASP.Theme	
+import JASP.Widgets 
 
 Form
 {
@@ -45,21 +46,14 @@ Form
 		{
 			title: qsTr("Scale Statistics")
 
-			CheckBox
-			{
-				name: 				"ci"
-				label:				qsTr("Confidence Interval")
-				checked: 			true
-				childrenOnSameRow: 	true
-				id:					interval
 
-				CIField
-				{
-					name:			"ciLevel";
-					label:			"";
-					defaultValue:	95;
-				}
+			CIField
+			{
+				name:			"ciLevel";
+				label:			qsTr("Confidence interval");
+				defaultValue:	95;
 			}
+			
 
 			CheckBox
 			{
@@ -85,29 +79,23 @@ Form
 
 			CheckBox
 			{
-				id: 	lambda6
-				name: 	"scaleLambda6";
-				label: 	qsTr("Guttman's λ6");
-			}
-
-			CheckBox
-			{
-				id: 	glb
-				name: 	"scaleGreatestLowerBound";
-				label: 	qsTr("Greatest lower bound");
+				id: 	splithalf
+				name: 	"scaleSplithalf";
+				label: 	qsTr("Split-half coefficient");
 			}
 
 			CheckBox { name: "averageInterItemCorrelation";	label: qsTr("Average interitem correlation")}
 
 			RowLayout {
-				CheckBox { name: "scaleMean";	label: qsTr("Mean");	id: mean}
-				CheckBox { name: "scaleSd";		label: qsTr("SD");		id: sd}
+				CheckBox { name: "scaleMean";		label: qsTr("Mean");			id: mean		}
+				CheckBox { name: "scaleVar";		label: qsTr("Variance"); 	id: variance}
+				CheckBox { name: "scaleSd";			label: qsTr("SD");				id: sd			}
 
 			}
 			RadioButtonGroup
 			{
 				indent:		true
-				enabled:	mean.checked || sd.checked
+				enabled:	mean.checked || sd.checked || variance.checked
 				name:		"meanSdScoresMethod"
 
 				RadioButton { value: "sumScores";	label: qsTr("of participants' sum scores"); checked: true}
@@ -119,6 +107,13 @@ Form
 		Group
 		{
 			title: qsTr("Individual Item Statistics")
+
+			CIField
+			{
+				name: 			"itemCiLevel";
+				label: 			qsTr("Confidence interval");
+				defaultValue: 	95
+			}
 
 			CheckBox
 			{
@@ -143,21 +138,18 @@ Form
 
 			CheckBox
 			{
-				name: 		"itemDeletedLambda6";
-				label: 		qsTr("Guttman's λ6 (if item dropped)");
-				enabled: 	lambda6.checked
+				name: 		"itemDeletedSplithalf";
+				label: 		qsTr("Split-half coefficient (if item dropped)");
+				enabled: 	splithalf.checked
 			}
-
-			CheckBox
-			{
-				name: 		"itemDeletedGreatestLowerBound";
-				label: 		qsTr("Greatest lower bound (if item dropped)");
-				enabled: 	glb.checked
-			}
-
+			
 			CheckBox { name: "itemRestCorrelation";	label: qsTr("Item-rest correlation")		}
-			CheckBox { name: "itemMean";			label: qsTr("Mean")							}
-			CheckBox { name: "itemSd";			label: qsTr("Standard deviation")			}
+			RowLayout {
+				CheckBox { name: "itemMean";			label: qsTr("Mean")							}
+				CheckBox { name: "itemVar";			label: qsTr("Variance")			}
+				CheckBox { name: "itemSd";			label: qsTr("SD")			}
+			}
+
 		}
 	}
 
@@ -177,40 +169,63 @@ Form
 	Section
 	{
 		title: qsTr("Advanced Options")
-
-		RadioButtonGroup
+		Group
 		{
-				title: 	qsTr("Missing Values")
-				name: 	"naAction"
-
-				RadioButton { value: "pairwise"; label: qsTr("Exclude cases pairwise"); checked: true}
-				RadioButton { value: "listwise"; label: qsTr("Exclude cases listwise")}
-		}
-
-	Group
-	{
-			title: qsTr("Bootstrap")
-
-			IntegerField
-			{
-				name: 			"bootstrapSamples"
-				label: 			qsTr("No. of bootstrap samples")
-				defaultValue: 	1000
-				fieldWidth: 	50
-				min: 			100
-				max: 			1e7
-			}
-
+			Layout.rowSpan: 2
+			title: qsTr("Confidence intervals")
 			RadioButtonGroup
 			{
-				title:		""
-				name:		"bootstrapType"
-				enabled:	interval.checked
+				title: qsTr("Reliability coefficients")
+				name:		"intervalMethod"
+				id: intervalMethod
+				RadioButton
+				{
+					value: 		"analytic"
+					label: 		qsTr("Analytic interval")
+					checked: 	true
+				}
+				RadioButton
+				{
+					value: 	"bootstrapped"
+					label: 	qsTr("Bootstrapped interval")
 
-				RadioButton {value: "nonParametric"; label: qsTr("Non-parametric bootstrap"); checked: true}
-				RadioButton {value: "parametric"; label: qsTr("Parametric bootstrap")}
+					IntegerField
+					{
+						name: 			"bootstrapSamples"
+						label: 			qsTr("No. of bootstrap samples")
+						defaultValue: 	1000
+						fieldWidth: 	50
+						min: 			100
+						max: 			1e7
+					}
+
+					RadioButtonGroup
+					{
+						title:		""
+						name:		"bootstrapType"
+
+						RadioButton {value: "nonParametric"; label: qsTr("Non-parametric bootstrap"); checked: true}
+						RadioButton {value: "parametric"; label: qsTr("Parametric bootstrap")}
+					}
+				}
 			}
+			RadioButtonGroup
+			{
+				title : qsTr("Variance and SD")
+				name:		"intervalMethodVar"
+				RadioButton
+				{
+					value: 		"chisq"
+					label: 		qsTr("Chisq-based")
+					checked: 	true
+				}
+				RadioButton
+				{
+					value: 	"twostep"
+					label: 	qsTr("Non-parametric")
 
+				}
+			}
 		}
 
 		RadioButtonGroup
@@ -230,33 +245,13 @@ Form
 					name: 		"omegaFitMeasures"
 					label: 		qsTr("Single factor model fit")
 				}
-
-				RadioButtonGroup
-				{
-					title:		qsTr("Interval")
-					name:		"omegaIntervalMethod"
-					enabled:	interval.checked
-
-					RadioButton
-					{
-
-						value: 		"analytic"
-						label: 		qsTr("Analytic interval")
-						checked: 	true
-					}
-
-					RadioButton
-					{
-						value: 	"bootstrapped"
-						label: 	qsTr("Bootstrapped interval")
-					}
-				}
 			}
 			
 			RadioButton
 			{
 				value: "pfa"
 				label: qsTr("PFA")
+				enabled: intervalMethod.value == "bootstrapped"
 			}
 
 			CheckBox
@@ -268,47 +263,25 @@ Form
 
 		Group
 		{
-			title: 		qsTr("Coefficient α Estimation")
-			enabled: 	alpha.checked
+			title: 		qsTr("Coefficients")
 
 			RadioButtonGroup
-			{
-				title:	""
-				name: 	"alphaType"
+ 			{
+ 				title: ""
+ 				name: "coefficientType"
 
-				RadioButton
-				{
-					value:		"unstandardized"
-					label:		qsTr("Unstandardized")
-					checked:	true
-				}
-
-				RadioButton
-				{
-					value:	"standardized"
-					label:	qsTr("Standardized")
-				}
+ 				RadioButton{ value: "unstandardized"; label: qsTr("Unstandardized"); checked: true }
+ 				RadioButton{ value: "standardized";	label: qsTr("Standardized")}
 			}
+		}
 
-			RadioButtonGroup
-			{
-				title:		qsTr("Interval")
-				name:		"alphaIntervalMethod"
-				enabled:	interval.checked
+		RadioButtonGroup
+		{
+				title: 	qsTr("Missing Values")
+				name: 	"naAction"
 
-				RadioButton
-				{
-					value:		"analytic"
-					label:		qsTr("Analytic interval")
-					checked:	true
-				}
-
-				RadioButton
-				{
-					value: 	"bootstrapped"
-					label: 	qsTr("Bootstrapped interval")
-				}
-			}
+				RadioButton { value: "pairwise"; label: qsTr("Pairwise"); checked: true}
+				RadioButton { value: "listwise"; label: qsTr("Delete listwise")}
 		}
 
 		Group

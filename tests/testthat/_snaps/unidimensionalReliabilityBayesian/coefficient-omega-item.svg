@@ -84,10 +84,10 @@
 <text x='330.72' y='533.28' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='23.63px' lengthAdjust='spacingAndGlyphs'>0.2</text>
 <text x='474.83' y='533.28' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='23.63px' lengthAdjust='spacingAndGlyphs'>0.4</text>
 <text x='618.93' y='533.28' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='23.63px' lengthAdjust='spacingAndGlyphs'>0.6</text>
-<text x='365.67' y='566.54' style='font-size: 20.40px; font-family: sans;' textLength='105.96px' lengthAdjust='spacingAndGlyphs'>McDonald's</text>
-<text x='471.63' y='566.54' style='font-size: 20.40px; font-family: sans;' textLength='5.10px' lengthAdjust='spacingAndGlyphs'> </text>
-<text x='476.74' y='566.54' style='font-size: 20.40px; font-family: sans;' textLength='13.22px' lengthAdjust='spacingAndGlyphs'>ω</text>
+<text x='370.46' y='566.54' style='font-size: 20.40px; font-family: sans;' textLength='96.39px' lengthAdjust='spacingAndGlyphs'>Coefficient</text>
+<text x='466.85' y='566.54' style='font-size: 20.40px; font-family: sans;' textLength='5.10px' lengthAdjust='spacingAndGlyphs'> </text>
+<text x='471.95' y='566.54' style='font-size: 20.40px; font-family: sans;' textLength='13.22px' lengthAdjust='spacingAndGlyphs'>ω</text>
 <text transform='translate(19.02,263.41) rotate(-90)' text-anchor='middle' style='font-size: 20.40px; font-family: sans;' textLength='123.61px' lengthAdjust='spacingAndGlyphs'>Item Dropped</text>
-<text x='427.82' y='11.70' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='89.77px' lengthAdjust='spacingAndGlyphs'>omega-item</text>
+<text x='427.82' y='11.70' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='171.98px' lengthAdjust='spacingAndGlyphs'>coefficient-omega-item</text>
 </g>
 </svg>

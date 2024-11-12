@@ -12,6 +12,7 @@ Description
 	website		: "https://github.com/jasp-stats/jaspReliability"
 	license		: "GPL (>= 2)"
 	icon		: "reliability_icon_classic.svg"
+	preloadData: true
 
 
 	GroupTitle
