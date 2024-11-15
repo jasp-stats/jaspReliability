@@ -18,9 +18,9 @@
 #' @export
 standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
-  ready <- length(options[["variables"]]) > 1
+  ready <- ncol(dataset) > 1
 
-  dataset <- .semReadData(dataset, options)
+  dataset <- .semHandleData(dataset, options)
 
   .semErrorCheck(dataset, options, ready)
 
@@ -50,13 +50,12 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 #### the common functions ####
 # Read in the dataset
-.semReadData <- function(dataset, options) {
+.semHandleData <- function(dataset, options) {
 
-  variables <- unlist(options[["variables"]])
+  dataset <- dataset[complete.cases(dataset), ]
 
-  if (is.null(dataset)) {
-    dataset <- .readDataSetToEnd(columns.as.numeric = variables, exclude.na.listwise = variables)
-  }
+  # functions work only with numeric data
+  dataset <- as.data.frame(lapply(dataset, as.numeric))
 
   return(dataset)
 }

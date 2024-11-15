@@ -17,23 +17,12 @@
 #' @export
 blandAltman <- function(jaspResults, dataset, options) {
 
-  dataset <- .blandAltmanReadData(dataset, options)
-
   .blandAltmanPlots(jaspResults, dataset, options)
   .blandAltmanTable(jaspResults, dataset, options)
 
   return()
 }
 
-# Read in the dataset (copied from .reliabilityReadData)
-.blandAltmanReadData <- function(dataset, options) {
-  variables <- unlist(options[["pairs"]])
-  variables <- variables[variables != ""]
-  if (is.null(dataset)) {
-    dataset <- .readDataSetToEnd(columns.as.numeric = variables)
-  }
-  return(dataset)
-}
 
 .blandAltmanPlots <- function(jaspResults, dataset, options) {
 

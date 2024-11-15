@@ -40,6 +40,7 @@ Description
 		title:	qsTr("Rater Agreement")
 		qml: 	"RaterAgreement.qml"
 		func: 	"raterAgreement"
+		preloadData: false
 	}
 	Analysis
 	{
