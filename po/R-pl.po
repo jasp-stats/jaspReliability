@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
-"POT-Creation-Date: 2024-09-28 03:32\n"
+"POT-Creation-Date: 2024-11-16 03:35\n"
 "PO-Revision-Date: 2024-06-20 20:09+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
@@ -169,17 +169,20 @@ msgstr ""
 msgid "True Score"
 msgstr ""
 
-msgid "Greatest Lower Bound"
-msgstr "Największa dolna granica"
+msgid "Split-half coefficient"
+msgstr ""
 
 msgid "Item-rest correlation"
 msgstr "Korelacja pozycji z wynikiem ogólnym"
 
-msgid "mean"
-msgstr "średnia"
+msgid "Mean"
+msgstr ""
 
-msgid "sd"
-msgstr "sd"
+msgid "Variance"
+msgstr ""
+
+msgid "SD"
+msgstr ""
 
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr "%s Ze wszystkich obserwacji, użyto %1.f kompletnych przypadków."
@@ -222,17 +225,17 @@ msgstr ""
 msgid "Bayesian Scale Reliability Statistics"
 msgstr "Bayesowskie statystyki rzetelności dla skal"
 
-msgid "Estimate"
-msgstr "Oszacowanie"
-
-msgid "%s lower bound"
-msgstr "%s dolna granica"
-
-msgid "%s upper bound"
-msgstr "%s górna granica"
-
 msgid "Posterior %s"
 msgstr "Posterior %s"
+
+msgid "Coefficient"
+msgstr ""
+
+msgid "R-hat"
+msgstr ""
+
+msgid "ESS"
+msgstr ""
 
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr "Bayesowskie statystyki rzetelności dla pojedynczych itemów"
@@ -254,18 +257,16 @@ msgstr ""
 "Wprowadzone granice zostały uporządkowane w rosnącej kolejności w celu "
 "zapewnienia konkluzywnych wyników."
 
+#, fuzzy
 msgid ""
-"Probability that Reliability Statistic is Larger than %.2f and Smaller than "
-"%.2f"
+"Probability that Reliability Coefficient is Larger than %.2f and Smaller "
+"than %.2f"
 msgstr ""
 "Prawdopodobieństwo, że statystyka rzetelności jest wyższa niż %.2f oraz "
 "niższa niż %.2f"
 
 msgid "Probability"
 msgstr "Prawdopodobieństwo"
-
-msgid "Statistic"
-msgstr "Statystyka"
 
 msgid "Prior"
 msgstr "Prior"
@@ -275,6 +276,15 @@ msgstr "Posterior"
 
 msgid "Fit Measures for the Single-Factor Model"
 msgstr "Miary dopasowania dla modelu jednoczynnikowego"
+
+msgid "Estimate"
+msgstr "Oszacowanie"
+
+msgid "%s lower bound"
+msgstr "%s dolna granica"
+
+msgid "%s upper bound"
+msgstr "%s górna granica"
 
 msgid ""
 "'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
@@ -323,28 +333,28 @@ msgstr "Wykres konwergencji"
 msgid "Iterations"
 msgstr "Iteracje"
 
-msgid "Omega item dropped statistics with CFA failed."
-msgstr "Nie udało się obliczyć wartości Omega bez danej pozycji (dla CFA)."
+#, fuzzy
+msgid "Average interitem correlation"
+msgstr "Korelacja pozycji z wynikiem ogólnym"
 
-msgid "Omega item dropped statistics with PFA failed."
-msgstr "Nie udało się obliczyć wartości Omega bez danej pozycji (dla PFA)."
+msgid "%1$s%2$s"
+msgstr ""
 
-msgid "Lambda6 item dropped statistics failed."
-msgstr "Nie udało się obliczyć wartości Lambda6 bez danej pozycji."
-
+#, fuzzy
 msgid ""
 "Omega calculation with CFA failed.\n"
 "                                                    Try changing to PFA in "
-"Advanced Options"
+"'Advanced Options'."
 msgstr ""
 "Nie udało się obliczyć Omega dla CFA.\n"
 "                                                    W Opcjach zaawansowanych "
 "wybierz PFA i spróbuj ponownie"
 
+#, fuzzy
 msgid ""
 "Omega bootstrapped interval calculation with CFA failed.\n"
-"                                                            Try changing to "
-"PFA in 'Advanced Options'"
+"                                                        Try changing to PFA "
+"in 'Advanced Options'."
 msgstr ""
 "Nie udało się obliczyć przedziału bootstrapowego dla Omega z CFA.\n"
 "                                                    W Opcjach zaawansowanych "
@@ -353,26 +363,43 @@ msgstr ""
 msgid "Omega calculation with PFA failed."
 msgstr "Obliczanie Omega z PFA nie powiodło się."
 
+msgid ""
+"The analytic confidence interval is not available for coefficient omega "
+"obtained with PFA."
+msgstr ""
+
 msgid "Omega interval calculation with PFA failed."
 msgstr "Obliczanie przedziału dla Omega z PFA nie powiodło się."
 
-msgid "Lambda6 calculation failed."
-msgstr "Obliczenie lambda6 nie powiodło się."
+msgid "Calculating the standard error of coefficient alpha failed."
+msgstr ""
 
-msgid "Lambda6 interval calculation failed."
-msgstr "Obliczenie przedziału dla lambda6 nie powiodło się."
+msgid "Calculating the standard error of coefficient lambda2 failed."
+msgstr ""
+
+msgid ""
+"The standard error of the average interitem correlation is not available."
+msgstr ""
+
+msgid "Omega item dropped statistics with CFA failed."
+msgstr "Nie udało się obliczyć wartości Omega bez danej pozycji (dla CFA)."
+
+msgid "Omega item dropped statistics with PFA failed."
+msgstr "Nie udało się obliczyć wartości Omega bez danej pozycji (dla PFA)."
+
+msgid ""
+"The analytic confidence interval is not available for the item-rest "
+"correlation."
+msgstr ""
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Klasyczne statystyki rzetelności dla skal"
 
-msgid "Point estimate"
-msgstr "Oszacowanie punktowe"
+msgid "Std. Error"
+msgstr ""
 
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr "Klasyczne statystyki rzetelności dla pojedynczych itemów"
-
-msgid "If item dropped"
-msgstr "Bez danej pozycji"
 
 msgid "Fit Measures of Single Factor Model Fit"
 msgstr "Miary dopasowania dla modelu jednoczynnikowego"
@@ -392,7 +419,8 @@ msgstr ""
 msgid "%1$sVariables %2$s and %3$s correlated perfectly."
 msgstr "%1$sZmienne %2$s i %3$s wykazują idealną korelację."
 
-msgid "Please enter at least 2 variables to do an analysis"
+#, fuzzy
+msgid "Please enter at least 2 variables to do an analysis."
 msgstr "Aby wykonać analizę należy wprowadzić co najmniej 2 zmienne"
 
 msgid "The following item correlated negatively with the scale: %s. "
@@ -407,6 +435,33 @@ msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "Następująca pozycja była zakodowana odwrotnie: %s. "
 msgstr[1] "Następujące pozycje były zakodowane odwrotnie: %s. "
 msgstr[2] "Następujące pozycje były zakodowane odwrotnie: %s. "
+
+#~ msgid "Greatest Lower Bound"
+#~ msgstr "Największa dolna granica"
+
+#~ msgid "mean"
+#~ msgstr "średnia"
+
+#~ msgid "sd"
+#~ msgstr "sd"
+
+#~ msgid "Statistic"
+#~ msgstr "Statystyka"
+
+#~ msgid "Lambda6 item dropped statistics failed."
+#~ msgstr "Nie udało się obliczyć wartości Lambda6 bez danej pozycji."
+
+#~ msgid "Lambda6 calculation failed."
+#~ msgstr "Obliczenie lambda6 nie powiodło się."
+
+#~ msgid "Lambda6 interval calculation failed."
+#~ msgstr "Obliczenie przedziału dla lambda6 nie powiodło się."
+
+#~ msgid "Point estimate"
+#~ msgstr "Oszacowanie punktowe"
+
+#~ msgid "If item dropped"
+#~ msgstr "Bez danej pozycji"
 
 #~ msgid ""
 #~ "Confidence intervals are based on percentiles from 1000 bootstrap "

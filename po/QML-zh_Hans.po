@@ -160,14 +160,6 @@ msgid "Guttman's λ2"
 msgstr "Guttman's λ2"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Guttman's λ6"
-msgstr "Guttman's λ6"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Greatest lower bound"
-msgstr "最大下界"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Average interitem correlation"
 msgstr "平均项目间相关性"
 
@@ -196,14 +188,6 @@ msgid "Guttman's λ2 (if item dropped)"
 msgstr "Guttman's λ2 (如果排除此项目后)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Guttman's λ6 (if item dropped)"
-msgstr "Guttman's λ6 (如果排除此项目后)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Greatest lower bound (if item dropped)"
-msgstr "最大下界 (如果排除此项目后)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "If item dropped plot"
 msgstr "当排除此项目后的图"
 
@@ -226,10 +210,6 @@ msgstr "按 KS-距离 排序项目"
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Item-rest correlation"
 msgstr "此项目与其余项目相关性"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Standard deviation"
-msgstr "标准差"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Plot Posteriors"
@@ -318,10 +298,6 @@ msgstr "正向度量的项目"
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Priors"
 msgstr "先验"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "CTT-Coefficients (α, λ2, λ6, glb)"
-msgstr "CTT 系数 (α, λ2, λ6, glb)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse Wishart scale"
@@ -424,20 +400,8 @@ msgid "Scale Statistics"
 msgstr "尺度统计量"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Confidence Interval"
-msgstr "置信区间"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2"
 msgstr "Guttman's λ2"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Guttman's λ6"
-msgstr "Guttman's λ6"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Greatest lower bound"
-msgstr "最大下界"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Average interitem correlation"
@@ -468,20 +432,8 @@ msgid "Guttman's λ2 (if item dropped)"
 msgstr "Guttman's λ2 (如果排除此项目后)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Guttman's λ6 (if item dropped)"
-msgstr "Guttman's λ6 (如果排除此项目后)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Greatest lower bound (if item dropped)"
-msgstr "最大下界 (如果排除此项目后)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Item-rest correlation"
 msgstr "此项目与其余项目相关性"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Standard deviation"
-msgstr "标准差"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Reverse-Scaled Items"
@@ -498,18 +450,6 @@ msgstr "高级选项"
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Missing Values"
 msgstr "缺失值处理方式"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Exclude cases pairwise"
-msgstr "成对排除个案"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Exclude cases listwise"
-msgstr "按列表排除个案"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Bootstrap"
-msgstr "Bootstrap 方法"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "No. of bootstrap samples"
@@ -530,10 +470,6 @@ msgstr "验证性因子分析 (CFA)"
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Single factor model fit"
 msgstr "单因子模型拟合"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Interval"
-msgstr "区间"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Analytic interval"
@@ -652,10 +588,6 @@ msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficient ω Estimation"
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient α Estimation"
-msgstr ""
-
 msgctxt "Description|"
 msgid "Standard Error of Measurement"
 msgstr ""
@@ -763,4 +695,69 @@ msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Display cutoff score"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Split-half coefficient"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Variance"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Split-half coefficient (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "CTT-Coefficients (α, λ2)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Confidence interval"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Split-half coefficient"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Variance"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Split-half coefficient (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Confidence intervals"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Reliability coefficients"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Variance and SD"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Chisq-based"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Non-parametric"
+msgstr ""
+
+#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficients"
+msgstr "系数"
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Pairwise"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Delete listwise"
 msgstr ""

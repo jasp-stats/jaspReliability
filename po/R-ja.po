@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
-"POT-Creation-Date: 2024-09-28 03:32\n"
+"POT-Creation-Date: 2024-11-16 03:35\n"
 "PO-Revision-Date: 2024-06-18 14:09+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -168,17 +168,20 @@ msgstr ""
 msgid "True Score"
 msgstr ""
 
-msgid "Greatest Lower Bound"
-msgstr "最大下界"
+msgid "Split-half coefficient"
+msgstr ""
 
 msgid "Item-rest correlation"
 msgstr "I-R相関"
 
-msgid "mean"
-msgstr "平均"
+msgid "Mean"
+msgstr ""
 
-msgid "sd"
-msgstr "標準偏差"
+msgid "Variance"
+msgstr ""
+
+msgid "SD"
+msgstr ""
 
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr "観測値%s のうち、%1.f完全なケースが使用されました."
@@ -220,17 +223,17 @@ msgstr ""
 msgid "Bayesian Scale Reliability Statistics"
 msgstr "ベイジアン尺度信頼性統計"
 
-msgid "Estimate"
-msgstr "推定"
-
-msgid "%s lower bound"
-msgstr "%s 下限"
-
-msgid "%s upper bound"
-msgstr "%s 上限"
-
 msgid "Posterior %s"
 msgstr "事後%s"
+
+msgid "Coefficient"
+msgstr ""
+
+msgid "R-hat"
+msgstr ""
+
+msgid "ESS"
+msgstr ""
 
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr "ベイジアン個別項目信頼性統計"
@@ -252,16 +255,14 @@ msgid ""
 msgstr ""
 "入力した境界は、意味のある結果を提供するために昇順で再配置されています."
 
+#, fuzzy
 msgid ""
-"Probability that Reliability Statistic is Larger than %.2f and Smaller than "
-"%.2f"
+"Probability that Reliability Coefficient is Larger than %.2f and Smaller "
+"than %.2f"
 msgstr "信頼性統計量が%.2fよりも大きく、%.2fよりも小さい確率"
 
 msgid "Probability"
 msgstr "確率"
-
-msgid "Statistic"
-msgstr "統計量"
 
 msgid "Prior"
 msgstr "事前分布"
@@ -271,6 +272,15 @@ msgstr "事後分布"
 
 msgid "Fit Measures for the Single-Factor Model"
 msgstr "単一因子モデルの適合度指標"
+
+msgid "Estimate"
+msgstr "推定"
+
+msgid "%s lower bound"
+msgstr "%s 下限"
+
+msgid "%s upper bound"
+msgstr "%s 上限"
 
 msgid ""
 "'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
@@ -321,28 +331,28 @@ msgstr "収束トレースプロット"
 msgid "Iterations"
 msgstr "イテレーション"
 
-msgid "Omega item dropped statistics with CFA failed."
-msgstr "CFAによる項目を除外したオメガ統計量の算出できませんでした."
+#, fuzzy
+msgid "Average interitem correlation"
+msgstr "I-R相関"
 
-msgid "Omega item dropped statistics with PFA failed."
-msgstr "PFAによる項目を除外したオメガ統計量の算出できませんでした."
+msgid "%1$s%2$s"
+msgstr ""
 
-msgid "Lambda6 item dropped statistics failed."
-msgstr "項目を除外したLambda6統計量の算出に失敗しました."
-
+#, fuzzy
 msgid ""
 "Omega calculation with CFA failed.\n"
 "                                                    Try changing to PFA in "
-"Advanced Options"
+"'Advanced Options'."
 msgstr ""
 "CFAによるオメガ計算が失敗しました.\n"
 "                                                    詳細オプションでPFAに変更"
 "してみてください"
 
+#, fuzzy
 msgid ""
 "Omega bootstrapped interval calculation with CFA failed.\n"
-"                                                            Try changing to "
-"PFA in 'Advanced Options'"
+"                                                        Try changing to PFA "
+"in 'Advanced Options'."
 msgstr ""
 "CFAによるオメガのブートストラップ区間計算に失敗しました。\n"
 "                                                            '詳細オプショ"
@@ -351,26 +361,43 @@ msgstr ""
 msgid "Omega calculation with PFA failed."
 msgstr "PFAによるオメガの計算は失敗しました."
 
+msgid ""
+"The analytic confidence interval is not available for coefficient omega "
+"obtained with PFA."
+msgstr ""
+
 msgid "Omega interval calculation with PFA failed."
 msgstr "PFAによるオメガの区間計算に失敗しました."
 
-msgid "Lambda6 calculation failed."
-msgstr "Lambda6の計算に失敗しました."
+msgid "Calculating the standard error of coefficient alpha failed."
+msgstr ""
 
-msgid "Lambda6 interval calculation failed."
-msgstr "Lambda6の区間計算に失敗しました."
+msgid "Calculating the standard error of coefficient lambda2 failed."
+msgstr ""
+
+msgid ""
+"The standard error of the average interitem correlation is not available."
+msgstr ""
+
+msgid "Omega item dropped statistics with CFA failed."
+msgstr "CFAによる項目を除外したオメガ統計量の算出できませんでした."
+
+msgid "Omega item dropped statistics with PFA failed."
+msgstr "PFAによる項目を除外したオメガ統計量の算出できませんでした."
+
+msgid ""
+"The analytic confidence interval is not available for the item-rest "
+"correlation."
+msgstr ""
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "頻度論的尺度信頼性統計"
 
-msgid "Point estimate"
-msgstr "点推定値"
+msgid "Std. Error"
+msgstr ""
 
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr "頻度論的個別項目信頼性統計"
-
-msgid "If item dropped"
-msgstr "もし項目が除外された場合"
 
 msgid "Fit Measures of Single Factor Model Fit"
 msgstr "単一因子モデルの適合度指標"
@@ -392,7 +419,8 @@ msgstr ""
 msgid "%1$sVariables %2$s and %3$s correlated perfectly."
 msgstr "%1$s変数 %2$s と %3$s は完全に相関しています。"
 
-msgid "Please enter at least 2 variables to do an analysis"
+#, fuzzy
+msgid "Please enter at least 2 variables to do an analysis."
 msgstr "分析を行うためには、少なくとも2つの変数を入力してください"
 
 msgid "The following item correlated negatively with the scale: %s. "
@@ -402,6 +430,33 @@ msgstr[0] "次の項目は、尺度と負の相関がありました: %s. "
 msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "次の項目は逆転処理されました: %s. "
+
+#~ msgid "Greatest Lower Bound"
+#~ msgstr "最大下界"
+
+#~ msgid "mean"
+#~ msgstr "平均"
+
+#~ msgid "sd"
+#~ msgstr "標準偏差"
+
+#~ msgid "Statistic"
+#~ msgstr "統計量"
+
+#~ msgid "Lambda6 item dropped statistics failed."
+#~ msgstr "項目を除外したLambda6統計量の算出に失敗しました."
+
+#~ msgid "Lambda6 calculation failed."
+#~ msgstr "Lambda6の計算に失敗しました."
+
+#~ msgid "Lambda6 interval calculation failed."
+#~ msgstr "Lambda6の区間計算に失敗しました."
+
+#~ msgid "Point estimate"
+#~ msgstr "点推定値"
+
+#~ msgid "If item dropped"
+#~ msgstr "もし項目が除外された場合"
 
 #~ msgid "getPointEstFun has no case for value:"
 #~ msgstr "getPointEstFunには、値のケースはありません:"

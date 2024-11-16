@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
-"POT-Creation-Date: 2024-09-28 03:32\n"
+"POT-Creation-Date: 2024-11-16 03:35\n"
 "PO-Revision-Date: 2023-03-26 15:41+0000\n"
 "Last-Translator: Катя <katakxx@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
@@ -169,16 +169,19 @@ msgstr ""
 msgid "True Score"
 msgstr ""
 
-msgid "Greatest Lower Bound"
+msgid "Split-half coefficient"
 msgstr ""
 
 msgid "Item-rest correlation"
 msgstr ""
 
-msgid "mean"
+msgid "Mean"
 msgstr ""
 
-msgid "sd"
+msgid "Variance"
+msgstr ""
+
+msgid "SD"
 msgstr ""
 
 msgid "%s Of the observations, %1.f complete cases were used."
@@ -211,16 +214,16 @@ msgstr ""
 msgid "Bayesian Scale Reliability Statistics"
 msgstr ""
 
-msgid "Estimate"
-msgstr "Оценка"
-
-msgid "%s lower bound"
-msgstr ""
-
-msgid "%s upper bound"
-msgstr ""
-
 msgid "Posterior %s"
+msgstr ""
+
+msgid "Coefficient"
+msgstr ""
+
+msgid "R-hat"
+msgstr ""
+
+msgid "ESS"
 msgstr ""
 
 msgid "Bayesian Individual Item Reliability Statistics"
@@ -242,15 +245,12 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Probability that Reliability Statistic is Larger than %.2f and Smaller than "
-"%.2f"
+"Probability that Reliability Coefficient is Larger than %.2f and Smaller "
+"than %.2f"
 msgstr ""
 
 msgid "Probability"
 msgstr ""
-
-msgid "Statistic"
-msgstr "Статистика"
 
 #, fuzzy
 msgid "Prior"
@@ -261,6 +261,15 @@ msgid "Posterior"
 msgstr "Постериор"
 
 msgid "Fit Measures for the Single-Factor Model"
+msgstr ""
+
+msgid "Estimate"
+msgstr "Оценка"
+
+msgid "%s lower bound"
+msgstr ""
+
+msgid "%s upper bound"
 msgstr ""
 
 msgid ""
@@ -307,49 +316,63 @@ msgstr ""
 msgid "Iterations"
 msgstr ""
 
+msgid "Average interitem correlation"
+msgstr ""
+
+msgid "%1$s%2$s"
+msgstr ""
+
+msgid ""
+"Omega calculation with CFA failed.\n"
+"                                                    Try changing to PFA in "
+"'Advanced Options'."
+msgstr ""
+
+msgid ""
+"Omega bootstrapped interval calculation with CFA failed.\n"
+"                                                        Try changing to PFA "
+"in 'Advanced Options'."
+msgstr ""
+
+msgid "Omega calculation with PFA failed."
+msgstr ""
+
+msgid ""
+"The analytic confidence interval is not available for coefficient omega "
+"obtained with PFA."
+msgstr ""
+
+msgid "Omega interval calculation with PFA failed."
+msgstr ""
+
+msgid "Calculating the standard error of coefficient alpha failed."
+msgstr ""
+
+msgid "Calculating the standard error of coefficient lambda2 failed."
+msgstr ""
+
+msgid ""
+"The standard error of the average interitem correlation is not available."
+msgstr ""
+
 msgid "Omega item dropped statistics with CFA failed."
 msgstr ""
 
 msgid "Omega item dropped statistics with PFA failed."
 msgstr ""
 
-msgid "Lambda6 item dropped statistics failed."
-msgstr ""
-
 msgid ""
-"Omega calculation with CFA failed.\n"
-"                                                    Try changing to PFA in "
-"Advanced Options"
-msgstr ""
-
-msgid ""
-"Omega bootstrapped interval calculation with CFA failed.\n"
-"                                                            Try changing to "
-"PFA in 'Advanced Options'"
-msgstr ""
-
-msgid "Omega calculation with PFA failed."
-msgstr ""
-
-msgid "Omega interval calculation with PFA failed."
-msgstr ""
-
-msgid "Lambda6 calculation failed."
-msgstr ""
-
-msgid "Lambda6 interval calculation failed."
+"The analytic confidence interval is not available for the item-rest "
+"correlation."
 msgstr ""
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr ""
 
-msgid "Point estimate"
+msgid "Std. Error"
 msgstr ""
 
 msgid "Frequentist Individual Item Reliability Statistics"
-msgstr ""
-
-msgid "If item dropped"
 msgstr ""
 
 msgid "Fit Measures of Single Factor Model Fit"
@@ -370,7 +393,7 @@ msgstr ""
 msgid "%1$sVariables %2$s and %3$s correlated perfectly."
 msgstr ""
 
-msgid "Please enter at least 2 variables to do an analysis"
+msgid "Please enter at least 2 variables to do an analysis."
 msgstr ""
 
 msgid "The following item correlated negatively with the scale: %s. "
@@ -382,3 +405,6 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] ""
 msgstr[1] ""
+
+#~ msgid "Statistic"
+#~ msgstr "Статистика"

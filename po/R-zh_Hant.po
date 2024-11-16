@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
-"POT-Creation-Date: 2024-09-28 03:32\n"
+"POT-Creation-Date: 2024-11-16 03:35\n"
 "PO-Revision-Date: 2023-12-16 03:25+0000\n"
 "Last-Translator: Ginger Shu-Ying Yeh <gingershuying@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -168,17 +168,20 @@ msgstr ""
 msgid "True Score"
 msgstr ""
 
-msgid "Greatest Lower Bound"
-msgstr "最大下界"
+msgid "Split-half coefficient"
+msgstr ""
 
 msgid "Item-rest correlation"
 msgstr "此題項-所有其他題項之相關"
 
-msgid "mean"
-msgstr "平均數"
+msgid "Mean"
+msgstr ""
 
-msgid "sd"
-msgstr "標準差"
+msgid "Variance"
+msgstr ""
+
+msgid "SD"
+msgstr ""
 
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr "從 %s 的觀察值中, 使用 %1.f 的完整資料"
@@ -216,18 +219,18 @@ msgstr "無法抽樣事後模型之omega值。建議在'進階設定'中選擇'�
 msgid "Bayesian Scale Reliability Statistics"
 msgstr "貝氏量表信度統計數"
 
-msgid "Estimate"
-msgstr "估計"
-
-msgid "%s lower bound"
-msgstr "%s 下界"
-
-msgid "%s upper bound"
-msgstr "%s 上界"
-
 #, fuzzy
 msgid "Posterior %s"
 msgstr "事後"
+
+msgid "Coefficient"
+msgstr ""
+
+msgid "R-hat"
+msgstr ""
+
+msgid "ESS"
+msgstr ""
 
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr "貝氏個別題項信度統計數"
@@ -247,16 +250,14 @@ msgid ""
 "meaningful results."
 msgstr "為提供有意義的結果，輸入界限已被調整"
 
+#, fuzzy
 msgid ""
-"Probability that Reliability Statistic is Larger than %.2f and Smaller than "
-"%.2f"
+"Probability that Reliability Coefficient is Larger than %.2f and Smaller "
+"than %.2f"
 msgstr "信度統計數大於 %.2f 且小於 %.2f 之機率"
 
 msgid "Probability"
 msgstr "機率"
-
-msgid "Statistic"
-msgstr "統計"
 
 msgid "Prior"
 msgstr "先驗機率"
@@ -267,6 +268,15 @@ msgstr "後驗"
 #, fuzzy
 msgid "Fit Measures for the Single-Factor Model"
 msgstr "單一因子模式配適指標"
+
+msgid "Estimate"
+msgstr "估計"
+
+msgid "%s lower bound"
+msgstr "%s 下界"
+
+msgid "%s upper bound"
+msgstr "%s 上界"
 
 msgid ""
 "'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
@@ -314,27 +324,26 @@ msgid "Iterations"
 msgstr "迭代"
 
 #, fuzzy
-msgid "Omega item dropped statistics with CFA failed."
-msgstr "因CFA失敗而未顯示Omega 題項"
+msgid "Average interitem correlation"
+msgstr "此題項-所有其他題項之相關"
 
-msgid "Omega item dropped statistics with PFA failed."
-msgstr "因PFA失敗而未顯示Omega 題項"
-
-msgid "Lambda6 item dropped statistics failed."
+msgid "%1$s%2$s"
 msgstr ""
 
+#, fuzzy
 msgid ""
 "Omega calculation with CFA failed.\n"
 "                                                    Try changing to PFA in "
-"Advanced Options"
+"'Advanced Options'."
 msgstr ""
 "無法以CFA計算Omega.\n"
 "                                                    建議在進階設定中改選'PFA'"
 
+#, fuzzy
 msgid ""
 "Omega bootstrapped interval calculation with CFA failed.\n"
-"                                                            Try changing to "
-"PFA in 'Advanced Options'"
+"                                                        Try changing to PFA "
+"in 'Advanced Options'."
 msgstr ""
 "無法以CFA計算Omega 拔靴法信賴區間.\n"
 "                                                    建議在進階設定中改選'PFA'"
@@ -342,26 +351,44 @@ msgstr ""
 msgid "Omega calculation with PFA failed."
 msgstr ""
 
+msgid ""
+"The analytic confidence interval is not available for coefficient omega "
+"obtained with PFA."
+msgstr ""
+
 msgid "Omega interval calculation with PFA failed."
 msgstr "PFA失敗時的Omega區間"
 
-msgid "Lambda6 calculation failed."
-msgstr "無法計算Lambda6"
+msgid "Calculating the standard error of coefficient alpha failed."
+msgstr ""
 
-msgid "Lambda6 interval calculation failed."
-msgstr "無法計算Lambda6區間"
+msgid "Calculating the standard error of coefficient lambda2 failed."
+msgstr ""
+
+msgid ""
+"The standard error of the average interitem correlation is not available."
+msgstr ""
+
+#, fuzzy
+msgid "Omega item dropped statistics with CFA failed."
+msgstr "因CFA失敗而未顯示Omega 題項"
+
+msgid "Omega item dropped statistics with PFA failed."
+msgstr "因PFA失敗而未顯示Omega 題項"
+
+msgid ""
+"The analytic confidence interval is not available for the item-rest "
+"correlation."
+msgstr ""
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "頻率派量表信度統計數"
 
-msgid "Point estimate"
-msgstr "點估計"
+msgid "Std. Error"
+msgstr ""
 
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr "頻率派個別題項信度統計數"
-
-msgid "If item dropped"
-msgstr "若此題刪除"
 
 msgid "Fit Measures of Single Factor Model Fit"
 msgstr "單一因子模式配適指標"
@@ -384,7 +411,8 @@ msgstr ""
 msgid "%1$sVariables %2$s and %3$s correlated perfectly."
 msgstr "%1$s變項 %2$s 與變項 %3$s 為完全相關"
 
-msgid "Please enter at least 2 variables to do an analysis"
+#, fuzzy
+msgid "Please enter at least 2 variables to do an analysis."
 msgstr "請輸入至少兩個變項"
 
 msgid "The following item correlated negatively with the scale: %s. "
@@ -394,6 +422,30 @@ msgstr[0] "以下題項與量表為負相關：%s "
 msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "以下題項反向計分：%s "
+
+#~ msgid "Greatest Lower Bound"
+#~ msgstr "最大下界"
+
+#~ msgid "mean"
+#~ msgstr "平均數"
+
+#~ msgid "sd"
+#~ msgstr "標準差"
+
+#~ msgid "Statistic"
+#~ msgstr "統計"
+
+#~ msgid "Lambda6 calculation failed."
+#~ msgstr "無法計算Lambda6"
+
+#~ msgid "Lambda6 interval calculation failed."
+#~ msgstr "無法計算Lambda6區間"
+
+#~ msgid "Point estimate"
+#~ msgstr "點估計"
+
+#~ msgid "If item dropped"
+#~ msgstr "若此題刪除"
 
 #~ msgid "%s"
 #~ msgstr "%s"
