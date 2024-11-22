@@ -1,4 +1,4 @@
-context("[IRT] Classical Test Theory")
+context("Classical Test Theory")
 
 # Consistency test 1, file: binary.csv #########################################
 

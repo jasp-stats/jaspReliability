@@ -20,25 +20,25 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
   ready <- .cttReady(options)
 
   # Create the summary table
-  .irtCTTSummaryTable(dataset, options, jaspResults, ready, position = 1)
+  .cttSummaryTable(dataset, options, jaspResults, ready, position = 1)
 
   # Create the descriptives table
-  .irtCTTDescriptivesTable(dataset, options, jaspResults, ready, position = 3)
+  .cttDescriptivesTable(dataset, options, jaspResults, ready, position = 3)
 
   # Create the Cronbachs alpha table
-  .irtCTTAlphaTable(dataset, options, jaspResults, ready, position = 5)
+  .cttAlphaTable(dataset, options, jaspResults, ready, position = 5)
 
   # Create the item statistics table
-  .irtCTTItemStatisticsTable(dataset, options, jaspResults, ready, position = 7)
+  .cttItemStatisticsTable(dataset, options, jaspResults, ready, position = 7)
 
   # Create the histogram of test scores
-  .irtCTTHistogram(dataset, options, jaspResults, ready, position = 9)
+  .cttHistogram(dataset, options, jaspResults, ready, position = 9)
 
   # Create the difficulty and discrimination plot
-  .irtCTTDiscrimination(dataset, options, jaspResults, ready, position = 11)
+  .cttDiscrimination(dataset, options, jaspResults, ready, position = 11)
 
   # Create the correlation heatmap
-  .irtCTTHeatmap(dataset, options, jaspResults, ready, position = 13)
+  .cttHeatmap(dataset, options, jaspResults, ready, position = 13)
 }
 
 .cttReadData <- function(dataset, options) {
@@ -58,7 +58,12 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
   return(ready)
 }
 
-.irtCTTState <- function(dataset, options, jaspResults) {
+.cttDeps <- function(type = "none") {
+  deps <- c("items", "customMaxScore", "tableCronbachsAlphaCI")
+  return(deps)
+}
+
+.cttState <- function(dataset, options, jaspResults) {
   if (!is.null(jaspResults[["state"]])) {
     return(jaspResults[["state"]]$object)
   }
@@ -117,11 +122,11 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
     jaspBase:::.quitAnalysis(gettextf("An error occurred in the analysis: %1$s", jaspBase:::.extractErrorMessage(p)))
   }
   jaspResults[["state"]] <- createJaspState(result)
-  jaspResults[["state"]]$dependOn(options = .irtCommonDeps(type = "ctt"))
+  jaspResults[["state"]]$dependOn(options = .cttDeps())
   return(jaspResults[["state"]]$object)
 }
 
-.irtCTTSummaryTable <- function(dataset, options, jaspResults, ready, position) {
+.cttSummaryTable <- function(dataset, options, jaspResults, ready, position) {
   if (options[["explanatoryText"]]) {
     text <- createJaspHtml(gettext("<h3>Explanatory Text: Classical Test Theory</h3>Classical Test Theory (CTT) is a framework for assessing and understanding the reliability and validity of psychological and educational tests. It suggests that an observed test score is composed of two components: the true score (the actual ability being measured) and noise (random variability in test scores). CTT focuses on quantifying and separating these components to evaluate the quality and consistency of a test."))
     text$position <- position
@@ -139,13 +144,13 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
   tb$addColumnInfo(name = "avgp", title = gettext("Avg. difficulty (P)"), type = "number")
   tb$addColumnInfo(name = "avgrit", title = gettext("Avg. r<sub>item-total</sub>"), type = "number")
   tb$addColumnInfo(name = "avgrir", title = gettext("Avg. r<sub>item-rest</sub>"), type = "number")
-  tb$dependOn(options = .irtCommonDeps(type = "ctt"))
+  tb$dependOn(options = .cttDeps())
   jaspResults[["tableSummary"]] <- tb
   if (!ready) {
     tb$addFootnote(gettext("The maximum possible test score is ...."))
     return()
   }
-  state <- .irtCTTState(dataset, options, jaspResults)
+  state <- .cttState(dataset, options, jaspResults)
   tb[["items"]] <- state[["descriptives"]][["items"]]
   tb[["n"]] <- state[["descriptives"]][["n"]]
   tb[["avgp"]] <- state[["avgP"]]
@@ -154,7 +159,7 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
   tb$addFootnote(gettextf("The maximum possible test score is %1$s.", state[["maxScore"]]))
 }
 
-.irtCTTDescriptivesTable <- function(dataset, options, jaspResults, ready, position) {
+.cttDescriptivesTable <- function(dataset, options, jaspResults, ready, position) {
   if (options[["explanatoryText"]] && options[["tableDescriptives"]]) {
     text <- createJaspHtml(gettext("<h3>Explanatory Text: Descriptive Statistics</h3>The table below provides descriptive statistics the test scores (i.e., sum of item scores). It includes information about the lowest and highest recorded test score, the average (mean), the middle point (median), a measure of how spread out the scores are (standard deviation), and two measures that describe the shape of the score distribution (skewness and kurtosis)."))
     text$position <- position
@@ -173,12 +178,12 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
   tb$addColumnInfo(name = "sd", title = gettext("Std. dev"), type = "number")
   tb$addColumnInfo(name = "skew", title = gettext("Skewness"), type = "number")
   tb$addColumnInfo(name = "kurt", title = gettext("Kurtosis"), type = "number")
-  tb$dependOn(options = c(.irtCommonDeps(type = "ctt"), "tableDescriptives"))
+  tb$dependOn(options = c(.cttDeps(), "tableDescriptives"))
   jaspResults[["tableDescriptives"]] <- tb
   if (!ready) {
     return()
   }
-  state <- .irtCTTState(dataset, options, jaspResults)
+  state <- .cttState(dataset, options, jaspResults)
   tb[["min"]] <- state[["descriptives"]][["min"]]
   tb[["max"]] <- state[["descriptives"]][["max"]]
   tb[["mean"]] <- state[["descriptives"]][["mean"]]
@@ -188,7 +193,7 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
   tb[["kurt"]] <- state[["descriptives"]][["kurt"]]
 }
 
-.irtCTTAlphaTable <- function(dataset, options, jaspResults, ready, position) {
+.cttAlphaTable <- function(dataset, options, jaspResults, ready, position) {
   if (options[["explanatoryText"]] && options[["tableCronbachsAlpha"]]) {
     text <- createJaspHtml(gettextf("<h3>Explanatory Text: Test Reliability</h3>Cronbach's %1$s is a way to quantify how reliable (i.e., consistent) a test is. It tells us if all the questions in the test are measuring the same construct. This helps to understand if the test is consistent and if it is a good measure of what it is supposed to measure. When interpreting Cronbach's %1$s for a test, a high %1$s value (i.e., close to 1) indicates good internal consistency, suggesting that the test items are reliably measuring the same construct. On the other hand, a low %1$s value (i.e., close to 0) may suggest that some items in the assessment are not contributing to the overall measurement consistency and might need revision or removal. A rule of thumb is that a 'good' test has at least an %1$s value of 0.8.", "\u03B1"))
     text$position <- position
@@ -204,7 +209,7 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
   overtitle <- gettextf("%1$s%% Confidence interval", round(options[["tableCronbachsAlphaCI"]] * 100, 3))
   tb$addColumnInfo(name = "alpha_lower", title = gettext("Lower"), type = "number", overtitle = overtitle)
   tb$addColumnInfo(name = "alpha_upper", title = gettext("Upper"), type = "number", overtitle = overtitle)
-  tb$dependOn(options = c(.irtCommonDeps(type = "ctt"), "tableCronbachsAlpha"))
+  tb$dependOn(options = c(.cttDeps(), "tableCronbachsAlpha"))
   jaspResults[["tableCronbachsAlpha"]] <- tb
   if (!ready) {
     return()
@@ -213,13 +218,13 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
     tb$addFootnote(gettext("There must be at least two items to compute Cronbach's alpha."))
     return()
   }
-  state <- .irtCTTState(dataset, options, jaspResults)
+  state <- .cttState(dataset, options, jaspResults)
   tb[["alpha"]] <- state[["cronbach"]][["alpha"]]
   tb[["alpha_lower"]] <- as.numeric(state[["cronbach"]][["ci"]][1])
   tb[["alpha_upper"]] <- as.numeric(state[["cronbach"]][["ci"]][2])
 }
 
-.irtCTTItemStatisticsTable <- function(dataset, options, jaspResults, ready, position) {
+.cttItemStatisticsTable <- function(dataset, options, jaspResults, ready, position) {
   if (options[["explanatoryText"]] && options[["tableItemStatistics"]]) {
     text <- createJaspHtml(gettextf("<h3>Explanatory Text: Item Information</h3>In educational testing and assessment, several statistics can evaluate the performance and quality of test items. These statistics help us understand how well each question or item is working and contributing to the overall quality of the test. Let's break down these important concepts in a straightforward manner:\n\n<b>1. Avg. Score:</b> This is the typical score that people get on a specific test item. It gives us an idea of how well test-takers are performing on that particular question.\n<b>2. Std. dev:</b> Standard deviation is a measure of how much individual scores on a test item vary from the average score. It helps us see how consistent or spread out the scores are for that item.\n<b>3. Difficulty (P):</b> Difficulty refers to how hard or easy a test item is for the test-takers. We estimate this by looking at the average score that people achieve on the item, and then we divide it by the range of possible scores. Essentially, it helps us understand if the item is generally difficult or not.\n<b>4. r<sub>item-total</sub>, r<sub>item-rest</sub>:</b> These correlations indicate how well a specific test item relates to the overall test score and how it relates to the rest of the test items. In simple terms, they show how closely linked the item is to the overall performance and to the other questions in the test.\n<b>5. %1$s if removed:</b> Cronbach's %1$s is a measure of the internal consistency or reliability of a test. The column represents what happens to the reliability of the test when a particular item is removed. It helps us assess how important or unimportant a specific question is for the overall reliability of the test.", "\u03B1"))
     text$position <- position
@@ -238,12 +243,12 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
   tb$addColumnInfo(name = "rit", title = gettext("r<sub>item-total</sub>"), type = "number")
   tb$addColumnInfo(name = "rir", title = gettext("r<sub>item-rest</sub>"), type = "number")
   tb$addColumnInfo(name = "alpha", title = gettextf("%1$s if removed", "\u03B1"), type = "number")
-  tb$dependOn(options = c(.irtCommonDeps(type = "ctt"), "tableItemStatistics"))
+  tb$dependOn(options = c(.cttDeps(), "tableItemStatistics"))
   jaspResults[["tableItemStatistics"]] <- tb
   if (!ready) {
     return()
   }
-  state <- .irtCTTState(dataset, options, jaspResults)
+  state <- .cttState(dataset, options, jaspResults)
   tb[["item"]] <- state[["itemInfo"]][["item"]]
   tb[["score"]] <- state[["itemInfo"]][["score"]]
   tb[["sd"]] <- state[["itemInfo"]][["sd"]]
@@ -253,7 +258,7 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
   tb[["alpha"]] <- state[["itemInfo"]][["alpha"]]
 }
 
-.irtCTTHistogram <- function(dataset, options, jaspResults, ready, position) {
+.cttHistogram <- function(dataset, options, jaspResults, ready, position) {
   if (options[["explanatoryText"]] && options[["plotHistogram"]]) {
     text <- createJaspHtml(gettext("<h3>Explanatory Text: Histogram of Sum Scores</h3>The figure below displays a histogram of the test (i.e., sum) scores. It shows the frequencies of different total scores or sums of responses, which can help you understand the central tendency and variability of the data. Additionally, you can assess patterns or trends in the distribution, such as skewness or bimodality,"))
     text$position <- position
@@ -265,12 +270,12 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
   }
   fg <- createJaspPlot(title = gettext("Histogram of Sum Scores"), height = 320, width = 480)
   fg$position <- position + 1
-  fg$dependOn(options = c(.irtCommonDeps(type = "ctt"), "plotHistogram"))
+  fg$dependOn(options = c(.cttDeps(), "plotHistogram"))
   jaspResults[["plotHistogram"]] <- fg
   if (!ready) {
     return()
   }
-  state <- .irtCTTState(dataset, options, jaspResults)
+  state <- .cttState(dataset, options, jaspResults)
   plotdata <- data.frame(x = seq_len(state[["maxScore"]]), y = rep(NA, state[["maxScore"]]))
   for (i in seq_len(state[["maxScore"]])) {
     plotdata$y[i] <- length(which(state[["sumScores"]] < i & state[["sumScores"]] >= (i - 1)))
@@ -286,7 +291,7 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
   fg$plotObject <- p
 }
 
-.irtCTTDiscrimination <- function(dataset, options, jaspResults, ready, position) {
+.cttDiscrimination <- function(dataset, options, jaspResults, ready, position) {
   if (options[["explanatoryText"]] && options[["plotItems"]]) {
     text <- createJaspHtml(gettext("<h3>Explanatory Text: Difficulty and Discrimination Plot</h3>The figure below displays a bar chart of the item difficulty (measured by P) and discrimination (measured by r<sub>item-total</sub> or Rit). This figure shows which items were the easiest to answer (left) and which items were the most difficult to answer (right)."))
     text$position <- position
@@ -298,12 +303,12 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
   }
   fg <- createJaspPlot(title = gettext("Item Difficulty and Discrimination Plot"), height = 320, width = 750)
   fg$position <- position
-  fg$dependOn(options = c(.irtCommonDeps(type = "ctt"), "plotItems"))
+  fg$dependOn(options = c(.cttDeps(), "plotItems"))
   jaspResults[["plotItems"]] <- fg
   if (!ready) {
     return()
   }
-  state <- .irtCTTState(dataset, options, jaspResults)
+  state <- .cttState(dataset, options, jaspResults)
   plotdata <- data.frame(
     x = factor(rep(options[["items"]], 2)),
     y = c(state[["itemInfo"]][["p"]], state[["itemInfo"]][["rit"]]),
@@ -324,7 +329,7 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
   fg$plotObject <- p
 }
 
-.irtCTTHeatmap <- function(dataset, options, jaspResults, ready, position) {
+.cttHeatmap <- function(dataset, options, jaspResults, ready, position) {
   if (options[["explanatoryText"]] && options[["plotCorrelationHeatmap"]]) {
     text <- createJaspHtml(gettext("<h3>Explanatory Text: Correlation Heatmap</h3>A correlation heat map displays Pearson correlations between item scores. The Pearson correlation coefficient describes linear correlation between two items. Positive correlations are shown in blue, while negative correlations are shown in red."))
     text$position <- position
@@ -336,12 +341,12 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
   }
   fg <- createJaspPlot(title = gettext("Item Correlation Heatmap"), height = 40 * length(options[["items"]]), width = 40 * length(options[["items"]]) + 100)
   fg$position <- position + 1
-  fg$dependOn(options = c(.irtCommonDeps(type = "ctt"), "plotCorrelationHeatmap", "plotCorrelationHeatmapShowValues"))
+  fg$dependOn(options = c(.cttDeps(), "plotCorrelationHeatmap", "plotCorrelationHeatmapShowValues"))
   jaspResults[["plotCorrelationHeatmap"]] <- fg
   if (!ready) {
     return()
   }
-  state <- .irtCTTState(dataset, options, jaspResults)
+  state <- .cttState(dataset, options, jaspResults)
   plotdata <- as.data.frame(cor(state[["items"]]))
   plotdata$row <- rownames(plotdata)
   plotdata <- reshape2::melt(plotdata, id.var = "row")
