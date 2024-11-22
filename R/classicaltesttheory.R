@@ -325,7 +325,7 @@ classicalTestTheory <- function(jaspResults, dataset, options, ...) {
     ggplot2::scale_fill_manual(name = NULL, values = c("firebrick", "dodgerblue")) +
     jaspGraphs::geom_rangeframe() +
     jaspGraphs::themeJaspRaw(legend.position = "top") +
-    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1, vjust = 1.2, size = 12))
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1, vjust = 1, size = 12))
   fg$plotObject <- p
 }
 
