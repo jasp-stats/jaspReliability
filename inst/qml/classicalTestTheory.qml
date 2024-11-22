@@ -136,6 +136,4 @@ Form
 			}
 		}
 	}
-
-	COMMON.DownloadReport { }
 }
