@@ -21,8 +21,6 @@ import QtQuick.Layouts
 import JASP
 import JASP.Controls
 
-import "./common" as COMMON
-
 Form
 {
 	info: qsTr("Classical Test Theory (CTT) is a traditional framework for analyzing test scores. It focuses on observed scores as the primary measure of an individual's ability and assumes that these scores consist of a true score and measurement error. CTT provides simple reliability indices, such as Cronbach's alpha, to assess the consistency of test scores but doesn't account for item characteristics or the latent ability of individuals, limiting its ability to address more complex assessments.")
