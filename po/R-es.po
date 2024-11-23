@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
 "POT-Creation-Date: 2024-11-16 03:35\n"
-"PO-Revision-Date: 2024-09-28 11:50+0000\n"
+"PO-Revision-Date: 2024-11-17 09:00+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/es/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 msgid "Bland-Altman Plots"
 msgstr "Gráficos de Bland-Altman"
@@ -177,19 +177,19 @@ msgid "True Score"
 msgstr "Puntuación correcta"
 
 msgid "Split-half coefficient"
-msgstr ""
+msgstr "Coeficiente de división en mitades"
 
 msgid "Item-rest correlation"
 msgstr "Correlación del elemento con el resto"
 
 msgid "Mean"
-msgstr ""
+msgstr "Media"
 
 msgid "Variance"
-msgstr ""
+msgstr "Varianza"
 
 msgid "SD"
-msgstr ""
+msgstr "DT"
 
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr "%s de las observaciones, se utilizaron %1.f casos completos."
@@ -234,13 +234,13 @@ msgid "Posterior %s"
 msgstr "%s posterior"
 
 msgid "Coefficient"
-msgstr ""
+msgstr "Coeficiente"
 
 msgid "R-hat"
-msgstr ""
+msgstr "R-circunflejo"
 
 msgid "ESS"
-msgstr ""
+msgstr "SCR"
 
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr "Estadísticas bayesianas de confiabilidad de ítems individuales"
@@ -264,12 +264,11 @@ msgstr ""
 "Los límites que has indicado se volvieron a colocar en orden creciente para "
 "proporcionar resultados comprensibles."
 
-#, fuzzy
 msgid ""
 "Probability that Reliability Coefficient is Larger than %.2f and Smaller "
 "than %.2f"
 msgstr ""
-"Probabilidad de que la estadística de confiabilidad sea mayor que %.2f y "
+"Probabilidad de que el estadístico de confiabilidad sea mayor que %.2f y "
 "menor que %.2f"
 
 msgid "Probability"
@@ -346,24 +345,21 @@ msgstr "Traceplot de convergencia"
 msgid "Iterations"
 msgstr "Iteraciones"
 
-#, fuzzy
 msgid "Average interitem correlation"
-msgstr "Correlación del elemento con el resto"
+msgstr "Correlación media entre elementos"
 
 msgid "%1$s%2$s"
-msgstr ""
+msgstr "%1$s%2$s"
 
-#, fuzzy
 msgid ""
 "Omega calculation with CFA failed.\n"
 "                                                    Try changing to PFA in "
 "'Advanced Options'."
 msgstr ""
-"Falló el cálculo del intervalo de Omega con CFA.\n"
+"Falló el cálculo de Omega con CFA.\n"
 "                                                    Probar a cambiar a PFA "
-"en \"Opciones Avanzadas\""
+"en \"Opciones Avanzadas\"."
 
-#, fuzzy
 msgid ""
 "Omega bootstrapped interval calculation with CFA failed.\n"
 "                                                        Try changing to PFA "
@@ -371,7 +367,7 @@ msgid ""
 msgstr ""
 "Falló el cálculo del intervalo de bootstrapp de Omega con CFA.\n"
 "                                                            Probar a cambiar "
-"a PFA en \"Opciones Avanzadas\""
+"a PFA en \"Opciones Avanzadas\"."
 
 msgid "Omega calculation with PFA failed."
 msgstr "Falló el cálculo de Omega con PFA."
@@ -380,19 +376,22 @@ msgid ""
 "The analytic confidence interval is not available for coefficient omega "
 "obtained with PFA."
 msgstr ""
+"El intervalo analítico de confianza no está disponible para el coeficiente "
+"omega obtenido con PFA."
 
 msgid "Omega interval calculation with PFA failed."
 msgstr "Falló el cálculo del intervalo de Omega con PFA."
 
 msgid "Calculating the standard error of coefficient alpha failed."
-msgstr ""
+msgstr "Falló el cálculo del error típico del coeficiente alfa."
 
 msgid "Calculating the standard error of coefficient lambda2 failed."
-msgstr ""
+msgstr "Falló el cálculo del error típico del coeficiente lambda2."
 
 msgid ""
 "The standard error of the average interitem correlation is not available."
 msgstr ""
+"No está disponible el error típico de la correlación media entre elementos."
 
 msgid "Omega item dropped statistics with CFA failed."
 msgstr "Fallaron los estadísticos del elemento Omega eliminado con CFA."
@@ -404,12 +403,14 @@ msgid ""
 "The analytic confidence interval is not available for the item-rest "
 "correlation."
 msgstr ""
+"No está disponible el intervalo analítico de confianza para la correlación "
+"elemento-resto."
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Estadísticas de confiabilidad de la escala frecuente"
 
 msgid "Std. Error"
-msgstr ""
+msgstr "Error típico"
 
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr "Estadísticas de confiabilidad de ítems individuales frecuentes"
@@ -435,9 +436,8 @@ msgstr ""
 msgid "%1$sVariables %2$s and %3$s correlated perfectly."
 msgstr "%1$slas variables %2$s y %3$s se correlacionan perfectamente."
 
-#, fuzzy
 msgid "Please enter at least 2 variables to do an analysis."
-msgstr "Por favor, introduzca al menos 2 variables para hacer un análisis"
+msgstr "Por favor, para hacer un análisis introduzca al menos 2 variables."
 
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
