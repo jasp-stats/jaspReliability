@@ -15,7 +15,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
   .checkErrors(dataset, options)
 
-
   model <- .frequentistPreCalc(jaspResults, dataset, options, datasetOld)
   options <- .scaleItemBoxAlign(options)
 
@@ -844,6 +843,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
           out[["error"]][["scaleOmega"]] <- gettext("Omega calculation with CFA failed.
                                                     Try changing to PFA in 'Advanced Options'. ")
           out[["est"]][["scaleOmega"]] <- NA
+          out[["conf"]][["scaleOmega"]] <- c(NA, NA)
         } else {
           out[["fit"]][["scaleOmega"]] <- omegaO[["indices"]]
           out[["est"]][["scaleOmega"]] <- omegaO[["omega"]]

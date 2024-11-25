@@ -162,7 +162,11 @@ Form
 			height: 150
 
 			AvailableVariablesList 	{ name: "normalScaledItems"; 	title: qsTr("Normal-Scaled Items"); source: "variables" }
-			AssignedVariablesList 	{ name: "reverseScaledItems"; 	title: qsTr("Reverse-Scaled Items") }
+			AssignedVariablesList 	{ 
+				name: "reverseScaledItems"; 	
+				title: qsTr("Reverse-Scaled Items")
+				 allowedColumns: ["scale"]
+			}
 		}
 	}
 

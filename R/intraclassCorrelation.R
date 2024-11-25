@@ -18,21 +18,11 @@
 #' @export
 intraclassCorrelation <- function(jaspResults, dataset, options) {
 
-  dataset <- .intraclassCorrelationReadData(dataset, options)
-
   jaspResults[["table"]] <- .handleIntraclassCorrelation(dataset, options)
 
   return()
 }
 
-# Read in the dataset (copied from .reliabilityReadData)
-.intraclassCorrelationReadData <- function(dataset, options) {
-  variables <- unlist(options[["variables"]])
-  if (is.null(dataset)) {
-    dataset <- .readDataSetToEnd(columns.as.numeric = variables)
-  }
-  return(dataset)
-}
 
 .handleIntraclassCorrelation <- function(dataset, options) {
 
