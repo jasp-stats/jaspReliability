@@ -22,6 +22,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   dataset <- .semHandleData(dataset, options)
 
+
   .semErrorCheck(dataset, options, ready)
 
   .semCreateMainContainer(jaspResults, options)
@@ -55,7 +56,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   dataset <- dataset[complete.cases(dataset), ]
 
   # functions work only with numeric data
-  dataset <- as.data.frame(lapply(dataset, as.numeric))
+  dataset <- as.data.frame(lapply(dataset, function(x) as.numeric(as.character(x))))
 
   return(dataset)
 }
@@ -93,7 +94,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (!ready) return()
 
-  scrs <- .semCounts(dataset, nc)
+  scrs <- .semCounts(dataset)
   counts <- scrs$counts
   scores <- scrs$scores
   countsState <- createJaspState(scrs, dependencies = NULL)
@@ -703,7 +704,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 #' K is the number of splits
 
 #' this function counts the sum scores and returns the scores and their counts
-.semCounts <- function(X, nc) {
+.semCounts <- function(X) {
+
   nit <- ncol(X)
   S <- rowSums(X)
   scoreRange <- range(S)
