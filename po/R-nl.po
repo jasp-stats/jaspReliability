@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2024-11-16 03:35\n"
-"PO-Revision-Date: 2024-05-22 16:42+0000\n"
+"PO-Revision-Date: 2024-11-29 09:29+0000\n"
 "Last-Translator: Koen Derks <koen-derks@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/nl/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 msgid "Bland-Altman Plots"
 msgstr "Bland-Altman Grafieken"
@@ -112,79 +112,87 @@ msgid ""
 "For the Lord's compound method, the test could not be split in equally sized "
 "parts with more than 1 item per part. Consider adding or removing items."
 msgstr ""
+"Voor de Lord's compound-methode kon de test niet worden opgesplitst in even "
+"grote delen met meer dan 1 item per deel. Overweeg items toe te voegen of te "
+"verwijderen."
 
 msgid ""
 "The Lord, Keats, and Lord's compound method are only available for binary "
 "data."
 msgstr ""
+"De Lord, Keats en Lord's samengestelde methode zijn alleen beschikbaar voor "
+"binaire gegevens."
 
 msgid "Standard error of measurement"
-msgstr ""
+msgstr "Standaardfout van de meting"
 
 msgid "Sum score"
-msgstr ""
+msgstr "Somscore"
 
 msgid "Traditional"
-msgstr ""
+msgstr "Traditioneel"
 
 msgid "Counts"
-msgstr ""
+msgstr "Aantallen"
 
 msgid "%1$s The traditional sem value equals %2$1.3f."
-msgstr ""
+msgstr "%1$s De traditionele sem-waarde is gelijk aan %2$1,3f."
 
 msgid ""
 "%1$s Estimating the %2$s method failed. If possible, you might try changing "
 "the method's parameters."
 msgstr ""
+"%1$s Het schatten van de methode %2$s is mislukt. Indien mogelijk kunt u "
+"proberen de parameters van de methode te wijzigen."
 
 msgid "Sum score CI table"
-msgstr ""
+msgstr "Somscore CI tabel"
 
 msgid ""
 "Estimating the %s method failed. If possible, you might try changing the "
 "method's parameters."
 msgstr ""
+"Het schatten van de %s methode is mislukt. Indien mogelijk kunt u proberen "
+"de parameters van de methode te wijzigen."
 
 msgid "Sum scores"
-msgstr ""
+msgstr "Somscores"
 
 msgid "Histogram of counts per sum score group"
-msgstr ""
+msgstr "Histogram van aantallen per somscore groep"
 
-#, fuzzy
 msgid "Point Plots"
-msgstr "Posterior Grafieken"
+msgstr "Puntgrafieken"
 
 msgid "Sum Score"
-msgstr ""
+msgstr "Somscore"
 
 msgid "sem"
-msgstr ""
+msgstr "sem"
 
 msgid "Combined plot"
-msgstr ""
+msgstr "Gecombineerde figuur"
 
 msgid "Sum Score CI Plots"
-msgstr ""
+msgstr "Somscore CI Figuren"
 
 msgid "True Score"
-msgstr ""
+msgstr "Werkelijke Score"
 
 msgid "Split-half coefficient"
-msgstr ""
+msgstr "Splitsingscoëfficiënt"
 
 msgid "Item-rest correlation"
 msgstr "Item-rest correlatie"
 
 msgid "Mean"
-msgstr ""
+msgstr "Gemiddelde"
 
 msgid "Variance"
-msgstr ""
+msgstr "Variantie"
 
 msgid "SD"
-msgstr ""
+msgstr "SD"
 
 msgid "%s Of the observations, %1.f complete cases were used."
 msgstr "%s van de observaties, zijn %1.f volledige observaties gebruikt."
@@ -230,13 +238,13 @@ msgid "Posterior %s"
 msgstr "Posterior %s"
 
 msgid "Coefficient"
-msgstr ""
+msgstr "Coëfficiënt"
 
 msgid "R-hat"
-msgstr ""
+msgstr "R-hat"
 
 msgid "ESS"
-msgstr ""
+msgstr "ESS"
 
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr "Bayesiaanse Individuele Item Betrouwbaarheidsstatistieken"
@@ -260,13 +268,12 @@ msgstr ""
 "De grenzen die u invoerde zijn van klein naar groot opnieuw geordend om "
 "betekenisvolle resultaten te krijgen."
 
-#, fuzzy
 msgid ""
 "Probability that Reliability Coefficient is Larger than %.2f and Smaller "
 "than %.2f"
 msgstr ""
-"De kans dat de betrouwbaarheidsstatistiek groter is dan %.2f en kleiner dan "
-"%.2f"
+"Kans dat de Betrouwbaarheidscoëfficiënt Groter is dan %.2f en Kleiner dan %."
+"2f"
 
 msgid "Probability"
 msgstr "Waarschijnlijkheid"
@@ -337,24 +344,21 @@ msgstr "Convergentie Spoordiagram"
 msgid "Iterations"
 msgstr "Iteraties"
 
-#, fuzzy
 msgid "Average interitem correlation"
-msgstr "Item-rest correlatie"
+msgstr "Gemiddelde inter-item correlatie"
 
 msgid "%1$s%2$s"
-msgstr ""
+msgstr "%1$s%2$s"
 
-#, fuzzy
 msgid ""
 "Omega calculation with CFA failed.\n"
 "                                                    Try changing to PFA in "
 "'Advanced Options'."
 msgstr ""
 "Omega berekening met CFA mislukt.\n"
-"                                                    Probeer te veranderen "
-"PFA in Geavanceerde Opties"
+"                                                     Probeer te veranderen "
+"naar PFA in 'Geavanceerde Opties'."
 
-#, fuzzy
 msgid ""
 "Omega bootstrapped interval calculation with CFA failed.\n"
 "                                                        Try changing to PFA "
@@ -362,7 +366,7 @@ msgid ""
 msgstr ""
 "Omega gebootstrapte interval berekening met CFA mislukt.\n"
 "                                                            Probeer te "
-"veranderen naar PFA in 'Geavanceerde Opties'"
+"veranderen naar PFA in 'Geavanceerde Opties'."
 
 msgid "Omega calculation with PFA failed."
 msgstr "Omega berekening met PFA mislukt."
@@ -371,19 +375,22 @@ msgid ""
 "The analytic confidence interval is not available for coefficient omega "
 "obtained with PFA."
 msgstr ""
+"Het analytische betrouwbaarheidsinterval is niet beschikbaar voor de "
+"coëfficiënt omega verkregen met PFA."
 
 msgid "Omega interval calculation with PFA failed."
 msgstr "Omega interval berekening met PFA mislukt."
 
 msgid "Calculating the standard error of coefficient alpha failed."
-msgstr ""
+msgstr "Het berekenen van de standaardfout van coëfficiënt alfa mislukte."
 
 msgid "Calculating the standard error of coefficient lambda2 failed."
-msgstr ""
+msgstr "Het berekenen van de standaardfout van coëfficiënt lambda2 mislukte."
 
 msgid ""
 "The standard error of the average interitem correlation is not available."
 msgstr ""
+"De standaardfout van de gemiddelde inter-item correlatie is niet beschikbaar."
 
 msgid "Omega item dropped statistics with CFA failed."
 msgstr "Omega verwijderde item statistieken met CFA mislukt."
@@ -395,12 +402,14 @@ msgid ""
 "The analytic confidence interval is not available for the item-rest "
 "correlation."
 msgstr ""
+"Het analytische betrouwbaarheidsinterval is niet beschikbaar voor de item-"
+"rest correlatie."
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Frequentistische Schaal Validiteitsstatistieken"
 
 msgid "Std. Error"
-msgstr ""
+msgstr "Std. Fout"
 
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr "Frequentistische Individuele Item Validiteitsstatistieken"
@@ -426,9 +435,8 @@ msgstr ""
 msgid "%1$sVariables %2$s and %3$s correlated perfectly."
 msgstr "%1$sVariabelen %2$s en %3$s correleren perfect."
 
-#, fuzzy
 msgid "Please enter at least 2 variables to do an analysis."
-msgstr "Geef a.u.b. minstens 2 variabelen op om een analyse te doen"
+msgstr "Voer ten minste 2 variabelen in om een analyse uit te voeren."
 
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
