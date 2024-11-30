@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2024-11-25 15:00+0000\n"
+"Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/de/>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.9-dev\n"
 "X-Language: de\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -591,9 +597,8 @@ msgstr "Schätzung Koeffizient ω"
 
 msgctxt "Description|"
 msgid "Standard Error of Measurement"
-msgstr ""
+msgstr "Standardfehler der Messung"
 
-#, fuzzy
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Variables"
 msgstr "Variablen"
@@ -620,11 +625,11 @@ msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Degree of polynomial"
-msgstr ""
+msgstr "Polynom-Grad"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "ANOVA"
-msgstr ""
+msgstr "ANOVA"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "IRT"
@@ -648,7 +653,7 @@ msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Options"
-msgstr ""
+msgstr "Optionen"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Sum score table"
@@ -672,7 +677,7 @@ msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plots"
-msgstr ""
+msgstr "Diagramme"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Histogram of sum score counts"
@@ -680,7 +685,7 @@ msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot per method"
-msgstr ""
+msgstr "Diagramm pro Methode"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot all sems"
