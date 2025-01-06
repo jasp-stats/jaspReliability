@@ -956,7 +956,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         partSums1 <- rowSums(dataset[, splits[[1]]])
         partSums2 <- rowSums(dataset[, splits[[2]]])
 
-        out[["se"]][["scaleSplithalf"]] <- .seSplithalf(partSums1, partSums2)
+        out[["se"]][["scaleSplithalf"]] <- .seSplithalf(partSums1, partSums2, model[["use.cases"]])
         out[["conf"]][["scaleSplithalf"]] <- out[["est"]][["scaleSplithalf"]] + c(-1, 1) * out[["se"]][["scaleSplithalf"]] * qnorm(1 - (1 - ciValue) / 2)
       }
     }
@@ -1168,7 +1168,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
           partSums1 <- rowSums(dtCut[, splits[[1]]])
           partSums2 <- rowSums(dtCut[, splits[[2]]])
 
-          se <- .seSplithalf(partSums1, partSums2)
+          se <- .seSplithalf(partSums1, partSums2, model[["use.cases"]])
           conf <- est + c(-1, 1) * se * qnorm(1 - (1 - ciValue) / 2)
           out[["lower"]][["itemDeletedSplithalf"]][i] <- conf[1]
           out[["upper"]][["itemDeletedSplithalf"]][i] <- conf[2]
@@ -1185,12 +1185,15 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     if (options[["itemRestCorrelation"]]) {
 
       for (i in seq_len(ncol(dataset))) {
-        out[["est"]][["itemRestCorrelation"]][i] <- cor(as.matrix(dataset[, i]), rowSums(as.matrix(dataset[, -i]), na.rm = TRUE),
-                                                        use = model[["use.cases"]])
+        sum1 <- as.matrix(dataset[, i])
+        sum2 <- rowSums(as.matrix(dataset[, -i]), na.rm = TRUE)
+        cc <- cor(sum1, sum2, use = model[["use.cases"]])
+        out[["est"]][["itemRestCorrelation"]][i] <- cc
+
         if (options[["intervalMethod"]] == "analytic") {
-          out[["lower"]][["itemRestCorrelation"]][i] <- NA
-          out[["upper"]][["itemRestCorrelation"]][i] <- NA
-          out[["error"]][["itemRestCorrelation"]] <- gettext("The analytic confidence interval is not available for the item-rest correlation.")
+          conf <- .confCorZ(cr= cc, n = model[["n"]], alpha = ciValue)
+          out[["lower"]][["itemRestCorrelation"]][i] <- conf[1]
+          out[["upper"]][["itemRestCorrelation"]][i] <- conf[2]
         } else {
           itemSamp <- model[["itemRestCorrelation"]][["itemSamp"]]
           conf <- quantile(itemSamp[, i], probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
@@ -1907,13 +1910,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   return(2 * cor(x, y) / (1 + cor(x, y)))
 }
 
-# SE of sample split-half reliability coefficient: input requires 2 scores (sum scores of test halves)
-.seSplithalf <- function(x, y) {
-  k <- cor(x, y)
-  seK <- seCor(x, y)
-  sh <- 2 * k / (1 + k)
-  return((sh/k - sh/(1 + k)) * seCor(x, y))
-}
 
 # SE of sample lambda-1
 .seLambda1 <- function(X, VC = NULL, eps = 1e-16){
@@ -2038,8 +2034,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   return(rsh)
 }
 
-.seSplithalf <- function(x, y){
-  k <- cor(x, y)
+.seSplithalf <- function(x, y, useObs){
+  k <- cor(x, y, use = useObs)
   seK <- .seCor(k, length(x))
   sh <- 2 * k / (1 + k)
   return((sh/k - sh/(1 + k)) * seK)
@@ -2047,4 +2043,16 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
 .seCor <- function(r, n) { # Bonett (2008)
   return((1 - r^2) / sqrt(n - 3))
+}
+
+# fisher transformed correlation interval
+.confCorZ <- function(cr, n, alpha) {
+  zcor <- 0.5 * log((1 + cr) / (1  - cr))
+  seZcor <- 1 / sqrt(n - 3)
+  qq <- qnorm(1 - (1 - alpha) / 2)
+  zlow <- zcor - qq * seZcor
+  zup <- zcor + qq * seZcor
+  low <- (exp(2 * zlow) - 1) / (exp(2 * zlow) + 1)
+  up <- (exp(2 * zup) - 1) / (exp(2 * zup) + 1)
+  return(c(low, up))
 }
