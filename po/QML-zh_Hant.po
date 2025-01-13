@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-01-12 14:03+0000\n"
+"PO-Revision-Date: 2025-01-14 13:00+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspreliability-qml/zh_Hant/>\n"
@@ -634,7 +634,7 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Coefficient ω"
-msgstr ""
+msgstr "CR值"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Coefficient α"
@@ -642,7 +642,7 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Coefficient ω (if item dropped)"
-msgstr ""
+msgstr "CR值 (如果移除此題項)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Coefficient α (if item dropped)"
@@ -650,11 +650,11 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Coefficient ω Estimation"
-msgstr ""
+msgstr "CR估計值"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficient ω"
-msgstr ""
+msgstr "CR值"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficient α"
@@ -662,7 +662,7 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficient ω  (if item dropped)"
-msgstr ""
+msgstr "CR值 (如果移除此題項)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficient α (if item dropped)"
@@ -670,7 +670,7 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficient ω Estimation"
-msgstr ""
+msgstr "CR估計值"
 
 msgctxt "Description|"
 msgid "Standard Error of Measurement"
