@@ -216,7 +216,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
       coefficientTable$addColumnInfo(name = "score", title = gettext("Sum score"), type = "string")
       coefficientTable$addColumnInfo(name = "counts", title = gettext("Counts"), type = "string")
-      footnote <- gettextf("%1$s The traditional sem value equals %2$1.3f.", footnote, average$est)
+      footnote <- gettextf("%1$s The score-unrelated sem value equals %2$1.3f.", footnote, average$est)
       scrs <- jaspResults[["semMainContainer"]][["countsState"]]$object
       counts <- scrs$counts
       dtFill <- data.frame(score = scrs$scores)
