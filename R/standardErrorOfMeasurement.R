@@ -18,10 +18,12 @@
 #' @export
 standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
+  # sink(file = "~/Downloads/log.txt")
+  # on.exit(sink(NULL))
+
   ready <- ncol(dataset) > 1
 
   dataset <- .semHandleData(dataset, options)
-
 
   .semErrorCheck(dataset, options, ready)
 
@@ -57,6 +59,10 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   # functions work only with numeric data
   dataset <- as.data.frame(lapply(dataset, function(x) as.numeric(as.character(x))))
+
+  # dataset columns are by default ordered alphabetically (why???), so we change the order
+  if (length(options$variables) > 0)
+    dataset <- dataset[, options[["variables"]]]
 
   return(dataset)
 }
