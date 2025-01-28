@@ -4,7 +4,6 @@
 #' @export
 unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) {
 
-
   # check for listwise deletion
   datasetOld <- dataset
   dataset <- .handleData(datasetOld, options)
@@ -1467,6 +1466,10 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
   if (options[["naAction"]] == "listwise")
     dataset <- dataset[complete.cases(dataset), ]
+
+  # dataset columns are by default ordered alphabetically (why???), so we change the order
+  if (length(options$variables) > 0)
+    dataset <- dataset[, options[["variables"]]]
 
   return(dataset)
 }
