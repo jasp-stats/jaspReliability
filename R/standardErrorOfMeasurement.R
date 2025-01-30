@@ -190,7 +190,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (!is.null(jaspResults[["semMainContainer"]][["coefficientTable"]])) return()
 
-  coefficientTable <- createJaspTable(gettext("Standard error of measurement"),
+  coefficientTable <- createJaspTable(gettext("Standard Error of Measurement"),
                                       dependencies = c("thorndike", "feldt", "mollenkopfFeldt",
                                                        "anova", "irt", "lord", "keats", "lord2", "hideTable",
                                                        "feldtNumberOfSplits", "mollenkopfFeldtNumberOfSplits",
@@ -199,8 +199,8 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   coefficientTable$position <- 1
   jaspResults[["semMainContainer"]][["coefficientTable"]] <- coefficientTable
 
-  coefficientTable$addColumnInfo(name = "score", title = gettext("Sum score"), type = "string")
-  coefficientTable$addColumnInfo(name = "average", title = gettext("Traditional"), type = "number")
+  coefficientTable$addColumnInfo(name = "score", title = gettext("Sum Score"), type = "string")
+  coefficientTable$addColumnInfo(name = "average", title = gettext("Score-Unrelated SEM"), type = "number")
 
   footnote <- ""
 
@@ -215,14 +215,14 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     selected <- options[["selected"]]
     if (length(selected) > 0) {  # at least one method is selected
 
-      coefficientTable <- createJaspTable(gettext("Standard error of measurement"))
+      coefficientTable <- createJaspTable(gettext("Standard Error of Measurement"))
       coefficientTable$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]])
       coefficientTable$position <- 1
       jaspResults[["semMainContainer"]][["coefficientTable"]] <- coefficientTable
 
-      coefficientTable$addColumnInfo(name = "score", title = gettext("Sum score"), type = "string")
+      coefficientTable$addColumnInfo(name = "score", title = gettext("Sum Score"), type = "string")
       coefficientTable$addColumnInfo(name = "counts", title = gettext("Counts"), type = "string")
-      footnote <- gettextf("%1$s The score-unrelated sem value equals %2$1.3f.", footnote, average$est)
+      footnote <- gettextf("%1$s The score-unrelated SEM value equals %2$1.3f.", footnote, average$est)
       scrs <- jaspResults[["semMainContainer"]][["countsState"]]$object
       counts <- scrs$counts
       dtFill <- data.frame(score = scrs$scores)
@@ -260,13 +260,13 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   if (!options[["sumScoreCiTable"]] || is.null(jaspResults[["semMainContainer"]][["ciDataState"]])) return()
 
-  ciTable <- createJaspTable(gettext("Sum score CI table"))
+  ciTable <- createJaspTable(gettext("Sum Score CI Table"))
   ciTable$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]],
                    options = c("ciLevelTable", "sumScoreCiTable"))
   ciTable$position <- 2
   jaspResults[["semMainContainer"]][["ciTable"]] <- ciTable
 
-  ciTable$addColumnInfo(name = "score", title = gettext("Sum score"), type = "string")
+  ciTable$addColumnInfo(name = "score", title = gettext("Sum Score"), type = "string")
   ci <- format(100 * options[["ciLevelTable"]], digits = 3, drop0trailing = TRUE)
 
   ciData <- jaspResults[["semMainContainer"]][["ciDataState"]]$object$table
@@ -304,10 +304,10 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   p <- ggplot2::ggplot(ss) +
     ggplot2::geom_histogram(ggplot2::aes(scores), bins = nrow(unique(ss)), binwidth = .5) +
     ggplot2::ylab(gettext("Counts")) +
-    ggplot2::xlab(gettext("Sum scores"))
+    ggplot2::xlab(gettext("Sum Score"))
   p <- p + jaspGraphs::themeJaspRaw() + jaspGraphs::geom_rangeframe()
 
-  histPlot <- createJaspPlot(plot = p, title = gettext("Histogram of counts per sum score group"), width = 500,
+  histPlot <- createJaspPlot(plot = p, title = gettext("Histogram of Counts per Sum Score Group"), width = 500,
                              dependencies = "histogramCounts")
   jaspResults[["semMainContainer"]][["histPlot"]] <- histPlot
 
@@ -315,7 +315,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 }
 
-.semPointPlots <- function(jaspResults, dataset, options, ready) {
+ .semPointPlots <- function(jaspResults, dataset, options, ready) {
 
   if (!is.null(jaspResults[["semMainContainer"]][["pointPlots"]]) || !options[["pointPlots"]]
       || !ready || jaspResults[["semMainContainer"]]$getError()) {return()}
@@ -352,13 +352,13 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     colnames(dat)[1:2] <- c("score", "sem")
     pl <- ggplot2::ggplot(dat) +
       ggplot2::geom_point(ggplot2::aes(x = score, y = sem), size = 2.5) +
-      ggplot2::labs(x = gettext("Sum Score"), y = gettext("sem"))
+      ggplot2::labs(x = gettext("Sum Score"), y = gettext("SEM"))
   } else {
     dat <- as.data.frame(resultsObject$object$unbinned)
     colnames(dat)[1:2] <- c("score", "sem")
     pl <- ggplot2::ggplot(dat) +
       ggplot2::geom_line(ggplot2::aes(x = score, y = sem), size = 2.5) +
-      ggplot2::labs(x = gettext("Sum Score"), y = gettext("sem"))
+      ggplot2::labs(x = gettext("Sum Score"), y = gettext("SEM"))
   }
 
   pl <- pl + jaspGraphs::themeJaspRaw() + jaspGraphs::geom_rangeframe()
@@ -405,7 +405,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
     pl <- ggplot2::ggplot() +
       ggplot2::geom_point(data = dt, ggplot2::aes(x = score, y = sem, shape = Type), size = 2.5) +
-      ggplot2::labs(x = "Sum Score", y = "sem") +
+      ggplot2::labs(x = gettext("Sum Score"), y = gettext("SEM")) +
       ggplot2::theme(plot.margin = ggplot2::margin(t=1,r=5,b=1.5,l=1, "cm")) +
       jaspGraphs::themeJaspRaw(legend.position = "right") + jaspGraphs::geom_rangeframe()
 
@@ -417,7 +417,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
                                  shape = ggplot2::guide_legend(order = 1))
     }
 
-    plot <- createJaspPlot(pl, title = gettext("Combined plot"),
+    plot <- createJaspPlot(pl, title = gettext("Combined Plot"),
                            width = 600)
     plot$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]],
                   options = "combinedPointPlot")
