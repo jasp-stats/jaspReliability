@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
 "POT-Creation-Date: 2024-11-16 03:35\n"
-"PO-Revision-Date: 2025-01-21 18:00+0000\n"
+"PO-Revision-Date: 2025-02-01 03:30+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspreliability-r/zh_Hant/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Weblate 5.10-dev\n"
 
 msgid "Bland-Altman Plots"
-msgstr ""
+msgstr "Bland-Altman圖"
 
 msgid "Please provide another variable"
 msgstr ""
@@ -116,7 +116,7 @@ msgid ""
 msgstr ""
 
 msgid "Standard error of measurement"
-msgstr ""
+msgstr "測量的標準誤"
 
 msgid "Sum score"
 msgstr ""
@@ -125,7 +125,7 @@ msgid "Traditional"
 msgstr ""
 
 msgid "Counts"
-msgstr ""
+msgstr "計次"
 
 msgid "%1$s The traditional sem value equals %2$1.3f."
 msgstr ""
@@ -169,10 +169,10 @@ msgid "True Score"
 msgstr ""
 
 msgid "Split-half coefficient"
-msgstr ""
+msgstr "折半係數"
 
 msgid "Item-rest correlation"
-msgstr "此題項-所有其他題項之相關"
+msgstr "此題項與其它所有題項之相關"
 
 msgid "Mean"
 msgstr ""
@@ -217,7 +217,7 @@ msgid ""
 msgstr "無法抽樣事後模型之omega值。建議在'進階設定'中選擇'完全排除法'"
 
 msgid "Bayesian Scale Reliability Statistics"
-msgstr "貝氏量表信度統計數"
+msgstr "貝氏量表信度統計量"
 
 #, fuzzy
 msgid "Posterior %s"
@@ -233,28 +233,27 @@ msgid "ESS"
 msgstr ""
 
 msgid "Bayesian Individual Item Reliability Statistics"
-msgstr "貝氏個別題項信度統計數"
+msgstr "貝氏個別題項信度統計量"
 
 msgid "Item"
 msgstr "題項"
 
 msgid "%s (if item dropped)"
-msgstr "%s (若刪除此題)"
+msgstr "%s (若刪除此題項)"
 
 msgid ""
 "%s Please enter at least 3 variables for the if item dropped statistics."
-msgstr "%s 若要計算此題刪除後的統計數，請至少選擇3個變項"
+msgstr "%s 若要計算此題刪除後的統計量，請至少選擇3個變項"
 
 msgid ""
 "The bounds you entered have been rearranged in increasing order to provide "
 "meaningful results."
 msgstr "為提供有意義的結果，輸入界限已被調整"
 
-#, fuzzy
 msgid ""
 "Probability that Reliability Coefficient is Larger than %.2f and Smaller "
 "than %.2f"
-msgstr "信度統計數大於 %.2f 且小於 %.2f 之機率"
+msgstr "信度統計量大於 %.2f 且小於 %.2f 之機率"
 
 msgid "Probability"
 msgstr "機率"
@@ -265,9 +264,8 @@ msgstr "先驗機率"
 msgid "Posterior"
 msgstr "後驗"
 
-#, fuzzy
 msgid "Fit Measures for the Single-Factor Model"
-msgstr "單一因子模式配適指標"
+msgstr "單因子模型的配適指標"
 
 msgid "Estimate"
 msgstr "估計"
@@ -286,12 +284,11 @@ msgid ""
 "                         corresponding cutoff."
 msgstr ""
 
-#, fuzzy
 msgid "Standardized Loadings of the Single-Factor Model"
-msgstr "單一因子模式配適指標"
+msgstr "單因子模型的標準化因素負荷量"
 
 msgid "Standardized loading"
-msgstr ""
+msgstr "標準化因素負荷量"
 
 msgid "Posterior Plots"
 msgstr "事後機率圖"
@@ -300,16 +297,16 @@ msgid "Density"
 msgstr "密度"
 
 msgid "If Item Dropped Posterior Plots"
-msgstr "此題刪除後的事後機率圖"
+msgstr "此題項刪除後的事後機率圖"
 
 msgid "Please enter at least 3 variables for the if item dropped plot"
-msgstr "請至少選擇三個變項，以繪製此題刪除後的事後機率圖"
+msgstr "請至少選擇三個變項，以繪製此題項刪除後的事後機率圖"
 
 msgid "KLD ordering failed because two variables have perfect correlation"
 msgstr "因為有兩個變項為完全相關，故KLD排序失敗。"
 
 msgid "Item Dropped"
-msgstr "排除提項"
+msgstr "刪除題項"
 
 msgid "Eigenvalue"
 msgstr "特徵值"
@@ -354,20 +351,20 @@ msgstr ""
 msgid ""
 "The analytic confidence interval is not available for coefficient omega "
 "obtained with PFA."
-msgstr ""
+msgstr "無法為透過 PFA 獲得的coefficient ω，提供其信賴區間。"
 
 msgid "Omega interval calculation with PFA failed."
 msgstr "PFA失敗時的Omega區間"
 
 msgid "Calculating the standard error of coefficient alpha failed."
-msgstr ""
+msgstr "計算 Coefficient α的標準誤失敗。"
 
 msgid "Calculating the standard error of coefficient lambda2 failed."
-msgstr ""
+msgstr "計算 Guttman's λ2係數的標準誤失敗。"
 
 msgid ""
 "The standard error of the average interitem correlation is not available."
-msgstr ""
+msgstr "無法提供平均題項間相關性的標準誤。"
 
 #, fuzzy
 msgid "Omega item dropped statistics with CFA failed."
@@ -379,21 +376,20 @@ msgstr "因PFA失敗而未顯示Omega 題項"
 msgid ""
 "The analytic confidence interval is not available for the item-rest "
 "correlation."
-msgstr ""
+msgstr "無法為此題項與其它所有題項的相關係數，提供其信賴區間。"
 
 msgid "Frequentist Scale Reliability Statistics"
-msgstr "頻率派量表信度統計數"
+msgstr "頻率派量表信度統計量"
 
 msgid "Std. Error"
 msgstr "標準誤"
 
 msgid "Frequentist Individual Item Reliability Statistics"
-msgstr "頻率派個別題項信度統計數"
+msgstr "頻率派個別題項信度統計量"
 
 msgid "Fit Measures of Single Factor Model Fit"
-msgstr "單一因子模式配適指標"
+msgstr "單因子模型的配適指標"
 
-#, fuzzy
 msgid "Fit measure"
 msgstr "配適指標"
 
