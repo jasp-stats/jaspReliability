@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-02-07 16:20+0000\n"
+"Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
+"Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
+"projects/jasp/jaspreliability-qml/zh_Hant/>\n"
+"Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.10-dev\n"
 "X-Language: zh_Hant\n"
 "X-Qt-Contexts: true\n"
 
@@ -163,11 +169,11 @@ msgstr "可信區間"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2"
-msgstr "Guttman's λ2 信度係數"
+msgstr "Guttman's λ2"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Average interitem correlation"
-msgstr "平均題項間相關"
+msgstr "平均題項間的相關"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Mean"
@@ -433,15 +439,13 @@ msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Scale Statistics"
 msgstr "量表統計量"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2"
-msgstr "Guttman's λ2 信度係數"
+msgstr "Guttman's λ2"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Average interitem correlation"
-msgstr "平均題項間相關"
+msgstr "平均題項間的相關"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
