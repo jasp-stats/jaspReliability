@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
 "POT-Creation-Date: 2024-11-16 03:35\n"
-"PO-Revision-Date: 2025-02-01 03:30+0000\n"
+"PO-Revision-Date: 2025-02-07 16:20+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspreliability-r/zh_Hant/>\n"
@@ -33,13 +33,13 @@ msgid "Point Value"
 msgstr "點估計"
 
 msgid "Mean difference - 1.96 SD"
-msgstr ""
+msgstr "平均數 - 1.96 SD"
 
 msgid "Mean difference + 1.96 SD"
-msgstr ""
+msgstr "平均數差異 + 1.96 SD"
 
 msgid "Mean difference"
-msgstr ""
+msgstr "平均數差異"
 
 msgid "Lower %s%% CI"
 msgstr "%s%%信賴區間下界"
@@ -175,10 +175,10 @@ msgid "Item-rest correlation"
 msgstr "此題項與其它所有題項之相關"
 
 msgid "Mean"
-msgstr ""
+msgstr "平均數"
 
 msgid "Variance"
-msgstr ""
+msgstr "變異數"
 
 msgid "SD"
 msgstr "標準差"
@@ -320,9 +320,8 @@ msgstr "聚合跡數圖"
 msgid "Iterations"
 msgstr "迭代"
 
-#, fuzzy
 msgid "Average interitem correlation"
-msgstr "此題項-所有其他題項之相關"
+msgstr "平均題項間的相關"
 
 msgid "%1$s%2$s"
 msgstr ""
