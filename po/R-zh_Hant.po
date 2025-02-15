@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
 "POT-Creation-Date: 2024-11-16 03:35\n"
-"PO-Revision-Date: 2025-02-07 16:20+0000\n"
-"Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
+"PO-Revision-Date: 2025-02-13 21:01+0000\n"
+"Last-Translator: 陳正昌 <chencc99@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspreliability-r/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10-rc\n"
 
 msgid "Bland-Altman Plots"
 msgstr "Bland-Altman圖"
@@ -48,7 +48,7 @@ msgid "Upper %s%% CI"
 msgstr "%s%%信賴區間上界"
 
 msgid "Calculations not possible: %s"
-msgstr ""
+msgstr "無法進行計算：%s"
 
 msgid "Intraclass Correlation"
 msgstr "組內相關係數"
@@ -93,27 +93,28 @@ msgid "Upper"
 msgstr "上界"
 
 msgid "Confidence intervals are asymptotic."
-msgstr ""
+msgstr "置信區間為漸近式。"
 
 msgid ""
 "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
-msgstr ""
+msgstr "如果只有兩個水準，加權kappa等於未加權kappa。"
 
 msgid "Fleiss' kappa"
 msgstr ""
 
 msgid "Method"
-msgstr ""
+msgstr "方法"
 
 msgid ""
 "For the Lord's compound method, the test could not be split in equally sized "
 "parts with more than 1 item per part. Consider adding or removing items."
-msgstr ""
+msgstr "對於Lord的複合方法，測試無法分割成大小相等且每個部分包含超過1個項目的部分。請"
+"考慮增加或刪除項目。"
 
 msgid ""
 "The Lord, Keats, and Lord's compound method are only available for binary "
 "data."
-msgstr ""
+msgstr "Lord、Keats 和 Lord 的複合方法僅適用於二元資料。"
 
 msgid "Standard error of measurement"
 msgstr "測量的標準誤"
@@ -133,7 +134,7 @@ msgstr ""
 msgid ""
 "%1$s Estimating the %2$s method failed. If possible, you might try changing "
 "the method's parameters."
-msgstr ""
+msgstr "%1$s 估計 %2$s 方法失敗。如果可能，您可以嘗試更改方法的參數。"
 
 msgid "Sum score CI table"
 msgstr ""
@@ -141,13 +142,13 @@ msgstr ""
 msgid ""
 "Estimating the %s method failed. If possible, you might try changing the "
 "method's parameters."
-msgstr ""
+msgstr "估計 %s 方法失敗。如果可能，您可以嘗試更改方法的參數。"
 
 msgid "Sum scores"
 msgstr ""
 
 msgid "Histogram of counts per sum score group"
-msgstr ""
+msgstr "各總分組的計數直方圖"
 
 #, fuzzy
 msgid "Point Plots"
@@ -219,9 +220,8 @@ msgstr "無法抽樣事後模型之omega值。建議在'進階設定'中選擇'�
 msgid "Bayesian Scale Reliability Statistics"
 msgstr "貝氏量表信度統計量"
 
-#, fuzzy
 msgid "Posterior %s"
-msgstr "事後"
+msgstr "事後機率 %s"
 
 msgid "Coefficient"
 msgstr "係數"
@@ -262,7 +262,7 @@ msgid "Prior"
 msgstr "先驗機率"
 
 msgid "Posterior"
-msgstr "後驗"
+msgstr "後驗機率"
 
 msgid "Fit Measures for the Single-Factor Model"
 msgstr "單因子模型的配適指標"
