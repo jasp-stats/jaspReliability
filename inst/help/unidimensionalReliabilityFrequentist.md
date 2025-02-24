@@ -12,8 +12,8 @@ The frequentist unidimensional reliability analysis allows the user to test the 
 
 ### Scale Statistics
 - Confidence interval: default is 95%
-- Coefficient omega (for unidimensional data, based on the single-factor model). Note the total test variance in the denominator of the reliability equation is the model implied total variance, that is, the summed model implied covariance matrix.
-- Coefficient alpha (for binary items the coefficient equals KR20)
+- Coefficient omega: The same as McDonald's omega (for unidimensional data, based on the single-factor model). Note the total test variance in the denominator of the reliability equation is the model implied total variance, that is, the summed model implied covariance matrix.
+- Coefficient alpha: The same as Cronbach's alpha (for binary items the coefficient equals KR20)
 - Guttman's lambda 2
 - Split-half coefficient: Correlates the sum scores of two test-halves. By default the variables are split into odd and even numbered items in order or appearance in the variables window. If another split is desired the variables just need to be reordered.
 - Average interitem correlation
