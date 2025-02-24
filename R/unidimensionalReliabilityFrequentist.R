@@ -15,6 +15,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
   .checkErrors(dataset, options)
 
+  print(dataset)
   model <- .frequentistPreCalc(jaspResults, dataset, options, datasetOld)
   options <- .scaleItemBoxAlign(options)
 
