@@ -180,7 +180,7 @@ msgstr "மாறுபாட்டெண்"
 msgid "SD"
 msgstr "எச்.டி."
 
-msgid "%s Of the observations, %1.f complete cases were used."
+msgid "%1$s Of the observations, %2$1.f complete cases were used."
 msgstr "அவதானிப்புகளின் %s, %1. எஃப் முழுமையான வழக்குகள் பயன்படுத்தப்பட்டன."
 
 msgid "%s Of the observations, pairwise complete cases were used."

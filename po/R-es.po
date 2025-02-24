@@ -191,8 +191,8 @@ msgstr "Varianza"
 msgid "SD"
 msgstr "DT"
 
-msgid "%s Of the observations, %1.f complete cases were used."
-msgstr "%s de las observaciones, se utilizaron %1.f casos completos."
+msgid "%1$s Of the observations, %2$1.f complete cases were used."
+msgstr "%1$s de las observaciones, se utilizaron %1$1.f casos completos."
 
 msgid "%s Of the observations, pairwise complete cases were used."
 msgstr "%s de las observaciones, se utilizaron casos completos por pares."
