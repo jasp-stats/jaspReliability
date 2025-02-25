@@ -186,8 +186,8 @@ msgstr ""
 msgid "SD"
 msgstr "SD"
 
-msgid "%s Of the observations, %1.f complete cases were used."
-msgstr "%s der Beobachtungen, es wurden %1.f vollständige Fälle verwendet."
+msgid "%1$s Of the observations, %2$1.f complete cases were used."
+msgstr "%1$s der Beobachtungen, es wurden %2$1.f vollständige Fälle verwendet."
 
 msgid "%s Of the observations, pairwise complete cases were used."
 msgstr ""

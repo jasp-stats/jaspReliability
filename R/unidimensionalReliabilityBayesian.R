@@ -135,7 +135,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     if (options[["naAction"]] == "listwise" && nrow(datasetOld) > nrow(dataset)) { # this indicates listwise deletion
       model[["use.cases"]] <- "complete.obs"
       model[["pairwise"]] <- FALSE
-      model[["footnote"]] <- gettextf("%s Of the observations, %1.f complete cases were used. ",
+      model[["footnote"]] <- gettextf("%1$s Of the observations, %2$1.f complete cases were used. ",
                                       model[["footnote"]], nrow(dataset))
 
     } else if (anyNA(dataset)) { # when pairwise deletion
@@ -1250,7 +1250,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     footnote <- ""
   }
   probabilityTable <- createJaspTable(
-    gettextf("Probability that Reliability Coefficient is Larger than %.2f and Smaller than %.2f", low, high))
+    gettextf("Probability that Reliability Coefficient is Larger than %1$.2f and Smaller than %2$.2f", low, high))
   probabilityTable$dependOn(options = c("probabilityTableLowerBound", "probabilityTable", "probabilityTableUpperBound"))
 
   overTitle <- gettext("Probability")

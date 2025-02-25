@@ -184,8 +184,8 @@ msgstr "變異數"
 msgid "SD"
 msgstr "標準差"
 
-msgid "%s Of the observations, %1.f complete cases were used."
-msgstr "從 %s 的觀察值中, 使用 %1.f 的完整資料"
+msgid "%1$s Of the observations, %2$1.f complete cases were used."
+msgstr "從 %1$s 的觀察值中, 使用 %2$1.f 的完整資料"
 
 msgid "%s Of the observations, pairwise complete cases were used."
 msgstr "從 %s 的觀察值中，以配對完整的個案進行分析"
@@ -251,9 +251,9 @@ msgid ""
 msgstr "為提供有意義的結果，輸入界限已被調整"
 
 msgid ""
-"Probability that Reliability Coefficient is Larger than %.2f and Smaller "
-"than %.2f"
-msgstr "信度統計量大於 %.2f 且小於 %.2f 之機率"
+"Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
+"than %2$.2f"
+msgstr "信度統計量大於 %1$.2f 且小於 %2$.2f 之機率"
 
 msgid "Probability"
 msgstr "機率"

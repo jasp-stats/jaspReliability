@@ -167,7 +167,7 @@ msgstr ""
 msgid "SD"
 msgstr ""
 
-msgid "%s Of the observations, %1.f complete cases were used."
+msgid "%1$s Of the observations, %2$1.f complete cases were used."
 msgstr ""
 
 msgid "%s Of the observations, pairwise complete cases were used."
@@ -215,7 +215,7 @@ msgstr ""
 msgid "The bounds you entered have been rearranged in increasing order to provide meaningful results."
 msgstr ""
 
-msgid "Probability that Reliability Coefficient is Larger than %.2f and Smaller than %.2f"
+msgid "Probability that Reliability Coefficient is Larger than %1$.2f and Smaller than %2$.2f"
 msgstr ""
 
 msgid "Probability"

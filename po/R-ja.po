@@ -183,8 +183,8 @@ msgstr ""
 msgid "SD"
 msgstr ""
 
-msgid "%s Of the observations, %1.f complete cases were used."
-msgstr "観測値%s のうち、%1.f完全なケースが使用されました."
+msgid "%1$s Of the observations, %2$1.f complete cases were used."
+msgstr "観測値%1$s のうち、%2$1.f完全なケースが使用されました."
 
 msgid "%s Of the observations, pairwise complete cases were used."
 msgstr "観測値%s のうち、ペアワイズ処理された完全なケースが使用されました."
