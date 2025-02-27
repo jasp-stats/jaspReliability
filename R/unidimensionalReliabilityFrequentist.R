@@ -1469,6 +1469,10 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   if (options[["naAction"]] == "listwise")
     dataset <- dataset[complete.cases(dataset), ]
 
+  # dataset columns are by default ordered alphabetically, so we change the order which we need to the splithalf-rel
+  if (length(options$variables) > 0)
+    dataset <- dataset[, options[["variables"]]]
+
   return(dataset)
 }
 
