@@ -242,7 +242,7 @@
       "Requirements": [
         "R"
       ],
-      "Hash": "470851b6d5d0ac559e9d01bb352b4021"
+      "Hash": "d4335fe7207f1c01ab8c41762f5840d4"
     },
     "RColorBrewer": {
       "Package": "RColorBrewer",
@@ -398,7 +398,7 @@
     },
     "archive": {
       "Package": "archive",
-      "Version": "1.1.9",
+      "Version": "1.1.11",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -408,7 +408,7 @@
         "rlang",
         "tibble"
       ],
-      "Hash": "d26b62e131d4a8b65aba4e9554a4bf74"
+      "Hash": "856829cece72116b937deda3cf587f99"
     },
     "askpass": {
       "Package": "askpass",
@@ -586,7 +586,7 @@
         "R",
         "utils"
       ],
-      "Hash": "b21916dd77a27642b447374a5d30ecf3"
+      "Hash": "491c34d3d9dd0d2fe13d9f278bb90795"
     },
     "cluster": {
       "Package": "cluster",
@@ -669,14 +669,14 @@
     },
     "cpp11": {
       "Package": "cpp11",
-      "Version": "0.5.0",
+      "Version": "0.5.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Repository": "CRAN",
       "Requirements": [
         "R"
       ],
-      "Hash": "91570bba75d0c9d3f1040c835cee8fba"
+      "Hash": "9df43854f1c84685d095ed6270b52387"
     },
     "crayon": {
       "Package": "crayon",
@@ -702,11 +702,11 @@
       "Requirements": [
         "R"
       ],
-      "Hash": "e8ba62486230951fcd2b881c5be23f96"
+      "Hash": "b580cbb010099fd990df6bfe44459e1a"
     },
     "data.table": {
       "Package": "data.table",
-      "Version": "1.16.2",
+      "Version": "1.16.4",
       "Source": "Repository",
       "Repository": "CRAN",
       "Repository": "CRAN",
@@ -714,7 +714,7 @@
         "R",
         "methods"
       ],
-      "Hash": "2e00b378fc3be69c865120d9f313039a"
+      "Hash": "38bbf05fc2503143db4c734a7e5cab66"
     },
     "dcurver": {
       "Package": "dcurver",
@@ -818,7 +818,7 @@
       "Requirements": [
         "R"
       ],
-      "Hash": "3fd29944b231036ad67c3edb32e02201"
+      "Hash": "e9651417729bbe7472e32b5027370e79"
     },
     "fansi": {
       "Package": "fansi",
@@ -1450,7 +1450,7 @@
       "RemoteRepo": "jaspTools",
       "RemoteRepo": "jaspTools",
       "RemoteUsername": "jasp-stats",
-      "RemoteSha": "4e22b1b9cb8c3bf227b7d92ec1e82e2f85c08785",
+      "RemoteSha": "3ed9d24907953cec3bafc8a07b5ab5c4b22608f3",
       "Requirements": [
         "archive",
         "data.table",
@@ -1465,7 +1465,7 @@
         "testthat",
         "vdiffr"
       ],
-      "Hash": "83fdbeae4c9e436ed11b4353f6cd94b5"
+      "Hash": "2ab522899b86fdb90d646d2eda759345"
     },
     "jpeg": {
       "Package": "jpeg",
@@ -1921,7 +1921,7 @@
       "Requirements": [
         "askpass"
       ],
-      "Hash": "d413e0fef796c9401a4419485f709ca1"
+      "Hash": "bc54d87ebf858b28de18df4bca6528d3"
     },
     "parallelly": {
       "Package": "parallelly",
@@ -1991,7 +1991,7 @@
         "utils",
         "vctrs"
       ],
-      "Hash": "15da5a8412f317beeee6175fbc76f4bb"
+      "Hash": "8b16b6097daef84cd3c40a6a7c5c9d86"
     },
     "pkgbuild": {
       "Package": "pkgbuild",
@@ -2008,7 +2008,7 @@
         "desc",
         "processx"
       ],
-      "Hash": "30eaaab94db72652e72e3475c1b55278"
+      "Hash": "2914aa6216361f59e40d5c84667ac155"
     },
     "pkgconfig": {
       "Package": "pkgconfig",
@@ -2097,7 +2097,7 @@
         "ps",
         "utils"
       ],
-      "Hash": "0c90a7d71988856bad2a2a45dd871bb9"
+      "Hash": "790b1edafbd9980aeb8c3d77e3b0ba33"
     },
     "progressr": {
       "Package": "progressr",
@@ -2337,7 +2337,7 @@
         "R",
         "utils"
       ],
-      "Hash": "3eec01f8b1dee337674b2e34ab1f9bc1"
+      "Hash": "724dcc1490cd7071ee75ca2994a5446e"
     },
     "rmarkdown": {
       "Package": "rmarkdown",
@@ -2586,7 +2586,7 @@
     },
     "testthat": {
       "Package": "testthat",
-      "Version": "3.2.1.1",
+      "Version": "3.2.3",
       "Source": "Repository",
       "Repository": "CRAN",
       "Repository": "CRAN",
@@ -2613,7 +2613,7 @@
         "waldo",
         "withr"
       ],
-      "Hash": "3f6e7e5e2220856ff865e4834766bf2b"
+      "Hash": "42f889439ccb14c55fc3d75c9c755056"
     },
     "textshaping": {
       "Package": "textshaping",
@@ -2824,7 +2824,7 @@
     },
     "waldo": {
       "Package": "waldo",
-      "Version": "0.6.0",
+      "Version": "0.6.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Repository": "CRAN",
@@ -2836,7 +2836,7 @@
         "methods",
         "rlang"
       ],
-      "Hash": "53ec6571dc7a321797cde0abe007ff53"
+      "Hash": "52f574062a7b66e56926988c3fbdb3b7"
     },
     "withr": {
       "Package": "withr",
