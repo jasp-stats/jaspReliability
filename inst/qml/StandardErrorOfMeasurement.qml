@@ -61,24 +61,26 @@ Form
 
 				lord2NumberOfSplits.values = newValuesLord
 			}
+
 		}
 	}
 
 	Group
 	{
 		Layout.rowSpan: 2
-		title: qsTr("Split-test methods")
+		title: qsTr("Split-Test Methods")
 
 		CheckBox
 		{
 			name:   	"thorndike"
 			label:  	qsTr("Thorndike")
-			
+			id: thorndike
 		}
 		CheckBox
 		{
 			name:   	"feldt"
 			label:  	qsTr("Feldt")
+			id: feldt
 			DropDown 
 			{
 				name: "feldtNumberOfSplits"
@@ -91,6 +93,7 @@ Form
 		{
 			name:   	"mollenkopfFeldt"
 			label:  	qsTr("Mollenkopf-Feldt")
+			id: mollenkopfFeldt
 			DropDown 
 			{
 				name: "mollenkopfFeldtNumberOfSplits"
@@ -103,8 +106,8 @@ Form
 				name: "mollenkopfFeldtPolyDegree"
 				label: qsTr("Degree of polynomial")
 				min: 2
-				max: 10
-				defaultValue: 3
+				max: 8
+				defaultValue: 2
 			}
 
 		}
@@ -127,22 +130,26 @@ Form
 
 	Group
 	{
-		title: qsTr("Binomial methods")
+		title: qsTr("Binomial Methods")
 
 		CheckBox
 		{
+			enabled: !variables.columnsTypes.includes("ordinal")
 			name:   	"lord"
 			label:  	qsTr("Lord")
 		}
 		CheckBox
 		{
+			enabled: !variables.columnsTypes.includes("ordinal")
 			name:   	"keats"
 			label:  	qsTr("Keats")
 		}
 		CheckBox
 		{
+			enabled: !variables.columnsTypes.includes("ordinal")
 			name:   	"lord2"
 			label:  	qsTr("Lord's compound")
+			id: lord2
 			DropDown 
 			{
 				name: "lord2NumberOfSplits"
@@ -190,13 +197,13 @@ Form
 			name: "minimumGroupSize"
 			label: qsTr("Minimum number of observations per score group") 
 			min: 1
-			defaultValue: 10
+			defaultValue: 20
 		}
 
 		CheckBox 
 		{
 			name: "hideTable"
-			label: qsTr("Hide sem table")
+			label: qsTr("Hide SEM table")
 		}
 		
 	}
@@ -220,7 +227,7 @@ Form
 		CheckBox
 		{
 			name: "combinedPointPlot"
-			label: qsTr("Plot all sems")
+			label: qsTr("Plot all SEMs")
 		}
 
 		Group {

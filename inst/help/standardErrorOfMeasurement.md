@@ -29,7 +29,7 @@ The Standard Error of Measurement (sem) quantifies the precision of a measuremen
 ### Options
 - Sum score table: Displays a table with the sum scores and confidence intervals around them that differ per sem method. The CIs are normal-theory CIs that apply the sem in their calculation.
   - CI
-- User defined reliability: Users can specify a custom reliability value to be used in the calculation of the traditional sem and the calculation of the Keats method
+- User defined reliability: Users can specify a custom reliability value to be used in the calculation of the score-unrelated sem and the calculation of the Keats method
 - Minimum number of observations per score group: The sem methods except the Mollenkopf-Feldt and the IRT method require a minimum number of observations for a sum score to properly estimate the sem, if that number is not reached the sum score is merged with the subsequent sum score(s) until there are enough observations in the merged score group. 
 - Hide sem table
 

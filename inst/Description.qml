@@ -6,7 +6,7 @@ Description
 	name		: "jaspReliability"
 	title		: qsTr("Reliability")
 	description	: qsTr("Quantify the reliability of test scores")
-	version			: "0.19.2"
+	version			: "0.19.3"
 	author		: "JASP Team"
 	maintainer	: "Julius M. Pfadt <julius.pfadt@gmail.com>"
 	website		: "https://github.com/jasp-stats/jaspReliability"
@@ -40,7 +40,6 @@ Description
 		title:	qsTr("Rater Agreement")
 		qml: 	"RaterAgreement.qml"
 		func: 	"raterAgreement"
-		preloadData: false
 	}
 	Analysis
 	{
