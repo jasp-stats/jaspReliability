@@ -61,6 +61,7 @@ Form
 
 				lord2NumberOfSplits.values = newValuesLord
 			}
+
 		}
 	}
 
@@ -73,12 +74,13 @@ Form
 		{
 			name:   	"thorndike"
 			label:  	qsTr("Thorndike")
-			
+			id: thorndike
 		}
 		CheckBox
 		{
 			name:   	"feldt"
 			label:  	qsTr("Feldt")
+			id: feldt
 			DropDown 
 			{
 				name: "feldtNumberOfSplits"
@@ -91,6 +93,7 @@ Form
 		{
 			name:   	"mollenkopfFeldt"
 			label:  	qsTr("Mollenkopf-Feldt")
+			id: mollenkopfFeldt
 			DropDown 
 			{
 				name: "mollenkopfFeldtNumberOfSplits"
@@ -131,18 +134,22 @@ Form
 
 		CheckBox
 		{
+			enabled: !variables.columnsTypes.includes("ordinal")
 			name:   	"lord"
 			label:  	qsTr("Lord")
 		}
 		CheckBox
 		{
+			enabled: !variables.columnsTypes.includes("ordinal")
 			name:   	"keats"
 			label:  	qsTr("Keats")
 		}
 		CheckBox
 		{
+			enabled: !variables.columnsTypes.includes("ordinal")
 			name:   	"lord2"
 			label:  	qsTr("Lord's compound")
+			id: lord2
 			DropDown 
 			{
 				name: "lord2NumberOfSplits"
