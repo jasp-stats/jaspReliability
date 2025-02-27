@@ -20,8 +20,6 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   ready <- length(options[["variables"]]) > 1
 
-  dataset <- .readDataCohensFleissKappa(dataset, options)
-
   if (options[["cohensKappa"]])
     jaspResults[["cohensKappa"]] <- .computeCohensKappaTable(dataset, options, ready)
   if (options[["fleissKappa"]])
@@ -33,15 +31,6 @@ raterAgreement <- function(jaspResults, dataset, options) {
   }
 
   return()
-}
-
-# Read in the dataset (copied from .reliabilityReadData)
-.readDataCohensFleissKappa <- function(dataset, options) {
-  variables <- unlist(options[["variables"]])
-  if (is.null(dataset)) {
-    dataset <- .readDataSetToEnd(columns.as.factor = variables)
-  }
-  return(dataset)
 }
 
 .computeCohensKappaTable <- function(dataset, options, ready) {
