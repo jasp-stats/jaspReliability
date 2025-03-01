@@ -272,9 +272,10 @@ msgstr ""
 "Os límites que indicaches volvéronse arranxar en orde crecente para "
 "proporcionar resultados comprensibles."
 
+#, fuzzy
 msgid ""
-"Probability that Reliability Coefficient is Larger than %.2f and Smaller "
-"than %.2f"
+"Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
+"than %2$.2f"
 msgstr ""
 "Probabilidade de que o Estatístico de Fiabilidade sexa maior que %.2f e "
 "menor que %.2f"
@@ -397,7 +398,8 @@ msgstr "Fallou o cálculo do erro padrón do coeficiente lambda2."
 
 msgid ""
 "The standard error of the average interitem correlation is not available."
-msgstr "Non está dispoñible o erro padrón da correlación media entre elementos."
+msgstr ""
+"Non está dispoñible o erro padrón da correlación media entre elementos."
 
 msgid "Omega item dropped statistics with CFA failed."
 msgstr "Fallaron os estatísticos do elemento Omega eliminado con CFA."

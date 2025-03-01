@@ -268,8 +268,8 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"Probability that Reliability Coefficient is Larger than %.2f and Smaller "
-"than %.2f"
+"Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
+"than %2$.2f"
 msgstr ""
 "Probabilidade que a estatística de confiabilidade seja maior que %.2f e "
 "menor que %.2f"

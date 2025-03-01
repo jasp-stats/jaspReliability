@@ -268,12 +268,13 @@ msgstr ""
 "De grenzen die u invoerde zijn van klein naar groot opnieuw geordend om "
 "betekenisvolle resultaten te krijgen."
 
+#, fuzzy
 msgid ""
-"Probability that Reliability Coefficient is Larger than %.2f and Smaller "
-"than %.2f"
+"Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
+"than %2$.2f"
 msgstr ""
-"Kans dat de Betrouwbaarheidscoëfficiënt Groter is dan %.2f en Kleiner dan %."
-"2f"
+"Kans dat de Betrouwbaarheidscoëfficiënt Groter is dan %.2f en Kleiner dan "
+"%.2f"
 
 msgid "Probability"
 msgstr "Waarschijnlijkheid"
