@@ -15,7 +15,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
   .checkErrors(dataset, options)
 
-  print(dataset)
   model <- .frequentistPreCalc(jaspResults, dataset, options, datasetOld)
   options <- .scaleItemBoxAlign(options)
 
@@ -909,6 +908,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     if (options[["scaleAlpha"]]) {
 
       out[["est"]][["scaleAlpha"]] <- Bayesrel:::applyalpha(cc)
+
       if (options[["intervalMethod"]] == "bootstrapped") {
         samp <- model[["scaleAlpha"]][["samp"]]
         out[["conf"]][["scaleAlpha"]] <- quantile(samp,
@@ -917,12 +917,15 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         out[["se"]][["scaleAlpha"]] <- sd(samp, na.rm = TRUE)
 
       } else { # alpha interval analytic
-        out[["se"]][["scaleAlpha"]] <- try(.seLambda3(dtUse))
-        if (isTryError(out[["se"]][["scaleAlpha"]])) {
+
+        if (model[["pairwise"]]) {
           out[["se"]][["scaleAlpha"]] <- NA
-          out[["error"]][["scaleAlpha"]] <- gettext("Calculating the standard error of coefficient alpha failed. ")
+          out[["error"]][["scaleAlpha"]] <- gettext("The analytic confidence interval is not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'.")
+        } else {
+          out[["se"]][["scaleAlpha"]] <- .seLambda3(dtUse)
         }
         out[["conf"]][["scaleAlpha"]] <- out[["est"]][["scaleAlpha"]] + c(-1, 1) * out[["se"]][["scaleAlpha"]] * qnorm(1 - (1 - ciValue) / 2)
+
       }
     }
 
@@ -935,12 +938,15 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         out[["conf"]][["scaleLambda2"]] <- quantile(samp, probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
         out[["se"]][["scaleLambda2"]] <- sd(samp, na.rm = TRUE)
       } else { # interval analytic
-        out[["se"]][["scaleLambda2"]] <- try(.seLambda2(dtUse))
-        if (isTryError(out[["se"]][["scaleLambda2"]])) {
+        if (model[["pairwise"]]) {
           out[["se"]][["scaleLambda2"]] <- NA
-          out[["error"]][["scaleLambda2"]] <- gettext("Calculating the standard error of coefficient lambda2 failed. ")
+          if (is.null(out[["error"]][["scaleAlpha"]]))
+            out[["error"]][["scaleLambda2"]] <- gettext("The analytic confidence interval is not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'.")
+        } else {
+          out[["se"]][["scaleLambda2"]] <- .seLambda2(dtUse)
         }
         out[["conf"]][["scaleLambda2"]] <- out[["est"]][["scaleLambda2"]] + c(-1, 1) * out[["se"]][["scaleLambda2"]] * qnorm(1 - (1 - ciValue) / 2)
+
       }
     }
 
@@ -948,7 +954,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     if (options[["scaleSplithalf"]]) {
       nit <- ncol(dataset)
       splits <- split(seq_len(nit), 1:2)
-      out[["est"]][["scaleSplithalf"]] <- .splithalfData(dataset, splits = splits)
+      out[["est"]][["scaleSplithalf"]] <- .splithalfData(dataset, splits = splits, useCase = model[["use.cases"]])
       if (options[["intervalMethod"]] == "bootstrapped") {
         samp <- model[["scaleSplithalf"]][["samp"]]
         out[["conf"]][["scaleSplithalf"]] <- quantile(samp, probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
@@ -1105,10 +1111,17 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
           out[["est"]][["itemDeletedAlpha"]][i] <- est
 
           if (options[["intervalMethod"]] == "analytic") {
-            se <- .seLambda3(dtUse[, -i])
-            conf <- est + c(-1, 1) * se * qnorm(1 - (1 - ciValue) / 2)
-            out[["lower"]][["itemDeletedAlpha"]][i] <- conf[1]
-            out[["upper"]][["itemDeletedAlpha"]][i] <- conf[2]
+            if (model[["pairwise"]]) {
+              out[["lower"]][["itemDeletedAlpha"]][i] <- NA
+              out[["upper"]][["itemDeletedAlpha"]][i] <- NA
+              out[["error"]][["itemDeletedAlpha"]] <- gettext("The analytic confidence interval not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'.")
+            } else {
+              se <- .seLambda3(dtUse[, -i])
+              conf <- est + c(-1, 1) * se * qnorm(1 - (1 - ciValue) / 2)
+              out[["lower"]][["itemDeletedAlpha"]][i] <- conf[1]
+              out[["upper"]][["itemDeletedAlpha"]][i] <- conf[2]
+            }
+
           } else {
             itemSamp <- model[["itemDeletedAlpha"]][["itemSamp"]]
             conf <- quantile(itemSamp[, i], probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
@@ -1134,10 +1147,18 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
           out[["est"]][["itemDeletedLambda2"]][i] <- est
 
           if (options[["intervalMethod"]] == "analytic") {
-            se <- .seLambda2(dtUse[, -i])
-            conf <- est + c(-1, 1) * se * qnorm(1 - (1 - ciValue) / 2)
-            out[["lower"]][["itemDeletedLambda2"]][i] <- conf[1]
-            out[["upper"]][["itemDeletedLambda2"]][i] <- conf[2]
+            if (model[["pairwise"]]) {
+              out[["lower"]][["itemDeletedLambda2"]][i] <- NA
+              out[["upper"]][["itemDeletedLambda2"]][i] <- NA
+              if (is.null(out[["error"]][["itemDeletedAlpha"]]))
+                out[["error"]][["itemDeletedLambda2"]] <- gettext("The analytic confidence interval not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'.")
+            } else {
+              se <- .seLambda2(dtUse[, -i])
+              conf <- est + c(-1, 1) * se * qnorm(1 - (1 - ciValue) / 2)
+              out[["lower"]][["itemDeletedLambda2"]][i] <- conf[1]
+              out[["upper"]][["itemDeletedLambda2"]][i] <- conf[2]
+            }
+
           } else {
             itemSamp <- model[["itemDeletedLambda2"]][["itemSamp"]]
             conf <- quantile(itemSamp[, i], probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
@@ -1161,7 +1182,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         dtCut <- dataset[, -i]
         nit <- ncol(dtCut)
         splits <- split(seq_len(nit), 1:2)
-        est <- .splithalfData(dtCut, splits = splits)
+        est <- .splithalfData(dtCut, splits = splits, useCase = model[["use.cases"]])
         out[["est"]][["itemDeletedSplithalf"]][i] <- est
 
         if (options[["intervalMethod"]] == "analytic") {
@@ -1886,9 +1907,10 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
 
 # SE of sample lambda-2
-.seLambda2 <- function(X, VC = NULL, eps = 1e-16){
+.seLambda2 <- function(X, VC = NULL, eps = 1e-16) {
   J <- ncol(X)
-  if(is.null(VC)) VC <- .varCM(X)
+  if(is.null(VC))
+    VC <- .varCM(X)
   C <- var(X)
   C. <- C; diag(C.) <- 0
   vecC. <- matrix(C., nrow = 1)
@@ -1959,7 +1981,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     }
   }
 
-  X <- X - min(X) + 1                                                                      # MODIFIED on 30-aug-2024
+  X <- X - min(X, na.rm = TRUE) + 1
   res <- X2nR(X)
   R <- res$R
   n <- res$n
@@ -2012,12 +2034,12 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 }
 
 
-.splithalfData <- function(X, splits) {
+.splithalfData <- function(X, splits, useCase) {
 
   partSums1 <- rowSums(X[, splits[[1]]])
   partSums2 <- rowSums(X[, splits[[2]]])
 
-  rsh_uncorrected <- cor(partSums1, partSums2)
+  rsh_uncorrected <- cor(partSums1, partSums2, use = useCase)
   rsh <- (2 * rsh_uncorrected) / (1 + rsh_uncorrected)
   return(rsh)
 }
