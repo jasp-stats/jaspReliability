@@ -20,6 +20,8 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   ready <- length(options[["variables"]]) > 1
 
+  dataset <- .raterAgreementHandleData(dataset, options)
+
   if (options[["cohensKappa"]])
     jaspResults[["cohensKappa"]] <- .computeCohensKappaTable(dataset, options, ready)
   if (options[["fleissKappa"]])
@@ -31,6 +33,17 @@ raterAgreement <- function(jaspResults, dataset, options) {
   }
 
   return()
+}
+
+.raterAgreementHandleData <- function(dataset, options) {
+
+  if (options[["dataStructure"]] == "ratersInColumns") {
+    dataset <- dataset
+  } else { # raters in rows
+    dataset <- as.data.frame(t(dataset))
+  }
+
+  return(dataset)
 }
 
 .computeCohensKappaTable <- function(dataset, options, ready) {
@@ -51,7 +64,8 @@ raterAgreement <- function(jaspResults, dataset, options) {
       "cohensKappaType",
       "ci",
       "ciLevel",
-      "weightType"
+      "weightType",
+      "dataStructure"
     )
   )
 
@@ -64,6 +78,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
 
   if (ready) {
+
     #calculate Cohen's Kappas
     possiblePairs <- combn(ncol(dataset), 2)
     nPairs <- ncol(possiblePairs)
@@ -99,7 +114,17 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
     tableData <- list("ratings" = c("Average kappa", allPairStrings),
                       "cKappa" = c(averageKappa, allKappas))
-    footnote <- gettextf('%1$i subjects/items and %2$i raters/measurements.', nrow(dataset), ncol(dataset))
+
+    # because cohens kappa uses pairwise rater agreements the number of subjects overall is not listwise deleted
+    if (options[["dataStructure"]] == "ratersInColumns") {
+      dataCount <- dataset[rowSums(is.na(dataset)) < ncol(dataset), ]
+    } else {
+      dataCount <- dataset[, colSums(is.na(dataset)) < nrow(dataset)]
+    }
+
+    footnote <- gettextf('%1$i subjects/items and %2$i raters/measurements.', nrow(dataCount), ncol(dataCount))
+    if (anyNA(dataset))
+      footnote <- gettextf('%1$s Based on pairwise complete cases.', footnote)
 
     if (options[["ci"]]) {
       jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
@@ -136,7 +161,8 @@ raterAgreement <- function(jaspResults, dataset, options) {
       "variables",
       "fleissKappa",
       "ci",
-      "ciLevel"
+      "ciLevel",
+      "dataStructure"
     )
   )
 
@@ -148,11 +174,14 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   if (ready) {
     #calculate Fleiss' Kappa
-    allKappaData <- .fleissKappaMod(dataset, detail = TRUE)
+    allKappaData <- irr::kappam.fleiss(dataset, detail = TRUE)
     overallKappa <- allKappaData$value
-    categoryKappas <- allKappaData$detail[, 1]
-    overallSE <- allKappaData$se
-    categorySE <- allKappaData$se_cat
+    categoryKappas <- allKappaData$detail[, "Kappa"]
+    # we can calculate the SE since we know the z value taken from a standard normal
+    SEkappa <- overallKappa / allKappaData$statistic
+    SEkappa.cat <- categoryKappas / allKappaData$detail[, "z"]
+    overallSE <- SEkappa
+    categorySE <- SEkappa.cat
     alpha <- 1 - options[["ciLevel"]]
 
     # for nominal text data we want the rating text to be displayed:
@@ -169,11 +198,15 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
     tableData <- list("ratings" = ratings,
                       "fKappa"  = c(overallKappa, categoryKappas))
-    footnote <- gettextf('%1$i subjects/items and %2$i raters/measurements.', nrow(dataset), ncol(dataset))
+
+    footnote <- gettextf('%1$i subjects/items and %2$i raters/measurements.', allKappaData$subjects, allKappaData$raters)
+    if (anyNA(dataset))
+      footnote <- gettextf('%1$s Based on listwise complete cases.', footnote)
+
 
     if (options[["ci"]]) {
       nCategories <- length(categories)
-      SE <- c(overallSE, rep(categorySE, nCategories))
+      SE <- c(overallSE, categorySE)
       overallCI <- overallKappa + c(-1, 1) * qnorm(1 - alpha / 2) * overallSE
       categoryCIL <- categoryKappas - qnorm(1 - alpha / 2) * categorySE
       categoryCIU <- categoryKappas + qnorm(1 - alpha / 2) * categorySE
@@ -206,7 +239,8 @@ raterAgreement <- function(jaspResults, dataset, options) {
       "krippendorffsAlpha",
       "ci",
       "ciLevel",
-      "krippenDorffsAlphaDataStructure"
+      "dataStructure",
+      "krippendorffsAlphaBootstrapSamplesForCI"
     )
   )
 
@@ -218,17 +252,15 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   if (ready) {
     #calculate Krippendorff's alpha
-    if (options[["krippendorffsAlphaDataStructure"]] == "ratersInColumns") {
-      kAlphaData <- t(as.matrix(dataset))
-    } else { # raters in rows
-      kAlphaData <- as.matrix(dataset)
-    }
     method <- options[["krippendorffsAlphaMethod"]]
-    kAlpha <- irr::kripp.alpha(kAlphaData, method)
+    kAlpha <- irr::kripp.alpha(t(as.matrix(dataset)), method) # the irr-package expects raters to be in rows.
 
     tableData <- list("method" = paste0(toupper(substr(method, 1, 1)), substr(method, 2, nchar(method))),
                       "kAlpha" = kAlpha$value)
+
     footnote <- gettextf('%1$i subjects/items and %2$i raters/measurements.', kAlpha$subjects, kAlpha$raters)
+    if (anyNA(dataset))
+      footnote <- gettextf('%1$s Based on pairwise complete cases.', footnote)
 
     if (options[["ci"]]) {
       alphas <- jaspResults[["bootstrapSamples"]]$object
@@ -256,20 +288,13 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   bootstrapSamples <- createJaspState()
   method <- options[["krippendorffsAlphaMethod"]]
-
-  if (options[["krippendorffsAlphaDataStructure"]] == "ratersInColumns") {
-    kAlphaData <- as.matrix(dataset)
-  } else { # raters in rows
-    kAlphaData <- t(as.matrix(dataset))
-  }
-
-  n <- nrow(kAlphaData)
   alphas <- numeric(options[["krippendorffsAlphaBootstrapSamplesForCI"]])
+  n <- nrow(dataset)
 
   jaspBase::.setSeedJASP(options)
 
   for (i in seq_len(options[["krippendorffsAlphaBootstrapSamplesForCI"]])) {
-    bootData <- as.matrix(kAlphaData[sample.int(n, size = n, replace = TRUE), ])
+    bootData <- as.matrix(dataset[sample.int(n, size = n, replace = TRUE), ])
     alphas[i] <- irr::kripp.alpha(t(bootData), method = method)$value
   }
   bootstrapSamples$object <- alphas
@@ -279,93 +304,9 @@ raterAgreement <- function(jaspResults, dataset, options) {
     "krippendorffsAlpha",
     "ci",
     "krippendorffsAlphaBootstrapSamplesForCI",
-    "krippendorffsAlphaDataStructure",
+    "dataStructure",
     "setSeed", "seed"))
   return()
 }
 
-
-
-#####################################################
-#copied from IRR package, modified to output Std. Err.
-######################################################
-
-.fleissKappaMod <- function(ratings, exact = FALSE, detail = FALSE)
-{
-  ratings <- as.matrix(na.omit(ratings))
-  ns <- nrow(ratings)
-  nr <- ncol(ratings)
-  lev <- levels(as.factor(ratings))
-  for (i in 1:ns) {
-    frow <- factor(ratings[i, ], levels = lev)
-    if (i == 1)
-      ttab <- as.numeric(table(frow))
-    else ttab <- rbind(ttab, as.numeric(table(frow)))
-  }
-  ttab <- matrix(ttab, nrow = ns)
-  agreeP <- sum((apply(ttab^2, 1, sum) - nr)/(nr * (nr - 1))/ns)
-  if (!exact) {
-    method <- "Fleiss' Kappa for m Raters"
-    chanceP <- sum(apply(ttab, 2, sum)^2)/(ns * nr)^2
-  }
-  else {
-    method <- "Fleiss' Kappa for m Raters (exact value)"
-    for (i in 1:nr) {
-      rcol <- factor(ratings[, i], levels = lev)
-      if (i == 1)
-        rtab <- as.numeric(table(rcol))
-      else rtab <- rbind(rtab, as.numeric(table(rcol)))
-    }
-    rtab <- rtab/ns
-    chanceP <- sum(apply(ttab, 2, sum)^2)/(ns * nr)^2 -
-      sum(apply(rtab, 2, var) * (nr - 1)/nr)/(nr - 1)
-  }
-  value <- (agreeP - chanceP)/(1 - chanceP)
-  if (!exact) {
-    pj <- apply(ttab, 2, sum)/(ns * nr)
-    qj <- 1 - pj
-    varkappa <- (2/(sum(pj * qj)^2 * (ns * nr * (nr - 1)))) *
-      (sum(pj * qj)^2 - sum(pj * qj * (qj - pj)))
-    SEkappa <- sqrt(varkappa)
-    u <- value/SEkappa
-    p.value <- 2 * (1 - pnorm(abs(u)))
-    if (detail) {
-      pj <- apply(ttab, 2, sum)/(ns * nr)
-      pjk <- (apply(ttab^2, 2, sum) - ns * nr * pj)/(ns *
-                                                       nr * (nr - 1) * pj)
-      kappaK <- (pjk - pj)/(1 - pj)
-      varkappaK <- 2/(ns * nr * (nr - 1))
-      SEkappaK <- sqrt(varkappaK)
-      uK <- kappaK/SEkappaK
-      p.valueK <- 2 * (1 - pnorm(abs(uK)))
-      tableK <- as.table(round(cbind(kappaK, uK, p.valueK),
-                               digits = 3))
-      rownames(tableK) <- lev
-      colnames(tableK) <- c("Kappa", "z", "p.value")
-    }
-  }
-  if (!exact) {
-    if (!detail) {
-      rval <- list(method = method, subjects = ns, raters = nr,
-                   irr.name = "Kappa", value = value)
-    }
-    else {
-      ###############
-      #BEGIN CHANGES
-      ###############
-      rval <- list(method = method, subjects = ns, raters = nr,
-                   irr.name = "Kappa", value = value, detail = tableK, se = SEkappa, se_cat = SEkappaK)
-      ############
-      #END CHANGES
-      #############
-    }
-    rval <- c(rval, stat.name = "z", statistic = u, p.value = p.value)
-  }
-  else {
-    rval <- list(method = method, subjects = ns, raters = nr,
-                 irr.name = "Kappa", value = value)
-  }
-  class(rval) <- "irrlist"
-  return(rval)
-}
 

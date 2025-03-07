@@ -2671,7 +2671,6 @@
         "svglite",
         "systemfonts",
         "withr"
-        "withr"
       ],
       "RoxygenNote": "7.3.2",
       "Roxygen": "list(markdown = TRUE)",
