@@ -33,12 +33,30 @@ Form
 			title: 			qsTr("Variables")
 			allowedColumns: ["nominal"]
 		}
+		
+		RadioButtonGroup
+		{
+			name: "dataStructure"
+			title: qsTr("Data Structure")
+			columns: 2
+			RadioButton
+			{
+			name:		"ratersInColumns"
+			label:		qsTr("Raters are in columns")
+			checked:	true
+			}
+
+			RadioButton
+			{
+			name:	"ratersInRows"
+			label:	qsTr("Raters are in rows")
+			}
+		}
 	}
+
 
 	Group
 	{
-
-
 		CheckBox
 		{
 			name:   	"cohensKappa"
@@ -68,40 +86,20 @@ Form
 					}
 				}
 			}
-			
-			
 		}
-		
+	
 		CheckBox
 		{
 			name:   	"fleissKappa"
 			label:  	qsTr("Fleiss' kappa")
 			checked: 	true
 		}
-		
+	
 		CheckBox
 		{
 			name:   	"krippendorffsAlpha"
 			label:  	qsTr("Krippendorff's alpha")
 			checked: 	true
-
-			RadioButtonGroup
-			{
-				name: "krippendorffsAlphaDataStructure"
-				title: qsTr("Data Structure")
-				RadioButton
-				{
-				name:		"ratersInColumns"
-				label:		qsTr("Raters are in columns")
-				checked:	true
-				}
-
-				RadioButton
-				{
-				name:	"ratersInRows"
-				label:	qsTr("Raters are in rows")
-				}
-			}
 			
 			DropDown
 			{
@@ -124,23 +122,7 @@ Form
 				min: 			100
 				max: 			1e7
 			}
-
-			CheckBox
-				{
-					name: 				"setSeed"
-					label: 				qsTr("Set seed")
-					childrenOnSameRow: 	true
-
-					IntegerField
-					{
-						name: 			"seed"
-						label: 			""
-						defaultValue: 	1234
-						fieldWidth: 	80
-						min: 			1
-						max: 			1e9
-					}
-				}
+			SetSeed{}
 		}
 	}
 
