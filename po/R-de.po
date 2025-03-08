@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2024-11-16 03:35\n"
+"POT-Creation-Date: 2025-03-08 03:28\n"
 "PO-Revision-Date: 2024-12-28 03:29+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -81,6 +81,11 @@ msgstr "Kappa"
 msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr "%1$i Messobjekte/Items und %2$i Beurteilern/Messungen."
 
+#, fuzzy
+msgid "%1$s Based on pairwise complete cases."
+msgstr ""
+"%s der Beobachtungen, es wurden paarweise vollständige Fälle verwendet."
+
 msgid "SE"
 msgstr "Standardfehler"
 
@@ -105,6 +110,11 @@ msgstr ""
 msgid "Fleiss' kappa"
 msgstr "Fleiss' Kappa"
 
+#, fuzzy
+msgid "%1$s Based on listwise complete cases."
+msgstr ""
+"%s der Beobachtungen, es wurden paarweise vollständige Fälle verwendet."
+
 msgid "Method"
 msgstr "Methode"
 
@@ -118,19 +128,19 @@ msgid ""
 "data."
 msgstr ""
 
-msgid "Standard error of measurement"
+msgid "Standard Error of Measurement"
 msgstr ""
 
-msgid "Sum score"
+msgid "Sum Score"
 msgstr ""
 
-msgid "Traditional"
+msgid "Score-Unrelated SEM"
 msgstr ""
 
 msgid "Counts"
 msgstr ""
 
-msgid "%1$s The traditional sem value equals %2$1.3f."
+msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
 msgstr ""
 
 msgid ""
@@ -138,7 +148,7 @@ msgid ""
 "the method's parameters."
 msgstr ""
 
-msgid "Sum score CI table"
+msgid "Sum Score CI Table"
 msgstr ""
 
 msgid ""
@@ -146,24 +156,20 @@ msgid ""
 "method's parameters."
 msgstr ""
 
-msgid "Sum scores"
-msgstr ""
-
-msgid "Histogram of counts per sum score group"
+msgid "Histogram of Counts per Sum Score Group"
 msgstr ""
 
 #, fuzzy
 msgid "Point Plots"
 msgstr "Posterior-Diagramme"
 
-msgid "Sum Score"
-msgstr ""
+#, fuzzy
+msgid "SEM"
+msgstr "Standardfehler"
 
-msgid "sem"
-msgstr ""
-
-msgid "Combined plot"
-msgstr ""
+#, fuzzy
+msgid "Combined Plot"
+msgstr "Posterior-Diagramme"
 
 msgid "Sum Score CI Plots"
 msgstr ""
@@ -376,10 +382,10 @@ msgstr ""
 msgid "Omega interval calculation with PFA failed."
 msgstr "Omega-Intervallberechnung mit PFA fehlgeschlagen."
 
-msgid "Calculating the standard error of coefficient alpha failed."
-msgstr ""
-
-msgid "Calculating the standard error of coefficient lambda2 failed."
+msgid ""
+"The analytic confidence interval is not available for coefficient alpha/"
+"lambda2 when data contain missings and pairwise complete observations are "
+"used. Try changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
 
 msgid ""
@@ -393,8 +399,9 @@ msgid "Omega item dropped statistics with PFA failed."
 msgstr "Omega-Item-weglassen-Statistik mit PFA fehlgeschlagen."
 
 msgid ""
-"The analytic confidence interval is not available for the item-rest "
-"correlation."
+"The analytic confidence interval not available for coefficient alpha/lambda2 "
+"when data contain missings and pairwise complete observations are used. Try "
+"changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
 
 msgid "Frequentist Scale Reliability Statistics"

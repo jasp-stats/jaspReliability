@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
-"POT-Creation-Date: 2024-11-16 03:35\n"
+"POT-Creation-Date: 2025-03-08 03:28\n"
 "PO-Revision-Date: 2024-05-06 03:07+0000\n"
 "Last-Translator: Cochrane <cunyikang@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -80,6 +80,9 @@ msgstr "%s kappa"
 msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr "%1$i 个被试/项目和 %2$i 个评分者/测量值。"
 
+msgid "%1$s Based on pairwise complete cases."
+msgstr ""
+
 msgid "SE"
 msgstr "标准误"
 
@@ -102,6 +105,9 @@ msgstr "如果只有 2 个水平，加权 kappa 等于未加权 kappa。"
 msgid "Fleiss' kappa"
 msgstr "Fleiss' kappa"
 
+msgid "%1$s Based on listwise complete cases."
+msgstr ""
+
 msgid "Method"
 msgstr ""
 
@@ -115,19 +121,19 @@ msgid ""
 "data."
 msgstr ""
 
-msgid "Standard error of measurement"
+msgid "Standard Error of Measurement"
 msgstr ""
 
-msgid "Sum score"
+msgid "Sum Score"
 msgstr ""
 
-msgid "Traditional"
+msgid "Score-Unrelated SEM"
 msgstr ""
 
 msgid "Counts"
 msgstr ""
 
-msgid "%1$s The traditional sem value equals %2$1.3f."
+msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
 msgstr ""
 
 msgid ""
@@ -135,7 +141,7 @@ msgid ""
 "the method's parameters."
 msgstr ""
 
-msgid "Sum score CI table"
+msgid "Sum Score CI Table"
 msgstr ""
 
 msgid ""
@@ -143,24 +149,20 @@ msgid ""
 "method's parameters."
 msgstr ""
 
-msgid "Sum scores"
-msgstr ""
-
-msgid "Histogram of counts per sum score group"
+msgid "Histogram of Counts per Sum Score Group"
 msgstr ""
 
 #, fuzzy
 msgid "Point Plots"
 msgstr "点值"
 
-msgid "Sum Score"
-msgstr ""
+#, fuzzy
+msgid "SEM"
+msgstr "标准误"
 
-msgid "sem"
-msgstr ""
-
-msgid "Combined plot"
-msgstr ""
+#, fuzzy
+msgid "Combined Plot"
+msgstr "点值"
 
 msgid "Sum Score CI Plots"
 msgstr ""
@@ -342,10 +344,10 @@ msgstr ""
 msgid "Omega interval calculation with PFA failed."
 msgstr ""
 
-msgid "Calculating the standard error of coefficient alpha failed."
-msgstr ""
-
-msgid "Calculating the standard error of coefficient lambda2 failed."
+msgid ""
+"The analytic confidence interval is not available for coefficient alpha/"
+"lambda2 when data contain missings and pairwise complete observations are "
+"used. Try changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
 
 msgid ""
@@ -359,8 +361,9 @@ msgid "Omega item dropped statistics with PFA failed."
 msgstr ""
 
 msgid ""
-"The analytic confidence interval is not available for the item-rest "
-"correlation."
+"The analytic confidence interval not available for coefficient alpha/lambda2 "
+"when data contain missings and pairwise complete observations are used. Try "
+"changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
 
 msgid "Frequentist Scale Reliability Statistics"

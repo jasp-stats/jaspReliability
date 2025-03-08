@@ -528,10 +528,6 @@ msgctxt "RaterAgreement|"
 msgid "No. of bootstrap samples for CI"
 msgstr "Aantal bootstraptrekkingen voor CI"
 
-msgctxt "RaterAgreement|"
-msgid "Set seed"
-msgstr "Gebruik toevalsgenerator beginwaarde"
-
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "ESS"
 msgstr "ESS"
@@ -597,10 +593,6 @@ msgid "Variables"
 msgstr "Variabelen"
 
 msgctxt "StandardErrorOfMeasurement|"
-msgid "Split-test methods"
-msgstr "Split-testmethoden"
-
-msgctxt "StandardErrorOfMeasurement|"
 msgid "Thorndike"
 msgstr "Thorndike"
 
@@ -627,10 +619,6 @@ msgstr "ANOVA"
 msgctxt "StandardErrorOfMeasurement|"
 msgid "IRT"
 msgstr "IRT"
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Binomial methods"
-msgstr "Binomiale methoden"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord"
@@ -665,10 +653,6 @@ msgid "Minimum number of observations per score group"
 msgstr "Minimumaantal waarnemingen per scoregroep"
 
 msgctxt "StandardErrorOfMeasurement|"
-msgid "Hide sem table"
-msgstr "Verberg sem tabel"
-
-msgctxt "StandardErrorOfMeasurement|"
 msgid "Plots"
 msgstr "Figuren"
 
@@ -679,10 +663,6 @@ msgstr "Histogram van somscore-aantallen"
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot per method"
 msgstr "Figuur per methode"
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Plot all sems"
-msgstr "Alle sems afbeelden"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Sum score plots"
@@ -759,3 +739,19 @@ msgstr "Paarsgewijs"
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Delete listwise"
 msgstr "Verwijderen in lijst"
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Split-Test Methods"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Binomial Methods"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Hide SEM table"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Plot all SEMs"
+msgstr ""

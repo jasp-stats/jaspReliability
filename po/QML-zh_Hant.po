@@ -572,10 +572,6 @@ msgctxt "RaterAgreement|"
 msgid "No. of bootstrap samples for CI"
 msgstr "估計信賴區間時的拔靴樣本數"
 
-msgctxt "RaterAgreement|"
-msgid "Set seed"
-msgstr "設定隨機種子"
-
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "ESS"
 msgstr ""
@@ -642,10 +638,6 @@ msgid "Variables"
 msgstr "變項"
 
 msgctxt "StandardErrorOfMeasurement|"
-msgid "Split-test methods"
-msgstr "分割測驗法"
-
-msgctxt "StandardErrorOfMeasurement|"
 msgid "Thorndike"
 msgstr "Thorndike法"
 
@@ -671,10 +663,6 @@ msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "IRT"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Binomial methods"
 msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
@@ -710,10 +698,6 @@ msgid "Minimum number of observations per score group"
 msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
-msgid "Hide sem table"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
 msgid "Plots"
 msgstr ""
 
@@ -723,10 +707,6 @@ msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot per method"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Plot all sems"
 msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
@@ -804,3 +784,19 @@ msgstr "成對排除法"
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Delete listwise"
 msgstr "完全排除法"
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Split-Test Methods"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Binomial Methods"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Hide SEM table"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Plot all SEMs"
+msgstr ""

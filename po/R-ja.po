@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
-"POT-Creation-Date: 2024-11-16 03:35\n"
+"POT-Creation-Date: 2025-03-08 03:28\n"
 "PO-Revision-Date: 2024-06-18 14:09+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -80,6 +80,10 @@ msgstr "カッパ"
 msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr "%1$i 参加者/項目 and %2$i 評価者/測定値."
 
+#, fuzzy
+msgid "%1$s Based on pairwise complete cases."
+msgstr "観測値%s のうち、ペアワイズ処理された完全なケースが使用されました."
+
 msgid "SE"
 msgstr "標準誤差"
 
@@ -102,6 +106,10 @@ msgstr "もし2水準しかないならば、重み付けカッパと重み無�
 msgid "Fleiss' kappa"
 msgstr "Fleiss' kappa"
 
+#, fuzzy
+msgid "%1$s Based on listwise complete cases."
+msgstr "観測値%s のうち、ペアワイズ処理された完全なケースが使用されました."
+
 msgid "Method"
 msgstr "方法"
 
@@ -115,19 +123,19 @@ msgid ""
 "data."
 msgstr ""
 
-msgid "Standard error of measurement"
+msgid "Standard Error of Measurement"
 msgstr ""
 
-msgid "Sum score"
+msgid "Sum Score"
 msgstr ""
 
-msgid "Traditional"
+msgid "Score-Unrelated SEM"
 msgstr ""
 
 msgid "Counts"
 msgstr ""
 
-msgid "%1$s The traditional sem value equals %2$1.3f."
+msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
 msgstr ""
 
 msgid ""
@@ -135,7 +143,7 @@ msgid ""
 "the method's parameters."
 msgstr ""
 
-msgid "Sum score CI table"
+msgid "Sum Score CI Table"
 msgstr ""
 
 msgid ""
@@ -143,24 +151,20 @@ msgid ""
 "method's parameters."
 msgstr ""
 
-msgid "Sum scores"
-msgstr ""
-
-msgid "Histogram of counts per sum score group"
+msgid "Histogram of Counts per Sum Score Group"
 msgstr ""
 
 #, fuzzy
 msgid "Point Plots"
 msgstr "事後分布プロット"
 
-msgid "Sum Score"
-msgstr ""
+#, fuzzy
+msgid "SEM"
+msgstr "標準誤差"
 
-msgid "sem"
-msgstr ""
-
-msgid "Combined plot"
-msgstr ""
+#, fuzzy
+msgid "Combined Plot"
+msgstr "事後分布プロット"
 
 msgid "Sum Score CI Plots"
 msgstr ""
@@ -369,10 +373,10 @@ msgstr ""
 msgid "Omega interval calculation with PFA failed."
 msgstr "PFAによるオメガの区間計算に失敗しました."
 
-msgid "Calculating the standard error of coefficient alpha failed."
-msgstr ""
-
-msgid "Calculating the standard error of coefficient lambda2 failed."
+msgid ""
+"The analytic confidence interval is not available for coefficient alpha/"
+"lambda2 when data contain missings and pairwise complete observations are "
+"used. Try changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
 
 msgid ""
@@ -386,8 +390,9 @@ msgid "Omega item dropped statistics with PFA failed."
 msgstr "PFAによる項目を除外したオメガ統計量の算出できませんでした."
 
 msgid ""
-"The analytic confidence interval is not available for the item-rest "
-"correlation."
+"The analytic confidence interval not available for coefficient alpha/lambda2 "
+"when data contain missings and pairwise complete observations are used. Try "
+"changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
 
 msgid "Frequentist Scale Reliability Statistics"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
-"POT-Creation-Date: 2024-11-16 03:35\n"
+"POT-Creation-Date: 2025-03-08 03:28\n"
 "PO-Revision-Date: 2025-02-13 21:01+0000\n"
 "Last-Translator: 陳正昌 <chencc99@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
@@ -80,6 +80,10 @@ msgstr ""
 msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr ""
 
+#, fuzzy
+msgid "%1$s Based on pairwise complete cases."
+msgstr "從 %s 的觀察值中，以配對完整的個案進行分析"
+
 msgid "SE"
 msgstr "標準誤"
 
@@ -102,13 +106,18 @@ msgstr "如果只有兩個水準，加權kappa等於未加權kappa。"
 msgid "Fleiss' kappa"
 msgstr ""
 
+#, fuzzy
+msgid "%1$s Based on listwise complete cases."
+msgstr "從 %s 的觀察值中，以配對完整的個案進行分析"
+
 msgid "Method"
 msgstr "方法"
 
 msgid ""
 "For the Lord's compound method, the test could not be split in equally sized "
 "parts with more than 1 item per part. Consider adding or removing items."
-msgstr "對於Lord的複合方法，測試無法分割成大小相等且每個部分包含超過1個項目的部分。請"
+msgstr ""
+"對於Lord的複合方法，測試無法分割成大小相等且每個部分包含超過1個項目的部分。請"
 "考慮增加或刪除項目。"
 
 msgid ""
@@ -116,19 +125,20 @@ msgid ""
 "data."
 msgstr "Lord、Keats 和 Lord 的複合方法僅適用於二元資料。"
 
-msgid "Standard error of measurement"
+#, fuzzy
+msgid "Standard Error of Measurement"
 msgstr "測量的標準誤"
 
-msgid "Sum score"
+msgid "Sum Score"
 msgstr ""
 
-msgid "Traditional"
+msgid "Score-Unrelated SEM"
 msgstr ""
 
 msgid "Counts"
 msgstr "計次"
 
-msgid "%1$s The traditional sem value equals %2$1.3f."
+msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
 msgstr ""
 
 msgid ""
@@ -136,7 +146,7 @@ msgid ""
 "the method's parameters."
 msgstr "%1$s 估計 %2$s 方法失敗。如果可能，您可以嘗試更改方法的參數。"
 
-msgid "Sum score CI table"
+msgid "Sum Score CI Table"
 msgstr ""
 
 msgid ""
@@ -144,24 +154,21 @@ msgid ""
 "method's parameters."
 msgstr "估計 %s 方法失敗。如果可能，您可以嘗試更改方法的參數。"
 
-msgid "Sum scores"
-msgstr ""
-
-msgid "Histogram of counts per sum score group"
+#, fuzzy
+msgid "Histogram of Counts per Sum Score Group"
 msgstr "各總分組的計數直方圖"
 
 #, fuzzy
 msgid "Point Plots"
 msgstr "事後機率圖"
 
-msgid "Sum Score"
-msgstr ""
+#, fuzzy
+msgid "SEM"
+msgstr "標準誤"
 
-msgid "sem"
-msgstr ""
-
-msgid "Combined plot"
-msgstr ""
+#, fuzzy
+msgid "Combined Plot"
+msgstr "事後機率圖"
 
 msgid "Sum Score CI Plots"
 msgstr ""
@@ -355,11 +362,11 @@ msgstr "無法為透過 PFA 獲得的coefficient ω，提供其信賴區間。"
 msgid "Omega interval calculation with PFA failed."
 msgstr "PFA失敗時的Omega區間"
 
-msgid "Calculating the standard error of coefficient alpha failed."
-msgstr "計算 Coefficient α的標準誤失敗。"
-
-msgid "Calculating the standard error of coefficient lambda2 failed."
-msgstr "計算 Guttman's λ2係數的標準誤失敗。"
+msgid ""
+"The analytic confidence interval is not available for coefficient alpha/"
+"lambda2 when data contain missings and pairwise complete observations are "
+"used. Try changing to 'Delete listwise' within 'Advanced Options'."
+msgstr ""
 
 msgid ""
 "The standard error of the average interitem correlation is not available."
@@ -373,9 +380,10 @@ msgid "Omega item dropped statistics with PFA failed."
 msgstr "因PFA失敗而未顯示Omega 題項"
 
 msgid ""
-"The analytic confidence interval is not available for the item-rest "
-"correlation."
-msgstr "無法為此題項與其它所有題項的相關係數，提供其信賴區間。"
+"The analytic confidence interval not available for coefficient alpha/lambda2 "
+"when data contain missings and pairwise complete observations are used. Try "
+"changing to 'Delete listwise' within 'Advanced Options'."
+msgstr ""
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "頻率派量表信度統計量"
@@ -417,6 +425,17 @@ msgstr[0] "以下題項與量表為負相關：%s "
 msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "以下題項反向計分：%s "
+
+#~ msgid "Calculating the standard error of coefficient alpha failed."
+#~ msgstr "計算 Coefficient α的標準誤失敗。"
+
+#~ msgid "Calculating the standard error of coefficient lambda2 failed."
+#~ msgstr "計算 Guttman's λ2係數的標準誤失敗。"
+
+#~ msgid ""
+#~ "The analytic confidence interval is not available for the item-rest "
+#~ "correlation."
+#~ msgstr "無法為此題項與其它所有題項的相關係數，提供其信賴區間。"
 
 #~ msgid "Greatest Lower Bound"
 #~ msgstr "最大下界"

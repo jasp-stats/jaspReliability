@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.19.2\n"
-"POT-Creation-Date: 2024-11-16 03:35\n"
+"POT-Creation-Date: 2025-03-08 03:28\n"
 "PO-Revision-Date: 2025-02-24 13:11+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/jasp/"
@@ -80,6 +80,10 @@ msgstr "கப்பா"
 msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr "%1$i நான் பாடங்கள்/உருப்படிகள் மற்றும் %2$i மதிப்பீட்டாளர்கள்/அளவீடுகள்."
 
+#, fuzzy
+msgid "%1$s Based on pairwise complete cases."
+msgstr "அவதானிப்புகளின் %s, சோடிவரிசை முழுமையான வழக்குகள் பயன்படுத்தப்பட்டன."
+
 msgid "SE"
 msgstr "உடன்"
 
@@ -102,6 +106,10 @@ msgstr "2 நிலைகள் மட்டுமே இருந்தால�
 msgid "Fleiss' kappa"
 msgstr "ஃப்ளீசின் கப்பா"
 
+#, fuzzy
+msgid "%1$s Based on listwise complete cases."
+msgstr "அவதானிப்புகளின் %s, சோடிவரிசை முழுமையான வழக்குகள் பயன்படுத்தப்பட்டன."
+
 msgid "Method"
 msgstr "முறை"
 
@@ -118,19 +126,21 @@ msgid ""
 "data."
 msgstr "இறைவன், கீட்ச் மற்றும் லார்ட்ச் கலவை முறை பைனரி தரவுகளுக்கு மட்டுமே கிடைக்கின்றன."
 
-msgid "Standard error of measurement"
+#, fuzzy
+msgid "Standard Error of Measurement"
 msgstr "அளவீட்டின் நிலையான பிழை"
 
-msgid "Sum score"
+msgid "Sum Score"
 msgstr "தொகை மதிப்பெண்"
 
-msgid "Traditional"
-msgstr "பாரம்பரிய"
+msgid "Score-Unrelated SEM"
+msgstr ""
 
 msgid "Counts"
 msgstr "எண்ணிக்கைகள்"
 
-msgid "%1$s The traditional sem value equals %2$1.3f."
+#, fuzzy
+msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
 msgstr "%1$s பாரம்பரிய SEM மதிப்பு %2$1.3f க்கு சமம்."
 
 msgid ""
@@ -140,7 +150,8 @@ msgstr ""
 "%1$s மதிப்பீட்டு %2$s முறை தோல்வியடைந்தது. முடிந்தால், நீங்கள் முறையின் அளவுருக்களை மாற்ற "
 "முயற்சி செய்யலாம்."
 
-msgid "Sum score CI table"
+#, fuzzy
+msgid "Sum Score CI Table"
 msgstr "தொகை மதிப்பெண் தொஒ அட்டவணை"
 
 msgid ""
@@ -150,22 +161,19 @@ msgstr ""
 "%s முறையை மதிப்பிடுவது தோல்வியடைந்தது. முடிந்தால், நீங்கள் முறையின் அளவுருக்களை மாற்ற "
 "முயற்சி செய்யலாம்."
 
-msgid "Sum scores"
-msgstr "தொகை மதிப்பெண்கள்"
-
-msgid "Histogram of counts per sum score group"
+#, fuzzy
+msgid "Histogram of Counts per Sum Score Group"
 msgstr "தொகை மதிப்பெண் குழுவிற்கு எண்ணிக்கையின் இச்டோகிராம்"
 
 msgid "Point Plots"
 msgstr "புள்ளி அடுக்கு"
 
-msgid "Sum Score"
-msgstr "தொகை மதிப்பெண்"
+#, fuzzy
+msgid "SEM"
+msgstr "உடன்"
 
-msgid "sem"
-msgstr "WHO"
-
-msgid "Combined plot"
+#, fuzzy
+msgid "Combined Plot"
 msgstr "ஒருங்கிணைந்த சூழ்ச்சி"
 
 msgid "Sum Score CI Plots"
@@ -371,11 +379,11 @@ msgstr "PFA உடன் பெறப்பட்ட குணக ஒமேக�
 msgid "Omega interval calculation with PFA failed."
 msgstr "PFA உடன் ஒமேகா இடைவெளி கணக்கீடு தோல்வியடைந்தது."
 
-msgid "Calculating the standard error of coefficient alpha failed."
-msgstr "குணக ஆல்பாவின் நிலையான பிழையைக் கணக்கிடுவது தோல்வியடைந்தது."
-
-msgid "Calculating the standard error of coefficient lambda2 failed."
-msgstr "குணக லாம்ப்டா 2 இன் நிலையான பிழையைக் கணக்கிடுவது தோல்வியடைந்தது."
+msgid ""
+"The analytic confidence interval is not available for coefficient alpha/"
+"lambda2 when data contain missings and pairwise complete observations are "
+"used. Try changing to 'Delete listwise' within 'Advanced Options'."
+msgstr ""
 
 msgid ""
 "The standard error of the average interitem correlation is not available."
@@ -388,9 +396,10 @@ msgid "Omega item dropped statistics with PFA failed."
 msgstr "ஒமேகா உருப்படி பி.எஃப்.ஏ உடன் புள்ளிவிவரங்களை கைவிட்டது."
 
 msgid ""
-"The analytic confidence interval is not available for the item-rest "
-"correlation."
-msgstr "உருப்படி-ஓய்வு தொடர்புக்கு பகுப்பாய்வு நம்பிக்கை இடைவெளி கிடைக்கவில்லை."
+"The analytic confidence interval not available for coefficient alpha/lambda2 "
+"when data contain missings and pairwise complete observations are used. Try "
+"changing to 'Delete listwise' within 'Advanced Options'."
+msgstr ""
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "அடிக்கடி அளவிலான நம்பகத்தன்மை புள்ளிவிவரங்கள்"
@@ -434,3 +443,26 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "பின்வரும் உருப்படி தலைகீழ் அளவிடப்பட்டது: %s. "
 msgstr[1] "பின்வரும் உருப்படிகள் தலைகீழ் அளவிடப்பட்டன: %s. "
+
+#~ msgid "Sum score"
+#~ msgstr "தொகை மதிப்பெண்"
+
+#~ msgid "Traditional"
+#~ msgstr "பாரம்பரிய"
+
+#~ msgid "Sum scores"
+#~ msgstr "தொகை மதிப்பெண்கள்"
+
+#~ msgid "sem"
+#~ msgstr "WHO"
+
+#~ msgid "Calculating the standard error of coefficient alpha failed."
+#~ msgstr "குணக ஆல்பாவின் நிலையான பிழையைக் கணக்கிடுவது தோல்வியடைந்தது."
+
+#~ msgid "Calculating the standard error of coefficient lambda2 failed."
+#~ msgstr "குணக லாம்ப்டா 2 இன் நிலையான பிழையைக் கணக்கிடுவது தோல்வியடைந்தது."
+
+#~ msgid ""
+#~ "The analytic confidence interval is not available for the item-rest "
+#~ "correlation."
+#~ msgstr "உருப்படி-ஓய்வு தொடர்புக்கு பகுப்பாய்வு நம்பிக்கை இடைவெளி கிடைக்கவில்லை."

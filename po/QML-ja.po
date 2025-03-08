@@ -626,11 +626,6 @@ msgctxt "RaterAgreement|"
 msgid "No. of bootstrap samples for CI"
 msgstr ""
 
-#, fuzzy
-msgctxt "RaterAgreement|"
-msgid "Set seed"
-msgstr "seedの設定"
-
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "ESS"
 msgstr ""
@@ -698,10 +693,6 @@ msgid "Variables"
 msgstr "変数"
 
 msgctxt "StandardErrorOfMeasurement|"
-msgid "Split-test methods"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
 msgid "Thorndike"
 msgstr ""
 
@@ -727,10 +718,6 @@ msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "IRT"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Binomial methods"
 msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
@@ -766,10 +753,6 @@ msgid "Minimum number of observations per score group"
 msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
-msgid "Hide sem table"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
 msgid "Plots"
 msgstr ""
 
@@ -779,10 +762,6 @@ msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot per method"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Plot all sems"
 msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
@@ -860,4 +839,20 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Delete listwise"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Split-Test Methods"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Binomial Methods"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Hide SEM table"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Plot all SEMs"
 msgstr ""

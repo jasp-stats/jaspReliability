@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2024-11-16 03:35\n"
+"POT-Creation-Date: 2025-03-08 03:28\n"
 "PO-Revision-Date: 2024-12-02 18:36+0000\n"
 "Last-Translator: JASP Stats <b.boutin@uva.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
@@ -81,6 +81,11 @@ msgstr "kappa"
 msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr "%1$i subjecten/items and %2$i beoordelaars/metingen."
 
+#, fuzzy
+msgid "%1$s Based on pairwise complete cases."
+msgstr ""
+"%s van de observaties, alleen paarsgewijze volledige observaties gebruikt."
+
 msgid "SE"
 msgstr "Std. Fout"
 
@@ -105,6 +110,11 @@ msgstr ""
 msgid "Fleiss' kappa"
 msgstr "Fleiss' kappa"
 
+#, fuzzy
+msgid "%1$s Based on listwise complete cases."
+msgstr ""
+"%s van de observaties, alleen paarsgewijze volledige observaties gebruikt."
+
 msgid "Method"
 msgstr "Methode"
 
@@ -123,19 +133,21 @@ msgstr ""
 "De Lord, Keats en Lord's samengestelde methode zijn alleen beschikbaar voor "
 "binaire gegevens."
 
-msgid "Standard error of measurement"
+#, fuzzy
+msgid "Standard Error of Measurement"
 msgstr "Standaardfout van de meting"
 
-msgid "Sum score"
+msgid "Sum Score"
 msgstr "Somscore"
 
-msgid "Traditional"
-msgstr "Traditioneel"
+msgid "Score-Unrelated SEM"
+msgstr ""
 
 msgid "Counts"
 msgstr "Aantallen"
 
-msgid "%1$s The traditional sem value equals %2$1.3f."
+#, fuzzy
+msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
 msgstr "%1$s De traditionele sem-waarde is gelijk aan %2$1.3f."
 
 msgid ""
@@ -145,7 +157,8 @@ msgstr ""
 "%1$s Het schatten van de methode %2$s is mislukt. Indien mogelijk kunt u "
 "proberen de parameters van de methode te wijzigen."
 
-msgid "Sum score CI table"
+#, fuzzy
+msgid "Sum Score CI Table"
 msgstr "Somscore CI tabel"
 
 msgid ""
@@ -155,22 +168,19 @@ msgstr ""
 "Het schatten van de %s methode is mislukt. Indien mogelijk kunt u proberen "
 "de parameters van de methode te wijzigen."
 
-msgid "Sum scores"
-msgstr "Somscores"
-
-msgid "Histogram of counts per sum score group"
+#, fuzzy
+msgid "Histogram of Counts per Sum Score Group"
 msgstr "Histogram van aantallen per somscore groep"
 
 msgid "Point Plots"
 msgstr "Puntgrafieken"
 
-msgid "Sum Score"
-msgstr "Somscore"
+#, fuzzy
+msgid "SEM"
+msgstr "Std. Fout"
 
-msgid "sem"
-msgstr "sem"
-
-msgid "Combined plot"
+#, fuzzy
+msgid "Combined Plot"
 msgstr "Gecombineerde figuur"
 
 msgid "Sum Score CI Plots"
@@ -382,11 +392,11 @@ msgstr ""
 msgid "Omega interval calculation with PFA failed."
 msgstr "Omega interval berekening met PFA mislukt."
 
-msgid "Calculating the standard error of coefficient alpha failed."
-msgstr "Het berekenen van de standaardfout van coëfficiënt alfa mislukte."
-
-msgid "Calculating the standard error of coefficient lambda2 failed."
-msgstr "Het berekenen van de standaardfout van coëfficiënt lambda2 mislukte."
+msgid ""
+"The analytic confidence interval is not available for coefficient alpha/"
+"lambda2 when data contain missings and pairwise complete observations are "
+"used. Try changing to 'Delete listwise' within 'Advanced Options'."
+msgstr ""
 
 msgid ""
 "The standard error of the average interitem correlation is not available."
@@ -400,11 +410,10 @@ msgid "Omega item dropped statistics with PFA failed."
 msgstr "Omega verwijderde item statistieken met PFA mislukt."
 
 msgid ""
-"The analytic confidence interval is not available for the item-rest "
-"correlation."
+"The analytic confidence interval not available for coefficient alpha/lambda2 "
+"when data contain missings and pairwise complete observations are used. Try "
+"changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
-"Het analytische betrouwbaarheidsinterval is niet beschikbaar voor de item-"
-"rest correlatie."
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Frequentistische Schaal Validiteitsstatistieken"
@@ -448,6 +457,32 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "De volgende item is omgekeerd geschaald: %s. "
 msgstr[1] "De volgende items zijn omgekeerd geschaald: %s. "
+
+#~ msgid "Sum score"
+#~ msgstr "Somscore"
+
+#~ msgid "Traditional"
+#~ msgstr "Traditioneel"
+
+#~ msgid "Sum scores"
+#~ msgstr "Somscores"
+
+#~ msgid "sem"
+#~ msgstr "sem"
+
+#~ msgid "Calculating the standard error of coefficient alpha failed."
+#~ msgstr "Het berekenen van de standaardfout van coëfficiënt alfa mislukte."
+
+#~ msgid "Calculating the standard error of coefficient lambda2 failed."
+#~ msgstr ""
+#~ "Het berekenen van de standaardfout van coëfficiënt lambda2 mislukte."
+
+#~ msgid ""
+#~ "The analytic confidence interval is not available for the item-rest "
+#~ "correlation."
+#~ msgstr ""
+#~ "Het analytische betrouwbaarheidsinterval is niet beschikbaar voor de item-"
+#~ "rest correlatie."
 
 #~ msgid "Greatest Lower Bound"
 #~ msgstr "Hoogste Ondergrens"
