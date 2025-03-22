@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-03-21 12:01+0000\n"
+"Last-Translator: Uğur ÇELİK <prof_ugur@hotmail.com>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/tr/>\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.11-dev\n"
 "X-Language: tr\n"
 "X-Qt-Contexts: true\n"
 
@@ -13,19 +19,19 @@ msgstr "Güvenilirlik"
 
 msgctxt "Description|"
 msgid "Classical"
-msgstr "Classical"
+msgstr "Klasik"
 
 msgctxt "Description|"
 msgid "Intraclass Correlation"
-msgstr ""
+msgstr "Sınıf İçi Korelasyon"
 
 msgctxt "Description|"
 msgid "Bayesian"
-msgstr "Bayesçi"
+msgstr "Bayes"
 
 msgctxt "Description|"
 msgid "Unidimensional Reliability"
-msgstr ""
+msgstr "Tek Boyutlu Güvenilirlik"
 
 msgctxt "Description|"
 msgid "Bayesian Unidimensional Reliability"
@@ -33,19 +39,19 @@ msgstr "Bayesçi Tek Boyutlu Güvenilirlik"
 
 msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
-msgstr ""
+msgstr "Test puanlarının güvenilirliğini ölçün"
 
 msgctxt "Description|"
 msgid "Rater Agreement"
-msgstr ""
+msgstr "Derecelendirme Anlaşması"
 
 msgctxt "Description|"
 msgid "Bland-Altman Plots"
-msgstr ""
+msgstr "Bland-Altman Grafikleri"
 
 msgctxt "BlandAltman|"
 msgid "Measurement Pairs"
-msgstr ""
+msgstr "Ölçüm Çiftleri"
 
 msgctxt "BlandAltman|"
 msgid "Confidence Interval"
@@ -53,7 +59,7 @@ msgstr "Güven aralığı"
 
 msgctxt "BlandAltman|"
 msgid "Shading"
-msgstr ""
+msgstr "Gölgelendirme"
 
 msgctxt "BlandAltman|"
 msgid "Use colour"
@@ -61,7 +67,7 @@ msgstr "renk kullan"
 
 msgctxt "BlandAltman|"
 msgid "Bland-Altman table"
-msgstr ""
+msgstr "Bland-Altman tablosu"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Variables"
@@ -69,23 +75,23 @@ msgstr "Değişkenler"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Each subject is rated by..."
-msgstr ""
+msgstr "Her konu şu şekilde derecelendirilir..."
 
 msgctxt "IntraclassCorrelation|"
 msgid "a different rater (randomly selected)"
-msgstr ""
+msgstr "farklı bir değerlendirici (rastgele seçilmiş)"
 
 msgctxt "IntraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
-msgstr ""
+msgstr "aynı rastgele seçilmiş puanlayıcılar/testler kümesi"
 
 msgctxt "IntraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
-msgstr ""
+msgstr "aynı sabit derecelendirici/test seti"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Ratings are averaged"
-msgstr ""
+msgstr "Derecelendirmeler ortalamadır"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Confidence Interval"
@@ -97,15 +103,15 @@ msgstr "Değişkenler"
 
 msgctxt "RaterAgreement|"
 msgid "Cohen's kappa"
-msgstr ""
+msgstr "Cohen kappa"
 
 msgctxt "RaterAgreement|"
 msgid "Unweighted"
-msgstr ""
+msgstr "Ağırlıksız"
 
 msgctxt "RaterAgreement|"
 msgid "Weighted"
-msgstr ""
+msgstr "Ağırlıklı"
 
 msgctxt "RaterAgreement|"
 msgid "Fleiss' kappa"
@@ -113,7 +119,7 @@ msgstr "Fleiss kappa"
 
 msgctxt "RaterAgreement|"
 msgid "Krippendorff's alpha"
-msgstr ""
+msgstr "Krippendorff's alphası"
 
 msgctxt "RaterAgreement|"
 msgid "Method"
@@ -125,636 +131,635 @@ msgstr "İsimsel"
 
 msgctxt "RaterAgreement|"
 msgid "Ordinal"
-msgstr ""
+msgstr "Sıralı"
 
 msgctxt "RaterAgreement|"
 msgid "Interval"
-msgstr ""
+msgstr "Aralık"
 
 msgctxt "RaterAgreement|"
 msgid "Ratio"
-msgstr ""
+msgstr "Oran"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Confidence Interval"
 msgstr "Güven aralığı"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Variables"
 msgstr "Değişkenler"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Analysis"
-msgstr ""
+msgstr "Analiz"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Scale Statistics"
-msgstr ""
+msgstr "Ölçek İstatistikleri"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Credible interval"
-msgstr ""
+msgstr "Güvenilir aralık"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2"
-msgstr ""
+msgstr "Guttman λ2"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Average interitem correlation"
-msgstr ""
+msgstr "Ortalama ara öğe korelasyonu"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Mean"
-msgstr ""
+msgstr "Ortalama"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "SD"
-msgstr ""
+msgstr "SS"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "of participants' sum scores"
-msgstr ""
+msgstr "katılımcıların toplam puanlarının"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "of participants' mean scores"
-msgstr ""
+msgstr "katılımcıların ortalama puanlarının"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Individual Item Statistics"
-msgstr ""
+msgstr "Bireysel Ürün İstatistikleri"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2 (if item dropped)"
-msgstr ""
+msgstr "Guttman'ın λ2'si (eğer öğer düşürülürse)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "If item dropped plot"
-msgstr ""
+msgstr "Eğer öğe düştüyse grafik"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items"
-msgstr ""
+msgstr "Öğeleri sırala"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by mean"
-msgstr ""
+msgstr "Öğeleri ortalamalarına göre sırala"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by KL-divergence"
-msgstr ""
+msgstr "Öğeleri KL-divergence'a göre sırala"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by KS-distance"
-msgstr ""
+msgstr "Öğeleri KS-mesafesine göre sırala"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Item-rest correlation"
-msgstr ""
+msgstr "Öğe-geri kalan korelasyonu"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Plot Posteriors"
-msgstr ""
+msgstr "Sonrakileri grafikle"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Fix range to 0-1"
-msgstr ""
+msgstr "Aralığı 0-1 olarak sabitle"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Display Priors"
-msgstr ""
+msgstr "Öncekileri göster"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Probability for:"
-msgstr ""
+msgstr "Olasılık:"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "< Reliability <"
-msgstr ""
+msgstr "< Güvenilirlik <"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Shade posterior region in plot"
-msgstr ""
+msgstr "Grafikteki arka plan gölgesi"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Convergence"
-msgstr ""
+msgstr "Yakınsama"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "MCMC parameters"
-msgstr ""
+msgstr "MCMC parametreleri"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. samples"
-msgstr ""
+msgstr "Örnek yok"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. burnin samples"
-msgstr ""
+msgstr "Hayır. örnekleri yak"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Thinning"
-msgstr ""
+msgstr "İnceltme"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. chains"
-msgstr ""
+msgstr "Zincirler yok"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Diagnostics"
-msgstr ""
+msgstr "Tanılamalar"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "R-hat"
-msgstr ""
+msgstr "R-şapkası"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Traceplots"
-msgstr ""
+msgstr "İz grafikleri"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Repeatability"
-msgstr ""
+msgstr "Tekrarlanabilirlik"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Set seed"
-msgstr ""
+msgstr "Sınıflandırmayı kur"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Samples"
-msgstr ""
+msgstr "Örnekler"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Disable saving samples"
-msgstr ""
+msgstr "Örnekleri kaydetmeyi devre dışı bırak"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Reverse-Scaled Items"
-msgstr ""
+msgstr "Ters Ölçekli Öğeler"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Normal-Scaled Items"
-msgstr ""
+msgstr "Normal Ölçekli Öğeler"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Priors"
-msgstr ""
+msgstr "Öncellikler"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse Wishart scale"
-msgstr ""
+msgstr "Ters Wishart ölçeği"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse Wishart df"
-msgstr ""
+msgstr "Ters Wishart sd (serbestlik derecesi)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse gamma:"
-msgstr ""
+msgstr "Ters gama:"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "shape"
-msgstr ""
+msgstr "şekil"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "scale"
-msgstr ""
+msgstr "ölçek"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Normal:"
-msgstr ""
+msgstr "Normal:"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "mean"
-msgstr ""
+msgstr "ortalama"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Advanced Options"
-msgstr ""
+msgstr "Gelişmiş Seçenekler"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Missing Values"
-msgstr ""
+msgstr "Eksik Değerler"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Bayesian imputation"
-msgstr ""
+msgstr "Bayes isnadı"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Exclude cases listwise"
-msgstr ""
+msgstr "Vakaları liste bazında hariç tut"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior predictive check"
-msgstr ""
+msgstr "Ardıl öngörücü kontrol"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Fit measures"
-msgstr ""
+msgstr "Ölçüleri yerleştir"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "p(RMSEA <"
-msgstr ""
+msgstr "p(RMSEA <"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ")"
-msgstr ""
+msgstr ")"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "p(CFI/TLI >"
-msgstr ""
+msgstr "p(CFI/TLI >"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Standardized factor loadings"
-msgstr ""
+msgstr "Standartlaştırılmış faktör yüklemeleri"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Coefficients"
-msgstr ""
+msgstr "Katsayılar"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Unstandardized"
-msgstr ""
+msgstr "Standartlaştırılmamış"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Standardized"
-msgstr ""
+msgstr "Standartlaştırılmış"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior Point Estimate"
-msgstr ""
+msgstr "Ardıl Nokta Tahmini"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Median"
-msgstr ""
+msgstr "Medyan"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Variables"
 msgstr "Değişkenler"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Analysis"
-msgstr ""
+msgstr "Analiz"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Scale Statistics"
-msgstr ""
+msgstr "Ölçek İstatistikleri"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2"
-msgstr ""
+msgstr "Guttman'ın λ2'si"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Average interitem correlation"
-msgstr ""
+msgstr "Ortalama ara öğe korelasyonu"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Mean"
-msgstr ""
+msgstr "Ortalama"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "SD"
-msgstr ""
+msgstr "SS"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "of participants' sum scores"
-msgstr ""
+msgstr "katılımcıların toplam puanlarının"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "of participants' mean scores"
-msgstr ""
+msgstr "katılımcıların ortalama puanlarının"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Individual Item Statistics"
-msgstr ""
+msgstr "Tekil Öğe İstatistikleri"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2 (if item dropped)"
-msgstr ""
+msgstr "Guttman'ın λ2'si (eğer öğe düşürülürse)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Item-rest correlation"
-msgstr ""
+msgstr "Öğe-geri kalan korelasyonu"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Reverse-Scaled Items"
-msgstr ""
+msgstr "Ters Ölçekli Öğeler"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Normal-Scaled Items"
-msgstr ""
+msgstr "Normal Ölçekli Öğeler"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Advanced Options"
-msgstr ""
+msgstr "Gelişmiş Seçenekler"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Missing Values"
-msgstr ""
+msgstr "Eksik Değerler"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "No. of bootstrap samples"
-msgstr ""
+msgstr "Önyükleme örneklerinin sayısı"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Non-parametric bootstrap"
-msgstr ""
+msgstr "Parametrik olmayan önyükleme"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Parametric bootstrap"
-msgstr ""
+msgstr "Parametrik önyükleme"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "CFA"
-msgstr ""
+msgstr "CFA"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Single factor model fit"
-msgstr ""
+msgstr "Tek faktörlü model uyumu"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Analytic interval"
-msgstr ""
+msgstr "Analitik aralık"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Bootstrapped interval"
-msgstr ""
+msgstr "Önyüklemeli aralık"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "PFA"
-msgstr ""
+msgstr "PFA"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Unstandardized"
-msgstr ""
+msgstr "Standartlaştırılmamış"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Standardized"
-msgstr ""
+msgstr "Standartlaştırılmış"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Repeatability"
-msgstr ""
+msgstr "Yinelenebilirlik"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Set seed"
-msgstr ""
+msgstr "Sınıflamayı kur"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Samples"
-msgstr ""
+msgstr "Örnekler"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Do not save samples"
-msgstr ""
+msgstr "Örnekleri kaydetme"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Click to learn more about saving the samples."
 msgstr ""
+"Örneklerin nasıl saklanacağı hakkında daha fazla bilgi edinmek için tıklayın."
 
 msgctxt "RaterAgreement|"
 msgid "Data Structure"
-msgstr ""
+msgstr "Veri Yapısı"
 
 msgctxt "RaterAgreement|"
 msgid "Raters are in columns"
-msgstr ""
+msgstr "Derecelendiriciler sütunlardadır"
 
 msgctxt "RaterAgreement|"
 msgid "Raters are in rows"
-msgstr ""
+msgstr "Derecelendiriciler satırlardadır"
 
 msgctxt "RaterAgreement|"
 msgid "No. of bootstrap samples for CI"
-msgstr ""
+msgstr "CI için önyükleme örneklerinin sayısı"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "ESS"
-msgstr ""
+msgstr "ESS"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Standardized factor loadings"
-msgstr ""
+msgstr "Standartlaştırılmış faktör yükleri"
 
 msgctxt "RaterAgreement|"
 msgid "Quadratic weights"
-msgstr ""
+msgstr "İkinci dereceden ağırlıklar"
 
 msgctxt "RaterAgreement|"
 msgid "Linear weights"
-msgstr ""
+msgstr "Doğrusal(Lineer) ağırlıklar"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Coefficient ω"
-msgstr ""
+msgstr "ω katsayısı"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Coefficient α"
-msgstr ""
+msgstr "α katsayısı"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Coefficient ω (if item dropped)"
-msgstr ""
+msgstr "ω katsayısı(eğer öğe düşürülürse)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Coefficient α (if item dropped)"
-msgstr ""
+msgstr "α katsayısı(eğer öğe düşürülürse)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Coefficient ω Estimation"
-msgstr ""
+msgstr "ω Tahmini Katsayısı"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficient ω"
-msgstr ""
+msgstr "ω katsayısı"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficient α"
-msgstr ""
+msgstr "α kasayısı"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficient ω  (if item dropped)"
-msgstr ""
+msgstr "ω katsayısı  (eğer öğe düşürülürse)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficient α (if item dropped)"
-msgstr ""
+msgstr "α kasayısı(eğer öğe düşürülürse)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficient ω Estimation"
-msgstr ""
+msgstr "Tahmini ω katsayısı"
 
 msgctxt "Description|"
 msgid "Standard Error of Measurement"
-msgstr ""
+msgstr "Ölçümün Standart Hatası"
 
-#, fuzzy
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Variables"
 msgstr "Değişkenler"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Thorndike"
-msgstr ""
+msgstr "Dikenli"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Feldt"
-msgstr ""
+msgstr "Feldt"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Number of splits"
-msgstr ""
+msgstr "Bölünme sayısı"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Mollenkopf-Feldt"
-msgstr ""
+msgstr "Mollenkopf-Feldt"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Degree of polynomial"
-msgstr ""
+msgstr "Polinom derecesi"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "ANOVA"
-msgstr ""
+msgstr "ANOVA"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "IRT"
-msgstr ""
+msgstr "IRT"
 
+#, fuzzy
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord"
-msgstr ""
+msgstr "Lord"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Keats"
-msgstr ""
+msgstr "Keats"
 
+#, fuzzy
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord's compound"
-msgstr ""
+msgstr "Lord'un karışımı-birleşimi"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Options"
-msgstr ""
+msgstr "Seçenekler"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Sum score table"
-msgstr ""
+msgstr "Toplam Puanlar Tablosu"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "CI:"
-msgstr ""
+msgstr "CI:"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "User defined reliability"
-msgstr ""
+msgstr "Kullanıcı tanımlı güvenilirlik"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Minimum number of observations per score group"
-msgstr ""
+msgstr "Puan grubu başına minimum gözlem sayısı"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plots"
-msgstr ""
+msgstr "Grafikler"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Histogram of sum score counts"
-msgstr ""
+msgstr "Toplam puan sayımlarının histogramı"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot per method"
-msgstr ""
+msgstr "Yöntem başına grafik"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Sum score plots"
-msgstr ""
+msgstr "Toplam puan grafikleri"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "CI"
-msgstr ""
+msgstr "CI"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Display cutoff score"
-msgstr ""
+msgstr "Kesme puanını göster"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Split-half coefficient"
-msgstr ""
+msgstr "Yarı yarıya bölünme katsayısı"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Variance"
-msgstr ""
+msgstr "Varyans"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Split-half coefficient (if item dropped)"
-msgstr ""
+msgstr "Yarı yarıya bölme katsayısı (eğer öğe çıkarılırsa)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "CTT-Coefficients (α, λ2)"
-msgstr ""
+msgstr "CTT-Katsayıları (α, λ2)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Confidence interval"
-msgstr ""
+msgstr "Güven aralığı"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Split-half coefficient"
-msgstr ""
+msgstr "Yarı yarıya bölünme katsayısı"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Variance"
-msgstr ""
+msgstr "Varyans"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Split-half coefficient (if item dropped)"
-msgstr ""
+msgstr "Yarı yarıya bölme katsayısı (eğer öğe çıkarılırsa)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Confidence intervals"
-msgstr ""
+msgstr "Güven aralıkları"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Reliability coefficients"
-msgstr ""
+msgstr "Güvenilirlik katsayıları"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Variance and SD"
-msgstr ""
+msgstr "Varyans ve SS"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Chisq-based"
-msgstr ""
+msgstr "Chisq tabanlı"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Non-parametric"
-msgstr ""
+msgstr "Parametrik olmayan"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficients"
-msgstr ""
+msgstr "Katsayılar"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Pairwise"
-msgstr ""
+msgstr "Çiftler halinde"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Delete listwise"
-msgstr ""
+msgstr "Liste bazında sil"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Split-Test Methods"
-msgstr ""
+msgstr "Bölünmüş Test Yöntemleri"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Binomial Methods"
-msgstr ""
+msgstr "Binom Yöntemleri"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Hide SEM table"
-msgstr ""
+msgstr "SEM tablosunu gizle"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot all SEMs"
-msgstr ""
+msgstr "Tüm SEM'leri çiz"
