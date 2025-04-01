@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
 "POT-Creation-Date: 2025-03-08 03:28\n"
-"PO-Revision-Date: 2025-03-17 13:06+0000\n"
-"Last-Translator: MikeWinny <winny63@gmail.com>\n"
+"PO-Revision-Date: 2025-04-01 15:06+0000\n"
+"Last-Translator: Иван Рудаков <riv@polygene.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/ru/>\n"
 "Language: ru\n"
@@ -90,7 +90,6 @@ msgstr "SE"
 msgid "Lower"
 msgstr "Нижний"
 
-#, fuzzy
 msgid "%s%% CI"
 msgstr "%s%% ДИ"
 
@@ -222,10 +221,10 @@ msgid "Coefficient"
 msgstr ""
 
 msgid "R-hat"
-msgstr ""
+msgstr "R-hat"
 
 msgid "ESS"
-msgstr ""
+msgstr "ECC"
 
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr ""
