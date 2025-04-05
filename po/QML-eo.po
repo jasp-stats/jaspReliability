@@ -3,98 +3,111 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Language: ru\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Reliability"
-msgstr "Надежность"
+msgstr ""
 
 msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
-msgstr "Оценка надежности результатов теста"
+msgstr ""
 
 msgctxt "Description|"
 msgid "Classical"
-msgstr "Классический анализ"
+msgstr ""
 
 msgctxt "Description|"
 msgid "Unidimensional Reliability"
-msgstr "Одномерная надежность"
+msgstr ""
 
 msgctxt "Description|"
 msgid "Intraclass Correlation"
-msgstr "Внутриклассовая корреляция"
+msgstr ""
 
 msgctxt "Description|"
 msgid "Rater Agreement"
-msgstr "Межоценочная надежность"
+msgstr ""
 
 msgctxt "Description|"
 msgid "Bland-Altman Plots"
-msgstr "Графики Бланда-Альтмана"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Standard Error of Measurement"
+msgstr ""
 
 msgctxt "Description|"
 msgid "Bayesian"
-msgstr "Байесовский анализ"
+msgstr ""
 
 msgctxt "Description|"
 msgid "Bayesian Unidimensional Reliability"
-msgstr "Байесовская одномерная надежность"
+msgstr ""
 
 msgctxt "BlandAltman|"
 msgid "Measurement Pairs"
-msgstr "Пары измерений"
+msgstr ""
 
 msgctxt "BlandAltman|"
 msgid "Confidence Interval"
-msgstr "Доверительный интервал"
+msgstr ""
 
 msgctxt "BlandAltman|"
 msgid "Shading"
-msgstr "Затенение"
+msgstr ""
 
 msgctxt "BlandAltman|"
 msgid "Use colour"
-msgstr "Использовать цвет"
+msgstr ""
 
 msgctxt "BlandAltman|"
 msgid "Bland-Altman table"
-msgstr "Таблица Бланда-Альтмана"
+msgstr ""
 
 msgctxt "IntraclassCorrelation|"
 msgid "Variables"
-msgstr "Переменные"
+msgstr ""
 
 msgctxt "IntraclassCorrelation|"
 msgid "Each subject is rated by..."
-msgstr "Оценивать по..."
+msgstr ""
 
 msgctxt "IntraclassCorrelation|"
 msgid "a different rater (randomly selected)"
-msgstr "другой показатель (выбирается случайным образом)"
+msgstr ""
 
 msgctxt "IntraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
-msgstr "один и тот же набор случайно выбранных оценщиков/тестеров"
+msgstr ""
 
 msgctxt "IntraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
-msgstr "одинаковый фиксированный набор оценок/тестов"
+msgstr ""
 
 msgctxt "IntraclassCorrelation|"
 msgid "Ratings are averaged"
-msgstr "Рейтинги усреднены"
+msgstr ""
 
 msgctxt "IntraclassCorrelation|"
 msgid "Confidence Interval"
-msgstr "Доверительный интервал"
+msgstr ""
 
 msgctxt "RaterAgreement|"
 msgid "Variables"
-msgstr "Переменные"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Data Structure"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Raters are in columns"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Raters are in rows"
+msgstr ""
 
 msgctxt "RaterAgreement|"
 msgid "Cohen's kappa"
@@ -102,11 +115,19 @@ msgstr ""
 
 msgctxt "RaterAgreement|"
 msgid "Unweighted"
-msgstr "Невзвешенный"
+msgstr ""
 
 msgctxt "RaterAgreement|"
 msgid "Weighted"
-msgstr "Взвешенный"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Quadratic weights"
+msgstr ""
+
+msgctxt "RaterAgreement|"
+msgid "Linear weights"
+msgstr ""
 
 msgctxt "RaterAgreement|"
 msgid "Fleiss' kappa"
@@ -136,28 +157,140 @@ msgctxt "RaterAgreement|"
 msgid "Ratio"
 msgstr ""
 
-#, fuzzy
+msgctxt "RaterAgreement|"
+msgid "No. of bootstrap samples for CI"
+msgstr ""
+
 msgctxt "RaterAgreement|"
 msgid "Confidence Interval"
-msgstr "Доверительный интервал"
+msgstr ""
 
-#, fuzzy
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Variables"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Split-Test Methods"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Thorndike"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Feldt"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Number of splits"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Mollenkopf-Feldt"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Degree of polynomial"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "ANOVA"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "IRT"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Binomial Methods"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Lord"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Keats"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Lord's compound"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Options"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Sum score table"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "CI:"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "User defined reliability"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Minimum number of observations per score group"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Hide SEM table"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Plots"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Histogram of sum score counts"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Plot per method"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Plot all SEMs"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Sum score plots"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "CI"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Display cutoff score"
+msgstr ""
+
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Variables"
-msgstr "Переменные"
+msgstr ""
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Analysis"
-msgstr "Анализ"
+msgstr ""
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Scale Statistics"
-msgstr "Статистика по шкале"
+msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Credible interval"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient α"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
@@ -165,16 +298,24 @@ msgid "Guttman's λ2"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Split-half coefficient"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Average interitem correlation"
-msgstr "Средняя межпунктовая корреляция"
+msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Mean"
-msgstr "Среднее"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Variance"
+msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "SD"
-msgstr "Стандартное отклонение"
+msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "of participants' sum scores"
@@ -189,7 +330,19 @@ msgid "Individual Item Statistics"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient ω (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2 (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Split-half coefficient (if item dropped)"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
@@ -266,14 +419,18 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Diagnostics"
-msgstr "Диагностика"
+msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "R-hat"
-msgstr "R-hat"
+msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Traceplots"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "ESS"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
@@ -302,7 +459,11 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Priors"
-msgstr "Априорные распределения"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "CTT-Coefficients (α, λ2)"
+msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse Wishart scale"
@@ -349,6 +510,10 @@ msgid "Exclude cases listwise"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Coefficient ω Estimation"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior predictive check"
 msgstr ""
 
@@ -390,37 +555,55 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Median"
-msgstr "Медиана"
+msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Variables"
-msgstr "Переменные"
+msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Analysis"
-msgstr "Анализ"
+msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Scale Statistics"
-msgstr "Статистика по шкале"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Confidence interval"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient α"
+msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2"
 msgstr ""
 
-#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Split-half coefficient"
+msgstr ""
+
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Average interitem correlation"
-msgstr "Средняя межпунктовая корреляция"
+msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Mean"
-msgstr "Среднее"
+msgstr ""
 
-#, fuzzy
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Variance"
+msgstr ""
+
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "SD"
-msgstr "Стандартное отклонение"
+msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "of participants' sum scores"
@@ -435,7 +618,19 @@ msgid "Individual Item Statistics"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient ω  (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2 (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Split-half coefficient (if item dropped)"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
@@ -455,7 +650,19 @@ msgid "Advanced Options"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Missing Values"
+msgid "Confidence intervals"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Reliability coefficients"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Analytic interval"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Bootstrapped interval"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
@@ -471,6 +678,22 @@ msgid "Parametric bootstrap"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Variance and SD"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Chisq-based"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Non-parametric"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficient ω Estimation"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "CFA"
 msgstr ""
 
@@ -479,15 +702,15 @@ msgid "Single factor model fit"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Analytic interval"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Bootstrapped interval"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "PFA"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Standardized factor loadings"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Coefficients"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
@@ -496,6 +719,18 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Standardized"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Missing Values"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Pairwise"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Delete listwise"
 msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
@@ -516,249 +751,4 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Click to learn more about saving the samples."
-msgstr ""
-
-msgctxt "RaterAgreement|"
-msgid "Data Structure"
-msgstr ""
-
-msgctxt "RaterAgreement|"
-msgid "Raters are in columns"
-msgstr ""
-
-msgctxt "RaterAgreement|"
-msgid "Raters are in rows"
-msgstr ""
-
-msgctxt "RaterAgreement|"
-msgid "No. of bootstrap samples for CI"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "ESS"
-msgstr "ESS"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Standardized factor loadings"
-msgstr ""
-
-msgctxt "RaterAgreement|"
-msgid "Quadratic weights"
-msgstr ""
-
-msgctxt "RaterAgreement|"
-msgid "Linear weights"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient ω"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient α"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient ω (if item dropped)"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient α (if item dropped)"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient ω Estimation"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient ω"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient α"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient ω  (if item dropped)"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient α (if item dropped)"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient ω Estimation"
-msgstr ""
-
-msgctxt "Description|"
-msgid "Standard Error of Measurement"
-msgstr ""
-
-#, fuzzy
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Variables"
-msgstr "Переменные"
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Thorndike"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Feldt"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Number of splits"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Mollenkopf-Feldt"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Degree of polynomial"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "ANOVA"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "IRT"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Lord"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Keats"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Lord's compound"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Options"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Sum score table"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "CI:"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "User defined reliability"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Minimum number of observations per score group"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Plots"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Histogram of sum score counts"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Plot per method"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Sum score plots"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "CI"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Display cutoff score"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Split-half coefficient"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Variance"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Split-half coefficient (if item dropped)"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "CTT-Coefficients (α, λ2)"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Confidence interval"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Split-half coefficient"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Variance"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Split-half coefficient (if item dropped)"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Confidence intervals"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Reliability coefficients"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Variance and SD"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Chisq-based"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Non-parametric"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficients"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Pairwise"
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Delete listwise"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Split-Test Methods"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Binomial Methods"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Hide SEM table"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Plot all SEMs"
 msgstr ""
