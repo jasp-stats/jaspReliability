@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2025-03-08 03:28\n"
-"PO-Revision-Date: 2024-12-28 03:29+0000\n"
+"PO-Revision-Date: 2025-04-12 10:48+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/de/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 msgid "Bland-Altman Plots"
 msgstr "Bland-Altman-Diagramme"
@@ -81,10 +81,8 @@ msgstr "Kappa"
 msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr "%1$i Messobjekte/Items und %2$i Beurteilern/Messungen."
 
-#, fuzzy
 msgid "%1$s Based on pairwise complete cases."
-msgstr ""
-"%s der Beobachtungen, es wurden paarweise vollständige Fälle verwendet."
+msgstr "%1$s basiert auf paarweise vollständigen Fällen."
 
 msgid "SE"
 msgstr "Standardfehler"
@@ -110,10 +108,8 @@ msgstr ""
 msgid "Fleiss' kappa"
 msgstr "Fleiss' Kappa"
 
-#, fuzzy
 msgid "%1$s Based on listwise complete cases."
-msgstr ""
-"%s der Beobachtungen, es wurden paarweise vollständige Fälle verwendet."
+msgstr "%1$s basiert auf listweise vollständigen Fällen."
 
 msgid "Method"
 msgstr "Methode"
@@ -129,7 +125,7 @@ msgid ""
 msgstr ""
 
 msgid "Standard Error of Measurement"
-msgstr ""
+msgstr "Standardfehler der Messung"
 
 msgid "Sum Score"
 msgstr ""
@@ -138,7 +134,7 @@ msgid "Score-Unrelated SEM"
 msgstr ""
 
 msgid "Counts"
-msgstr ""
+msgstr "Häufigkeiten"
 
 msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
 msgstr ""
@@ -159,17 +155,15 @@ msgstr ""
 msgid "Histogram of Counts per Sum Score Group"
 msgstr ""
 
-#, fuzzy
 msgid "Point Plots"
-msgstr "Posterior-Diagramme"
+msgstr "Punkt-Diagramme"
 
 #, fuzzy
 msgid "SEM"
-msgstr "Standardfehler"
+msgstr "SEM"
 
-#, fuzzy
 msgid "Combined Plot"
-msgstr "Posterior-Diagramme"
+msgstr "Kombiniertes Diagramm"
 
 msgid "Sum Score CI Plots"
 msgstr ""
@@ -184,10 +178,10 @@ msgid "Item-rest correlation"
 msgstr "Item-Rest-Korrelation"
 
 msgid "Mean"
-msgstr ""
+msgstr "Mittelwert"
 
 msgid "Variance"
-msgstr ""
+msgstr "Varianz"
 
 msgid "SD"
 msgstr "SD"
@@ -266,13 +260,12 @@ msgstr ""
 "Die von Dir eingegebenen Grenzen wurden in aufsteigender Reihenfolge neu "
 "geordnet, um aussagekräftige Ergebnisse zu erhalten."
 
-#, fuzzy
 msgid ""
 "Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
 "than %2$.2f"
 msgstr ""
-"Wahrscheinlichkeit, dass die Reliabilitätsstatistik größer als %.2f und "
-"kleiner als %.2f ist"
+"Wahrscheinlichkeit, dass der Reliabilitätskoeffizient größer ist als %1$.2f "
+"und kleiner als %2$.2f"
 
 msgid "Probability"
 msgstr "Wahrscheinlichkeit"
@@ -346,12 +339,11 @@ msgstr "Konvergenz-Verlaufsdiagramm"
 msgid "Iterations"
 msgstr "Iterationen"
 
-#, fuzzy
 msgid "Average interitem correlation"
-msgstr "Item-Rest-Korrelation"
+msgstr "Mittlere inter-Item Korrelation"
 
 msgid "%1$s%2$s"
-msgstr ""
+msgstr "%1$s%2$s"
 
 msgid ""
 "Omega calculation with CFA failed.\n"
