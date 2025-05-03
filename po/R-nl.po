@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2025-03-08 03:28\n"
-"PO-Revision-Date: 2024-12-02 18:36+0000\n"
-"Last-Translator: JASP Stats <b.boutin@uva.nl>\n"
+"PO-Revision-Date: 2025-05-03 03:36+0000\n"
+"Last-Translator: Koen Derks <koen-derks@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/nl/>\n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 msgid "Bland-Altman Plots"
 msgstr "Bland-Altman Grafieken"
@@ -30,7 +30,7 @@ msgid "Bias & Limits"
 msgstr "Bias & Limieten"
 
 msgid "Point Value"
-msgstr "Puntschatting"
+msgstr "Puntwaarde"
 
 msgid "Mean difference - 1.96 SD"
 msgstr "Gemiddeld verschil - 1,96 SD"
@@ -81,10 +81,8 @@ msgstr "kappa"
 msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr "%1$i subjecten/items and %2$i beoordelaars/metingen."
 
-#, fuzzy
 msgid "%1$s Based on pairwise complete cases."
-msgstr ""
-"%s van de observaties, alleen paarsgewijze volledige observaties gebruikt."
+msgstr "%1$s Gebaseerd op paarsgewijs volledige gevallen."
 
 msgid "SE"
 msgstr "Std. Fout"
@@ -110,10 +108,8 @@ msgstr ""
 msgid "Fleiss' kappa"
 msgstr "Fleiss' kappa"
 
-#, fuzzy
 msgid "%1$s Based on listwise complete cases."
-msgstr ""
-"%s van de observaties, alleen paarsgewijze volledige observaties gebruikt."
+msgstr "%1$s Gebaseerd op lijstgewijs volledige gevallen."
 
 msgid "Method"
 msgstr "Methode"
@@ -133,22 +129,20 @@ msgstr ""
 "De Lord, Keats en Lord's samengestelde methode zijn alleen beschikbaar voor "
 "binaire gegevens."
 
-#, fuzzy
 msgid "Standard Error of Measurement"
-msgstr "Standaardfout van de meting"
+msgstr "Standaardfout van de Meting"
 
 msgid "Sum Score"
 msgstr "Somscore"
 
 msgid "Score-Unrelated SEM"
-msgstr ""
+msgstr "Score-Niet-Gerelateerde SEM"
 
 msgid "Counts"
 msgstr "Aantallen"
 
-#, fuzzy
 msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
-msgstr "%1$s De traditionele sem-waarde is gelijk aan %2$1.3f."
+msgstr "%1$s De score-niet-gerelateerde SEM-waarde is gelijk aan %2$1.3f."
 
 msgid ""
 "%1$s Estimating the %2$s method failed. If possible, you might try changing "
@@ -157,9 +151,8 @@ msgstr ""
 "%1$s Het schatten van de methode %2$s is mislukt. Indien mogelijk kunt u "
 "proberen de parameters van de methode te wijzigen."
 
-#, fuzzy
 msgid "Sum Score CI Table"
-msgstr "Somscore CI tabel"
+msgstr "Somscore CI Tabel"
 
 msgid ""
 "Estimating the %s method failed. If possible, you might try changing the "
@@ -168,20 +161,17 @@ msgstr ""
 "Het schatten van de %s methode is mislukt. Indien mogelijk kunt u proberen "
 "de parameters van de methode te wijzigen."
 
-#, fuzzy
 msgid "Histogram of Counts per Sum Score Group"
-msgstr "Histogram van aantallen per somscore groep"
+msgstr "Histogram van Aantallen per Somscore Groep"
 
 msgid "Point Plots"
 msgstr "Puntgrafieken"
 
-#, fuzzy
 msgid "SEM"
-msgstr "Std. Fout"
+msgstr "SEM"
 
-#, fuzzy
 msgid "Combined Plot"
-msgstr "Gecombineerde figuur"
+msgstr "Gecombineerde Figuur"
 
 msgid "Sum Score CI Plots"
 msgstr "Somscore CI Figuren"
@@ -278,13 +268,12 @@ msgstr ""
 "De grenzen die u invoerde zijn van klein naar groot opnieuw geordend om "
 "betekenisvolle resultaten te krijgen."
 
-#, fuzzy
 msgid ""
 "Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
 "than %2$.2f"
 msgstr ""
-"Kans dat de Betrouwbaarheidscoëfficiënt Groter is dan %.2f en Kleiner dan "
-"%.2f"
+"Kans dat de Betrouwbaarheidscoëfficiënt Groter is dan %1$.2f en Kleiner dan "
+"%2$.2f"
 
 msgid "Probability"
 msgstr "Waarschijnlijkheid"
@@ -397,6 +386,10 @@ msgid ""
 "lambda2 when data contain missings and pairwise complete observations are "
 "used. Try changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
+"Het analytische betrouwbaarheidsinterval is niet beschikbaar voor de "
+"coëfficiënt alfa/lambda2 wanneer gegevens missende waardes bevatten en er "
+"paarsgewijs volledige gevallen worden gebruikt. Probeer te wijzigen naar "
+"'Lijstgewijs verwijderen' binnen 'Geavanceerde Opties'."
 
 msgid ""
 "The standard error of the average interitem correlation is not available."
@@ -414,6 +407,10 @@ msgid ""
 "when data contain missings and pairwise complete observations are used. Try "
 "changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
+"Het analytische betrouwbaarheidsinterval is niet beschikbaar voor "
+"coëfficiënt alfa/lambda2 wanneer gegevens missende waarden bevatten en er "
+"paarsgewijs volledige gevallen worden gebruikt. Probeer te wijzigen naar "
+"'Lijstgewijs verwijderen' binnen 'Geavanceerde Opties'."
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Frequentistische Schaal Validiteitsstatistieken"
