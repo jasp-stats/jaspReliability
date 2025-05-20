@@ -566,15 +566,17 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   if (is.null(out))
     out <- list()
 
-  if (options[["scaleSplithalf"]] && is.null(model[["empty"]]) && !is.null(model[["gibbsCor"]])) {
+  modelUse <- model[[if (options[["coefficientType"]] == "unstandardized") "gibbsSamp" else "gibbsCor"]]
+
+  if (options[["scaleSplithalf"]] && is.null(model[["empty"]]) && !is.null(modelUse)) {
 
     nit <- ncol(dataset)
     splits <- split(seq_len(nit), 1:2)
     startProgressbar(model[["progressbarLength"]])
-    out[["samp"]] <- matrix(NA, nrow(model[["gibbsCor"]]), ncol(model[["gibbsCor"]]))
+    out[["samp"]] <- matrix(NA, nrow(modelUse), ncol(modelUse))
     for (i in seq_len(nrow(model[["gibbsCor"]]))) {
       for (j in seq_len(ncol(model[["gibbsCor"]]))) {
-        out[["samp"]][i, j] <- .splithalfCor(model[["gibbsCor"]][i, j, , ], splits, progressbarTick)
+        out[["samp"]][i, j] <- .splithalfCor(modelUse[i, j, , ], splits, progressbarTick)
       }
     }
 
@@ -582,7 +584,8 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
       return(out)
 
     stateContainer <- .getStateContainerB(jaspResults)
-    stateContainer[["scaleSplithalfObj"]] <- createJaspState(out, dependencies = c("scaleSplithalf", "inverseWishartPriorScale", "inverseWishartPriorDf"))
+    stateContainer[["scaleSplithalfObj"]] <- createJaspState(out, dependencies = c("scaleSplithalf", "inverseWishartPriorScale", "inverseWishartPriorDf",
+                                                                                   "coefficientType"))
   }
 
   return(out)
@@ -608,7 +611,9 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
-      out[["itemSamp"]] <- .BayesianItemDroppedStats(model[["gibbsCor"]], .splithalfCor, progressbarTick, splithalf = TRUE)
+      modelUse <- model[[if (options[["coefficientType"]] == "unstandardized") "gibbsSamp" else "gibbsCor"]]
+
+      out[["itemSamp"]] <- .BayesianItemDroppedStats(modelUse, .splithalfCor, progressbarTick, splithalf = TRUE)
     }
 
     if (options[["samplesSavingDisabled"]])

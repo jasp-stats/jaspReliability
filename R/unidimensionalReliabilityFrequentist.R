@@ -25,7 +25,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   model[["itemDeletedAlpha"]] <- .frequentistAlphaItem(jaspResults, dataset, options, model)
   model[["scaleLambda2"]] <- .frequentistLambda2Scale(jaspResults, dataset, options, model)
   model[["itemDeletedLambda2"]] <- .frequentistLambda2Item(jaspResults, dataset, options, model)
-  model <- .frequentistSplithalfScale(jaspResults, dataset, options, model)
+  model[["scaleSplithalf"]] <- .frequentistSplithalfScale(jaspResults, dataset, options, model)
   model[["itemDeletedSplithalf"]] <- .frequentistSplithalfItem(jaspResults, dataset, options, model)
   model[["averageInterItemCorrelation"]] <- .frequentistAverageCor(jaspResults, dataset, options, model)
   model[["scaleMean"]] <- .frequentistMean(jaspResults, dataset, options, model)
@@ -448,12 +448,9 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
         nit <- ncol(dataset)
         splits <- split(seq_len(nit), 1:2)
-        if (options[["coefficientType"]] == "unstandardized" && is.null(model[["bootCor"]])) {
-          model[["bootCor"]] <- model[["bootSamp"]]
+        if (options[["coefficientType"]] == "unstandardized") {
           for (i in seq_len(options[["bootstrapSamples"]])) {
-            corm <- .cov2cor.callback(model[["bootSamp"]][i, , ], progressbarTick)
-            out[["samp"]][i] <- .splithalfCor(corm, splits, progressbarTick)
-            model[["bootCor"]][i, , ] <- corm
+            out[["samp"]][i] <- .splithalfCor(model[["bootSamp"]][i, , ], splits, progressbarTick)
           }
         } else { # either we have the boostrapped cor samples from the standardized coefficients or we have them through
           # the splithalf method
@@ -462,16 +459,13 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
       }
     }
 
-    # by returning the model and not just the out object, we can also return the bootCor sample
-    # (if we created it) which we need for the ifitem dropped stuff
-    model[["scaleSplithalf"]] <- out
     if (options[["samplesSavingDisabled"]])
-      return(model)
+      return(out)
 
     stateContainer <- .getStateContainerF(jaspResults)
-    stateContainer[["scaleSplithalfObj"]] <- createJaspState(out, dependencies = "scaleSplithalf")
+    stateContainer[["scaleSplithalfObj"]] <- createJaspState(out, dependencies = c("scaleSplithalf", "coefficientType"))
   }
-  return(model)
+  return(out)
 }
 
 .frequentistSplithalfItem <- function(jaspResults, dataset, options, model) {
@@ -484,6 +478,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
   if (options[["itemDeletedSplithalf"]] && is.null(model[["empty"]]) && options[["intervalMethod"]] == "bootstrapped") {
 
+    type <- ifelse(options[["coefficientType"]] == "unstandardized", "bootSamp", "bootCor")
 
     startProgressbar(options[["bootstrapSamples"]] * ncol(dataset))
     jaspBase::.setSeedJASP(options)
@@ -491,7 +486,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     nit <- ncol(dataset) - 1
     splits <- split(seq_len(nit), 1:2)
 
-    out[["itemSamp"]] <- .frequentistItemDroppedStats(covSamp = model[["bootCor"]],
+    out[["itemSamp"]] <- .frequentistItemDroppedStats(covSamp = model[[type]],
                                                       f1 = .splithalfCor,
                                                       callback = progressbarTick,
                                                       splits = splits)
@@ -502,7 +497,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     stateContainer <- .getStateContainerF(jaspResults)
     stateContainer[["itemDeletedSplithalfObj"]] <- createJaspState(out,
                                                                  dependencies = c("itemDeletedSplithalf",
-                                                                                  "intervalMethod"))
+                                                                                  "intervalMethod",
+                                                                                  "coefficientType"))
   }
   return(out)
 }
@@ -953,14 +949,14 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     if (options[["scaleSplithalf"]]) {
       nit <- ncol(dataset)
       splits <- split(seq_len(nit), 1:2)
-      out[["est"]][["scaleSplithalf"]] <- .splithalfData(dataset, splits = splits, useCase = model[["use.cases"]])
+      out[["est"]][["scaleSplithalf"]] <- .splithalfData(dtUse, splits = splits, useCase = model[["use.cases"]])
       if (options[["intervalMethod"]] == "bootstrapped") {
         samp <- model[["scaleSplithalf"]][["samp"]]
         out[["conf"]][["scaleSplithalf"]] <- quantile(samp, probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
         out[["se"]][["scaleSplithalf"]] <- sd(samp, na.rm = TRUE)
       } else { # interval analytic
-        partSums1 <- rowSums(dataset[, splits[[1]]])
-        partSums2 <- rowSums(dataset[, splits[[2]]])
+        partSums1 <- rowSums(dtUse[, splits[[1]]])
+        partSums2 <- rowSums(dtUse[, splits[[2]]])
 
         out[["se"]][["scaleSplithalf"]] <- .seSplithalf(partSums1, partSums2, model[["use.cases"]])
         out[["conf"]][["scaleSplithalf"]] <- out[["est"]][["scaleSplithalf"]] + c(-1, 1) * out[["se"]][["scaleSplithalf"]] * qnorm(1 - (1 - ciValue) / 2)
@@ -1177,8 +1173,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         out[["upper"]][["itemDeletedSplithalf"]] <- c(NA, NA)
       }
 
-      for (i in seq_len(ncol(dataset))) {
-        dtCut <- dataset[, -i]
+      for (i in seq_len(ncol(dtUse))) {
+        dtCut <- dtUse[, -i]
         nit <- ncol(dtCut)
         splits <- split(seq_len(nit), 1:2)
         est <- .splithalfData(dtCut, splits = splits, useCase = model[["use.cases"]])
@@ -1927,11 +1923,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 .seLambda3 <- function(X, VC = NULL, eps = 1e-16){
   J <- ncol(X)
   return((J / (J - 1)) *.seLambda1(X, VC))
-}
-
-# Sample split-half reliability coefficient: input requires 2 scores (sum scores of test halves)
-.splithalf <- function(x, y) {
-  return(2 * cor(x, y) / (1 + cor(x, y)))
 }
 
 
