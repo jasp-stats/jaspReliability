@@ -1111,7 +1111,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
               out[["upper"]][["itemDeletedAlpha"]][i] <- NA
               out[["error"]][["itemDeletedAlpha"]] <- gettext("The analytic confidence interval not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'.")
             } else {
-              se <- .seLambda3(dtUse[, -i])
+              se <- .seLambda3(dtUse[, -i, drop = FALSE])
               conf <- est + c(-1, 1) * se * qnorm(1 - (1 - ciValue) / 2)
               out[["lower"]][["itemDeletedAlpha"]][i] <- conf[1]
               out[["upper"]][["itemDeletedAlpha"]][i] <- conf[2]
@@ -1148,7 +1148,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
               if (is.null(out[["error"]][["itemDeletedAlpha"]]))
                 out[["error"]][["itemDeletedLambda2"]] <- gettext("The analytic confidence interval not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'.")
             } else {
-              se <- .seLambda2(dtUse[, -i])
+              se <- .seLambda2(dtUse[, -i, drop = FALSE])
               conf <- est + c(-1, 1) * se * qnorm(1 - (1 - ciValue) / 2)
               out[["lower"]][["itemDeletedLambda2"]][i] <- conf[1]
               out[["upper"]][["itemDeletedLambda2"]][i] <- conf[2]
@@ -1174,7 +1174,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
       }
 
       for (i in seq_len(ncol(dtUse))) {
-        dtCut <- dtUse[, -i]
+        dtCut <- dtUse[, -i, drop = FALSE]
         nit <- ncol(dtCut)
         splits <- split(seq_len(nit), 1:2)
         est <- .splithalfData(dtCut, splits = splits, useCase = model[["use.cases"]])
