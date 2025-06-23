@@ -7,6 +7,9 @@
 #' @export
 unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
+  sink(file="~/Downloads/log.txt")
+  on.exit(sink(NULL))
+
   options <- jaspBase::.parseAndStoreFormulaOptions(jaspResults, options, "inverseWishartPriorScale")
 
   # check for listwise deletion
@@ -856,6 +859,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
     out[["est"]] <- lapply(samps, .getPointEstFun(options[["pointEstimate"]]))
     out[["cred"]] <- lapply(samps, function(x) coda::HPDinterval(coda::mcmc(c(x)), prob = ciValue))
+    print(str(out))
 
     if (options[["rHat"]]) {
       out[["rHat"]] <- lapply(samps, function(x) {
@@ -908,7 +912,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["scaleResultsObj"]] <- createJaspState(out, dependencies = c("scaleCiLevel",
                                                                                  "scaleMean", "scaleSd", "scaleVar", "rHat",
-                                                                                 "scaleAlpha", "scaleOmega",
+                                                                                 "scaleAlpha", "scaleOmega", "scaleSplithalf",
                                                                                  "scaleLambda2", "averageInterItemCorrelation",
                                                                                  "meanSdScoresMethod", "inverseWishartPriorScale", "inverseWishartPriorDf",
                                                                                  "inverseGammaPriorShape", "inverseGammaPriorScale",
@@ -965,7 +969,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["itemResultsObj"]] <- createJaspState(out, dependencies = c("itemDeletedOmega",  "itemDeletedAlpha",
-                                                                                "itemDeletedLambda2", "itemCiLevel",
+                                                                                "itemDeletedLambda2", "itemCiLevel", "itemDeletedSplitHalf",
                                                                                 "itemRestCorrelation", "itemMean", "itemSd", "itemVar",
                                                                                 "inverseWishartPriorScale", "inverseWishartPriorDf", "inverseGammaPriorShape", "inverseGammaPriorScale",
                                                                                 "coefficientType", "pointEstimate", "normalPriorMean"))
@@ -1114,6 +1118,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     }
   }
 
+  print(unlist(model[["scaleResults"]][["est"]], use.names = FALSE))
   # if no coefficients selected or not enough variables:
   if (!.is.empty(model)) {
     dt$estimate <- unlist(model[["scaleResults"]][["est"]], use.names = FALSE)
