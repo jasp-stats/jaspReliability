@@ -18,9 +18,6 @@
 #' @export
 standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
-  # sink(file = "~/Downloads/log.txt")
-  # on.exit(sink(NULL))
-
   ready <- ncol(dataset) > 1
 
   dataset <- .semHandleData(dataset, options)

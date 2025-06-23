@@ -38,10 +38,10 @@ raterAgreement <- function(jaspResults, dataset, options) {
 .raterAgreementHandleData <- function(dataset, options) {
 
   if (options[["dataStructure"]] == "ratersInColumns") {
-    dataset <- dataset
-  } else { # raters in rows
-    dataset <- as.data.frame(t(dataset))
+    return(dataset)
   }
+
+  dataset <- as.data.frame(t(dataset))
 
   return(dataset)
 }
@@ -79,71 +79,78 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   if (ready) {
 
-    #calculate Cohen's Kappas
-    possiblePairs <- combn(ncol(dataset), 2)
-    nPairs <- ncol(possiblePairs)
+    if (nrow(dataset) > 2) { # psych gives an error when there are not at least 3 subjects rated
+      #calculate Cohen's Kappas
+      possiblePairs <- combn(ncol(dataset), 2)
+      nPairs <- ncol(possiblePairs)
 
-    out_kappa <- psych::cohen.kappa(dataset, alpha = 1 - options[["ciLevel"]],
-                                    w.exp = ifelse(options[["weightType"]] == "quadratic", 2, 1))
-    # if weightType = linear, the exponent should be 1
+      out_kappa <- psych::cohen.kappa(dataset, alpha = 1 - options[["ciLevel"]],
+                                      w.exp = ifelse(options[["weightType"]] == "quadratic", 2, 1))
+      # if weightType = linear, the exponent should be 1
 
-    if (nPairs == 1) {
-      allKappaData <- list(out_kappa)
-      allPairStrings <- paste(options[["variables"]], collapse = " - ")
+      if (nPairs == 1) {
+        allKappaData <- list(out_kappa)
+        allPairStrings <- paste(options[["variables"]], collapse = " - ")
+      } else {
+        allKappaData <- out_kappa[2:(nPairs + 1)]
+        allPairStrings <- sub(" ", " - ", names(out_kappa[2:(nPairs + 1)]))
+      }
+
+      #Extract Kappas and CIs
+      allKappas <- c()
+      allSE <- c()
+      allLowerBounds <- c()
+      allUpperBounds <- c()
+
+      for (i in allKappaData) {
+        kappaData <- i$confid
+        k <- ifelse(weighted, 2, 1)
+        allKappas <- c(allKappas, kappaData[k, 2])
+        allSE <- c(allSE, sqrt(ifelse(weighted, i$var.weighted, i$var.kappa)))
+        allLowerBounds <- c(allLowerBounds, kappaData[k, 1])
+        allUpperBounds <- c(allUpperBounds, kappaData[k, 3])
+      }
+
+      averageKappa <- mean(allKappas)
+
+      tableData <- list("ratings" = c("Average kappa", allPairStrings),
+                        "cKappa" = c(averageKappa, allKappas))
+
+      # because cohens kappa uses pairwise rater agreements the number of subjects overall is not listwise deleted
+      if (options[["dataStructure"]] == "ratersInColumns") {
+        dataCount <- dataset[rowSums(is.na(dataset)) < ncol(dataset), ]
+      } else {
+        dataCount <- dataset[, colSums(is.na(dataset)) < nrow(dataset)]
+      }
+
+      footnote <- gettextf('%1$i subjects/items and %2$i raters/measurements.', nrow(dataCount), ncol(dataCount))
+      if (anyNA(dataset))
+        footnote <- gettextf('%1$s Based on pairwise complete cases.', footnote)
+
+      if (options[["ci"]]) {
+        jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
+        jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
+        jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
+        tableData[["SE"]] <- c(NA, allSE)
+        tableData[["CIL"]] <- c(NA, allLowerBounds)
+        tableData[["CIU"]] <- c(NA, allUpperBounds)
+        footnote <- paste(footnote, gettext('Confidence intervals are asymptotic.'))
+      }
+
+
+      #if weighted kappa option is on but data only has 2 levels
+      if (weighted && length(levels(unlist(dataset))) < 3)
+        footnote <- paste(footnote, gettext('If there are only 2 levels, weighted kappa is equal to unweighted kappa.'))
+
+      jaspTable$setData(tableData)
+      jaspTable$addFootnote(footnote)
     } else {
-      allKappaData <- out_kappa[2:(nPairs + 1)]
-      allPairStrings <- sub(" ", " - ", names(out_kappa[2:(nPairs + 1)]))
-    }
-
-    #Extract Kappas and CIs
-    allKappas <- c()
-    allSE <- c()
-    allLowerBounds <- c()
-    allUpperBounds <- c()
-
-    for (i in allKappaData) {
-      kappaData <- i$confid
-      k <- ifelse(weighted, 2, 1)
-      allKappas <- c(allKappas, kappaData[k, 2])
-      allSE <- c(allSE, sqrt(ifelse(weighted, i$var.weighted, i$var.kappa)))
-      allLowerBounds <- c(allLowerBounds, kappaData[k, 1])
-      allUpperBounds <- c(allUpperBounds, kappaData[k, 3])
-    }
-
-    averageKappa <- mean(allKappas)
-
-    tableData <- list("ratings" = c("Average kappa", allPairStrings),
-                      "cKappa" = c(averageKappa, allKappas))
-
-    # because cohens kappa uses pairwise rater agreements the number of subjects overall is not listwise deleted
-    if (options[["dataStructure"]] == "ratersInColumns") {
-      dataCount <- dataset[rowSums(is.na(dataset)) < ncol(dataset), ]
-    } else {
-      dataCount <- dataset[, colSums(is.na(dataset)) < nrow(dataset)]
-    }
-
-    footnote <- gettextf('%1$i subjects/items and %2$i raters/measurements.', nrow(dataCount), ncol(dataCount))
-    if (anyNA(dataset))
-      footnote <- gettextf('%1$s Based on pairwise complete cases.', footnote)
-
-    if (options[["ci"]]) {
-      jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
-      jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
-      jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
-      tableData[["SE"]] <- c(NA, allSE)
-      tableData[["CIL"]] <- c(NA, allLowerBounds)
-      tableData[["CIU"]] <- c(NA, allUpperBounds)
-      footnote <- paste(footnote, gettext('Confidence intervals are asymptotic.'))
+      jaspTable$setError(gettext("Cohen's kappa requires at least 3 subjects/items."))
     }
 
 
-    #if weighted kappa option is on but data only has 2 levels
-    if (weighted && length(levels(unlist(dataset))) < 3)
-      footnote <- paste(footnote, gettext('If there are only 2 levels, weighted kappa is equal to unweighted kappa.'))
-
-    jaspTable$setData(tableData)
-    jaspTable$addFootnote(footnote)
   }
+
   return(jaspTable)
 }
 

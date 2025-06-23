@@ -4,9 +4,6 @@
 #' @export
 unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) {
 
-  sink(file="~/Downloads/log.txt")
-  on.exit(sink(NULL))
-
   # check for listwise deletion
   datasetOld <- dataset
   dataset <- .handleData(datasetOld, options)
@@ -952,7 +949,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     if (options[["scaleSplithalf"]]) {
       nit <- ncol(dataset)
       splits <- split(seq_len(nit), 1:2)
-      print(splits)
       out[["est"]][["scaleSplithalf"]] <- .splithalfData(dtUse, splits = splits, useCase = model[["use.cases"]])
       if (options[["intervalMethod"]] == "bootstrapped") {
         samp <- model[["scaleSplithalf"]][["samp"]]
