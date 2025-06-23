@@ -235,6 +235,7 @@ Form
 			title: 		qsTr("Coefficient ω Estimation")
 			name: 		"omegaEstimationMethod"
 			enabled: 	omega.checked
+			id: omegaEst
 
 			RadioButton
 			{
@@ -253,7 +254,6 @@ Form
 			{
 				value: "pfa"
 				label: qsTr("PFA")
-				enabled: intervalMethod.value == "bootstrapped"
 			}
 
 			CheckBox
