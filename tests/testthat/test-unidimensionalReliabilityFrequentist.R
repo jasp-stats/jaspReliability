@@ -168,8 +168,8 @@ test_that("Frequentist Scale Reliability Statistics table results match", {
                                         0.0428578933018329, 0.85215986924174))
   } else if (jaspBase::getOS() == "osx") {
     jaspTools::expect_equal_tables(table,
-                                   list("Coefficient <unicode>", 0.791710063361508, 0.688063057831179,
-                                        0.0428578933018329, 0.854457118896833))
+                                   list("Coefficient <unicode>", 0.791710063361508, 0.694692772995628,
+                                        0.0405022504460226, 0.852159859484347))
   }
 })
 

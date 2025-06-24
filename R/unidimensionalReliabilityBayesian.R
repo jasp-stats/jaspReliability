@@ -908,7 +908,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["scaleResultsObj"]] <- createJaspState(out, dependencies = c("scaleCiLevel",
                                                                                  "scaleMean", "scaleSd", "scaleVar", "rHat",
-                                                                                 "scaleAlpha", "scaleOmega",
+                                                                                 "scaleAlpha", "scaleOmega", "scaleSplithalf",
                                                                                  "scaleLambda2", "averageInterItemCorrelation",
                                                                                  "meanSdScoresMethod", "inverseWishartPriorScale", "inverseWishartPriorDf",
                                                                                  "inverseGammaPriorShape", "inverseGammaPriorScale",
@@ -965,7 +965,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
     stateContainer <- .getStateContainerB(jaspResults)
     stateContainer[["itemResultsObj"]] <- createJaspState(out, dependencies = c("itemDeletedOmega",  "itemDeletedAlpha",
-                                                                                "itemDeletedLambda2", "itemCiLevel",
+                                                                                "itemDeletedLambda2", "itemCiLevel", "itemDeletedSplitHalf",
                                                                                 "itemRestCorrelation", "itemMean", "itemSd", "itemVar",
                                                                                 "inverseWishartPriorScale", "inverseWishartPriorDf", "inverseGammaPriorShape", "inverseGammaPriorScale",
                                                                                 "coefficientType", "pointEstimate", "normalPriorMean"))

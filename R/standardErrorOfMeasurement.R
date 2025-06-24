@@ -18,12 +18,9 @@
 #' @export
 standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
-  # sink(file = "~/Downloads/log.txt")
-  # on.exit(sink(NULL))
+  ready <- length(options[["variables"]]) > 1
 
-  ready <- ncol(dataset) > 1
-
-  dataset <- .semHandleData(dataset, options)
+  dataset <- .semHandleData(dataset, options, ready)
 
   .semErrorCheck(dataset, options, ready)
 
@@ -53,7 +50,9 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
 #### the common functions ####
 # Read in the dataset
-.semHandleData <- function(dataset, options) {
+.semHandleData <- function(dataset, options, ready) {
+
+  if (!ready) return(dataset)
 
   dataset <- dataset[complete.cases(dataset), ]
 

@@ -878,7 +878,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
           if (options[["intervalMethod"]] == "analytic") {
             out[["conf"]][["scaleOmega"]] <- c(NA, NA)
             out[["se"]][["scaleOmega"]] <- NA
-            out[["error"]][["scaleOmega"]] <- gettext("The analytic confidence interval is not available for coefficient omega obtained with PFA.")
+            out[["error"]][["scaleOmega"]] <- gettext("The analytic confidence interval is not available for coefficient omega obtained with PFA. Change to 'Bootstrapped' in Advanced Options.")
           } else {
             if (sum(!is.na(model[["scaleOmega"]][["samp"]])) >= 2) {
               out[["conf"]][["scaleOmega"]] <- quantile(model[["scaleOmega"]][["samp"]],
@@ -2024,8 +2024,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
 .splithalfData <- function(X, splits, useCase) {
 
-  partSums1 <- rowSums(X[, splits[[1]]])
-  partSums2 <- rowSums(X[, splits[[2]]])
+  partSums1 <- rowSums(X[, splits[[1]], drop = FALSE])
+  partSums2 <- rowSums(X[, splits[[2]], drop = FALSE])
 
   rsh_uncorrected <- cor(partSums1, partSums2, use = useCase)
   rsh <- (2 * rsh_uncorrected) / (1 + rsh_uncorrected)
