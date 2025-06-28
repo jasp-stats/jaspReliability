@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.19.2\n"
-"POT-Creation-Date: 2025-03-08 03:28\n"
+"POT-Creation-Date: 2025-06-28 03:39\n"
 "PO-Revision-Date: 2025-05-17 07:56+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/jasp/"
@@ -102,6 +102,9 @@ msgstr "நம்பிக்கை இடைவெளிகள் அறிக�
 msgid ""
 "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
 msgstr "2 நிலைகள் மட்டுமே இருந்தால், எடையுள்ள கப்பா கவனிக்கப்படாத கப்பாவுக்கு சமம்."
+
+msgid "Cohen's kappa requires at least 3 subjects/items."
+msgstr ""
 
 msgid "Fleiss' kappa"
 msgstr "ஃப்ளீசின் கப்பா"
@@ -371,9 +374,10 @@ msgstr ""
 msgid "Omega calculation with PFA failed."
 msgstr "PFA உடன் ஒமேகா கணக்கீடு தோல்வியடைந்தது."
 
+#, fuzzy
 msgid ""
 "The analytic confidence interval is not available for coefficient omega "
-"obtained with PFA."
+"obtained with PFA. Change to 'Bootstrapped' in Advanced Options."
 msgstr "PFA உடன் பெறப்பட்ட குணக ஒமேகாவிற்கு பகுப்பாய்வு நம்பிக்கை இடைவெளி கிடைக்கவில்லை."
 
 msgid "Omega interval calculation with PFA failed."

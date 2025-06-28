@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
-"POT-Creation-Date: 2025-03-08 03:28\n"
+"POT-Creation-Date: 2025-06-28 03:39\n"
 "PO-Revision-Date: 2025-06-11 16:01+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
@@ -103,6 +103,9 @@ msgstr "Przedziały ufności są asymptotyczne."
 msgid ""
 "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
 msgstr "Dla 2 poziomów kappa ważona jest równa kappie nieważonej."
+
+msgid "Cohen's kappa requires at least 3 subjects/items."
+msgstr ""
 
 msgid "Fleiss' kappa"
 msgstr "Kappa Fleissa"
@@ -369,7 +372,7 @@ msgstr "Obliczanie Omega z PFA nie powiodło się."
 
 msgid ""
 "The analytic confidence interval is not available for coefficient omega "
-"obtained with PFA."
+"obtained with PFA. Change to 'Bootstrapped' in Advanced Options."
 msgstr ""
 
 msgid "Omega interval calculation with PFA failed."

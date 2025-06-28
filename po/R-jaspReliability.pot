@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.95.0\n"
-"POT-Creation-Date: 2025-06-21 03:40\n"
+"POT-Creation-Date: 2025-06-28 03:39\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,6 +93,9 @@ msgid "Confidence intervals are asymptotic."
 msgstr ""
 
 msgid "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
+msgstr ""
+
+msgid "Cohen's kappa requires at least 3 subjects/items."
 msgstr ""
 
 msgid "Fleiss' kappa"
@@ -293,7 +296,7 @@ msgstr ""
 msgid "Omega calculation with PFA failed."
 msgstr ""
 
-msgid "The analytic confidence interval is not available for coefficient omega obtained with PFA."
+msgid "The analytic confidence interval is not available for coefficient omega obtained with PFA. Change to 'Bootstrapped' in Advanced Options."
 msgstr ""
 
 msgid "Omega interval calculation with PFA failed."
