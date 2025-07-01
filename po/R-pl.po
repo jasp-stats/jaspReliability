@@ -82,7 +82,7 @@ msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr "%1$i obiektów i %2$i sędziów/pomiarów."
 
 msgid "%1$s Based on pairwise complete cases."
-msgstr "%1$s Na podstawie par kompletnych przypadków."
+msgstr "%1$s Na podstawie kompletnych przypadków po usuwaniu parami."
 
 msgid "SE"
 msgstr "Błąd stand."
@@ -109,9 +109,9 @@ msgstr "Kappa Cohena wymaga co najmniej 3 obserwacji."
 msgid "Fleiss' kappa"
 msgstr "Kappa Fleissa"
 
-#, fuzzy
 msgid "%1$s Based on listwise complete cases."
-msgstr "%s ze wszystkich obserwacji, użyto kompletnych przypadków."
+msgstr ""
+"%1$s Na podstawie kompletnych przypadków po usuwaniu przypadków z brakami."
 
 msgid "Method"
 msgstr "Metoda"
@@ -120,11 +120,14 @@ msgid ""
 "For the Lord's compound method, the test could not be split in equally sized "
 "parts with more than 1 item per part. Consider adding or removing items."
 msgstr ""
+"W przypadku metody Lorda nie udało się podzielić testu na części o równej "
+"liczbie pozycji, zawierające więcej niż 1 pozycję. Należy rozważyć dodanie "
+"lub usunięcie pozycji."
 
 msgid ""
 "The Lord, Keats, and Lord's compound method are only available for binary "
 "data."
-msgstr ""
+msgstr "Metody Lorda oraz Keatsa są dostępne wyłącznie dla danych binarnych."
 
 msgid "Standard Error of Measurement"
 msgstr ""
