@@ -260,7 +260,7 @@ msgstr "Liczba próbek burn-in"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Thinning"
-msgstr "Redukcja próbek (thinning)"
+msgstr "Obcinanie próbek (thinning)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. chains"
@@ -348,7 +348,7 @@ msgstr "Imputacja bayesowska"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Exclude cases listwise"
-msgstr "Wyklucz obserwacje ze wszystkich analiz"
+msgstr "Wyklucz przypadki"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior predictive check"
@@ -636,7 +636,7 @@ msgstr "Keats"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord's compound"
-msgstr "Model Lorda"
+msgstr "Metoda IV Lorda"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Options"
@@ -672,19 +672,19 @@ msgstr "Wykres dla każdej metody"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Sum score plots"
-msgstr "Wykres sumy punktów"
+msgstr "Wykresy sumy punktów"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "CI"
-msgstr ""
+msgstr "PU"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Display cutoff score"
-msgstr ""
+msgstr "Wyświetl próg punktowy"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Split-half coefficient"
-msgstr ""
+msgstr "Współczynnik połówkowy"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Variance"
@@ -692,11 +692,11 @@ msgstr "Wariancja"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Split-half coefficient (if item dropped)"
-msgstr ""
+msgstr "Współczynnik połówkowy (po usunięciu pozycji)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "CTT-Coefficients (α, λ2)"
-msgstr ""
+msgstr "Współczynniki CTT (α, λ2)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Confidence interval"
@@ -704,7 +704,7 @@ msgstr "Przedział ufności"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Split-half coefficient"
-msgstr ""
+msgstr "Współczynnik połówkowy"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Variance"
@@ -712,53 +712,52 @@ msgstr "Wariancja"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Split-half coefficient (if item dropped)"
-msgstr ""
+msgstr "Współczynnik połówkowy (po usunięciu pozycji)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Confidence intervals"
-msgstr ""
+msgstr "Przedziały ufności"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Reliability coefficients"
-msgstr ""
+msgstr "Współczynniki rzetelności"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Variance and SD"
-msgstr ""
+msgstr "Wariancja i odch. stand."
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Chisq-based"
-msgstr ""
+msgstr "Oparty na chi-kwadrat"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Non-parametric"
-msgstr ""
+msgstr "Nieparametryczne"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficients"
 msgstr "Współczyniki"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Pairwise"
-msgstr "Wykluczaj oddzielnie dla każdej analizy"
+msgstr "Wyklucz oddzielnie dla każdej analizy"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Delete listwise"
-msgstr ""
+msgstr "Wyklucz ze wszystkich analiz"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Split-Test Methods"
-msgstr ""
+msgstr "Metoda połówkowa"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Binomial Methods"
-msgstr ""
+msgstr "Metody dwumianowe"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Hide SEM table"
-msgstr ""
+msgstr "Ukryj tabelę SEM"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot all SEMs"
-msgstr ""
+msgstr "Wykresy dla SEM"
