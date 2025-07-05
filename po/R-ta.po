@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.19.2\n"
 "POT-Creation-Date: 2025-06-28 03:39\n"
-"PO-Revision-Date: 2025-05-17 07:56+0000\n"
-"Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
+"PO-Revision-Date: 2025-07-03 07:01+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/ta/>\n"
 "Language: ta\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 msgid "Bland-Altman Plots"
 msgstr "பிளாண்ட்-ஆல்ட்மேன் அடுக்கு"
@@ -80,9 +80,8 @@ msgstr "கப்பா"
 msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr "%1$i நான் பாடங்கள்/உருப்படிகள் மற்றும் %2$i மதிப்பீட்டாளர்கள்/அளவீடுகள்."
 
-#, fuzzy
 msgid "%1$s Based on pairwise complete cases."
-msgstr "அவதானிப்புகளின் %s, சோடிவரிசை முழுமையான வழக்குகள் பயன்படுத்தப்பட்டன."
+msgstr "சோடிவரிசை முழுமையான நிகழ்வுகளின் அடிப்படையில் %1$s."
 
 msgid "SE"
 msgstr "உடன்"
@@ -104,14 +103,13 @@ msgid ""
 msgstr "2 நிலைகள் மட்டுமே இருந்தால், எடையுள்ள கப்பா கவனிக்கப்படாத கப்பாவுக்கு சமம்."
 
 msgid "Cohen's kappa requires at least 3 subjects/items."
-msgstr ""
+msgstr "கோஅனின் கப்பாவுக்கு குறைந்தது 3 பாடங்கள்/உருப்படிகள் தேவை."
 
 msgid "Fleiss' kappa"
 msgstr "ஃப்ளீசின் கப்பா"
 
-#, fuzzy
 msgid "%1$s Based on listwise complete cases."
-msgstr "அவதானிப்புகளின் %s, சோடிவரிசை முழுமையான வழக்குகள் பயன்படுத்தப்பட்டன."
+msgstr "பட்டியலிடப்பட்ட முழுமையான நிகழ்வுகளின் அடிப்படையில் %1$s."
 
 msgid "Method"
 msgstr "முறை"
@@ -129,7 +127,6 @@ msgid ""
 "data."
 msgstr "இறைவன், கீட்ச் மற்றும் லார்ட்ச் கலவை முறை பைனரி தரவுகளுக்கு மட்டுமே கிடைக்கின்றன."
 
-#, fuzzy
 msgid "Standard Error of Measurement"
 msgstr "அளவீட்டின் நிலையான பிழை"
 
@@ -137,14 +134,13 @@ msgid "Sum Score"
 msgstr "தொகை மதிப்பெண்"
 
 msgid "Score-Unrelated SEM"
-msgstr ""
+msgstr "மதிப்பெண்-தொடர்புடைய SEM"
 
 msgid "Counts"
 msgstr "எண்ணிக்கைகள்"
 
-#, fuzzy
 msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
-msgstr "%1$s பாரம்பரிய SEM மதிப்பு %2$1.3f க்கு சமம்."
+msgstr "%1$s மதிப்பெண்-தொடர்புடைய SEM மதிப்பு %2$1.3f க்கு சமம்."
 
 msgid ""
 "%1$s Estimating the %2$s method failed. If possible, you might try changing "
@@ -153,7 +149,6 @@ msgstr ""
 "%1$s மதிப்பீட்டு %2$s முறை தோல்வியடைந்தது. முடிந்தால், நீங்கள் முறையின் அளவுருக்களை மாற்ற "
 "முயற்சி செய்யலாம்."
 
-#, fuzzy
 msgid "Sum Score CI Table"
 msgstr "தொகை மதிப்பெண் தொஒ அட்டவணை"
 
@@ -164,18 +159,15 @@ msgstr ""
 "%s முறையை மதிப்பிடுவது தோல்வியடைந்தது. முடிந்தால், நீங்கள் முறையின் அளவுருக்களை மாற்ற "
 "முயற்சி செய்யலாம்."
 
-#, fuzzy
 msgid "Histogram of Counts per Sum Score Group"
 msgstr "தொகை மதிப்பெண் குழுவிற்கு எண்ணிக்கையின் இச்டோகிராம்"
 
 msgid "Point Plots"
 msgstr "புள்ளி அடுக்கு"
 
-#, fuzzy
 msgid "SEM"
-msgstr "உடன்"
+msgstr "WHO"
 
-#, fuzzy
 msgid "Combined Plot"
 msgstr "ஒருங்கிணைந்த சூழ்ச்சி"
 
@@ -192,16 +184,16 @@ msgid "Item-rest correlation"
 msgstr "உருப்படி-ஓய்வு தொடர்பு"
 
 msgid "Mean"
-msgstr "சராசரி"
+msgstr "இடை, சராசரி"
 
 msgid "Variance"
 msgstr "மாறுபாட்டெண்"
 
 msgid "SD"
-msgstr "எச்.டி."
+msgstr "எச்டி"
 
 msgid "%1$s Of the observations, %2$1.f complete cases were used."
-msgstr "அவதானிப்புகளின் %1$s, %2$1.f எஃப் முழுமையான வழக்குகள் பயன்படுத்தப்பட்டன."
+msgstr "அவதானிப்புகளின் %1$s, %2$1.f முழுமையான வழக்குகள் பயன்படுத்தப்பட்டன."
 
 msgid "%s Of the observations, pairwise complete cases were used."
 msgstr "அவதானிப்புகளின் %s, சோடிவரிசை முழுமையான வழக்குகள் பயன்படுத்தப்பட்டன."
@@ -271,12 +263,11 @@ msgstr ""
 "நீங்கள் உள்ளிட்ட எல்லைகள் அர்த்தமுள்ள முடிவுகளை வழங்குவதற்கான வரிசையை அதிகரிப்பதில் "
 "மறுசீரமைக்கப்பட்டுள்ளன."
 
-#, fuzzy
 msgid ""
 "Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
 "than %2$.2f"
 msgstr ""
-"நம்பகத்தன்மை குணகம் %.2f ஐ விட பெரியது மற்றும் %.2f ஐ விட சிறியது என்ற நிகழ்தகவு"
+"நம்பகத்தன்மை குணகம் %1$.2f ஐ விடப் பெரியது மற்றும் %2$.2f ஐ விடச் சிறியது"
 
 msgid "Probability"
 msgstr "நிகழ்தகவு"
@@ -291,7 +282,7 @@ msgid "Fit Measures for the Single-Factor Model"
 msgstr "ஒற்றை காரணி மாதிரிக்கான பொருத்தமான நடவடிக்கைகள்"
 
 msgid "Estimate"
-msgstr "மதிப்பீடு"
+msgstr "மதிப்பிடு"
 
 msgid "%s lower bound"
 msgstr "%s குறைந்த எல்லை"
@@ -374,11 +365,12 @@ msgstr ""
 msgid "Omega calculation with PFA failed."
 msgstr "PFA உடன் ஒமேகா கணக்கீடு தோல்வியடைந்தது."
 
-#, fuzzy
 msgid ""
 "The analytic confidence interval is not available for coefficient omega "
 "obtained with PFA. Change to 'Bootstrapped' in Advanced Options."
-msgstr "PFA உடன் பெறப்பட்ட குணக ஒமேகாவிற்கு பகுப்பாய்வு நம்பிக்கை இடைவெளி கிடைக்கவில்லை."
+msgstr ""
+"பி.எஃப்.ஏ உடன் பெறப்பட்ட குணக ஒமேகாவிற்கு பகுப்பாய்வு நம்பிக்கை இடைவெளி கிடைக்கவில்லை. "
+"மேம்பட்ட விருப்பங்களில் 'தொடக்கவார்' ஆக மாற்றவும்."
 
 msgid "Omega interval calculation with PFA failed."
 msgstr "PFA உடன் ஒமேகா இடைவெளி கணக்கீடு தோல்வியடைந்தது."
@@ -388,6 +380,9 @@ msgid ""
 "lambda2 when data contain missings and pairwise complete observations are "
 "used. Try changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
+"தரவுத்தகத்தில் மிச்சிங் மற்றும் சோடிவரிசை முழுமையான அவதானிப்புகள் பயன்படுத்தப்படும்போது, "
+"குணகம் ஆல்பா/லாம்ப்டா 2 க்கு பகுப்பாய்வு நம்பிக்கை இடைவெளி கிடைக்காது. 'மேம்பட்ட "
+"விருப்பங்களுக்கு'ள்' பட்டியல் திசை நீக்க 'என மாற்ற முயற்சிக்கவும்."
 
 msgid ""
 "The standard error of the average interitem correlation is not available."
@@ -404,6 +399,9 @@ msgid ""
 "when data contain missings and pairwise complete observations are used. Try "
 "changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
+"தரவுத்தகத்தில் மிச்சிங் மற்றும் சோடிவரிசை முழுமையான அவதானிப்புகள் பயன்படுத்தப்படும்போது, "
+"குணகம் ஆல்பா/லாம்ப்டா 2 க்கு பகுப்பாய்வு நம்பிக்கை இடைவெளி கிடைக்கவில்லை. 'மேம்பட்ட "
+"விருப்பங்களுக்கு'ள்' பட்டியல் திசை நீக்க 'என மாற்ற முயற்சிக்கவும்."
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "அடிக்கடி அளவிலான நம்பகத்தன்மை புள்ளிவிவரங்கள்"
@@ -433,7 +431,7 @@ msgstr ""
 " தயவுசெய்து எண்."
 
 msgid "%1$sVariables %2$s and %3$s correlated perfectly."
-msgstr "%1$svariables %2$s மற்றும் %3$s சரியாக தொடர்புடையது."
+msgstr "%1$sமாறிகள் %2$s மற்றும் %3$s சரியாகத் தொடர்புடையது."
 
 msgid "Please enter at least 2 variables to do an analysis."
 msgstr "பகுப்பாய்வு செய்ய குறைந்தது 2 மாறிகள் உள்ளிடவும்."
