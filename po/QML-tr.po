@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-07-24 09:07+0000\n"
+"Last-Translator: Ertuğrul Uyar <ertugruluyar.academic@gmail.com>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/tr/>\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.13-dev\n"
 "X-Language: tr\n"
 "X-Qt-Contexts: true\n"
 
@@ -351,7 +357,6 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Fit measures"
 msgstr "Ölçüleri yerleştir"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "p(RMSEA <"
 msgstr "p(RMSEA <"
@@ -360,7 +365,6 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ")"
 msgstr ")"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "p(CFI/TLI >"
 msgstr "p(CFI/TLI >"
@@ -622,7 +626,6 @@ msgctxt "StandardErrorOfMeasurement|"
 msgid "IRT"
 msgstr "IRT"
 
-#, fuzzy
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord"
 msgstr "Lord"
@@ -631,7 +634,6 @@ msgctxt "StandardErrorOfMeasurement|"
 msgid "Keats"
 msgstr "Keats"
 
-#, fuzzy
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord's compound"
 msgstr "Lord'un karışımı-birleşimi"
