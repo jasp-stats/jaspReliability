@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2025-06-28 03:39\n"
-"PO-Revision-Date: 2025-07-03 07:01+0000\n"
-"Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
+"PO-Revision-Date: 2025-08-04 22:02+0000\n"
+"Last-Translator: Wendel Paulo Silvestre <wpsilvestre@ucs.br>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/pt/>\n"
 "Language: pt\n"
@@ -32,9 +32,8 @@ msgstr ""
 msgid "Bias & Limits"
 msgstr ""
 
-#, fuzzy
 msgid "Point Value"
-msgstr "Estimativas por Ponto"
+msgstr "Valor em ponto"
 
 msgid "Mean difference - 1.96 SD"
 msgstr ""
@@ -63,7 +62,6 @@ msgstr "Tipo"
 msgid "Point Estimate"
 msgstr "Estimativas por Ponto"
 
-#, fuzzy
 msgid ""
 "%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout "
 "& Fleiss (1979)."
@@ -94,13 +92,13 @@ msgid "SE"
 msgstr ""
 
 msgid "Lower"
-msgstr ""
+msgstr "Inferior"
 
 msgid "%s%% CI"
 msgstr "%s%% IC"
 
 msgid "Upper"
-msgstr ""
+msgstr "Superior"
 
 msgid "Confidence intervals are asymptotic."
 msgstr ""
@@ -193,7 +191,7 @@ msgid "Variance"
 msgstr ""
 
 msgid "SD"
-msgstr ""
+msgstr "DP"
 
 msgid "%1$s Of the observations, %2$1.f complete cases were used."
 msgstr "Dos %1$s de observações, foram utilizado %2$1.f dos casos completos."
@@ -210,14 +208,12 @@ msgstr ""
 "lambda2, lambda6, glb] falhou. Tente trocar para 'Exclusão listwise' em "
 "'Opções Avançadas'"
 
-#, fuzzy
 msgid ""
 "Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
 "lambda6, glb] failed."
 msgstr ""
-"Amostragem para matriz posterior de covariância para algum destes [alpha, "
-"lambda2, lambda6, glb] falhou. Tente trocar para 'Exclusão listwise' em "
-"'Opções Avançadas'"
+"A amostragem da matriz posterior de covariância para algum destes "
+"[alpha, lambda2, lambda6, glb] falhou."
 
 msgid ""
 "Sampling the posterior factor model for omega failed. Try changing to "
@@ -242,10 +238,10 @@ msgid "Posterior %s"
 msgstr "Posterior"
 
 msgid "Coefficient"
-msgstr ""
+msgstr "Coeficiente"
 
 msgid "R-hat"
-msgstr ""
+msgstr "R-hat"
 
 msgid "ESS"
 msgstr ""
@@ -356,17 +352,15 @@ msgstr "Correlalção item-resto"
 msgid "%1$s%2$s"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Omega calculation with CFA failed.\n"
 "                                                    Try changing to PFA in "
 "'Advanced Options'."
 msgstr ""
-"O calculo do intervalo de Ômega bootstrapped com CFA falhou.\n"
+"O calculo do intervalo de Ômega com CFA falhou.\n"
 "                                          Tente trocar para PFA em 'Opções "
-"Avançadas'"
+"Avançadas'."
 
-#, fuzzy
 msgid ""
 "Omega bootstrapped interval calculation with CFA failed.\n"
 "                                                        Try changing to PFA "
@@ -374,7 +368,7 @@ msgid ""
 msgstr ""
 "O calculo do intervalo de Ômega bootstrapped com CFA falhou.\n"
 "                                          Tente trocar para PFA em 'Opções "
-"Avançadas'"
+"Avançadas'."
 
 msgid "Omega calculation with PFA failed."
 msgstr "Cálculo de Ômega com PFA falhou."
@@ -440,9 +434,8 @@ msgstr ""
 msgid "%1$sVariables %2$s and %3$s correlated perfectly."
 msgstr "%1$sAs variáveis %2$s e %3$s se correlacionam perfeitamente."
 
-#, fuzzy
 msgid "Please enter at least 2 variables to do an analysis."
-msgstr "Por favor, introduza ao menos 2 variáveis para realizar uma análise"
+msgstr "Por favor, introduza ao menos 2 variáveis para realizar uma análise."
 
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
