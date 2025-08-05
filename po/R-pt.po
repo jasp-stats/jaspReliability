@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2025-06-28 03:39\n"
-"PO-Revision-Date: 2025-08-04 22:02+0000\n"
+"PO-Revision-Date: 2025-08-06 02:02+0000\n"
 "Last-Translator: Wendel Paulo Silvestre <wpsilvestre@ucs.br>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/pt/>\n"
@@ -18,31 +18,31 @@ msgstr ""
 "X-Qt-Contexts: true\n"
 
 msgid "Bland-Altman Plots"
-msgstr ""
+msgstr "Gráficos Bland-Altman"
 
 msgid "Please provide another variable"
-msgstr ""
+msgstr "Por favor, forneça outra variável"
 
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "A plotagem não é possível: %s"
 
 msgid "Bland-Altman Tables"
-msgstr ""
+msgstr "Tabelas Bland-Altman"
 
 msgid "Bias & Limits"
-msgstr ""
+msgstr "Viés & Limites"
 
 msgid "Point Value"
 msgstr "Valor em ponto"
 
 msgid "Mean difference - 1.96 SD"
-msgstr ""
+msgstr "Diferença média - 1,96 DP"
 
 msgid "Mean difference + 1.96 SD"
-msgstr ""
+msgstr "Diferença média + 1,96 DP"
 
 msgid "Mean difference"
-msgstr ""
+msgstr "Diferença média"
 
 msgid "Lower %s%% CI"
 msgstr "IC inferior a %s%%"
@@ -84,9 +84,8 @@ msgstr ""
 msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr ""
 
-#, fuzzy
 msgid "%1$s Based on pairwise complete cases."
-msgstr "Dos %s de observações, foram utilizados casos completos por pares."
+msgstr "%1$s Baseado em casos completos em pares."
 
 msgid "SE"
 msgstr ""
@@ -113,9 +112,8 @@ msgstr ""
 msgid "Fleiss' kappa"
 msgstr ""
 
-#, fuzzy
 msgid "%1$s Based on listwise complete cases."
-msgstr "Dos %s de observações, foram utilizados casos completos por pares."
+msgstr "%1$s Baseado em casos completos em lista."
 
 msgid "Method"
 msgstr ""
@@ -140,7 +138,7 @@ msgid "Score-Unrelated SEM"
 msgstr ""
 
 msgid "Counts"
-msgstr ""
+msgstr "Contagens"
 
 msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
 msgstr ""
@@ -161,16 +159,14 @@ msgstr ""
 msgid "Histogram of Counts per Sum Score Group"
 msgstr ""
 
-#, fuzzy
 msgid "Point Plots"
-msgstr "Gráficos Posteriores"
+msgstr "Gráficos de Pontos"
 
 msgid "SEM"
 msgstr ""
 
-#, fuzzy
 msgid "Combined Plot"
-msgstr "Gráficos Posteriores"
+msgstr "Gráfico Combinado"
 
 msgid "Sum Score CI Plots"
 msgstr ""
@@ -222,20 +218,18 @@ msgstr ""
 "A amostragem do modelo de fator posterior para ômega falhou. Tente trocar "
 "para 'Excluir casos listwise' em 'Opções avançadas'"
 
-#, fuzzy
 msgid ""
 "Sampling the posterior null model failed. Try changing to 'Exclude cases "
 "listwise' in 'Advanced Options'"
 msgstr ""
-"A amostragem do modelo de fator posterior para ômega falhou. Tente trocar "
-"para 'Excluir casos listwise' em 'Opções avançadas'"
+"A amostragem do modelo nulo posterior falhou. Tente alterar para 'Excluir "
+"casos em lista' em 'Opções Avançadas'"
 
 msgid "Bayesian Scale Reliability Statistics"
 msgstr "Estatísticas bayesianas de confiabilidade"
 
-#, fuzzy
 msgid "Posterior %s"
-msgstr "Posterior"
+msgstr "%s Posterior"
 
 msgid "Coefficient"
 msgstr "Coeficiente"
@@ -244,7 +238,7 @@ msgid "R-hat"
 msgstr "R-hat"
 
 msgid "ESS"
-msgstr ""
+msgstr "SQE"
 
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr "Estatísticas bayesianas de confiabilidade de itens individuais"
@@ -284,9 +278,8 @@ msgstr "Anterior"
 msgid "Posterior"
 msgstr "Posterior"
 
-#, fuzzy
 msgid "Fit Measures for the Single-Factor Model"
-msgstr "Medidas de ajuste para modelo de um único fator"
+msgstr "Medidas de ajuste para o modelo de um único fator"
 
 msgid "Estimate"
 msgstr "Estimativa"
@@ -305,9 +298,8 @@ msgid ""
 "                         corresponding cutoff."
 msgstr ""
 
-#, fuzzy
 msgid "Standardized Loadings of the Single-Factor Model"
-msgstr "Medidas de ajuste para modelo de um único fator"
+msgstr "Carregamentos Padronizados do Modelo de Fator Único"
 
 msgid "Standardized loading"
 msgstr ""
@@ -345,9 +337,8 @@ msgstr "Traçado de convergência"
 msgid "Iterations"
 msgstr "Iterações"
 
-#, fuzzy
 msgid "Average interitem correlation"
-msgstr "Correlalção item-resto"
+msgstr "Correlação média entre itens"
 
 msgid "%1$s%2$s"
 msgstr ""
@@ -415,9 +406,8 @@ msgstr "Estatísticas de confiabilidade de itens individuais frequentistas"
 msgid "Fit Measures of Single Factor Model Fit"
 msgstr "Medidas de ajuste para modelo de um único fator"
 
-#, fuzzy
 msgid "Fit measure"
-msgstr "Medidas Adicionais de Ajuste"
+msgstr "Medidas de ajuste"
 
 msgid "Value"
 msgstr "Valor"
