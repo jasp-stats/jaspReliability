@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-08-05 14:01+0000\n"
+"PO-Revision-Date: 2025-08-06 07:43+0000\n"
 "Last-Translator: Wendel Paulo Silvestre <wpsilvestre@ucs.br>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/pt/>\n"
@@ -52,7 +52,7 @@ msgstr "Gráficos Bland-Altman"
 
 msgctxt "BlandAltman|"
 msgid "Measurement Pairs"
-msgstr ""
+msgstr "Pares de Medições"
 
 msgctxt "BlandAltman|"
 msgid "Confidence Interval"
@@ -60,15 +60,15 @@ msgstr "Intervalo de Confiança"
 
 msgctxt "BlandAltman|"
 msgid "Shading"
-msgstr ""
+msgstr "Sombreamento"
 
 msgctxt "BlandAltman|"
 msgid "Use colour"
-msgstr ""
+msgstr "Usar cor"
 
 msgctxt "BlandAltman|"
 msgid "Bland-Altman table"
-msgstr ""
+msgstr "Tabela Bland-Altman"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Variables"
@@ -434,7 +434,6 @@ msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Individual Item Statistics"
 msgstr "Estatísticas individuais por item"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2 (if item dropped)"
 msgstr "λ2 de Guttman (excluindo esse item)"
@@ -539,7 +538,6 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "ESS"
 msgstr ""
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Standardized factor loadings"
 msgstr "Cargas fatoriais padronizadas"
@@ -596,7 +594,6 @@ msgctxt "Description|"
 msgid "Standard Error of Measurement"
 msgstr ""
 
-#, fuzzy
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Variables"
 msgstr "Variáveis"
@@ -737,7 +734,6 @@ msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Non-parametric"
 msgstr ""
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficients"
 msgstr "Coeficientes"
