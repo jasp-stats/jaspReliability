@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2025-06-28 03:39\n"
-"PO-Revision-Date: 2025-07-03 07:01+0000\n"
-"Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
+"PO-Revision-Date: 2025-08-09 03:43+0000\n"
+"Last-Translator: Wendel Paulo Silvestre <wpsilvestre@ucs.br>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/pt/>\n"
 "Language: pt\n"
@@ -18,32 +18,31 @@ msgstr ""
 "X-Qt-Contexts: true\n"
 
 msgid "Bland-Altman Plots"
-msgstr ""
+msgstr "Gráficos Bland-Altman"
 
 msgid "Please provide another variable"
-msgstr ""
+msgstr "Por favor, forneça outra variável"
 
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "A plotagem não é possível: %s"
 
 msgid "Bland-Altman Tables"
-msgstr ""
+msgstr "Tabelas Bland-Altman"
 
 msgid "Bias & Limits"
-msgstr ""
+msgstr "Viés & Limites"
 
-#, fuzzy
 msgid "Point Value"
-msgstr "Estimativas por Ponto"
+msgstr "Valor em ponto"
 
 msgid "Mean difference - 1.96 SD"
-msgstr ""
+msgstr "Diferença média - 1,96 DP"
 
 msgid "Mean difference + 1.96 SD"
-msgstr ""
+msgstr "Diferença média + 1,96 DP"
 
 msgid "Mean difference"
-msgstr ""
+msgstr "Diferença média"
 
 msgid "Lower %s%% CI"
 msgstr "IC inferior a %s%%"
@@ -52,7 +51,7 @@ msgid "Upper %s%% CI"
 msgstr "IC Superior a %s%%"
 
 msgid "Calculations not possible: %s"
-msgstr ""
+msgstr "Cálculos não possíveis: %s"
 
 msgid "Intraclass Correlation"
 msgstr "Correlação Intraclasse"
@@ -63,7 +62,6 @@ msgstr "Tipo"
 msgid "Point Estimate"
 msgstr "Estimativas por Ponto"
 
-#, fuzzy
 msgid ""
 "%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout "
 "& Fleiss (1979)."
@@ -75,125 +73,130 @@ msgid "Please select at least 2 columns"
 msgstr "Por favor seleciona pelo menos 2 colunas"
 
 msgid "Cohen's kappa"
-msgstr ""
+msgstr "Kappa de Cohen"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Classificações"
 
 msgid "kappa"
-msgstr ""
+msgstr "kappa"
 
 msgid "%1$i subjects/items and %2$i raters/measurements."
-msgstr ""
+msgstr "%1$i sujeitos/itens e %2$i avaliadores/medições."
 
-#, fuzzy
 msgid "%1$s Based on pairwise complete cases."
-msgstr "Dos %s de observações, foram utilizados casos completos por pares."
+msgstr "%1$s Baseado em casos completos em pares."
 
 msgid "SE"
-msgstr ""
+msgstr "EP"
 
 msgid "Lower"
-msgstr ""
+msgstr "Inferior"
 
 msgid "%s%% CI"
 msgstr "%s%% IC"
 
 msgid "Upper"
-msgstr ""
+msgstr "Superior"
 
 msgid "Confidence intervals are asymptotic."
-msgstr ""
+msgstr "Os intervalor de confiança são assintóticos."
 
 msgid ""
 "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
 msgstr ""
+"Se há apenas 2 níveis, o kappa ponderado é igual ao kappa não ponderado."
 
 msgid "Cohen's kappa requires at least 3 subjects/items."
-msgstr ""
+msgstr "O kappa de Cohen requere pelo menos 3 sujeitos/itens."
 
 msgid "Fleiss' kappa"
-msgstr ""
+msgstr "Kappa de Fleiss"
 
-#, fuzzy
 msgid "%1$s Based on listwise complete cases."
-msgstr "Dos %s de observações, foram utilizados casos completos por pares."
+msgstr "%1$s Baseado em casos completos em lista."
 
 msgid "Method"
-msgstr ""
+msgstr "Método"
 
 msgid ""
 "For the Lord's compound method, the test could not be split in equally sized "
 "parts with more than 1 item per part. Consider adding or removing items."
 msgstr ""
+"Para o método de combinação de Lord, o teste não pode ser dividido em partes "
+"iguais com mais de 1 item por parte. Considere adicionar ou remover itens."
 
 msgid ""
 "The Lord, Keats, and Lord's compound method are only available for binary "
 "data."
 msgstr ""
+"Os métodos de Lord, Keats e o método de combinação de Lord estão disponíveis "
+"apenas para dados binários."
 
 msgid "Standard Error of Measurement"
-msgstr ""
+msgstr "Erro Padrão da Medição"
 
 msgid "Sum Score"
-msgstr ""
+msgstr "Soma de Pontuações"
 
 msgid "Score-Unrelated SEM"
-msgstr ""
+msgstr "EPM não relacionado à pontuação"
 
 msgid "Counts"
-msgstr ""
+msgstr "Contagens"
 
 msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
-msgstr ""
+msgstr "%1$s o EPM não relacionado à pontuação é igual a %2$1.3f."
 
 msgid ""
 "%1$s Estimating the %2$s method failed. If possible, you might try changing "
 "the method's parameters."
 msgstr ""
+"%1$s estimando o método %2$s falhou. Se possível, você pode tentar alterar "
+"os parâmetros do método."
 
 msgid "Sum Score CI Table"
-msgstr ""
+msgstr "Tabela de IC da Soma de Pontuações"
 
 msgid ""
 "Estimating the %s method failed. If possible, you might try changing the "
 "method's parameters."
 msgstr ""
+"Estimando o método %s falhou. Se possível, você pode tentar alterar os "
+"parâmetros do método."
 
 msgid "Histogram of Counts per Sum Score Group"
-msgstr ""
+msgstr "Histograma de Contagens por Grupo de Soma de Pontuações"
 
-#, fuzzy
 msgid "Point Plots"
-msgstr "Gráficos Posteriores"
+msgstr "Gráficos de Pontos"
 
 msgid "SEM"
-msgstr ""
+msgstr "EPM"
 
-#, fuzzy
 msgid "Combined Plot"
-msgstr "Gráficos Posteriores"
+msgstr "Gráfico Combinado"
 
 msgid "Sum Score CI Plots"
-msgstr ""
+msgstr "Gráficos de IC da Soma de Pontuações"
 
 msgid "True Score"
-msgstr ""
+msgstr "Pontuação Verdadeira"
 
 msgid "Split-half coefficient"
-msgstr ""
+msgstr "Coeficiente de divisão pela metade"
 
 msgid "Item-rest correlation"
 msgstr "Correlalção item-resto"
 
 msgid "Mean"
-msgstr ""
+msgstr "Média"
 
 msgid "Variance"
-msgstr ""
+msgstr "Variância"
 
 msgid "SD"
-msgstr ""
+msgstr "DP"
 
 msgid "%1$s Of the observations, %2$1.f complete cases were used."
 msgstr "Dos %1$s de observações, foram utilizado %2$1.f dos casos completos."
@@ -210,14 +213,12 @@ msgstr ""
 "lambda2, lambda6, glb] falhou. Tente trocar para 'Exclusão listwise' em "
 "'Opções Avançadas'"
 
-#, fuzzy
 msgid ""
 "Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
 "lambda6, glb] failed."
 msgstr ""
-"Amostragem para matriz posterior de covariância para algum destes [alpha, "
-"lambda2, lambda6, glb] falhou. Tente trocar para 'Exclusão listwise' em "
-"'Opções Avançadas'"
+"A amostragem da matriz posterior de covariância para algum destes "
+"[alpha, lambda2, lambda6, glb] falhou."
 
 msgid ""
 "Sampling the posterior factor model for omega failed. Try changing to "
@@ -226,29 +227,27 @@ msgstr ""
 "A amostragem do modelo de fator posterior para ômega falhou. Tente trocar "
 "para 'Excluir casos listwise' em 'Opções avançadas'"
 
-#, fuzzy
 msgid ""
 "Sampling the posterior null model failed. Try changing to 'Exclude cases "
 "listwise' in 'Advanced Options'"
 msgstr ""
-"A amostragem do modelo de fator posterior para ômega falhou. Tente trocar "
-"para 'Excluir casos listwise' em 'Opções avançadas'"
+"A amostragem do modelo nulo posterior falhou. Tente alterar para 'Excluir "
+"casos em lista' em 'Opções Avançadas'"
 
 msgid "Bayesian Scale Reliability Statistics"
 msgstr "Estatísticas bayesianas de confiabilidade"
 
-#, fuzzy
 msgid "Posterior %s"
-msgstr "Posterior"
+msgstr "%s Posterior"
 
 msgid "Coefficient"
-msgstr ""
+msgstr "Coeficiente"
 
 msgid "R-hat"
-msgstr ""
+msgstr "R-hat"
 
 msgid "ESS"
-msgstr ""
+msgstr "SQE"
 
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr "Estatísticas bayesianas de confiabilidade de itens individuais"
@@ -288,9 +287,8 @@ msgstr "Anterior"
 msgid "Posterior"
 msgstr "Posterior"
 
-#, fuzzy
 msgid "Fit Measures for the Single-Factor Model"
-msgstr "Medidas de ajuste para modelo de um único fator"
+msgstr "Medidas de ajuste para o modelo de um único fator"
 
 msgid "Estimate"
 msgstr "Estimativa"
@@ -308,13 +306,17 @@ msgid ""
 "the B-CFI/TLI are larger than the\n"
 "                         corresponding cutoff."
 msgstr ""
+"A linha 'Relativo ao valor de corte' denota a probabilidade de que o B-REQMA "
+"seja menor do que\n"
+"                         o valor de corte correspondente e as probabilidades "
+"de que o B-CFI/TLI sejam maiores do que\n"
+"                          o valor de corte correspondente."
 
-#, fuzzy
 msgid "Standardized Loadings of the Single-Factor Model"
-msgstr "Medidas de ajuste para modelo de um único fator"
+msgstr "Carregamentos Padronizados do Modelo de Fator Único"
 
 msgid "Standardized loading"
-msgstr ""
+msgstr "Carga padronizada"
 
 msgid "Posterior Plots"
 msgstr "Gráficos Posteriores"
@@ -349,24 +351,21 @@ msgstr "Traçado de convergência"
 msgid "Iterations"
 msgstr "Iterações"
 
-#, fuzzy
 msgid "Average interitem correlation"
-msgstr "Correlalção item-resto"
+msgstr "Correlação média entre itens"
 
 msgid "%1$s%2$s"
-msgstr ""
+msgstr "%1$s%2$s"
 
-#, fuzzy
 msgid ""
 "Omega calculation with CFA failed.\n"
 "                                                    Try changing to PFA in "
 "'Advanced Options'."
 msgstr ""
-"O calculo do intervalo de Ômega bootstrapped com CFA falhou.\n"
+"O calculo do intervalo de Ômega com CFA falhou.\n"
 "                                          Tente trocar para PFA em 'Opções "
-"Avançadas'"
+"Avançadas'."
 
-#, fuzzy
 msgid ""
 "Omega bootstrapped interval calculation with CFA failed.\n"
 "                                                        Try changing to PFA "
@@ -374,7 +373,7 @@ msgid ""
 msgstr ""
 "O calculo do intervalo de Ômega bootstrapped com CFA falhou.\n"
 "                                          Tente trocar para PFA em 'Opções "
-"Avançadas'"
+"Avançadas'."
 
 msgid "Omega calculation with PFA failed."
 msgstr "Cálculo de Ômega com PFA falhou."
@@ -383,6 +382,8 @@ msgid ""
 "The analytic confidence interval is not available for coefficient omega "
 "obtained with PFA. Change to 'Bootstrapped' in Advanced Options."
 msgstr ""
+"O intervalo de confiança analítico não está disponível para o coeficiente "
+"ômega obtido via PFA. Altere para 'Bootstrapped' nas Opções Avançadas."
 
 msgid "Omega interval calculation with PFA failed."
 msgstr "Cálculo do intervalo de Ômega com PFA falhou."
@@ -392,10 +393,14 @@ msgid ""
 "lambda2 when data contain missings and pairwise complete observations are "
 "used. Try changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
+"O intervalo de confiança analítico não está disponível para o coeficiente "
+"alpha/lambda2 quando os dados contém observações ausentes e observações "
+"completas em pares são usadas. Tente alterar para 'Deletar em lista' nas "
+"'Opções Avançadas'."
 
 msgid ""
 "The standard error of the average interitem correlation is not available."
-msgstr ""
+msgstr "O erro padrão da correlação média entre itens não está disponível."
 
 msgid "Omega item dropped statistics with CFA failed."
 msgstr "As estatísticas Ômega com item eliminado e CFA falharam."
@@ -408,12 +413,16 @@ msgid ""
 "when data contain missings and pairwise complete observations are used. Try "
 "changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
+"O intervalo de confiança analítico não está disponível para o coeficiente "
+"alpha/lambda2 quando os dados contém observações ausentes e observações "
+"completas em pares são usadas. Tente alterar para 'Deletar em lista' nas "
+"'Opções Avançadas'."
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "Estatísticas de confiabilidade de escala frequentist"
 
 msgid "Std. Error"
-msgstr ""
+msgstr "Erro Pad."
 
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr "Estatísticas de confiabilidade de itens individuais frequentistas"
@@ -421,9 +430,8 @@ msgstr "Estatísticas de confiabilidade de itens individuais frequentistas"
 msgid "Fit Measures of Single Factor Model Fit"
 msgstr "Medidas de ajuste para modelo de um único fator"
 
-#, fuzzy
 msgid "Fit measure"
-msgstr "Medidas Adicionais de Ajuste"
+msgstr "Medidas de ajuste"
 
 msgid "Value"
 msgstr "Valor"
@@ -440,9 +448,8 @@ msgstr ""
 msgid "%1$sVariables %2$s and %3$s correlated perfectly."
 msgstr "%1$sAs variáveis %2$s e %3$s se correlacionam perfeitamente."
 
-#, fuzzy
 msgid "Please enter at least 2 variables to do an analysis."
-msgstr "Por favor, introduza ao menos 2 variáveis para realizar uma análise"
+msgstr "Por favor, introduza ao menos 2 variáveis para realizar uma análise."
 
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
