@@ -17,6 +17,7 @@ options$scaleVar <- TRUE
 options$itemSd <- TRUE
 options$scaleSd <- TRUE
 options$setSeed <- TRUE
+options$hiddenScaleThreshold <- 10
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
 set.seed(1)
 results <- runAnalysis("unidimensionalReliabilityFrequentist", testthat::test_path("asrm.csv"), options, makeTests = F)
@@ -85,6 +86,7 @@ options$scaleVar <- TRUE
 options$itemVar <- TRUE
 options$scaleSd <- TRUE
 options$setSeed <- TRUE
+options$hiddenScaleThreshold <- 10
 options$variables <- c("contNormal", "contcor1", "contcor2", "debMiss30")
 set.seed(1)
 results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options, makeTests = F)
@@ -145,6 +147,7 @@ options$bootstrapType <- "parametric"
 options$omegaEstimationMethod <- "cfa"
 options$standardizedLoadings <- TRUE
 options$setSeed <- TRUE
+options$hiddenScaleThreshold <- 10
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
 options$setSeed <- TRUE
 set.seed(1)
@@ -197,6 +200,7 @@ options$itemDeletedOmega <- TRUE
 options$omegaEstimationMethod <- "cfa"
 options$coefficientType <- "standardized"
 options$setSeed <- TRUE
+options$hiddenScaleThreshold <- 10
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4")
 set.seed(1)
 results <- runAnalysis("unidimensionalReliabilityFrequentist", testthat::test_path("asrm.csv"), options,
@@ -237,6 +241,7 @@ options$itemDeletedLambda2 <- TRUE
 options$scaleLambda2 <- TRUE
 options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2")
+options$hiddenScaleThreshold <- 10
 set.seed(1)
 results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options, makeTests = F)
 

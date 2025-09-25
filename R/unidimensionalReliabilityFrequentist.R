@@ -2,7 +2,6 @@
 #' @export
 unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) {
 
-
   # check for listwise deletion
   datasetOld <- dataset
   dataset <- .handleData(datasetOld, options)
@@ -915,7 +914,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
           out[["se"]][["scaleAlpha"]] <- NA
           out[["error"]][["scaleAlpha"]] <- gettext("The analytic confidence interval is not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'.")
         } else {
-          out[["se"]][["scaleAlpha"]] <- .seLambda3(dtUse)
+          out[["se"]][["scaleAlpha"]] <- .seLambda3(dtUse, scaleThreshold = options[["hiddenScaleThreshold"]])
         }
         out[["conf"]][["scaleAlpha"]] <- out[["est"]][["scaleAlpha"]] + c(-1, 1) * out[["se"]][["scaleAlpha"]] * qnorm(1 - (1 - ciValue) / 2)
 
@@ -1109,7 +1108,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
               out[["upper"]][["itemDeletedAlpha"]][i] <- NA
               out[["error"]][["itemDeletedAlpha"]] <- gettext("The analytic confidence interval not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'.")
             } else {
-              se <- .seLambda3(dtUse[, -i, drop = FALSE])
+              se <- .seLambda3(dtUse[, -i, drop = FALSE], scaleThreshold = options[["hiddenScaleThreshold"]])
               conf <- est + c(-1, 1) * se * qnorm(1 - (1 - ciValue) / 2)
               out[["lower"]][["itemDeletedAlpha"]][i] <- conf[1]
               out[["upper"]][["itemDeletedAlpha"]][i] <- conf[2]
@@ -1897,20 +1896,20 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 }
 
 # SE of sample lambda-3 (alpha)
-.seLambda3 <- function(X, VC = NULL, eps = 1e-16){
+.seLambda3 <- function(X, VC = NULL, eps = 1e-16, scaleThreshold = 10){
   J <- ncol(X)
-  return((J / (J - 1)) *.seLambda1(X, VC))
+  return((J / (J - 1)) *.seLambda1(X, VC, scaleThreshold = scaleThreshold))
 }
 
 
 # SE of sample lambda-1
-.seLambda1 <- function(X, VC = NULL, eps = 1e-16){
+.seLambda1 <- function(X, VC = NULL, eps = 1e-16, scaleThreshold){
   D <- function(x) diag(as.numeric(x))
   J <- ncol(X)
   # if(is.null(VC)) VC <- .varCM(X)
   if (is.null(VC)) {
     levs <- sapply(as.data.frame(X), function(col) length(unique(col[!is.na(col)])))
-    if (any(levs > 12)) {
+    if (any(levs > scaleThreshold)) {
       # Continuous/mixed: fast, stable normal-theory VC
       VC <- .varVCwishart(stats::var(X), nrow(X))
     } else {
