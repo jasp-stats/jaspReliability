@@ -936,7 +936,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
           if (is.null(out[["error"]][["scaleAlpha"]]))
             out[["error"]][["scaleLambda2"]] <- gettext("The analytic confidence interval is not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'.")
         } else {
-          out[["se"]][["scaleLambda2"]] <- .seLambda2(dtUse)
+          out[["se"]][["scaleLambda2"]] <- .seLambda2(dtUse, scaleThreshold = options[["hiddenScaleThreshold"]])
         }
         out[["conf"]][["scaleLambda2"]] <- out[["est"]][["scaleLambda2"]] + c(-1, 1) * out[["se"]][["scaleLambda2"]] * qnorm(1 - (1 - ciValue) / 2)
 
@@ -1146,7 +1146,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
               if (is.null(out[["error"]][["itemDeletedAlpha"]]))
                 out[["error"]][["itemDeletedLambda2"]] <- gettext("The analytic confidence interval not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'.")
             } else {
-              se <- .seLambda2(dtUse[, -i, drop = FALSE])
+              se <- .seLambda2(dtUse[, -i, drop = FALSE], scaleThreshold = options[["hiddenScaleThreshold"]])
               conf <- est + c(-1, 1) * se * qnorm(1 - (1 - ciValue) / 2)
               out[["lower"]][["itemDeletedLambda2"]][i] <- conf[1]
               out[["upper"]][["itemDeletedLambda2"]][i] <- conf[2]
@@ -1899,7 +1899,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 # SE of sample lambda-3 (alpha)
 .seLambda3 <- function(X, VC = NULL, eps = 1e-16){
   J <- ncol(X)
-  return(as.numeric((J / (J - 1)) *.seLambda1(X, VC)))
+  return((J / (J - 1)) *.seLambda1(X, VC))
 }
 
 
@@ -1932,7 +1932,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   G2 <- D(g2) %*% A2 %*% G1
   G <- A3 %*% G2
   V <- G %*% VC %*% t(G)
-  return(as.numeric(sqrt(V)))
+  return(sqrt(V))
 }
 
 # SE of sample covariance matrix
@@ -2003,11 +2003,11 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 }
 
 # SE of sample lambda-2
-.seLambda2 <- function(X, VC = NULL, eps = 1e-16) {
+.seLambda2 <- function(X, VC = NULL, eps = 1e-16, scaleThreshold = 10) {
   J <- ncol(X)
   if (is.null(VC)) {
     levs <- sapply(as.data.frame(X), function(col) length(unique(col[!is.na(col)])))
-    if (any(levs > 12)) { # this value is kind of arbitrary
+    if (any(levs > scaleThreshold)) {
       # Continuous/mixed: fast, stable normal-theory VC
       VC <- .varVCwishart(stats::var(X), nrow(X))
     } else {
@@ -2027,7 +2027,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   e <-  matrix(diag(rep(1, J)), nrow = 1)
   u <-  matrix(1, nrow = 1, ncol = J^2)
   G <- (((C2plusX / C2plus * vecC. + (u - e)) - .lambda2(X)) / Splus)
-  return(as.numeric(sqrt(G %*% VC %*% t(G))))
+  return(sqrt(G %*% VC %*% t(G)))
 }
 
 # Sample lambda-2
