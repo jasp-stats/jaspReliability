@@ -1899,7 +1899,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 # SE of sample lambda-3 (alpha)
 .seLambda3 <- function(X, VC = NULL, eps = 1e-16){
   J <- ncol(X)
-  return((J / (J - 1)) *.seLambda1(X, VC))
+  return(as.numeric((J / (J - 1)) *.seLambda1(X, VC)))
 }
 
 
@@ -1932,7 +1932,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   G2 <- D(g2) %*% A2 %*% G1
   G <- A3 %*% G2
   V <- G %*% VC %*% t(G)
-  return(sqrt(V))
+  return(as.numeric(sqrt(V)))
 }
 
 # SE of sample covariance matrix
@@ -2005,10 +2005,9 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 # SE of sample lambda-2
 .seLambda2 <- function(X, VC = NULL, eps = 1e-16) {
   J <- ncol(X)
-  # if(is.null(VC)) VC <- .varCM(X)
   if (is.null(VC)) {
     levs <- sapply(as.data.frame(X), function(col) length(unique(col[!is.na(col)])))
-    if (any(levs > 12)) {
+    if (any(levs > 12)) { # this value is kind of arbitrary
       # Continuous/mixed: fast, stable normal-theory VC
       VC <- .varVCwishart(stats::var(X), nrow(X))
     } else {
@@ -2028,7 +2027,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   e <-  matrix(diag(rep(1, J)), nrow = 1)
   u <-  matrix(1, nrow = 1, ncol = J^2)
   G <- (((C2plusX / C2plus * vecC. + (u - e)) - .lambda2(X)) / Splus)
-  return(sqrt(G %*% VC %*% t(G)))
+  return(as.numeric(sqrt(G %*% VC %*% t(G))))
 }
 
 # Sample lambda-2
@@ -2037,7 +2036,6 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   C <- var(X)
   return(((sum(C)-sum(diag(C))) + (sqrt((J/(J-1))*(sum(C^2)-sum(diag(C^2))))))/sum(C))
 }
-
 
 
 .splithalfData <- function(X, splits, useCase) {
@@ -2101,183 +2099,15 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   VC
 }
 
-
-# ##### Functions from ChatGPT #####
-# # ---------- helpers ----------
-# .diagVec <- function(x) diag(as.numeric(x))
-#
-# .isContinuousVec <- function(x, maxLevels = 10, minPropUnique = 0.25, tol = 1e-8) {
-#   x <- x[!is.na(x)]
-#   if (!length(x)) return(FALSE)
-#   u <- length(unique(x))
-#   propU <- u / length(x)
-#   integerish <- all(abs(x - round(x)) < tol)
-#   (u > maxLevels && propU >= minPropUnique) || !integerish
-# }
-#
-# .detectContinuous <- function(X, maxLevels = 10, minPropUnique = 0.25, tol = 1e-8) {
-#   as.logical(vapply(X, .isContinuousVec, logical(1),
-#                     maxLevels = maxLevels,
-#                     minPropUnique = minPropUnique,
-#                     tol = tol))
-# }
-#
-# .varVcEmpirical <- function(X) {
-#   X <- as.matrix(X)
-#   X <- sweep(X, 2, colMeans(X, na.rm = TRUE), "-")
-#   n <- nrow(X); J <- ncol(X)
-#   M <- matrix(NA_real_, n, J * J)
-#   for (t in seq_len(n)) {
-#     zzT <- tcrossprod(X[t, , drop = FALSE])
-#     M[t, ] <- as.vector(zzT)
-#   }
-#   stats::cov(M) * n / (n - 1)^2
-# }
-#
-# .getVc <- function(X, maxLevels = 10, minPropUnique = 0.25, tol = 1e-8) {
-#   isCont <- .detectContinuous(X, maxLevels, minPropUnique, tol)
-#   if (all(!isCont)) .varCM(X) else .varVcEmpirical(X)
-# }
-#
-# # ---------- main SE functions ----------
-# .seLambda1 <- function(X, VC = NULL, eps = 1e-16) {
-#   J <- ncol(X)
-#   if (is.null(VC)) VC <- .getVc(X)
-#
-#   g0 <- matrix(stats::var(X))
-#   e  <- matrix(diag(rep(1, J)), nrow = 1)
-#   u  <- matrix(1, nrow = 1, ncol = J^2)
-#
-#   A1 <- rbind(e, u, u)
-#   A2 <- matrix(c(1, 0, -1,   # log(sumDiag) - log(sumAll)  -> exp = sumDiag/sumAll
-#                  0, 0,  0),  # 0                           -> exp = 1
-#                2, 3, byrow = TRUE)
-#
-#   A3 <- matrix(c(-1, 1), nrow = 1, ncol = 2)
-#
-#   g1 <- log(A1 %*% g0 + eps)
-#   g2 <- exp(A2 %*% g1)
-#
-#   G1 <- .diagVec(1 / (A1 %*% g0)) %*% A1
-#   G2 <- .diagVec(g2) %*% A2 %*% G1
-#   G  <- A3 %*% G2
-#
-#   V <- G %*% VC %*% t(G)
-#   sqrt(V)
-# }
-#
-# .seLambda3 <- function(X, VC = NULL, eps = 1e-16) {
-#   J <- ncol(X)
-#   (J / (J - 1)) * .seLambda1(X, VC, eps)
-# }
-#
-# .varCM <- function(X, marg = marg.default, eps = 1e-16) {
-#
-#   X2nR <- function(X){
-#     if (!is.matrix(X)) X <- as.matrix(X)
-#     n <- as.matrix(table(apply(X, 1, paste, collapse=",")))                               # MODIFIED on 30-aug-2024
-#     R <- matrix(as.numeric(unlist(strsplit(dimnames(n)[[1]], ","))), ncol = ncol(X), byrow = TRUE)
-#     return(list(n = n, R = R))
-#   }
-#   D <- function(x) diag(as.numeric(x))
-#   Rij <- function(i, j, x) {
-#     if (i == j) {
-#       tmp <- expand.grid(x[[i]]);
-#       tmp <- unlist(tmp)
-#       tmp <- matrix(rep(rep(tmp, each = length(tmp)), 2), ncol = 2)
-#       return(tmp)
-#     } else {
-#       tmp <- expand.grid(x[[i]], x[[j]]);
-#       return(tmp[, ncol(tmp):1])
-#     }
-#   }
-#
-#   X <- X - min(X, na.rm = TRUE) + 1
-#   res <- X2nR(X)
-#   R <- res$R
-#   n <- res$n
-#   J <- ncol(R)
-#   K <- length(n)
-#   marg.default <- list()
-#   for (j in 1 : J) marg.default[[j]] <- sort(unique(R[, j]))
-#   marg <- marg.default # remove line when not testing
-#   eps <- 1e-16         # remove line when not testing
-#
-#   A2 <- matrix(c(1, 0, 0, 0,  1, 0, 0, 0,  0, 1, 0, 0,  -1, 0, 1, 1,  0, 0, 0, -1), 4, 5)
-#   A3 <- matrix(c(-1, 0,  1, 0,  0, 1,  0, -1), 2, 4)
-#   A4 <- matrix(c(1, -1), 1, 2)
-#   # nrowG <- .5 * J * (J+1)
-#   nrowG <- J^2
-#   G <- matrix(NA, nrowG, K)
-#   labG <- rep(NA, nrowG)
-#   iter <- i <- j <- 0
-#   for (i in (1:(J))) for (j in ((1):J)){  # all variances and covariances (once)
-#     iter <- iter + 1
-#     if (i <= j) {
-#       M2 <- NULL
-#       A1 <- NULL
-#       for (a in marg[[i]]) for (b in marg[[j]]) M2 <- rbind(M2,as.numeric(R[,i]==a & R[,j]==b))
-#       tmp <- Rij(i, j, marg)
-#       A1 <- t(cbind(tmp[, 1], tmp[, 2], tmp[, 1] * tmp[, 2], 1, 1))
-#       g1 <- log(A1 %*% M2 %*% n + eps)
-#       g2 <- exp(A2 %*% g1)
-#       A3g2 <- matrix(A3 %*% g2, nrow = 2)
-#       g4 <- matrix(A3g2[1, ] / A3g2[2, ])
-#       G[(i - 1) * J + j, ]  <- g4 %*% A4 %*% D(1/(A3 %*% g2 + eps)) %*% A3 %*% D(g2) %*% A2 %*% D(1/(A1 %*% M2 %*% n + eps)) %*% A1 %*% M2
-#       labG[(i - 1) * J + j] <- paste(i, ",", j, sep = "")
-#       if (i < j) {
-#         G[(j - 1) * J + i, ] <- G[(i - 1) * J + j, ]
-#         labG[(j - 1) * J + i] <- paste(j, ",", i, sep = "")
-#       }
-#     }
-#   }
-#   dimnames(G) <- list(labG, dimnames(n)[[1]])
-#   Vn <- D(n) - n %*% t(n) / sum(n)
-#   VC <- G %*% Vn %*% t(G) - (G %*% n %*% t(n) %*% t(G))/sum(n)
-#   return(VC)
-# }
-#
-#
-#
-# # ----- value -----
-# .lambda2 <- function(X) {
-#   S <- stats::var(X); J <- ncol(S)
-#   off <- S; diag(off) <- 0
-#   A <- sum(off)                              # sum of off-diagonals
-#   B <- sum(off^2)                            # sum of off-diagonal squares
-#   k <- J / (J - 1)
-#   (A + sqrt(k * B)) / sum(S)
-# }
-#
-# # ----- SE via delta method (exact gradient) -----
-# .seLambda2 <- function(X, VC = NULL, useOrdinalVc = TRUE, eps = 1e-12) {
-#   S <- stats::var(X); J <- ncol(S)
-#   if (is.null(VC)) VC <- if (useOrdinalVc) .varCM(X) else .varVcEmpirical(X)
-#
-#   Tsum <- sum(S)
-#   off  <- S; diag(off) <- 0
-#   A <- sum(off)
-#   B <- sum(off^2)
-#   k <- J / (J - 1)
-#   R <- sqrt(max(k * B, 0))                   # = sqrt(kB); guard tiny/zero
-#
-#   s <- as.vector(S)
-#   d <- as.vector(diag(J))                    # diagonal selector
-#   u <- rep(1, J * J)                         # all-ones selector
-#   o <- 1 - d                                 # off-diagonal selector
-#
-#   # ∂N/∂vec(S) with N = A + sqrt(kB)
-#   # = o + (k / sqrt(kB)) * (o * s); set second term to 0 if R==0
-#   q <- o + if (R > 0) (k / R) * (o * s) else 0 * s
-#
-#   N <- A + R
-#   G <- matrix((q * Tsum - N * u) / (Tsum^2), nrow = 1)   # dλ2/dvec(S)
-#
-#   V <- as.numeric(G %*% VC %*% t(G))
-#   if (!is.finite(V) || V < -eps) {
-#     warning("Delta variance for lambda2 not positive; returning NA")
-#     return(matrix(NA_real_, 1, 1))
-#   }
-#   V <- max(V, 0)
-#   matrix(sqrt(V), 1, 1)
+# # function by Don
+# .varVCwishart <- function(Sigma, nu) {
+#   J <- ncol(Sigma)
+#   # commutation matrix K
+#   idx_row <- as.vector(outer(1:J, 1:J, function(i,j) (i-1L)*J + j))
+#   idx_col <- as.vector(outer(1:J, 1:J, function(i,j) (j-1L)*J + i))
+#   K <- matrix(0, J*J, J*J)
+#   K[cbind(idx_row, idx_col)] <- 1
+#   # main expression
+#   AA <- kronecker(Sigma, Sigma)
+#   ((diag(J*J) + K) %*% AA) / nu
 # }
