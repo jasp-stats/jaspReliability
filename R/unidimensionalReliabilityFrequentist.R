@@ -2088,25 +2088,14 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 }
 
 .varVCwishart <- function(Sigma, n) {
-  # Var(vec(S)) for sample covariance with denominator (n-1), under MVN
-  J  <- ncol(Sigma); nu <- n - 1L
-  VC <- matrix(0, J*J, J*J)
-  idx <- function(a,b) (a-1L)*J + b
-  for (i in 1:J) for (j in 1:J) for (k in 1:J) for (l in 1:J) {
-    VC[idx(i,j), idx(k,l)] <- (Sigma[i,k]*Sigma[j,l] + Sigma[i,l]*Sigma[j,k]) / nu
-  }
-  VC
+  nu <- n - 1L
+  J <- ncol(Sigma)
+  # commutation matrix K
+  idx_row <- as.vector(outer(1:J, 1:J, function(i,j) (i-1L)*J + j))
+  idx_col <- as.vector(outer(1:J, 1:J, function(i,j) (j-1L)*J + i))
+  K <- matrix(0, J*J, J*J)
+  K[cbind(idx_row, idx_col)] <- 1
+  # main expression
+  AA <- kronecker(Sigma, Sigma)
+  ((diag(J*J) + K) %*% AA) / nu
 }
-
-# # function by Don
-# .varVCwishart <- function(Sigma, nu) {
-#   J <- ncol(Sigma)
-#   # commutation matrix K
-#   idx_row <- as.vector(outer(1:J, 1:J, function(i,j) (i-1L)*J + j))
-#   idx_col <- as.vector(outer(1:J, 1:J, function(i,j) (j-1L)*J + i))
-#   K <- matrix(0, J*J, J*J)
-#   K[cbind(idx_row, idx_col)] <- 1
-#   # main expression
-#   AA <- kronecker(Sigma, Sigma)
-#   ((diag(J*J) + K) %*% AA) / nu
-# }
