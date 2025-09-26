@@ -13,6 +13,7 @@ options$itemMean <- TRUE
 options$itemSd <- TRUE
 options$omegaIntervalMethod <- "analytic"
 options$meanSdScoresMethod <- "meanScores"
+options$hiddenScaleThreshold <- 10
 
 options$variables <- c(paste("Question", c(1, 4:8), sep="_0"),
                        paste("Question", 10, sep="_"))

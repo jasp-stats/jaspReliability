@@ -17,6 +17,7 @@ options$scaleVar <- TRUE
 options$itemSd <- TRUE
 options$scaleSd <- TRUE
 options$setSeed <- TRUE
+options$hiddenScaleThreshold <- 10
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
 set.seed(1)
 results <- runAnalysis("unidimensionalReliabilityFrequentist", testthat::test_path("asrm.csv"), options, makeTests = F)
@@ -85,6 +86,7 @@ options$scaleVar <- TRUE
 options$itemVar <- TRUE
 options$scaleSd <- TRUE
 options$setSeed <- TRUE
+options$hiddenScaleThreshold <- 10
 options$variables <- c("contNormal", "contcor1", "contcor2", "debMiss30")
 set.seed(1)
 results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options, makeTests = F)
@@ -145,6 +147,7 @@ options$bootstrapType <- "parametric"
 options$omegaEstimationMethod <- "cfa"
 options$standardizedLoadings <- TRUE
 options$setSeed <- TRUE
+options$hiddenScaleThreshold <- 10
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
 options$setSeed <- TRUE
 set.seed(1)
@@ -197,6 +200,7 @@ options$itemDeletedOmega <- TRUE
 options$omegaEstimationMethod <- "cfa"
 options$coefficientType <- "standardized"
 options$setSeed <- TRUE
+options$hiddenScaleThreshold <- 10
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4")
 set.seed(1)
 results <- runAnalysis("unidimensionalReliabilityFrequentist", testthat::test_path("asrm.csv"), options,
@@ -225,4 +229,34 @@ test_that("Frequentist Scale Reliability Statistics table results match", {
                                       0.734183438809739, 0.618202085150078, 0.0705116563317664, 0.850164792469401,
                                       "Guttman's <unicode>2", 0.744181125723515, 0.636954210756928,
                                       0.0651893355187589, 0.851408040690102))
+})
+
+
+
+# check lambda2 analytic confidence interval
+options <- analysisOptions("unidimensionalReliabilityFrequentist")
+options$intervalMethod <- "analytic"
+options$scaleOmega <- FALSE
+options$itemDeletedLambda2 <- TRUE
+options$scaleLambda2 <- TRUE
+options$setSeed <- TRUE
+options$variables <- c("contNormal", "contcor1", "contcor2")
+options$hiddenScaleThreshold <- 10
+set.seed(1)
+results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options, makeTests = F)
+
+test_that("Frequentist Individual Item Reliability Statistics table results match", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.711442852097357, 0.79299280264282, 0.874542753188283, "contNormal",
+                                      -0.307281370858232, 0.0618194975467093, 0.430920365951651, "contcor1",
+                                      -0.00732988641121907, 0.277152727398941, 0.561635341209102,
+                                      "contcor2"))
+})
+
+test_that("Frequentist Scale Reliability Statistics table results match", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list("Guttman's <unicode>2", 0.60068713700511, 0.483142517715655, 0.0599728465505652,
+                                      0.718231756294564))
 })

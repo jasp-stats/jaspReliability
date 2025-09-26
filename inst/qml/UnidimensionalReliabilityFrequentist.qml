@@ -326,8 +326,13 @@ Form
 					helpPage:			"toolTip/sampleSavingFreq"
 				}
 			}
+		}
 
-
+		IntegerField
+		{
+			name: 					"hiddenScaleThreshold"
+			defaultValue: 	preferencesModel.thresholdScale
+			visible: 				false
 		}
 	}
 }
