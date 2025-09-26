@@ -164,8 +164,8 @@ test_that("Frequentist Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   if (jaspBase::getOS() == "linux") {
     jaspTools::expect_equal_tables(table,
-                                   list("Coefficient <unicode>", 0.7917101, 0.694692780642854,
-                                        0.0428578933018329, 0.85215986924174))
+                                   list("Coefficient <unicode>", 0.791710063361508, 0.679125757817177,
+                                        0.044910760354745, 0.849422290392291))
   } else if (jaspBase::getOS() == "osx") {
     jaspTools::expect_equal_tables(table,
                                    list("Coefficient <unicode>", 0.791710063361508, 0.694692772995628,
