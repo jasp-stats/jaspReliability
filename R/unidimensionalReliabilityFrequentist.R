@@ -2,6 +2,7 @@
 #' @export
 unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) {
 
+
   # check for listwise deletion
   datasetOld <- dataset
   dataset <- .handleData(datasetOld, options)
@@ -54,11 +55,11 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     itemDroppedSelected = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedSplithalf",
                                            "itemRestCorrelation", "itemMean", "itemVar", "itemSd")]),
     namesEstimators     = list(
-      tables = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
+      tables = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
                  gettext("Average interitem correlation"), gettext("Mean"), gettext("Variance"), gettext("SD")),
-      tables_item = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
+      tables_item = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
                       gettext("Item-rest correlation"), gettext("Mean"), gettext("Variance"), gettext("SD")),
-      coefficientsDeleted = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient")))
+      coefficientsDeleted = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient")))
   )
 
   return(derivedOptions)
@@ -952,8 +953,8 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         out[["conf"]][["scaleSplithalf"]] <- quantile(samp, probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
         out[["se"]][["scaleSplithalf"]] <- sd(samp, na.rm = TRUE)
       } else { # interval analytic
-        partSums1 <- rowSums(dtUse[, splits[[1]]])
-        partSums2 <- rowSums(dtUse[, splits[[2]]])
+        partSums1 <- rowSums(dtUse[, splits[[1]], drop = FALSE])
+        partSums2 <- rowSums(dtUse[, splits[[2]], drop = FALSE])
 
         out[["se"]][["scaleSplithalf"]] <- .seSplithalf(partSums1, partSums2, model[["use.cases"]])
         out[["conf"]][["scaleSplithalf"]] <- out[["est"]][["scaleSplithalf"]] + c(-1, 1) * out[["se"]][["scaleSplithalf"]] * qnorm(1 - (1 - ciValue) / 2)
@@ -1168,31 +1169,33 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         out[["est"]][["itemDeletedSplithalf"]] <- c(NA, NA)
         out[["lower"]][["itemDeletedSplithalf"]] <- c(NA, NA)
         out[["upper"]][["itemDeletedSplithalf"]] <- c(NA, NA)
-      }
+      } else {
+        for (i in seq_len(ncol(dtUse))) {
+          dtCut <- dtUse[, -i, drop = FALSE]
+          nit <- ncol(dtCut)
+          splits <- split(seq_len(nit), 1:2)
+          est <- .splithalfData(dtCut, splits = splits, useCase = model[["use.cases"]])
+          out[["est"]][["itemDeletedSplithalf"]][i] <- est
 
-      for (i in seq_len(ncol(dtUse))) {
-        dtCut <- dtUse[, -i, drop = FALSE]
-        nit <- ncol(dtCut)
-        splits <- split(seq_len(nit), 1:2)
-        est <- .splithalfData(dtCut, splits = splits, useCase = model[["use.cases"]])
-        out[["est"]][["itemDeletedSplithalf"]][i] <- est
+          if (options[["intervalMethod"]] == "analytic") {
 
-        if (options[["intervalMethod"]] == "analytic") {
+            partSums1 <- rowSums(dtCut[, splits[[1]]])
+            partSums2 <- rowSums(dtCut[, splits[[2]]])
 
-          partSums1 <- rowSums(dtCut[, splits[[1]]])
-          partSums2 <- rowSums(dtCut[, splits[[2]]])
-
-          se <- .seSplithalf(partSums1, partSums2, model[["use.cases"]])
-          conf <- est + c(-1, 1) * se * qnorm(1 - (1 - ciValue) / 2)
-          out[["lower"]][["itemDeletedSplithalf"]][i] <- conf[1]
-          out[["upper"]][["itemDeletedSplithalf"]][i] <- conf[2]
-        } else {
-          itemSamp <- model[["itemDeletedSplithalf"]][["itemSamp"]]
-          conf <- quantile(itemSamp[, i], probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
-          out[["lower"]][["itemDeletedSplithalf"]][i] <- conf[1]
-          out[["upper"]][["itemDeletedSplithalf"]][i] <- conf[2]
+            se <- .seSplithalf(partSums1, partSums2, model[["use.cases"]])
+            conf <- est + c(-1, 1) * se * qnorm(1 - (1 - ciValue) / 2)
+            out[["lower"]][["itemDeletedSplithalf"]][i] <- conf[1]
+            out[["upper"]][["itemDeletedSplithalf"]][i] <- conf[2]
+          } else {
+            itemSamp <- model[["itemDeletedSplithalf"]][["itemSamp"]]
+            conf <- quantile(itemSamp[, i], probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
+            out[["lower"]][["itemDeletedSplithalf"]][i] <- conf[1]
+            out[["upper"]][["itemDeletedSplithalf"]][i] <- conf[2]
+          }
         }
       }
+
+
     }
 
     # item-rest correlation
