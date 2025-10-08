@@ -55,11 +55,11 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     itemDroppedSelected = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedSplithalf",
                                            "itemRestCorrelation", "itemMean", "itemVar", "itemSd")]),
     namesEstimators     = list(
-      tables = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
+      tables = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
                  gettext("Average interitem correlation"), gettext("Mean"), gettext("Variance"), gettext("SD")),
-      tables_item = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
+      tables_item = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
                       gettext("Item-rest correlation"), gettext("Mean"), gettext("Variance"), gettext("SD")),
-      coefficientsDeleted = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient")))
+      coefficientsDeleted = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient")))
   )
 
   return(derivedOptions)

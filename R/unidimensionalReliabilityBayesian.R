@@ -75,13 +75,13 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     itemDroppedSelectedItem = unlist(options[c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedSplithalf")]),
 
     namesEstimators     = list(
-      tables = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", "Split-half coefficient",
+      tables = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", "Split-half coefficient",
                  "Average interitem correlation", "Mean", "Variance", "SD"),
-      tables_item = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
+      tables_item = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
                       gettext("Item-rest correlation"), gettext("Mean"), gettext("Variance"), gettext("SD")),
-      coefficients = c("Coefficient \u03C9", "Coefficient \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
+      coefficients = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
                        gettext("Item-rest correlation")),
-      plots = list(expression("Coefficient"~omega), expression("Cronbach\'s"~alpha), expression("Guttman's"~lambda[2]),
+      plots = list(expression("McDonald\'s"~omega), expression("Cronbach\'s"~alpha), expression("Guttman\'s"~lambda[2]),
                    gettext("Split-half coefficient")),
       plotsNoGreek = c("omega", "alpha", "lambda2", "splithalf")
     )
