@@ -13,8 +13,8 @@ The Bayesian unidimensional reliability analysis allows the user to test the sca
 ### Scale Statistics
 - The CTT-coefficients alpha, lambda 2, and the split-half coefficient are computed from the data covariance matrix. Coefficient omega is computed from the centered data matrix.
 - Credible interval: default is 95%
-- Coefficient omega: The same as McDonald's omega (for unidimensional data, based on the single-factor model). Note the total test variance in the denominator of the reliability equation is the model implied total variance, that is, the summed model implied covariance matrix.
-- Coefficient alpha: The same as Cronbach's alpha (for binary items the coefficient equals KR20)
+- McDonald's omega (for unidimensional data, based on the single-factor model). Note the total test variance in the denominator of the reliability equation is the model implied total variance, that is, the summed model implied covariance matrix.
+- Cronbach's alpha (for binary items the coefficient equals KR20)
 - Guttman's lambda 2
 - Split-half coefficient: Correlates the sum scores of two test-halves. By default the variables are split into odd and even numbered items in order or appearance in the variables window. If another split is desired the variables just need to be reordered.
 - Average interitem correlation
