@@ -54,7 +54,7 @@ Form
 			{
 				id:			omega
 				name:		"scaleOmega"
-				label:		qsTr("Coefficient ω")
+				label:		qsTr("McDonald's ω")
 				checked:	true
 			}
 
@@ -62,7 +62,7 @@ Form
 			{
 				id:		alpha
 				name:	"scaleAlpha";
-				label:	qsTr("Coefficient α");
+				label:	qsTr("Cronbach's α");
 			}
 
 			CheckBox
@@ -113,7 +113,7 @@ Form
 			{
 				id: 		omegaItem
 				name: 		"itemDeletedOmega";
-				label: 		qsTr("Coefficient ω (if item dropped)");
+				label: 		qsTr("McDonald's ω (if item dropped)");
 				enabled: 	omega.checked
 			}
 
@@ -121,7 +121,7 @@ Form
 			{
 				id: 		alphaItem
 				name: 		"itemDeletedAlpha";
-				label: 		qsTr("Coefficient α (if item dropped)");
+				label: 		qsTr("Cronbach's α (if item dropped)");
 				enabled: 	alpha.checked
 			}
 
@@ -391,7 +391,7 @@ Form
 		}
 		Group
 		{
-			title: qsTr("Coefficient ω")
+			title: qsTr("McDonald's ω")
 
 			RowLayout
 			{
@@ -456,7 +456,7 @@ Form
 
 		Group
 		{
-			title: qsTr("Coefficient ω Estimation")
+			title: qsTr("McDonald's ω Estimation")
 			enabled: omega.checked
 			CheckBox
 			{
