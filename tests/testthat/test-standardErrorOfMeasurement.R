@@ -88,6 +88,8 @@ results <- runAnalysis("standardErrorOfMeasurement", dataset = "binaryTestDt.csv
 
 test_that("Standard error of measurement table results match", {
   table <- results[["results"]][["semMainContainer"]][["collection"]][["semMainContainer_coefficientTable"]][["data"]]
+  # handle slightly different values on macOS compared to Windows and Linux
+  options("jaspRoundToPrecision" = function(x) signif(round(x, digits = 3), digits = 3))
   jaspTools::expect_equal_tables(table,
                                  list(
                                      7.0, 0.49433301750863673, 0.0, 0.0, 0.84852813742385702, 0,
@@ -95,6 +97,7 @@ test_that("Standard error of measurement table results match", {
                                      56.0, 0.84058341505800005, 1.0567697356551156, 1.1547005383792515, 1.2955969390869324, 2,
                                      69.0, 0.81285834219580733, 0.9151894370278959, 1.0, 1.0, 3,
                                      50.0, 0.49433301750863673, 0.0, 0.0, 0.0, 4))
+  options("jaspRoundToPrecision" = NULL)
 })
 
 
