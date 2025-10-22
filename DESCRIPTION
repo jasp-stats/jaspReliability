@@ -1,7 +1,7 @@
 Package: jaspReliability
 Type: Package
 Title: Reliability Module for JASP
-Version: 0.95.3
+Version: 0.95.5
 Date: 2025-09-25
 Author: JASP Team
 Website: https://github.com/jasp-stats/Reliability
