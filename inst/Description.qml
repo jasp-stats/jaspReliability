@@ -3,18 +3,11 @@ import JASP.Module
 
 Description
 {
-	name		: "jaspReliability"
 	title		: qsTr("Reliability")
 	description	: qsTr("Quantify the reliability of test scores")
-	version			: "0.95.0"
-	author		: "JASP Team"
-	maintainer	: "Julius M. Pfadt <julius.pfadt@gmail.com>"
-	website		: "https://github.com/jasp-stats/jaspReliability"
-	license		: "GPL (>= 2)"
 	icon		: "reliability_icon_classic.svg"
-	preloadData: true
-
-
+	hasWrappers:  false
+	
 	GroupTitle
 	{
 		title:	qsTr("Classical")
