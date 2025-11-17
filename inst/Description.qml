@@ -16,7 +16,7 @@ Description
 
 	Analysis
 	{
-		title:	qsTr("Unidimensional Reliability")
+		title:	qsTr("Reliability")
 		qml: 	"UnidimensionalReliabilityFrequentist.qml"
 		func: 	"unidimensionalReliabilityFrequentist"
 	}
@@ -57,8 +57,8 @@ Description
 	}
 	Analysis
 	{
-		menu: 	qsTr("Unidimensional Reliability")
-		title: 	qsTr("Bayesian Unidimensional Reliability")
+		menu: 	qsTr("Reliability")
+		title: 	qsTr("Bayesian Reliability")
 		qml: 	"UnidimensionalReliabilityBayesian.qml"
 		func: 	"unidimensionalReliabilityBayesian"
 	}
