@@ -74,7 +74,7 @@
 <text x='332.60' y='537.32' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='9.46px' lengthAdjust='spacingAndGlyphs'>2</text>
 <text x='552.40' y='537.32' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='9.46px' lengthAdjust='spacingAndGlyphs'>4</text>
 <text x='387.55' y='567.49' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='84.11px' lengthAdjust='spacingAndGlyphs'>Sum Score</text>
-<text transform='translate(16.68,265.42) rotate(-90)' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='84.10px' lengthAdjust='spacingAndGlyphs'>True Score</text>
+<text transform='translate(16.68,265.42) rotate(-90)' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='154.97px' lengthAdjust='spacingAndGlyphs'>True Score Estimate</text>
 <text x='387.55' y='11.70' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='91.66px' lengthAdjust='spacingAndGlyphs'>keats-ci-plot</text>
 </g>
 </svg>

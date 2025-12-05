@@ -77,7 +77,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
              exitAnalysisIfErrors = TRUE)
 
   if (options[["lord2"]] && options[["lord2NumberOfSplits"]] == "") {
-    .quitAnalysis(gettext("For the Lord's compound method, the test could not be split in equally sized parts with more than 1 item per part. Consider adding or removing items."))
+    .quitAnalysis(gettext("For the Lord generalized method, the test could not be split in equally sized parts with more than 1 item per part. Consider adding or removing items."))
   }
 }
 
@@ -128,7 +128,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     # at least one method is selected
     for (i in 1:length(selected)) {
       if (is.na(selected[[i]][["name"]])) {
-        .quitAnalysis(gettext("The Lord, Keats, and Lord's compound method are only available for binary data."))
+        .quitAnalysis(gettext("The Lord, Keats, and Lord generalized method are only available for binary data."))
       }
       if (is.null(jaspResults[["semMainContainer"]][[paste0(method[i], "State")]])) {
         out <- eval(parse(text = selected[[i]][["funString"]]))
@@ -485,7 +485,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     pl <- ggplot2::ggplot(dat) +
       ggplot2::geom_point(ggplot2::aes(x = score, y = tscore), size = 2.5) +
       ggplot2::geom_errorbar(ggplot2::aes(x = score, ymin = lower, ymax = upper), width = 0.5) +
-      ggplot2::labs(x = gettext("Sum Score"), y = gettext("True Score"))
+      ggplot2::labs(x = gettext("Sum Score"), y = gettext("True Score Estimate"))
   } else {
     dat <- as.data.frame(ciData)
     colnames(dat) <- c("score", "lower", "upper")
@@ -493,7 +493,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     pl <- ggplot2::ggplot(dat) +
       ggplot2::geom_ribbon(ggplot2::aes(x = score, ymin = lower, ymax = upper), fill = "grey80") +
       ggplot2::geom_line(ggplot2::aes(x = score, y = tscore)) +
-      ggplot2::labs(x = gettext("Sum Score"), y = gettext("True Score"))
+      ggplot2::labs(x = gettext("Sum Score"), y = gettext("True Score Estimate"))
   }
 
   if (!is.na(cutoff)) {
@@ -539,8 +539,19 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   out <- .semPrepareOutMatrix(ncol(X), nc, scoresObj)
   fun <- function(partSUMS, ind, cc) {
     K <- ncol(partSUMS)
-    mean_diff <- partSUMS[ind, ] - rowMeans(partSUMS[ind, ]) - matrix(colMeans(partSUMS[ind, ]), length(ind), K, TRUE) + mean(partSUMS[ind, ])
-    ret <- sqrt(d * sum(rowSums(mean_diff^2) / (K - 1)) / length(ind))
+    # mean_diff <- partSUMS[ind, ] - rowMeans(partSUMS[ind, ]) - matrix(colMeans(partSUMS[ind, ]), length(ind), K, TRUE) + mean(partSUMS[ind, ])
+    # ret <- sqrt(d * sum(rowSums(mean_diff^2) / (K - 1)) / length(ind))
+
+    col_means <- colMeans(partSUMS)    # Global marginal means (X_j)
+    grand_mean <- mean(col_means)    # Global grand mean (M)
+    row_means <- rowMeans(partSUMS[ind, ])    # Person means (X_i)
+
+    # Construct Feldt's deviation term
+    mean_diff <- partSUMS[ind, ] -
+      matrix(row_means, length(ind), K, byrow = FALSE) -
+      matrix(col_means - grand_mean, length(ind), K, byrow = TRUE)
+
+    ret <- sqrt( d * sum(mean_diff^2) / ((K - 1) * length(ind)) )
     return(ret)
   }
   out <- .semComputeWithCaseMin(out, S, caseMin, partSUMS, fun)
@@ -557,9 +568,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   out <- .semPrepareOutMatrix(ncol(X), nc, scoresObj)
   scores <- out[, 1]
 
-  rawDiffK <- d *
-    rowSums((partSUMS - matrix(colMeans(partSUMS), N, K, TRUE) - rowMeans(partSUMS) + mean(partSUMS))^2) /
-    (K - 1)
+  rawDiffK <- d * rowSums((partSUMS - matrix(colMeans(partSUMS), N, K, TRUE) - rowMeans(partSUMS) + mean(partSUMS))^2) / (K - 1)
   betaK <- coef(lm(rawDiffK ~ poly(S, n_poly, raw = TRUE)))
   scrs <- sqrt(betaK[1] + rowSums(matrix(betaK[-1], length(scores), n_poly, TRUE) * poly(scores, n_poly, raw = TRUE)))
   out[, 2] <- scrs
@@ -882,7 +891,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
                         funString = NA,
                         dependencies = NA)),
     lord2 = switch(as.character(nc),
-                   "2" = list(name = "Lord's compound",
+                   "2" = list(name = "Lord generalized",
                               funString = ".semLord2(dataset, as.numeric(options$lord2NumberOfSplits), scrs, options$minimumGroupSize)",
                               dependencies = c("lord2", "lord2NumberOfSplits", "minimumGroupSize")),
                    list(name = NA,

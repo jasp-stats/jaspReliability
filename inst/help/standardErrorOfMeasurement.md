@@ -23,7 +23,7 @@ The Standard Error of Measurement (sem) quantifies the precision of a measuremen
 - Binomial methods: Based on the idea that the item scores follow a binomial distribution
   - Lord: Method that only requires number of correct and incorrect items
   - Keats: Corrects the Lord method for supposed bias and uses a reliability coefficient in the process
-  - Lord's compound: Essentially the Lord method for multiple test parts
+  - Lord generalized: Essentially the Lord method for multiple test parts
     - Number of splits: How many splits to apply, can only be a divisor of the number of items
 
 ### Options
