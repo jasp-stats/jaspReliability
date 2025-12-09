@@ -173,8 +173,8 @@ test_that("Frequentist Scale Reliability Statistics table results match", {
     options("jaspRoundToPrecision" = NULL) # reset default
   } else if (jaspBase::getOS() == "osx") {
     jaspTools::expect_equal_tables(table,
-                                   list("Coefficient <unicode>", 0.791710063361508, 0.694692772995628,
-                                        0.0405022504460226, 0.852159859484347))
+                                   list("McDonald's <unicode>", 0.791710063361508, 0.67994307197584, 0.0454087394703138,
+                                        0.848430313668237))
   }
 })
 
