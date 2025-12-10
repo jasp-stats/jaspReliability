@@ -37,7 +37,7 @@ Form
 			maxLevels: 50
 			minNumericLevels: 2
 			id: variables
-			onCountChanged: 
+			onCountChanged:
 			{
 				var newValues = []
 				for (var i = 2; i <= variables.count; i++)
@@ -81,11 +81,11 @@ Form
 			name:   	"feldt"
 			label:  	qsTr("Feldt")
 			id: feldt
-			DropDown 
+			DropDown
 			{
 				name: "feldtNumberOfSplits"
 				label: qsTr("Number of splits")
-				values: []
+				values: [2, 3, 4, 5, 6, 7, 8, 9, 10]
 				id: feldtNumberOfSplits
 			}
 		}
@@ -94,11 +94,11 @@ Form
 			name:   	"mollenkopfFeldt"
 			label:  	qsTr("Mollenkopf-Feldt")
 			id: mollenkopfFeldt
-			DropDown 
+			DropDown
 			{
 				name: "mollenkopfFeldtNumberOfSplits"
 				label: qsTr("Number of splits")
-				values: []
+				values: [2, 3, 4, 5, 6, 7, 8, 9, 10]
 				id: mollenkopfFeldtNumberOfSplits
 			}
 			IntegerField
@@ -120,7 +120,7 @@ Form
 			name:   	"anova"
 			label:  	qsTr("ANOVA")
 		}
-		
+
 		CheckBox
 		{
 			name:   	"irt"
@@ -148,13 +148,13 @@ Form
 		{
 			enabled: !variables.columnsTypes.includes("ordinal")
 			name:   	"lord2"
-			label:  	qsTr("Lord's compound")
+			label:  	qsTr("Lord generalized")
 			id: lord2
-			DropDown 
+			DropDown
 			{
 				name: "lord2NumberOfSplits"
 				label: qsTr("Number of splits")
-				values: []
+				values: [2, 3, 4, 5, 6, 7, 8, 9, 10]
 				id: lord2NumberOfSplits
 			}
 		}
@@ -164,7 +164,7 @@ Form
 	{
 		title: qsTr("Options")
 
-		CheckBox 
+		CheckBox
 		{
 			name: "sumScoreCiTable"
 			label: qsTr("Sum score table")
@@ -177,7 +177,7 @@ Form
 			}
 		}
 
-		CheckBox 
+		CheckBox
 		{
 			name: "userReliability"
 			label: qsTr("User defined reliability")
@@ -186,7 +186,7 @@ Form
 			DoubleField
 			{
 				name: "reliabilityValue"
-				label: "" 
+				label: ""
 				max: 1
 				defaultValue: .5
 			}
@@ -195,17 +195,17 @@ Form
 		IntegerField
 		{
 			name: "minimumGroupSize"
-			label: qsTr("Minimum number of observations per score group") 
+			label: qsTr("Minimum number of observations per score group")
 			min: 1
 			defaultValue: 20
 		}
 
-		CheckBox 
+		CheckBox
 		{
 			name: "hideTable"
 			label: qsTr("Hide SEM table")
 		}
-		
+
 	}
 
 	Section
@@ -216,7 +216,7 @@ Form
 		{
 			name: "histogramCounts"
 			label: qsTr("Histogram of sum score counts")
-		}	
+		}
 
 		CheckBox
 		{
