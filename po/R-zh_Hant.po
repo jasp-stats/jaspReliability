@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
-"POT-Creation-Date: 2025-06-28 03:39\n"
+"POT-Creation-Date: 2025-12-13 03:41\n"
 "PO-Revision-Date: 2025-10-25 03:35+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
@@ -116,15 +116,18 @@ msgstr "從 %s 的觀察值中，以配對完整的個案進行分析"
 msgid "Method"
 msgstr "方法"
 
+#, fuzzy
 msgid ""
-"For the Lord's compound method, the test could not be split in equally sized "
-"parts with more than 1 item per part. Consider adding or removing items."
+"For the Lord generalized method, the test could not be split in equally "
+"sized parts with more than 1 item per part. Consider adding or removing "
+"items."
 msgstr ""
 "對於Lord的複合方法，測試無法分割成大小相等且每個部分包含超過1個項目的部分。請"
 "考慮增加或刪除項目。"
 
+#, fuzzy
 msgid ""
-"The Lord, Keats, and Lord's compound method are only available for binary "
+"The Lord, Keats, and Lord generalized method are only available for binary "
 "data."
 msgstr "Lord、Keats 和 Lord 的複合方法僅適用於二元資料。"
 
@@ -176,8 +179,9 @@ msgstr "事後機率圖"
 msgid "Sum Score CI Plots"
 msgstr ""
 
-msgid "True Score"
-msgstr ""
+#, fuzzy
+msgid "True Score Estimate"
+msgstr "點估計"
 
 msgid "Split-half coefficient"
 msgstr "折半係數"

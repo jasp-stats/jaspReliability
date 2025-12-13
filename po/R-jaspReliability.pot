@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.95.5\n"
-"POT-Creation-Date: 2025-11-15 03:38\n"
+"POT-Creation-Date: 2025-12-13 03:41\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,10 +107,10 @@ msgstr ""
 msgid "Method"
 msgstr ""
 
-msgid "For the Lord's compound method, the test could not be split in equally sized parts with more than 1 item per part. Consider adding or removing items."
+msgid "For the Lord generalized method, the test could not be split in equally sized parts with more than 1 item per part. Consider adding or removing items."
 msgstr ""
 
-msgid "The Lord, Keats, and Lord's compound method are only available for binary data."
+msgid "The Lord, Keats, and Lord generalized method are only available for binary data."
 msgstr ""
 
 msgid "Standard Error of Measurement"
@@ -152,7 +152,7 @@ msgstr ""
 msgid "Sum Score CI Plots"
 msgstr ""
 
-msgid "True Score"
+msgid "True Score Estimate"
 msgstr ""
 
 msgid "Split-half coefficient"

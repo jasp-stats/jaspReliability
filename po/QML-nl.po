@@ -25,14 +25,6 @@ msgid "Bayesian"
 msgstr "Bayesiaans"
 
 msgctxt "Description|"
-msgid "Unidimensional Reliability"
-msgstr "Eendimensionale Betrouwbaarheid"
-
-msgctxt "Description|"
-msgid "Bayesian Unidimensional Reliability"
-msgstr "Bayesiaanse Eendimensionale Betrouwbaarheid"
-
-msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
 msgstr "Kwantificeer de betrouwbaarheid van de testscores"
 
@@ -544,46 +536,6 @@ msgctxt "RaterAgreement|"
 msgid "Linear weights"
 msgstr "Lineaire gewichten"
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient ω"
-msgstr "Coëfficiënt ω"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient α"
-msgstr "Coëfficiënt α"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient ω (if item dropped)"
-msgstr "Coëfficiënt ω (als item is verwijderd)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient α (if item dropped)"
-msgstr "Coëfficiënt α (als item is verwijderd)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient ω Estimation"
-msgstr "Schatting van Coëfficiënt ω"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient ω"
-msgstr "Coëfficiënt ω"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient α"
-msgstr "Coëfficiënt α"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient ω  (if item dropped)"
-msgstr "Coëfficiënt ω  (als item is verwijderd)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient α (if item dropped)"
-msgstr "Coëfficiënt α (als item is verwijderd)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient ω Estimation"
-msgstr "Schatting van Coëfficiënt ω"
-
 msgctxt "Description|"
 msgid "Standard Error of Measurement"
 msgstr "Standaardfout van Meting"
@@ -627,10 +579,6 @@ msgstr "Lord"
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Keats"
 msgstr "Keats"
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Lord's compound"
-msgstr "Lord's samenstelling"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Options"
@@ -755,3 +703,51 @@ msgstr "Verberg SEM tabel"
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot all SEMs"
 msgstr "Teken alle SEMs"
+
+msgctxt "Description|"
+msgid "Bayesian Reliability"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Lord generalized"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Cronbach's α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Cronbach's α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω Estimation"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "McDonald's ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Cronbach's α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Cronbach's α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "McDonald's ω Estimation"
+msgstr ""

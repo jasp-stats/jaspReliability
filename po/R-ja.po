@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
-"POT-Creation-Date: 2025-06-28 03:39\n"
+"POT-Creation-Date: 2025-12-13 03:41\n"
 "PO-Revision-Date: 2024-06-18 14:09+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -117,12 +117,13 @@ msgid "Method"
 msgstr "方法"
 
 msgid ""
-"For the Lord's compound method, the test could not be split in equally sized "
-"parts with more than 1 item per part. Consider adding or removing items."
+"For the Lord generalized method, the test could not be split in equally "
+"sized parts with more than 1 item per part. Consider adding or removing "
+"items."
 msgstr ""
 
 msgid ""
-"The Lord, Keats, and Lord's compound method are only available for binary "
+"The Lord, Keats, and Lord generalized method are only available for binary "
 "data."
 msgstr ""
 
@@ -172,8 +173,9 @@ msgstr "事後分布プロット"
 msgid "Sum Score CI Plots"
 msgstr ""
 
-msgid "True Score"
-msgstr ""
+#, fuzzy
+msgid "True Score Estimate"
+msgstr "点推定"
 
 msgid "Split-half coefficient"
 msgstr ""

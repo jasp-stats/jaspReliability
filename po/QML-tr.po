@@ -24,14 +24,6 @@ msgid "Bayesian"
 msgstr "Bayesçi"
 
 msgctxt "Description|"
-msgid "Unidimensional Reliability"
-msgstr "Tek Boyutlu Güvenilirlik"
-
-msgctxt "Description|"
-msgid "Bayesian Unidimensional Reliability"
-msgstr "Bayesçi Tek Boyutlu Güvenilirlik"
-
-msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
 msgstr "Test puanlarının güvenilirliğini ölçün"
 
@@ -544,46 +536,6 @@ msgctxt "RaterAgreement|"
 msgid "Linear weights"
 msgstr "Doğrusal(Lineer) ağırlıklar"
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient ω"
-msgstr "ω katsayısı"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient α"
-msgstr "α katsayısı"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient ω (if item dropped)"
-msgstr "ω katsayısı(eğer öğe düşürülürse)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient α (if item dropped)"
-msgstr "α katsayısı(eğer öğe düşürülürse)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient ω Estimation"
-msgstr "ω Tahmini Katsayısı"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient ω"
-msgstr "ω katsayısı"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient α"
-msgstr "α kasayısı"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient ω  (if item dropped)"
-msgstr "ω katsayısı  (eğer öğe düşürülürse)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient α (if item dropped)"
-msgstr "α kasayısı(eğer öğe düşürülürse)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient ω Estimation"
-msgstr "Tahmini ω katsayısı"
-
 msgctxt "Description|"
 msgid "Standard Error of Measurement"
 msgstr "Ölçümün Standart Hatası"
@@ -627,10 +579,6 @@ msgstr "Lord"
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Keats"
 msgstr "Keats"
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Lord's compound"
-msgstr "Lord'un karışımı-birleşimi"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Options"
@@ -755,3 +703,51 @@ msgstr "SEM tablosunu gizle"
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot all SEMs"
 msgstr "Tüm SEM'leri çiz"
+
+msgctxt "Description|"
+msgid "Bayesian Reliability"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Lord generalized"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Cronbach's α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Cronbach's α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω Estimation"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "McDonald's ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Cronbach's α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Cronbach's α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "McDonald's ω Estimation"
+msgstr ""

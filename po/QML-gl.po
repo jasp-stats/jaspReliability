@@ -21,16 +21,8 @@ msgid "Bayesian"
 msgstr "Baiesiano"
 
 msgctxt "Description|"
-msgid "Unidimensional Reliability"
-msgstr "Fiabilidade Unidimensional"
-
-msgctxt "Description|"
 msgid "Intraclass Correlation"
 msgstr "Correlación Intraclase"
-
-msgctxt "Description|"
-msgid "Bayesian Unidimensional Reliability"
-msgstr "Fiabilidade Baiesiana Unidimensional"
 
 msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
@@ -544,46 +536,6 @@ msgctxt "RaterAgreement|"
 msgid "Linear weights"
 msgstr "Ponderacións lineais"
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient ω"
-msgstr "Coeficiente ω"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient α"
-msgstr "Coeficiente α"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient ω (if item dropped)"
-msgstr "Coeficiente ω (se o elemento se elimina)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient α (if item dropped)"
-msgstr "Coeficiente α (se o elemento se elimina)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient ω Estimation"
-msgstr "Estimación do coeficiente ω"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient ω"
-msgstr "Coeficiente ω"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient α"
-msgstr "Coeficiente α"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient ω  (if item dropped)"
-msgstr "Coeficiente ω (se o elemento se elimina)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient α (if item dropped)"
-msgstr "Coeficiente α (se o elemento se elimina)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient ω Estimation"
-msgstr "Estimación do coeficiente ω"
-
 msgctxt "Description|"
 msgid "Standard Error of Measurement"
 msgstr "Erro padrón de medida"
@@ -627,10 +579,6 @@ msgstr "Lord"
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Keats"
 msgstr "Keats"
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Lord's compound"
-msgstr "Combinación de Lord"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Options"
@@ -755,3 +703,51 @@ msgstr "Ocultar táboa do DPM (MES)"
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot all SEMs"
 msgstr "Debuxar tódolos DPM (MES)"
+
+msgctxt "Description|"
+msgid "Bayesian Reliability"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Lord generalized"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Cronbach's α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Cronbach's α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω Estimation"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "McDonald's ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Cronbach's α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Cronbach's α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "McDonald's ω Estimation"
+msgstr ""

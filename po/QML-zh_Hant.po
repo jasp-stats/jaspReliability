@@ -24,14 +24,6 @@ msgid "Bayesian"
 msgstr "貝氏"
 
 msgctxt "Description|"
-msgid "Unidimensional Reliability"
-msgstr "單維信度"
-
-msgctxt "Description|"
-msgid "Bayesian Unidimensional Reliability"
-msgstr "貝氏單維信度"
-
-msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
 msgstr "評估量表/問卷之測驗結果的一致性與穩定度"
 
@@ -589,46 +581,6 @@ msgctxt "RaterAgreement|"
 msgid "Linear weights"
 msgstr "線性(Linear)加權"
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient ω"
-msgstr "Coefficient ω(CR值)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient α"
-msgstr "Coefficient α (Cronbach's α)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient ω (if item dropped)"
-msgstr "Coefficient ω (若刪除此題項)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient α (if item dropped)"
-msgstr "Coefficient α (若刪除此題項)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficient ω Estimation"
-msgstr "Coefficient ω估計值"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient ω"
-msgstr "Coefficient ω(CR值)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient α"
-msgstr "Coefficient α (Cronbach's α)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient ω  (if item dropped)"
-msgstr "Coefficient ω (若刪除此題項)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient α (if item dropped)"
-msgstr "Coefficient α (若刪除此題項)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficient ω Estimation"
-msgstr "CR估計值"
-
 msgctxt "Description|"
 msgid "Standard Error of Measurement"
 msgstr "測量標準誤"
@@ -672,10 +624,6 @@ msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Keats"
-msgstr ""
-
-msgctxt "StandardErrorOfMeasurement|"
-msgid "Lord's compound"
 msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
@@ -800,4 +748,52 @@ msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot all SEMs"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Bayesian Reliability"
+msgstr ""
+
+msgctxt "StandardErrorOfMeasurement|"
+msgid "Lord generalized"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Cronbach's α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "Cronbach's α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityBayesian|"
+msgid "McDonald's ω Estimation"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "McDonald's ω"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Cronbach's α"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "Cronbach's α (if item dropped)"
+msgstr ""
+
+msgctxt "UnidimensionalReliabilityFrequentist|"
+msgid "McDonald's ω Estimation"
 msgstr ""

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.19.2\n"
-"POT-Creation-Date: 2025-06-28 03:39\n"
+"POT-Creation-Date: 2025-12-13 03:41\n"
 "PO-Revision-Date: 2025-07-03 07:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/jasp/"
@@ -114,16 +114,19 @@ msgstr "பட்டியலிடப்பட்ட முழுமையா�
 msgid "Method"
 msgstr "முறை"
 
+#, fuzzy
 msgid ""
-"For the Lord's compound method, the test could not be split in equally sized "
-"parts with more than 1 item per part. Consider adding or removing items."
+"For the Lord generalized method, the test could not be split in equally "
+"sized parts with more than 1 item per part. Consider adding or removing "
+"items."
 msgstr ""
 "லார்ட்ச் கலவை முறையைப் பொறுத்தவரை, சோதனையை ஒரு பகுதிக்கு 1 உருப்படியுடன் சமமான "
 "அளவிலான பகுதிகளில் பிரிக்க முடியவில்லை. உருப்படிகளைச் சேர்ப்பது அல்லது அகற்றுவதைக் "
 "கவனியுங்கள்."
 
+#, fuzzy
 msgid ""
-"The Lord, Keats, and Lord's compound method are only available for binary "
+"The Lord, Keats, and Lord generalized method are only available for binary "
 "data."
 msgstr "இறைவன், கீட்ச் மற்றும் லார்ட்ச் கலவை முறை பைனரி தரவுகளுக்கு மட்டுமே கிடைக்கின்றன."
 
@@ -174,7 +177,8 @@ msgstr "ஒருங்கிணைந்த சூழ்ச்சி"
 msgid "Sum Score CI Plots"
 msgstr "தொகை மதிப்பெண் தொஒ அடுக்கு"
 
-msgid "True Score"
+#, fuzzy
+msgid "True Score Estimate"
 msgstr "உண்மையான மதிப்பெண்"
 
 msgid "Split-half coefficient"
@@ -266,8 +270,7 @@ msgstr ""
 msgid ""
 "Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
 "than %2$.2f"
-msgstr ""
-"நம்பகத்தன்மை குணகம் %1$.2f ஐ விடப் பெரியது மற்றும் %2$.2f ஐ விடச் சிறியது"
+msgstr "நம்பகத்தன்மை குணகம் %1$.2f ஐ விடப் பெரியது மற்றும் %2$.2f ஐ விடச் சிறியது"
 
 msgid "Probability"
 msgstr "நிகழ்தகவு"
