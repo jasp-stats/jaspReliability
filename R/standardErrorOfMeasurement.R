@@ -26,7 +26,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   .semCreateMainContainer(jaspResults, options)
 
-  options <- .semOptionsHelper(options, dataset)
+  options <- .semOptionsHelper(options, dataset, ready)
 
   .semComputeCoefficients(jaspResults, dataset, options, ready)
 
@@ -199,7 +199,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   jaspResults[["semMainContainer"]][["coefficientTable"]] <- coefficientTable
 
   coefficientTable$addColumnInfo(name = "score", title = gettext("Sum Score"), type = "string")
-  coefficientTable$addColumnInfo(name = "average", title = gettext("Score-Unrelated SEM"), type = "number")
+  coefficientTable$addColumnInfo(name = "average", title = gettext("Unconditional SEM"), type = "number")
 
   footnote <- ""
 
@@ -221,7 +221,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
       coefficientTable$addColumnInfo(name = "score", title = gettext("Sum Score"), type = "string")
       coefficientTable$addColumnInfo(name = "counts", title = gettext("Counts"), type = "string")
-      footnote <- gettextf("%1$s The score-unrelated SEM value equals %2$1.3f.", footnote, average$est)
+      footnote <- gettextf("%1$s The unconditional SEM value equals %2$1.3f.", footnote, average$est)
       scrs <- jaspResults[["semMainContainer"]][["countsState"]]$object
       counts <- scrs$counts
       dtFill <- data.frame(score = scrs$scores)
@@ -539,8 +539,6 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   out <- .semPrepareOutMatrix(ncol(X), nc, scoresObj)
   fun <- function(partSUMS, ind, cc) {
     K <- ncol(partSUMS)
-    # mean_diff <- partSUMS[ind, ] - rowMeans(partSUMS[ind, ]) - matrix(colMeans(partSUMS[ind, ]), length(ind), K, TRUE) + mean(partSUMS[ind, ])
-    # ret <- sqrt(d * sum(rowSums(mean_diff^2) / (K - 1)) / length(ind))
 
     col_means <- colMeans(partSUMS)    # Global marginal means (X_j)
     grand_mean <- mean(col_means)    # Global grand mean (M)
@@ -573,6 +571,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
   scrs <- sqrt(betaK[1] + rowSums(matrix(betaK[-1], length(scores), n_poly, TRUE) * poly(scores, n_poly, raw = TRUE)))
   out[, 2] <- scrs
 
+  colnames(out) <- c("score", "sem", "counts", "collapsed")
   return(out)
 }
 
@@ -855,7 +854,9 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 }
 
 #' this might be the most important function :-
-.semOptionsHelper <- function(options, dataset) {
+.semOptionsHelper <- function(options, dataset, ready) {
+
+  if (!ready) return(options)
 
   nc <- length(unique(c(as.matrix(dataset))))
 

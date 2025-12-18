@@ -146,7 +146,7 @@
     },
     "RcppArmadillo": {
       "Package": "RcppArmadillo",
-      "Version": "15.2.2-1",
+      "Version": "15.2.3-1",
       "Source": "Repository",
       "Requirements": [
         "methods",
@@ -190,7 +190,7 @@
     },
     "SimDesign": {
       "Package": "SimDesign",
-      "Version": "2.21",
+      "Version": "2.22",
       "Source": "Repository",
       "Requirements": [
         "beepr",
@@ -221,7 +221,7 @@
     },
     "audio": {
       "Package": "audio",
-      "Version": "0.1-11",
+      "Version": "0.1-12",
       "Source": "Repository",
       "Requirements": [
         "R"
@@ -895,7 +895,7 @@
     },
     "parallelly": {
       "Package": "parallelly",
-      "Version": "1.45.1",
+      "Version": "1.46.0",
       "Source": "Repository",
       "Requirements": [
         "parallel",
@@ -1084,7 +1084,7 @@
     },
     "reformulas": {
       "Package": "reformulas",
-      "Version": "0.4.2",
+      "Version": "0.4.3",
       "Source": "Repository",
       "Requirements": [
         "Matrix",
