@@ -7,6 +7,7 @@ Description
 	description	: qsTr("Quantify the reliability of test scores")
 	icon		: "reliability_icon_classic.svg"
 	hasWrappers:  false
+	preloadData: true
 	
 	GroupTitle
 	{
