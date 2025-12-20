@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2025-12-20 03:42\n"
-"PO-Revision-Date: 2025-12-20 03:40+0000\n"
+"PO-Revision-Date: 2025-12-21 09:00+0000\n"
 "Last-Translator: Wendel Paulo Silvestre <wpsilvestre@ucs.br>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/pt/>\n"
@@ -141,12 +141,11 @@ msgid "Sum Score"
 msgstr "Soma de Pontuações"
 
 msgid "Unconditional SEM"
-msgstr ""
+msgstr "EPM não condicionada"
 
 msgid "Counts"
 msgstr "Contagens"
 
-#, fuzzy
 msgid "%1$s The unconditional SEM value equals %2$1.3f."
 msgstr "%1$s o EPM não relacionado à pontuação é igual a %2$1.3f."
 
