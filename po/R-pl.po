@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
-"POT-Creation-Date: 2025-12-13 03:41\n"
+"POT-Creation-Date: 2025-12-20 03:42\n"
 "PO-Revision-Date: 2025-07-02 06:01+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
@@ -138,13 +138,14 @@ msgstr "Standardowy błąd pomiaru"
 msgid "Sum Score"
 msgstr "Suma punktów"
 
-msgid "Score-Unrelated SEM"
-msgstr "Niezależny od wyniku standardowy błąd pomiaru"
+msgid "Unconditional SEM"
+msgstr ""
 
 msgid "Counts"
 msgstr "Liczebności"
 
-msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
+#, fuzzy
+msgid "%1$s The unconditional SEM value equals %2$1.3f."
 msgstr ""
 "%1$s Wartość niezależnego od wyniku standardowego błędu pomiaru wynosi "
 "%2$1.3f."
@@ -463,6 +464,9 @@ msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "Następująca pozycja była zakodowana odwrotnie: %s. "
 msgstr[1] "Następujące pozycje były zakodowane odwrotnie: %s. "
 msgstr[2] "Następujące pozycje były zakodowane odwrotnie: %s. "
+
+#~ msgid "Score-Unrelated SEM"
+#~ msgstr "Niezależny od wyniku standardowy błąd pomiaru"
 
 #~ msgid "Greatest Lower Bound"
 #~ msgstr "Największa dolna granica"

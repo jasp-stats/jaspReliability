@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
-"POT-Creation-Date: 2025-12-13 03:41\n"
+"POT-Creation-Date: 2025-12-20 03:42\n"
 "PO-Revision-Date: 2025-10-25 03:35+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
@@ -138,13 +138,13 @@ msgstr "測量的標準誤"
 msgid "Sum Score"
 msgstr ""
 
-msgid "Score-Unrelated SEM"
+msgid "Unconditional SEM"
 msgstr ""
 
 msgid "Counts"
 msgstr "計次"
 
-msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
+msgid "%1$s The unconditional SEM value equals %2$1.3f."
 msgstr ""
 
 msgid ""

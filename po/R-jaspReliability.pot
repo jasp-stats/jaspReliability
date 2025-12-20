@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.95.5\n"
-"POT-Creation-Date: 2025-12-13 03:41\n"
+"POT-Creation-Date: 2025-12-20 03:42\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,13 +119,13 @@ msgstr ""
 msgid "Sum Score"
 msgstr ""
 
-msgid "Score-Unrelated SEM"
+msgid "Unconditional SEM"
 msgstr ""
 
 msgid "Counts"
 msgstr ""
 
-msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
+msgid "%1$s The unconditional SEM value equals %2$1.3f."
 msgstr ""
 
 msgid "%1$s Estimating the %2$s method failed. If possible, you might try changing the method's parameters."

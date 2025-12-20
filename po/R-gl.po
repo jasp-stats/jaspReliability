@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2025-12-13 03:41\n"
+"POT-Creation-Date: 2025-12-20 03:42\n"
 "PO-Revision-Date: 2025-12-14 07:00+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
@@ -144,13 +144,14 @@ msgstr "Erro padrón de medida"
 msgid "Sum Score"
 msgstr "Suma Puntuación"
 
-msgid "Score-Unrelated SEM"
-msgstr "Puntuación-DPM (SEM) alleo"
+msgid "Unconditional SEM"
+msgstr ""
 
 msgid "Counts"
 msgstr "Recontos"
 
-msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
+#, fuzzy
+msgid "%1$s The unconditional SEM value equals %2$1.3f."
 msgstr "%1$s O valor da puntuación-DPM (SEM) alleo é igual a %2$1.3f."
 
 msgid ""
@@ -467,6 +468,9 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "O seguinte elemento está escalado do revés : %s. "
 msgstr[1] "Os seguintes elementos están escalados do revés : %s. "
+
+#~ msgid "Score-Unrelated SEM"
+#~ msgstr "Puntuación-DPM (SEM) alleo"
 
 #~ msgid "Sum score"
 #~ msgstr "Suma puntuación"

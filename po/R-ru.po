@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
-"POT-Creation-Date: 2025-12-13 03:41\n"
+"POT-Creation-Date: 2025-12-20 03:42\n"
 "PO-Revision-Date: 2025-04-02 18:57+0000\n"
 "Last-Translator: Иван Рудаков <riv@polygene.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
@@ -132,13 +132,13 @@ msgstr ""
 msgid "Sum Score"
 msgstr ""
 
-msgid "Score-Unrelated SEM"
+msgid "Unconditional SEM"
 msgstr ""
 
 msgid "Counts"
 msgstr ""
 
-msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
+msgid "%1$s The unconditional SEM value equals %2$1.3f."
 msgstr ""
 
 msgid ""

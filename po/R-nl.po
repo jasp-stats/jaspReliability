@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2025-12-13 03:41\n"
+"POT-Creation-Date: 2025-12-20 03:42\n"
 "PO-Revision-Date: 2025-05-03 03:36+0000\n"
 "Last-Translator: Koen Derks <koen-derks@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
@@ -141,13 +141,14 @@ msgstr "Standaardfout van de Meting"
 msgid "Sum Score"
 msgstr "Somscore"
 
-msgid "Score-Unrelated SEM"
-msgstr "Score-Niet-Gerelateerde SEM"
+msgid "Unconditional SEM"
+msgstr ""
 
 msgid "Counts"
 msgstr "Aantallen"
 
-msgid "%1$s The score-unrelated SEM value equals %2$1.3f."
+#, fuzzy
+msgid "%1$s The unconditional SEM value equals %2$1.3f."
 msgstr "%1$s De score-niet-gerelateerde SEM-waarde is gelijk aan %2$1.3f."
 
 msgid ""
@@ -462,6 +463,9 @@ msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "De volgende item is omgekeerd geschaald: %s. "
 msgstr[1] "De volgende items zijn omgekeerd geschaald: %s. "
+
+#~ msgid "Score-Unrelated SEM"
+#~ msgstr "Score-Niet-Gerelateerde SEM"
 
 #~ msgid "Sum score"
 #~ msgstr "Somscore"
