@@ -1,29 +1,34 @@
 msgid ""
 msgstr ""
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-12-26 11:35+0000\n"
+"Last-Translator: Zev Oster <zevelijah@gmail.com>\n"
+"Language-Team: Tibetan <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/bo/>\n"
 "Language: bo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15.1\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Reliability"
 msgstr ""
 
+#, fuzzy
 msgctxt "Description|"
 msgid "Classical"
-msgstr ""
+msgstr "སྲོལ་རྒྱུན།"
 
 msgctxt "Description|"
 msgid "Intraclass Correlation"
 msgstr ""
 
+#, fuzzy
 msgctxt "Description|"
 msgid "Bayesian"
-msgstr ""
+msgstr "བྷེ་ཡེ་སི།"
 
 msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
