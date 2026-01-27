@@ -6,3 +6,4 @@
 ^\.editorconfig$
 ^\.github$
 ^tests/upgrades$
+^examples$
