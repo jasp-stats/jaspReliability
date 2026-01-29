@@ -18,6 +18,9 @@
 #' @export
 standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
+  sink(file="~/Downloads/log.txt")
+  on.exit(sink(NULL))
+
   ready <- length(options[["variables"]]) > 1
 
   dataset <- .semHandleData(dataset, options, ready)
@@ -625,21 +628,30 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   } else {
 
-    bsInf <- lapply(bs, function(x) c(-Inf, x, Inf))
-    probs <- vector("list", length = nit)
+    # prep once
+    items <- lapply(1:nit, function(k) mirt::extract.item(res, k))
+    bMulti <- lapply(1:nit, function(k) 0:(ncol(mirt::probtrace(items[[k]], Theta = matrix(0,1,1))) - 1))
 
     for (i in 1:length(x)) {
+      Theta <- matrix(x[i], ncol = 1)
+
+      probs <- vector("list", nit)
+
       for (k in 1:nit) {
-        blen <- length(bsInf[[k]]) - 1
-        probs[[k]] <- numeric(blen)
-        for (j in 1:blen) {
-          probs[[k]][j] <- plogis(as[k] * (x[i] - bsInf[[k]][j])) - plogis(as[k] * (x[i] - bsInf[[k]][j + 1]))
-        }
+        # category probabilities at this theta
+        P <- mirt::probtrace(items[[k]], Theta = Theta)
+
+        # probtrace returns a 1 x nc matrix; turn into numeric vector
+        probs[[k]] <- as.numeric(P)
       }
+
+      # expected value per item: sum(category_score * prob)
       pprobs <- Map("*", probs, bMulti)
       ev <- sapply(pprobs, sum)
+
+      # item variances: sum((cat - EV)^2 * prob)
       dev <- Map("-", bMulti, ev)
-      dev <- lapply(dev, function(x) x^2)
+      dev <- lapply(dev, function(z) z^2)
       devPr <- Map("*", dev, probs)
 
       outIRT[i, 1] <- sum(ev)
