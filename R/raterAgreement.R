@@ -41,6 +41,10 @@ raterAgreement <- function(jaspResults, dataset, options) {
     return(dataset)
   }
 
+  dataset
+
+  # raters in rows
+  # we should check
   dataset <- as.data.frame(t(dataset))
 
   return(dataset)
@@ -180,6 +184,21 @@ raterAgreement <- function(jaspResults, dataset, options) {
   )
 
   if (ready) {
+
+    if (nrow(dataset) < 3) {
+      jaspTable$setError(gettext(
+        "Fleiss' kappa requires at least 3 subjects/items. Check whether raters are in columns or rows."
+      ))
+      return(jaspTable)
+    }
+
+    if (ncol(dataset) < 2) {
+      jaspTable$setError(gettext(
+        "Fleiss' kappa requires at least 2 raters/measurements."
+      ))
+      return(jaspTable)
+    }
+
     #calculate Fleiss' Kappa
     allKappaData <- irr::kappam.fleiss(dataset, detail = TRUE)
     overallKappa <- allKappaData$value
