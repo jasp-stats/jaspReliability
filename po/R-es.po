@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
-"POT-Creation-Date: 2025-12-20 03:42\n"
+"POT-Creation-Date: 2026-02-14 04:07\n"
 "PO-Revision-Date: 2025-12-21 09:00+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
@@ -107,6 +107,16 @@ msgstr "La kappa de Cohen requiere al menos 3 sujetos/elementos."
 
 msgid "Fleiss' kappa"
 msgstr "Kappa de Fleiss"
+
+#, fuzzy
+msgid ""
+"Fleiss' kappa requires at least 3 subjects/items. Check whether raters are "
+"in columns or rows."
+msgstr "La kappa de Cohen requiere al menos 3 sujetos/elementos."
+
+#, fuzzy
+msgid "Fleiss' kappa requires at least 2 raters/measurements."
+msgstr "La kappa de Cohen requiere al menos 3 sujetos/elementos."
 
 msgid "%1$s Based on listwise complete cases."
 msgstr "%1$s Basado en casos completos por lista."

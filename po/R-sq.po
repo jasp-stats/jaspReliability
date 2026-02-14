@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.95.0\n"
-"POT-Creation-Date: 2025-12-20 03:42\n"
+"POT-Creation-Date: 2026-02-14 04:07\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -102,6 +102,14 @@ msgid "Cohen's kappa requires at least 3 subjects/items."
 msgstr ""
 
 msgid "Fleiss' kappa"
+msgstr ""
+
+msgid ""
+"Fleiss' kappa requires at least 3 subjects/items. Check whether raters are "
+"in columns or rows."
+msgstr ""
+
+msgid "Fleiss' kappa requires at least 2 raters/measurements."
 msgstr ""
 
 msgid "%1$s Based on listwise complete cases."
