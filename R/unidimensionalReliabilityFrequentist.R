@@ -2119,7 +2119,11 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   } else {
     # Flanagan-Rulon / Guttman split-half: 4 * Cov(X1, X2) / Var(X)
     Var_X <- Var_XA + Var_XB + 2 * Cov_XA_XB
-    rsh <- 4 * Cov_XA_XB / Var_X
+    if (is.na(Var_X) || abs(Var_X) < .Machine$double.eps) {
+      rsh <- NA_real_
+    } else {
+      rsh <- 4 * Cov_XA_XB / Var_X
+    }
   }
 
   callback()
