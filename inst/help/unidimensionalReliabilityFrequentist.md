@@ -15,7 +15,7 @@ The frequentist unidimensional reliability analysis allows the user to test the 
 - McDonald's omega (for unidimensional data, based on the single-factor model). Note the total test variance in the denominator of the reliability equation is the model implied total variance, that is, the summed model implied covariance matrix.
 - Cronbach's alpha (for binary items the coefficient equals KR20)
 - Guttman's lambda 2
-- Split-half coefficient: Splits the items into two halves, by default odd and even numbered items in order of appearance in the variables window. If another split is desired the variables just need to be reordered. The unstandardized split-half coefficient is the Flanagan-Rulon coefficient (equivalent to the Guttman split-half), computed as 4·Cov(X₁, X₂) / Var(X). The standardized split-half coefficient is the Spearman-Brown coefficient, computed as 2r / (1 + r), where r is the correlation between the two half-test sum scores.
+- Split-half coefficient: Splits the items into two halves, by default odd and even numbered items in order of appearance in the variables window. If another split is desired the variables just need to be reordered. The unstandardized split-half coefficient is the Flanagan-Rulon coefficient (equivalent to the Guttman split-half), computed as 4 * Cov(X₁, X₂) / Var(X). The standardized split-half coefficient is the Spearman-Brown coefficient, computed as 2r / (1 + r), where r is the correlation between the two half-test sum scores.
 - Average interitem correlation: The mean of all pairwise Pearson correlations between items. For the analytic interval, the standard error is obtained via the multivariate delta method applied to the sample covariance matrix.
 - Mean:
 	- of the sum scores of participants
