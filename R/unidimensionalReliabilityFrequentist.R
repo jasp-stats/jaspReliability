@@ -2139,13 +2139,13 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   if (is.null(VC)) {
     levs <- sapply(as.data.frame(X), function(col) length(unique(col[!is.na(col)])))
     if (any(levs > scaleThreshold)) {
-      VC <- .varVCwishart(stats::var(X), nrow(X))
+      VC <- .varVCwishart(stats::var(X, use = "pairwise.complete.obs"), nrow(X))
     } else {
       VC <- .varCM(X)
     }
   }
 
-  C <- var(X)
+  C <- var(X, use = "pairwise.complete.obs")
   vecC <- as.vector(C) # J^2 elements, column-major
 
   # Indicator vectors (length J^2) for block membership

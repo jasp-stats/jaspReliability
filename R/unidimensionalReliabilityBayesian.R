@@ -1295,7 +1295,8 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
         startProgressbar(4e3)
       }
       prior <- .samplePrior(n.item, nm, progressbarTick, options[["inverseWishartPriorScale"]], options[["inverseWishartPriorDf"]],
-                            options[["inverseGammaPriorShape"]], options[["inverseGammaPriorScale"]], options[["normalPriorMean"]])
+                            options[["inverseGammaPriorShape"]], options[["inverseGammaPriorScale"]], options[["normalPriorMean"]],
+                            standardized = options[["coefficientType"]] == "standardized")
 
       probsPrior[i] <- sum(prior[["y"]][poslow:end]) / sum(prior[["y"]]) -
         sum(prior[["y"]][poshigh:end]) / sum(prior[["y"]])
@@ -1458,7 +1459,8 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
             startProgressbar(4e3)
           }
           prior <- .samplePrior(n.item, nm, progressbarTick, options[["inverseWishartPriorScale"]], options[["inverseWishartPriorDf"]],
-                                options[["inverseGammaPriorShape"]], options[["inverseGammaPriorScale"]], options[["normalPriorMean"]])
+                                options[["inverseGammaPriorShape"]], options[["inverseGammaPriorScale"]], options[["normalPriorMean"]],
+                                standardized = options[["coefficientType"]] == "standardized")
         } else {
           prior <- NULL
         }
@@ -1862,7 +1864,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 }
 
 
-.samplePrior <- function(k, estimate, callback = function(){}, k0, df0, a0, b0, m0) {
+.samplePrior <- function(k, estimate, callback = function(){}, k0, df0, a0, b0, m0, standardized = FALSE) {
 
   n_samp <- 2e3
 
@@ -1910,7 +1912,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   if (estimate == "scaleSplithalf") {
     nit <- k
     splits <- split(seq_len(nit), 1:2)
-    priorsplithalf <- apply(m, MARGIN = 1, .splithalfCor, splits = splits, callback = callback)
+    priorsplithalf <- apply(m, MARGIN = 1, .splithalfCor, splits = splits, standardized = standardized, callback = callback)
     out <- density(priorsplithalf, from = 0, to = 1, n = 512)
     return(out)
 
