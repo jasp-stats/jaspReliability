@@ -967,10 +967,13 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         out[["conf"]][["averageInterItemCorrelation"]] <- quantile(samp, probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
         out[["se"]][["averageInterItemCorrelation"]] <- sd(samp, na.rm = TRUE)
       } else { # interval analytic
-        # TODO: what is the SE of the average interitem correlation?
-        out[["se"]][["averageInterItemCorrelation"]] <- NA
+        if (model[["pairwise"]]) {
+          out[["se"]][["averageInterItemCorrelation"]] <- NA
+          out[["error"]][["averageInterItemCorrelation"]] <- gettext("The analytic confidence interval is not available for the average interitem correlation when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'.")
+        } else {
+          out[["se"]][["averageInterItemCorrelation"]] <- .seAverageInterItemCor(dtUse, scaleThreshold = options[["hiddenScaleThreshold"]])
+        }
         out[["conf"]][["averageInterItemCorrelation"]] <- out[["est"]][["averageInterItemCorrelation"]] + c(-1, 1) * out[["se"]][["averageInterItemCorrelation"]] * qnorm(1 - (1 - ciValue) / 2)
-        out[["error"]][["averageInterItemCorrelation"]] <- gettext("The standard error of the average interitem correlation is not available. ")
       }
     }
 
@@ -2034,6 +2037,51 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   J <- ncol(X)
   C <- var(X)
   return(((sum(C)-sum(diag(C))) + (sqrt((J/(J-1))*(sum(C^2)-sum(diag(C^2))))))/sum(C))
+}
+
+
+# SE of average inter-item correlation via multivariate delta method on vec(Sigma).
+# The average inter-item correlation is r_bar = (1 / (J*(J-1))) * sum_{i!=j} C_ij / sqrt(C_ii * C_jj)
+# where C = Var(X).  The gradient w.r.t. vec(C) is obtained by differentiating each
+# r_ij = C_ij / sqrt(C_ii * C_jj) w.r.t. C_ab and averaging.
+.seAverageInterItemCor <- function(X, VC = NULL, scaleThreshold = 10) {
+  J <- ncol(X)
+  if (is.null(VC)) {
+    levs <- sapply(as.data.frame(X), function(col) length(unique(col[!is.na(col)])))
+    if (any(levs > scaleThreshold)) {
+      VC <- .varVCwishart(stats::var(X), nrow(X))
+    } else {
+      VC <- .varCM(X)
+    }
+  }
+
+  C <- var(X)
+  R <- cov2cor(C)
+  m <- J * (J - 1)  # number of off-diagonal pairs (both triangles)
+
+  # Build J x J gradient matrix G_mat where entry (a, b) = d(r_bar) / d(C_ab).
+  # Off-diagonal (a != b): d(r_bar)/d(C_ab) = 1 / (m * sqrt(C_aa * C_bb))
+  #   because only r_ab depends on C_ab (as numerator), and d(r_ab)/d(C_ab) = 1/sqrt(C_aa*C_bb),
+  #   plus r_ba = r_ab so appears twice in the double sum, but m counts both triangles.
+  # Diagonal (a = a):  d(r_bar)/d(C_aa) = -sum_{j!=a} R_aj / (m * C_aa)
+  #   because d(r_aj)/d(C_aa) = -C_aj / (2 * C_aa * sqrt(C_aa*C_jj)) = -R_aj / (2*C_aa),
+  #   summed over all j != a in both triangles (each pair appears twice) gives -sum_{j!=a} R_aj / (m*C_aa).
+  Gmat <- matrix(0, J, J)
+  dC <- diag(C)
+  for (a in seq_len(J)) {
+    for (b in seq_len(J)) {
+      if (a != b) {
+        Gmat[a, b] <- 1 / (m * sqrt(dC[a] * dC[b]))
+      } else {
+        Gmat[a, a] <- -sum(R[a, -a]) / (m * dC[a])
+      }
+    }
+  }
+
+  # Vectorize: vec(G_mat) as a 1 x J^2 row vector, column-major order matching vec(C)
+  G <- matrix(as.vector(Gmat), nrow = 1)
+  V <- G %*% VC %*% t(G)
+  return(sqrt(as.numeric(V)))
 }
 
 
