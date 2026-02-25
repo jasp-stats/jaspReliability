@@ -2068,15 +2068,11 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   #   summed over all j != a in both triangles (each pair appears twice) gives -sum_{j!=a} R_aj / (m*C_aa).
   Gmat <- matrix(0, J, J)
   dC <- diag(C)
-  for (a in seq_len(J)) {
-    for (b in seq_len(J)) {
-      if (a != b) {
-        Gmat[a, b] <- 1 / (m * sqrt(dC[a] * dC[b]))
-      } else {
-        Gmat[a, a] <- -sum(R[a, -a]) / (m * dC[a])
-      }
-    }
-  }
+  # Off-diagonal: 1 / (m * sqrt(C_aa * C_bb))
+  sqrtOuter <- sqrt(outer(dC, dC))
+  Gmat <- 1 / (m * sqrtOuter)
+  # Diagonal: -sum_{j!=a} R_aj / (m * C_aa)
+  diag(Gmat) <- -(rowSums(R) - diag(R)) / (m * dC)
 
   # Vectorize: vec(G_mat) as a 1 x J^2 row vector, column-major order matching vec(C)
   G <- matrix(as.vector(Gmat), nrow = 1)

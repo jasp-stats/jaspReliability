@@ -2621,6 +2621,7 @@
       "LazyData": "true",
       "Imports": [
         "archive (>= 1.1.6)",
+        "cli",
         "data.table",
         "DBI",
         "httr",
@@ -2639,11 +2640,11 @@
       "Roxygen": "list(markdown = TRUE)",
       "Author": "Tim de Jong [aut], Don van den Bergh [ctb, cre], František Bartoš [ctb]",
       "RemoteType": "github",
+      "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspTools",
       "RemoteRef": "master",
-      "RemoteSha": "3928759c1aadd4e000d9ccab75f7e9f4b1d3ba94",
-      "RemoteHost": "api.github.com"
+      "RemoteSha": "999755fdec8ea2526d6dd6bdaa284c894ac421f1"
     },
     "jquerylib": {
       "Package": "jquerylib",
