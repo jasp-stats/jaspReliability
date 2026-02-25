@@ -566,17 +566,18 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   if (is.null(out))
     out <- list()
 
-  modelUse <- model[[if (options[["coefficientType"]] == "unstandardized") "gibbsSamp" else "gibbsCor"]]
+  # split-half always uses covariance matrices; standardized flag toggles SB vs FR inside .splithalfCor
+  isStd <- options[["coefficientType"]] == "standardized"
 
-  if (options[["scaleSplithalf"]] && is.null(model[["empty"]]) && !is.null(modelUse)) {
+  if (options[["scaleSplithalf"]] && is.null(model[["empty"]]) && !is.null(model[["gibbsSamp"]])) {
 
     nit <- ncol(dataset)
     splits <- split(seq_len(nit), 1:2)
     startProgressbar(model[["progressbarLength"]])
-    out[["samp"]] <- matrix(NA, nrow(modelUse), ncol(modelUse))
-    for (i in seq_len(nrow(model[["gibbsCor"]]))) {
-      for (j in seq_len(ncol(model[["gibbsCor"]]))) {
-        out[["samp"]][i, j] <- .splithalfCor(modelUse[i, j, , ], splits, progressbarTick)
+    out[["samp"]] <- matrix(NA, nrow(model[["gibbsSamp"]]), ncol(model[["gibbsSamp"]]))
+    for (i in seq_len(nrow(model[["gibbsSamp"]]))) {
+      for (j in seq_len(ncol(model[["gibbsSamp"]]))) {
+        out[["samp"]][i, j] <- .splithalfCor(model[["gibbsSamp"]][i, j, , ], splits, standardized = isStd, callback = progressbarTick)
       }
     }
 
@@ -611,9 +612,11 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     if (is.null(out[["itemSamp"]])) {
       startProgressbar(model[["progressbarLength"]] * ncol(dataset))
 
-      modelUse <- model[[if (options[["coefficientType"]] == "unstandardized") "gibbsSamp" else "gibbsCor"]]
+      # split-half always uses covariance matrices; standardized flag toggles SB vs FR
+      isStd <- options[["coefficientType"]] == "standardized"
 
-      out[["itemSamp"]] <- .BayesianItemDroppedStats(modelUse, .splithalfCor, progressbarTick, splithalf = TRUE)
+      out[["itemSamp"]] <- .BayesianItemDroppedStats(model[["gibbsSamp"]], .splithalfCor, progressbarTick,
+                                                     splithalf = TRUE, standardized = isStd)
     }
 
     if (options[["samplesSavingDisabled"]])
@@ -1292,7 +1295,8 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
         startProgressbar(4e3)
       }
       prior <- .samplePrior(n.item, nm, progressbarTick, options[["inverseWishartPriorScale"]], options[["inverseWishartPriorDf"]],
-                            options[["inverseGammaPriorShape"]], options[["inverseGammaPriorScale"]], options[["normalPriorMean"]])
+                            options[["inverseGammaPriorShape"]], options[["inverseGammaPriorScale"]], options[["normalPriorMean"]],
+                            standardized = options[["coefficientType"]] == "standardized")
 
       probsPrior[i] <- sum(prior[["y"]][poslow:end]) / sum(prior[["y"]]) -
         sum(prior[["y"]][poshigh:end]) / sum(prior[["y"]])
@@ -1455,7 +1459,8 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
             startProgressbar(4e3)
           }
           prior <- .samplePrior(n.item, nm, progressbarTick, options[["inverseWishartPriorScale"]], options[["inverseWishartPriorDf"]],
-                                options[["inverseGammaPriorShape"]], options[["inverseGammaPriorScale"]], options[["normalPriorMean"]])
+                                options[["inverseGammaPriorShape"]], options[["inverseGammaPriorScale"]], options[["normalPriorMean"]],
+                                standardized = options[["coefficientType"]] == "standardized")
         } else {
           prior <- NULL
         }
@@ -1859,7 +1864,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 }
 
 
-.samplePrior <- function(k, estimate, callback = function(){}, k0, df0, a0, b0, m0) {
+.samplePrior <- function(k, estimate, callback = function(){}, k0, df0, a0, b0, m0, standardized = FALSE) {
 
   n_samp <- 2e3
 
@@ -1907,7 +1912,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   if (estimate == "scaleSplithalf") {
     nit <- k
     splits <- split(seq_len(nit), 1:2)
-    priorsplithalf<- apply(m, MARGIN = 1, .splithalfCor, splits = splits, callback)
+    priorsplithalf <- apply(m, MARGIN = 1, .splithalfCor, splits = splits, standardized = standardized, callback = callback)
     out <- density(priorsplithalf, from = 0, to = 1, n = 512)
     return(out)
 
@@ -1915,7 +1920,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
 }
 
-.BayesianItemDroppedStats <- function(cov_samp, f1 = function(){}, callback = function(){}, splithalf = FALSE) {
+.BayesianItemDroppedStats <- function(cov_samp, f1 = function(){}, callback = function(){}, splithalf = FALSE, standardized = FALSE) {
 
   dd <- dim(cov_samp)
   nit <- dd[3] - 1
@@ -1924,7 +1929,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   cov_samp <- array(cov_samp, c(dd[1] * dd[2], dd[3], dd[3]))
   if (splithalf) {
     for (i in seq_len(dd[3])) {
-      out[, i] <- apply(cov_samp[, -i, -i], c(1), f1, callback = callback, splits = splits)
+      out[, i] <- apply(cov_samp[, -i, -i], c(1), f1, callback = callback, splits = splits, standardized = standardized)
     }
   } else {
     for (i in seq_len(dd[3])) {

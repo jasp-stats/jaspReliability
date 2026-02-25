@@ -15,8 +15,8 @@ The frequentist unidimensional reliability analysis allows the user to test the 
 - McDonald's omega (for unidimensional data, based on the single-factor model). Note the total test variance in the denominator of the reliability equation is the model implied total variance, that is, the summed model implied covariance matrix.
 - Cronbach's alpha (for binary items the coefficient equals KR20)
 - Guttman's lambda 2
-- Split-half coefficient: Correlates the sum scores of two test-halves. By default the variables are split into odd and even numbered items in order or appearance in the variables window. If another split is desired the variables just need to be reordered.
-- Average interitem correlation
+- Split-half coefficient: Splits the items into two halves, by default odd and even numbered items in order of appearance in the variables window. If another split is desired the variables just need to be reordered. The unstandardized split-half coefficient is the Flanagan-Rulon coefficient (equivalent to the Guttman split-half), computed as 4 * Cov(X₁, X₂) / Var(X). The standardized split-half coefficient is the Spearman-Brown coefficient, computed as 2r / (1 + r), where r is the correlation between the two half-test sum scores.
+- Average interitem correlation: The mean of all pairwise Pearson correlations between items. For the analytic interval, the standard error is obtained via the multivariate delta method applied to the sample covariance matrix.
 - Mean:
 	- of the sum scores of participants
 	- of the mean scores of participants
@@ -104,6 +104,7 @@ When bootstrapping is involved, set a seed, so that the background calculations 
 - van der Ark, A. (2024). Standard Errors for Reliability Coefficients. [Manuscript under revision]
 - Bonett, D. G., & Wright, T. A. (2015). Cronbach's alpha reliability: Interval estimation, hypothesis testing, and sample size planning. *Journal of Organizational Behavior, 36*(1), 3-15. https://doi.org/10.1002/job.1960
 - Cronbach, L. J. (1951). Coefficient alpha and the internal structure of tests. *Psychometrika, 16*(3), 297–334. https://doi.org/10.1007/BF02310555
+- Flanagan, J. C. (1937). A proposed procedure for increasing the efficiency of objective tests. *Journal of Educational Psychology, 28*(1), 17–21. https://doi.org/10.1037/h0057430
 - Guttman, L. (1945). A basis for analyzing test-retest reliability. *Psychometrika, 10*(4), 255–282. https://doi.org/10.1007/BF02288892
 - McDonald, R. P. (2013). *Test theory: A unified treatment*. New York, NJ, US: Psychology Press. https://doi.org/10.4324/9781410601087
 - Rencher, A. C.  (2002). *Methods of multivariate analysis*. New York, NY, USA: John Wiley & Sons, Inc.  https://doi.org/10.1002/0471271357

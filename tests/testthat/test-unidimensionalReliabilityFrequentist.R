@@ -52,17 +52,17 @@ test_that("Frequentist Individual Item Reliability Statistics table results matc
 test_that("Frequentist Scale Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list("Coefficient <unicode>", 0.789985434486178, 0.707653368279996,
+                                 list("Cronbach's <unicode>", 0.789985434486178, 0.707653368279996,
                                       0.0500543421354605, 0.87231750069236, "Guttman's <unicode>2",
-                                      0.796033564448564, 0.716973502479691, 0.048065104805344, 0.875093626417437,
-                                      "Split-half coefficient", 0.78330036202316, 0.700984258147298,
-                                      0.0500446377276892, 0.865616465899022, "Average interitem correlation",
-                                      0.430268419211834, "", "", "", "Mean", 12.5384615384615, 11.9279578200137,
+                                      0.796033564448564, 0.716973502479691, 0.0480651048053441, 0.875093626417437,
+                                      "Split-half coefficient", 0.739928102144539, 0.636855845069223,
+                                      0.0626634828695049, 0.843000359219856, "Average interitem correlation",
+                                      0.430268419211834, 0.312408516675761, 0.0716537329552609, 0.548128321747907,
+                                      "Mean", 12.5384615384615, 11.9279578200137,
                                       0.371159906537889, 13.1489652569094, "Variance", 10.7452547452547,
                                       8.401175763325, 1.73175460560579, 14.3179701120402, "SD", 3.27799553771123,
                                       2.8984781805846, 0.273114903855726, 3.78390936889881))
 })
-
 
 # special options test
 options <- analysisOptions("unidimensionalReliabilityFrequentist")

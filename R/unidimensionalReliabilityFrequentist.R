@@ -446,13 +446,10 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
         nit <- ncol(dataset)
         splits <- split(seq_len(nit), 1:2)
-        if (options[["coefficientType"]] == "unstandardized") {
-          for (i in seq_len(options[["bootstrapSamples"]])) {
-            out[["samp"]][i] <- .splithalfCor(model[["bootSamp"]][i, , ], splits, progressbarTick)
-          }
-        } else { # either we have the boostrapped cor samples from the standardized coefficients or we have them through
-          # the splithalf method
-          out[["samp"]] <- apply(model[["bootCor"]], 1, .splithalfCor, splits = splits)
+        isStd <- options[["coefficientType"]] == "standardized"
+        # split-half bootstrap always uses covariance matrices (bootSamp)
+        for (i in seq_len(options[["bootstrapSamples"]])) {
+          out[["samp"]][i] <- .splithalfCor(model[["bootSamp"]][i, , ], splits, standardized = isStd, callback = progressbarTick)
         }
       }
     }
@@ -476,18 +473,19 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
   if (options[["itemDeletedSplithalf"]] && is.null(model[["empty"]]) && options[["intervalMethod"]] == "bootstrapped") {
 
-    type <- ifelse(options[["coefficientType"]] == "unstandardized", "bootSamp", "bootCor")
-
     startProgressbar(options[["bootstrapSamples"]] * ncol(dataset))
     jaspBase::.setSeedJASP(options)
 
+    isStd <- options[["coefficientType"]] == "standardized"
     nit <- ncol(dataset) - 1
     splits <- split(seq_len(nit), 1:2)
 
-    out[["itemSamp"]] <- .frequentistItemDroppedStats(covSamp = model[[type]],
+    # split-half bootstrap always uses covariance matrices (bootSamp)
+    out[["itemSamp"]] <- .frequentistItemDroppedStats(covSamp = model[["bootSamp"]],
                                                       f1 = .splithalfCor,
                                                       callback = progressbarTick,
-                                                      splits = splits)
+                                                      splits = splits,
+                                                      standardized = isStd)
 
     if (options[["samplesSavingDisabled"]])
       return(out)
@@ -947,16 +945,16 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     if (options[["scaleSplithalf"]]) {
       nit <- ncol(dataset)
       splits <- split(seq_len(nit), 1:2)
-      out[["est"]][["scaleSplithalf"]] <- .splithalfData(dtUse, splits = splits, useCase = model[["use.cases"]])
+      isStd <- options[["coefficientType"]] == "standardized"
+      # split-half always uses raw data; standardized = Spearman-Brown, unstandardized = Flanagan-Rulon
+      out[["est"]][["scaleSplithalf"]] <- .splithalfData(dataset, splits = splits, useCase = model[["use.cases"]], standardized = isStd)
       if (options[["intervalMethod"]] == "bootstrapped") {
         samp <- model[["scaleSplithalf"]][["samp"]]
         out[["conf"]][["scaleSplithalf"]] <- quantile(samp, probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
         out[["se"]][["scaleSplithalf"]] <- sd(samp, na.rm = TRUE)
       } else { # interval analytic
-        partSums1 <- rowSums(dtUse[, splits[[1]], drop = FALSE])
-        partSums2 <- rowSums(dtUse[, splits[[2]], drop = FALSE])
 
-        out[["se"]][["scaleSplithalf"]] <- .seSplithalf(partSums1, partSums2, model[["use.cases"]])
+        out[["se"]][["scaleSplithalf"]] <- .seSplithalf(dataset, splits, standardized = isStd, scaleThreshold = options[["hiddenScaleThreshold"]])
         out[["conf"]][["scaleSplithalf"]] <- out[["est"]][["scaleSplithalf"]] + c(-1, 1) * out[["se"]][["scaleSplithalf"]] * qnorm(1 - (1 - ciValue) / 2)
       }
     }
@@ -969,10 +967,13 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         out[["conf"]][["averageInterItemCorrelation"]] <- quantile(samp, probs = c((1 - ciValue) / 2, 1 - (1 - ciValue) / 2), na.rm = TRUE)
         out[["se"]][["averageInterItemCorrelation"]] <- sd(samp, na.rm = TRUE)
       } else { # interval analytic
-        # TODO: what is the SE of the average interitem correlation?
-        out[["se"]][["averageInterItemCorrelation"]] <- NA
+        if (model[["pairwise"]]) {
+          out[["se"]][["averageInterItemCorrelation"]] <- NA
+          out[["error"]][["averageInterItemCorrelation"]] <- gettext("The analytic confidence interval is not available for the average interitem correlation when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'.")
+        } else {
+          out[["se"]][["averageInterItemCorrelation"]] <- .seAverageInterItemCor(dtUse, scaleThreshold = options[["hiddenScaleThreshold"]])
+        }
         out[["conf"]][["averageInterItemCorrelation"]] <- out[["est"]][["averageInterItemCorrelation"]] + c(-1, 1) * out[["se"]][["averageInterItemCorrelation"]] * qnorm(1 - (1 - ciValue) / 2)
-        out[["error"]][["averageInterItemCorrelation"]] <- gettext("The standard error of the average interitem correlation is not available. ")
       }
     }
 
@@ -1170,19 +1171,17 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
         out[["lower"]][["itemDeletedSplithalf"]] <- c(NA, NA)
         out[["upper"]][["itemDeletedSplithalf"]] <- c(NA, NA)
       } else {
-        for (i in seq_len(ncol(dtUse))) {
-          dtCut <- dtUse[, -i, drop = FALSE]
+        isStd <- options[["coefficientType"]] == "standardized"
+        for (i in seq_len(ncol(dataset))) {
+          dtCut <- dataset[, -i, drop = FALSE]
           nit <- ncol(dtCut)
           splits <- split(seq_len(nit), 1:2)
-          est <- .splithalfData(dtCut, splits = splits, useCase = model[["use.cases"]])
+          est <- .splithalfData(dtCut, splits = splits, useCase = model[["use.cases"]], standardized = isStd)
           out[["est"]][["itemDeletedSplithalf"]][i] <- est
 
           if (options[["intervalMethod"]] == "analytic") {
 
-            partSums1 <- rowSums(dtCut[, splits[[1]]])
-            partSums2 <- rowSums(dtCut[, splits[[2]]])
-
-            se <- .seSplithalf(partSums1, partSums2, model[["use.cases"]])
+            se <- .seSplithalf(dtCut, splits, standardized = isStd, scaleThreshold = options[["hiddenScaleThreshold"]])
             conf <- est + c(-1, 1) * se * qnorm(1 - (1 - ciValue) / 2)
             out[["lower"]][["itemDeletedSplithalf"]][i] <- conf[1]
             out[["upper"]][["itemDeletedSplithalf"]][i] <- conf[2]
@@ -1573,13 +1572,14 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
                                          f1 = function(){},
                                          callback = function(){},
                                          missing = NULL,
-                                         splits = NULL) {
+                                         splits = NULL,
+                                         standardized = FALSE) {
 
   dd <- dim(covSamp)
   out <- matrix(0, dd[1], dd[3])
   if (!is.null(splits)) { # split half
     for (i in seq_len(dd[3])) {
-      out[, i] <- apply(covSamp[, -i, -i], c(1), f1, callback = callback, splits = splits)
+      out[, i] <- apply(covSamp[, -i, -i], c(1), f1, callback = callback, splits = splits, standardized = standardized)
     }
   } else {
     if (!is.null(missing)) { # cfa
@@ -2040,17 +2040,65 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 }
 
 
-.splithalfData <- function(X, splits, useCase) {
+# SE of average inter-item correlation via multivariate delta method on vec(Sigma).
+# The average inter-item correlation is r_bar = (1 / (J*(J-1))) * sum_{i!=j} C_ij / sqrt(C_ii * C_jj)
+# where C = Var(X).  The gradient w.r.t. vec(C) is obtained by differentiating each
+# r_ij = C_ij / sqrt(C_ii * C_jj) w.r.t. C_ab and averaging.
+.seAverageInterItemCor <- function(X, VC = NULL, scaleThreshold = 10) {
+  J <- ncol(X)
+  if (is.null(VC)) {
+    levs <- sapply(as.data.frame(X), function(col) length(unique(col[!is.na(col)])))
+    if (any(levs > scaleThreshold)) {
+      VC <- .varVCwishart(stats::var(X), nrow(X))
+    } else {
+      VC <- .varCM(X)
+    }
+  }
+
+  C <- var(X)
+  R <- cov2cor(C)
+  m <- J * (J - 1)  # number of off-diagonal pairs (both triangles)
+
+  # Build J x J gradient matrix G_mat where entry (a, b) = d(r_bar) / d(C_ab).
+  # Off-diagonal (a != b): d(r_bar)/d(C_ab) = 1 / (m * sqrt(C_aa * C_bb))
+  #   because only r_ab depends on C_ab (as numerator), and d(r_ab)/d(C_ab) = 1/sqrt(C_aa*C_bb),
+  #   plus r_ba = r_ab so appears twice in the double sum, but m counts both triangles.
+  # Diagonal (a = a):  d(r_bar)/d(C_aa) = -sum_{j!=a} R_aj / (m * C_aa)
+  #   because d(r_aj)/d(C_aa) = -C_aj / (2 * C_aa * sqrt(C_aa*C_jj)) = -R_aj / (2*C_aa),
+  #   summed over all j != a in both triangles (each pair appears twice) gives -sum_{j!=a} R_aj / (m*C_aa).
+  Gmat <- matrix(0, J, J)
+  dC <- diag(C)
+  # Off-diagonal: 1 / (m * sqrt(C_aa * C_bb))
+  sqrtOuter <- sqrt(outer(dC, dC))
+  Gmat <- 1 / (m * sqrtOuter)
+  # Diagonal: -sum_{j!=a} R_aj / (m * C_aa)
+  diag(Gmat) <- -(rowSums(R) - diag(R)) / (m * dC)
+
+  # Vectorize: vec(G_mat) as a 1 x J^2 row vector, column-major order matching vec(C)
+  G <- matrix(as.vector(Gmat), nrow = 1)
+  V <- G %*% VC %*% t(G)
+  return(sqrt(as.numeric(V)))
+}
+
+
+.splithalfData <- function(X, splits, useCase, standardized = FALSE) {
 
   partSums1 <- rowSums(X[, splits[[1]], drop = FALSE])
   partSums2 <- rowSums(X[, splits[[2]], drop = FALSE])
 
-  rsh_uncorrected <- cor(partSums1, partSums2, use = useCase)
-  rsh <- (2 * rsh_uncorrected) / (1 + rsh_uncorrected)
+  if (standardized) {
+    # Spearman-Brown coefficient: 2r/(1+r) on raw data correlation
+    r <- cor(partSums1, partSums2, use = useCase)
+    rsh <- (2 * r) / (1 + r)
+  } else {
+    # Flanagan-Rulon / Guttman split-half: 4 * Cov(X1, X2) / Var(X)
+    totalScore <- partSums1 + partSums2
+    rsh <- 4 * cov(partSums1, partSums2, use = useCase) / var(totalScore, na.rm = TRUE)
+  }
   return(rsh)
 }
 
-.splithalfCor <- function(R, splits, callback = function(){}) {
+.splithalfCor <- function(R, splits, standardized = FALSE, callback = function(){}) {
 
   R_AA <- R[splits[[1]], splits[[1]]]
   R_BB <- R[splits[[2]], splits[[2]]]
@@ -2060,18 +2108,83 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   Var_XB <- sum(R_BB)
   Cov_XA_XB <- sum(R_AB)
 
-  rsh_uncorrected <- Cov_XA_XB / sqrt(Var_XA * Var_XB)
-  rsh <- (2 * rsh_uncorrected) / (1 + rsh_uncorrected)
+  if (standardized) {
+    # Spearman-Brown: correlation then 2r/(1+r)
+    denom <- sqrt(Var_XA * Var_XB)
+    if (is.na(denom) || abs(denom) < .Machine$double.eps) {
+      rsh <- NA_real_
+    } else {
+      r <- Cov_XA_XB / denom
+      rsh <- (2 * r) / (1 + r)
+    }
+  } else {
+    # Flanagan-Rulon / Guttman split-half: 4 * Cov(X1, X2) / Var(X)
+    Var_X <- Var_XA + Var_XB + 2 * Cov_XA_XB
+    if (is.na(Var_X) || abs(Var_X) < .Machine$double.eps) {
+      rsh <- NA_real_
+    } else {
+      rsh <- 4 * Cov_XA_XB / Var_X
+    }
+  }
 
   callback()
   return(rsh)
 }
 
-.seSplithalf <- function(x, y, useObs){
-  k <- cor(x, y, use = useObs)
-  seK <- .seCor(k, length(x))
-  sh <- 2 * k / (1 + k)
-  return((sh/k - sh/(1 + k)) * seK)
+.seSplithalf <- function(X, splits, standardized = FALSE, VC = NULL, scaleThreshold = 10) {
+  # Multivariate delta method SE, analogous to .seLambda1 / .seLambda2.
+  # Computes the gradient of the split-half coefficient w.r.t. vec(Sigma)
+  # and combines with the variance of the sample covariance matrix.
+  J <- ncol(X)
+
+  if (is.null(VC)) {
+    levs <- sapply(as.data.frame(X), function(col) length(unique(col[!is.na(col)])))
+    if (any(levs > scaleThreshold)) {
+      VC <- .varVCwishart(stats::var(X, use = "pairwise.complete.obs"), nrow(X))
+    } else {
+      VC <- .varCM(X)
+    }
+  }
+
+  C <- var(X, use = "pairwise.complete.obs")
+  vecC <- as.vector(C) # J^2 elements, column-major
+
+  # Indicator vectors (length J^2) for block membership
+  inA <- seq_len(J) %in% splits[[1]]
+  inB <- seq_len(J) %in% splits[[2]]
+  mAB <- as.vector(outer(inA, inB)) # i in A, j in B
+  mAA <- as.vector(outer(inA, inA)) # i,j in A
+  mBB <- as.vector(outer(inB, inB)) # i,j in B
+
+  C_AB <- sum(mAB * vecC)
+  V_A  <- sum(mAA * vecC)
+  V_B  <- sum(mBB * vecC)
+  S    <- sum(vecC)
+
+  if (standardized) {
+    # Spearman-Brown: SB = 2r/(1+r), r = C_AB / sqrt(V_A * V_B)
+    sqrtVAVB <- sqrt(V_A * V_B)
+    if (is.na(sqrtVAVB) || abs(sqrtVAVB) < .Machine$double.eps ||
+        is.na(V_A) || abs(V_A) < .Machine$double.eps ||
+        is.na(V_B) || abs(V_B) < .Machine$double.eps) {
+      return(NA_real_)
+    }
+    r <- C_AB / sqrtVAVB
+    # dr/d(vecSigma)
+    dr <- mAB / sqrtVAVB - (r / (2 * V_A)) * mAA - (r / (2 * V_B)) * mBB
+    G <- matrix((2 / (1 + r)^2) * dr, nrow = 1)
+  } else {
+    # Flanagan-Rulon: FR = 4 * C_AB / S
+    # dFR/d(vecSigma) = 4*(a_AB * S - C_AB) / S^2
+    if (is.na(S) || abs(S) < .Machine$double.eps) {
+      return(NA_real_)
+    }
+    u <- rep(1, J^2)
+    G <- matrix(4 * (mAB * S - C_AB * u) / S^2, nrow = 1)
+  }
+
+  V <- G %*% VC %*% t(G)
+  return(sqrt(as.numeric(V)))
 }
 
 .seCor <- function(r, n) { # Bonett (2008)
