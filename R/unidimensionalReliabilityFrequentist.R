@@ -2114,8 +2114,13 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
 
   if (standardized) {
     # Spearman-Brown: correlation then 2r/(1+r)
-    r <- Cov_XA_XB / sqrt(Var_XA * Var_XB)
-    rsh <- (2 * r) / (1 + r)
+    denom <- sqrt(Var_XA * Var_XB)
+    if (is.na(denom) || abs(denom) < .Machine$double.eps) {
+      rsh <- NA_real_
+    } else {
+      r <- Cov_XA_XB / denom
+      rsh <- (2 * r) / (1 + r)
+    }
   } else {
     # Flanagan-Rulon / Guttman split-half: 4 * Cov(X1, X2) / Var(X)
     Var_X <- Var_XA + Var_XB + 2 * Cov_XA_XB
@@ -2163,6 +2168,11 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   if (standardized) {
     # Spearman-Brown: SB = 2r/(1+r), r = C_AB / sqrt(V_A * V_B)
     sqrtVAVB <- sqrt(V_A * V_B)
+    if (is.na(sqrtVAVB) || abs(sqrtVAVB) < .Machine$double.eps ||
+        is.na(V_A) || abs(V_A) < .Machine$double.eps ||
+        is.na(V_B) || abs(V_B) < .Machine$double.eps) {
+      return(NA_real_)
+    }
     r <- C_AB / sqrtVAVB
     # dr/d(vecSigma)
     dr <- mAB / sqrtVAVB - (r / (2 * V_A)) * mAA - (r / (2 * V_B)) * mBB
@@ -2170,6 +2180,9 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   } else {
     # Flanagan-Rulon: FR = 4 * C_AB / S
     # dFR/d(vecSigma) = 4*(a_AB * S - C_AB) / S^2
+    if (is.na(S) || abs(S) < .Machine$double.eps) {
+      return(NA_real_)
+    }
     u <- rep(1, J^2)
     G <- matrix(4 * (mAB * S - C_AB * u) / S^2, nrow = 1)
   }
