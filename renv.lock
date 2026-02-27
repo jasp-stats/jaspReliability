@@ -2633,7 +2633,7 @@
         "RSQLite",
         "stringi",
         "stringr",
-        "testthat (>= 3.0.3)",
+        "testthat (>= 3.2.2)",
         "vdiffr (>= 1.0.7)"
       ],
       "RoxygenNote": "7.3.3",
@@ -2644,7 +2644,7 @@
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspTools",
       "RemoteRef": "master",
-      "RemoteSha": "999755fdec8ea2526d6dd6bdaa284c894ac421f1"
+      "RemoteSha": "8d5419537e6eaa88fd1920880a8682c27ccfe50e"
     },
     "jquerylib": {
       "Package": "jquerylib",
