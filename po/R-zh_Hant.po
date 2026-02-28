@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
-"POT-Creation-Date: 2026-02-14 04:07\n"
+"POT-Creation-Date: 2026-02-28 04:02\n"
 "PO-Revision-Date: 2025-10-25 03:35+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
@@ -384,9 +384,12 @@ msgid ""
 "used. Try changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
 
+#, fuzzy
 msgid ""
-"The standard error of the average interitem correlation is not available."
-msgstr "無法提供平均題項間相關性的標準誤。"
+"The analytic confidence interval is not available for the average interitem "
+"correlation when data contain missings and pairwise complete observations "
+"are used. Try changing to 'Delete listwise' within 'Advanced Options'."
+msgstr "無法為透過 PFA 獲得的coefficient ω，提供其信賴區間。"
 
 #, fuzzy
 msgid "Omega item dropped statistics with CFA failed."
@@ -441,6 +444,10 @@ msgstr[0] "以下題項與量表為負相關：%s "
 msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
 msgstr[0] "以下題項反向計分：%s "
+
+#~ msgid ""
+#~ "The standard error of the average interitem correlation is not available."
+#~ msgstr "無法提供平均題項間相關性的標準誤。"
 
 #~ msgid "Calculating the standard error of coefficient alpha failed."
 #~ msgstr "計算 Coefficient α的標準誤失敗。"
