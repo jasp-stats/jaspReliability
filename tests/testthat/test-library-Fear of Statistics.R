@@ -1,12 +1,12 @@
-context("Example: Fear of Statistics")
+context("Library: Fear of Statistics")
 
 # This test file was auto-generated from a JASP example file.
-# The JASP file is stored in the module's examples/ folder.
+# The JASP file is stored in tests/testthat/jaspfiles/library/.
 
 test_that("unidimensionalReliabilityFrequentist results match", {
 
   # Load from JASP example file
-  jaspFile <- testthat::test_path("..", "..", "examples", "Fear of Statistics.jasp")
+  jaspFile <- testthat::test_path("jaspfiles", "library", "Fear of Statistics.jasp")
   opts <- jaspTools::analysisOptions(jaspFile)
   dataset <- jaspTools::extractDatasetFromJASPFile(jaspFile)
 
@@ -50,9 +50,9 @@ test_that("unidimensionalReliabilityFrequentist results match", {
     list("Cronbach's <unicode>", 0.820836210468447, 0.809886136369784,
      0.00558687515945965, 0.831786284567109, "Average interitem correlation",
      0.368244389782582, 0.351182151549007, 0.00870538355202472, 0.385306628016158,
-     "Mean", 23.8689225982108, 23.6709221495764,
-     0.101022493370379, 24.0669230468452, "SD", 5.1223484899762,
-     4.98607338905426, 0.0672550485916684, 5.26633739367179))
+     "Mean", 23.8689225982108, 23.6709221495764, 0.101022493370379,
+     24.0669230468452, "SD", 5.1223484899762, 4.98607338905426, 0.0672550485916684,
+     5.26633739367179))
 
 })
 
