@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.95.5\n"
 "POT-Creation-Date: 2026-02-28 04:02\n"
-"PO-Revision-Date: 2026-03-21 04:06+0000\n"
+"PO-Revision-Date: 2026-03-28 03:09+0000\n"
 "Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/id/>\n"
@@ -80,7 +80,7 @@ msgid "%1$s Based on pairwise complete cases."
 msgstr ""
 
 msgid "SE"
-msgstr ""
+msgstr "SE"
 
 msgid "Lower"
 msgstr "Bawah"
@@ -173,7 +173,7 @@ msgid "Mean"
 msgstr "Rerata"
 
 msgid "Variance"
-msgstr ""
+msgstr "Varians"
 
 msgid "SD"
 msgstr "SD"
@@ -203,13 +203,13 @@ msgid "Posterior %s"
 msgstr ""
 
 msgid "Coefficient"
-msgstr ""
+msgstr "Koefisien"
 
 msgid "R-hat"
-msgstr ""
+msgstr "R-hat"
 
 msgid "ESS"
-msgstr ""
+msgstr "ESS"
 
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr ""
@@ -230,13 +230,13 @@ msgid "Probability that Reliability Coefficient is Larger than %1$.2f and Smalle
 msgstr ""
 
 msgid "Probability"
-msgstr ""
+msgstr "Probabilitas"
 
 msgid "Prior"
 msgstr ""
 
 msgid "Posterior"
-msgstr ""
+msgstr "Posterior"
 
 msgid "Fit Measures for the Single-Factor Model"
 msgstr ""
@@ -263,7 +263,7 @@ msgid "Posterior Plots"
 msgstr ""
 
 msgid "Density"
-msgstr ""
+msgstr "Kepadatan"
 
 msgid "If Item Dropped Posterior Plots"
 msgstr ""
@@ -341,7 +341,7 @@ msgid "Fit measure"
 msgstr ""
 
 msgid "Value"
-msgstr ""
+msgstr "Nilai"
 
 msgid "Too few MCMC samples will remain after the removal of the burnin samples and thinning,\n                     please increase No.samples."
 msgstr ""
