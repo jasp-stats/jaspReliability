@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2026-03-31 07:09+0000\n"
+"Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/de/>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17-dev\n"
 "X-Language: de\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -555,7 +561,7 @@ msgstr "Feldt"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Number of splits"
-msgstr ""
+msgstr "Anzahl von Aufteilungen"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Mollenkopf-Feldt"
@@ -571,7 +577,7 @@ msgstr "ANOVA"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "IRT"
-msgstr ""
+msgstr "IRT"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord"
@@ -587,7 +593,7 @@ msgstr "Optionen"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Sum score table"
-msgstr ""
+msgstr "Summenscore-Tabelle"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "CI:"
@@ -615,7 +621,7 @@ msgstr "Diagramm pro Methode"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Sum score plots"
-msgstr ""
+msgstr "Summenscore-Diagramme"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "CI"
@@ -639,7 +645,7 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "CTT-Coefficients (α, λ2)"
-msgstr ""
+msgstr "CTT-Koeffizienten (α, λ2)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Confidence interval"
@@ -671,7 +677,7 @@ msgstr "Varianz und SD"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Chisq-based"
-msgstr ""
+msgstr "Chi-Quadrat-basiert"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Non-parametric"
@@ -687,7 +693,7 @@ msgstr "Paarweise"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Delete listwise"
-msgstr ""
+msgstr "Listenweise löschen"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Split-Test Methods"
@@ -695,7 +701,7 @@ msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Binomial Methods"
-msgstr ""
+msgstr "Binomiale Methoden"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Hide SEM table"
@@ -707,19 +713,19 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Bayesian Reliability"
-msgstr ""
+msgstr "Bayessche Reliabilität"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord generalized"
-msgstr ""
+msgstr "Lord verallgemeinert"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω"
-msgstr ""
+msgstr "McDonalds ω"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α"
-msgstr ""
+msgstr "Cronbachs α"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω (if item dropped)"
@@ -735,11 +741,11 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "McDonald's ω"
-msgstr ""
+msgstr "McDonalds ω"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Cronbach's α"
-msgstr ""
+msgstr "Cronbachs α"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "McDonald's ω  (if item dropped)"
@@ -751,4 +757,4 @@ msgstr ""
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "McDonald's ω Estimation"
-msgstr ""
+msgstr "McDonalds ω Schätzung"
