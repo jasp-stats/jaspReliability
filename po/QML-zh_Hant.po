@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2026-04-02 11:01+0000\n"
+"Last-Translator: 陳正昌 <chencc99@gmail.com>\n"
+"Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
+"projects/jasp/jaspreliability-qml/zh_Hant/>\n"
+"Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.17-dev\n"
 "X-Language: zh_Hant\n"
 "X-Qt-Contexts: true\n"
 
@@ -38,7 +44,7 @@ msgstr "Bland-Altman圖"
 #, fuzzy
 msgctxt "BlandAltman|"
 msgid "Measurement Pairs"
-msgstr "測量對"
+msgstr "測量配對"
 
 msgctxt "BlandAltman|"
 msgid "Confidence Interval"
@@ -116,7 +122,7 @@ msgstr "Krippendorff's α(alpha)指標"
 
 msgctxt "RaterAgreement|"
 msgid "Method"
-msgstr ""
+msgstr "方法"
 
 msgctxt "RaterAgreement|"
 msgid "Nominal"
@@ -132,7 +138,7 @@ msgstr "連續"
 
 msgctxt "RaterAgreement|"
 msgid "Ratio"
-msgstr ""
+msgstr "比率"
 
 msgctxt "RaterAgreement|"
 msgid "Confidence Interval"
@@ -219,20 +225,18 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Plot Posteriors"
 msgstr "圖示事後機率"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Fix range to 0-1"
-msgstr "將數值限制在0與1之間"
+msgstr "將數值限制在 0 與 1 之間"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Display Priors"
 msgstr "顯示事前機率"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Probability for:"
-msgstr "的機率"
+msgstr "機率："
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
@@ -259,10 +263,9 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. samples"
 msgstr "樣本數"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. burnin samples"
-msgstr "burnin 樣本數"
+msgstr "預燃樣本數"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
@@ -317,35 +320,35 @@ msgstr "正向題"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Priors"
-msgstr ""
+msgstr "先驗"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse Wishart scale"
-msgstr ""
+msgstr "逆 Wishart 尺度"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse Wishart df"
-msgstr ""
+msgstr "逆 Wishart 自由度"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse gamma:"
-msgstr ""
+msgstr "逆 gamma："
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "shape"
-msgstr ""
+msgstr "形狀"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "scale"
-msgstr ""
+msgstr "量尺"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Normal:"
-msgstr ""
+msgstr "常態："
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "mean"
-msgstr ""
+msgstr "平均數"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
@@ -359,7 +362,7 @@ msgstr "遺漏值"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Bayesian imputation"
-msgstr ""
+msgstr "貝氏插補"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Exclude cases listwise"
@@ -372,7 +375,7 @@ msgstr "事後預測檢查"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Fit measures"
-msgstr ""
+msgstr "配適度量數"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "p(RMSEA <"
@@ -406,11 +409,11 @@ msgstr "標準化"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior Point Estimate"
-msgstr ""
+msgstr "後驗點估計值"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Median"
-msgstr ""
+msgstr "中位數"
 
 #, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
@@ -544,10 +547,9 @@ msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Do not save samples"
 msgstr "不用儲存拔靴樣本"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Click to learn more about saving the samples."
-msgstr "按此鍵以了解更多有關節省樣本"
+msgstr "按此鍵以了解更多有關節省樣本。"
 
 msgctxt "RaterAgreement|"
 msgid "Data Structure"
@@ -612,11 +614,11 @@ msgstr "多項式的最高次方"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "ANOVA"
-msgstr ""
+msgstr "變異數分析"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "IRT"
-msgstr ""
+msgstr "試題反應理論"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord"
@@ -628,11 +630,11 @@ msgstr ""
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Options"
-msgstr ""
+msgstr "選項"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Sum score table"
-msgstr ""
+msgstr "總分表"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "CI:"
@@ -640,27 +642,27 @@ msgstr "信賴區間："
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "User defined reliability"
-msgstr ""
+msgstr "使用者定義之信度"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Minimum number of observations per score group"
-msgstr ""
+msgstr "每個分數組之最少觀測數"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plots"
-msgstr ""
+msgstr "圖"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Histogram of sum score counts"
-msgstr ""
+msgstr "總分計數之直方圖"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot per method"
-msgstr ""
+msgstr "依方法繪圖"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Sum score plots"
-msgstr ""
+msgstr "總分圖"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "CI"
@@ -668,7 +670,7 @@ msgstr "信賴區間"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Display cutoff score"
-msgstr ""
+msgstr "顯示截點分數"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Split-half coefficient"
@@ -684,7 +686,7 @@ msgstr "折半係數(若刪除此題項)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "CTT-Coefficients (α, λ2)"
-msgstr ""
+msgstr "CTT 係數 (α, λ2)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Confidence interval"
@@ -736,27 +738,27 @@ msgstr "完全排除法"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Split-Test Methods"
-msgstr ""
+msgstr "折半法"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Binomial Methods"
-msgstr ""
+msgstr "二項法"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Hide SEM table"
-msgstr ""
+msgstr "隱藏測量標準誤 (SEM) 表"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot all SEMs"
-msgstr ""
+msgstr "繪製所有測量標準誤 (SEM)"
 
 msgctxt "Description|"
 msgid "Bayesian Reliability"
-msgstr ""
+msgstr "貝氏信度"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord generalized"
-msgstr ""
+msgstr "Lord 廣義法"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω"
