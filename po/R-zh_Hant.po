@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
 "POT-Creation-Date: 2026-02-28 04:02\n"
-"PO-Revision-Date: 2026-04-10 12:10+0000\n"
+"PO-Revision-Date: 2026-04-25 04:19+0000\n"
 "Last-Translator: 陳正昌 <chencc99@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspreliability-r/zh_Hant/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
 msgid "Bland-Altman Plots"
 msgstr "Bland-Altman圖"
@@ -78,9 +78,8 @@ msgstr ""
 msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr "%1$i 個受試者/題項與 %2$i 個評分者/測量。"
 
-#, fuzzy
 msgid "%1$s Based on pairwise complete cases."
-msgstr "從 %s 的觀察值中，以配對完整的個案進行分析"
+msgstr "從 %s 的觀察值中，以配對完整的個案進行分析。"
 
 msgid "SE"
 msgstr "標準誤"
@@ -115,9 +114,8 @@ msgstr "Fleiss' kappa 至少需要 3 個受試者/題項。請檢查評分者是
 msgid "Fleiss' kappa requires at least 2 raters/measurements."
 msgstr "Fleiss' kappa 至少需要 2 個評分者/測量。"
 
-#, fuzzy
 msgid "%1$s Based on listwise complete cases."
-msgstr "從 %s 的觀察值中，以配對完整的個案進行分析"
+msgstr "從 %s 的觀察值中，以配對完整的個案進行分析。"
 
 msgid "Method"
 msgstr "方法"
@@ -361,11 +359,12 @@ msgstr ""
 msgid "Omega calculation with PFA failed."
 msgstr "使用 PFA 進行 Omega 計算失敗。"
 
-#, fuzzy
 msgid ""
 "The analytic confidence interval is not available for coefficient omega "
 "obtained with PFA. Change to 'Bootstrapped' in Advanced Options."
-msgstr "無法為透過 PFA 獲得的coefficient ω，提供其信賴區間。"
+msgstr ""
+"PFA 所得到的 ω 係數無法提供解析式信賴區間。請在「進階選項」中改為使用「拔靴法"
+"」。"
 
 msgid "Omega interval calculation with PFA failed."
 msgstr "使用 PFA 進行 Omega 區間計算失敗。"
