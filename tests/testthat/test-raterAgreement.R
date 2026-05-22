@@ -111,6 +111,45 @@ test_that("Fleiss' kappa table results match", {
 })
 
 
+#### Kendall's W ####
+
+options <- analysisOptions("raterAgreement")
+options$variables                    <- c("contNormal", "contGamma", "contcor1")
+options$dataStructure                <- "ratersInColumns"
+options$cohensKappa                  <- FALSE
+options$fleissKappa                  <- FALSE
+options$krippendorffsAlpha           <- FALSE
+options$kendallW                     <- TRUE
+options$kendallWBootstrapSamplesForCI <- 200
+options$setSeed                      <- TRUE
+set.seed(1)
+results <- runAnalysis("raterAgreement", "debug.csv", options)
+
+test_that("Kendall's W table results match", {
+  table <- results[["results"]][["kendallW"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+    list(0.235537187052039, 0.405722388905557, 0.0428257441483345, 0.316646331299797,
+         94.0439603960396, 99, 0.621972149059366))
+})
+
+test_that("Kendall's W with tie correction and no CI results match", {
+  options2 <- analysisOptions("raterAgreement")
+  options2$variables          <- c("contNormal", "contGamma", "contcor1", "contcor2")
+  options2$dataStructure      <- "ratersInColumns"
+  options2$cohensKappa        <- FALSE
+  options2$fleissKappa        <- FALSE
+  options2$krippendorffsAlpha <- FALSE
+  options2$kendallW           <- TRUE
+  options2$correctForTies     <- TRUE
+  options2$ci                 <- FALSE
+  set.seed(1)
+  results2 <- runAnalysis("raterAgreement", "debug.csv", options2)
+  table <- results2[["results"]][["kendallW"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+    list(0.31477197719772, 124.649702970297, 99, 0.0416297450235598))
+})
+
+
 test_that("Cohen's kappa table results match with linear weighting", {
   options <- analysisOptions("raterAgreement")
   options$variables <- c("V1", "V2")

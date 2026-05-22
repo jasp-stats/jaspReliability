@@ -31,6 +31,11 @@ raterAgreement <- function(jaspResults, dataset, options) {
       .kripAlphaBoot(jaspResults, dataset, options, ready)
     jaspResults[["krippendorffsAlpha"]] <- .computeKrippendorffsAlphaTable(jaspResults, dataset, options, ready)
   }
+  if (options[["kendallW"]]) {
+    if (options[["ci"]])
+      .kendallWBootRA(jaspResults, dataset, options, ready)
+    jaspResults[["kendallW"]] <- .computeKendallWTable(jaspResults, dataset, options, ready)
+  }
 
   return()
 }
@@ -335,4 +340,102 @@ raterAgreement <- function(jaspResults, dataset, options) {
   return()
 }
 
+.kendallWBootRA <- function(jaspResults, dataset, options, ready) {
+  if (!ready || !is.null(jaspResults[["kendallWBootstrapSamples"]]$object))
+    return()
 
+  bootstrapSamples <- createJaspState()
+  bootstrapSamples$dependOn(options = c(
+    "variables", "kendallW", "ci", "kendallWBootstrapSamplesForCI",
+    "correctForTies", "dataStructure", "setSeed", "seed"
+  ))
+  jaspResults[["kendallWBootstrapSamples"]] <- bootstrapSamples
+
+  n       <- nrow(dataset)
+  correct <- options[["correctForTies"]]
+  ws      <- numeric(options[["kendallWBootstrapSamplesForCI"]])
+
+  jaspBase::.setSeedJASP(options)
+
+  for (i in seq_len(options[["kendallWBootstrapSamplesForCI"]])) {
+    bootData <- as.matrix(dataset[sample.int(n, size = n, replace = TRUE), ])
+    ws[i]    <- irr::kendall(bootData, correct = correct)$value
+  }
+
+  bootstrapSamples$object <- ws
+  return()
+}
+
+.computeKendallWTable <- function(jaspResults, dataset, options, ready) {
+  if (!is.null(jaspResults[["kendallW"]]))
+    return()
+
+  formattedCIPercent <- format(
+    100 * options[["ciLevel"]],
+    digits        = 3,
+    drop0trailing = TRUE
+  )
+
+  jaspTable <- createJaspTable(title = gettext("Kendall's W"))
+  jaspTable$addColumnInfo(name = "W",     title = gettext("W"),          type = "number")
+  jaspTable$addColumnInfo(name = "chisq", title = gettext("Chi-square"), type = "number")
+  jaspTable$addColumnInfo(name = "df",    title = gettext("df"),         type = "integer")
+  jaspTable$addColumnInfo(name = "p",     title = gettext("p"),          type = "pvalue")
+  jaspTable$position <- 3
+  jaspTable$dependOn(options = c(
+    "variables", "kendallW", "correctForTies", "ci", "ciLevel",
+    "kendallWBootstrapSamplesForCI", "dataStructure", "setSeed", "seed"
+  ))
+
+  if (!ready)
+    return(jaspTable)
+
+  if (any(options[["variables.types"]] == "nominal")) {
+    jaspTable$setError(gettext(
+      "Kendall's W requires ordinal or scale variables. Remove nominal variables."
+    ))
+    return(jaspTable)
+  }
+
+  jaspBase::.hasErrors(
+    dataset              = dataset,
+    type                 = c("infinity", "observations"),
+    observations.amount  = "< 2",
+    exitAnalysisIfErrors = TRUE
+  )
+
+  result <- irr::kendall(as.matrix(dataset), correct = options[["correctForTies"]])
+
+  tableData <- list(
+    W     = result$value,
+    chisq = result$statistic,
+    df    = result$subjects - 1L,
+    p     = result$p.value
+  )
+
+  footnote <- gettextf("%1$i subjects/items and %2$i raters/measurements.", result$subjects, result$raters)
+  if (anyNA(dataset))
+    footnote <- gettextf("%1$s Based on listwise complete cases.", footnote)
+
+  if (options[["ci"]]) {
+    ws    <- jaspResults[["kendallWBootstrapSamples"]]$object
+    conf  <- options[["ciLevel"]]
+    probs <- (1 + c(-conf, conf)) / 2
+    CIs   <- quantile(ws, probs = probs, na.rm = TRUE)
+
+    jaspTable$addColumnInfo(name = "SE",  title = gettext("SE"),    type = "number")
+    jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number",
+                            overtitle = gettextf("%s%% CI", formattedCIPercent))
+    jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number",
+                            overtitle = gettextf("%s%% CI", formattedCIPercent))
+    tableData[["SE"]]  <- stats::sd(ws, na.rm = TRUE)
+    tableData[["CIL"]] <- CIs[[1L]]
+    tableData[["CIU"]] <- CIs[[2L]]
+    footnote <- paste(footnote, gettext("Confidence intervals are based on bootstrap."))
+  }
+
+  jaspTable$addFootnote(footnote)
+  jaspTable$addFootnote(gettext("Chi-square test is valid for large samples only."))
+  jaspTable$setData(tableData)
+  return(jaspTable)
+}

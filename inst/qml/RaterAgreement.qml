@@ -31,9 +31,9 @@ Form
 		{
 			name: 			"variables"
 			title: 			qsTr("Variables")
-			allowedColumns: ["nominal"]
+			allowedColumns: ["nominal", "ordinal", "scale"]
 		}
-		
+
 		RadioButtonGroup
 		{
 			name: "dataStructure"
@@ -62,7 +62,7 @@ Form
 			name:   	"cohensKappa"
 			label:  	qsTr("Cohen's kappa")
 			checked: 	true
-			
+
 			RadioButtonGroup
 			{
 				name:		"cohensKappaType"
@@ -87,20 +87,20 @@ Form
 				}
 			}
 		}
-	
+
 		CheckBox
 		{
 			name:   	"fleissKappa"
 			label:  	qsTr("Fleiss' kappa")
 			checked: 	true
 		}
-	
+
 		CheckBox
 		{
 			name:   	"krippendorffsAlpha"
 			label:  	qsTr("Krippendorff's alpha")
 			checked: 	true
-			
+
 			DropDown
 			{
 				name:	"krippendorffsAlphaMethod"
@@ -122,22 +122,45 @@ Form
 				min: 			100
 				max: 			1e7
 			}
-			SetSeed{}
+		}
+
+		CheckBox
+		{
+			name:    "kendallW"
+			label:   qsTr("Kendall's W")
+
+			CheckBox
+			{
+				name:  "correctForTies"
+				label: qsTr("Correct for ties")
+			}
+
+			IntegerField
+			{
+				name:         "kendallWBootstrapSamplesForCI"
+				label:        qsTr("No. of bootstrap samples for CI")
+				defaultValue: 1000
+				fieldWidth:   50
+				min:          100
+				max:          10000000
+			}
 		}
 	}
 
-	CheckBox 
+	CheckBox
 	{
 		name: 				"ci"
 		label:				qsTr("Confidence Interval")
 		checked: 			true
 		childrenOnSameRow: 	true
 
-		CIField 
-		{      
+		CIField
+		{
 			name:			"ciLevel"
 			label:			""
 			defaultValue:	95
 		}
 	}
+
+	SetSeed {}
 }
