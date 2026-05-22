@@ -22,6 +22,12 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   dataset <- .raterAgreementHandleData(dataset, options)
 
+  anyCoefficient <- options[["cohensKappa"]] || options[["fleissKappa"]] ||
+                    options[["krippendorffsAlpha"]] || options[["kendallW"]]
+
+  if (!anyCoefficient)
+    .raterAgreementPlaceholderTable(jaspResults, options, ready)
+
   if (options[["cohensKappa"]])
     jaspResults[["cohensKappa"]] <- .computeCohensKappaTable(dataset, options, ready)
   if (options[["fleissKappa"]])
@@ -38,6 +44,22 @@ raterAgreement <- function(jaspResults, dataset, options) {
   }
 
   return()
+}
+
+.raterAgreementPlaceholderTable <- function(jaspResults, options, ready) {
+  if (!is.null(jaspResults[["placeholder"]]))
+    return()
+
+  jaspTable <- createJaspTable(title = gettext("Agreement Coefficient"))
+  jaspTable$addColumnInfo(name = "coefficient", title = gettext("Coefficient"), type = "string")
+  jaspTable$addColumnInfo(name = "estimate",    title = gettext("Estimate"),    type = "number")
+  jaspTable$addColumnInfo(name = "SE",          title = gettext("SE"),          type = "number")
+  jaspTable$addColumnInfo(name = "CIL",         title = gettext("Lower"),       type = "number")
+  jaspTable$addColumnInfo(name = "CIU",         title = gettext("Upper"),       type = "number")
+  if (ready)
+    jaspTable$addFootnote(gettext("Check one of the coefficients to start the analysis."))
+  jaspTable$dependOn(options = c("cohensKappa", "fleissKappa", "krippendorffsAlpha", "kendallW", "variables"))
+  jaspResults[["placeholder"]] <- jaspTable
 }
 
 .raterAgreementHandleData <- function(dataset, options) {
@@ -271,7 +293,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
       "ci",
       "ciLevel",
       "dataStructure",
-      "krippendorffsAlphaBootstrapSamplesForCI"
+      "bootstrapSamples"
     )
   )
 
@@ -319,12 +341,12 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   bootstrapSamples <- createJaspState()
   method <- options[["krippendorffsAlphaMethod"]]
-  alphas <- numeric(options[["krippendorffsAlphaBootstrapSamplesForCI"]])
+  alphas <- numeric(options[["bootstrapSamples"]])
   n <- nrow(dataset)
 
   jaspBase::.setSeedJASP(options)
 
-  for (i in seq_len(options[["krippendorffsAlphaBootstrapSamplesForCI"]])) {
+  for (i in seq_len(options[["bootstrapSamples"]])) {
     bootData <- as.matrix(dataset[sample.int(n, size = n, replace = TRUE), ])
     alphas[i] <- irr::kripp.alpha(t(bootData), method = method)$value
   }
@@ -334,7 +356,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
     "variables",
     "krippendorffsAlpha",
     "ci",
-    "krippendorffsAlphaBootstrapSamplesForCI",
+    "bootstrapSamples",
     "dataStructure",
     "setSeed", "seed"))
   return()
@@ -346,18 +368,18 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   bootstrapSamples <- createJaspState()
   bootstrapSamples$dependOn(options = c(
-    "variables", "kendallW", "ci", "kendallWBootstrapSamplesForCI",
+    "variables", "kendallW", "ci", "bootstrapSamples",
     "correctForTies", "dataStructure", "setSeed", "seed"
   ))
   jaspResults[["kendallWBootstrapSamples"]] <- bootstrapSamples
 
   n       <- nrow(dataset)
   correct <- options[["correctForTies"]]
-  ws      <- numeric(options[["kendallWBootstrapSamplesForCI"]])
+  ws      <- numeric(options[["bootstrapSamples"]])
 
   jaspBase::.setSeedJASP(options)
 
-  for (i in seq_len(options[["kendallWBootstrapSamplesForCI"]])) {
+  for (i in seq_len(options[["bootstrapSamples"]])) {
     bootData <- as.matrix(dataset[sample.int(n, size = n, replace = TRUE), ])
     ws[i]    <- irr::kendall(bootData, correct = correct)$value
   }
@@ -384,7 +406,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
   jaspTable$position <- 3
   jaspTable$dependOn(options = c(
     "variables", "kendallW", "correctForTies", "ci", "ciLevel",
-    "kendallWBootstrapSamplesForCI", "dataStructure", "setSeed", "seed"
+    "bootstrapSamples", "dataStructure", "setSeed", "seed"
   ))
 
   if (!ready)

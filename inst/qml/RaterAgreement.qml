@@ -55,112 +55,112 @@ Form
 	}
 
 
-	Group
-	{
-		CheckBox
-		{
-			name:   	"cohensKappa"
-			label:  	qsTr("Cohen's kappa")
-			checked: 	true
 
-			RadioButtonGroup
-			{
-				name:		"cohensKappaType"
-				RadioButton
-				{
-					value:		"unweighted"
-					label:		qsTr("Unweighted")
-					checked:	true
-				}
-
-				RadioButton
-				{
-					value:	"weighted"
-					label:	qsTr("Weighted")
-
-					RadioButtonGroup
-					{
-						name: "weightType"
-						RadioButton { value: "quadratic"; label: qsTr("Quadratic weights"); checked:	true}
-						RadioButton { value: "linear"; label: qsTr("Linear weights")}
-					}
-				}
-			}
-		}
-
-		CheckBox
-		{
-			name:   	"fleissKappa"
-			label:  	qsTr("Fleiss' kappa")
-			checked: 	true
-		}
-
-		CheckBox
-		{
-			name:   	"krippendorffsAlpha"
-			label:  	qsTr("Krippendorff's alpha")
-			checked: 	true
-
-			DropDown
-			{
-				name:	"krippendorffsAlphaMethod"
-				label:	qsTr("Method")
-				values:
-				[
-					{label: qsTr("Nominal"),		value: "nominal"},
-					{label: qsTr("Ordinal"),		value: "ordinal"},
-					{label: qsTr("Interval"),		value: "interval"},
-					{label: qsTr("Ratio"),			value: "ratio"}
-				]
-			}
-			IntegerField
-			{
-				name: 			"krippendorffsAlphaBootstrapSamplesForCI"
-				label: 			qsTr("No. of bootstrap samples for CI")
-				defaultValue: 	1000
-				fieldWidth: 	50
-				min: 			100
-				max: 			1e7
-			}
-		}
-
-		CheckBox
-		{
-			name:    "kendallW"
-			label:   qsTr("Kendall's W")
-
-			CheckBox
-			{
-				name:  "correctForTies"
-				label: qsTr("Correct for ties")
-			}
-
-			IntegerField
-			{
-				name:         "kendallWBootstrapSamplesForCI"
-				label:        qsTr("No. of bootstrap samples for CI")
-				defaultValue: 1000
-				fieldWidth:   50
-				min:          100
-				max:          10000000
-			}
-		}
-	}
 
 	CheckBox
 	{
-		name: 				"ci"
-		label:				qsTr("Confidence Interval")
-		checked: 			true
-		childrenOnSameRow: 	true
+		name:   "cohensKappa"
+		label:  qsTr("Cohen's kappa")
 
-		CIField
+		RadioButtonGroup
 		{
-			name:			"ciLevel"
-			label:			""
-			defaultValue:	95
+			name: "cohensKappaType"
+			RadioButton
+			{
+				value:   "unweighted"
+				label:   qsTr("Unweighted")
+				checked: true
+			}
+
+			RadioButton
+			{
+				value: "weighted"
+				label: qsTr("Weighted")
+
+				RadioButtonGroup
+				{
+					name: "weightType"
+					RadioButton { value: "quadratic"; label: qsTr("Quadratic weights"); checked: true }
+					RadioButton { value: "linear";    label: qsTr("Linear weights") }
+				}
+			}
 		}
 	}
 
-	SetSeed {}
+Group
+{
+	CheckBox
+	{
+		name:  "krippendorffsAlpha"
+		label: qsTr("Krippendorff's alpha")
+
+		DropDown
+		{
+			name:   "krippendorffsAlphaMethod"
+			label:  qsTr("Method")
+			values:
+			[
+				{ label: qsTr("Nominal"),  value: "nominal"  },
+				{ label: qsTr("Ordinal"),  value: "ordinal"  },
+				{ label: qsTr("Interval"), value: "interval" },
+				{ label: qsTr("Ratio"),    value: "ratio"    }
+			]
+		}
+	}
+
+		CheckBox
+	{
+		name:  "kendallW"
+		label: qsTr("Kendall's W")
+
+		CheckBox
+		{
+			name:  "correctForTies"
+			label: qsTr("Correct for ties")
+		}
+	}
+}
+
+	CheckBox
+	{
+		name:  "fleissKappa"
+		label: qsTr("Fleiss' kappa")
+	}
+
+
+
+
+
+
+	Section
+	{
+		title: qsTr("Advanced Options")
+
+		CheckBox
+		{
+			name:              "ci"
+			label:             qsTr("Confidence interval")
+			checked:           true
+			childrenOnSameRow: true
+
+			CIField
+			{
+				name:         "ciLevel"
+				label:        ""
+				defaultValue: 95
+			}
+		}
+
+		IntegerField
+		{
+			name:         "bootstrapSamples"
+			label:        qsTr("No. of bootstrap samples for CI")
+			defaultValue: 1000
+			fieldWidth:   50
+			min:          100
+			max:          10000000
+		}
+
+		SetSeed {}
+	}
 }

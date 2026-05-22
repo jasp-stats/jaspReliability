@@ -452,7 +452,6 @@ Upgrades
 			from:	"disableSampleSave"
 			to:		"samplesSavingDisabled"
 		}
-
 	}
 
 	Upgrade
@@ -739,6 +738,18 @@ Upgrades
 			from:	"pointEst"
 			to:		"pointEstimate"
 		}
+	}
 
+	Upgrade
+	{
+		functionName: "raterAgreement"
+		fromVersion:  "0.97.0"
+		toVersion:    "0.97.1"
+
+		ChangeRename
+		{
+			from: "krippendorffsAlphaBootstrapSamplesForCI"
+			to:   "bootstrapSamples"
+		}
 	}
 }
