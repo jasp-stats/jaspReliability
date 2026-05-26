@@ -155,6 +155,22 @@ test_that("Kendall's W with tie correction and no CI results match", {
 })
 
 
+# ==== Verify Kendall's W against published reference (DescTools anxiety dataset) ====
+# Source: DescTools::KendallW documentation, 3 raters x 20 subjects, 1-6 scale (with ties)
+# Expected: W = 0.5397, chi2 = 30.76, df = 19, p = 0.04288
+test_that("Kendall's W matches DescTools reference (anxiety ratings, tie correction)", {
+  options <- analysisOptions("raterAgreement")
+  options$variables       <- c("rater1", "rater2", "rater3")
+  options$dataStructure   <- "ratersInColumns"
+  options$kendallW        <- TRUE
+  options$correctForTies  <- TRUE
+  options$ci              <- FALSE
+  results <- runAnalysis("raterAgreement", testthat::test_path("anxietyRatings.csv"), options)
+  table <- results[["results"]][["kendallW"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+    list(0.539656900212835, 30.7604444444444, 19, 0.0428834698290932))
+})
+
 test_that("Cohen's kappa table results match with linear weighting", {
   options <- analysisOptions("raterAgreement")
   options$variables <- c("V1", "V2")

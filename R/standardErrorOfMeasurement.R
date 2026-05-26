@@ -264,7 +264,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   ciTable <- createJaspTable(gettext("Sum Score CI Table"))
   ciTable$info <- gettext("Confidence intervals for the true score at each sum score level, computed from the conditional SEM.")
-  ciTable$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]],
+  ciTable$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]])
   ciTable$position <- 2
   jaspResults[["semMainContainer"]][["ciTable"]] <- ciTable
 
@@ -424,7 +424,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
     plot <- createJaspPlot(pl, title = gettext("Combined Plot"),
                            width = 600)
     plot$info <- gettext("Overlay of all selected methods' conditional SEM across the full range of sum scores.")
-    plot$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]],
+    plot$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]])
     jaspResults[["semMainContainer"]][["combinedPlot"]] <- plot
   }
 
@@ -440,7 +440,7 @@ standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
 
   ciPlotsContainer <- createJaspContainer(title = gettext("Sum Score CI Plots"))
   ciPlotsContainer$info <- gettext("True-score confidence interval plotted against sum score for each selected method.")
-  ciPlotsContainer$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]],
+  ciPlotsContainer$dependOn(optionsFromObject = jaspResults[["semMainContainer"]][["coefficientTable"]])
   jaspResults[["semMainContainer"]][["ciPlotsContainer"]] <- ciPlotsContainer
 
   ciData <- jaspResults[["semMainContainer"]][["ciDataState"]]$object$plots
