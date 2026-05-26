@@ -8,6 +8,9 @@ options$variables <- paste0("V", 1:5)
 options$dataStructure <- "ratersInColumns"
 options$setSeed <- TRUE
 options$krippendorffsAlphaBootstrapSamplesForCI <- 200
+options$fleissKappa <- TRUE
+options$krippendorffsAlpha <- TRUE
+options$cohensKappa <- TRUE
 set.seed(1)
 results <- runAnalysis("raterAgreement", testthat::test_path("binaryTestDt.csv"), options, makeTests = F)
 
@@ -43,12 +46,12 @@ test_that("Fleiss' kappa table results match", {
 test_that("Krippendorff's alpha table results match", {
   table <- results[["results"]][["krippendorffsAlpha"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.0271069334114449, 0.124379082494376, 0.0257751838160253, 0.0762561458960466,
+                                 list(0.0227114137672134, 0.129372854475994, 0.0274013824660634, 0.0762561458960466,
                                       "Nominal"))
 })
 
 
-####Cohen's weighted kappa and Fleiss' kappa and Krippendorf's alpha with different CI range(99%)####
+#### Cohen's weighted kappa and Fleiss' kappa and Krippendorf's alpha with different CI range(99%)####
 
 # Set options
 options <- analysisOptions("raterAgreement")
@@ -58,6 +61,9 @@ options$cohensKappaType <- "weighted"
 options$krippendorffsAlphaBootstrapSamplesForCI <- 200
 options$dataStructure <- "ratersInColumns"
 options$setSeed <- TRUE
+options$fleissKappa <- TRUE
+options$krippendorffsAlpha <- TRUE
+options$cohensKappa <- TRUE
 set.seed(1)
 results <- runAnalysis("raterAgreement", "test.csv", options, makeTests = F)
 
@@ -89,7 +95,7 @@ test_that("Fleiss' kappa table results match", {
 test_that("Krippendorff's alpha table results match", {
   table <- results[["results"]][["krippendorffsAlpha"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(-0.209716461340596, -0.197507041090973, 0.00269939839460176, -0.199079048349962,
+                                 list(-0.210559277301944, -0.197092068692018, 0.00282684600279606, -0.199079048349962,
                                       "Nominal"))
 })
 
@@ -99,8 +105,7 @@ test_that("Fleiss' kappa table results match", {
   options <- analysisOptions("raterAgreement")
   options$variables <- c("V1", "V2", "V3", "V4", "V5", "V6")
   options$dataStructure <- "ratersInColumns"
-  options$cohensKappa <- FALSE
-  options$krippendorffsAlpha <- FALSE
+  options$fleissKappa <- TRUE
   options$ci <- FALSE
   set.seed(1)
   results <- runAnalysis("raterAgreement", testthat::test_path("Fleiss1971.csv"), options)
@@ -128,7 +133,7 @@ results <- runAnalysis("raterAgreement", "debug.csv", options)
 test_that("Kendall's W table results match", {
   table <- results[["results"]][["kendallW"]][["data"]]
   jaspTools::expect_equal_tables(table,
-    list(0.235537187052039, 0.405722388905557, 0.0428257441483345, 0.316646331299797,
+    list(0.242901790179018, 0.3967866953362, 0.03881919207957, 0.316646331299797,
          94.0439603960396, 99, 0.621972149059366))
 })
 
@@ -155,6 +160,7 @@ test_that("Cohen's kappa table results match with linear weighting", {
   options$variables <- c("V1", "V2")
   options$fleissKappa <- FALSE
   options$krippendorffsAlpha <- FALSE
+  options$cohensKappa <- TRUE
   options$ci <- FALSE
   options$cohensKappaType <- "weighted"
   options$dataStructure <- "ratersInColumns"
