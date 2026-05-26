@@ -393,9 +393,6 @@ raterAgreement <- function(jaspResults, dataset, options) {
 }
 
 .computeKendallWTable <- function(jaspResults, dataset, options, ready) {
-  if (!is.null(jaspResults[["kendallW"]]))
-    return()
-
   formattedCIPercent <- format(
     100 * options[["ciLevel"]],
     digits        = 3,
