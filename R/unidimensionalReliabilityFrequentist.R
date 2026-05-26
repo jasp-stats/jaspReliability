@@ -1265,6 +1265,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     return()
 
   scaleTable <- createJaspTable(gettext("Frequentist Scale Reliability Statistics"))
+  scaleTable$info <- gettext("Frequentist point estimates, standard errors, and confidence intervals for all selected scale reliability coefficients.")
 
   scaleTable$dependOn(options = c("scaleOmega", "scaleAlpha", "scaleLambda2", "scaleSplithalf",
                                   "averageInterItemCorrelation", "scaleMean", "scaleSd", "meanSdScoresMethod",
@@ -1327,6 +1328,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
   derivedOptions <- model[["derivedOptions"]]
 
   itemTable <- createJaspTable(gettext("Frequentist Individual Item Reliability Statistics"))
+  itemTable$info <- gettext("Item-level reliability: for each item, the scale reliability coefficient if that item were dropped, and the item-rest correlation.")
   itemTable$dependOn(options = c("itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2", "itemDeletedSplithalf",
                                  "itemMean", "itemRestCorrelation", "itemSd", "itemVar",
                                  "scaleOmega", "scaleAlpha", "scaleLambda2", "scaleSplithalf",
@@ -1420,6 +1422,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     return()
 
   fitTable <- createJaspTable(gettextf("Fit Measures of Single Factor Model Fit"))
+  fitTable$info <- gettext("Fit indices of the single-factor model underlying McDonald's omega, including chi-square, RMSEA, and SRMR.")
 
   fitTable$addColumnInfo(name = "measure", title = gettext("Fit measure"),   type = "string")
   fitTable$addColumnInfo(name = "value",  title = gettext("Value"), type = "number")
@@ -1450,6 +1453,7 @@ unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) 
     return()
 
   loadTable <- createJaspTable(gettext("Standardized Loadings of the Single-Factor Model"))
+  loadTable$info <- gettext("Standardized factor loadings from the single-factor model used to estimate McDonald's omega.")
 
   loadTable$dependOn(options = c("scaleOmega", "standardizedLoadings", "omegaEstimationMethod", "variables",
                                  "naAction", "reverseScaledItems"))

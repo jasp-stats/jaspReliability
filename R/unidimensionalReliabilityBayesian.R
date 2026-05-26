@@ -1082,6 +1082,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     return()
 
   scaleTable <- createJaspTable(gettext("Bayesian Scale Reliability Statistics"))
+  scaleTable$info <- gettext("Bayesian posterior estimates and credible intervals for all selected scale reliability coefficients.")
   scaleTable$dependOn(options = c("scaleCiLevel", "scaleMean", "scaleSd", "scaleVar", "rHat",
                                   "scaleAlpha", "scaleOmega", "scaleLambda2",
                                   "averageInterItemCorrelation", "meanSdScoresMethod", "effectiveSampleSize"))
@@ -1150,6 +1151,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   derivedOptions <- model[["derivedOptions"]]
 
   itemTable <- createJaspTable(gettext("Bayesian Individual Item Reliability Statistics"))
+  itemTable$info <- gettext("Bayesian item-level reliability: posterior estimates of the scale coefficient if each item were dropped, and item-rest correlations.")
 
   itemTable$dependOn(options = c("itemDeletedOmega",  "itemDeletedAlpha",  "itemDeletedLambda2",
                                  "itemCiLevel", "itemRestCorrelation", "itemMean", "itemSd",
@@ -1259,6 +1261,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   }
   probabilityTable <- createJaspTable(
     gettextf("Probability that Reliability Coefficient is Larger than %1$.2f and Smaller than %2$.2f", low, high))
+  probabilityTable$info <- gettext("Posterior and prior probability that each reliability coefficient falls within the specified interval.")
   probabilityTable$dependOn(options = c("probabilityTableLowerBound", "probabilityTable", "probabilityTableUpperBound"))
 
   overTitle <- gettext("Probability")
@@ -1327,6 +1330,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     return()
 
   fitTable <- createJaspTable(gettextf("Fit Measures for the Single-Factor Model"))
+  fitTable$info <- gettext("Bayesian fit indices for the single-factor model underlying McDonald's omega.")
 
   fitTable$dependOn(options = c("scaleOmega", "omegaFitMeasures", "omegaFitMeasuresCutoffRmsea", "omegaFitMeasuresCutoffCfiTli", "pointEstimate",
                                 "omegaFitMeasuresCiLevel"))
@@ -1384,6 +1388,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     return()
 
   loadTable <- createJaspTable(gettext("Standardized Loadings of the Single-Factor Model"))
+  loadTable$info <- gettext("Posterior estimates of standardized factor loadings from the single-factor model.")
 
   loadTable$dependOn(options = c("scaleOmega", "standardizedLoadings"))
 
@@ -1419,6 +1424,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     return()
 
   plotContainer <- createJaspContainer(gettext("Posterior Plots"))
+  plotContainer$info <- gettext("Posterior density plots for each selected reliability coefficient, with optional prior overlay and shaded credible interval.")
   plotContainer$dependOn(options = c("posteriorPlot", "posteriorPlotShaded", "probabilityTable", "probabilityTableLowerBound",
                                      "probabilityTableUpperBound", "posteriorPlotFixedRange", "posteriorPlotPriorDisplayed", "scaleCiLevel",
                                      "scaleAlpha", "scaleOmega", "scaleLambda2"))
@@ -1581,6 +1587,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     return()
 
   plotContainerItem <- createJaspContainer(gettext("If Item Dropped Posterior Plots"))
+  plotContainerItem$info <- gettext("Ridgeline plots showing the posterior distribution of each reliability coefficient when each item is dropped.")
   plotContainerItem$dependOn(options = c("variables", "itemDeletedPlot",
                                          "itemCiLevel", "itemDeletedPlotOrderedType", "itemDeletedPlotOrdered",
                                          "itemDeletedOmega", "itemDeletedAlpha", "itemDeletedLambda2"))
@@ -1757,6 +1764,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     g <- jaspGraphs::themeJasp(g)
 
     plot <- createJaspPlot(plot = g, title = "Posterior Predictive Check Omega", width = 350)
+    plot$info <- gettext("Posterior predictive check: observed eigenvalues of the covariance matrix compared against the model-implied posterior distribution to assess single-factor model fit.")
     plot$dependOn(options = c("omegaPosteriorPredictiveCheck", "scaleOmega", "coefficientType"))
 
     plot$position <- 8
@@ -1777,6 +1785,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
   if (is.null(model[["empty"]]) && options[["tracePlot"]]) {
 
     plotContainerTP <- createJaspContainer(gettext("Convergence Traceplot"))
+    plotContainerTP$info <- gettext("Traceplots of MCMC samples per chain over iterations to assess sampler convergence and mixing.")
     plotContainerTP$dependOn(options = c("tracePlot", "scaleAlpha", "scaleOmega", "scaleLambda2"))
 
     derivedOptions <- model[["derivedOptions"]]

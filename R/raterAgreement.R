@@ -51,6 +51,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
     return()
 
   jaspTable <- createJaspTable(title = gettext("Agreement Coefficient"))
+  jaspTable$info <- gettext("Overview of all selected agreement coefficients with standard errors and confidence intervals.")
   jaspTable$addColumnInfo(name = "coefficient", title = gettext("Coefficient"), type = "string")
   jaspTable$addColumnInfo(name = "estimate",    title = gettext("Estimate"),    type = "number")
   jaspTable$addColumnInfo(name = "SE",          title = gettext("SE"),          type = "number")
@@ -83,6 +84,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   # Create the JASP Table
   jaspTable <- createJaspTable(title = gettext("Cohen's kappa"))
+  jaspTable$info <- gettext("Cohen's kappa: chance-corrected agreement between exactly two raters. Ranges from -1 (worse than chance) to 1 (perfect agreement).")
   jaspTable$addColumnInfo(name = "ratings", title = gettext("Ratings"), type = "string")
   jaspTable$addColumnInfo(name = "cKappa", title = gettextf("kappa"), type = "number")
   jaspTable$position <- 1
@@ -189,6 +191,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   # Create the JASP Table
   jaspTable <- createJaspTable(title = gettextf("Fleiss' kappa"))
+  jaspTable$info <- gettext("Fleiss' kappa: generalization of Cohen's kappa for three or more raters assigning subjects to nominal categories.")
   jaspTable$addColumnInfo(name = "ratings", title = gettext("Ratings"), type = "string")
   jaspTable$addColumnInfo(name = "fKappa", title = gettext("Fleiss' kappa"), type = "number")
   jaspTable$position <- 2
@@ -281,6 +284,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
 .computeKrippendorffsAlphaTable <- function(jaspResults, dataset, options, ready) {
   # Create the JASP Table
   jaspTable <- createJaspTable(title = "Krippendorff's alpha")
+  jaspTable$info <- gettext("Krippendorff's alpha: reliability coefficient applicable to any number of raters, any scale level (nominal/ordinal/interval/ratio), and incomplete data.")
   jaspTable$addColumnInfo(name = "method", title = gettext("Method"), type = "string")
   jaspTable$addColumnInfo(name = "kAlpha", title = "Krippendorff's alpha", type = "number")
   jaspTable$position <- 2
@@ -399,6 +403,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
   )
 
   jaspTable <- createJaspTable(title = gettext("Kendall's W"))
+  jaspTable$info <- gettext("Kendall's coefficient of concordance W: measures agreement of rankings across multiple raters. Ranges from 0 (no agreement) to 1 (perfect concordance).")
   jaspTable$addColumnInfo(name = "W",     title = gettext("W"),          type = "number")
   jaspTable$addColumnInfo(name = "chisq", title = gettext("Chi-square"), type = "number")
   jaspTable$addColumnInfo(name = "df",    title = gettext("df"),         type = "integer")
