@@ -32,6 +32,7 @@ Form
 			name: 			"variables"
 			title: 			qsTr("Variables")
 			allowedColumns: ["nominal", "ordinal", "scale"]
+			info:			qsTr("Rating variables to include. Each variable is one rater; each row is a subject being rated.")
 		}
 
 		RadioButtonGroup
@@ -39,6 +40,7 @@ Form
 			name: "dataStructure"
 			title: qsTr("Data Structure")
 			columns: 2
+			info: qsTr("Specify whether raters are arranged in columns (default) or rows in the dataset.")
 			RadioButton
 			{
 			name:		"ratersInColumns"
@@ -61,10 +63,12 @@ Form
 	{
 		name:   "cohensKappa"
 		label:  qsTr("Cohen's kappa")
+		info:   qsTr("Measures agreement between exactly two raters. When more than two raters are entered, all pairwise combinations are computed.")
 
 		RadioButtonGroup
 		{
 			name: "cohensKappaType"
+			info: qsTr("Unweighted kappa treats all disagreements equally. Weighted kappa accounts for the degree of disagreement and requires ordinal ratings.")
 			RadioButton
 			{
 				value:   "unweighted"
@@ -93,11 +97,13 @@ Group
 	{
 		name:  "krippendorffsAlpha"
 		label: qsTr("Krippendorff's alpha")
+		info:  qsTr("Measures agreement among two or more raters. Applicable to nominal, ordinal, interval, or ratio data.")
 
 		DropDown
 		{
 			name:   "krippendorffsAlphaMethod"
 			label:  qsTr("Method")
+			info:   qsTr("Level of measurement determines how disagreements are quantified in the alpha calculation.")
 			values:
 			[
 				{ label: qsTr("Nominal"),  value: "nominal"  },
@@ -112,11 +118,13 @@ Group
 	{
 		name:  "kendallW"
 		label: qsTr("Kendall's W")
+		info:  qsTr("Measures concordance among multiple raters on ordinal rankings. Ranges from 0 (no agreement) to 1 (perfect agreement).")
 
 		CheckBox
 		{
 			name:  "correctForTies"
 			label: qsTr("Correct for ties")
+			info:  qsTr("Apply a correction to Kendall's W when tied ranks are present in the data.")
 		}
 	}
 }
@@ -125,6 +133,7 @@ Group
 	{
 		name:  "fleissKappa"
 		label: qsTr("Fleiss' kappa")
+		info:  qsTr("Measures agreement among two or more raters on nominal categories. Generalises Cohen's kappa to multiple raters.")
 	}
 
 
@@ -142,6 +151,7 @@ Group
 			label:             qsTr("Confidence interval")
 			checked:           true
 			childrenOnSameRow: true
+			info:              qsTr("Report a bootstrap confidence interval for each agreement coefficient.")
 
 			CIField
 			{
@@ -159,6 +169,7 @@ Group
 			fieldWidth:   50
 			min:          100
 			max:          10000000
+			info:         qsTr("Number of bootstrap replications used to compute confidence intervals. Higher values give more stable estimates.")
 		}
 
 		SetSeed {}
