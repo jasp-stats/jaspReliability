@@ -121,13 +121,18 @@ Form
 				fieldWidth: 	50
 				min: 			100
 				max: 			1e7
+				enabled:		ciOpt.checked
 			}
-			SetSeed{}
+			SetSeed
+			{
+				enabled: ciOpt.checked
+			}
 		}
 	}
 
 	CheckBox 
 	{
+		id: 				ciOpt
 		name: 				"ci"
 		label:				qsTr("Confidence Interval")
 		checked: 			true

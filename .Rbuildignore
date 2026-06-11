@@ -5,6 +5,7 @@
 ^\.travis\.yml$
 ^\.editorconfig$
 ^\.github$
+^\.vscode$
 ^tests/upgrades$
 ^examples$
 ^jasp_dev_work_dir$
