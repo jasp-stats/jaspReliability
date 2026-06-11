@@ -1451,7 +1451,7 @@
     "dcurver": {
       "Package": "dcurver",
       "Version": "0.9.3",
-      "Source": "Repository",
+      "Source": "url",
       "Date": "2025-10-24",
       "Title": "Utility Functions for Davidian Curves",
       "Authors@R": "person(given = \"Ozan\", family = \"Öğreden\", role = c(\"aut\", \"cre\"), email = \"oguzhanogreden@protonmail.com\")",
@@ -1475,7 +1475,8 @@
       "NeedsCompilation": "yes",
       "Author": "Ozan Öğreden [aut, cre]",
       "Maintainer": "Ozan Öğreden <oguzhanogreden@protonmail.com>",
-      "Repository": "CRAN"
+      "Repository": "CRAN",
+      "RemoteUrl": "https://cran.r-project.org/src/contrib/dcurver_0.9.3.tar.gz"
     },
     "desc": {
       "Package": "desc",
