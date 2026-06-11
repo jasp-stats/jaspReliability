@@ -10,3 +10,4 @@
 ^jasp_dev_work_dir$
 ^\.positai$
 ^\.claude$
+^\.vscode$

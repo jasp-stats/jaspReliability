@@ -157,15 +157,15 @@ Group
 			label:             qsTr("Confidence interval")
 			checked:           true
 			childrenOnSameRow: true
-			id: 							 ciOpt
-			info:              qsTr("Report a bootstrap confidence interval for each agreement coefficient.")
+			id: ciOpt
+			info:              qsTr("Report a confidence interval for each agreement coefficient. Cohen's kappa and Fleiss' kappa use asymptotic CIs; Krippendorff's alpha and Kendall's W use bootstrap CIs.")
 
 			CIField
 			{
 				name:         "ciLevel"
 				label:        ""
 				defaultValue: 95
-				info:         qsTr("Width of the bootstrap confidence interval.")
+				info:         qsTr("Width of the confidence interval.")
 			}
 		}
 

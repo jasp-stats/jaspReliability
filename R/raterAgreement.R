@@ -283,10 +283,10 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
 .computeKrippendorffsAlphaTable <- function(jaspResults, dataset, options, ready) {
   # Create the JASP Table
-  jaspTable <- createJaspTable(title = "Krippendorff's alpha")
+  jaspTable <- createJaspTable(title = gettext("Krippendorff's alpha"))
   jaspTable$info <- gettext("Krippendorff's alpha: reliability coefficient applicable to any number of raters, any scale level (nominal/ordinal/interval/ratio), and incomplete data.")
   jaspTable$addColumnInfo(name = "method", title = gettext("Method"), type = "string")
-  jaspTable$addColumnInfo(name = "kAlpha", title = "Krippendorff's alpha", type = "number")
+  jaspTable$addColumnInfo(name = "kAlpha", title = gettext("Krippendorff's alpha"), type = "number")
   jaspTable$position <- 2
 
   #dependencies
@@ -368,6 +368,9 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
 .kendallWBootRA <- function(jaspResults, dataset, options, ready) {
   if (!ready || !is.null(jaspResults[["kendallWBootstrapSamples"]]$object))
+    return()
+
+  if (any(options[["variables.types"]] == "nominal"))
     return()
 
   bootstrapSamples <- createJaspState()
