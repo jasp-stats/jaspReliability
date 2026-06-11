@@ -424,6 +424,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
   jaspBase::.hasErrors(
     dataset              = dataset,
     type                 = c("infinity", "observations"),
+    all.target           = options[["variables"]],
     observations.amount  = "< 2",
     exitAnalysisIfErrors = TRUE
   )

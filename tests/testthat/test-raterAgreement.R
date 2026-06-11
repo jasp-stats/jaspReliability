@@ -7,7 +7,7 @@ options <- analysisOptions("raterAgreement")
 options$variables <- paste0("V", 1:5)
 options$dataStructure <- "ratersInColumns"
 options$setSeed <- TRUE
-options$krippendorffsAlphaBootstrapSamplesForCI <- 200
+options$bootstrapSamples <- 200
 options$fleissKappa <- TRUE
 options$krippendorffsAlpha <- TRUE
 options$cohensKappa <- TRUE
@@ -46,7 +46,7 @@ test_that("Fleiss' kappa table results match", {
 test_that("Krippendorff's alpha table results match", {
   table <- results[["results"]][["krippendorffsAlpha"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.0227114137672134, 0.129372854475994, 0.0274013824660634, 0.0762561458960466,
+                                 list(0.0271069334114449, 0.124379082494376, 0.0257751838160253, 0.0762561458960466,
                                       "Nominal"))
 })
 
@@ -58,7 +58,7 @@ options <- analysisOptions("raterAgreement")
 options$variables <- c("facGender", "facExperim", "debBinMiss20")
 options$ciLevel <- 0.99
 options$cohensKappaType <- "weighted"
-options$krippendorffsAlphaBootstrapSamplesForCI <- 200
+options$bootstrapSamples <- 200
 options$dataStructure <- "ratersInColumns"
 options$setSeed <- TRUE
 options$fleissKappa <- TRUE
@@ -95,7 +95,7 @@ test_that("Fleiss' kappa table results match", {
 test_that("Krippendorff's alpha table results match", {
   table <- results[["results"]][["krippendorffsAlpha"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(-0.210559277301944, -0.197092068692018, 0.00282684600279606, -0.199079048349962,
+                                 list(-0.209716461340596, -0.197507041090973, 0.00269939839460176, -0.199079048349962,
                                       "Nominal"))
 })
 
@@ -125,16 +125,16 @@ options$cohensKappa                  <- FALSE
 options$fleissKappa                  <- FALSE
 options$krippendorffsAlpha           <- FALSE
 options$kendallW                     <- TRUE
-options$kendallWBootstrapSamplesForCI <- 200
+options$bootstrapSamples             <- 200
 options$setSeed                      <- TRUE
 set.seed(1)
-results <- runAnalysis("raterAgreement", "debug.csv", options)
+results <- runAnalysis("raterAgreement", "debug.csv", options, makeTests = F)
 
 test_that("Kendall's W table results match", {
   table <- results[["results"]][["kendallW"]][["data"]]
   jaspTools::expect_equal_tables(table,
-    list(0.242901790179018, 0.3967866953362, 0.03881919207957, 0.316646331299797,
-         94.0439603960396, 99, 0.621972149059366))
+                                 list(0.235537187052039, 0.405722388905557, 0.0428257441483345, 0.316646331299797,
+                                      94.0439603960396, 99, 0.621972149059366))
 })
 
 test_that("Kendall's W with tie correction and no CI results match", {

@@ -25,7 +25,7 @@ Form
 	{
 		height: 300
 
-		AvailableVariablesList { name: "allVariablesList" }
+		AvailableVariablesList { name: "allVariablesList"; info: qsTr("All variables available in the dataset.") }
 
 		AssignedVariablesList
 		{
@@ -43,15 +43,17 @@ Form
 			info: qsTr("Specify whether raters are arranged in columns (default) or rows in the dataset.")
 			RadioButton
 			{
-			name:		"ratersInColumns"
-			label:		qsTr("Raters are in columns")
-			checked:	true
+				name:    "ratersInColumns"
+				label:   qsTr("Raters are in columns")
+				checked: true
+				info:    qsTr("Each column is one rater and each row is one subject or item being rated.")
 			}
 
 			RadioButton
 			{
-			name:	"ratersInRows"
-			label:	qsTr("Raters are in rows")
+				name:  "ratersInRows"
+				label: qsTr("Raters are in rows")
+				info:  qsTr("Each row is one rater and each column is one subject or item being rated.")
 			}
 		}
 	}
@@ -74,18 +76,21 @@ Form
 				value:   "unweighted"
 				label:   qsTr("Unweighted")
 				checked: true
+				info:    qsTr("All disagreements are treated as equal regardless of their magnitude.")
 			}
 
 			RadioButton
 			{
 				value: "weighted"
 				label: qsTr("Weighted")
+				info:  qsTr("Disagreements are penalised according to their magnitude. Requires ordinal ratings.")
 
 				RadioButtonGroup
 				{
 					name: "weightType"
-					RadioButton { value: "quadratic"; label: qsTr("Quadratic weights"); checked: true }
-					RadioButton { value: "linear";    label: qsTr("Linear weights") }
+					info: qsTr("Weighting scheme applied to disagreements between ordinal categories.")
+					RadioButton { value: "quadratic"; label: qsTr("Quadratic weights"); checked: true; info: qsTr("Penalises larger disagreements quadratically; sensitive to large discrepancies.") }
+					RadioButton { value: "linear";    label: qsTr("Linear weights");    info: qsTr("Penalises disagreements proportionally to their size.") }
 				}
 			}
 		}
@@ -144,6 +149,7 @@ Group
 	Section
 	{
 		title: qsTr("Advanced Options")
+		info:  qsTr("Options for confidence intervals and bootstrap settings.")
 
 		CheckBox
 		{
@@ -151,6 +157,7 @@ Group
 			label:             qsTr("Confidence interval")
 			checked:           true
 			childrenOnSameRow: true
+			id: 							 ciOpt
 			info:              qsTr("Report a bootstrap confidence interval for each agreement coefficient.")
 
 			CIField
@@ -158,6 +165,7 @@ Group
 				name:         "ciLevel"
 				label:        ""
 				defaultValue: 95
+				info:         qsTr("Width of the bootstrap confidence interval.")
 			}
 		}
 
