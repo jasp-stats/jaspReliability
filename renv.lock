@@ -1451,7 +1451,7 @@
     "dcurver": {
       "Package": "dcurver",
       "Version": "0.9.3",
-      "Source": "url",
+      "Source": "Repository",
       "Date": "2025-10-24",
       "Title": "Utility Functions for Davidian Curves",
       "Authors@R": "person(given = \"Ozan\", family = \"Öğreden\", role = c(\"aut\", \"cre\"), email = \"oguzhanogreden@protonmail.com\")",
@@ -1475,8 +1475,7 @@
       "NeedsCompilation": "yes",
       "Author": "Ozan Öğreden [aut, cre]",
       "Maintainer": "Ozan Öğreden <oguzhanogreden@protonmail.com>",
-      "Repository": "CRAN",
-      "RemoteUrl": "https://cran.r-project.org/src/contrib/dcurver_0.9.3.tar.gz"
+      "Repository": "CRAN"
     },
     "desc": {
       "Package": "desc",
@@ -2571,12 +2570,12 @@
       ],
       "Config/testthat/edition": "3",
       "RemoteType": "github",
+      "Remotes": "jasp-stats/jaspGraphs",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspBase",
       "RemoteRef": "master",
-      "RemoteSha": "209d1787d5c9400601df960535b261029a350b12",
-      "Remotes": "jasp-stats/jaspGraphs"
+      "RemoteSha": "209d1787d5c9400601df960535b261029a350b12"
     },
     "jaspGraphs": {
       "Package": "jaspGraphs",
@@ -2656,7 +2655,7 @@
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspTools",
       "RemoteRef": "master",
-      "RemoteSha": "17576124ee4f15b710237b6d0da64a3aeb9d473c"
+      "RemoteSha": "281f17a2d6761eb5ec247d7ddcd59042f01fa409"
     },
     "jquerylib": {
       "Package": "jquerylib",
@@ -4382,7 +4381,7 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "1.1.7",
+      "Version": "1.2.3",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Project Environments",
