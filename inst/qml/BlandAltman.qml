@@ -33,6 +33,7 @@ Form
 			name:				"pairs"
 			title:				qsTr("Measurement Pairs")
 			allowedColumns: 	["scale"]
+			info:				qsTr("Pairs of scale variables to compare. Each pair produces a Bland-Altman plot of the mean versus the difference between measurements.")
 		}
 	}
 
@@ -40,6 +41,7 @@ Form
 	{
 		name: 				"ci"
 		label:				qsTr("Confidence Interval")
+		info:				qsTr("Display confidence intervals around the mean difference and its upper and lower limits of agreement in the plot.")
 
 		CIField
 		{
@@ -52,11 +54,13 @@ Form
 		{
 			name: 		"ciShading"
 			label:		qsTr("Shading")
+			info:		qsTr("Shade the confidence interval regions around the mean difference and limits of agreement.")
 
 			CheckBox
 			{
 				name: 	"ciShadingWithColour"
 				label:	qsTr("Use colour")
+				info:	qsTr("Use colour (rather than grey) to fill the shaded confidence regions.")
 			}
 		}
 
@@ -67,5 +71,6 @@ Form
 	{
 			name: 		"blandAltmanTable"
 			label:		qsTr("Bland-Altman table")
+			info:		qsTr("Table showing the mean difference, the upper and lower limits of agreement, and their confidence intervals.")
 	}
 }

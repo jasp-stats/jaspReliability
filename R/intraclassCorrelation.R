@@ -36,6 +36,7 @@ intraclassCorrelation <- function(jaspResults, dataset, options) {
 
   # Create the JASP Table
   jaspTable <- createJaspTable(title = gettext("Intraclass Correlation"))
+  jaspTable$info <- gettext("Intraclass correlation coefficients (ICC) with optional confidence intervals for assessing absolute agreement or consistency among raters.")
   jaspTable$addColumnInfo(name = "type", title = gettext("Type"), type = "string")
   jaspTable$addColumnInfo(name = "ICC", title = gettext("Point Estimate"), type = "number")
   formattedCIPercent <- format(

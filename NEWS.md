@@ -20,6 +20,16 @@
 
 ---
 
+# jaspReliability 0.97.1
+
+## Added
+* Rater Agreement: added Kendall's W coefficient with bootstrap CI support.
+
+## Changed
+* Rater Agreement: grouped bootstrap samples, CI level, and seed into an "Advanced Options" section; removed pre-checked defaults for all coefficients; added placeholder table prompting users to select a coefficient when variables are assigned.
+
+---
+
 # jaspModuleTemplate 0.2.0
 ## Added
 * Added NEWS.md

@@ -35,6 +35,7 @@ Description
 		qml: 	"RaterAgreement.qml"
 		func: 	"raterAgreement"
 	}
+
 	Analysis
 	{
 		title:	qsTr("Bland-Altman Plots")
