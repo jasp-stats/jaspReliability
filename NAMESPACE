@@ -1,7 +1,7 @@
-export(reliabilityUniDimFrequentist)
-export(reliabilityMultiDimFrequentist)
-export(cohensFleissKappa)
+export(reliabilityUnidimensionalFrequentist)
 export(intraclassCorrelation)
-export(reliabilityUniDimBayesian)
-export(reliabilityMultiDimBayesian)
-
+export(raterAgreement)
+export(blandAltman)
+export(standardErrorOfMeasurement)
+export(reliabilityUnidimensionalBayesian)
+export(reliabilityMultidimensionalBayesian)

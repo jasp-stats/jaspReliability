@@ -16,12 +16,12 @@
 // <http://www.gnu.org/licenses/>.
 //
 
-import QtQuick 			2.11
-import QtQuick.Layouts  1.3
-import QtQuick.Controls	2.4
-import JASP.Controls 	1.0
-import JASP.Theme		1.0
-import JASP.Widgets 	1.0
+import QtQuick 
+import QtQuick.Layouts
+import QtQuick.Controls
+import JASP.Controls 
+import JASP.Theme	
+import JASP.Widgets 
 
 Form
 {
@@ -30,12 +30,43 @@ Form
 		id: factors
 		name: "factors"
 		initNumberFactors: 2
-		allowAll: true
+		allowedColumns: ["scale"]
+	}
+
+	DropDown
+	{
+		id:				modelType
+		name:			"modelType"
+		label:			qsTr("Model")
+		values:
+		[
+			{ label: qsTr("Second-order"),		value: "secondOrder"	},
+			{ label: qsTr("Bi-factor"),			value: "biFactor"		},
+			{ label: qsTr("Correlated factors"),	value: "correlated"		}
+		]
+		info: qsTr("The factor model used to estimate the reliability coefficients. McDonald's ω_h (general/group-common reliability) is only available for the second-order and bi-factor models.")
+	}
+
+	RadioButtonGroup
+	{
+		name:		"scoresMethod"
+		title:		qsTr("Mean and standard deviation of")
+
+		RadioButton { value: "sumScores";	label: qsTr("participants' sum scores"); checked: true}
+		RadioButton { value: "meanScores";	label: qsTr("participants' mean scores")}
+	}
+
+	Group
+	{
+		title: qsTr("Item statistics")
+		CheckBox { name: "itemDeletedOmegaT";	label: qsTr("McDonald's ω_t (if item dropped)") }
+		CheckBox { name: "itemDeletedOmegaH";	label: qsTr("McDonald's ω_h (if item dropped)"); enabled: modelType.currentValue !== "correlated" }
+		CheckBox { name: "itemRestCor";	label: qsTr("Item-rest correlation") }
 	}
 
 	Section
 	{
-		title: 	qsTr("Analysis")
+		title: 	qsTr("Output options")
 		Group
 		{
 			title: qsTr("Scale Statistics")
@@ -45,51 +76,6 @@ Form
 				label:			qsTr("Credible interval");
 				defaultValue:	95;
 			}
-
-
-			CheckBox
-			{
-				id:			omegah
-				name:		"omegaHScale"
-				label:		qsTr("McDonald's ω_h")
-			}
-			CheckBox
-			{
-				id:			omegat
-				name:		"omegaTScale"
-				label:		qsTr("McDonald's ω_t")
-			}
-			CheckBox { name: "averageInterItemCor";	label: qsTr("Average interitem correlation")}
-
-			RowLayout {
-				CheckBox { name: "meanScale";	label: qsTr("Mean");	id: mean}
-				CheckBox { name: "sdScale";		label: qsTr("SD");		id: sd}
-
-			}
-			RadioButtonGroup
-			{
-				indent:		true
-				enabled:	mean.checked || sd.checked
-				title:		qsTr("")
-				name:		"scoresMethod"
-
-				RadioButton { value: "sumScores";	label: qsTr("of participants' sum scores"); checked: true}
-				RadioButton { value: "meanScores";	label: qsTr("of participants' mean scores")}
-			}
-		}
-
-		Group
-		{
-			title: qsTr("Individual Item Statistics")
-			CIField
-			{
-				name:			"credibleIntervalValueItem";
-				label:			qsTr("Credible interval");
-				defaultValue:	95;
-			}
-			CheckBox { name: "itemRestCor";	label: qsTr("Item-rest correlation")		}
-			CheckBox { name: "meanItem";	label: qsTr("Mean")							}
-			CheckBox { name: "sdItem";		label: qsTr("Standard deviation")			}
 		}
 
 		Group
@@ -171,10 +157,66 @@ Form
 				}
 			}
 		}
+
+		Group
+		{
+			title: qsTr("")
+
+			RadioButtonGroup
+			{
+				name: "pointEst"
+				title: qsTr("Posterior Point Estimate")
+				RadioButton{ value: "mean"; label: qsTr("Mean"); checked: true }
+				RadioButton{ value: "median"; label: qsTr("Median") }
+			}
+		}
+
+		Group
+		{
+			title: qsTr("Model fit")
+			CheckBox
+			{
+				name:		"dispPPC"
+				label:		qsTr("Posterior predictive check");
+			}
+			CheckBox
+			{
+				name:		"fitMeasures"
+				label:		qsTr("Fit measures");
+
+				CIField
+				{
+					name:			"credibleIntervalValueFitMeasures";
+					label:			qsTr("Credible interval");
+					defaultValue:	90
+				}
+
+				DoubleField
+				{
+					name:			"fitCutoffSat"
+					label:			qsTr("p(RMSEA <")
+					defaultValue:	.08
+					min:			0
+					max:			1
+					fieldWidth: 	40
+					afterLabel:		qsTr(")")
+				}
+				DoubleField
+				{
+					name:			"fitCutoffNull"
+					label:			qsTr("p(CFI/TLI >")
+					defaultValue:	.9
+					min:			0
+					max:			1
+					fieldWidth: 	40
+					afterLabel:		qsTr(")")
+				}
+			}
+		}
 	}
 	Section
 	{
-		title: qsTr("Convergence")
+		title: qsTr("MCMC options")
 
 		Group
 		{
@@ -329,6 +371,7 @@ Form
 		Group
 		{
 			title: qsTr("Structural level")
+			visible: modelType.currentValue !== "correlated"
 
 			Group
 			{
@@ -374,7 +417,7 @@ Form
 				{
 					name:			"igShapeGFactor"
 					label:			qsTr("shape")
-					defaultValue:	(factors.count * factors.count - factors.count) / 2
+					defaultValue:	2
 					min:			1
 					max:			100
 					fieldWidth: 	40
@@ -383,7 +426,7 @@ Form
 				{
 					name:			"igScaleGFactor"
 					label:			qsTr("scale")
-					defaultValue:	factors.list.count
+					defaultValue:	1
 					min:			1
 					max:			100
 					fieldWidth: 	40
@@ -392,6 +435,26 @@ Form
 		}
 
 
+
+		Group
+		{
+			title: qsTr("Latent correlations")
+			visible: modelType.currentValue === "correlated"
+
+			Group
+			{
+				title: qsTr("Correlation matrix: Inverse-Wishart")
+				IntegerField
+				{
+					name:			"latentCorDf"
+					label:			qsTr("degrees of freedom")
+					defaultValue:	2
+					min:			1
+					max:			1000
+					fieldWidth: 	40
+				}
+			}
+		}
 	}
 
 	Section
@@ -408,62 +471,6 @@ Form
 
 				RadioButton { value: "excludeCasesPairwise"; label: qsTr("Bayesian imputation"); checked: true}
 				RadioButton { value: "excludeCasesListwise"; label: qsTr("Exclude cases listwise")}
-			}
-		}
-
-		Group
-		{
-			title: qsTr("")
-
-			RadioButtonGroup
-			{
-				name: "pointEst"
-				title: qsTr("Posterior Point Estimate")
-				RadioButton{ value: "mean"; label: qsTr("Mean"); checked: true }
-				RadioButton{ value: "median"; label: qsTr("Median") }
-			}
-		}
-
-		Group
-		{
-			title: qsTr("Model fit")
-			CheckBox
-			{
-				name:		"dispPPC"
-				label:		qsTr("Posterior predictive check");
-			}
-			CheckBox
-			{
-				name:		"fitMeasures"
-				label:		qsTr("Fit measures");
-
-				CIField
-				{
-					name:			"credibleIntervalValueFitMeasures";
-					label:			qsTr("Credible interval");
-					defaultValue:	90
-				}
-
-				DoubleField
-				{
-					name:			"fitCutoffSat"
-					label:			qsTr("p(RMSEA <")
-					defaultValue:	.08
-					min:			0
-					max:			1
-					fieldWidth: 	40
-					afterLabel:		qsTr(")")
-				}
-				DoubleField
-				{
-					name:			"fitCutoffNull"
-					label:			qsTr("p(CFI/TLI >")
-					defaultValue:	.9
-					min:			0
-					max:			1
-					fieldWidth: 	40
-					afterLabel:		qsTr(")")
-				}
 			}
 		}
 

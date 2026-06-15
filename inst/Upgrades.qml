@@ -741,4 +741,20 @@ Upgrades
 		}
 
 	}
+
+	Upgrade
+	{
+		functionName: 		"unidimensionalReliabilityFrequentist"
+		newFunctionName:	"reliabilityUnidimensionalFrequentist"
+		fromVersion:		"0.17.0"
+		toVersion:			"0.97.0"
+	}
+
+	Upgrade
+	{
+		functionName: 		"unidimensionalReliabilityBayesian"
+		newFunctionName:	"reliabilityUnidimensionalBayesian"
+		fromVersion:		"0.17.0"
+		toVersion:			"0.97.0"
+	}
 }

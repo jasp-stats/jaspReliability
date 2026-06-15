@@ -18,15 +18,8 @@ Description
 	Analysis
 	{
 		title:	qsTr("Reliability")
-		qml: 	"UnidimensionalReliabilityFrequentist.qml"
-		func: 	"unidimensionalReliabilityFrequentist"
-	}
-
-	Analysis
-	{
-		title:	qsTr("Multidimensional Reliability")
-		qml: 	"multiDimFrequentist.qml"
-		func: 	"reliabilityMultiDimFrequentist"
+		qml: 	"ReliabilityUnidimensionalFrequentist.qml"
+		func: 	"reliabilityUnidimensionalFrequentist"
 	}
 
 	Analysis
@@ -65,15 +58,17 @@ Description
 	}
 	Analysis
 	{
-		title: 	qsTr("Bayesian Unidimensional Reliability")
-		qml: 	"uniDimBayesian.qml"
-		func: 	"reliabilityUniDimBayesian"
+		title: 	qsTr("Bayesian Reliability")
+		menu: 	qsTr("Reliability")
+		qml: 	"ReliabilityUnidimensionalBayesian.qml"
+		func: 	"reliabilityUnidimensionalBayesian"
 	}
 	Analysis
 	{
 		title: 	qsTr("Bayesian Multidimensional Reliability")
-		qml: 	"multiDimBayesian.qml"
-		func: 	"reliabilityMultiDimBayesian"
+		menu: 	qsTr("Multidimensional Reliability")
+		qml: 	"ReliabilityMultidimensionalBayesian.qml"
+		func: 	"reliabilityMultidimensionalBayesian"
 	}
 
 }

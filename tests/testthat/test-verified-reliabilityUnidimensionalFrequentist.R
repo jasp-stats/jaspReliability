@@ -1,6 +1,6 @@
 context("Unidimensional Reliability Frequentist -- Verification project")
 
-options <- analysisOptions("unidimensionalReliabilityFrequentist")
+options <- analysisOptions("reliabilityUnidimensionalFrequentist")
 options$scaleOmega <- TRUE
 options$scaleAlpha <- TRUE
 options$scaleLambda2 <- TRUE
@@ -19,7 +19,7 @@ options$variables <- c(paste("Question", c(1, 4:8), sep="_0"),
                        paste("Question", 10, sep="_"))
 
 set.seed(1)
-results <- jaspTools::runAnalysis("unidimensionalReliabilityFrequentist",
+results <- jaspTools::runAnalysis("reliabilityUnidimensionalFrequentist",
                                   testthat::test_path("Reliability.csv"), options, makeTests = F)
 
 test_that("Main (scale) table results match R, SPSS, SAS and MiniTab", {

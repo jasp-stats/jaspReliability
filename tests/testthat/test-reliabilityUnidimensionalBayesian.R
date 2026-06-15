@@ -1,6 +1,6 @@
 
 # common options
-options <- analysisOptions("unidimensionalReliabilityBayesian")
+options <- analysisOptions("reliabilityUnidimensionalBayesian")
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss30")
 # options$variables.types <- c("scale", "scale", "scale", "scale", "scale")
 options$scaleAlpha <- TRUE
@@ -40,7 +40,7 @@ options$itemDeletedPlotOrderedType <- "kullbackLeibler"
 options$inverseWishartPriorDf <- length(options$variables)
 options$inverseWishartPriorScale <- 0.0000000001
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options, makeTests = F)
+results <- runAnalysis("reliabilityUnidimensionalBayesian", "test.csv", options, makeTests = F)
 
 test_that("Bayesian Individual Item Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
@@ -173,7 +173,7 @@ test_that("Bayesian Scale Reliability Statistics table results match", {
 
 
 # disabled sample saving
-options <- analysisOptions("unidimensionalReliabilityBayesian")
+options <- analysisOptions("reliabilityUnidimensionalBayesian")
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss30")
 options$scaleAlpha <- TRUE
 options$scaleLambda2 <- TRUE
@@ -185,7 +185,7 @@ options$inverseWishartPriorDf <- length(options$variables)
 options$inverseWishartPriorScale <- 0.0000000001
 
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options, makeTests = F)
+results <- runAnalysis("reliabilityUnidimensionalBayesian", "test.csv", options, makeTests = F)
 test_that("Bayesian Scale Reliability Statistics table results match", {
 table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
 jaspTools::expect_equal_tables(table,
@@ -198,7 +198,7 @@ jaspTools::expect_equal_tables(table,
 
 
 # adjusted priors
-options <- analysisOptions("unidimensionalReliabilityBayesian")
+options <- analysisOptions("reliabilityUnidimensionalBayesian")
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
 options$scaleOmega <- TRUE
 options$scaleLambda2 <- TRUE
@@ -225,7 +225,7 @@ options$inverseGammaPriorScale <- 10
 options$normalPriorMean <- 1
 
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityBayesian", testthat::test_path("asrm_mis.csv"), options, makeTests =F)
+results <- runAnalysis("reliabilityUnidimensionalBayesian", testthat::test_path("asrm_mis.csv"), options, makeTests =F)
 
 test_that("Bayesian Individual Item Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
@@ -278,7 +278,7 @@ test_that("Bayesian Scale Reliability Statistics table results match", {
 
 
 # standardization and median
-options <- analysisOptions("unidimensionalReliabilityBayesian")
+options <- analysisOptions("reliabilityUnidimensionalBayesian")
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive")
 options$scaleAlpha <- TRUE
 options$scaleLambda2 <- TRUE
@@ -301,7 +301,7 @@ options$standardizedLoadings <- TRUE
 options$coefficientType <- "standardized"
 options$pointEstimate <- "median"
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options, makeTests = FALSE)
+results <- runAnalysis("reliabilityUnidimensionalBayesian", "test.csv", options, makeTests = FALSE)
 
 test_that("Bayesian Individual Item Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
@@ -370,7 +370,7 @@ test_that("Bayesian Scale Reliability Statistics table results match", {
 
 # fit indices
 # results were compared to blavFitIndices and lavaan omegaFitMeasures with the same data but 2000 obs
-options <- analysisOptions("unidimensionalReliabilityBayesian")
+options <- analysisOptions("reliabilityUnidimensionalBayesian")
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
 options$scaleOmega <- TRUE
 options$samples <- 200
@@ -382,7 +382,7 @@ options$omegaFitMeasuresCutoffCfiTli <- .85
 options$omegaPosteriorPredictiveCheck <- TRUE
 
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityBayesian", testthat::test_path("asrm.csv"), options)
+results <- runAnalysis("reliabilityUnidimensionalBayesian", testthat::test_path("asrm.csv"), options)
 
 test_that("Fit Measures for the Single-Factor Model table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_fitTable"]][["data"]]
@@ -402,7 +402,7 @@ test_that("Posterior Predictive Check Omega plot matches", {
 
 
 # item plot ordered by mean
-options <- analysisOptions("unidimensionalReliabilityBayesian")
+options <- analysisOptions("reliabilityUnidimensionalBayesian")
 options$variables <- c("contNormal", "contcor1", "contcor2", "facFive", "debMiss30")
 options$scaleAlpha <- TRUE
 options$itemDeletedAlpha <- TRUE
@@ -414,7 +414,7 @@ options$inverseWishartPriorScale <- 0.0000000001
 options$samples <- 200
 options$chains <- 2
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityBayesian", "test.csv", options)
+results <- runAnalysis("reliabilityUnidimensionalBayesian", "test.csv", options)
 
 test_that("Cronbach's alpha plot item deleted plot matches ordered by mean", {
   plotName <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_plotContainerItem"]][["collection"]][["stateContainer_plotContainerItem_alpha"]][["data"]]
