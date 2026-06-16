@@ -165,6 +165,7 @@ Group
 				name:         "ciLevel"
 				label:        ""
 				defaultValue: 95
+				enabled:      ciOpt.checked
 				info:         qsTr("Width of the confidence interval.")
 			}
 		}
@@ -177,9 +178,12 @@ Group
 			fieldWidth:   50
 			min:          100
 			max:          10000000
+			enabled: 		ciOpt.checked
 			info:         qsTr("Number of bootstrap replications used to compute confidence intervals. Higher values give more stable estimates.")
 		}
 
-		SetSeed {}
+		SetSeed {
+			enabled: ciOpt.checked
+		}
 	}
 }
