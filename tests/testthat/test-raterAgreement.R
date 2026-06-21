@@ -7,7 +7,10 @@ options <- analysisOptions("raterAgreement")
 options$variables <- paste0("V", 1:5)
 options$dataStructure <- "ratersInColumns"
 options$setSeed <- TRUE
-options$krippendorffsAlphaBootstrapSamplesForCI <- 200
+options$bootstrapSamples <- 200
+options$fleissKappa <- TRUE
+options$krippendorffsAlpha <- TRUE
+options$cohensKappa <- TRUE
 set.seed(1)
 results <- runAnalysis("raterAgreement", testthat::test_path("binaryTestDt.csv"), options, makeTests = F)
 
@@ -48,16 +51,19 @@ test_that("Krippendorff's alpha table results match", {
 })
 
 
-####Cohen's weighted kappa and Fleiss' kappa and Krippendorf's alpha with different CI range(99%)####
+#### Cohen's weighted kappa and Fleiss' kappa and Krippendorf's alpha with different CI range(99%)####
 
 # Set options
 options <- analysisOptions("raterAgreement")
 options$variables <- c("facGender", "facExperim", "debBinMiss20")
 options$ciLevel <- 0.99
 options$cohensKappaType <- "weighted"
-options$krippendorffsAlphaBootstrapSamplesForCI <- 200
+options$bootstrapSamples <- 200
 options$dataStructure <- "ratersInColumns"
 options$setSeed <- TRUE
+options$fleissKappa <- TRUE
+options$krippendorffsAlpha <- TRUE
+options$cohensKappa <- TRUE
 set.seed(1)
 results <- runAnalysis("raterAgreement", "test.csv", options, makeTests = F)
 
@@ -99,8 +105,7 @@ test_that("Fleiss' kappa table results match", {
   options <- analysisOptions("raterAgreement")
   options$variables <- c("V1", "V2", "V3", "V4", "V5", "V6")
   options$dataStructure <- "ratersInColumns"
-  options$cohensKappa <- FALSE
-  options$krippendorffsAlpha <- FALSE
+  options$fleissKappa <- TRUE
   options$ci <- FALSE
   set.seed(1)
   results <- runAnalysis("raterAgreement", testthat::test_path("Fleiss1971.csv"), options)
@@ -111,11 +116,67 @@ test_that("Fleiss' kappa table results match", {
 })
 
 
+#### Kendall's W ####
+
+options <- analysisOptions("raterAgreement")
+options$variables                    <- c("contNormal", "contGamma", "contcor1")
+options$dataStructure                <- "ratersInColumns"
+options$cohensKappa                  <- FALSE
+options$fleissKappa                  <- FALSE
+options$krippendorffsAlpha           <- FALSE
+options$kendallW                     <- TRUE
+options$bootstrapSamples             <- 200
+options$setSeed                      <- TRUE
+set.seed(1)
+results <- runAnalysis("raterAgreement", "debug.csv", options, makeTests = F)
+
+test_that("Kendall's W table results match", {
+  table <- results[["results"]][["kendallW"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(0.235537187052039, 0.405722388905557, 0.0428257441483345, 0.316646331299797,
+                                      94.0439603960396, 99, 0.621972149059366))
+})
+
+test_that("Kendall's W with tie correction and no CI results match", {
+  options2 <- analysisOptions("raterAgreement")
+  options2$variables          <- c("contNormal", "contGamma", "contcor1", "contcor2")
+  options2$dataStructure      <- "ratersInColumns"
+  options2$cohensKappa        <- FALSE
+  options2$fleissKappa        <- FALSE
+  options2$krippendorffsAlpha <- FALSE
+  options2$kendallW           <- TRUE
+  options2$correctForTies     <- TRUE
+  options2$ci                 <- FALSE
+  set.seed(1)
+  results2 <- runAnalysis("raterAgreement", "debug.csv", options2)
+  table <- results2[["results"]][["kendallW"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+    list(0.31477197719772, 124.649702970297, 99, 0.0416297450235598))
+})
+
+
+# ==== Verify Kendall's W against published reference (DescTools anxiety dataset) ====
+# Source: DescTools::KendallW documentation, 3 raters x 20 subjects, 1-6 scale (with ties)
+# Expected: W = 0.5397, chi2 = 30.76, df = 19, p = 0.04288
+test_that("Kendall's W matches DescTools reference (anxiety ratings, tie correction)", {
+  options <- analysisOptions("raterAgreement")
+  options$variables       <- c("rater1", "rater2", "rater3")
+  options$dataStructure   <- "ratersInColumns"
+  options$kendallW        <- TRUE
+  options$correctForTies  <- TRUE
+  options$ci              <- FALSE
+  results <- runAnalysis("raterAgreement", testthat::test_path("anxietyRatings.csv"), options)
+  table <- results[["results"]][["kendallW"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+    list(0.539656900212835, 30.7604444444444, 19, 0.0428834698290932))
+})
+
 test_that("Cohen's kappa table results match with linear weighting", {
   options <- analysisOptions("raterAgreement")
   options$variables <- c("V1", "V2")
   options$fleissKappa <- FALSE
   options$krippendorffsAlpha <- FALSE
+  options$cohensKappa <- TRUE
   options$ci <- FALSE
   options$cohensKappaType <- "weighted"
   options$dataStructure <- "ratersInColumns"

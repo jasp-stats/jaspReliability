@@ -22,6 +22,12 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   dataset <- .raterAgreementHandleData(dataset, options)
 
+  anyCoefficient <- options[["cohensKappa"]] || options[["fleissKappa"]] ||
+                    options[["krippendorffsAlpha"]] || options[["kendallW"]]
+
+  if (!anyCoefficient)
+    .raterAgreementPlaceholderTable(jaspResults, options, ready)
+
   if (options[["cohensKappa"]])
     jaspResults[["cohensKappa"]] <- .computeCohensKappaTable(dataset, options, ready)
   if (options[["fleissKappa"]])
@@ -31,8 +37,30 @@ raterAgreement <- function(jaspResults, dataset, options) {
       .kripAlphaBoot(jaspResults, dataset, options, ready)
     jaspResults[["krippendorffsAlpha"]] <- .computeKrippendorffsAlphaTable(jaspResults, dataset, options, ready)
   }
+  if (options[["kendallW"]]) {
+    if (options[["ci"]])
+      .kendallWBootRA(jaspResults, dataset, options, ready)
+    jaspResults[["kendallW"]] <- .computeKendallWTable(jaspResults, dataset, options, ready)
+  }
 
   return()
+}
+
+.raterAgreementPlaceholderTable <- function(jaspResults, options, ready) {
+  if (!is.null(jaspResults[["placeholder"]]))
+    return()
+
+  jaspTable <- createJaspTable(title = gettext("Agreement Coefficient"))
+  jaspTable$info <- gettext("Overview of all selected agreement coefficients with standard errors and confidence intervals.")
+  jaspTable$addColumnInfo(name = "coefficient", title = gettext("Coefficient"), type = "string")
+  jaspTable$addColumnInfo(name = "estimate",    title = gettext("Estimate"),    type = "number")
+  jaspTable$addColumnInfo(name = "SE",          title = gettext("SE"),          type = "number")
+  jaspTable$addColumnInfo(name = "CIL",         title = gettext("Lower"),       type = "number")
+  jaspTable$addColumnInfo(name = "CIU",         title = gettext("Upper"),       type = "number")
+  if (ready)
+    jaspTable$addFootnote(gettext("Check one of the coefficients to start the analysis."))
+  jaspTable$dependOn(options = c("cohensKappa", "fleissKappa", "krippendorffsAlpha", "kendallW", "variables"))
+  jaspResults[["placeholder"]] <- jaspTable
 }
 
 .raterAgreementHandleData <- function(dataset, options) {
@@ -56,6 +84,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   # Create the JASP Table
   jaspTable <- createJaspTable(title = gettext("Cohen's kappa"))
+  jaspTable$info <- gettext("Cohen's kappa: chance-corrected agreement between exactly two raters. Ranges from -1 (worse than chance) to 1 (perfect agreement).")
   jaspTable$addColumnInfo(name = "ratings", title = gettext("Ratings"), type = "string")
   jaspTable$addColumnInfo(name = "cKappa", title = gettextf("kappa"), type = "number")
   jaspTable$position <- 1
@@ -162,6 +191,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   # Create the JASP Table
   jaspTable <- createJaspTable(title = gettextf("Fleiss' kappa"))
+  jaspTable$info <- gettext("Fleiss' kappa: generalization of Cohen's kappa for three or more raters assigning subjects to nominal categories.")
   jaspTable$addColumnInfo(name = "ratings", title = gettext("Ratings"), type = "string")
   jaspTable$addColumnInfo(name = "fKappa", title = gettext("Fleiss' kappa"), type = "number")
   jaspTable$position <- 2
@@ -253,9 +283,10 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
 .computeKrippendorffsAlphaTable <- function(jaspResults, dataset, options, ready) {
   # Create the JASP Table
-  jaspTable <- createJaspTable(title = "Krippendorff's alpha")
+  jaspTable <- createJaspTable(title = gettext("Krippendorff's alpha"))
+  jaspTable$info <- gettext("Krippendorff's alpha: reliability coefficient applicable to any number of raters, any scale level (nominal/ordinal/interval/ratio), and incomplete data.")
   jaspTable$addColumnInfo(name = "method", title = gettext("Method"), type = "string")
-  jaspTable$addColumnInfo(name = "kAlpha", title = "Krippendorff's alpha", type = "number")
+  jaspTable$addColumnInfo(name = "kAlpha", title = gettext("Krippendorff's alpha"), type = "number")
   jaspTable$position <- 2
 
   #dependencies
@@ -266,7 +297,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
       "ci",
       "ciLevel",
       "dataStructure",
-      "krippendorffsAlphaBootstrapSamplesForCI"
+      "bootstrapSamples"
     )
   )
 
@@ -314,12 +345,12 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   bootstrapSamples <- createJaspState()
   method <- options[["krippendorffsAlphaMethod"]]
-  alphas <- numeric(options[["krippendorffsAlphaBootstrapSamplesForCI"]])
+  alphas <- numeric(options[["bootstrapSamples"]])
   n <- nrow(dataset)
 
   jaspBase::.setSeedJASP(options)
 
-  for (i in seq_len(options[["krippendorffsAlphaBootstrapSamplesForCI"]])) {
+  for (i in seq_len(options[["bootstrapSamples"]])) {
     bootData <- as.matrix(dataset[sample.int(n, size = n, replace = TRUE), ])
     alphas[i] <- irr::kripp.alpha(t(bootData), method = method)$value
   }
@@ -329,10 +360,110 @@ raterAgreement <- function(jaspResults, dataset, options) {
     "variables",
     "krippendorffsAlpha",
     "ci",
-    "krippendorffsAlphaBootstrapSamplesForCI",
+    "bootstrapSamples",
     "dataStructure",
     "setSeed", "seed"))
   return()
 }
 
+.kendallWBootRA <- function(jaspResults, dataset, options, ready) {
+  if (!ready || !is.null(jaspResults[["kendallWBootstrapSamples"]]$object))
+    return()
 
+  if (any(options[["variables.types"]] == "nominal"))
+    return()
+
+  bootstrapSamples <- createJaspState()
+  bootstrapSamples$dependOn(options = c(
+    "variables", "kendallW", "ci", "bootstrapSamples",
+    "correctForTies", "dataStructure", "setSeed", "seed"
+  ))
+  jaspResults[["kendallWBootstrapSamples"]] <- bootstrapSamples
+
+  n       <- nrow(dataset)
+  correct <- options[["correctForTies"]]
+  ws      <- numeric(options[["bootstrapSamples"]])
+
+  jaspBase::.setSeedJASP(options)
+
+  for (i in seq_len(options[["bootstrapSamples"]])) {
+    bootData <- as.matrix(dataset[sample.int(n, size = n, replace = TRUE), ])
+    ws[i]    <- irr::kendall(bootData, correct = correct)$value
+  }
+
+  bootstrapSamples$object <- ws
+  return()
+}
+
+.computeKendallWTable <- function(jaspResults, dataset, options, ready) {
+  formattedCIPercent <- format(
+    100 * options[["ciLevel"]],
+    digits        = 3,
+    drop0trailing = TRUE
+  )
+
+  jaspTable <- createJaspTable(title = gettext("Kendall's W"))
+  jaspTable$info <- gettext("Kendall's coefficient of concordance W: measures agreement of rankings across multiple raters. Ranges from 0 (no agreement) to 1 (perfect concordance).")
+  jaspTable$addColumnInfo(name = "W",     title = gettext("W"),          type = "number")
+  jaspTable$addColumnInfo(name = "chisq", title = gettext("Chi-square"), type = "number")
+  jaspTable$addColumnInfo(name = "df",    title = gettext("df"),         type = "integer")
+  jaspTable$addColumnInfo(name = "p",     title = gettext("p"),          type = "pvalue")
+  jaspTable$position <- 3
+  jaspTable$dependOn(options = c(
+    "variables", "kendallW", "correctForTies", "ci", "ciLevel",
+    "bootstrapSamples", "dataStructure", "setSeed", "seed"
+  ))
+
+  if (!ready)
+    return(jaspTable)
+
+  if (any(options[["variables.types"]] == "nominal")) {
+    jaspTable$setError(gettext(
+      "Kendall's W requires ordinal or scale variables. Remove nominal variables."
+    ))
+    return(jaspTable)
+  }
+
+  jaspBase::.hasErrors(
+    dataset              = dataset,
+    type                 = c("infinity", "observations"),
+    all.target           = options[["variables"]],
+    observations.amount  = "< 2",
+    exitAnalysisIfErrors = TRUE
+  )
+
+  result <- irr::kendall(as.matrix(dataset), correct = options[["correctForTies"]])
+
+  tableData <- list(
+    W     = result$value,
+    chisq = result$statistic,
+    df    = result$subjects - 1L,
+    p     = result$p.value
+  )
+
+  footnote <- gettextf("%1$i subjects/items and %2$i raters/measurements.", result$subjects, result$raters)
+  if (anyNA(dataset))
+    footnote <- gettextf("%1$s Based on listwise complete cases.", footnote)
+
+  if (options[["ci"]]) {
+    ws    <- jaspResults[["kendallWBootstrapSamples"]]$object
+    conf  <- options[["ciLevel"]]
+    probs <- (1 + c(-conf, conf)) / 2
+    CIs   <- quantile(ws, probs = probs, na.rm = TRUE)
+
+    jaspTable$addColumnInfo(name = "SE",  title = gettext("SE"),    type = "number")
+    jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number",
+                            overtitle = gettextf("%s%% CI", formattedCIPercent))
+    jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number",
+                            overtitle = gettextf("%s%% CI", formattedCIPercent))
+    tableData[["SE"]]  <- stats::sd(ws, na.rm = TRUE)
+    tableData[["CIL"]] <- CIs[[1L]]
+    tableData[["CIU"]] <- CIs[[2L]]
+    footnote <- paste(footnote, gettext("Confidence intervals are based on bootstrap."))
+  }
+
+  jaspTable$addFootnote(footnote)
+  jaspTable$addFootnote(gettext("Chi-square test is valid for large samples only."))
+  jaspTable$setData(tableData)
+  return(jaspTable)
+}
