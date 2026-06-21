@@ -18,8 +18,8 @@ Description
 	Analysis
 	{
 		title:	qsTr("Reliability")
-		qml: 	"UnidimensionalReliabilityFrequentist.qml"
-		func: 	"unidimensionalReliabilityFrequentist"
+		qml: 	"ReliabilityUnidimensionalFrequentist.qml"
+		func: 	"reliabilityUnidimensionalFrequentist"
 	}
 
 	Analysis
@@ -28,7 +28,7 @@ Description
 		qml: 	"IntraclassCorrelation.qml"
 		func: 	"intraclassCorrelation"
 	}
-
+	
 	Analysis
 	{
 		title:	qsTr("Rater Agreement")
@@ -58,10 +58,17 @@ Description
 	}
 	Analysis
 	{
-		menu: 	qsTr("Reliability")
 		title: 	qsTr("Bayesian Reliability")
-		qml: 	"UnidimensionalReliabilityBayesian.qml"
-		func: 	"unidimensionalReliabilityBayesian"
+		menu: 	qsTr("Reliability")
+		qml: 	"ReliabilityUnidimensionalBayesian.qml"
+		func: 	"reliabilityUnidimensionalBayesian"
+	}
+	Analysis
+	{
+		title: 	qsTr("Bayesian Multidimensional Reliability")
+		menu: 	qsTr("Multidimensional Reliability")
+		qml: 	"ReliabilityMultidimensionalBayesian.qml"
+		func: 	"reliabilityMultidimensionalBayesian"
 	}
 
 }

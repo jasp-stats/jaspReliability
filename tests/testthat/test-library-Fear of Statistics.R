@@ -3,7 +3,7 @@ context("Library: Fear of Statistics")
 # This test file was auto-generated from a JASP example file.
 # The JASP file is stored in tests/testthat/jaspfiles/library/.
 
-test_that("unidimensionalReliabilityFrequentist results match", {
+test_that("reliabilityUnidimensionalFrequentist results match", {
 
   # Load from JASP example file
   jaspFile <- testthat::test_path("jaspfiles", "library", "Fear of Statistics.jasp")
@@ -13,7 +13,7 @@ test_that("unidimensionalReliabilityFrequentist results match", {
   # Encode and run analysis
   encoded <- jaspTools:::encodeOptionsAndDataset(opts, dataset)
   set.seed(1)
-  results <- jaspTools::runAnalysis("unidimensionalReliabilityFrequentist", encoded$dataset, encoded$options, encodedDataset = TRUE)
+  results <- jaspTools::runAnalysis("reliabilityUnidimensionalFrequentist", encoded$dataset, encoded$options, encodedDataset = TRUE)
 
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
   jaspTools::expect_equal_tables(table,

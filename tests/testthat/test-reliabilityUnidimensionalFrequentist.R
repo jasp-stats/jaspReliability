@@ -1,5 +1,5 @@
 # analytic confidence interval
-options <- analysisOptions("unidimensionalReliabilityFrequentist")
+options <- analysisOptions("reliabilityUnidimensionalFrequentist")
 options$scaleOmega <- FALSE
 options$itemDeletedAlpha <- TRUE
 options$scaleAlpha <- TRUE
@@ -20,7 +20,7 @@ options$setSeed <- TRUE
 options$hiddenScaleThreshold <- 10
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityFrequentist", testthat::test_path("asrm.csv"), options, makeTests = F)
+results <- runAnalysis("reliabilityUnidimensionalFrequentist", testthat::test_path("asrm.csv"), options, makeTests = F)
 
 
 test_that("Frequentist Individual Item Reliability Statistics table results match", {
@@ -65,7 +65,7 @@ test_that("Frequentist Scale Reliability Statistics table results match", {
 })
 
 # special options test
-options <- analysisOptions("unidimensionalReliabilityFrequentist")
+options <- analysisOptions("reliabilityUnidimensionalFrequentist")
 options$intervalMethod <- "bootstrapped"
 options$itemDeletedAlpha <- TRUE
 options$scaleAlpha <- TRUE
@@ -89,7 +89,7 @@ options$setSeed <- TRUE
 options$hiddenScaleThreshold <- 10
 options$variables <- c("contNormal", "contcor1", "contcor2", "debMiss30")
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options, makeTests = F)
+results <- runAnalysis("reliabilityUnidimensionalFrequentist", "test.csv", options, makeTests = F)
 
 test_that("Frequentist Individual Item Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
@@ -138,7 +138,7 @@ test_that("Frequentist Scale Reliability Statistics table results match", {
 
 
 # omega test
-options <- analysisOptions("unidimensionalReliabilityFrequentist")
+options <- analysisOptions("reliabilityUnidimensionalFrequentist")
 options$omegaFitMeasures <- TRUE
 options$bootstrapSamples <- 100
 options$intervalMethod <- "bootstrapped"
@@ -151,7 +151,7 @@ options$hiddenScaleThreshold <- 10
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4", "asrm_5")
 options$setSeed <- TRUE
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityFrequentist", testthat::test_path("asrm_mis.csv"), options,
+results <- runAnalysis("reliabilityUnidimensionalFrequentist", testthat::test_path("asrm_mis.csv"), options,
                        makeTests = F)
 
 test_that("Fit Measures of Single Factor Model Fit table results match", {
@@ -188,7 +188,7 @@ test_that("Standardized Loadings of the Single-Factor Model table results match"
 
 
 # standardized coefficients work
-options <- analysisOptions("unidimensionalReliabilityFrequentist")
+options <- analysisOptions("reliabilityUnidimensionalFrequentist")
 options$itemDeletedAlpha <- TRUE
 options$scaleAlpha <- TRUE
 options$ciLevel <- 0.9
@@ -205,7 +205,7 @@ options$setSeed <- TRUE
 options$hiddenScaleThreshold <- 10
 options$variables <- c("asrm_1", "asrm_2", "asrm_3", "asrm_4")
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityFrequentist", testthat::test_path("asrm.csv"), options,
+results <- runAnalysis("reliabilityUnidimensionalFrequentist", testthat::test_path("asrm.csv"), options,
                        makeTests = F)
 
 test_that("Frequentist Individual Item Reliability Statistics table results match", {
@@ -236,7 +236,7 @@ test_that("Frequentist Scale Reliability Statistics table results match", {
 
 
 # check lambda2 analytic confidence interval
-options <- analysisOptions("unidimensionalReliabilityFrequentist")
+options <- analysisOptions("reliabilityUnidimensionalFrequentist")
 options$intervalMethod <- "analytic"
 options$scaleOmega <- FALSE
 options$itemDeletedLambda2 <- TRUE
@@ -245,7 +245,7 @@ options$setSeed <- TRUE
 options$variables <- c("contNormal", "contcor1", "contcor2")
 options$hiddenScaleThreshold <- 10
 set.seed(1)
-results <- runAnalysis("unidimensionalReliabilityFrequentist", "test.csv", options, makeTests = F)
+results <- runAnalysis("reliabilityUnidimensionalFrequentist", "test.csv", options, makeTests = F)
 
 test_that("Frequentist Individual Item Reliability Statistics table results match", {
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]

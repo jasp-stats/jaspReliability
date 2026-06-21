@@ -8,3 +8,4 @@
 ^tests/upgrades$
 ^examples$
 ^jasp_dev_work_dir$
+^\.claude$
