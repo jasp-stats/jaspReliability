@@ -743,7 +743,7 @@ Upgrades
 	Upgrade
 	{
 		functionName: "raterAgreement"
-		fromVersion:  "0.97.0"
+		fromVersion:  "0.95.5"
 		toVersion:    "0.97.1"
 
 		ChangeRename
