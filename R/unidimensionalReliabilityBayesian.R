@@ -1763,7 +1763,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
 
     g <- jaspGraphs::themeJasp(g)
 
-    plot <- createJaspPlot(plot = g, title = "Posterior Predictive Check Omega", width = 350)
+    plot <- createJaspPlot(plot = g, title = gettext("Posterior Predictive Check Omega"), width = 350)
     plot$info <- gettext("Posterior predictive check: observed eigenvalues of the covariance matrix compared against the model-implied posterior distribution to assess single-factor model fit.")
     plot$dependOn(options = c("omegaPosteriorPredictiveCheck", "scaleOmega", "coefficientType"))
 

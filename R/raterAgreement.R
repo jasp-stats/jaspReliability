@@ -404,10 +404,10 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   jaspTable <- createJaspTable(title = gettext("Kendall's W"))
   jaspTable$info <- gettext("Kendall's coefficient of concordance W: measures agreement of rankings across multiple raters. Ranges from 0 (no agreement) to 1 (perfect concordance).")
-  jaspTable$addColumnInfo(name = "W",     title = gettext("W"),          type = "number")
+  jaspTable$addColumnInfo(name = "W",     title = "W",                   type = "number")
   jaspTable$addColumnInfo(name = "chisq", title = gettext("Chi-square"), type = "number")
-  jaspTable$addColumnInfo(name = "df",    title = gettext("df"),         type = "integer")
-  jaspTable$addColumnInfo(name = "p",     title = gettext("p"),          type = "pvalue")
+  jaspTable$addColumnInfo(name = "df",    title = "df",                  type = "integer")
+  jaspTable$addColumnInfo(name = "p",     title = "p",                   type = "pvalue")
   jaspTable$position <- 3
   jaspTable$dependOn(options = c(
     "variables", "kendallW", "correctForTies", "ci", "ciLevel",
