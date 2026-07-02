@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.95.5\n"
 "POT-Creation-Date: 2026-02-28 04:02\n"
-"PO-Revision-Date: 2026-05-17 06:11+0000\n"
-"Last-Translator: Arif Budiman <arifpedia@gmail.com>\n"
+"PO-Revision-Date: 2026-07-02 11:08+0000\n"
+"Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/id/>\n"
 "Language: id\n"
@@ -11,73 +11,75 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.6.dev0\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 msgid "Bland-Altman Plots"
-msgstr ""
+msgstr "Diagram Bland-Altman"
 
 msgid "Please provide another variable"
-msgstr ""
+msgstr "Silakan sediakan variabel lain"
 
 msgid "Plotting not possible: %s"
 msgstr "Pembuatan plot tidak memungkinkan: %s"
 
 msgid "Bland-Altman Tables"
-msgstr ""
+msgstr "Tabel Bland-Altman"
 
 msgid "Bias & Limits"
-msgstr ""
+msgstr "Bias & Batas"
 
 msgid "Point Value"
-msgstr ""
+msgstr "Nilai Titik"
 
 msgid "Mean difference - 1.96 SD"
-msgstr ""
+msgstr "Perbedaan rerata - 1.96 SD"
 
 msgid "Mean difference + 1.96 SD"
-msgstr ""
+msgstr "Perbedaan rerata + 1.96 SD"
 
 msgid "Mean difference"
-msgstr ""
+msgstr "Perbedaan rerata"
 
 msgid "Lower %s%% CI"
-msgstr ""
+msgstr "%s%% CI bawah"
 
 msgid "Upper %s%% CI"
-msgstr ""
+msgstr "%s%% CI atas"
 
 msgid "Calculations not possible: %s"
-msgstr ""
+msgstr "Perhitungan tidak memungkinkan: %s"
 
 msgid "Intraclass Correlation"
-msgstr ""
+msgstr "Korelasi Intrakelas"
 
 msgid "Type"
-msgstr ""
+msgstr "Jenis"
 
 msgid "Point Estimate"
-msgstr ""
+msgstr "Estimasi Titik"
 
 msgid "%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout & Fleiss (1979)."
 msgstr ""
+"%1$s subjek dan %2$s penilai/pengukuran. Jenis ICC direferensikan oleh "
+"Shrout & Fleiss (1979)."
 
 msgid "Please select at least 2 columns"
-msgstr ""
+msgstr "Silakan pilih setidaknya 2 kolom"
 
 msgid "Cohen's kappa"
-msgstr ""
+msgstr "Kappa Cohen"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Peningkatan"
 
 msgid "kappa"
-msgstr ""
+msgstr "kappa"
 
 msgid "%1$i subjects/items and %2$i raters/measurements."
-msgstr ""
+msgstr "%1$i subjek/item dan %2$i penilai/pengukuran."
 
 msgid "%1$s Based on pairwise complete cases."
-msgstr ""
+msgstr "%1$s Berdasarkan kasus lengkap berpasangan."
 
 msgid "SE"
 msgstr "SE"
@@ -92,82 +94,93 @@ msgid "Upper"
 msgstr "Batas Atas"
 
 msgid "Confidence intervals are asymptotic."
-msgstr ""
+msgstr "Interval kepercayaan adalah asimptotik."
 
 msgid "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
 msgstr ""
+"Jika hanya ada2 tingkat, kappa berberat sama dengan kappa tidak berberat."
 
 msgid "Cohen's kappa requires at least 3 subjects/items."
-msgstr ""
+msgstr "Kappa Cohen memerlukan setidaknya 3 subjek/item."
 
 msgid "Fleiss' kappa"
-msgstr ""
+msgstr "Kappa Fleiss"
 
 msgid "Fleiss' kappa requires at least 3 subjects/items. Check whether raters are in columns or rows."
 msgstr ""
+"Kappa Fleiss memerlukan setidaknya 3 subjek/item. Periksa apakah penilai "
+"berada di kolom atau baris."
 
 msgid "Fleiss' kappa requires at least 2 raters/measurements."
-msgstr ""
+msgstr "Kappa Fleiss memerlukan setidaknya 2 penilai/pengukuran."
 
 msgid "%1$s Based on listwise complete cases."
-msgstr ""
+msgstr "%1$s Berdasarkan kasus lengkap berdaftar."
 
 msgid "Method"
-msgstr ""
+msgstr "Metode"
 
 msgid "For the Lord generalized method, the test could not be split in equally sized parts with more than 1 item per part. Consider adding or removing items."
 msgstr ""
+"Untuk metode tergeneralisasi Lord, pengujian tidak dapat dipisahkan dalam "
+"bagian berukur secara sama dengan lebih dari 1 item per bagian. "
+"Pertimbangkan menambahkan atau menghapus item."
 
 msgid "The Lord, Keats, and Lord generalized method are only available for binary data."
 msgstr ""
+"Metode Lord, Keats, dan tergeneralisasi Lord hanya tersedia untuk data biner."
 
 msgid "Standard Error of Measurement"
-msgstr ""
+msgstr "Galat Standar dari Pengukuran"
 
 msgid "Sum Score"
-msgstr ""
+msgstr "Skor Jumlah"
 
 msgid "Unconditional SEM"
-msgstr ""
+msgstr "SEM Tidak Kondisional"
 
 msgid "Counts"
 msgstr "Cacah"
 
 msgid "%1$s The unconditional SEM value equals %2$1.3f."
-msgstr ""
+msgstr "%1$s Nilai SEM tidak kondisional sama dengan %2$1.3f."
 
 msgid "%1$s Estimating the %2$s method failed. If possible, you might try changing the method's parameters."
 msgstr ""
+"%1$s Mengestimasi metode %2$s gagal. Jika memungkinkan, Anda mungkin mencoba "
+"mengubah parameter metode."
 
 msgid "Sum Score CI Table"
-msgstr ""
+msgstr "Tabel CI Skor Jumlah"
 
 msgid "Estimating the %s method failed. If possible, you might try changing the method's parameters."
 msgstr ""
+"Mengestimasi metode %s gagal. Jika memungkinkan, Anda mungkin mencoba "
+"mengubah parameter metode."
 
 msgid "Histogram of Counts per Sum Score Group"
-msgstr ""
+msgstr "Histogram dari Hitungan per Grup Skor Jumlah"
 
 msgid "Point Plots"
-msgstr ""
+msgstr "Diagram Titik"
 
 msgid "SEM"
-msgstr ""
+msgstr "SEM"
 
 msgid "Combined Plot"
-msgstr ""
+msgstr "Diagram Terkombinasi"
 
 msgid "Sum Score CI Plots"
-msgstr ""
+msgstr "Diagram CI Skor Jumlah"
 
 msgid "True Score Estimate"
-msgstr ""
+msgstr "Estimasi Skor Benar"
 
 msgid "Split-half coefficient"
-msgstr ""
+msgstr "Koefisien terpisah-setengah"
 
 msgid "Item-rest correlation"
-msgstr ""
+msgstr "Korelasi sisa-item"
 
 msgid "Mean"
 msgstr "Rata-rata"
@@ -179,28 +192,37 @@ msgid "SD"
 msgstr "SD"
 
 msgid "%1$s Of the observations, %2$1.f complete cases were used."
-msgstr ""
+msgstr "%1$s Dari observasi, %2$1.f kasus lengkap telah digunakan."
 
 msgid "%s Of the observations, pairwise complete cases were used."
-msgstr ""
+msgstr "%1$s Dari observasi, kasus lengkap berpasangan telah digunakan."
 
 msgid "Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
 msgstr ""
+"Mensampelkan matriks kovarians posterior untuk baik satu dari [alfa, "
+"lambda2, lambda6, glb] gagal. Coba mengubah ke 'Kecualikan kasus berdaftar' "
+"di 'Opsi Lanjutan'"
 
 msgid "Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed."
 msgstr ""
+"Mensampelkan matriks kovarians posterior untuk baik satu dari [alfa, "
+"lambda2, lambda6, glb] gagal."
 
 msgid "Sampling the posterior factor model for omega failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
 msgstr ""
+"Mensampelkan model faktor posterior untuk omega gagal. Coba mengubah ke "
+"'Kecualikan kasus berdaftar' di 'Opsi Lanjutan'"
 
 msgid "Sampling the posterior null model failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
 msgstr ""
+"Mensampelkan model null posterior gagal. Coba mengubah ke 'Kecualikan kasus "
+"berdaftar' di 'Opsi Lanjutan'"
 
 msgid "Bayesian Scale Reliability Statistics"
-msgstr ""
+msgstr "Statistik Keandalan Skala Bayes"
 
 msgid "Posterior %s"
-msgstr ""
+msgstr "Posterior %s"
 
 msgid "Coefficient"
 msgstr "Koefisien"
@@ -212,22 +234,27 @@ msgid "ESS"
 msgstr "ESS"
 
 msgid "Bayesian Individual Item Reliability Statistics"
-msgstr ""
+msgstr "Statistik Keandalan Item Individu Bayes"
 
 msgid "Item"
-msgstr ""
+msgstr "Item"
 
 msgid "%s (if item dropped)"
-msgstr ""
+msgstr "%s (jika item dihapus)"
 
 msgid "%s Please enter at least 3 variables for the if item dropped statistics."
 msgstr ""
+"%s Silakan masukkan setidaknya 3 variabel untuk statistik jika item dihapus."
 
 msgid "The bounds you entered have been rearranged in increasing order to provide meaningful results."
 msgstr ""
+"Batas yang Anda masukkan telah disusun ulang dalam pengurutan peningkatan "
+"untuk menyediakan hasil berarti."
 
 msgid "Probability that Reliability Coefficient is Larger than %1$.2f and Smaller than %2$.2f"
 msgstr ""
+"Probabilitas bahwa Koefisien Keandalan Lebih Besar dari %1$.2f dan Lebih "
+"Kecil dari %2$.2f"
 
 msgid "Probability"
 msgstr "Probabilitas"
@@ -239,125 +266,148 @@ msgid "Posterior"
 msgstr "Posterior"
 
 msgid "Fit Measures for the Single-Factor Model"
-msgstr ""
+msgstr "Pengukuran Penyesuaian untuk Model Satu Faktor"
 
 msgid "Estimate"
 msgstr "Estimasi"
 
 msgid "%s lower bound"
-msgstr ""
+msgstr "%s batas bawah"
 
 msgid "%s upper bound"
-msgstr ""
+msgstr "%s batas atas"
 
 msgid "'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller than\n                         the corresponding cutoff and the probabilities that the B-CFI/TLI are larger than the\n                         corresponding cutoff."
 msgstr ""
+"Baris-'Relatif dengan cutoff' menandakan probabilitas bahwa B-RMSEA lebih "
+"kecil dari\n"
+"                         cutoff sesuai dan probabilitas bahwa B-CFI/TLI "
+"lebih besar dari\n"
+"                         cutoff sesuai."
 
 msgid "Standardized Loadings of the Single-Factor Model"
-msgstr ""
+msgstr "Pemuatan Terstandardisasi dari Model Satu Faktor"
 
 msgid "Standardized loading"
-msgstr ""
+msgstr "Pemuatan Terstandardisasi"
 
 msgid "Posterior Plots"
-msgstr ""
+msgstr "Diagram Posterior"
 
 msgid "Density"
 msgstr "Densitas"
 
 msgid "If Item Dropped Posterior Plots"
-msgstr ""
+msgstr "Diagram Posterior Jika Item Dihapus"
 
 msgid "Please enter at least 3 variables for the if item dropped plot"
-msgstr ""
+msgstr "Silakan masukkan setidaknya 3 variabel untuk diagram jika item dihapus"
 
 msgid "KLD ordering failed because two variables have perfect correlation"
-msgstr ""
+msgstr "Pengurutan KLD gagal karena dua variabel memiliki korelasi sempurna"
 
 msgid "Item Dropped"
-msgstr ""
+msgstr "Item Dihapus"
 
 msgid "Eigenvalue"
-msgstr ""
+msgstr "Nilai Eigen"
 
 msgid "Eigenvalue No."
-msgstr ""
+msgstr "Nilai Eigen No."
 
 msgid "Convergence Traceplot"
-msgstr ""
+msgstr "Diagram lacak konvergensi"
 
 msgid "Iterations"
-msgstr ""
+msgstr "Iterasi"
 
 msgid "Average interitem correlation"
-msgstr ""
+msgstr "Korelasi interitem rata-rata"
 
 msgid "%1$s%2$s"
-msgstr ""
+msgstr "%1$s%2$s"
 
 msgid "Omega calculation with CFA failed.\n                                                    Try changing to PFA in 'Advanced Options'."
 msgstr ""
+"Perhitungan omega dengan CFA gagal.\n"
+"                                                    Coba mengubah ke PFA di "
+"'Opsi Lanjutan'."
 
 msgid "Omega bootstrapped interval calculation with CFA failed.\n                                                        Try changing to PFA in 'Advanced Options'."
 msgstr ""
+"Perhitungan interval terbootstrap omega dengan CFA gagal.\n"
+"                                                        Coba mengubah ke PFA "
+"di 'Opsi Lanjutan'."
 
 msgid "Omega calculation with PFA failed."
-msgstr ""
+msgstr "Perhitungan omega dengan PFA gagal."
 
 msgid "The analytic confidence interval is not available for coefficient omega obtained with PFA. Change to 'Bootstrapped' in Advanced Options."
 msgstr ""
+"Interval kepercayaan analitis tidak tersedia untuk omega koefisien terambil "
+"dengan PFA. Ubah ke 'Terbootstrap' di Opsi Lanjutan."
 
 msgid "Omega interval calculation with PFA failed."
-msgstr ""
+msgstr "Perhitungan interval omega dengan PFA gagal."
 
 msgid "The analytic confidence interval is not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
+"Interval kepercayaan analitis tidak tersedia untuk koefisien alfa/lambda2 "
+"ketika data berisi observasi lengkap hilang dan berpasangan digunakan. Coba "
+"mengubah ke 'Hapus berdaftar' dalam 'Opsi Lanjutan'."
 
 msgid "The analytic confidence interval is not available for the average interitem correlation when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
+"Interval kepercayaan analitis tidak tersedia untuk korelasi interitem rata-"
+"rata ketika data berisi observasi lengkap hilang dan berpasangan digunakan. "
+"Coba mengubah ke 'Hapus berdaftar' dalam 'Opsi Lanjutan'."
 
 msgid "Omega item dropped statistics with CFA failed."
-msgstr ""
+msgstr "Statistik item omega dihapus dengan CFA gagal."
 
 msgid "Omega item dropped statistics with PFA failed."
-msgstr ""
+msgstr "Statistik item omega dihapus dengan PFA gagal."
 
 msgid "The analytic confidence interval not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
+"Interval kepercayaan analitis tidak tersedia untuk koefisien alfa/lambda2 "
+"ketika data berisi observasi lengkap hilang dan berdaftar digunakan. Coba "
+"mengubah ke 'Hapus berdaftar' dalam 'Opsi Lanjutan'."
 
 msgid "Frequentist Scale Reliability Statistics"
-msgstr ""
+msgstr "Statistik Keandalan Individu Frekuentis"
 
 msgid "Std. Error"
-msgstr ""
+msgstr "Galat Std."
 
 msgid "Frequentist Individual Item Reliability Statistics"
-msgstr ""
+msgstr "Statistik Keandalan Item Individu Frekuentis"
 
 msgid "Fit Measures of Single Factor Model Fit"
-msgstr ""
+msgstr "Pengukuran Penyesuaian dari Penyesuaian Model Satu Faktor"
 
 msgid "Fit measure"
-msgstr ""
+msgstr "Pengukuran penyesuaian"
 
 msgid "Value"
 msgstr "Nilai"
 
 msgid "Too few MCMC samples will remain after the removal of the burnin samples and thinning,\n                     please increase No.samples."
 msgstr ""
+"Terlalu sedikit sampel MCMC akan tersisa setelah penghapusan dari sampel "
+"burnin dan penipisan,\n"
+"                     silakan tingkatkan Jml.sampel."
 
 msgid "%1$sVariables %2$s and %3$s correlated perfectly."
-msgstr ""
+msgstr "%1$sVariabel %2$s dan %3$s dikorelasikan secara sempurna."
 
 msgid "Please enter at least 2 variables to do an analysis."
-msgstr ""
+msgstr "Silakan masukkan setidaknya 2 variabel untuk melakukan analisis."
 
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Item berikut dikorelasikan secara negatif dengan skala %s. "
 
 msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Item berikut telah diskalakan terbalik: %s. "
