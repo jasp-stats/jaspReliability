@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-06-27 23:38+0000\n"
+"PO-Revision-Date: 2026-07-02 11:09+0000\n"
 "Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/id/>\n"
@@ -23,7 +23,7 @@ msgstr "Klasik"
 
 msgctxt "Description|"
 msgid "Intraclass Correlation"
-msgstr ""
+msgstr "Korelasi Intrakelas"
 
 msgctxt "Description|"
 msgid "Bayesian"
@@ -31,732 +31,728 @@ msgstr "Bayes"
 
 msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
-msgstr ""
+msgstr "Ukur keandalan dari skor uji"
 
 msgctxt "Description|"
 msgid "Rater Agreement"
-msgstr ""
+msgstr "Perjanjian Penilai"
 
 msgctxt "Description|"
 msgid "Bland-Altman Plots"
-msgstr ""
+msgstr "Diagram Bland-Altman"
 
 msgctxt "BlandAltman|"
 msgid "Measurement Pairs"
-msgstr ""
+msgstr "Pasangan Pengukuran"
 
-#, fuzzy
 msgctxt "BlandAltman|"
 msgid "Confidence Interval"
-msgstr "Interval kepercayaan"
+msgstr "Interval Kepercayaan"
 
 msgctxt "BlandAltman|"
 msgid "Shading"
-msgstr ""
+msgstr "Pengarsiran"
 
 msgctxt "BlandAltman|"
 msgid "Use colour"
-msgstr ""
+msgstr "Gunakan warna"
 
 msgctxt "BlandAltman|"
 msgid "Bland-Altman table"
-msgstr ""
+msgstr "Tabel Bland-Altman"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Variables"
-msgstr ""
+msgstr "Variabel"
 
 msgctxt "IntraclassCorrelation|"
 msgid "Each subject is rated by..."
-msgstr ""
+msgstr "Setiap subjek dinilai oleh..."
 
 msgctxt "IntraclassCorrelation|"
 msgid "a different rater (randomly selected)"
-msgstr ""
+msgstr "penilai berbeda (secara acak dipilih)"
 
 msgctxt "IntraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
-msgstr ""
+msgstr "rangkaian secara acak penilai/pengujian sama"
 
 msgctxt "IntraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
-msgstr ""
+msgstr "rangkaian penilai/pengujian tetap sama"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Ratings are averaged"
-msgstr "Peringkat rata-rata"
+msgstr "Peringkat dirata-ratakan"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Confidence Interval"
-msgstr "Interval kepercayaan"
+msgstr "Interval Kepercayaan"
 
 msgctxt "RaterAgreement|"
 msgid "Variables"
-msgstr ""
+msgstr "Variabel"
 
 msgctxt "RaterAgreement|"
 msgid "Cohen's kappa"
-msgstr ""
+msgstr "Kappa Cohen"
 
 msgctxt "RaterAgreement|"
 msgid "Unweighted"
-msgstr ""
+msgstr "Tidak berberat"
 
 msgctxt "RaterAgreement|"
 msgid "Weighted"
-msgstr ""
+msgstr "Berberat"
 
 msgctxt "RaterAgreement|"
 msgid "Fleiss' kappa"
-msgstr ""
+msgstr "Kappa Fleiss"
 
 msgctxt "RaterAgreement|"
 msgid "Krippendorff's alpha"
-msgstr ""
+msgstr "Alfa Krippendorff"
 
 msgctxt "RaterAgreement|"
 msgid "Method"
-msgstr ""
+msgstr "Metode"
 
 msgctxt "RaterAgreement|"
 msgid "Nominal"
-msgstr ""
+msgstr "Nominal"
 
 msgctxt "RaterAgreement|"
 msgid "Ordinal"
-msgstr ""
+msgstr "Ordinal"
 
 msgctxt "RaterAgreement|"
 msgid "Interval"
-msgstr ""
+msgstr "Interval"
 
 msgctxt "RaterAgreement|"
 msgid "Ratio"
-msgstr ""
+msgstr "Rasio"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Confidence Interval"
-msgstr "Interval kepercayaan"
+msgstr "Interval Kepercayaan"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Variables"
-msgstr ""
+msgstr "Variabel"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Analysis"
-msgstr ""
+msgstr "Analisis"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Scale Statistics"
-msgstr ""
+msgstr "Statistik Skala"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Credible interval"
-msgstr ""
+msgstr "Interval kredibel"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2"
-msgstr ""
+msgstr "λ2 Guttman"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Average interitem correlation"
-msgstr ""
+msgstr "Korelasi interitem rata-rata"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Mean"
-msgstr ""
+msgstr "Rerata"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "SD"
-msgstr ""
+msgstr "SD"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "of participants' sum scores"
-msgstr ""
+msgstr "dari skor jumlah peserta"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "of participants' mean scores"
-msgstr ""
+msgstr "dari skor rerata peserta"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Individual Item Statistics"
-msgstr ""
+msgstr "Statistik Item Individu"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2 (if item dropped)"
-msgstr ""
+msgstr "λ2 Guttman (jika item dihapus)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "If item dropped plot"
-msgstr ""
+msgstr "Diagram jika item dihapus"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items"
-msgstr ""
+msgstr "Item urutan"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by mean"
-msgstr ""
+msgstr "Item urutan berdasarkan rerata"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by KL-divergence"
-msgstr ""
+msgstr "Item urutan berdasarkan divergensi-KL"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by KS-distance"
-msgstr ""
+msgstr "Item urutan berdasarkan jarak-KL"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Item-rest correlation"
-msgstr ""
+msgstr "Korelasi sisa-item"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Plot Posteriors"
-msgstr ""
+msgstr "Posterior Diagram"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Fix range to 0-1"
-msgstr ""
+msgstr "Perbaiki rentang ke 0-1"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Display Priors"
-msgstr ""
+msgstr "Tampilkan Priori"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Probability for:"
-msgstr ""
+msgstr "Probabilitas untuk:"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "< Reliability <"
-msgstr ""
+msgstr "< Keandalan <"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Shade posterior region in plot"
-msgstr ""
+msgstr "Wilayah posterior arsir di diagram"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Convergence"
-msgstr ""
+msgstr "Konvergensi"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "MCMC parameters"
-msgstr ""
+msgstr "Parameter MCMC"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. samples"
-msgstr ""
+msgstr "Jml. sampel"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. burnin samples"
-msgstr ""
+msgstr "Jml. sampel burnin"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Thinning"
-msgstr ""
+msgstr "Penipisan"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. chains"
-msgstr ""
+msgstr "Jml. rantai"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Diagnostics"
-msgstr ""
+msgstr "Diagnostik"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "R-hat"
-msgstr ""
+msgstr "R-hat"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Traceplots"
-msgstr ""
+msgstr "Diagram lacak"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Repeatability"
-msgstr ""
+msgstr "Perulangan"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Set seed"
-msgstr ""
+msgstr "Atur benih"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Samples"
-msgstr ""
+msgstr "Sampel"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Disable saving samples"
-msgstr ""
+msgstr "Nonaktifkan menyimpan sampel"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Reverse-Scaled Items"
-msgstr ""
+msgstr "Item Terskala-Balik"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Normal-Scaled Items"
-msgstr ""
+msgstr "Item Terskala-Normal"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Priors"
-msgstr ""
+msgstr "Priori"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse Wishart scale"
-msgstr ""
+msgstr "Skala Wishart terbalik"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse Wishart df"
-msgstr ""
+msgstr "Df Wishart terbalik"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse gamma:"
-msgstr ""
+msgstr "Gamma terbalik:"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "shape"
-msgstr ""
+msgstr "bentuk"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "scale"
-msgstr ""
+msgstr "skala"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Normal:"
-msgstr ""
+msgstr "Normal:"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "mean"
-msgstr ""
+msgstr "rerata"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Advanced Options"
-msgstr ""
+msgstr "Opsi Lanjutan"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Missing Values"
-msgstr ""
+msgstr "Nilai Hilang"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Bayesian imputation"
-msgstr ""
+msgstr "Imputasi Bayes"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Exclude cases listwise"
-msgstr ""
+msgstr "Kecualikan kasus berdaftar"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior predictive check"
-msgstr ""
+msgstr "Pemeriksaan prediktif posterior"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Fit measures"
-msgstr ""
+msgstr "Pengukuran sesuai"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "p(RMSEA <"
-msgstr ""
+msgstr "p(RMSEA <"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ")"
-msgstr ""
+msgstr ")"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "p(CFI/TLI >"
-msgstr ""
+msgstr "p(CFI/TLI >"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Standardized factor loadings"
-msgstr ""
+msgstr "Pemuatan faktor terstandardisasi"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Coefficients"
-msgstr ""
+msgstr "Koefisien"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Unstandardized"
-msgstr ""
+msgstr "Tidak terstandardisasi"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Standardized"
-msgstr ""
+msgstr "Terstandardisasi"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior Point Estimate"
-msgstr ""
+msgstr "Estimasi Titik Posterior"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Median"
-msgstr ""
+msgstr "Median"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Variables"
-msgstr ""
+msgstr "Variabel"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Analysis"
-msgstr ""
+msgstr "Analisis"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Scale Statistics"
-msgstr ""
+msgstr "Statistik Skala"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2"
-msgstr ""
+msgstr "λ2 Guttman"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Average interitem correlation"
-msgstr ""
+msgstr "Korelasi interitem rata-rata"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Mean"
-msgstr ""
+msgstr "Rerata"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "SD"
-msgstr ""
+msgstr "SD"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "of participants' sum scores"
-msgstr ""
+msgstr "dari skor jumlah peserta"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "of participants' mean scores"
-msgstr ""
+msgstr "dari skor rerata peserta"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Individual Item Statistics"
-msgstr ""
+msgstr "Statistik Item Individu"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2 (if item dropped)"
-msgstr ""
+msgstr "λ2 Guttman (jika item dihapus)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Item-rest correlation"
-msgstr ""
+msgstr "Korelasi sisa-item"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Reverse-Scaled Items"
-msgstr ""
+msgstr "Item Terskala-Balik"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Normal-Scaled Items"
-msgstr ""
+msgstr "Item Terskala-Normal"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Advanced Options"
-msgstr ""
+msgstr "Opsi Lanjutan"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Missing Values"
-msgstr ""
+msgstr "Nilai Hilang"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "No. of bootstrap samples"
-msgstr ""
+msgstr "Jml. sampel bootstrap"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Non-parametric bootstrap"
-msgstr ""
+msgstr "Bootstrap non-parametris"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Parametric bootstrap"
-msgstr ""
+msgstr "Bootstrap parametris"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "CFA"
-msgstr ""
+msgstr "CFA"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Single factor model fit"
-msgstr ""
+msgstr "Penyesuaian model satu faktor"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Analytic interval"
-msgstr ""
+msgstr "Interval analitis"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Bootstrapped interval"
-msgstr ""
+msgstr "Interval terbootstrap"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "PFA"
-msgstr ""
+msgstr "PFA"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Unstandardized"
-msgstr ""
+msgstr "Tidak terstandardisasi"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Standardized"
-msgstr ""
+msgstr "Terstandardisasi"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Repeatability"
-msgstr ""
+msgstr "Perulangan"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Set seed"
-msgstr ""
+msgstr "Atur benih"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Samples"
-msgstr ""
+msgstr "Sampel"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Do not save samples"
-msgstr ""
+msgstr "Jangan simpan sampel"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Click to learn more about saving the samples."
-msgstr ""
+msgstr "Klik untuk mempelajari lebih lanjut tentang menyimpan sampel."
 
 msgctxt "RaterAgreement|"
 msgid "Data Structure"
-msgstr ""
+msgstr "Struktur Data"
 
 msgctxt "RaterAgreement|"
 msgid "Raters are in columns"
-msgstr ""
+msgstr "Penilai berada di kolom"
 
 msgctxt "RaterAgreement|"
 msgid "Raters are in rows"
-msgstr ""
+msgstr "Penilai berada di baris"
 
 msgctxt "RaterAgreement|"
 msgid "No. of bootstrap samples for CI"
-msgstr ""
+msgstr "Jml. sampel bootstrap untuk CI"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "ESS"
-msgstr ""
+msgstr "ESS"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Standardized factor loadings"
-msgstr ""
+msgstr "Pemuatan faktor terstandardisasi"
 
 msgctxt "RaterAgreement|"
 msgid "Quadratic weights"
-msgstr ""
+msgstr "Berat kuadratik"
 
 msgctxt "RaterAgreement|"
 msgid "Linear weights"
-msgstr ""
+msgstr "Berat linear"
 
 msgctxt "Description|"
 msgid "Standard Error of Measurement"
-msgstr ""
+msgstr "Galat Standar dari Pengukuran"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Variables"
-msgstr ""
+msgstr "Variabel"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Thorndike"
-msgstr ""
+msgstr "Thorndike"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Feldt"
-msgstr ""
+msgstr "Feldt"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Number of splits"
-msgstr ""
+msgstr "Jumlah pemisahan"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Mollenkopf-Feldt"
-msgstr ""
+msgstr "Mollenkopf-Feldt"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Degree of polynomial"
-msgstr ""
+msgstr "Derajat polinomial"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "ANOVA"
-msgstr ""
+msgstr "ANOVA"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "IRT"
-msgstr ""
+msgstr "IRT"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord"
-msgstr ""
+msgstr "Lord"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Keats"
-msgstr ""
+msgstr "Keats"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Options"
-msgstr ""
+msgstr "Opsi"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Sum score table"
-msgstr ""
+msgstr "Tabel skor jumlah"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "CI:"
-msgstr ""
+msgstr "CI:"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "User defined reliability"
-msgstr ""
+msgstr "Keandalan ditentukan pengguna"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Minimum number of observations per score group"
-msgstr ""
+msgstr "Jumlah minimum observasi per grup skor"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plots"
-msgstr ""
+msgstr "Diagram"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Histogram of sum score counts"
-msgstr ""
+msgstr "Histogram dari hitungan skor jumlah"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot per method"
-msgstr ""
+msgstr "Diagram per metode"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Sum score plots"
-msgstr ""
+msgstr "Diagram skor jumlah"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "CI"
-msgstr ""
+msgstr "CI"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Display cutoff score"
-msgstr ""
+msgstr "Tampilkan skor cutoff"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Split-half coefficient"
-msgstr ""
+msgstr "Koefisien terpisah-setengah"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Variance"
-msgstr ""
+msgstr "Varians"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Split-half coefficient (if item dropped)"
-msgstr ""
+msgstr "Koefisien terpisah-setengah (jika item dihapus)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "CTT-Coefficients (α, λ2)"
-msgstr ""
+msgstr "Koefisien-CTT (α, λ2)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Confidence interval"
-msgstr ""
+msgstr "Interval kepercayaan"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Split-half coefficient"
-msgstr ""
+msgstr "Koefisien terpisah-setengah"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Variance"
-msgstr ""
+msgstr "Varians"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Split-half coefficient (if item dropped)"
-msgstr ""
+msgstr "Koefisien terpisah-setengah (jika item dihapus)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Confidence intervals"
-msgstr ""
+msgstr "Interval kepercayaan"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Reliability coefficients"
-msgstr ""
+msgstr "Koefisien keandalan"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Variance and SD"
-msgstr ""
+msgstr "Varians dan SD"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Chisq-based"
-msgstr ""
+msgstr "Berbasis-Chisq"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Non-parametric"
-msgstr ""
+msgstr "Non-parametris"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficients"
-msgstr ""
+msgstr "Koefisien"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Pairwise"
-msgstr ""
+msgstr "Berpasangan"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Delete listwise"
-msgstr ""
+msgstr "Hapus daftar"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Split-Test Methods"
-msgstr ""
+msgstr "Metode Uji-Pemisahan"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Binomial Methods"
-msgstr ""
+msgstr "Metode Binomial"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Hide SEM table"
-msgstr ""
+msgstr "Sembunyikan tabel SEM"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot all SEMs"
-msgstr ""
+msgstr "Diagramkan semua SEM"
 
 msgctxt "Description|"
 msgid "Bayesian Reliability"
-msgstr ""
+msgstr "Keandalan Bayes"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord generalized"
-msgstr ""
+msgstr "Lord tergeneralisasi"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω"
-msgstr ""
+msgstr "ω McDonald"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α"
-msgstr ""
+msgstr "α Cronbach"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω (if item dropped)"
-msgstr ""
+msgstr "ω McDonald (jika item dihapus)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α (if item dropped)"
-msgstr ""
+msgstr "α Cronbach (jika item dihapus)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω Estimation"
-msgstr ""
+msgstr "Estimasi ω McDonald"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "McDonald's ω"
-msgstr ""
+msgstr "ω McDonald"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Cronbach's α"
-msgstr ""
+msgstr "α Cronbach"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "McDonald's ω  (if item dropped)"
-msgstr ""
+msgstr "ω McDonald  (jika item dihapus)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Cronbach's α (if item dropped)"
-msgstr ""
+msgstr "α Cronbach (jika item dihapus)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "McDonald's ω Estimation"
-msgstr ""
+msgstr "Estimasi ω McDonald"
