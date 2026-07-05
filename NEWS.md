@@ -18,9 +18,16 @@
 
 ## Added
 * Added Bayesian Multidimensional Reliability analysis: multidimensional omega coefficients via `Bayesrel::bomegas`, with scale/item tables, model fit, posterior, trace, and posterior predictive check plots ([Issue #1336](https://github.com/jasp-stats/jasp-issues/issues/1336)).
+* Dispersal prior now wired through Bayesrel prior samplers (replaces deprecated `fitCutoffNull`).
 
 ## Changed
+* Aligned multidimensional option names with unidimensional counterparts for consistency.
 * Renamed unidimensional reliability analyses: `unidimensionalReliabilityFrequentist` -> `reliabilityUnidimensionalFrequentist`, `unidimensionalReliabilityBayesian` -> `reliabilityUnidimensionalBayesian` (upgrade mappings added).
+
+## Fixed
+* Fixed bi-factor model crash caused by `param.out = TRUE` in `Bayesrel::bomegas`.
+* Fixed missing `dependOn` declarations for point-estimate option on scale table and `latentCorDf` in base container.
+* Fixed untranslated point-estimate column title in scale/item tables.
 
 ---
 
