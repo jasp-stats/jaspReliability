@@ -508,10 +508,28 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   if (options[["modelType"]] != "correlated")
     coefs[["omegaH"]] <- list(chains = fit[["omega_h"]][["chains"]], label = "McDonald's ωₕ")
 
+  # prior samples of the omegas, drawn with the same prior parameterization as the Gibbs sampler
+  priorSamples <- NULL
+  if (options[["dispPrior"]]) {
+    priorFun <- switch(fit[["model.type"]],
+      "second-order" = Bayesrel:::omegasSecoPrior,
+      "bi-factor"    = Bayesrel:::omegasBifPrior,
+      "correlated"   = Bayesrel:::omegasCorrPrior)
+    priorSamples <- try(priorFun(fit, nsamp = 2e3), silent = TRUE)
+    if (inherits(priorSamples, "try-error"))
+      priorSamples <- NULL
+  }
+  priorKeys <- c(omegaT = "omt_prior", omegaH = "omh_prior")
+
   for (nm in names(coefs)) {
     cred <- coda::HPDinterval(coda::mcmc(as.vector(coefs[[nm]][["chains"]])), prob = ciValue)
+    priorDens <- if (!is.null(priorSamples))
+      stats::density(priorSamples[[priorKeys[[nm]]]], from = 0, to = 1, n = 512)
+    else
+      NULL
     p <- .makeSinglePosteriorPlot(list(samp = coefs[[nm]][["chains"]]), cred, coefs[[nm]][["label"]],
-                                  options[["fixXRange"]], shade, priorTrue = FALSE, priorSample = NULL)
+                                  options[["fixXRange"]], shade,
+                                  priorTrue = !is.null(priorDens), priorSample = priorDens)
     plotObj <- createJaspPlot(plot = p, title = coefs[[nm]][["label"]])
     plotContainer[[nm]] <- plotObj
   }

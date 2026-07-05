@@ -199,17 +199,6 @@ Form
 					fieldWidth: 	40
 					afterLabel:		qsTr(")")
 				}
-				DoubleField
-				{
-					name:			"fitCutoffNull"
-					label:			qsTr("p(CFI/TLI >")
-					defaultValue:	.9
-					info:			qsTr("Cutoff for the posterior probability that B-CFI/B-TLI exceed this value.")
-					min:			0
-					max:			1
-					fieldWidth: 	40
-					afterLabel:		qsTr(")")
-				}
 			}
 		}
 
