@@ -133,3 +133,146 @@ test_that("Omega-if-item-deleted produces a populated item table", {
   omtDropped <- vapply(itemTable, function(x) x[["omegaT"]], numeric(1))
   expect_true(all(is.finite(omtDropped)))                              # every item refit succeeded
 })
+
+
+# plots: posterior densities (prior displayed, shaded probability region, fixed x-range),
+# traceplots, and the posterior predictive check. The scale table anchors the chains numerically,
+# so a plot snapshot failure with a passing table points at rendering, not sampling.
+optionsPlots <- analysisOptions("reliabilityMultidimensionalBayesian")
+optionsPlots$factors <- list(
+  list(indicators = paste0("Question_", sprintf("%02d", 1:4)), name = "Factor1", title = "Factor 1"),
+  list(indicators = paste0("Question_", sprintf("%02d", 5:8)), name = "Factor2", title = "Factor 2")
+)
+optionsPlots$samples <- 100
+optionsPlots$burnin  <- 30
+optionsPlots$chains  <- 2
+optionsPlots$setSeed <- TRUE
+optionsPlots$seed    <- 1
+optionsPlots$posteriorPlot               <- TRUE
+optionsPlots$posteriorPlotFixedRange     <- TRUE
+optionsPlots$posteriorPlotPriorDisplayed <- TRUE
+optionsPlots$posteriorPlotShaded         <- TRUE
+optionsPlots$probabilityTable            <- TRUE
+optionsPlots$tracePlot                   <- TRUE
+optionsPlots$posteriorPredictiveCheck    <- TRUE
+set.seed(1)
+resultsPlots <- runAnalysis("reliabilityMultidimensionalBayesian", "Reliability.csv", optionsPlots, makeTests = FALSE)
+
+test_that("Bayesian Scale Reliability Statistics table anchors the plot run", {
+  table <- resultsPlots[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+    list("McDonald's <unicode><unicode>", 0.578143408799999, 0.556397832369372,
+         0.59545593378841, "McDonald's <unicode><unicode>", 0.483847464320034,
+         0.456430592167667, 0.505980528973344, "Average interitem correlation",
+         0.101362519780686, "", "", "Mean", 19.4791909762738, "", "",
+         "SD", 3.57246477368688, "", ""))
+})
+
+test_that("Posterior plot omega_t matches", {
+  plotName <- resultsPlots[["results"]][["stateContainer"]][["collection"]][["stateContainer_posteriorPlots"]][["collection"]][["stateContainer_posteriorPlots_omegaT"]][["data"]]
+  testPlot <- resultsPlots[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "posterior-omega-t")
+})
+
+test_that("Posterior plot omega_h matches", {
+  plotName <- resultsPlots[["results"]][["stateContainer"]][["collection"]][["stateContainer_posteriorPlots"]][["collection"]][["stateContainer_posteriorPlots_omegaH"]][["data"]]
+  testPlot <- resultsPlots[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "posterior-omega-h")
+})
+
+test_that("Traceplot omega_t matches", {
+  plotName <- resultsPlots[["results"]][["stateContainer"]][["collection"]][["stateContainer_tracePlots"]][["collection"]][["stateContainer_tracePlots_omegaT"]][["data"]]
+  testPlot <- resultsPlots[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "trace-omega-t")
+})
+
+test_that("Traceplot omega_h matches", {
+  plotName <- resultsPlots[["results"]][["stateContainer"]][["collection"]][["stateContainer_tracePlots"]][["collection"]][["stateContainer_tracePlots_omegaH"]][["data"]]
+  testPlot <- resultsPlots[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "trace-omega-h")
+})
+
+test_that("Posterior predictive check plot matches", {
+  plotName <- resultsPlots[["results"]][["stateContainer"]][["collection"]][["stateContainer_ppcPlot"]][["data"]]
+  testPlot <- resultsPlots[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "posterior-predictive-check")
+})
+
+
+# missing values: debMiss30 has 30% missing observations; run both Bayesian imputation and
+# listwise deletion
+optionsMiss <- analysisOptions("reliabilityMultidimensionalBayesian")
+optionsMiss$factors <- list(
+  list(indicators = c("contNormal", "contcor1"), name = "Factor1", title = "Factor 1"),
+  list(indicators = c("contcor2", "debMiss30"), name = "Factor2", title = "Factor 2")
+)
+optionsMiss$samples <- 100
+optionsMiss$burnin  <- 30
+optionsMiss$chains  <- 2
+optionsMiss$setSeed <- TRUE
+optionsMiss$seed    <- 1
+optionsMiss$naAction <- "imputation"
+set.seed(1)
+resultsMissImp <- runAnalysis("reliabilityMultidimensionalBayesian", "test.csv", optionsMiss, makeTests = FALSE)
+
+test_that("Missing data with Bayesian imputation: scale table matches", {
+  table <- resultsMissImp[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+    list("McDonald's <unicode><unicode>", 0.0233447741856189, 0.00049167696902388,
+         0.0910937592021331, "McDonald's <unicode><unicode>", 0.0166544859440133,
+         6.12745270505382e-06, 0.0622094079174373, "Average interitem correlation",
+         0.0991999010928576, "", "", "Mean", 5.54108024245, "", "", "SD",
+         20.3923746243839, "", ""))
+})
+
+optionsMiss$naAction <- "listwise"
+set.seed(1)
+resultsMissLw <- runAnalysis("reliabilityMultidimensionalBayesian", "test.csv", optionsMiss, makeTests = FALSE)
+
+test_that("Missing data with listwise deletion: scale table matches", {
+  table <- resultsMissLw[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+    list("McDonald's <unicode><unicode>", 0.563750589461712, 0.000541705738093422,
+         0.919261583745341, "McDonald's <unicode><unicode>", 0.27518219902584,
+         3.25887297714518e-05, 0.694773241637106, "Average interitem correlation",
+         0.115180274099673, "", "", "Mean", 5.54108024245, "", "", "SD",
+         20.3923746243839, "", ""))
+})
+
+
+# reverse-scaled items: Question_02 is recoded before the analysis and flagged in a footnote
+optionsRev <- analysisOptions("reliabilityMultidimensionalBayesian")
+optionsRev$factors <- list(
+  list(indicators = paste0("Question_", sprintf("%02d", 1:4)), name = "Factor1", title = "Factor 1"),
+  list(indicators = paste0("Question_", sprintf("%02d", 5:8)), name = "Factor2", title = "Factor 2")
+)
+optionsRev$samples <- 100
+optionsRev$burnin  <- 30
+optionsRev$chains  <- 2
+optionsRev$setSeed <- TRUE
+optionsRev$seed    <- 1
+optionsRev$reverseScaledItems  <- "Question_02"
+optionsRev$itemRestCorrelation <- TRUE
+set.seed(1)
+resultsRev <- runAnalysis("reliabilityMultidimensionalBayesian", "Reliability.csv", optionsRev, makeTests = FALSE)
+
+test_that("Reverse-scaled item: scale table matches", {
+  table <- resultsRev[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+    list("McDonald's <unicode><unicode>", 0.641395804019822, 0.619352924110949,
+         0.655345811411494, "McDonald's <unicode><unicode>", 0.557421766815874,
+         0.530671217737979, 0.578844398457801, "Average interitem correlation",
+         0.122401576829532, "", "", "Mean", 22.2322053675613, "", "",
+         "SD", 3.69553171121895, "", ""))
+})
+
+test_that("Reverse-scaled item: item-rest correlations match and footnote is shown", {
+  itemTable <- resultsRev[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]]
+  jaspTools::expect_equal_tables(itemTable[["data"]],
+    list("Question_01", 0.426281726411376, "Question_02", 0.0743575770421569,
+         "Question_03", -0.511411265341137, "Question_04", 0.47685808495137,
+         "Question_05", 0.43453575979988, "Question_06", 0.411639313079386,
+         "Question_07", 0.507494397783249, "Question_08", 0.367333855613921))
+  footnotes <- vapply(itemTable[["footnotes"]], function(f) f[["text"]], character(1))
+  expect_true(any(grepl("reverse", footnotes, ignore.case = TRUE)))
+})
