@@ -145,7 +145,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
     beta0      = options[["loadMeanLatent"]],
     p0         = p0,
     R0         = R0,
-    param.out  = TRUE,
+    param.out  = FALSE,   # only omega_t/omega_h/implCovs are used; TRUE also crashes bi-factor in Bayesrel <= 0.7.8
     callback   = progressbarTick,
     disableMcmcCheck = TRUE   # MCMC bounds are validated in .checkErrors
   ), silent = TRUE)

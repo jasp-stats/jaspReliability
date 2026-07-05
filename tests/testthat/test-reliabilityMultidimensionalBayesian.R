@@ -87,6 +87,28 @@ test_that("Correlated model omits omega_h and adds a footnote", {
 })
 
 
+# bi-factor model: regression test, previously crashed in Bayesrel when param.out = TRUE
+# (psis array sized without the g-factor). No crossloading: Bayesrel rejects those for bi-factor models.
+optionsBif <- options
+optionsBif$modelType <- "biFactor"
+optionsBif$factors <- list(
+  list(indicators = paste0("Question_", sprintf("%02d", 1:12)),  name = "Factor1", title = "Factor 1"),
+  list(indicators = paste0("Question_", sprintf("%02d", 13:23)), name = "Factor2", title = "Factor 2")
+)
+set.seed(1)
+resultsBif <- runAnalysis("reliabilityMultidimensionalBayesian", "Reliability.csv", optionsBif, makeTests = FALSE)
+
+test_that("Bi-factor model runs and reports both omegas", {
+  expect_equal(resultsBif[["status"]], "complete")
+  scaleTable   <- resultsBif[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]]
+  coefficients <- vapply(scaleTable[["data"]], function(x) x[["coefficient"]], character(1))
+  expect_true(any(grepl("ωₜ", coefficients)))
+  expect_true(any(grepl("ωₕ", coefficients)))
+  ests <- vapply(scaleTable[["data"]][grepl("ω", coefficients)], function(x) x[["estimate"]], numeric(1))
+  expect_true(all(is.finite(ests) & ests > 0 & ests <= 1))
+})
+
+
 # omega-if-item-deleted: per-item refit. Use 2 factors x 3 items so dropping an item leaves valid
 # (2-item) factors and every item yields a refit value.
 optionsDel <- analysisOptions("reliabilityMultidimensionalBayesian")
