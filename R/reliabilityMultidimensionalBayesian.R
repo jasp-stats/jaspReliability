@@ -9,7 +9,7 @@
   "setSeed", "seed", "missingValues", "disableSampleSave",
   "igShapeManifest", "igScaleManifest", "loadMeanManifest",
   "igShapeLatent", "igScaleLatent", "loadMeanLatent",
-  "igShapeGFactor", "igScaleGFactor"
+  "igShapeGFactor", "igScaleGFactor", "latentCorDf"
 )
 
 #' @export
@@ -174,7 +174,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
     return()
 
   scaleTable <- createJaspTable(gettext("Bayesian Scale Reliability Statistics"))
-  scaleTable$dependOn(options = c("scoresMethod", "credibleIntervalValue", "rHat"))
+  scaleTable$dependOn(options = c("scoresMethod", "credibleIntervalValue", "rHat", "pointEst"))
   scaleTable$position <- 1
 
   pointEstimate <- gettextf("Posterior %s", options[["pointEst"]])
