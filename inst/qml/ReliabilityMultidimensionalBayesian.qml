@@ -55,14 +55,14 @@ Form
 		{
 			CIField
 			{
-				name:			"credibleIntervalValue";
+				name:			"ciLevel";
 				label:			qsTr("Credible interval");
 				defaultValue:	95;
 				info:			qsTr("Width of the credible interval for the reliability coefficients.")
 			}
 			RadioButtonGroup
 			{
-				name:		"scoresMethod"
+				name:		"meanSdScoresMethod"
 				title:		qsTr("Mean and standard deviation of")
 				info:		qsTr("Whether the mean and standard deviation in the scale table are based on participants' sum scores or mean scores across items.")
 				RadioButton { value: "sumScores";	label: qsTr("participants' sum scores"); checked: true}
@@ -75,28 +75,28 @@ Form
 			title: qsTr("Item statistics")
 			CheckBox { name: "itemDeletedOmegaT";	label: qsTr("McDonald's ω_t (if item dropped)"); info: qsTr("Posterior point estimate of ω_t for the remaining items when this item is dropped. The model is refit once per item.") }
 			CheckBox { name: "itemDeletedOmegaH";	label: qsTr("McDonald's ω_h (if item dropped)"); enabled: modelType.currentValue !== "correlated"; info: qsTr("Posterior point estimate of ω_h for the remaining items when this item is dropped. Not available for the correlated-factors model.") }
-			CheckBox { name: "itemRestCor";	label: qsTr("Item-rest correlation"); info: qsTr("Pearson correlation between each item and the sum of the remaining items.") }
+			CheckBox { name: "itemRestCorrelation";	label: qsTr("Item-rest correlation"); info: qsTr("Pearson correlation between each item and the sum of the remaining items.") }
 		}
 
 		Group
 		{
 			CheckBox
 			{
-				name: 	"plotPosterior";
+				name: 	"posteriorPlot";
 				label: 	qsTr("Plot Posteriors");
 				id:		postPlot
 				info:	qsTr("Display posterior density plots for the reliability coefficients.")
 
 				CheckBox
 				{
-					name: 	"fixXRange";
+					name: 	"posteriorPlotFixedRange";
 					label: 	qsTr("Fix range to 0-1")
 					info:	qsTr("Fix the x-axis of the posterior plots to [0, 1] for easier comparison between coefficients.")
 				}
 
 				CheckBox
 				{
-					name: 	"dispPrior";
+					name: 	"posteriorPlotPriorDisplayed";
 					label: 	qsTr("Display Priors")
 					info:	qsTr("Add the prior distribution to the posterior density plot.")
 				}
@@ -109,7 +109,7 @@ Form
 			CheckBox
 			{
 				id:					probTable
-				name:				"probTable"
+				name:				"probabilityTable"
 				label:				qsTr("Probability for:")
 				childrenOnSameRow:	true
 				info:				qsTr("Report the posterior probability that a reliability coefficient falls within the specified interval.")
@@ -119,7 +119,7 @@ Form
 					DoubleField
 					{
 						id:				probTableValueLow
-						name:			"probTableValueLow"
+						name:			"probabilityTableLowerBound"
 						label:			""
 						info:			qsTr("Lower bound of the reliability interval.")
 						defaultValue:	0.70
@@ -134,7 +134,7 @@ Form
 
 					DoubleField
 					{
-						name:			"probTableValueHigh"
+						name:			"probabilityTableUpperBound"
 						label:			""
 						info:			qsTr("Upper bound of the reliability interval.")
 						defaultValue:	.90
@@ -155,7 +155,7 @@ Form
 				CheckBox
 				{
 					id:			shadePlots
-					name:		"shadePlots";
+					name:		"posteriorPlotShaded";
 					indent:		true
 					label:		qsTr("Shade posterior region in plot");
 					info:		qsTr("Shade the posterior region corresponding to the probability interval in the density plot.")
@@ -170,7 +170,7 @@ Form
 			title: qsTr("Model fit")
 			CheckBox
 			{
-				name:		"dispPPC"
+				name:		"posteriorPredictiveCheck"
 				label:		qsTr("Posterior predictive check");
 				info:		qsTr("Graphical check of factor model fit: eigenvalues of the observed covariance matrix are compared against the model-implied posterior distribution.")
 			}
@@ -182,7 +182,7 @@ Form
 
 				CIField
 				{
-					name:			"credibleIntervalValueFitMeasures";
+					name:			"fitMeasuresCiLevel";
 					label:			qsTr("Credible interval");
 					defaultValue:	90
 					info:			qsTr("Width of the credible interval for the fit measures.")
@@ -190,7 +190,7 @@ Form
 
 				DoubleField
 				{
-					name:			"fitCutoffSat"
+					name:			"fitMeasuresCutoffRmsea"
 					label:			qsTr("p(RMSEA <")
 					defaultValue:	.08
 					info:			qsTr("Cutoff for the posterior probability that the B-RMSEA is below this value.")
@@ -217,7 +217,7 @@ Form
 			IntegerField
 			{
 				id:				noSamples
-				name: 			"noSamples"
+				name: 			"samples"
 				label: 			qsTr("No. samples")
 				defaultValue: 	2000
 				info: 			qsTr("Total number of MCMC samples per chain, including burn-in.")
@@ -229,7 +229,7 @@ Form
 			IntegerField
 			{
 				id:				noBurnin
-				name: 			"noBurnin"
+				name: 			"burnin"
 				label: 			qsTr("No. burnin samples")
 				defaultValue: 	200
 				info: 			qsTr("Initial samples discarded while the chain converges to the posterior.")
@@ -241,7 +241,7 @@ Form
 			IntegerField
 			{
 				id:				noThin
-				name: 			"noThin"
+				name: 			"thinning"
 				label: 			qsTr("Thinning")
 				defaultValue: 	1
 				info: 			qsTr("Keep every k-th sample to reduce autocorrelation. A value of 1 keeps all samples.")
@@ -252,7 +252,7 @@ Form
 
 			IntegerField
 			{
-				name: 			"noChains"
+				name: 			"chains"
 				label: 			qsTr("No. chains")
 				defaultValue: 	3
 				info: 			qsTr("Number of independent MCMC chains. Multiple chains enable R-hat convergence diagnostics.")
@@ -299,7 +299,7 @@ Form
 
 			CheckBox
 			{
-				name:				"disableSampleSave"
+				name:				"samplesSavingDisabled"
 				label:				qsTr("Disable saving samples")
 				checked:			false
 				info:				qsTr("When checked, MCMC samples are not stored in the output file. Reduces file size but re-running the analysis or changing options requires resampling.")
@@ -475,7 +475,7 @@ Form
 
 			RadioButtonGroup
 			{
-				name: "pointEst"
+				name: "pointEstimate"
 				title: qsTr("Posterior Point Estimate")
 				info: qsTr("Whether to report the posterior mean or median as the point estimate in the tables.")
 				RadioButton{ value: "mean"; label: qsTr("Mean"); checked: true }
@@ -489,11 +489,11 @@ Form
 			RadioButtonGroup
 			{
 				title: 	qsTr("")
-				name: 	"missingValues"
+				name: 	"naAction"
 				info: 	qsTr("Bayesian imputation treats missing values as unknown parameters sampled from the posterior; listwise deletion removes any row with a missing value.")
 
-				RadioButton { value: "excludeCasesPairwise"; label: qsTr("Bayesian imputation"); checked: true}
-				RadioButton { value: "excludeCasesListwise"; label: qsTr("Exclude cases listwise")}
+				RadioButton { value: "imputation"; label: qsTr("Bayesian imputation"); checked: true}
+				RadioButton { value: "listwise"; label: qsTr("Exclude cases listwise")}
 			}
 		}
 

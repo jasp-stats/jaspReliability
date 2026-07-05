@@ -11,13 +11,13 @@ options$factors <- list(
 )
 options$modelType <- "secondOrder"
 # scale coefficients are always displayed; item statistics are opt-in
-options$itemRestCor <- TRUE
-options$probTable <- TRUE
-options$probTableValueLow <- 0.7
-options$probTableValueHigh <- 0.9
-options$noSamples <- 200
-options$noBurnin <- 50
-options$noChains <- 2
+options$itemRestCorrelation <- TRUE
+options$probabilityTable <- TRUE
+options$probabilityTableLowerBound <- 0.7
+options$probabilityTableUpperBound <- 0.9
+options$samples <- 200
+options$burnin <- 50
+options$chains <- 2
 options$rHat <- TRUE
 options$setSeed <- TRUE
 options$seed <- 1
@@ -119,9 +119,9 @@ optionsDel$factors <- list(
 optionsDel$modelType        <- "secondOrder"
 optionsDel$itemDeletedOmegaT <- TRUE
 optionsDel$itemDeletedOmegaH <- TRUE
-optionsDel$noSamples <- 100
-optionsDel$noBurnin  <- 30
-optionsDel$noChains  <- 2
+optionsDel$samples <- 100
+optionsDel$burnin  <- 30
+optionsDel$chains  <- 2
 optionsDel$setSeed   <- TRUE
 optionsDel$seed      <- 1
 set.seed(1)

@@ -5,8 +5,8 @@
 # Dependencies that invalidate the fitted model (and therefore everything downstream).
 .multiDimBaseDependencies <- c(
   "factors", "reverseScaledItems", "modelType",
-  "noSamples", "noBurnin", "noThin", "noChains",
-  "setSeed", "seed", "missingValues", "disableSampleSave",
+  "samples", "burnin", "thinning", "chains",
+  "setSeed", "seed", "naAction", "samplesSavingDisabled",
   "igShapeManifest", "igScaleManifest", "loadMeanManifest",
   "igShapeLatent", "igScaleLatent", "loadMeanLatent",
   "igShapeGFactor", "igScaleGFactor", "latentCorDf"
@@ -18,13 +18,9 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   allItems <- .multiDimGetItems(options)
   ready    <- .multiDimReady(options)
 
-  # build a helper option list so the shared (unidimensional) helpers can be reused
+  # option names match the unidimensional analyses, so the shared helpers only need the item list
   optTmp <- options
   optTmp[["variables"]] <- allItems
-  optTmp[["samples"]]   <- options[["noSamples"]]
-  optTmp[["burnin"]]    <- options[["noBurnin"]]
-  optTmp[["thinning"]]  <- options[["noThin"]]
-  optTmp[["naAction"]]  <- if (options[["missingValues"]] == "excludeCasesListwise") "listwise" else "pairwise"
 
   if (ready) {
     dataset <- dataset[, allItems, drop = FALSE]
@@ -112,7 +108,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
     return(model)
 
   modelSyntax <- .multiDimBuildModel(options)
-  missing     <- if (options[["missingValues"]] == "excludeCasesListwise") "listwise" else "impute"
+  missing     <- if (options[["naAction"]] == "listwise") "listwise" else "impute"
 
   # the g-factor priors differ between models: the second-order/bi-factor models use an inverse-gamma on
   # the g-factor variance (p0 = shape, R0 = scale), whereas the correlated model uses an inverse-Wishart
@@ -125,17 +121,17 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   R0 <- if (correlated) NA else options[["igScaleGFactor"]]
 
   jaspBase::.setSeedJASP(options)
-  startProgressbar(options[["noChains"]] * options[["noSamples"]])
+  startProgressbar(options[["chains"]] * options[["samples"]])
 
   fit <- try(Bayesrel::bomegas(
     data       = as.matrix(dataset),
     model      = modelSyntax,
     model.type = options[["modelType"]],
-    n.iter     = options[["noSamples"]],
-    n.burnin   = options[["noBurnin"]],
-    n.chains   = options[["noChains"]],
-    thin       = options[["noThin"]],
-    interval   = options[["credibleIntervalValue"]],
+    n.iter     = options[["samples"]],
+    n.burnin   = options[["burnin"]],
+    n.chains   = options[["chains"]],
+    thin       = options[["thinning"]],
+    interval   = options[["ciLevel"]],
     missing    = missing,
     a0         = options[["igShapeManifest"]],
     b0         = options[["igScaleManifest"]],
@@ -157,7 +153,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
 
   model[["fit"]] <- fit
 
-  if (!options[["disableSampleSave"]]) {
+  if (!options[["samplesSavingDisabled"]]) {
     stateContainer <- .getStateContainerMD(jaspResults)
     stateContainer[["modelObj"]] <- createJaspState(model)
   }
@@ -174,11 +170,11 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
     return()
 
   scaleTable <- createJaspTable(gettext("Bayesian Scale Reliability Statistics"))
-  scaleTable$dependOn(options = c("scoresMethod", "credibleIntervalValue", "rHat", "pointEst"))
+  scaleTable$dependOn(options = c("meanSdScoresMethod", "ciLevel", "rHat", "pointEstimate"))
   scaleTable$position <- 1
 
-  pointEstimate <- gettextf("Posterior %s", options[["pointEst"]])
-  ci  <- format(100 * options[["credibleIntervalValue"]], digits = 3, drop0trailing = TRUE)
+  pointEstimate <- gettextf("Posterior %s", options[["pointEstimate"]])
+  ci  <- format(100 * options[["ciLevel"]], digits = 3, drop0trailing = TRUE)
 
   scaleTable$addColumnInfo(name = "coefficient", title = gettext("Coefficient"), type = "string")
   scaleTable$addColumnInfo(name = "estimate",    title = pointEstimate,          type = "number")
@@ -200,8 +196,8 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   }
 
   fit       <- model[["fit"]]
-  ciValue   <- options[["credibleIntervalValue"]]
-  pointFun  <- options[["pointEst"]]
+  ciValue   <- options[["ciLevel"]]
+  pointFun  <- options[["pointEstimate"]]
   correlated <- options[["modelType"]] == "correlated"
 
   rows <- list()
@@ -231,11 +227,11 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
     rows[[length(rows) + 1L]] <- addCoefRow("McDonald's ωₕ", fit[["omega_h"]][["chains"]])
   }
 
-  pairwise <- options[["missingValues"]] != "excludeCasesListwise"
+  pairwise <- options[["naAction"]] != "listwise"
   cc <- cor(dataset, use = if (pairwise) "pairwise.complete.obs" else "complete.obs")
   rows[[length(rows) + 1L]] <- addStatRow(gettext("Average interitem correlation"), mean(cc[lower.tri(cc)]))
 
-  scores <- if (options[["scoresMethod"]] == "sumScores")
+  scores <- if (options[["meanSdScoresMethod"]] == "sumScores")
     rowSums(dataset, na.rm = TRUE) else rowMeans(dataset, na.rm = TRUE)
   rows[[length(rows) + 1L]] <- addStatRow(gettext("Mean"), mean(scores))
   rows[[length(rows) + 1L]] <- addStatRow(gettext("SD"), sd(scores))
@@ -254,13 +250,13 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
 
   showOmegaT <- options[["itemDeletedOmegaT"]]
   showOmegaH <- options[["itemDeletedOmegaH"]] && options[["modelType"]] != "correlated"
-  showRest   <- options[["itemRestCor"]]
+  showRest   <- options[["itemRestCorrelation"]]
   if (!(showOmegaT || showOmegaH || showRest) ||
       !is.null(.getStateContainerMD(jaspResults)[["itemTable"]]$object))
     return()
 
   itemTable <- createJaspTable(gettext("Bayesian Individual Item Reliability Statistics"))
-  itemTable$dependOn(options = c("itemDeletedOmegaT", "itemDeletedOmegaH", "itemRestCor", "pointEst"))
+  itemTable$dependOn(options = c("itemDeletedOmegaT", "itemDeletedOmegaH", "itemRestCorrelation", "pointEstimate"))
   itemTable$position <- 2
 
   itemTable$addColumnInfo(name = "item", title = gettext("Item"), type = "string")
@@ -269,7 +265,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   if (showOmegaH)
     itemTable$addColumnInfo(name = "omegaH", title = gettext("McDonald's ωₕ (if item dropped)"), type = "number")
   if (showRest)
-    itemTable$addColumnInfo(name = "itemRestCor", title = gettext("Item-rest correlation"), type = "number")
+    itemTable$addColumnInfo(name = "itemRestCorrelation", title = gettext("Item-rest correlation"), type = "number")
 
   stateContainer <- .getStateContainerMD(jaspResults)
   stateContainer[["itemTable"]] <- itemTable
@@ -292,7 +288,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
       footnote <- gettext("Empty cells indicate that dropping the item would leave a factor with fewer than two items.")
   }
   if (showRest) {
-    df$itemRestCor <- vapply(seq_along(allItems), function(i) {
+    df$itemRestCorrelation <- vapply(seq_along(allItems), function(i) {
       rest <- rowSums(dataset[, -i, drop = FALSE], na.rm = TRUE)
       cor(dataset[, i], rest, use = "pairwise.complete.obs")
     }, numeric(1))
@@ -323,8 +319,8 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   omhDel     <- rep(NA_real_, k)
   correlated <- options[["modelType"]] == "correlated"
   facs       <- options[["factors"]]
-  missing    <- if (options[["missingValues"]] == "excludeCasesListwise") "listwise" else "impute"
-  pointFun   <- .getPointEstFun(options[["pointEst"]])
+  missing    <- if (options[["naAction"]] == "listwise") "listwise" else "impute"
+  pointFun   <- .getPointEstFun(options[["pointEstimate"]])
 
   startProgressbar(k)
   for (i in seq_len(k)) {
@@ -348,8 +344,8 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
     jaspBase::.setSeedJASP(options)
     fitRed <- try(Bayesrel::bomegas(
       data     = datRed, model = paste(lines, collapse = "\n"), model.type = options[["modelType"]],
-      n.iter   = options[["noSamples"]], n.burnin = options[["noBurnin"]], n.chains = options[["noChains"]],
-      thin     = options[["noThin"]], interval = options[["credibleIntervalValue"]], missing = missing,
+      n.iter   = options[["samples"]], n.burnin = options[["burnin"]], n.chains = options[["chains"]],
+      thin     = options[["thinning"]], interval = options[["ciLevel"]], missing = missing,
       a0       = options[["igShapeManifest"]], b0 = options[["igScaleManifest"]], l0 = options[["loadMeanManifest"]],
       c0       = options[["igShapeLatent"]], d0 = options[["igScaleLatent"]], beta0 = options[["loadMeanLatent"]],
       p0       = p0, R0 = R0, param.out = FALSE, callback = function(){}, disableMcmcCheck = TRUE
@@ -364,29 +360,29 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   }
 
   out <- list(omtDel = omtDel, omhDel = omhDel)
-  sc[["itemDeletedObj"]] <- createJaspState(out, dependencies = c("itemDeletedOmegaT", "itemDeletedOmegaH", "pointEst"))
+  sc[["itemDeletedObj"]] <- createJaspState(out, dependencies = c("itemDeletedOmegaT", "itemDeletedOmegaH", "pointEstimate"))
   return(out)
 }
 
 
 .multiDimProbabilityTable <- function(jaspResults, model, options, ready) {
 
-  if (!options[["probTable"]] || !is.null(.getStateContainerMD(jaspResults)[["probabilityTable"]]$object))
+  if (!options[["probabilityTable"]] || !is.null(.getStateContainerMD(jaspResults)[["probabilityTable"]]$object))
     return()
 
-  if (options[["probTableValueLow"]] > options[["probTableValueHigh"]]) {
-    low  <- options[["probTableValueHigh"]]
-    high <- options[["probTableValueLow"]]
+  if (options[["probabilityTableLowerBound"]] > options[["probabilityTableUpperBound"]]) {
+    low  <- options[["probabilityTableUpperBound"]]
+    high <- options[["probabilityTableLowerBound"]]
     footnote <- gettext("The bounds you entered have been rearranged in increasing order to provide meaningful results.")
   } else {
-    low  <- options[["probTableValueLow"]]
-    high <- options[["probTableValueHigh"]]
+    low  <- options[["probabilityTableLowerBound"]]
+    high <- options[["probabilityTableUpperBound"]]
     footnote <- ""
   }
 
   probabilityTable <- createJaspTable(
     gettextf("Probability that Reliability Coefficient is Larger than %1$.2f and Smaller than %2$.2f", low, high))
-  probabilityTable$dependOn(options = c("probTable", "probTableValueLow", "probTableValueHigh"))
+  probabilityTable$dependOn(options = c("probabilityTable", "probabilityTableLowerBound", "probabilityTableUpperBound"))
   probabilityTable$position <- 3
   probabilityTable$addColumnInfo(name = "coefficient", title = gettext("Coefficient"), type = "string")
   probabilityTable$addColumnInfo(name = "posterior",   title = gettext("Posterior"),   type = "number",
@@ -428,7 +424,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
     return()
 
   fitTable <- createJaspTable(gettext("Fit Measures of the Factor Model"))
-  fitTable$dependOn(options = c("fitMeasures", "credibleIntervalValueFitMeasures", "fitCutoffSat"))
+  fitTable$dependOn(options = c("fitMeasures", "fitMeasuresCiLevel", "fitMeasuresCutoffRmsea"))
   fitTable$position <- 4
 
   fitTable$addColumnInfo(name = "estimate", title = gettext("Estimate"), type = "string")
@@ -446,9 +442,9 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
     return()
   }
 
-  ciFit  <- options[["credibleIntervalValueFitMeasures"]]
+  ciFit  <- options[["fitMeasuresCiLevel"]]
   fitOut <- try(Bayesrel::multiFit(model[["fit"]], data = as.matrix(dataset), ppc = FALSE,
-                                   cutoff = options[["fitCutoffSat"]], ci = ciFit), silent = TRUE)
+                                   cutoff = options[["fitMeasuresCutoffRmsea"]], ci = ciFit), silent = TRUE)
   if (inherits(fitOut, "try-error")) {
     fitTable$setError(jaspBase::.extractErrorMessage(fitOut))
     return()
@@ -467,7 +463,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   )
   fitTable$setData(df)
   fitTable$addFootnote(gettextf("'Relative to cutoff' denotes the posterior probability that the B-RMSEA is smaller than the cutoff of %.2f.",
-                                options[["fitCutoffSat"]]))
+                                options[["fitMeasuresCutoffRmsea"]]))
 
   return()
 }
@@ -477,13 +473,13 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
 
 .multiDimPosteriorPlot <- function(jaspResults, model, options, ready) {
 
-  if (!options[["plotPosterior"]] || !is.null(.getStateContainerMD(jaspResults)[["posteriorPlots"]]$object))
+  if (!options[["posteriorPlot"]] || !is.null(.getStateContainerMD(jaspResults)[["posteriorPlots"]]$object))
     return()
 
   plotContainer <- createJaspContainer(gettext("Posterior Plots"))
-  plotContainer$dependOn(options = c("plotPosterior", "fixXRange", "dispPrior", "shadePlots",
-                                     "probTable", "probTableValueLow", "probTableValueHigh",
-                                     "credibleIntervalValue"))
+  plotContainer$dependOn(options = c("posteriorPlot", "posteriorPlotFixedRange", "posteriorPlotPriorDisplayed", "posteriorPlotShaded",
+                                     "probabilityTable", "probabilityTableLowerBound", "probabilityTableUpperBound",
+                                     "ciLevel"))
   plotContainer$position <- 6
 
   if (!ready || !is.null(model[["error"]])) {
@@ -493,11 +489,11 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   }
 
   fit     <- model[["fit"]]
-  ciValue <- options[["credibleIntervalValue"]]
+  ciValue <- options[["ciLevel"]]
 
-  if (options[["shadePlots"]] && options[["probTable"]]) {
-    low  <- min(options[["probTableValueLow"]], options[["probTableValueHigh"]])
-    high <- max(options[["probTableValueLow"]], options[["probTableValueHigh"]])
+  if (options[["posteriorPlotShaded"]] && options[["probabilityTable"]]) {
+    low  <- min(options[["probabilityTableLowerBound"]], options[["probabilityTableUpperBound"]])
+    high <- max(options[["probabilityTableLowerBound"]], options[["probabilityTableUpperBound"]])
     shade <- c(low, high)
   } else {
     shade <- NULL
@@ -510,7 +506,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
 
   # prior samples of the omegas, drawn with the same prior parameterization as the Gibbs sampler
   priorSamples <- NULL
-  if (options[["dispPrior"]]) {
+  if (options[["posteriorPlotPriorDisplayed"]]) {
     priorFun <- switch(fit[["model.type"]],
       "second-order" = Bayesrel:::omegasSecoPrior,
       "bi-factor"    = Bayesrel:::omegasBifPrior,
@@ -528,7 +524,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
     else
       NULL
     p <- .makeSinglePosteriorPlot(list(samp = coefs[[nm]][["chains"]]), cred, coefs[[nm]][["label"]],
-                                  options[["fixXRange"]], shade,
+                                  options[["posteriorPlotFixedRange"]], shade,
                                   priorTrue = !is.null(priorDens), priorSample = priorDens)
     plotObj <- createJaspPlot(plot = p, title = coefs[[nm]][["label"]])
     plotContainer[[nm]] <- plotObj
@@ -577,11 +573,11 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
 
 .multiDimPPCPlot <- function(jaspResults, dataset, model, options, ready) {
 
-  if (!options[["dispPPC"]] || !is.null(.getStateContainerMD(jaspResults)[["ppcPlot"]]$object))
+  if (!options[["posteriorPredictiveCheck"]] || !is.null(.getStateContainerMD(jaspResults)[["ppcPlot"]]$object))
     return()
 
   plot <- createJaspPlot(title = gettext("Posterior Predictive Check"), width = 350)
-  plot$dependOn(options = "dispPPC")
+  plot$dependOn(options = "posteriorPredictiveCheck")
   plot$position <- 8
 
   stateContainer <- .getStateContainerMD(jaspResults)
@@ -591,7 +587,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
     return()
 
   implCovs <- model[["fit"]][["implCovs"]]
-  pairwise <- options[["missingValues"]] != "excludeCasesListwise"
+  pairwise <- options[["naAction"]] != "listwise"
   cdat     <- cov(dataset, use = if (pairwise) "pairwise.complete.obs" else "complete.obs")
   k        <- ncol(cdat)
   n        <- nrow(dataset)
