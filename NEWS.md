@@ -16,7 +16,11 @@
 
 # jaspReliability (development version)
 
+## Added
+* Added Bayesian Multidimensional Reliability analysis: multidimensional omega coefficients via `Bayesrel::bomegas`, with scale/item tables, model fit, posterior, trace, and posterior predictive check plots ([Issue #1336](https://github.com/jasp-stats/jasp-issues/issues/1336)).
 
+## Changed
+* Renamed unidimensional reliability analyses: `unidimensionalReliabilityFrequentist` -> `reliabilityUnidimensionalFrequentist`, `unidimensionalReliabilityBayesian` -> `reliabilityUnidimensionalBayesian` (upgrade mappings added).
 
 ---
 
