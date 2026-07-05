@@ -173,7 +173,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   scaleTable$dependOn(options = c("meanSdScoresMethod", "ciLevel", "rHat", "pointEstimate"))
   scaleTable$position <- 1
 
-  pointEstimate <- gettextf("Posterior %s", options[["pointEstimate"]])
+  pointEstimate <- if (options[["pointEstimate"]] == "mean") gettext("Posterior mean") else gettext("Posterior median")
   ci  <- format(100 * options[["ciLevel"]], digits = 3, drop0trailing = TRUE)
 
   scaleTable$addColumnInfo(name = "coefficient", title = gettext("Coefficient"), type = "string")
@@ -607,13 +607,15 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
 
   g <- ggplot2::ggplot(eframe, mapping = ggplot2::aes(x = number, y = eigen_value)) +
     ggplot2::geom_errorbar(ggplot2::aes(ymin = eigen_sim_low, ymax = eigen_sim_up), color = "grey55",
-                           width = 0.2, size = 1) +
+                           width = 0.2, linewidth = 1) +
     ggplot2::geom_point(size = 2.25) +
     ggplot2::scale_y_continuous(name = gettext("Eigenvalue"), breaks = yBreaks, limits = range(yBreaks)) +
     ggplot2::scale_x_continuous(name = gettext("Eigenvalue No."), breaks = seq_len(k),
-                                expand = ggplot2::expand_scale(mult = c(.1, .1)))
+                                expand = ggplot2::expansion(mult = c(.1, .1))) +
+    jaspGraphs::geom_rangeframe(sides = "bl") +
+    jaspGraphs::themeJaspRaw()
 
-  plot$plotObject <- jaspGraphs::themeJasp(g)
+  plot$plotObject <- g
 
   return()
 }
