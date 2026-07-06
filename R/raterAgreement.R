@@ -232,12 +232,9 @@ raterAgreement <- function(jaspResults, dataset, options) {
     #calculate Fleiss' Kappa
     allKappaData <- irr::kappam.fleiss(dataset, detail = TRUE)
     overallKappa <- allKappaData$value
-    categoryKappas <- allKappaData$detail[, "Kappa"]
     # we can calculate the SE since we know the z value taken from a standard normal
     SEkappa <- overallKappa / allKappaData$statistic
-    SEkappa.cat <- categoryKappas / allKappaData$detail[, "z"]
     overallSE <- SEkappa
-    categorySE <- SEkappa.cat
     alpha <- 1 - options[["ciLevel"]]
 
     # for nominal text data we want the rating text to be displayed:
@@ -248,9 +245,13 @@ raterAgreement <- function(jaspResults, dataset, options) {
       categories <- sort(as.numeric(as.character(unique(unlist(dataset)))))
     }
     ratings <- c("Overall", as.character(categories))
-    # when the data was read with columns as factors the kappa function
-    # would not order the categories numerically, this is a fix
-    categoryKappas <- categoryKappas[as.character(categories)]
+
+    # irr::kappam.fleiss returns the per-category detail rows in its own order, which need not match
+    # `categories` (e.g. factor columns). Reindex the whole detail matrix once so that each category's
+    # kappa and its SE stay paired -- deriving them separately let the SE line up with the wrong category.
+    detail         <- allKappaData$detail[as.character(categories), , drop = FALSE]
+    categoryKappas <- detail[, "Kappa"]
+    categorySE     <- detail[, "Kappa"] / detail[, "z"]
 
     tableData <- list("ratings" = ratings,
                       "fKappa"  = c(overallKappa, categoryKappas))
