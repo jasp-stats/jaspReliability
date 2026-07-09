@@ -341,7 +341,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
 }
 
 .kripAlphaBoot <- function(jaspResults, dataset, options, ready) {
-   if (!ready || !is.null(jaspResults[["bootstrapSamples"]]$object))
+   if (!ready || !is.null(jaspResults[["bootstrapSamples"]]))
     return()
 
   bootstrapSamples <- createJaspState()
@@ -368,7 +368,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
 }
 
 .kendallWBootRA <- function(jaspResults, dataset, options, ready) {
-  if (!ready || !is.null(jaspResults[["kendallWBootstrapSamples"]]$object))
+  if (!ready || !is.null(jaspResults[["kendallWBootstrapSamples"]]))
     return()
 
   if (any(options[["variables.types"]] == "nominal"))
