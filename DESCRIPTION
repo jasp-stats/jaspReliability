@@ -9,6 +9,8 @@ Maintainer: Julius M. Pfadt <julius.pfadt@gmail.com>
 Description: Quantify the Consistency of Test Scores
 License: GPL (>= 2) + file LICENSE
 Encoding: UTF-8
+Depends:
+  R (>= 3.5.0)
 Imports:
   Bayesrel,
   coda,
