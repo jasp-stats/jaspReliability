@@ -71,12 +71,12 @@ results <- runAnalysis("raterAgreement", "test.csv", options, makeTests = F)
 test_that("Cohen's Weighted kappa table results match", {
   table <- results[["results"]][["cohensKappa"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list("", "", "", -0.00184386638316336, "Average kappa", -0.0105967225936691,
+                                 list("", "", "", -0.000737157723817298, "", "Average kappa", -0.0105967225936691,
                                       0.0461522781492244, 0.0110156757407617, 0.0177777777777777,
-                                      "facGender - facExperim", -0.0393585273220366, 0.026999385191902,
-                                      0.012880883143637, -0.00617957106506728, "facGender - debBinMiss20",
-                                      -0.0516244390801057, 0.0173648273557048, 0.0133916611517617,
-                                      -0.0171298058622005, "facExperim - debBinMiss20"))
+                                      100, "facGender - facExperim", -0.0360210153805231, 0.0247140649315706,
+                                      0.0117894225809945, -0.00565347522447626, 80, "facGender - debBinMiss20",
+                                      -0.0433804063567408, 0.0147088549072342, 0.0112758367147896,
+                                      -0.0143357757247533, 80, "facExperim - debBinMiss20"))
 })
 
 test_that("Fleiss' kappa table results match", {
@@ -134,7 +134,7 @@ results <- runAnalysis("raterAgreement", "debug.csv", options, makeTests = F)
 test_that("Kendall's W table results match", {
   table <- results[["results"]][["kendallW"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.235537187052039, 0.405722388905557, 0.926742171157389, 0.0428257441483345,
+                                 list(0.23561428003378, 0.405859685967264, 0.926742171157389, 0.0428426729424179,
                                       0.316646331299797, 94.0439603960396, 99, 98.3333333333333,
                                       196.666666666667, 0.621972149059366, 0.660376274732495))
 })
@@ -313,9 +313,9 @@ test_that("Invalid variable types show table errors", {
 # ==== Fleiss' kappa: category present only in a listwise-deleted row ====
 test_that("Fleiss' kappa drops categories that only occur in incomplete rows", {
   df <- data.frame(
-    r1 = c("A", "B", "C"),
-    r2 = c("A", "B", NA),
-    r3 = c("A", "B", "C")
+    r1 = c("A", "B", "A", "C"),
+    r2 = c("A", "B", "B", NA),
+    r3 = c("A", "B", "A", "C")
   )
   options <- analysisOptions("raterAgreement")
   options$variables     <- c("r1", "r2", "r3")
@@ -325,9 +325,9 @@ test_that("Fleiss' kappa drops categories that only occur in incomplete rows", {
   results <- runAnalysis("raterAgreement", df, options)
   expect_identical(results[["status"]], "complete")
   jaspTools::expect_equal_tables(results[["results"]][["fleissKappa"]][["data"]],
-    list(0.199848053940782, 1.80015194605922, 0.408248290463863, 1, "Overall",
-         0.199848053940782, 1.80015194605922, 0.408248290463863, 1, "A",
-         0.199848053940782, 1.80015194605922, 0.408248290463863, 1, "B"))
+    list(-0.103321328180018, 1.20332132818002, 0.333333333333333, 0.55, "Overall",
+         -0.103321328180018, 1.20332132818002, 0.333333333333333, 0.55, "A",
+         -0.103321328180018, 1.20332132818002, 0.333333333333333, 0.55, "B"))
 })
 
 # ==== Fleiss' kappa: zero kappa must yield the analytic SE, not NaN ====
@@ -347,4 +347,191 @@ test_that("Fleiss' kappa SEs are exact for zero kappa", {
     list(-0.979981992270027, 0.979981992270027, 0.5, 0, "Overall",
          -0.979981992270027, 0.979981992270027, 0.5, 0, "A",
          -0.979981992270027, 0.979981992270027, 0.5, 0, "B"))
+})
+
+# ==== Weighted Cohen's kappa: declared ordinal order, not alphabetical label order ====
+test_that("Weighted Cohen's kappa respects ordered factor levels", {
+  lv <- c("low", "medium", "high")
+  df <- data.frame(
+    r1 = factor(c("low","low","medium","medium","high","high","low","medium","high","high"), levels = lv, ordered = TRUE),
+    r2 = factor(c("low","medium","medium","high","high","high","low","low","medium","high"), levels = lv, ordered = TRUE)
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables       <- c("r1", "r2")
+  options$variables.types <- c("ordinal", "ordinal")
+  options$dataStructure   <- "ratersInColumns"
+  options$cohensKappa     <- TRUE
+  options$cohensKappaType <- "weighted"
+  options$ci              <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  # reference: psych::cohen.kappa on the level codes, w.exp = 2 (alphabetical labels give 0.275)
+  jaspTools::expect_equal_tables(results[["results"]][["cohensKappa"]][["data"]],
+    list(0.710144927536232, "Average kappa", 0.710144927536232, "r1 - r2"))
+})
+
+# ==== Raters in rows with labelled ordered factors: level order must survive the transpose ====
+test_that("Row-mode ordered factors keep their declared level order", {
+  lv <- c("low", "medium", "high")
+  # 3 raters (rows) x 6 subjects (columns); same ratings as the column-mode ordered-factor test
+  rowMode <- data.frame(
+    s1 = factor(c("low", "low", "medium"),    levels = lv, ordered = TRUE),
+    s2 = factor(c("medium", "high", "medium"), levels = lv, ordered = TRUE),
+    s3 = factor(c("high", "medium", "high"),  levels = lv, ordered = TRUE),
+    s4 = factor(c("low", "low", "low"),       levels = lv, ordered = TRUE),
+    s5 = factor(c("medium", "medium", "low"), levels = lv, ordered = TRUE),
+    s6 = factor(c("high", "high", "high"),    levels = lv, ordered = TRUE)
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables                <- names(rowMode)
+  options$variables.types          <- rep("ordinal", ncol(rowMode))
+  options$dataStructure            <- "ratersInRows"
+  options$kendallW                 <- TRUE
+  options$krippendorffsAlpha       <- TRUE
+  options$krippendorffsAlphaMethod <- "ordinal"
+  options$ci                       <- FALSE
+  results <- runAnalysis("raterAgreement", rowMode, options)
+  expect_identical(results[["status"]], "complete")
+  # references identical to the column-mode ordered-factor test above
+  jaspTools::expect_equal_tables(results[["results"]][["kendallW"]][["data"]],
+    list(7, 0.777777777777778, 11.6666666666667, 5, 4.33333333333333, 8.66666666666667,
+         0.0396519759960316, 0.00776230190368293))
+  jaspTools::expect_equal_tables(results[["results"]][["krippendorffsAlpha"]][["data"]],
+    list(0.675925925925926, "Ordinal"))
+})
+
+# ==== Degenerate inputs show table errors instead of crashing ====
+test_that("Cohen's kappa errors cleanly when rater pairs have no overlap", {
+  df <- data.frame(r1 = c("a", "b", "a", NA, NA, NA), r2 = c(NA, NA, NA, "a", "b", "a"))
+  options <- analysisOptions("raterAgreement")
+  options$variables     <- c("r1", "r2")
+  options$dataStructure <- "ratersInColumns"
+  options$cohensKappa   <- TRUE
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_identical(results[["status"]], "complete")
+  expect_match(results[["results"]][["cohensKappa"]][["error"]][["errorMessage"]],
+               "jointly rated")
+})
+
+test_that("Krippendorff's alpha errors cleanly on all-missing data", {
+  df <- data.frame(r1 = c(NA, NA, NA), r2 = c(NA, NA, NA))
+  options <- analysisOptions("raterAgreement")
+  options$variables          <- c("r1", "r2")
+  options$dataStructure      <- "ratersInColumns"
+  options$krippendorffsAlpha <- TRUE
+  options$ci                 <- TRUE
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_identical(results[["status"]], "complete")
+  expect_match(results[["results"]][["krippendorffsAlpha"]][["error"]][["errorMessage"]],
+               "no pairable observations")
+})
+
+test_that("One rater in row mode errors cleanly for all coefficients", {
+  df <- data.frame(s1 = 1, s2 = 2, s3 = 3, s4 = 4)
+  options <- analysisOptions("raterAgreement")
+  options$variables          <- c("s1", "s2", "s3", "s4")
+  options$dataStructure      <- "ratersInRows"
+  options$cohensKappa        <- TRUE
+  options$krippendorffsAlpha <- TRUE
+  options$kendallW           <- TRUE
+  options$ci                 <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_identical(results[["status"]], "complete")
+  for (tbl in c("cohensKappa", "krippendorffsAlpha", "kendallW"))
+    expect_match(results[["results"]][[tbl]][["error"]][["errorMessage"]],
+                 "at least 2 raters")
+})
+
+test_that("Kendall's W suppresses the F test outside its domain (n = 2, m = 2)", {
+  df <- data.frame(r1 = c(1, 2), r2 = c(2, 1))
+  options <- analysisOptions("raterAgreement")
+  options$variables     <- c("r1", "r2")
+  options$dataStructure <- "ratersInColumns"
+  options$kendallW      <- TRUE
+  options$ci            <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_identical(results[["status"]], "complete")
+  jaspTools::expect_equal_tables(results[["results"]][["kendallW"]][["data"]],
+    list("", 0, 0, 1, "", "", 1, ""))
+  footnotes <- sapply(results[["results"]][["kendallW"]][["footnotes"]], `[[`, "text")
+  expect_true(any(grepl("F test is not available", footnotes)))
+})
+
+test_that("Fleiss' kappa errors cleanly when all ratings are one category", {
+  df <- data.frame(r1 = c("A", "A", "A"), r2 = c("A", "A", "A"), r3 = c("A", "A", "A"))
+  options <- analysisOptions("raterAgreement")
+  options$variables     <- c("r1", "r2", "r3")
+  options$dataStructure <- "ratersInColumns"
+  options$fleissKappa   <- TRUE
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_identical(results[["status"]], "complete")
+  expect_match(results[["results"]][["fleissKappa"]][["error"]][["errorMessage"]],
+               "single category")
+})
+
+test_that("Kendall's W errors cleanly when rankings do not vary", {
+  df <- data.frame(r1 = c(2, 2, 2, 2), r2 = c(3, 3, 3, 3), r3 = c(1, 1, 1, 1))
+  options <- analysisOptions("raterAgreement")
+  options$variables      <- c("r1", "r2", "r3")
+  options$dataStructure  <- "ratersInColumns"
+  options$kendallW       <- TRUE
+  options$correctForTies <- TRUE
+  options$ci             <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_identical(results[["status"]], "complete")
+  expect_match(results[["results"]][["kendallW"]][["error"]][["errorMessage"]],
+               "do not vary")
+})
+
+# ==== Bootstrap replicates always use the tie correction ====
+test_that("Uncorrected Kendall's W bootstrap CI is not distorted by resampling ties", {
+  df <- data.frame(r1 = 1:5, r2 = 1:5, r3 = 1:5) # identical tie-free rankings, W = 1
+  options <- analysisOptions("raterAgreement")
+  options$variables        <- c("r1", "r2", "r3")
+  options$dataStructure    <- "ratersInColumns"
+  options$kendallW         <- TRUE
+  options$correctForTies   <- FALSE
+  options$ci               <- TRUE
+  options$bootstrapSamples <- 1000
+  options$setSeed          <- TRUE
+  set.seed(1)
+  results <- runAnalysis("raterAgreement", df, options)
+  # corrected replicates keep W = 1 in every resample: SE = 0, CI = [1, 1]
+  # (uncorrected replicates gave SE ~ 0.097 and CI [0.5, 1]); F column is Inf (unicode)
+  jaspTools::expect_equal_tables(results[["results"]][["kendallW"]][["data"]],
+    list(1, 1, "<unicode>", 0, 1, 12, 4, 3.33333333333333, 6.66666666666667,
+         0.0173512652366645, 0))
+  footnotes <- sapply(results[["results"]][["kendallW"]][["footnotes"]], `[[`, "text")
+  expect_true(any(grepl("replicates always use the tie correction", footnotes)))
+})
+
+# ==== Krippendorff interval method uses actual numeric label values, not level codes ====
+test_that("Krippendorff's alpha interval method parses numeric labels as scores", {
+  sc <- c("0", "10", "100")
+  df <- data.frame(
+    r1 = factor(c("0", "10", "100", "10", "0", "100"),   levels = sc),
+    r2 = factor(c("0", "100", "100", "10", "10", "100"), levels = sc),
+    r3 = factor(c("10", "10", "100", "0", "0", "100"),   levels = sc)
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables                <- c("r1", "r2", "r3")
+  options$dataStructure            <- "ratersInColumns"
+  options$krippendorffsAlpha       <- TRUE
+  options$krippendorffsAlphaMethod <- "interval"
+  options$ci                       <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  # reference: irr::kripp.alpha on the numeric scores (level codes would give 0.6698)
+  jaspTools::expect_equal_tables(results[["results"]][["krippendorffsAlpha"]][["data"]],
+    list(0.787939988459319, "Interval"))
+})
+
+test_that("Krippendorff's alpha interval method rejects non-numeric labels", {
+  df <- data.frame(r1 = c("a", "b", "c"), r2 = c("a", "c", "b"))
+  options <- analysisOptions("raterAgreement")
+  options$variables                <- c("r1", "r2")
+  options$dataStructure            <- "ratersInColumns"
+  options$krippendorffsAlpha       <- TRUE
+  options$krippendorffsAlphaMethod <- "interval"
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_match(results[["results"]][["krippendorffsAlpha"]][["error"]][["errorMessage"]],
+               "requires numeric ratings")
 })
