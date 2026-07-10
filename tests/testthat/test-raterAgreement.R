@@ -37,10 +37,10 @@ test_that("Cohen's kappa table results match", {
 test_that("Fleiss' kappa table results match", {
   table <- results[["results"]][["fleissKappa"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.0321990251552643, 0.119851279212922, 0.0223606797749979, 0.0760251521840934,
-                                      "Overall", 0.0321890403455753, 0.119810959654425, 0.0223529411764706,
-                                      0.076, 0, 0.0321890403455753, 0.119810959654425, 0.0223529411764706,
-                                      0.076, 1))
+                                 list(0.0321990251552644, 0.119851279212922, 0.0223606797749979, 0.0760251521840934,
+                                      "Overall", 0.0321990251552635, 0.119851279212922, 0.0223606797749979,
+                                      0.0760251521840926, 0, 0.0321990251552635, 0.119851279212922, 0.0223606797749979,
+                                      0.0760251521840925, 1))
 })
 
 test_that("Krippendorff's alpha table results match", {
@@ -83,13 +83,13 @@ test_that("Fleiss' kappa table results match", {
   table <- results[["results"]][["fleissKappa"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list(-0.276327852798572, -0.127177258822542, 0.0289519561273982, -0.201752555810557,
-                                      "Overall", -0.36023781932418, -0.0277621806758195, 0.0645375914836993,
-                                      -0.194, "f", -0.372234597910737, -0.0397654020892627, 0.0645363408521303,
-                                      -0.206, "m", -0.384084231935422, -0.0519157680645785, 0.0644779650990831,
-                                      -0.218, "control", -0.348005996191891, -0.0159940038081091,
-                                      0.0644475920679887, -0.182, "experimental", -0.337528094860817,
-                                      -0.00447190513918266, 0.0646502835538752, -0.171, 0, -0.39743820115239,
-                                      -0.0645617988476095, 0.0646153846153846, -0.231, 1))
+                                      "Overall", -0.360298917334901, -0.0277607841576364, 0.0645497224367903,
+                                      -0.194029850746269, "f", -0.372299217342401, -0.0397610841651366, 0.0645497224367903,
+                                      -0.206030150753769, "m", -0.384543178263759, -0.0520050450864946, 0.0645497224367903,
+                                      -0.218274111675127, "control", -0.348535076440849, -0.0159969432635844,
+                                      0.0645497224367903, -0.182266009852217, "experimental", -0.337000773905705,
+                                      -0.00446264072844088, 0.0645497224367903, -0.170731707317073, 0, -0.397038297357863,
+                                      -0.0645001641805985, 0.0645497224367903, -0.230769230769231, 1))
 })
 
 test_that("Krippendorff's alpha table results match", {
@@ -111,8 +111,8 @@ test_that("Fleiss' kappa table results match", {
   results <- runAnalysis("raterAgreement", testthat::test_path("Fleiss1971.csv"), options)
   table <- results[["results"]][["fleissKappa"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.430244520060141, "Overall", 0.245, 1, 0.245, 2, 0.52, 3, 0.471,
-                                      4, 0.566, 5))
+                                 list(0.430244520060141, "Overall", 0.244755244755245, 1, 0.244755244755245,
+                                      2, 0.52, 3, 0.471127272727273, 4, 0.566117806823969, 5))
 })
 
 
@@ -125,6 +125,7 @@ options$cohensKappa                  <- FALSE
 options$fleissKappa                  <- FALSE
 options$krippendorffsAlpha           <- FALSE
 options$kendallW                     <- TRUE
+options$correctForTies               <- FALSE # tie correction is on by default; keep testing the uncorrected path
 options$bootstrapSamples             <- 200
 options$setSeed                      <- TRUE
 set.seed(1)
@@ -189,3 +190,153 @@ test_that("Cohen's kappa table results match with linear weighting", {
                                  ))
 })
 
+
+# ==== Ordered factors: declared level order must be used, not alphabetical label order ====
+test_that("Kendall's W and Krippendorff's alpha respect ordered factor levels", {
+  lv <- c("low", "medium", "high") # alphabetical order would be high < low < medium
+  df <- data.frame(
+    r1 = factor(c("low", "medium", "high", "low",    "medium", "high"), levels = lv, ordered = TRUE),
+    r2 = factor(c("low", "high",   "medium", "low",  "medium", "high"), levels = lv, ordered = TRUE),
+    r3 = factor(c("medium", "medium", "high", "low", "low",    "high"), levels = lv, ordered = TRUE)
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables                <- c("r1", "r2", "r3")
+  options$variables.types          <- c("ordinal", "ordinal", "ordinal")
+  options$dataStructure            <- "ratersInColumns"
+  options$kendallW                 <- TRUE
+  options$krippendorffsAlpha       <- TRUE
+  options$krippendorffsAlphaMethod <- "ordinal"
+  options$ci                       <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  # reference: irr::kendall / irr::kripp.alpha on the level codes (1 = low, 2 = medium, 3 = high)
+  jaspTools::expect_equal_tables(results[["results"]][["kendallW"]][["data"]],
+    list(0.777777777777778, 11.6666666666667, 5, 0.0396519759960316))
+  jaspTools::expect_equal_tables(results[["results"]][["krippendorffsAlpha"]][["data"]],
+    list(0.675925925925926, "Ordinal"))
+})
+
+# ==== Ties without correction: result matches irr and the ties warning is shown ====
+test_that("Uncorrected Kendall's W on tied data matches irr and warns about ties", {
+  options <- analysisOptions("raterAgreement")
+  options$variables      <- c("rater1", "rater2", "rater3")
+  options$dataStructure  <- "ratersInColumns"
+  options$kendallW       <- TRUE
+  options$correctForTies <- FALSE
+  options$ci             <- FALSE
+  results <- runAnalysis("raterAgreement", testthat::test_path("anxietyRatings.csv"), options)
+  jaspTools::expect_equal_tables(results[["results"]][["kendallW"]][["data"]],
+    list(0.501921470342523, 28.6095238095238, 19, 0.0723803546937571))
+  footnotes <- sapply(results[["results"]][["kendallW"]][["footnotes"]], `[[`, "text")
+  expect_true(any(grepl("Ties are present", footnotes)))
+})
+
+# ==== Sparse incomplete data: bootstrap must not abort the analysis ====
+test_that("Kendall's W bootstrap CI handles incomplete rows and failed replicates", {
+  df <- data.frame(
+    r1 = c(1, 2, 3, NA),
+    r2 = c(1, 3, 2, 4),
+    r3 = c(2, 1, 3, 4)
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables        <- c("r1", "r2", "r3")
+  options$dataStructure    <- "ratersInColumns"
+  options$kendallW         <- TRUE
+  options$ci               <- TRUE
+  options$bootstrapSamples <- 100
+  options$setSeed          <- TRUE
+  set.seed(1)
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_identical(results[["status"]], "complete")
+  jaspTools::expect_equal_tables(results[["results"]][["kendallW"]][["data"]],
+    list(0.111111111111111, 1, 0.350241068029438, 0.444444444444444,
+         2.66666666666667, 2, 0.263597138115727))
+  footnotes <- sapply(results[["results"]][["kendallW"]][["footnotes"]], `[[`, "text")
+  expect_true(any(grepl("bootstrap samples could not be computed", footnotes)))
+})
+
+# ==== Raters in rows ====
+test_that("Kendall's W with raters in rows matches raters-in-columns reference", {
+  df <- data.frame( # 3 raters (rows) assessing 4 subjects (columns)
+    s1 = c(1, 2, 1.5),
+    s2 = c(2, 3, 2.5),
+    s3 = c(3, 1, 3.5),
+    s4 = c(4, 4, 1.0)
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables     <- c("s1", "s2", "s3", "s4")
+  options$dataStructure <- "ratersInRows"
+  options$kendallW      <- TRUE
+  options$ci            <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_identical(results[["status"]], "complete")
+  # reference: irr::kendall(t(df), correct = TRUE)
+  jaspTools::expect_equal_tables(results[["results"]][["kendallW"]][["data"]],
+    list(0.2, 1.8, 3, 0.614934935782537))
+})
+
+# ==== Coefficient-specific variable type validation ====
+test_that("Invalid variable types show table errors", {
+  options <- analysisOptions("raterAgreement")
+  options$variables       <- c("contNormal", "contGamma")
+  options$variables.types <- c("scale", "scale")
+  options$dataStructure   <- "ratersInColumns"
+  options$cohensKappa     <- TRUE
+  options$fleissKappa     <- TRUE
+  results <- runAnalysis("raterAgreement", "debug.csv", options)
+  expect_match(results[["results"]][["cohensKappa"]][["error"]][["errorMessage"]],
+               "Cohen's kappa requires nominal or ordinal variables")
+  expect_match(results[["results"]][["fleissKappa"]][["error"]][["errorMessage"]],
+               "Fleiss' kappa requires nominal or ordinal variables")
+
+  options <- analysisOptions("raterAgreement")
+  options$variables       <- c("facGender", "facExperim")
+  options$variables.types <- c("nominal", "nominal")
+  options$dataStructure   <- "ratersInColumns"
+  options$cohensKappa     <- TRUE
+  options$cohensKappaType <- "weighted"
+  options$kendallW        <- TRUE
+  results <- runAnalysis("raterAgreement", "debug.csv", options)
+  expect_match(results[["results"]][["cohensKappa"]][["error"]][["errorMessage"]],
+               "Weighted Cohen's kappa requires ordinal variables")
+  expect_match(results[["results"]][["kendallW"]][["error"]][["errorMessage"]],
+               "Kendall's W requires ordinal or scale variables")
+})
+
+# ==== Fleiss' kappa: category present only in a listwise-deleted row ====
+test_that("Fleiss' kappa drops categories that only occur in incomplete rows", {
+  df <- data.frame(
+    r1 = c("A", "B", "C"),
+    r2 = c("A", "B", NA),
+    r3 = c("A", "B", "C")
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables     <- c("r1", "r2", "r3")
+  options$dataStructure <- "ratersInColumns"
+  options$fleissKappa   <- TRUE
+  options$ci            <- TRUE
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_identical(results[["status"]], "complete")
+  jaspTools::expect_equal_tables(results[["results"]][["fleissKappa"]][["data"]],
+    list(0.199848053940782, 1.80015194605922, 0.408248290463863, 1, "Overall",
+         0.199848053940782, 1.80015194605922, 0.408248290463863, 1, "A",
+         0.199848053940782, 1.80015194605922, 0.408248290463863, 1, "B"))
+})
+
+# ==== Fleiss' kappa: zero kappa must yield the analytic SE, not NaN ====
+test_that("Fleiss' kappa SEs are exact for zero kappa", {
+  df <- data.frame(
+    r1 = c("A", "A", "B", "B"),
+    r2 = c("A", "B", "A", "B")
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables     <- c("r1", "r2")
+  options$dataStructure <- "ratersInColumns"
+  options$fleissKappa   <- TRUE
+  options$ci            <- TRUE
+  results <- runAnalysis("raterAgreement", df, options)
+  # analytic SE = sqrt(2 / (ns * nr * (nr - 1))) = sqrt(2/8) = 0.5
+  jaspTools::expect_equal_tables(results[["results"]][["fleissKappa"]][["data"]],
+    list(-0.979981992270027, 0.979981992270027, 0.5, 0, "Overall",
+         -0.979981992270027, 0.979981992270027, 0.5, 0, "A",
+         -0.979981992270027, 0.979981992270027, 0.5, 0, "B"))
+})
