@@ -27,10 +27,15 @@
 * Rater Agreement: added the F test for Kendall's W alongside the chi-square test ([Issue #2151](https://github.com/jasp-stats/jasp-issues/issues/2151)).
 
 ## Fixed
-* Rater Agreement: declared ordinal level order is now respected (Kendall's W, Krippendorff's alpha, weighted Cohen's kappa), including with raters in rows; validation runs on the analyzed (complete/pairwise) data; degenerate inputs (all-missing, constant ratings, single category, one rater) show clear errors instead of failing or reporting invalid results.
+* Rater Agreement: declared ordinal level order is now respected (Kendall's W, Krippendorff's alpha, weighted Cohen's kappa), including with raters in rows and when raters use different subsets of the categories; validation runs on the analyzed (complete/pairwise) data; degenerate inputs (all-missing, constant ratings, single category, one rater) show clear errors instead of failing or reporting invalid results.
+* Rater Agreement: Krippendorff's alpha is validated on the ratings that actually enter a coincidence (subjects rated at least twice); previously such data could report a non-estimable coefficient together with a bootstrap confidence interval.
+* Rater Agreement: Fleiss' kappa standard errors are computed from the Fleiss, Nee & Landis (1979) formulas instead of being reconstructed from rounded output.
 
 ## Changed
 * Rater Agreement: grouped bootstrap samples, CI level, and seed into an "Advanced Options" section; removed pre-checked defaults for all coefficients; added placeholder table prompting users to select a coefficient when variables are assigned.
+* Rater Agreement: the tie correction for Kendall's W is enabled by default, and bootstrap confidence intervals are only available for the tie-corrected coefficient, because resampling with replacement introduces ties.
+* Rater Agreement: weighted Cohen's kappa and ordinal Krippendorff's alpha require the raters to share one ordinal scale. When the declared category orders are contradictory or do not determine a unique order, an error is shown instead of an order-dependent result.
+* Rater Agreement: Cohen's kappa validates and reports each rater pair on its own pairwise-complete data. Pairs with fewer than three jointly rated subjects, without variation, or with a non-estimable coefficient are excluded from the average kappa and listed in a note. Pair rows are ordered V1-V2, V1-V3, V1-V4, ...
 
 ---
 
