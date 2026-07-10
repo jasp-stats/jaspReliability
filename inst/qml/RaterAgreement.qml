@@ -32,7 +32,7 @@ Form
 			name: 			"variables"
 			title: 			qsTr("Variables")
 			allowedColumns: ["nominal", "ordinal", "scale"]
-			info:			qsTr("Rating variables to include. Each variable is one rater; each row is a subject being rated.")
+			info:			qsTr("Rating variables to include. Whether a variable represents a rater or a subject/item depends on the data structure setting.")
 		}
 
 		RadioButtonGroup
@@ -100,6 +100,7 @@ Group
 {
 	CheckBox
 	{
+		id:    krippAlphaOpt
 		name:  "krippendorffsAlpha"
 		label: qsTr("Krippendorff's alpha")
 		info:  qsTr("Measures agreement among two or more raters. Applicable to nominal, ordinal, interval, or ratio data.")
@@ -119,17 +120,19 @@ Group
 		}
 	}
 
-		CheckBox
+	CheckBox
 	{
+		id:    kendallWOpt
 		name:  "kendallW"
 		label: qsTr("Kendall's W")
 		info:  qsTr("Measures concordance among multiple raters on ordinal rankings. Ranges from 0 (no agreement) to 1 (perfect agreement).")
 
 		CheckBox
 		{
-			name:  "correctForTies"
-			label: qsTr("Correct for ties")
-			info:  qsTr("Apply a correction to Kendall's W when tied ranks are present in the data.")
+			name:    "correctForTies"
+			label:   qsTr("Correct for ties")
+			checked: true
+			info:    qsTr("Apply a correction to Kendall's W when tied ranks are present in the data. Recommended whenever ties can occur.")
 		}
 	}
 }
@@ -178,12 +181,12 @@ Group
 			fieldWidth:   50
 			min:          100
 			max:          10000000
-			enabled: 		ciOpt.checked
-			info:         qsTr("Number of bootstrap replications used to compute confidence intervals. Higher values give more stable estimates.")
+			enabled:      ciOpt.checked && (krippAlphaOpt.checked || kendallWOpt.checked)
+			info:         qsTr("Number of bootstrap replications used to compute confidence intervals. Higher values give more stable estimates. Only applies to Krippendorff's alpha and Kendall's W, whose CIs are bootstrap-based.")
 		}
 
 		SetSeed {
-			enabled: ciOpt.checked
+			enabled: ciOpt.checked && (krippAlphaOpt.checked || kendallWOpt.checked)
 		}
 	}
 }

@@ -42,7 +42,7 @@ blandAltman <- function(jaspResults, dataset, options) {
     if (!is.null(subcontainer[[title]]))
       next
     blandAltmanPlots <- createJaspPlot(title = title, width = 600, height = 420)
-    blandAltmanPlots$info <- gettext("Scatter plot of mean vs. difference of the two measurements. The solid line is the mean difference (bias); dashed lines are the limits of agreement (\u00b11.96 SD).")
+    blandAltmanPlots$info <- gettext("Scatter plot of mean vs. difference of the two measurements. The middle dashed line is the mean difference (bias); the outer dashed lines are the limits of agreement (\u00b11.96 SD).")
     blandAltmanPlots$dependOn(optionContainsValue = list(pairs = pair))
     subcontainer[[title]] <- blandAltmanPlots
 

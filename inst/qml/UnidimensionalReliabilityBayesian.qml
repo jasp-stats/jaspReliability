@@ -287,7 +287,7 @@ Form
 				fieldWidth: 	100
 				min: 			100
 				max: 			1e7
-				info:			qsTr("Total number of posterior samples per chain after burn-in.")
+				info:			qsTr("Total number of MCMC iterations per chain, including burn-in. The number of retained posterior samples per chain is (samples - burn-in) / thinning.")
 			}
 
 			IntegerField
