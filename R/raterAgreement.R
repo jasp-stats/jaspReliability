@@ -63,15 +63,52 @@ raterAgreement <- function(jaspResults, dataset, options) {
   jaspResults[["placeholder"]] <- jaspTable
 }
 
-# union of the levels of all columns, preserving each column's declared level order
+# union of the levels of all columns. Order matters: the codes derived from it act as
+# ordinal positions. Numeric-looking labels are ordered by value; otherwise the sets are
+# merged preserving each column's declared level order (raters may carry subsets of the
+# levels, e.g. a rater who never used a middle category).
 .raterAgreementUnionLevels <- function(dataset) {
-  unique(unlist(lapply(dataset, function(x) {
+  levelSets <- lapply(dataset, function(x) {
     if (is.factor(x)) levels(x) else unique(as.character(x[!is.na(x)]))
-  })))
+  })
+  union <- unique(unlist(levelSets))
+
+  if (!anyNA(suppressWarnings(as.numeric(union))))
+    return(union[order(as.numeric(union))])
+
+  merged <- levelSets[[which.max(lengths(levelSets))]]
+  for (levelSet in levelSets) {
+    pos <- 0L
+    for (level in levelSet) {
+      i <- match(level, merged)
+      if (is.na(i)) {
+        merged <- append(merged, level, after = pos)
+        pos    <- pos + 1L
+      } else {
+        pos <- i
+      }
+    }
+  }
+  return(merged)
 }
 
 .raterAgreementIsDiscrete <- function(dataset) {
   vapply(dataset, function(x) is.factor(x) || is.character(x), logical(1L))
+}
+
+.raterAgreementAddCiColumns <- function(jaspTable, options) {
+  ciPercent <- format(100 * options[["ciLevel"]], digits = 3, drop0trailing = TRUE)
+  jaspTable$addColumnInfo(name = "SE",  title = gettext("SE"),    type = "number")
+  jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", ciPercent))
+  jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI", ciPercent))
+}
+
+# every column mapped onto integer codes over the shared union of levels, so identical
+# labels get identical codes across raters and codes respect the declared level order
+.raterAgreementUnionCodes <- function(dataset, allLevels = .raterAgreementUnionLevels(dataset)) {
+  mat <- vapply(dataset, function(x) as.numeric(factor(as.character(x), levels = allLevels)),
+                numeric(nrow(dataset)))
+  return(matrix(mat, nrow = nrow(dataset), dimnames = list(NULL, colnames(dataset))))
 }
 
 .raterAgreementHandleData <- function(dataset, options) {
@@ -83,11 +120,13 @@ raterAgreement <- function(jaspResults, dataset, options) {
   # raters in rows: transpose so that rows are subjects and columns are raters.
   # t() would strip factor levels, so encode discrete columns onto the union of their
   # levels FIRST and rebuild factors (union levels, declared order) after transposing.
-  if (any(.raterAgreementIsDiscrete(dataset))) {
+  isDiscrete <- .raterAgreementIsDiscrete(dataset)
+  if (any(isDiscrete) && !all(isDiscrete))
+    .quitAnalysis(gettext("With raters in rows, all subject/item columns must have the same measurement type. The data mix categorical and continuous columns; change the column types so they match."))
+
+  if (any(isDiscrete)) {
     allLevels <- .raterAgreementUnionLevels(dataset)
-    codes     <- sapply(dataset, function(x) as.integer(factor(as.character(x), levels = allLevels)))
-    codes     <- matrix(codes, nrow = nrow(dataset)) # sapply drops dims for 1-row data
-    tCodes    <- t(codes)
+    tCodes    <- t(.raterAgreementUnionCodes(dataset, allLevels))
     dataset   <- as.data.frame(lapply(seq_len(ncol(tCodes)),
                                       function(j) factor(allLevels[tCodes[, j]], levels = allLevels)))
   } else {
@@ -98,15 +137,15 @@ raterAgreement <- function(jaspResults, dataset, options) {
   return(dataset)
 }
 
-# complete-case numeric ratings for Kendall's W. Kendall only uses ranks WITHIN each
-# rater, so (ordered) factors can safely become their level codes -- as.matrix() would
-# turn them into character labels that rank alphabetically instead of by declared order.
+# complete-case numeric ratings for Kendall's W. Kendall uses ranks within each rater,
+# so discrete data become union-level codes -- as.matrix() would turn factors into
+# character labels that rank alphabetically instead of by declared order.
 .kendallWRatings <- function(dataset) {
-  cols <- lapply(dataset, function(x) if (is.factor(x)) as.numeric(x) else x)
-  mat  <- do.call(cbind, cols)
-  colnames(mat) <- colnames(dataset)
-  if (is.character(mat))
-    mat <- matrix(suppressWarnings(as.numeric(mat)), nrow = nrow(mat), dimnames = dimnames(mat))
+  if (any(.raterAgreementIsDiscrete(dataset))) {
+    mat <- .raterAgreementUnionCodes(dataset)
+  } else {
+    mat <- as.matrix(dataset)
+  }
   return(mat[stats::complete.cases(mat), , drop = FALSE])
 }
 
@@ -122,13 +161,11 @@ raterAgreement <- function(jaspResults, dataset, options) {
     return(as.matrix(dataset))
   if (method %in% c("interval", "ratio")) {
     cols <- lapply(dataset, function(x) suppressWarnings(as.numeric(as.character(x))))
-  } else {
-    allLevels <- .raterAgreementUnionLevels(dataset)
-    cols      <- lapply(dataset, function(x) as.numeric(factor(as.character(x), levels = allLevels)))
+    mat  <- do.call(cbind, cols)
+    colnames(mat) <- colnames(dataset)
+    return(mat)
   }
-  mat <- do.call(cbind, cols)
-  colnames(mat) <- colnames(dataset)
-  return(mat)
+  return(.raterAgreementUnionCodes(dataset))
 }
 
 # returns NULL if alpha can be computed, otherwise a user-facing error message
@@ -175,13 +212,6 @@ raterAgreement <- function(jaspResults, dataset, options) {
   )
 
 
-  formattedCIPercent <- format(
-    100 * options[["ciLevel"]],
-    digits = 3,
-    drop0trailing = TRUE
-  )
-
-
   if (ready) {
 
     if (any(options[["variables.types"]] == "scale")) {
@@ -208,11 +238,8 @@ raterAgreement <- function(jaspResults, dataset, options) {
       # the (weighted) distance between declared ordinal levels -- feed it the level codes
       # from the union of all columns' levels instead
       cohenData <- dataset
-      if (any(.raterAgreementIsDiscrete(cohenData))) {
-        allLevels <- .raterAgreementUnionLevels(cohenData)
-        cohenData <- as.data.frame(lapply(cohenData, function(x) as.numeric(factor(as.character(x), levels = allLevels))))
-        colnames(cohenData) <- colnames(dataset)
-      }
+      if (any(.raterAgreementIsDiscrete(cohenData)))
+        cohenData <- as.data.frame(.raterAgreementUnionCodes(cohenData))
 
       out_kappa <- try(psych::cohen.kappa(cohenData, alpha = 1 - options[["ciLevel"]],
                                           w.exp = ifelse(options[["weightType"]] == "quadratic", 2, 1)),
@@ -265,9 +292,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
       }
 
       if (options[["ci"]]) {
-        jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
-        jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
-        jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
+        .raterAgreementAddCiColumns(jaspTable, options)
         tableData[["SE"]] <- c(NA, allSE)
         tableData[["CIL"]] <- c(NA, allLowerBounds)
         tableData[["CIU"]] <- c(NA, allUpperBounds)
@@ -312,12 +337,6 @@ raterAgreement <- function(jaspResults, dataset, options) {
     )
   )
 
-  formattedCIPercent <- format(
-    100 * options[["ciLevel"]],
-    digits = 3,
-    drop0trailing = TRUE
-  )
-
   if (ready) {
 
     if (any(options[["variables.types"]] == "scale")) {
@@ -332,9 +351,14 @@ raterAgreement <- function(jaspResults, dataset, options) {
       return(jaspTable)
     }
 
+    # everything label-based from here on: as.matrix() on mixed factor/numeric columns
+    # would apply format() and pad numbers (" 7" vs "7"), breaking label matching, so
+    # convert columns to character explicitly (irr gets the same clean labels below)
+    fleissData      <- as.data.frame(lapply(dataset, as.character))
+
     # validate the ANALYZED (listwise-complete) data, not the raw rows: irr deletes
     # incomplete rows before computing
-    completeRatings <- as.matrix(stats::na.omit(dataset)) # same complete cases as irr uses
+    completeRatings <- as.matrix(stats::na.omit(fleissData)) # same complete cases as irr uses
     if (nrow(completeRatings) < 3) {
       jaspTable$setError(gettext(
         "Fleiss' kappa requires at least 3 complete subjects/items (rows without missing ratings). Check whether raters are in columns or rows."
@@ -344,15 +368,15 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
     present <- unique(as.character(as.vector(completeRatings)))
 
-    # display order: numeric when all categories are numbers, otherwise factor-level/alphabetical
-    rawCategories <- unique(unlist(dataset))
-    rawCategories <- rawCategories[!is.na(rawCategories)]
-    if (anyNA(suppressWarnings(as.numeric(as.character(rawCategories))))) {
-      categories <- as.character(sort(rawCategories))
+    # categories are the labels present in the analyzed data, in numeric order when all
+    # labels are numbers and in declared level order otherwise (unlist(dataset) must NOT
+    # be used here: it returns factor CODES when factor and numeric columns are mixed)
+    if (!anyNA(suppressWarnings(as.numeric(present)))) {
+      categories <- present[order(as.numeric(present))]
     } else {
-      categories <- as.character(rawCategories)[order(as.numeric(as.character(rawCategories)))]
+      allLevels  <- .raterAgreementUnionLevels(dataset)
+      categories <- allLevels[allLevels %in% present]
     }
-    categories <- categories[categories %in% present]
 
     if (length(categories) < 2) {
       jaspTable$setError(gettext(
@@ -362,7 +386,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
     }
 
     #calculate Fleiss' Kappa
-    allKappaData <- irr::kappam.fleiss(dataset)
+    allKappaData <- irr::kappam.fleiss(fleissData)
     overallKappa <- allKappaData$value
     alpha        <- 1 - options[["ciLevel"]]
 
@@ -393,14 +417,11 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
 
     if (options[["ci"]]) {
-      nCategories <- length(categories)
       SE <- c(overallSE, categorySE)
       overallCI <- overallKappa + c(-1, 1) * qnorm(1 - alpha / 2) * overallSE
       categoryCIL <- categoryKappas - qnorm(1 - alpha / 2) * categorySE
       categoryCIU <- categoryKappas + qnorm(1 - alpha / 2) * categorySE
-      jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
-      jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
-      jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
+      .raterAgreementAddCiColumns(jaspTable, options)
       tableData[["SE"]] <- SE
       tableData[["CIL"]] <- c(overallCI[1], categoryCIL)
       tableData[["CIU"]] <- c(overallCI[2], categoryCIU)
@@ -425,6 +446,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
   jaspTable$dependOn(
     options = c(
       "variables",
+      "variables.types",
       "krippendorffsAlpha",
       "krippendorffsAlphaMethod",
       "ci",
@@ -434,12 +456,6 @@ raterAgreement <- function(jaspResults, dataset, options) {
       "setSeed",
       "seed"
     )
-  )
-
-  formattedCIPercent <- format(
-    100 * options[["ciLevel"]],
-    digits = 3,
-    drop0trailing = TRUE
   )
 
   if (ready) {
@@ -468,9 +484,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
       confs <- (1 + c(-conf, conf)) / 2
       CIs <- quantile(alphas, probs = confs, na.rm = TRUE)
 
-      jaspTable$addColumnInfo(name = "SE", title = gettext("SE"), type = "number")
-      jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
-      jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number", overtitle = gettextf("%s%% CI", formattedCIPercent))
+      .raterAgreementAddCiColumns(jaspTable, options)
       tableData[["SE"]] <- sd(alphas, na.rm = TRUE)
       tableData[["CIL"]] <- CIs[1]
       tableData[["CIU"]] <- CIs[2]
@@ -499,6 +513,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
   bootstrapSamples <- createJaspState()
   bootstrapSamples$dependOn(options = c(
     "variables",
+    "variables.types",
     "krippendorffsAlpha",
     "krippendorffsAlphaMethod",
     "ci",
@@ -507,14 +522,15 @@ raterAgreement <- function(jaspResults, dataset, options) {
     "setSeed", "seed"))
   jaspResults[["bootstrapSamples"]] <- bootstrapSamples
 
-  alphas  <- rep(NA_real_, options[["bootstrapSamples"]])
-  n       <- nrow(ratings)
+  alphas   <- rep(NA_real_, options[["bootstrapSamples"]])
+  n        <- nrow(ratings)
+  tRatings <- t(ratings) # the irr-package expects raters to be in rows; transpose once, resample columns
 
   jaspBase::.setSeedJASP(options)
 
   for (i in seq_len(options[["bootstrapSamples"]])) {
-    bootData <- ratings[sample.int(n, size = n, replace = TRUE), , drop = FALSE]
-    alpha    <- try(irr::kripp.alpha(t(bootData), method = method)$value, silent = TRUE)
+    bootData <- tRatings[, sample.int(n, size = n, replace = TRUE), drop = FALSE]
+    alpha    <- try(irr::kripp.alpha(bootData, method = method)$value, silent = TRUE)
     if (!jaspBase::isTryError(alpha))
       alphas[i] <- alpha
   }
@@ -524,6 +540,12 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
 .kendallWBootRA <- function(jaspResults, dataset, options, ready) {
   if (!ready || !is.null(jaspResults[["kendallWBootstrapSamples"]]))
+    return()
+
+  # bootstrap CIs are only offered for the tie-corrected coefficient: resampling with
+  # replacement introduces ties, which distort the uncorrected W and would put the
+  # uncorrected point estimate on a different scale than its own CI
+  if (!options[["correctForTies"]])
     return()
 
   if (any(options[["variables.types"]] == "nominal"))
@@ -549,10 +571,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   for (i in seq_len(options[["bootstrapSamples"]])) {
     bootData <- ratings[sample.int(n, size = n, replace = TRUE), , drop = FALSE]
-    # resampling with replacement duplicates rows and thereby introduces ties, so
-    # replicates ALWAYS use the tie-corrected W -- the uncorrected formula would be
-    # distorted by these resampling artifacts
-    w <- try(irr::kendall(bootData, correct = TRUE)$value, silent = TRUE)
+    w        <- try(irr::kendall(bootData, correct = TRUE)$value, silent = TRUE)
     if (!jaspBase::isTryError(w))
       ws[i] <- w
   }
@@ -562,12 +581,6 @@ raterAgreement <- function(jaspResults, dataset, options) {
 }
 
 .computeKendallWTable <- function(jaspResults, dataset, options, ready) {
-  formattedCIPercent <- format(
-    100 * options[["ciLevel"]],
-    digits        = 3,
-    drop0trailing = TRUE
-  )
-
   jaspTable <- createJaspTable(title = gettext("Kendall's W"))
   jaspTable$info <- gettext("Kendall's coefficient of concordance W: measures agreement of rankings across multiple raters. Ranges from 0 (no agreement) to 1 (perfect concordance). Significance is assessed with the large-sample chi-square test and the F test, which performs better for small samples.")
   jaspTable$addColumnInfo(name = "W",     title = "W",        type = "number")
@@ -613,6 +626,12 @@ raterAgreement <- function(jaspResults, dataset, options) {
     return(jaspTable)
   }
 
+  # constant ratings: the uncorrected W is a meaningless 0 and the corrected W is NaN
+  if (all(apply(ratings, 2, stats::var) == 0)) {
+    jaspTable$setError(gettext("Kendall's W is not estimable: the rankings do not vary."))
+    return(jaspTable)
+  }
+
   result <- irr::kendall(ratings, correct = options[["correctForTies"]])
 
   if (!is.finite(result$value)) {
@@ -630,7 +649,7 @@ raterAgreement <- function(jaspResults, dataset, options) {
   df1   <- n - 1 - 2 / m
   df2   <- df1 * (m - 1)
 
-  fTestValid <- df1 > 0
+  fTestValid <- df1 > 0 && W < 1 # F is undefined at perfect concordance
 
   tableData <- list(
     W     = W,
@@ -647,24 +666,19 @@ raterAgreement <- function(jaspResults, dataset, options) {
   if (anyNA(dataset))
     footnote <- gettextf("%1$s Based on listwise complete cases.", footnote)
 
-  if (options[["ci"]] && !is.null(jaspResults[["kendallWBootstrapSamples"]])) {
+  if (options[["ci"]] && !options[["correctForTies"]]) {
+    footnote <- paste(footnote, gettext("Bootstrap CIs are only available with the tie correction enabled: resampling with replacement introduces ties, which distort the uncorrected coefficient."))
+  } else if (options[["ci"]] && !is.null(jaspResults[["kendallWBootstrapSamples"]])) {
     ws    <- jaspResults[["kendallWBootstrapSamples"]]$object
     conf  <- options[["ciLevel"]]
     probs <- (1 + c(-conf, conf)) / 2
     CIs   <- quantile(ws, probs = probs, na.rm = TRUE)
 
-    jaspTable$addColumnInfo(name = "SE",  title = gettext("SE"),    type = "number")
-    jaspTable$addColumnInfo(name = "CIL", title = gettext("Lower"), type = "number",
-                            overtitle = gettextf("%s%% CI", formattedCIPercent))
-    jaspTable$addColumnInfo(name = "CIU", title = gettext("Upper"), type = "number",
-                            overtitle = gettextf("%s%% CI", formattedCIPercent))
+    .raterAgreementAddCiColumns(jaspTable, options)
     tableData[["SE"]]  <- stats::sd(ws, na.rm = TRUE)
     tableData[["CIL"]] <- CIs[[1L]]
     tableData[["CIU"]] <- CIs[[2L]]
     footnote <- paste(footnote, gettext("Confidence intervals are based on bootstrap."))
-
-    if (!options[["correctForTies"]])
-      footnote <- paste(footnote, gettext("Bootstrap replicates always use the tie correction, because resampling with replacement introduces ties."))
 
     nFailed <- sum(is.na(ws))
     if (nFailed > 0)
@@ -673,7 +687,9 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   jaspTable$addFootnote(footnote)
   jaspTable$addFootnote(gettext("Chi-square test is valid for large samples only."))
-  if (!fTestValid)
+  if (!fTestValid && W == 1)
+    jaspTable$addFootnote(gettext("The F test is undefined for perfect concordance (W = 1)."))
+  else if (!fTestValid)
     jaspTable$addFootnote(gettext("The F test is not available for this design: it requires n - 1 - 2/m > 0 (n = subjects/items, m = raters)."))
   if (!options[["correctForTies"]] && !is.null(result$error))
     jaspTable$addFootnote(gettext("Ties are present in the ratings, so the uncorrected coefficient may be inaccurate. Consider enabling the tie correction."), symbol = gettext("Warning:"))

@@ -71,25 +71,26 @@ results <- runAnalysis("raterAgreement", "test.csv", options, makeTests = F)
 test_that("Cohen's Weighted kappa table results match", {
   table <- results[["results"]][["cohensKappa"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list("", "", "", -0.000737157723817298, "", "Average kappa", -0.0105967225936691,
+                                 list("", "", "", -0.00184386638316336, "", "Average kappa", -0.0105967225936691,
                                       0.0461522781492244, 0.0110156757407617, 0.0177777777777777,
-                                      100, "facGender - facExperim", -0.0360210153805231, 0.0247140649315706,
-                                      0.0117894225809945, -0.00565347522447626, 80, "facGender - debBinMiss20",
-                                      -0.0433804063567408, 0.0147088549072342, 0.0112758367147896,
-                                      -0.0143357757247533, 80, "facExperim - debBinMiss20"))
+                                      100, "facGender - facExperim", -0.0393585273220352, 0.0269993851919001,
+                                      0.0128808831436364, -0.00617957106506752, 80, "facGender - debBinMiss20",
+                                      -0.0516244390801062, 0.0173648273557058, 0.013391661151762,
+                                      -0.0171298058622002, 80, "facExperim - debBinMiss20"))
 })
 
 test_that("Fleiss' kappa table results match", {
   table <- results[["results"]][["fleissKappa"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(-0.276327852798572, -0.127177258822542, 0.0289519561273982, -0.201752555810557,
-                                      "Overall", -0.360298917334901, -0.0277607841576364, 0.0645497224367903,
-                                      -0.194029850746269, "f", -0.372299217342401, -0.0397610841651366, 0.0645497224367903,
-                                      -0.206030150753769, "m", -0.384543178263759, -0.0520050450864946, 0.0645497224367903,
-                                      -0.218274111675127, "control", -0.348535076440849, -0.0159969432635844,
-                                      0.0645497224367903, -0.182266009852217, "experimental", -0.337000773905705,
-                                      -0.00446264072844088, 0.0645497224367903, -0.170731707317073, 0, -0.397038297357863,
-                                      -0.0645001641805985, 0.0645497224367903, -0.230769230769231, 1))
+                                 list(-0.276327852798572, -0.127177258822542, 0.0289519561273983, -0.201752555810557,
+                                      "Overall", -0.337000773905705, -0.00446264072844088, 0.0645497224367903,
+                                      -0.170731707317073, 0, -0.397038297357863, -0.0645001641805985,
+                                      0.0645497224367903, -0.230769230769231, 1, -0.384543178263759,
+                                      -0.0520050450864946, 0.0645497224367903, -0.218274111675127, "control",
+                                      -0.348535076440849, -0.0159969432635844, 0.0645497224367903,
+                                      -0.182266009852217, "experimental", -0.360298917334901, -0.0277607841576364,
+                                      0.0645497224367903, -0.194029850746269, "f", -0.372299217342401,
+                                      -0.0397610841651366, 0.0645497224367903, -0.206030150753769, "m"))
 })
 
 test_that("Krippendorff's alpha table results match", {
@@ -132,11 +133,13 @@ set.seed(1)
 results <- runAnalysis("raterAgreement", "debug.csv", options, makeTests = F)
 
 test_that("Kendall's W table results match", {
+  # CI requested but tie correction off: no CI columns, explanatory footnote instead
   table <- results[["results"]][["kendallW"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.23561428003378, 0.405859685967264, 0.926742171157389, 0.0428426729424179,
-                                      0.316646331299797, 94.0439603960396, 99, 98.3333333333333,
-                                      196.666666666667, 0.621972149059366, 0.660376274732495))
+                                 list(0.926742171157389, 0.316646331299797, 94.0439603960396, 99,
+                                      98.3333333333333, 196.666666666667, 0.621972149059366, 0.660376274732495))
+  footnotes <- sapply(results[["results"]][["kendallW"]][["footnotes"]], `[[`, "text")
+  expect_true(any(grepl("Bootstrap CIs are only available with the tie correction", footnotes)))
 })
 
 test_that("Kendall's W with tie correction and no CI results match", {
@@ -482,8 +485,8 @@ test_that("Kendall's W errors cleanly when rankings do not vary", {
                "do not vary")
 })
 
-# ==== Bootstrap replicates always use the tie correction ====
-test_that("Uncorrected Kendall's W bootstrap CI is not distorted by resampling ties", {
+# ==== Bootstrap CIs only exist for the tie-corrected coefficient ====
+test_that("Uncorrected Kendall's W with CI shows no CI and explains why", {
   df <- data.frame(r1 = 1:5, r2 = 1:5, r3 = 1:5) # identical tie-free rankings, W = 1
   options <- analysisOptions("raterAgreement")
   options$variables        <- c("r1", "r2", "r3")
@@ -495,13 +498,30 @@ test_that("Uncorrected Kendall's W bootstrap CI is not distorted by resampling t
   options$setSeed          <- TRUE
   set.seed(1)
   results <- runAnalysis("raterAgreement", df, options)
-  # corrected replicates keep W = 1 in every resample: SE = 0, CI = [1, 1]
-  # (uncorrected replicates gave SE ~ 0.097 and CI [0.5, 1]); F column is Inf (unicode)
+  # no CI columns (resampling introduces ties, incompatible with the uncorrected W);
+  # F test undefined at perfect concordance (W = 1)
   jaspTools::expect_equal_tables(results[["results"]][["kendallW"]][["data"]],
-    list(1, 1, "<unicode>", 0, 1, 12, 4, 3.33333333333333, 6.66666666666667,
-         0.0173512652366645, 0))
+    list("", 1, 12, 4, "", "", 0.0173512652366645, ""))
   footnotes <- sapply(results[["results"]][["kendallW"]][["footnotes"]], `[[`, "text")
-  expect_true(any(grepl("replicates always use the tie correction", footnotes)))
+  expect_true(any(grepl("Bootstrap CIs are only available with the tie correction", footnotes)))
+  expect_true(any(grepl("undefined for perfect concordance", footnotes)))
+})
+
+test_that("Corrected Kendall's W bootstrap CI is not distorted by resampling ties", {
+  df <- data.frame(r1 = 1:5, r2 = 1:5, r3 = 1:5) # identical tie-free rankings, W = 1
+  options <- analysisOptions("raterAgreement")
+  options$variables        <- c("r1", "r2", "r3")
+  options$dataStructure    <- "ratersInColumns"
+  options$kendallW         <- TRUE
+  options$correctForTies   <- TRUE
+  options$ci               <- TRUE
+  options$bootstrapSamples <- 1000
+  options$setSeed          <- TRUE
+  set.seed(1)
+  results <- runAnalysis("raterAgreement", df, options)
+  # every corrected replicate keeps W = 1: SE = 0, CI = [1, 1]
+  jaspTools::expect_equal_tables(results[["results"]][["kendallW"]][["data"]],
+    list(1, 1, "", 0, 1, 12, 4, "", "", 0.0173512652366645, ""))
 })
 
 # ==== Krippendorff interval method uses actual numeric label values, not level codes ====
@@ -534,4 +554,73 @@ test_that("Krippendorff's alpha interval method rejects non-numeric labels", {
   results <- runAnalysis("raterAgreement", df, options)
   expect_match(results[["results"]][["krippendorffsAlpha"]][["error"]][["errorMessage"]],
                "requires numeric ratings")
+})
+
+# ==== Raters with mismatched level sets: union codes must respect numeric label order ====
+test_that("Union level codes are ordered by value when a rater misses a category", {
+  df <- data.frame(
+    r1 = factor(c("1", "3", "1", "3", "3", "1"), levels = c("1", "3")), # never used "2"
+    r2 = factor(c("1", "2", "3", "2", "3", "1"), levels = c("1", "2", "3")),
+    r3 = factor(c("1", "3", "2", "2", "3", "1"), levels = c("1", "2", "3"))
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables                <- c("r1", "r2", "r3")
+  options$variables.types          <- c("ordinal", "ordinal", "ordinal")
+  options$dataStructure            <- "ratersInColumns"
+  options$kendallW                 <- TRUE
+  options$krippendorffsAlpha       <- TRUE
+  options$krippendorffsAlphaMethod <- "ordinal"
+  options$ci                       <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  # references: irr on the numeric label values (appearance-order union "1","3","2"
+  # would scramble the codes and give different results)
+  jaspTools::expect_equal_tables(results[["results"]][["kendallW"]][["data"]],
+    list(6.80645161290323, 0.772893772893773, 11.5934065934066, 5, 4.33333333333333,
+         8.66666666666667, 0.0408043931372446, 0.00848102504588204))
+  jaspTools::expect_equal_tables(results[["results"]][["krippendorffsAlpha"]][["data"]],
+    list(0.652777777777778, "Ordinal"))
+})
+
+# ==== Fleiss' kappa with mixed factor and numeric columns ====
+test_that("Fleiss' kappa handles mixed factor/numeric columns and multi-width labels", {
+  df <- data.frame(
+    r1 = factor(c("7", "10", "7", "10")),
+    r2 = c(7, 10, 7, 10), # numeric column: unlist() would leak factor codes, as.matrix() would pad "7" to " 7"
+    r3 = factor(c("7", "10", "10", "7"))
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables     <- c("r1", "r2", "r3")
+  options$dataStructure <- "ratersInColumns"
+  options$fleissKappa   <- TRUE
+  options$ci            <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_identical(results[["status"]], "complete")
+  jaspTools::expect_equal_tables(results[["results"]][["fleissKappa"]][["data"]],
+    list(0.333333333333333, "Overall", 0.333333333333333, "7", 0.333333333333333, "10"))
+})
+
+# ==== Raters in rows with mixed column types is refused ====
+test_that("Row mode with mixed categorical/continuous columns gives a validation error", {
+  df <- data.frame(s1 = c(1.5, 2.5), s2 = factor(c("a", "b")), s3 = c(7.1, 3.2))
+  options <- analysisOptions("raterAgreement")
+  options$variables     <- c("s1", "s2", "s3")
+  options$dataStructure <- "ratersInRows"
+  options$kendallW      <- TRUE
+  options$ci            <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_identical(results[["status"]], "validationError")
+})
+
+# ==== Constant ratings error regardless of the tie-correction setting ====
+test_that("Kendall's W errors on constant rankings also without tie correction", {
+  df <- data.frame(r1 = c(2, 2, 2, 2), r2 = c(3, 3, 3, 3), r3 = c(1, 1, 1, 1))
+  options <- analysisOptions("raterAgreement")
+  options$variables      <- c("r1", "r2", "r3")
+  options$dataStructure  <- "ratersInColumns"
+  options$kendallW       <- TRUE
+  options$correctForTies <- FALSE # uncorrected W would be a meaningless finite 0
+  options$ci             <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_match(results[["results"]][["kendallW"]][["error"]][["errorMessage"]],
+               "do not vary")
 })
