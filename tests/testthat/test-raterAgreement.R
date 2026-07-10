@@ -16,22 +16,24 @@ results <- runAnalysis("raterAgreement", testthat::test_path("binaryTestDt.csv")
 
 
 test_that("Cohen's kappa table results match", {
+  # pairs are enumerated in combn() order (V1-V2, V1-V3, V1-V4, ...); the kappas are
+  # unchanged, each pair is computed on its own pairwise-complete data
   table <- results[["results"]][["cohensKappa"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list("", "", "", 0.114984433765595, "Average kappa", 0.0924679737811612,
                                       0.357606541867125, 0.0676386326935962, 0.225037257824143, "V1 - V2",
-                                      -0.00101486089827027, 0.203411665159256, 0.052150582273454,
-                                      0.101198402130493, "V1 - V3", -0.0200019787491091, 0.151023173354119,
-                                      0.0436296670378263, 0.0655105973025049, "V2 - V3", 0.0576342926736923,
-                                      0.309887992795108, 0.0643516161804914, 0.1837611427344, "V1 - V4",
-                                      -0.0882775571852617, 0.1399093155876, 0.0582120065911339, 0.025815879201169,
-                                      "V2 - V4", -0.032509269670062, 0.257559504097391, 0.0739984959048937,
-                                      0.112525117213664, "V3 - V4", -0.0240223485028135, 0.221356704625165,
-                                      0.0625978474766621, 0.0986671780611757, "V1 - V5", 0.0762065929175585,
+                                      -0.00101486089827026, 0.203411665159256, 0.052150582273454,
+                                      0.101198402130493, "V1 - V3", 0.0576342926736923, 0.309887992795108,
+                                      0.0643516161804914, 0.1837611427344, "V1 - V4", -0.0240223485028134,
+                                      0.221356704625165, 0.0625978474766621, 0.0986671780611757, "V1 - V5",
+                                      -0.0200019787491091, 0.151023173354119, 0.0436296670378263,
+                                      0.0655105973025049, "V2 - V3", -0.0882775571852617, 0.1399093155876,
+                                      0.0582120065911339, 0.025815879201169, "V2 - V4", 0.0762065929175585,
                                       0.337621571800286, 0.0666887200338209, 0.206914082358922, "V2 - V5",
-                                      -0.0317077880237179, 0.0969460355453044, 0.0328204560348627,
-                                      0.0326191237607932, "V3 - V5", 0.00907597751537415, 0.186515136621999,
-                                      0.0452659233807975, 0.0977955570686868, "V4 - V5"))
+                                      -0.0325092696700619, 0.257559504097391, 0.0739984959048937,
+                                      0.112525117213664, "V3 - V4", -0.0317077880237179, 0.0969460355453043,
+                                      0.0328204560348627, 0.0326191237607932, "V3 - V5", 0.00907597751537416,
+                                      0.186515136621999, 0.0452659233807975, 0.0977955570686868, "V4 - V5"))
 })
 
 test_that("Fleiss' kappa table results match", {
@@ -68,29 +70,26 @@ set.seed(1)
 results <- runAnalysis("raterAgreement", "test.csv", options, makeTests = F)
 
 
-test_that("Cohen's Weighted kappa table results match", {
-  table <- results[["results"]][["cohensKappa"]][["data"]]
-  jaspTools::expect_equal_tables(table,
-                                 list("", "", "", -0.00184386638316336, "", "Average kappa", -0.0105967225936691,
-                                      0.0461522781492244, 0.0110156757407617, 0.0177777777777777,
-                                      100, "facGender - facExperim", -0.0393585273220352, 0.0269993851919001,
-                                      0.0128808831436364, -0.00617957106506752, 80, "facGender - debBinMiss20",
-                                      -0.0516244390801062, 0.0173648273557058, 0.013391661151762,
-                                      -0.0171298058622002, 80, "facExperim - debBinMiss20"))
+test_that("Weighted Cohen's kappa refuses raters without a common ordinal scale", {
+  # facGender {f,m}, facExperim {control,experimental} and debBinMiss20 {0,1} have
+  # disjoint categories, so no common ordinal scale exists and the distances that
+  # weighted kappa needs are undefined
+  expect_match(results[["results"]][["cohensKappa"]][["error"]][["errorMessage"]],
+               "requires a common ordinal scale")
 })
 
 test_that("Fleiss' kappa table results match", {
   table <- results[["results"]][["fleissKappa"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(-0.276327852798572, -0.127177258822542, 0.0289519561273983, -0.201752555810557,
-                                      "Overall", -0.337000773905705, -0.00446264072844088, 0.0645497224367903,
-                                      -0.170731707317073, 0, -0.397038297357863, -0.0645001641805985,
-                                      0.0645497224367903, -0.230769230769231, 1, -0.384543178263759,
+                                 list(-0.276327852798572, -0.127177258822542, 0.0289519561273982, -0.201752555810557,
+                                      "Overall", -0.360298917334901, -0.0277607841576364, 0.0645497224367903,
+                                      -0.194029850746269, "f", -0.372299217342401, -0.0397610841651366,
+                                      0.0645497224367903, -0.206030150753769, "m", -0.384543178263759,
                                       -0.0520050450864946, 0.0645497224367903, -0.218274111675127, "control",
                                       -0.348535076440849, -0.0159969432635844, 0.0645497224367903,
-                                      -0.182266009852217, "experimental", -0.360298917334901, -0.0277607841576364,
-                                      0.0645497224367903, -0.194029850746269, "f", -0.372299217342401,
-                                      -0.0397610841651366, 0.0645497224367903, -0.206030150753769, "m"))
+                                      -0.182266009852217, "experimental", -0.337000773905705, -0.00446264072844088,
+                                      0.0645497224367903, -0.170731707317073, 0, -0.397038297357863,
+                                      -0.0645001641805985, 0.0645497224367903, -0.230769230769231, 1))
 })
 
 test_that("Krippendorff's alpha table results match", {
@@ -623,4 +622,206 @@ test_that("Kendall's W errors on constant rankings also without tie correction",
   results <- runAnalysis("raterAgreement", df, options)
   expect_match(results[["results"]][["kendallW"]][["error"]][["errorMessage"]],
                "do not vary")
+})
+
+# ==== Round 3: partial textual ordinal level sets ====
+test_that("Partial textual level sets merge to one order, invariant to rater order", {
+  # no rater declares the full scale: low<high, medium<high, low<medium
+  mk <- function(cols) {
+    df <- data.frame(
+      r1 = factor(c("low", "high", "low", "high", "low", "high"),          levels = c("low", "high"),    ordered = TRUE),
+      r2 = factor(c("medium", "high", "medium", "high", "high", "medium"), levels = c("medium", "high"), ordered = TRUE),
+      r3 = factor(c("low", "medium", "low", "medium", "low", "high"),      levels = c("low", "medium"),  ordered = TRUE)
+    )
+    df[, cols, drop = FALSE]
+  }
+  runFor <- function(cols) {
+    options <- analysisOptions("raterAgreement")
+    options$variables                <- cols
+    options$variables.types          <- rep("ordinal", 3)
+    options$dataStructure            <- "ratersInColumns"
+    options$cohensKappa              <- TRUE
+    options$cohensKappaType          <- "weighted"
+    options$krippendorffsAlpha       <- TRUE
+    options$krippendorffsAlphaMethod <- "ordinal"
+    options$ci                       <- FALSE
+    runAnalysis("raterAgreement", mk(cols), options)
+  }
+  a <- runFor(c("r1", "r2", "r3"))
+  b <- runFor(c("r2", "r3", "r1"))
+  c <- runFor(c("r3", "r1", "r2"))
+
+  # the constraints imply low < medium < high, whatever order the raters appear in
+  avgKappa <- function(r) r[["results"]][["cohensKappa"]][["data"]][[1]][["cKappa"]]
+  alpha    <- function(r) r[["results"]][["krippendorffsAlpha"]][["data"]][[1]][["kAlpha"]]
+  expect_equal(avgKappa(a), 0.364923747276688)
+  expect_equal(avgKappa(b), avgKappa(a))
+  expect_equal(avgKappa(c), avgKappa(a))
+  expect_equal(alpha(a), 0.294117647058823)
+  expect_equal(alpha(b), alpha(a))
+  expect_equal(alpha(c), alpha(a))
+})
+
+test_that("Ambiguous ordinal schemas are refused by order-sensitive coefficients", {
+  # low<high and medium<high are declared, but low vs medium is undetermined
+  df <- data.frame(
+    a = factor(c("low", "high", "low", "high"),       levels = c("low", "high"),    ordered = TRUE),
+    b = factor(c("medium", "high", "medium", "high"), levels = c("medium", "high"), ordered = TRUE),
+    c = factor(c("low", "high", "medium", "high"),    levels = c("low", "high"),    ordered = TRUE)
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables                <- c("a", "b", "c")
+  options$variables.types          <- rep("ordinal", 3)
+  options$dataStructure            <- "ratersInColumns"
+  options$cohensKappa              <- TRUE
+  options$cohensKappaType          <- "weighted"
+  options$krippendorffsAlpha       <- TRUE
+  options$krippendorffsAlphaMethod <- "ordinal"
+  options$fleissKappa              <- TRUE
+  options$ci                       <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_match(results[["results"]][["cohensKappa"]][["error"]][["errorMessage"]],
+               "requires a common ordinal scale")
+  expect_match(results[["results"]][["krippendorffsAlpha"]][["error"]][["errorMessage"]],
+               "requires a common ordinal scale")
+  # Fleiss' kappa is order-free, so it still computes
+  expect_gt(length(results[["results"]][["fleissKappa"]][["data"]]), 0)
+})
+
+# ==== Round 3: Kendall ranks within raters, so columns keep their own scale ====
+test_that("Kendall's W with mixed ordinal and scale raters is subject-order invariant", {
+  df <- data.frame(
+    ord = factor(c("low", "medium", "high", "medium", "low", "high", "high", "low", "medium"),
+                 levels = c("low", "medium", "high"), ordered = TRUE),
+    sc1 = c(2.5, 7.1, 9.9, 4.0, 1.2, 8.8, 9.1, 0.5, 5.5),
+    sc2 = c(1.0, 6.0, 9.0, 5.0, 2.0, 8.0, 9.5, 0.1, 4.4)
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables       <- c("ord", "sc1", "sc2")
+  options$variables.types <- c("ordinal", "scale", "scale")
+  options$dataStructure   <- "ratersInColumns"
+  options$kendallW        <- TRUE
+  options$ci              <- FALSE
+  a <- runAnalysis("raterAgreement", df, options)
+  b <- runAnalysis("raterAgreement", df[c(5, 2, 9, 1, 7, 3, 8, 6, 4), ], options) # permute subjects
+
+  # reference: irr::kendall on the per-column codes (numeric columns keep their values)
+  expect_equal(a[["results"]][["kendallW"]][["data"]][[1]][["W"]], 0.96551724137931)
+  expect_equal(b[["results"]][["kendallW"]][["data"]][[1]][["W"]],
+               a[["results"]][["kendallW"]][["data"]][[1]][["W"]])
+})
+
+# ==== Round 3: Krippendorff validates the effective coincidence data ====
+test_that("Krippendorff's alpha rejects data whose pairable ratings do not vary", {
+  df <- data.frame(               # one pairable A/A item, the rest are singleton B ratings
+    r1 = c("A", "B",  NA,  NA),
+    r2 = c("A",  NA, "B",  NA),
+    r3 = c(NA,   NA,  NA, "B")
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables          <- c("r1", "r2", "r3")
+  options$dataStructure      <- "ratersInColumns"
+  options$krippendorffsAlpha <- TRUE
+  options$ci                 <- TRUE
+  options$bootstrapSamples   <- 200
+  options$setSeed            <- TRUE
+  set.seed(1)
+  results <- runAnalysis("raterAgreement", df, options)
+  # previously: NaN estimate with a bootstrap CI of [1, 1]
+  expect_match(results[["results"]][["krippendorffsAlpha"]][["error"]][["errorMessage"]],
+               "pairable ratings do not vary")
+  expect_length(results[["results"]][["krippendorffsAlpha"]][["data"]], 0)
+})
+
+# ==== Round 3: Cohen validates each analyzed rater pair ====
+test_that("Cohen's kappa validates each rater pair on its own complete cases", {
+  runFor <- function(df, vars = c("r1", "r2")) {
+    options <- analysisOptions("raterAgreement")
+    options$variables     <- vars
+    options$dataStructure <- "ratersInColumns"
+    options$cohensKappa   <- TRUE
+    options$ci            <- FALSE
+    runAnalysis("raterAgreement", df, options)
+  }
+  # both raters constant -> not estimable (was: blank kappa, no error)
+  r <- runFor(data.frame(r1 = rep("a", 5), r2 = rep("a", 5)))
+  expect_match(r[["results"]][["cohensKappa"]][["error"]][["errorMessage"]], "do not vary")
+
+  # one jointly rated subject -> not enough (was: NaN)
+  r <- runFor(data.frame(r1 = c("a", "b", NA, NA, NA), r2 = c("a", NA, "b", NA, NA)))
+  expect_match(r[["results"]][["cohensKappa"]][["error"]][["errorMessage"]], "fewer than 3")
+
+  # two jointly rated subjects -> still below the stated minimum (was: kappa = 1)
+  r <- runFor(data.frame(r1 = c("a", "b", NA, NA, NA), r2 = c("a", "b", NA, NA, NA)))
+  expect_match(r[["results"]][["cohensKappa"]][["error"]][["errorMessage"]], "fewer than 3")
+
+  # a single unusable pair does not blank the usable ones
+  df <- data.frame(
+    r1 = c("a", "b", "a", "b", "a", "b"),
+    r2 = c("a", "b", "b", "b", "a", "a"),
+    r3 = c("a",  NA,  NA,  NA,  NA,  NA)
+  )
+  r <- runFor(df, vars = c("r1", "r2", "r3"))
+  expect_identical(r[["status"]], "complete")
+  rows <- r[["results"]][["cohensKappa"]][["data"]]
+  expect_equal(rows[[1]][["cKappa"]], 0.333333333333333) # average over the valid pair only
+  expect_equal(rows[[2]][["cKappa"]], 0.333333333333333) # r1 - r2
+  expect_identical(rows[[3]][["cKappa"]], "")            # r1 - r3, not computable
+  footnotes <- sapply(r[["results"]][["cohensKappa"]][["footnotes"]], `[[`, "text")
+  expect_true(any(grepl("Some rater pairs could not be computed", footnotes)))
+})
+
+test_that("Cohen's kappa pair labels survive variable names containing spaces", {
+  df <- data.frame(`Rater one` = c("a", "b", "a", "b"), `Rater two` = c("a", "b", "b", "a"),
+                   check.names = FALSE)
+  options <- analysisOptions("raterAgreement")
+  options$variables     <- c("Rater one", "Rater two")
+  options$dataStructure <- "ratersInColumns"
+  options$cohensKappa   <- TRUE
+  options$ci            <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  # was "Rater - one Rater two" (psych's pair names, first space replaced)
+  expect_identical(results[["results"]][["cohensKappa"]][["data"]][[2]][["ratings"]],
+                   "Rater one - Rater two")
+})
+
+# ==== Round 3: weighted Cohen with CI on a valid shared ordinal scale ====
+test_that("Weighted Cohen's kappa with CI matches psych on a shared ordinal scale", {
+  lv <- c("low", "medium", "high")
+  df <- data.frame(
+    r1 = factor(c("low","low","medium","medium","high","high","low","medium","high","high"), levels = lv, ordered = TRUE),
+    r2 = factor(c("low","medium","medium","high","high","high","low","low","medium","high"), levels = lv, ordered = TRUE),
+    r3 = factor(c("high","low","low","medium","medium","high","medium","low","high","low"),  levels = lv, ordered = TRUE)
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables       <- c("r1", "r2", "r3")
+  options$variables.types <- rep("ordinal", 3)
+  options$dataStructure   <- "ratersInColumns"
+  options$cohensKappa     <- TRUE
+  options$cohensKappaType <- "weighted"
+  options$ci              <- TRUE
+  options$ciLevel         <- 0.95
+  results <- runAnalysis("raterAgreement", df, options)
+  # reference: psych::cohen.kappa(w.exp = 2) on the level codes, per pair
+  jaspTools::expect_equal_tables(results[["results"]][["cohensKappa"]][["data"]],
+    list("", "", "", 0.293053004014425, "Average kappa",
+         0.43904800204193, 0.981241853030534, 0.138317299518093, 0.710144927536232, "r1 - r2",
+         -0.455696679422334, 0.765555834351911, 0.311549733415341, 0.154929577464788, "r1 - r3",
+         -0.547150588633365, 0.575319602717872, 0.286349698312096, 0.0140845070422532, "r2 - r3"))
+})
+
+# ==== Round 3: Kendall bootstrap must not run on invalid input ====
+test_that("Kendall's W bootstrap is skipped for input the table rejects", {
+  df <- data.frame(r1 = c(2, 2, 2, 2), r2 = c(3, 3, 3, 3), r3 = c(1, 1, 1, 1))
+  options <- analysisOptions("raterAgreement")
+  options$variables        <- c("r1", "r2", "r3")
+  options$dataStructure    <- "ratersInColumns"
+  options$kendallW         <- TRUE
+  options$correctForTies   <- TRUE
+  options$ci               <- TRUE
+  options$bootstrapSamples <- 100000 # would take a long time if the guard were missing
+  options$setSeed          <- TRUE
+  elapsed <- system.time(results <- runAnalysis("raterAgreement", df, options))[["elapsed"]]
+  expect_match(results[["results"]][["kendallW"]][["error"]][["errorMessage"]], "do not vary")
+  expect_lt(elapsed, 20)
 })
