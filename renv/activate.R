@@ -228,7 +228,7 @@ local({
   
     # ensure the target library path exists; required for file.copy(..., recursive = TRUE)
     dir.create(library, showWarnings = FALSE, recursive = TRUE)
-  
+
     # try to install renv from cache
     md5 <- attr(version, "md5", exact = TRUE)
     if (length(md5)) {
@@ -1248,7 +1248,7 @@ local({
       }
     )
   }
-  
+
   renv_bootstrap_run_impl <- function(project, libpath, version) {
   
     # perform bootstrap

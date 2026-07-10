@@ -24,6 +24,10 @@
 
 ## Added
 * Rater Agreement: added Kendall's W coefficient with bootstrap CI support.
+* Rater Agreement: added the F test for Kendall's W alongside the chi-square test ([Issue #2151](https://github.com/jasp-stats/jasp-issues/issues/2151)).
+
+## Fixed
+* Rater Agreement: declared ordinal level order is now respected (Kendall's W, Krippendorff's alpha, weighted Cohen's kappa), including with raters in rows; validation runs on the analyzed (complete/pairwise) data; degenerate inputs (all-missing, constant ratings, single category, one rater) show clear errors instead of failing or reporting invalid results.
 
 ## Changed
 * Rater Agreement: grouped bootstrap samples, CI level, and seed into an "Advanced Options" section; removed pre-checked defaults for all coefficients; added placeholder table prompting users to select a coefficient when variables are assigned.
