@@ -134,8 +134,9 @@ results <- runAnalysis("raterAgreement", "debug.csv", options, makeTests = F)
 test_that("Kendall's W table results match", {
   table <- results[["results"]][["kendallW"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(0.235537187052039, 0.405722388905557, 0.0428257441483345, 0.316646331299797,
-                                      94.0439603960396, 99, 0.621972149059366))
+                                 list(0.235537187052039, 0.405722388905557, 0.926742171157389, 0.0428257441483345,
+                                      0.316646331299797, 94.0439603960396, 99, 98.3333333333333,
+                                      196.666666666667, 0.621972149059366, 0.660376274732495))
 })
 
 test_that("Kendall's W with tie correction and no CI results match", {
@@ -152,7 +153,8 @@ test_that("Kendall's W with tie correction and no CI results match", {
   results2 <- runAnalysis("raterAgreement", "debug.csv", options2)
   table <- results2[["results"]][["kendallW"]][["data"]]
   jaspTools::expect_equal_tables(table,
-    list(0.31477197719772, 124.649702970297, 99, 0.0416297450235598))
+    list(1.37810466030173, 0.31477197719772, 124.649702970297, 99, 98.5, 295.5,
+         0.0416297450235598, 0.0214991915973132))
 })
 
 
@@ -168,8 +170,10 @@ test_that("Kendall's W matches DescTools reference (anxiety ratings, tie correct
   options$ci              <- FALSE
   results <- runAnalysis("raterAgreement", testthat::test_path("anxietyRatings.csv"), options)
   table <- results[["results"]][["kendallW"]][["data"]]
+  # F test cross-validated against vegan::kendall.global (Legendre, 2005)
   jaspTools::expect_equal_tables(table,
-    list(0.539656900212835, 30.7604444444444, 19, 0.0428834698290932))
+    list(2.34458536585366, 0.53965687595437, 30.7604419293991, 19, 18.3333333333333,
+         36.6666666666667, 0.0428834731269479, 0.013806204775388))
 })
 
 test_that("Cohen's kappa table results match with linear weighting", {
@@ -210,7 +214,8 @@ test_that("Kendall's W and Krippendorff's alpha respect ordered factor levels", 
   results <- runAnalysis("raterAgreement", df, options)
   # reference: irr::kendall / irr::kripp.alpha on the level codes (1 = low, 2 = medium, 3 = high)
   jaspTools::expect_equal_tables(results[["results"]][["kendallW"]][["data"]],
-    list(0.777777777777778, 11.6666666666667, 5, 0.0396519759960316))
+    list(7, 0.777777777777778, 11.6666666666667, 5, 4.33333333333333, 8.66666666666667,
+         0.0396519759960316, 0.00776230190368293))
   jaspTools::expect_equal_tables(results[["results"]][["krippendorffsAlpha"]][["data"]],
     list(0.675925925925926, "Ordinal"))
 })
@@ -225,7 +230,8 @@ test_that("Uncorrected Kendall's W on tied data matches irr and warns about ties
   options$ci             <- FALSE
   results <- runAnalysis("raterAgreement", testthat::test_path("anxietyRatings.csv"), options)
   jaspTools::expect_equal_tables(results[["results"]][["kendallW"]][["data"]],
-    list(0.501921470342523, 28.6095238095238, 19, 0.0723803546937571))
+    list(2.01543106340154, 0.501921470342523, 28.6095238095238, 19, 18.3333333333333,
+         36.6666666666667, 0.0723803546937571, 0.0349217756891712))
   footnotes <- sapply(results[["results"]][["kendallW"]][["footnotes"]], `[[`, "text")
   expect_true(any(grepl("Ties are present", footnotes)))
 })
@@ -248,8 +254,9 @@ test_that("Kendall's W bootstrap CI handles incomplete rows and failed replicate
   results <- runAnalysis("raterAgreement", df, options)
   expect_identical(results[["status"]], "complete")
   jaspTools::expect_equal_tables(results[["results"]][["kendallW"]][["data"]],
-    list(0.111111111111111, 1, 0.350241068029438, 0.444444444444444,
-         2.66666666666667, 2, 0.263597138115727))
+    list(0.111111111111111, 1, 1.6, 0.350241068029438, 0.444444444444444,
+         2.66666666666667, 2, 1.33333333333333, 2.66666666666667,
+         0.263597138115727, 0.325271609713338))
   footnotes <- sapply(results[["results"]][["kendallW"]][["footnotes"]], `[[`, "text")
   expect_true(any(grepl("bootstrap samples could not be computed", footnotes)))
 })
@@ -271,7 +278,8 @@ test_that("Kendall's W with raters in rows matches raters-in-columns reference",
   expect_identical(results[["status"]], "complete")
   # reference: irr::kendall(t(df), correct = TRUE)
   jaspTools::expect_equal_tables(results[["results"]][["kendallW"]][["data"]],
-    list(0.2, 1.8, 3, 0.614934935782537))
+    list(0.5, 0.2, 1.8, 3, 2.33333333333333, 4.66666666666667,
+         0.614934935782537, 0.660869392065187))
 })
 
 # ==== Coefficient-specific variable type validation ====

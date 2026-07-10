@@ -480,11 +480,15 @@ raterAgreement <- function(jaspResults, dataset, options) {
   )
 
   jaspTable <- createJaspTable(title = gettext("Kendall's W"))
-  jaspTable$info <- gettext("Kendall's coefficient of concordance W: measures agreement of rankings across multiple raters. Ranges from 0 (no agreement) to 1 (perfect concordance).")
-  jaspTable$addColumnInfo(name = "W",     title = "W",                   type = "number")
-  jaspTable$addColumnInfo(name = "chisq", title = gettext("Chi-square"), type = "number")
-  jaspTable$addColumnInfo(name = "df",    title = "df",                  type = "integer")
-  jaspTable$addColumnInfo(name = "p",     title = "p",                   type = "pvalue")
+  jaspTable$info <- gettext("Kendall's coefficient of concordance W: measures agreement of rankings across multiple raters. Ranges from 0 (no agreement) to 1 (perfect concordance). Significance is assessed with the large-sample chi-square test and the F test, which performs better for small samples.")
+  jaspTable$addColumnInfo(name = "W",     title = "W",        type = "number")
+  jaspTable$addColumnInfo(name = "chisq", title = "\u03C7\u00B2", type = "number", overtitle = gettext("Chi-square test"))
+  jaspTable$addColumnInfo(name = "df",    title = "df",       type = "integer", overtitle = gettext("Chi-square test"))
+  jaspTable$addColumnInfo(name = "p",     title = "p",        type = "pvalue",  overtitle = gettext("Chi-square test"))
+  jaspTable$addColumnInfo(name = "F",     title = "F",        type = "number",  overtitle = gettext("F test"))
+  jaspTable$addColumnInfo(name = "df1",   title = "df1",      type = "number",  overtitle = gettext("F test"))
+  jaspTable$addColumnInfo(name = "df2",   title = "df2",      type = "number",  overtitle = gettext("F test"))
+  jaspTable$addColumnInfo(name = "pF",    title = "p",        type = "pvalue",  overtitle = gettext("F test"))
   jaspTable$position <- 3
   jaspTable$dependOn(options = c(
     "variables", "kendallW", "correctForTies", "ci", "ciLevel",
@@ -517,11 +521,24 @@ raterAgreement <- function(jaspResults, dataset, options) {
 
   result <- irr::kendall(ratings, correct = options[["correctForTies"]])
 
+  # F approximation (Kendall & Babington Smith, 1939; Legendre, 2005), preferable to the
+  # chi-square approximation for small numbers of subjects
+  W     <- result$value
+  m     <- result$raters
+  n     <- result$subjects
+  Fstat <- (m - 1) * W / (1 - W)
+  df1   <- n - 1 - 2 / m
+  df2   <- df1 * (m - 1)
+
   tableData <- list(
-    W     = result$value,
+    W     = W,
     chisq = result$statistic,
     df    = result$subjects - 1L,
-    p     = result$p.value
+    p     = result$p.value,
+    F     = Fstat,
+    df1   = df1,
+    df2   = df2,
+    pF    = stats::pf(Fstat, df1, df2, lower.tail = FALSE)
   )
 
   footnote <- gettextf("%1$i subjects/items and %2$i raters/measurements.", result$subjects, result$raters)
