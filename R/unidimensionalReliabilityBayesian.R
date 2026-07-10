@@ -1424,7 +1424,7 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
     return()
 
   plotContainer <- createJaspContainer(gettext("Posterior Plots"))
-  plotContainer$info <- gettext("Posterior density plots for each selected reliability coefficient, with optional prior overlay and shaded credible interval.")
+  plotContainer$info <- gettext("Posterior density plots for each selected reliability coefficient, with optional prior overlay and shading of the posterior probability region; the credible interval is shown as a separate error bar.")
   plotContainer$dependOn(options = c("posteriorPlot", "posteriorPlotShaded", "probabilityTable", "probabilityTableLowerBound",
                                      "probabilityTableUpperBound", "posteriorPlotFixedRange", "posteriorPlotPriorDisplayed", "scaleCiLevel",
                                      "scaleAlpha", "scaleOmega", "scaleLambda2"))

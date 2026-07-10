@@ -72,7 +72,7 @@ Form
 			name:   	"averagedRating"
 			label:  	qsTr("Ratings are averaged")
 			checked: 	false
-			info:		qsTr("When ratings are averaged across raters, ICC(A,k) is computed; otherwise ICC(A,1) per Shrout & Fleiss (1979). Averaging generally raises the reliability estimate.")
+			info:		qsTr("When ratings are averaged across raters, the k-rater version of the selected ICC is computed (e.g. ICC(2,k) instead of ICC(2,1)) per Shrout & Fleiss (1979). Averaging generally raises the reliability estimate.")
 		}
 	}
 

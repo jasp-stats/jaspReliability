@@ -215,7 +215,7 @@ Form
 			label: qsTr("Minimum number of observations per score group")
 			min: 1
 			defaultValue: 20
-			info: qsTr("Score groups with fewer observations are merged with adjacent groups before estimating the SEM (default: 20). Applies to all methods except Mollenkopf-Feldt and IRT.")
+			info: qsTr("Score groups with fewer observations are merged with adjacent groups before estimating the SEM (default: 20). Applies to the Thorndike, Feldt, ANOVA, and Lord generalized methods.")
 		}
 
 		CheckBox

@@ -287,7 +287,7 @@ Form
 				fieldWidth: 	100
 				min: 			100
 				max: 			1e7
-				info:			qsTr("Total number of MCMC iterations per chain, including burn-in. The number of retained posterior samples per chain is (samples - burn-in) / thinning.")
+				info:			qsTr("Total number of MCMC iterations per chain, including burn-in. The number of retained posterior samples per chain is ceiling((samples - burn-in) / thinning).")
 			}
 
 			IntegerField
@@ -564,7 +564,7 @@ Form
 			{
 				name: "pointEstimate"
 				title: qsTr("Posterior Point Estimate")
-				info:  qsTr("Whether to report the posterior mean or median as the point estimate in tables and plots.")
+				info:  qsTr("Whether to report the posterior mean or median as the point estimate in the tables.")
 				RadioButton{ value: "mean";		label: qsTr("Mean"); checked: true	}
 				RadioButton{ value: "median";	label: qsTr("Median")				}
 			}
