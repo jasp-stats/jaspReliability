@@ -16,6 +16,10 @@
 
 # jaspReliability (development version)
 
+## Fixed
+* Rater Agreement: declared factor level order is now authoritative for weighted Cohen's kappa and ordinal Krippendorff's alpha even when the labels look numeric (e.g. levels "1","3","2" declaring low < medium < high); numeric sorting is only used for columns with no declared order. Contradictory numeric-looking declared orders across raters now show the common-scale error instead of being silently sorted.
+* Rater Agreement: pairwise weighted Cohen's kappa now uses the full declared common scale for every rater pair, so a pair that never observes an interior category still gets that category's correct distance/weight instead of a rescaled subset.
+* Rater Agreement: Kendall's W (table and bootstrap CI) now rejects raters-in-rows data whose merged ordinal scale is ambiguous, matching the existing policy for weighted Cohen's kappa and ordinal Krippendorff's alpha; previously the result depended on the order of the subject columns.
 
 
 ---

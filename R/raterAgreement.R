@@ -64,23 +64,32 @@ raterAgreement <- function(jaspResults, dataset, options) {
 }
 
 # union of the levels of all columns. Order matters: the codes derived from it act as
-# ordinal positions. Numeric-looking labels are ordered by value. Text labels are merged
-# by a topological sort over the precedence constraints declared by every column's level
-# sequence (raters may carry subsets of the scale, e.g. a rater who never used a middle
-# category); `ordered` is TRUE only when those constraints determine a UNIQUE total
-# order -- contradictory or ambiguous schemas fall back to first-appearance order with
-# ordered = FALSE, and order-sensitive coefficients must refuse to run on them.
+# ordinal positions. Text labels are merged by a topological sort over the precedence
+# constraints declared by every column's level sequence (raters may carry subsets of the
+# scale, e.g. a rater who never used a middle category); `ordered` is TRUE only when
+# those constraints determine a UNIQUE total order -- contradictory or ambiguous schemas
+# fall back to first-appearance order with ordered = FALSE, and order-sensitive
+# coefficients must refuse to run on them. Factor levels are authoritative even when
+# their labels look numeric (e.g. levels "1","3","2" declaring low < medium < high) --
+# numeric sorting is only used as a column's local order when that column carries no
+# declared (factor) order of its own.
 .raterAgreementUnionLevels <- function(dataset) {
-  levelSets <- lapply(dataset, function(x) {
+  isFactorCol <- vapply(dataset, is.factor, logical(1L))
+  levelSets   <- lapply(dataset, function(x) {
     if (is.factor(x)) levels(x) else unique(as.character(x[!is.na(x)]))
   })
   union <- unique(unlist(levelSets))
 
-  if (!anyNA(suppressWarnings(as.numeric(union))))
+  if (!any(isFactorCol) && !anyNA(suppressWarnings(as.numeric(union))))
     return(list(levels = union[order(as.numeric(union))], ordered = TRUE))
 
-  # precedence edges from consecutive levels within each column
-  edges <- do.call(rbind, lapply(levelSets, function(lv) {
+  # precedence edges from consecutive levels within each column's local order: the
+  # column's declared factor levels, or -- for a non-factor column with no declared
+  # order -- its own ascending numeric order when its labels parse as numbers
+  edges <- do.call(rbind, lapply(seq_along(levelSets), function(i) {
+    lv <- levelSets[[i]]
+    if (!isFactorCol[i] && !anyNA(suppressWarnings(as.numeric(lv))))
+      lv <- lv[order(as.numeric(lv))]
     if (length(lv) < 2) NULL else cbind(lv[-length(lv)], lv[-1])
   }))
   edges <- unique(edges)
@@ -286,14 +295,16 @@ raterAgreement <- function(jaspResults, dataset, options) {
       # psych::cohen.kappa derives category order alphabetically from labels, which breaks
       # the (weighted) distance between declared ordinal levels -- feed it the level codes
       # from the union of all columns' levels instead
-      cohenData <- dataset
+      cohenData   <- dataset
+      cohenLevels <- NULL # full common scale, passed to psych so pairs missing a category still use its declared position
       if (any(.raterAgreementIsDiscrete(cohenData))) {
         unionLevels <- .raterAgreementUnionLevels(cohenData)
         if (weighted && !unionLevels[["ordered"]]) {
           jaspTable$setError(.raterAgreementAmbiguousOrderMessage(gettext("Weighted Cohen's kappa")))
           return(jaspTable)
         }
-        cohenData <- as.data.frame(.raterAgreementUnionCodes(cohenData, unionLevels[["levels"]]))
+        cohenData   <- as.data.frame(.raterAgreementUnionCodes(cohenData, unionLevels[["levels"]]))
+        cohenLevels <- seq_along(unionLevels[["levels"]])
       }
 
       # every pair is computed and validated on ITS OWN pairwise-complete data: raw row
@@ -322,7 +333,8 @@ raterAgreement <- function(jaspResults, dataset, options) {
           next
         }
 
-        pairKappa    <- try(psych::cohen.kappa(pairData, alpha = 1 - options[["ciLevel"]], w.exp = weightExp),
+        pairKappa    <- try(psych::cohen.kappa(pairData, alpha = 1 - options[["ciLevel"]], w.exp = weightExp,
+                                               levels = cohenLevels),
                             silent = TRUE)
         pairEstimate <- if (jaspBase::isTryError(pairKappa)) NaN else pairKappa$confid[k, 2]
         if (!is.finite(pairEstimate)) {
@@ -640,6 +652,12 @@ raterAgreement <- function(jaspResults, dataset, options) {
   if (any(options[["variables.types"]] == "nominal"))
     return()
 
+  # raters-in-rows merges all subject columns onto one shared ordinal scale before
+  # transposing; when that merge is ambiguous, every "rater" column inherits the same
+  # ill-defined order and ranking is not meaningful (see the table's matching check)
+  if (isTRUE(attr(dataset, "levelOrderAmbiguous")))
+    return() # the table shows the validation error
+
   # validation and listwise deletion must precede the bootstrap: resampling raw rows can
   # produce replicates with too few complete cases, erroring deep inside irr::kendall().
   # ALL of the table's checks must be mirrored here -- otherwise invalid input runs up to
@@ -696,6 +714,14 @@ raterAgreement <- function(jaspResults, dataset, options) {
     jaspTable$setError(gettext(
       "Kendall's W requires ordinal or scale variables. Remove nominal variables."
     ))
+    return(jaspTable)
+  }
+
+  # raters-in-rows merges all subject columns onto one shared ordinal scale before
+  # transposing (.raterAgreementHandleData); every "rater" column then inherits that
+  # merge, so an ambiguous common scale makes ranking meaningless and order-dependent
+  if (isTRUE(attr(dataset, "levelOrderAmbiguous"))) {
+    jaspTable$setError(.raterAgreementAmbiguousOrderMessage(gettext("Kendall's W")))
     return(jaspTable)
   }
 

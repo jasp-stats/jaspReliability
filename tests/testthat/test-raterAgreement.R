@@ -810,6 +810,155 @@ test_that("Weighted Cohen's kappa with CI matches psych on a shared ordinal scal
          -0.547150588633365, 0.575319602717872, 0.286349698312096, 0.0140845070422532, "r2 - r3"))
 })
 
+# ==== Round 4: factor levels stay authoritative even when labels look numeric ====
+test_that("Weighted Cohen's kappa uses declared factor order, not label value, for numeric-looking levels", {
+  lv      <- c("low", "medium", "high")
+  relabel <- c(low = "1", medium = "3", high = "2") # non-monotonic labels, same declared order
+  r1chr <- c("low","low","medium","medium","high","high","low","medium","high","high")
+  r2chr <- c("low","medium","medium","high","high","high","low","low","medium","high")
+  df <- data.frame(
+    r1 = factor(relabel[r1chr], levels = relabel[lv], ordered = TRUE),
+    r2 = factor(relabel[r2chr], levels = relabel[lv], ordered = TRUE)
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables       <- c("r1", "r2")
+  options$variables.types <- c("ordinal", "ordinal")
+  options$dataStructure   <- "ratersInColumns"
+  options$cohensKappa     <- TRUE
+  options$cohensKappaType <- "weighted"
+  options$ci              <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  # identical declared order to the low/medium/high test above -> identical average kappa
+  # (0.710144927536232), even though the labels ("1","3","2") look numeric. Sorting by
+  # label value instead would give 0.166666666666667.
+  jaspTools::expect_equal_tables(results[["results"]][["cohensKappa"]][["data"]],
+    list(0.710144927536232, "Average kappa", 0.710144927536232, "r1 - r2"))
+})
+
+test_that("Krippendorff's alpha and Kendall's W use declared factor order for numeric-looking levels", {
+  lv      <- c("low", "medium", "high")
+  relabel <- c(low = "1", medium = "3", high = "2")
+  mkCol <- function(x) factor(relabel[x], levels = relabel[lv], ordered = TRUE)
+  df <- data.frame(
+    r1 = mkCol(c("low", "medium", "high", "low",    "medium", "high")),
+    r2 = mkCol(c("low", "high",   "medium", "low",  "medium", "high")),
+    r3 = mkCol(c("medium", "medium", "high", "low", "low",    "high"))
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables                <- c("r1", "r2", "r3")
+  options$variables.types          <- c("ordinal", "ordinal", "ordinal")
+  options$dataStructure            <- "ratersInColumns"
+  options$kendallW                 <- TRUE
+  options$krippendorffsAlpha       <- TRUE
+  options$krippendorffsAlphaMethod <- "ordinal"
+  options$ci                       <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  # same references as "Kendall's W and Krippendorff's alpha respect ordered factor levels"
+  # above: Kendall ranks within raters (label-value-independent), Krippendorff uses the
+  # declared factor order regardless of the numeric-looking labels
+  jaspTools::expect_equal_tables(results[["results"]][["kendallW"]][["data"]],
+    list(7, 0.777777777777778, 11.6666666666667, 5, 4.33333333333333, 8.66666666666667,
+         0.0396519759960316, 0.00776230190368293))
+  jaspTools::expect_equal_tables(results[["results"]][["krippendorffsAlpha"]][["data"]],
+    list(0.675925925925926, "Ordinal"))
+})
+
+test_that("Contradictory numeric-looking factor orders are refused, not silently sorted", {
+  # r1 declares 1 < 2 < 3; r2 declares 1 < 3 < 2 -- contradictory on 2 vs 3
+  df <- data.frame(
+    r1 = factor(c("1","2","3","1","2","3"), levels = c("1","2","3"), ordered = TRUE),
+    r2 = factor(c("1","3","2","1","3","2"), levels = c("1","3","2"), ordered = TRUE)
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables                <- c("r1", "r2")
+  options$variables.types          <- c("ordinal", "ordinal")
+  options$dataStructure             <- "ratersInColumns"
+  options$cohensKappa              <- TRUE
+  options$cohensKappaType          <- "weighted"
+  options$krippendorffsAlpha       <- TRUE
+  options$krippendorffsAlphaMethod <- "ordinal"
+  options$ci                       <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_match(results[["results"]][["cohensKappa"]][["error"]][["errorMessage"]],
+               "requires a common ordinal scale")
+  expect_match(results[["results"]][["krippendorffsAlpha"]][["error"]][["errorMessage"]],
+               "requires a common ordinal scale")
+})
+
+# ==== Round 4: pairwise weighted Cohen must use the full common scale, not just the ====
+# ==== categories a given pair happens to observe ====
+test_that("Weighted Cohen's kappa keeps an unused interior category in the scale for each pair", {
+  lv <- c("A", "B", "C", "D")
+  # r1, r2 never rate "B", but the declared common scale still has 4 categories
+  r1 <- c("A","A","C","C","D","D","A","C","D","A")
+  r2 <- c("A","C","D","A","D","C","A","D","D","C")
+  df <- data.frame(
+    r1 = factor(r1, levels = lv, ordered = TRUE),
+    r2 = factor(r2, levels = lv, ordered = TRUE)
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables       <- c("r1", "r2")
+  options$variables.types <- c("ordinal", "ordinal")
+  options$dataStructure   <- "ratersInColumns"
+  options$cohensKappa     <- TRUE
+  options$cohensKappaType <- "weighted"
+  options$ci              <- FALSE
+  results <- runAnalysis("raterAgreement", df, options)
+  # reference: psych::cohen.kappa(codes, w.exp = 2, levels = 1:4); without the levels
+  # argument, psych collapses the confusion matrix to only {A,C,D} and gives 0.577464788732394
+  jaspTools::expect_equal_tables(results[["results"]][["cohensKappa"]][["data"]],
+    list(0.545454545454546, "Average kappa", 0.545454545454546, "r1 - r2"))
+})
+
+# ==== Round 4: row-mode Kendall must respect an ambiguous merged ordinal scale ====
+test_that("Row-mode Kendall's W refuses an ambiguous common ordinal scale, invariant to column order", {
+  # subject columns declare partial constraints A<C, B<C, C<D: A vs B is undetermined
+  mk <- function(cols) {
+    df <- data.frame(
+      s1 = factor(c("A","C","A"), levels = c("A","C"), ordered = TRUE),
+      s2 = factor(c("C","B","C"), levels = c("B","C"), ordered = TRUE),
+      s3 = factor(c("D","C","D"), levels = c("C","D"), ordered = TRUE)
+    )
+    df[, cols, drop = FALSE]
+  }
+  runFor <- function(cols) {
+    options <- analysisOptions("raterAgreement")
+    options$variables       <- cols
+    options$variables.types <- rep("ordinal", 3)
+    options$dataStructure   <- "ratersInRows"
+    options$kendallW        <- TRUE
+    options$ci              <- FALSE
+    runAnalysis("raterAgreement", mk(cols), options)
+  }
+  a <- runFor(c("s1", "s2", "s3"))
+  b <- runFor(c("s2", "s1", "s3")) # merely reordering the subject columns must not change the outcome
+  expect_match(a[["results"]][["kendallW"]][["error"]][["errorMessage"]],
+               "requires a common ordinal scale")
+  expect_match(b[["results"]][["kendallW"]][["error"]][["errorMessage"]],
+               "requires a common ordinal scale")
+})
+
+test_that("Row-mode Kendall's W bootstrap is skipped when the common ordinal scale is ambiguous", {
+  df <- data.frame(
+    s1 = factor(c("A","C","A"), levels = c("A","C"), ordered = TRUE),
+    s2 = factor(c("C","B","C"), levels = c("B","C"), ordered = TRUE),
+    s3 = factor(c("D","C","D"), levels = c("C","D"), ordered = TRUE)
+  )
+  options <- analysisOptions("raterAgreement")
+  options$variables        <- c("s1", "s2", "s3")
+  options$variables.types  <- rep("ordinal", 3)
+  options$dataStructure    <- "ratersInRows"
+  options$kendallW         <- TRUE
+  options$ci               <- TRUE
+  options$bootstrapSamples <- 100
+  options$setSeed          <- TRUE
+  set.seed(1)
+  results <- runAnalysis("raterAgreement", df, options)
+  expect_identical(results[["status"]], "complete")
+  expect_match(results[["results"]][["kendallW"]][["error"]][["errorMessage"]],
+               "requires a common ordinal scale")
+})
+
 # ==== Round 3: Kendall bootstrap must not run on invalid input ====
 test_that("Kendall's W bootstrap is skipped for input the table rejects", {
   df <- data.frame(r1 = c(2, 2, 2, 2), r2 = c(3, 3, 3, 3), r3 = c(1, 1, 1, 1))
