@@ -6,6 +6,12 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Language: ja\n"
 "X-Qt-Contexts: true\n"
+"PO-Revision-Date: 2026-07-28 03:01+0000\n"
+"Last-Translator: Koji Kosugi <kosugitti@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/ja/>\n"
+"Language: ja\n"
+"X-Generator: Weblate 2026.8.dev0\n"
 
 msgctxt "Description|"
 msgid "Reliability"
@@ -13,7 +19,7 @@ msgstr "信頼性"
 
 msgctxt "Description|"
 msgid "Classical"
-msgstr "伝統的"
+msgstr "古典的"
 
 msgctxt "Description|"
 msgid "Intraclass Correlation"
@@ -21,7 +27,7 @@ msgstr "級内相関"
 
 msgctxt "Description|"
 msgid "Bayesian"
-msgstr "ベイジアン"
+msgstr "ベイズ"
 
 msgctxt "Description|"
 msgid "Quantify the reliability of test scores"
@@ -29,265 +35,224 @@ msgstr "テストの点数の信頼性を定量化"
 
 msgctxt "Description|"
 msgid "Rater Agreement"
-msgstr ""
+msgstr "評定者間の一致"
 
 msgctxt "Description|"
 msgid "Bland-Altman Plots"
-msgstr ""
+msgstr "Bland-Altman プロット"
 
 msgctxt "BlandAltman|"
 msgid "Measurement Pairs"
-msgstr ""
+msgstr "測定のペア"
 
-#, fuzzy
 msgctxt "BlandAltman|"
 msgid "Confidence Interval"
 msgstr "信頼区間"
 
 msgctxt "BlandAltman|"
 msgid "Shading"
-msgstr ""
+msgstr "網かけ"
 
 msgctxt "BlandAltman|"
 msgid "Use colour"
-msgstr ""
+msgstr "色を使う"
 
 msgctxt "BlandAltman|"
 msgid "Bland-Altman table"
-msgstr ""
+msgstr "Bland-Altman の表"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Variables"
 msgstr "変数"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Each subject is rated by..."
 msgstr "各参加者は以下によって評価されます..."
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "a different rater (randomly selected)"
 msgstr "別の評価者(無作為に選出)"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "the same set of randomly selected raters/tests"
 msgstr "無作為に選ばれた評価者/テストの同じセット"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "the same fixed set of raters/tests"
 msgstr "評価者/テストが同一固定のセット"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Ratings are averaged"
-msgstr "評価者は平均化されています"
+msgstr "評定は平均されます"
 
-#, fuzzy
 msgctxt "IntraclassCorrelation|"
 msgid "Confidence Interval"
 msgstr "信頼区間"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Variables"
 msgstr "変数"
 
 msgctxt "RaterAgreement|"
 msgid "Cohen's kappa"
-msgstr ""
+msgstr "Cohen's kappa"
 
 msgctxt "RaterAgreement|"
 msgid "Unweighted"
-msgstr ""
+msgstr "重みなし"
 
 msgctxt "RaterAgreement|"
 msgid "Weighted"
-msgstr ""
+msgstr "重み付け"
 
 msgctxt "RaterAgreement|"
 msgid "Fleiss' kappa"
-msgstr ""
+msgstr "Fleiss' kappa"
 
 msgctxt "RaterAgreement|"
 msgid "Krippendorff's alpha"
-msgstr ""
+msgstr "クリッペンドルフのα"
 
 msgctxt "RaterAgreement|"
 msgid "Method"
-msgstr ""
+msgstr "方法"
 
 msgctxt "RaterAgreement|"
 msgid "Nominal"
-msgstr ""
+msgstr "名義"
 
 msgctxt "RaterAgreement|"
 msgid "Ordinal"
-msgstr ""
+msgstr "順序"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Interval"
 msgstr "区間"
 
 msgctxt "RaterAgreement|"
 msgid "Ratio"
-msgstr ""
+msgstr "比"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Variables"
 msgstr "変数"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Analysis"
 msgstr "分析"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Scale Statistics"
 msgstr "尺度統計量"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Credible interval"
 msgstr "信用区間"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2"
 msgstr "ガットマン(Guttman)のλ2"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Average interitem correlation"
 msgstr "平均項目間相関"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Mean"
 msgstr "平均"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "SD"
 msgstr "標準偏差"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "of participants' sum scores"
 msgstr "参加者の合計スコアを用いた"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "of participants' mean scores"
 msgstr "参加者の平均スコアを用いた"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Individual Item Statistics"
 msgstr "個別項目の統計量"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's λ2 (if item dropped)"
-msgstr "ガットマン(Guttman)のλ6 (特定の項目を除外した場合の) {2 ?}"
+msgstr "ガットマン(Guttman)のλ2 (項目を除外した場合)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "If item dropped plot"
 msgstr "項目が除外された場合のプロット"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items"
 msgstr "項目の並び替え"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by mean"
 msgstr "項目の並び替え(平均順)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by KL-divergence"
 msgstr "項目の並び替え(KLダイバージェンス順)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Order items by KS-distance"
 msgstr "項目の並び替え(KS距離順)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Item-rest correlation"
 msgstr "I-R相関"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Plot Posteriors"
 msgstr "事後分布のプロット"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Fix range to 0-1"
 msgstr "範囲を0-1に固定"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Display Priors"
 msgstr "事前分布を表示"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Probability for:"
 msgstr "以下における確率:"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "< Reliability <"
 msgstr "< 信頼性 <"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Shade posterior region in plot"
 msgstr "図中の事後分布を灰色にする"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Convergence"
 msgstr "収束"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "MCMC parameters"
 msgstr "MCMC パラメータ"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. samples"
 msgstr "サンプル数"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. burnin samples"
 msgstr "バーンインサンプルの数"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Thinning"
 msgstr "Thinning(間引き間隔)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "No. chains"
 msgstr "チェーンの数"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Diagnostics"
 msgstr "診断"
@@ -296,106 +261,86 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "R-hat"
 msgstr "R-hat"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Traceplots"
 msgstr "トレースプロット"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Repeatability"
 msgstr "反復可能性"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Set seed"
-msgstr "seedの設定"
+msgstr "シードを設定"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Samples"
 msgstr "サンプル"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Disable saving samples"
-msgstr ""
+msgstr "サンプルの保存を無効にする"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Reverse-Scaled Items"
 msgstr "逆転項目"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Normal-Scaled Items"
 msgstr "順行項目"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Priors"
 msgstr "事前分布"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse Wishart scale"
 msgstr "逆ウィシャートスケール"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse Wishart df"
 msgstr "逆ウィシャートdf"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Inverse gamma:"
 msgstr "逆ガンマ:"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "shape"
 msgstr "形状"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "scale"
 msgstr "尺度"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Normal:"
 msgstr "正規:"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "mean"
 msgstr "平均"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Advanced Options"
 msgstr "詳細オプション"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Missing Values"
 msgstr "欠損値"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Bayesian imputation"
 msgstr "ベイズ推定"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Exclude cases listwise"
 msgstr "ケースをリストワイズで除外"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior predictive check"
 msgstr "事後予測チェック"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Fit measures"
 msgstr "適合度指標"
@@ -404,7 +349,6 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "p(RMSEA <"
 msgstr "p(RMSEA <"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ")"
 msgstr ")"
@@ -413,469 +357,433 @@ msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "p(CFI/TLI >"
 msgstr "p(CFI/TLI >"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Standardized factor loadings"
 msgstr "標準化因子負荷量"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Coefficients"
 msgstr "係数"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Unstandardized"
 msgstr "非標準化"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Standardized"
 msgstr "標準化"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Posterior Point Estimate"
 msgstr "事後点推定値"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Median"
 msgstr "中央値"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Variables"
 msgstr "変数"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Analysis"
 msgstr "分析"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Scale Statistics"
 msgstr "尺度統計量"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2"
 msgstr "ガットマン(Guttman)のλ2"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Average interitem correlation"
 msgstr "平均項目間相関"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Mean"
 msgstr "平均"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "SD"
 msgstr "標準偏差"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "of participants' sum scores"
 msgstr "参加者の合計スコアを用いた"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "of participants' mean scores"
 msgstr "参加者の平均スコアを用いた"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Individual Item Statistics"
 msgstr "個別項目の統計量"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's λ2 (if item dropped)"
-msgstr "ガットマン(Guttman)のλ6 (特定の項目を除外した場合の) {2 ?}"
+msgstr "ガットマン(Guttman)のλ2 (項目を除外した場合)"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Item-rest correlation"
 msgstr "I-R相関"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Reverse-Scaled Items"
 msgstr "逆転項目"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Normal-Scaled Items"
 msgstr "順行項目"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Advanced Options"
 msgstr "詳細オプション"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Missing Values"
 msgstr "欠損値"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "No. of bootstrap samples"
 msgstr "ブートストラップサンプルの数"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Non-parametric bootstrap"
 msgstr "ノンパラメトリックブートストラップ"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Parametric bootstrap"
 msgstr "パラメトリックブートストラップ"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "CFA"
 msgstr "CFA"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Single factor model fit"
 msgstr "単一因子モデルのあてはまり"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Analytic interval"
 msgstr "解析的区間"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Bootstrapped interval"
 msgstr "ブートストラップ区間"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "PFA"
 msgstr "PFA"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Unstandardized"
 msgstr "非標準化"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Standardized"
 msgstr "標準化"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Repeatability"
 msgstr "反復可能性"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Set seed"
-msgstr "seedの設定"
+msgstr "シードを設定"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Samples"
 msgstr "サンプル"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Do not save samples"
-msgstr ""
+msgstr "サンプルを保存しない"
 
 msgctxt "RaterAgreement|"
 msgid "Data Structure"
-msgstr ""
+msgstr "データの構造"
 
 msgctxt "RaterAgreement|"
 msgid "Raters are in columns"
-msgstr ""
+msgstr "評定者が列"
 
 msgctxt "RaterAgreement|"
 msgid "Raters are in rows"
-msgstr ""
+msgstr "評定者が行"
 
 msgctxt "RaterAgreement|"
 msgid "No. of bootstrap samples for CI"
-msgstr ""
+msgstr "信頼区間のためのブートストラップ標本数"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "ESS"
-msgstr ""
+msgstr "ESS"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Standardized factor loadings"
 msgstr "標準化因子負荷量"
 
 msgctxt "RaterAgreement|"
 msgid "Quadratic weights"
-msgstr ""
+msgstr "二次の重み"
 
 msgctxt "RaterAgreement|"
 msgid "Linear weights"
-msgstr ""
+msgstr "線形の重み"
 
 msgctxt "Description|"
 msgid "Standard Error of Measurement"
-msgstr ""
+msgstr "測定の標準誤差"
 
-#, fuzzy
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Variables"
 msgstr "変数"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Thorndike"
-msgstr ""
+msgstr "Thorndike"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Feldt"
-msgstr ""
+msgstr "Feldt"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Number of splits"
-msgstr ""
+msgstr "分割数"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Mollenkopf-Feldt"
-msgstr ""
+msgstr "Mollenkopf-Feldt"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Degree of polynomial"
-msgstr ""
+msgstr "多項式の次数"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "ANOVA"
-msgstr ""
+msgstr "分散分析"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "IRT"
-msgstr ""
+msgstr "IRT"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord"
-msgstr ""
+msgstr "Lord"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Keats"
-msgstr ""
+msgstr "Keats"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Options"
-msgstr ""
+msgstr "オプション"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Sum score table"
-msgstr ""
+msgstr "合計得点の表"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "CI:"
-msgstr ""
+msgstr "信頼区間:"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "User defined reliability"
-msgstr ""
+msgstr "ユーザ指定の信頼性"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Minimum number of observations per score group"
-msgstr ""
+msgstr "得点群あたりの最小観測数"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plots"
-msgstr ""
+msgstr "プロット"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Histogram of sum score counts"
-msgstr ""
+msgstr "合計得点の度数のヒストグラム"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot per method"
-msgstr ""
+msgstr "方法ごとのプロット"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Sum score plots"
-msgstr ""
+msgstr "合計得点のプロット"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "CI"
-msgstr ""
+msgstr "CI"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Display cutoff score"
-msgstr ""
+msgstr "カットオフ得点を表示"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Split-half coefficient"
-msgstr ""
+msgstr "折半係数"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Variance"
-msgstr ""
+msgstr "分散"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Split-half coefficient (if item dropped)"
-msgstr ""
+msgstr "折半係数(項目を除いた場合)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "CTT-Coefficients (α, λ2)"
-msgstr ""
+msgstr "古典的テスト理論の係数(α, λ2)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Confidence interval"
-msgstr ""
+msgstr "信頼区間"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Split-half coefficient"
-msgstr ""
+msgstr "折半係数"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Variance"
-msgstr ""
+msgstr "分散"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Split-half coefficient (if item dropped)"
-msgstr ""
+msgstr "折半係数(項目を除いた場合)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Confidence intervals"
-msgstr ""
+msgstr "信頼区間"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Reliability coefficients"
-msgstr ""
+msgstr "信頼性係数"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Variance and SD"
-msgstr ""
+msgstr "分散とSD"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Chisq-based"
-msgstr ""
+msgstr "カイ二乗に基づく"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Non-parametric"
-msgstr ""
+msgstr "ノンパラメトリック"
 
-#, fuzzy
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coefficients"
 msgstr "係数"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Pairwise"
-msgstr ""
+msgstr "ペアごとに削除"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Delete listwise"
-msgstr ""
+msgstr "リストワイズで削除"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Split-Test Methods"
-msgstr ""
+msgstr "テストを分割する方法"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Binomial Methods"
-msgstr ""
+msgstr "二項分布に基づく方法"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Hide SEM table"
-msgstr ""
+msgstr "測定の標準誤差の表を隠す"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Plot all SEMs"
-msgstr ""
+msgstr "すべての測定の標準誤差をプロット"
 
 msgctxt "Description|"
 msgid "Bayesian Reliability"
-msgstr ""
+msgstr "ベイズ信頼性"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord generalized"
-msgstr ""
+msgstr "Lord 一般化"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω"
-msgstr ""
+msgstr "マクドナルドのω"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α"
-msgstr ""
+msgstr "クロンバックのα"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω (if item dropped)"
-msgstr ""
+msgstr "マクドナルドのω(項目を除いた場合)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's α (if item dropped)"
-msgstr ""
+msgstr "クロンバックのα(項目を除いた場合)"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "McDonald's ω Estimation"
-msgstr ""
+msgstr "マクドナルドのωの推定"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "McDonald's ω"
-msgstr ""
+msgstr "マクドナルドのω"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Cronbach's α"
-msgstr ""
+msgstr "クロンバックのα"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "McDonald's ω  (if item dropped)"
-msgstr ""
+msgstr "マクドナルドのω (項目を除いた場合)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Cronbach's α (if item dropped)"
-msgstr ""
+msgstr "クロンバックのα(項目を除いた場合)"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "McDonald's ω Estimation"
-msgstr ""
+msgstr "マクドナルドのωの推定"
 
 msgctxt "BlandAltman|"
 msgid ""
 "Pairs of scale variables to compare. Each pair produces a Bland-Altman plot "
 "of the mean versus the difference between measurements."
 msgstr ""
+"比較する尺度変数のペアです。ペアごとに、平均と測定値の差のBland-Altman"
+"プロットが作られます。"
 
 msgctxt "BlandAltman|"
 msgid ""
 "Display confidence intervals around the mean difference and its upper and "
 "lower limits of agreement in the plot."
-msgstr ""
+msgstr "平均の差と、その一致の上限・下限のまわりの信頼区間をプロットに表示します。"
 
 msgctxt "BlandAltman|"
 msgid ""
 "Shade the confidence interval regions around the mean difference and limits "
 "of agreement."
-msgstr ""
+msgstr "平均の差と一致の限界のまわりの信頼区間の領域に網かけをします。"
 
 msgctxt "BlandAltman|"
 msgid "Use colour (rather than grey) to fill the shaded confidence regions."
-msgstr ""
+msgstr "網かけした信頼区間の領域を、灰色ではなく色で塗ります。"
 
 msgctxt "BlandAltman|"
 msgid ""
 "Table showing the mean difference, the upper and lower limits of agreement, "
 "and their confidence intervals."
-msgstr ""
+msgstr "平均の差、一致の上限と下限、およびそれらの信頼区間を示す表です。"
 
 msgctxt "IntraclassCorrelation|"
 msgid ""
 "Rating variables to include. Each variable is one rater; each row is a "
 "subject being rated."
-msgstr ""
+msgstr "含める評定用の変数です。各変数が1人の評定者、各行が評定される対象を表します。"
 
 msgctxt "IntraclassCorrelation|"
 msgid ""
@@ -884,6 +792,10 @@ msgid ""
 "ICC(3): all subjects rated by the same fixed raters. See Shrout & Fleiss "
 "(1979)."
 msgstr ""
+"ICCのモデルを指定します。ICC(1)は対象ごとに異なる無作為の評定者が評定する場合"
+"、ICC(2)はすべての対象を同じ無作為抽出された評定者が評定する場合、ICC(3)はす"
+"べての対象を同じ固定された評定者が評定する場合です。Shrout & Fleiss (1979) を"
+"参照してください。"
 
 msgctxt "IntraclassCorrelation|"
 msgid ""
@@ -891,125 +803,141 @@ msgid ""
 "ICC is computed (e.g. ICC(2,k) instead of ICC(2,1)) per Shrout & Fleiss "
 "(1979). Averaging generally raises the reliability estimate."
 msgstr ""
+"評定を評定者にわたって平均する場合、Shrout & Fleiss (1979) に従い、選択した"
+"ICCのk評定者版が計算されます(たとえばICC(2,1)ではなくICC(2,k))。平均すると一"
+"般に信頼性の推定値は高くなります。"
 
 msgctxt "IntraclassCorrelation|"
 msgid ""
 "Report a confidence interval for the ICC estimate based on the F-"
 "distribution."
-msgstr ""
+msgstr "F分布に基づくICCの推定値の信頼区間を報告します。"
 
 msgctxt "RaterAgreement|"
 msgid "All variables available in the dataset."
-msgstr ""
+msgstr "データセットで利用できるすべての変数です。"
 
 msgctxt "RaterAgreement|"
 msgid ""
 "Rating variables to include. Whether a variable represents a rater or a "
 "subject/item depends on the data structure setting."
 msgstr ""
+"含める評定用の変数です。変数が評定者を表すか、評定される対象・項目を表すかは"
+"、データの構造の設定によります。"
 
 msgctxt "RaterAgreement|"
 msgid ""
 "Specify whether raters are arranged in columns (default) or rows in the "
 "dataset."
-msgstr ""
+msgstr "データセットで評定者が列に並んでいるか(既定)、行に並んでいるかを指定します。"
 
 msgctxt "RaterAgreement|"
 msgid ""
 "Each column is one rater and each row is one subject or item being rated."
-msgstr ""
+msgstr "各列が1人の評定者、各行が評定される1つの対象または項目です。"
 
 msgctxt "RaterAgreement|"
 msgid ""
 "Each row is one rater and each column is one subject or item being rated."
-msgstr ""
+msgstr "各行が1人の評定者、各列が評定される1つの対象または項目です。"
 
 msgctxt "RaterAgreement|"
 msgid ""
 "Measures agreement between exactly two raters. When more than two raters are "
 "entered, all pairwise combinations are computed."
 msgstr ""
+"ちょうど2人の評定者の間の一致を測ります。3人以上を入力した場合は、すべての対"
+"の組み合わせについて計算されます。"
 
 msgctxt "RaterAgreement|"
 msgid ""
 "Unweighted kappa treats all disagreements equally. Weighted kappa accounts "
 "for the degree of disagreement and requires ordinal ratings."
 msgstr ""
+"重みなしのkappaは、すべての不一致を同等に扱います。重み付きのkappaは不一致の"
+"程度を考慮し、順序尺度の評定を必要とします。"
 
 msgctxt "RaterAgreement|"
 msgid "All disagreements are treated as equal regardless of their magnitude."
-msgstr ""
+msgstr "不一致の大きさによらず、すべての不一致を同等に扱います。"
 
 msgctxt "RaterAgreement|"
 msgid ""
 "Disagreements are penalised according to their magnitude. Requires ordinal "
 "ratings."
-msgstr ""
+msgstr "不一致をその大きさに応じて重く扱います。順序尺度の評定が必要です。"
 
 msgctxt "RaterAgreement|"
 msgid "Weighting scheme applied to disagreements between ordinal categories."
-msgstr ""
+msgstr "順序カテゴリ間の不一致に適用する重みづけの方式です。"
 
 msgctxt "RaterAgreement|"
 msgid ""
 "Penalises larger disagreements quadratically; sensitive to large "
 "discrepancies."
-msgstr ""
+msgstr "大きな不一致を二次関数的に重く扱います。大きなずれに敏感です。"
 
 msgctxt "RaterAgreement|"
 msgid "Penalises disagreements proportionally to their size."
-msgstr ""
+msgstr "不一致をその大きさに比例して重く扱います。"
 
 msgctxt "RaterAgreement|"
 msgid ""
 "Measures agreement among two or more raters. Applicable to nominal, ordinal, "
 "interval, or ratio data."
 msgstr ""
+"2人以上の評定者の間の一致を測ります。名義・順序・間隔・比率のいずれのデータに"
+"も使えます。"
 
 msgctxt "RaterAgreement|"
 msgid ""
 "Level of measurement determines how disagreements are quantified in the "
 "alpha calculation."
-msgstr ""
+msgstr "測定の水準によって、αの計算で不一致をどのように数量化するかが決まります。"
 
 msgctxt "RaterAgreement|"
 msgid "Kendall's W"
-msgstr ""
+msgstr "ケンドール(Kendall)のW"
 
 msgctxt "RaterAgreement|"
 msgid ""
 "Measures concordance among multiple raters on ordinal rankings. Ranges from "
 "0 (no agreement) to 1 (perfect agreement)."
 msgstr ""
+"複数の評定者による順位づけの一致度を測ります。0(一致なし)から1(完全に一致)ま"
+"での値をとります。"
 
 msgctxt "RaterAgreement|"
 msgid "Correct for ties"
-msgstr ""
+msgstr "同順位を補正する"
 
 msgctxt "RaterAgreement|"
 msgid ""
 "Apply a correction to Kendall's W when tied ranks are present in the data. "
 "Recommended whenever ties can occur."
 msgstr ""
+"データに同順位がある場合に、ケンドールのWに補正を適用します。同順位が生じうる"
+"場合は常に推奨されます。"
 
 msgctxt "RaterAgreement|"
 msgid ""
 "Measures agreement among two or more raters on nominal categories. "
 "Generalises Cohen's kappa to multiple raters."
 msgstr ""
+"名義カテゴリについて、2人以上の評定者の間の一致を測ります。Cohen's kappaを複"
+"数の評定者に一般化したものです。"
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Advanced Options"
 msgstr "詳細オプション"
 
 msgctxt "RaterAgreement|"
 msgid "Options for confidence intervals and bootstrap settings."
-msgstr ""
+msgstr "信頼区間とブートストラップの設定のオプションです。"
 
 msgctxt "RaterAgreement|"
 msgid "Confidence interval"
-msgstr ""
+msgstr "信頼区間"
 
 msgctxt "RaterAgreement|"
 msgid ""
@@ -1017,10 +945,13 @@ msgid ""
 "and Fleiss' kappa use asymptotic CIs; Krippendorff's alpha and Kendall's W "
 "use bootstrap CIs."
 msgstr ""
+"各一致係数について信頼区間を報告します。Cohen's kappaとFleiss' kappaは漸近的"
+"な信頼区間を、クリッペンドルフのαとケンドールのWはブートストラップによる信頼"
+"区間を用います。"
 
 msgctxt "RaterAgreement|"
 msgid "Width of the confidence interval."
-msgstr ""
+msgstr "信頼区間の幅です。"
 
 msgctxt "RaterAgreement|"
 msgid ""
@@ -1028,100 +959,125 @@ msgid ""
 "Higher values give more stable estimates. Only applies to Krippendorff's "
 "alpha and Kendall's W, whose CIs are bootstrap-based."
 msgstr ""
+"信頼区間の計算に使うブートストラップの反復回数です。値を大きくすると推定が安"
+"定します。信頼区間をブートストラップで求めるクリッペンドルフのαとケンドールの"
+"Wにのみ適用されます。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "Items to include in the SEM analysis. Must be ordinally or nominally scaled "
 "(dichotomous or polytomous)."
 msgstr ""
+"測定の標準誤差の分析に含める項目です。順序尺度または名義尺度(2値または多値)で"
+"ある必要があります。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "CTT-based methods that split the test into parts to estimate the conditional "
 "error variance per sum score."
 msgstr ""
+"テストを部分に分割して、合計得点ごとの条件つき誤差分散を推定する、古典的"
+"テスト理論に基づく方法です。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "Splits items into odd- and even-numbered halves. Reorder variables in the "
 "list to change the split."
 msgstr ""
+"項目を奇数番と偶数番の半分に分割します。分割の仕方を変えるには、リスト内で変"
+"数の順序を入れ替えてください。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "Splits items into multiple equal parts to estimate error variance per score "
 "group."
-msgstr ""
+msgstr "項目を等しい大きさの複数の部分に分割し、得点群ごとの誤差分散を推定します。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "How many equal parts to split the test into. Must be a divisor of the number "
 "of items."
 msgstr ""
+"テストをいくつの等しい部分に分割するかを指定します。項目数の約数である必要が"
+"あります。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "Splits items into parts and models score differences with polynomial "
 "regression to estimate the conditional SEM."
 msgstr ""
+"項目を部分に分割し、得点の差を多項式回帰でモデル化して、条件つきの測定の標準"
+"誤差を推定します。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "Degree of the polynomial used to predict score differences, e.g., 3 fits Y = "
 "X + X² + X³."
 msgstr ""
+"得点の差を予測するのに使う多項式の次数です。たとえば3なら Y = X + X² + X³ を"
+"あてはめます。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "Estimates conditional SEM from a repeated-measures ANOVA using the ICC(3,k) "
 "approach (Emons, 2023)."
 msgstr ""
+"ICC(3,k)の考え方を用いて、反復測定分散分析から条件つきの測定の標準誤差を推定"
+"します(Emons, 2023)。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "IRT-based SEM using the 2PLM for dichotomous items or the graded response "
 "model for polytomous items. Assumes a single latent variable."
 msgstr ""
+"IRTに基づく測定の標準誤差です。2値項目には2パラメータロジスティックモデル、多"
+"値項目には段階反応モデルを用います。潜在変数が1つであることを仮定します。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "Methods based on the binomial error model. Only available for dichotomous "
 "(non-ordinal) items."
-msgstr ""
+msgstr "二項の誤差モデルに基づく方法です。2値(順序尺度でない)項目にのみ利用できます。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "Lord's binomial method based on the number of correct and incorrect "
 "responses."
-msgstr ""
+msgstr "正答数と誤答数に基づくLordの二項法です。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "Keats' correction of Lord's method; uses a reliability coefficient to reduce "
 "bias."
-msgstr ""
+msgstr "Lordの方法にKeatsの補正を加えたものです。信頼性係数を使って偏りを減らします。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord's method generalised to multiple test parts."
-msgstr ""
+msgstr "Lordの方法を、テストを複数の部分に分ける場合に一般化したものです。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "How many parts to split the test into. Must be a divisor of the number of "
 "items (excluding the last value)."
 msgstr ""
+"テストをいくつの部分に分割するかを指定します。項目数の約数である必要がありま"
+"す(最後の値を除く)。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "Table of sum scores with normal-theory confidence intervals computed from "
 "the estimated SEM."
 msgstr ""
+"推定された測定の標準誤差から正規分布に基づいて計算した信頼区間つきの、合計得"
+"点の表です。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "Override the reliability estimate used for the unconditional SEM and the "
 "Keats method."
 msgstr ""
+"条件によらない測定の標準誤差とKeatsの方法に使う信頼性の推定値を、指定した値で"
+"置き換えます。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
@@ -1129,166 +1085,185 @@ msgid ""
 "estimating the SEM (default: 20). Applies to the Thorndike, Feldt, ANOVA, "
 "and Lord generalized methods."
 msgstr ""
+"観測数がこれより少ない得点群は、測定の標準誤差を推定する前に隣接する群と併合"
+"されます(既定は20)。Thorndike、Feldt、分散分析、Lord 一般化の各方法に適用され"
+"ます。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "Hide the main SEM table showing conditional error estimates per sum score "
 "and method."
 msgstr ""
+"合計得点と方法ごとの条件つき誤差の推定値を示す、測定の標準誤差の主表を隠しま"
+"す。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Histogram of the number of respondents per sum score group."
-msgstr ""
+msgstr "合計得点の群ごとの回答者数のヒストグラムです。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "Separate point plot per method showing the conditional SEM values across sum "
 "scores."
 msgstr ""
+"合計得点にわたる条件つきの測定の標準誤差の値を、方法ごとに別々の点プロットで"
+"示します。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "Combined plot displaying all methods' SEM values in a single panel for easy "
 "comparison."
 msgstr ""
+"比較しやすいように、すべての方法の測定の標準誤差の値を1つのパネルにまとめて表"
+"示するプロットです。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid ""
 "Plot sum scores with confidence interval bands per method. Intervals are "
 "normal-theory CIs using the estimated SEM."
 msgstr ""
+"方法ごとに信頼区間の帯をつけて合計得点をプロットします。区間は、推定された測"
+"定の標準誤差を用いた正規分布に基づく信頼区間です。"
 
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Add a horizontal reference line at the specified cut score."
-msgstr ""
+msgstr "指定したカット得点の位置に水平の参照線を加えます。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Items/variables to include in the reliability analysis. Must be scale "
 "variables."
-msgstr ""
+msgstr "信頼性の分析に含める項目・変数です。尺度変数である必要があります。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Reliability coefficients and descriptive statistics computed for the full "
 "scale."
-msgstr ""
+msgstr "尺度全体について計算した信頼性係数と記述統計です。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Width of the credible interval for scale reliability statistics."
-msgstr ""
+msgstr "尺度の信頼性の統計量についての信用区間の幅です。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "McDonald's omega for unidimensional data based on the single-factor model."
-msgstr ""
+msgstr "1因子モデルに基づく、一次元データについてのマクドナルドのオメガです。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Cronbach's alpha. For binary items this equals KR-20."
-msgstr ""
+msgstr "クロンバックのアルファです。2値項目の場合はKR-20と一致します。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Guttman's lambda 2, a lower bound for reliability."
-msgstr ""
+msgstr "グットマンのラムダ2です。信頼性の下界の1つです。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Splits items into two halves (odd/even by default). Unstandardized: Flanagan-"
 "Rulon; Standardized: Spearman-Brown."
 msgstr ""
+"項目を2つの半分に分割します(既定では奇数・偶数)。標準化しない場合はFlanagan-"
+"Rulon、標準化する場合はSpearman-Brownを用います。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Mean of all pairwise Pearson correlations between items."
-msgstr ""
+msgstr "項目どうしのピアソン相関を、すべての対について平均したものです。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Whether the mean, variance, and SD are based on sum scores or mean scores "
 "across items."
 msgstr ""
+"平均・分散・SDを、項目にわたる合計得点に基づいて求めるか、平均得点に基づいて"
+"求めるかを指定します。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Reliability coefficients and descriptive statistics per item, including "
 "posterior distributions when that item is removed."
 msgstr ""
+"項目ごとの信頼性係数と記述統計です。その項目を除いた場合の事後分布も含みます"
+"。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Width of the credible interval for item-level statistics."
-msgstr ""
+msgstr "項目ごとの統計量についての信用区間の幅です。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Posterior distribution of omega for the remaining items when this item is "
 "removed."
-msgstr ""
+msgstr "この項目を除いたときの、残りの項目のオメガの事後分布です。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Posterior distribution of alpha for the remaining items when this item is "
 "removed."
-msgstr ""
+msgstr "この項目を除いたときの、残りの項目のアルファの事後分布です。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Posterior distribution of lambda 2 for the remaining items when this item is "
 "removed."
-msgstr ""
+msgstr "この項目を除いたときの、残りの項目のラムダ2の事後分布です。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Posterior distribution of the split-half coefficient for the remaining items "
 "when this item is removed."
-msgstr ""
+msgstr "この項目を除いたときの、残りの項目の折半係数の事後分布です。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Displays posterior densities of the reliability of the remaining items when "
 "each item is dropped."
-msgstr ""
+msgstr "項目を1つずつ除いたときの、残りの項目の信頼性の事後密度を表示します。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Sort the densities by how much removing an item changes the posterior (by "
 "mean, KL-divergence, or KS-distance)."
 msgstr ""
+"項目を除いたときに事後分布がどれだけ変わるかで密度を並べ替えます(平均、KL"
+"ダイバージェンス、KS距離のいずれかによります)。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Correlation of each item with the sum of the remaining items."
-msgstr ""
+msgstr "各項目と、残りの項目の合計との相関です。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Display posterior density plots for the selected reliability coefficients."
-msgstr ""
+msgstr "選択した信頼性係数について、事後密度のプロットを表示します。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Fix the x-axis of the posterior plots to [0, 1] for easier comparison "
 "between coefficients."
-msgstr ""
+msgstr "係数どうしを比べやすいように、事後分布プロットのx軸を[0, 1]に固定します。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Add the prior distribution to the posterior density plot."
-msgstr ""
+msgstr "事後密度のプロットに事前分布を重ねて表示します。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Report the prior and posterior probability that a reliability coefficient "
 "falls within the specified interval."
-msgstr ""
+msgstr "信頼性係数が指定した区間に入る事前確率と事後確率を報告します。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Shade the posterior region corresponding to the probability interval in the "
 "density plot."
-msgstr ""
+msgstr "密度プロットにおいて、確率区間に対応する事後分布の領域に網かけをします。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Parameters controlling the MCMC sampler used to estimate the posterior "
 "distributions."
-msgstr ""
+msgstr "事後分布の推定に使うMCMCサンプラーを制御するパラメータです。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
@@ -1296,50 +1271,63 @@ msgid ""
 "retained posterior samples per chain is ceiling((samples - burn-in) / "
 "thinning)."
 msgstr ""
+"バーンインを含む、1チェインあたりのMCMCの総反復回数です。1チェインあたりに保"
+"持される事後サンプル数は ceiling((サンプル数 - バーンイン) / 間引き間隔) にな"
+"ります。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Initial samples discarded while the chain converges to the posterior."
-msgstr ""
+msgstr "チェインが事後分布に収束するまでの間に捨てる初期サンプルです。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Keep every k-th sample to reduce autocorrelation. A value of 1 keeps all "
 "samples."
 msgstr ""
+"自己相関を減らすために、k個ごとにサンプルを保持します。1にするとすべての"
+"サンプルを保持します。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Number of independent MCMC chains. Multiple chains enable R-hat convergence "
 "diagnostics."
 msgstr ""
+"独立なMCMCチェインの数です。複数のチェインがあると、R-hatによる収束診断ができ"
+"ます。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "MCMC convergence diagnostics to assess whether the sampler has converged to "
 "the posterior."
-msgstr ""
+msgstr "サンプラーが事後分布に収束したかどうかを評価するための、MCMCの収束診断です。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Potential scale reduction factor. Values close to 1 (< 1.1) indicate "
 "convergence across chains."
 msgstr ""
+"潜在的スケール縮小係数です。1に近い値(1.1未満)であれば、チェイン間で収束して"
+"いることを示します。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Plot of sampled values per chain over iterations. Well-mixed chains indicate "
 "convergence."
 msgstr ""
+"反復にわたる、チェインごとのサンプル値のプロットです。よく混合したチェインは"
+"収束を示します。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Effective sample size: number of independent posterior samples after "
 "accounting for autocorrelation."
 msgstr ""
+"有効サンプルサイズです。自己相関を考慮したうえでの、独立な事後サンプルの数を"
+"表します。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Set a random seed to reproduce identical posterior samples across runs."
-msgstr ""
+msgstr "実行のたびに同じ事後サンプルが再現されるように、乱数のシードを設定します。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
@@ -1347,51 +1335,60 @@ msgid ""
 "size but may slow down re-running the analysis, because samples are "
 "precomputed and cached for speed."
 msgstr ""
+"チェックすると、MCMCサンプルは出力ファイルに保存されません。ファイルサイズは"
+"小さくなりますが、サンプルは高速化のためにあらかじめ計算してキャッシュされて"
+"いるので、分析をやり直すときに時間がかかることがあります。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "The prior on alpha, lambda 2, and the split-half is induced by an inverse "
 "Wishart prior on the covariance matrix."
 msgstr ""
+"アルファ、ラムダ2、折半係数の事前分布は、共分散行列に置いた逆ウィシャート事前"
+"分布から導かれます。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Precision values on the diagonal of the inverse Wishart scaling matrix."
-msgstr ""
+msgstr "逆ウィシャートのスケール行列の対角にある精度の値です。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Degrees of freedom of the inverse Wishart prior. Minimum equals the number "
 "of items."
-msgstr ""
+msgstr "逆ウィシャート事前分布の自由度です。最小値は項目数と等しくなります。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "The prior on omega is induced by an inverse gamma on residual variances and "
 "a normal prior on factor loadings."
 msgstr ""
+"オメガの事前分布は、残差分散に置いた逆ガンマ分布と、因子負荷量に置いた正規事"
+"前分布から導かれます。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Shape parameter of the inverse gamma prior on residual variances."
-msgstr ""
+msgstr "残差分散に置く逆ガンマ事前分布の形状パラメータです。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Scale parameter of the inverse gamma prior on residual variances."
-msgstr ""
+msgstr "残差分散に置く逆ガンマ事前分布の尺度パラメータです。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid "Mean of the normal prior on factor loadings."
-msgstr ""
+msgstr "因子負荷量に置く正規事前分布の平均です。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Bayesian imputation treats missing values as unknown parameters sampled from "
 "the posterior; listwise deletion removes any row with a missing value."
 msgstr ""
+"ベイズによる補完は、欠測値を事後分布から標本抽出される未知のパラメータとして"
+"扱います。リストワイズ除去は、欠測値がある行をすべて取り除きます。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Options for fitting the single-factor model underlying McDonald's omega."
-msgstr ""
+msgstr "マクドナルドのオメガの基礎となる1因子モデルをあてはめるためのオプションです。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
@@ -1399,171 +1396,202 @@ msgid ""
 "covariance matrix are compared against the model-implied posterior "
 "distribution."
 msgstr ""
+"1因子モデルの適合を図で確認します。観測された共分散行列の固有値を、モデルから"
+"導かれる事後分布と比較します。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Bayesian fit indices (B-LR, B-RMSEA, B-CFI, B-TLI) for the single-factor "
 "model with probability statements relative to cutoffs."
 msgstr ""
+"1因子モデルについてのベイズ的な適合度指数(B-LR、B-RMSEA、B-CFI、B-TLI)を、基"
+"準値に対する確率の記述とあわせて示します。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Table of standardized loadings from the single-factor model (posterior mean "
 "or median)."
-msgstr ""
+msgstr "1因子モデルから得られる標準化された負荷量の表です(事後平均または事後中央値)。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Unstandardized uses the covariance matrix; standardized uses the correlation "
 "matrix. Standardized alpha is contested in the literature."
 msgstr ""
+"標準化しない場合は共分散行列を、標準化する場合は相関行列を使います。標準化し"
+"たアルファについては文献上で議論があります。"
 
 msgctxt "UnidimensionalReliabilityBayesian|"
 msgid ""
 "Whether to report the posterior mean or median as the point estimate in the "
 "tables."
 msgstr ""
+"表に載せる点推定値として、事後平均と事後中央値のどちらを報告するかを指定しま"
+"す。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "Items/variables to include in the reliability analysis. Must be scale "
 "variables."
-msgstr ""
+msgstr "信頼性の分析に含める項目・変数です。尺度変数である必要があります。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "Reliability coefficients and descriptive statistics computed for the full "
 "scale."
-msgstr ""
+msgstr "尺度全体について計算した信頼性係数と記述統計です。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coverage of the confidence intervals for scale reliability statistics."
-msgstr ""
+msgstr "尺度の信頼性の統計量についての信頼区間のカバー率です。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "McDonald's omega for unidimensional data based on the single-factor model. "
 "The denominator uses model-implied total variance."
 msgstr ""
+"1因子モデルに基づく、一次元データについてのマクドナルドのオメガです。分母には"
+"モデルから導かれる全分散を用います。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Cronbach's alpha. For binary items this equals KR-20."
-msgstr ""
+msgstr "クロンバックのアルファです。2値項目の場合はKR-20と一致します。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Guttman's lambda 2, a lower bound for reliability."
-msgstr ""
+msgstr "グットマンのラムダ2です。信頼性の下界の1つです。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "Splits items into two halves (odd/even by default). Unstandardized: Flanagan-"
 "Rulon coefficient; Standardized: Spearman-Brown coefficient."
 msgstr ""
+"項目を2つの半分に分割します(既定では奇数・偶数)。標準化しない場合はFlanagan-"
+"Rulon係数、標準化する場合はSpearman-Brown係数を用います。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Mean of all pairwise Pearson correlations between items."
-msgstr ""
+msgstr "項目どうしのピアソン相関を、すべての対について平均したものです。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "Whether the mean, variance, and SD are based on sum scores or mean scores "
 "across items."
 msgstr ""
+"平均・分散・SDを、項目にわたる合計得点に基づいて求めるか、平均得点に基づいて"
+"求めるかを指定します。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "Reliability coefficients and descriptive statistics per item, including what-"
 "if statistics when that item is removed."
 msgstr ""
+"項目ごとの信頼性係数と記述統計です。その項目を除いた場合にどうなるかの統計量"
+"も含みます。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Coverage of the confidence intervals for item-level statistics."
-msgstr ""
+msgstr "項目ごとの統計量についての信頼区間のカバー率です。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Omega of the remaining items when this item is removed from the scale."
-msgstr ""
+msgstr "この項目を尺度から除いたときの、残りの項目のオメガです。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Alpha of the remaining items when this item is removed from the scale."
-msgstr ""
+msgstr "この項目を尺度から除いたときの、残りの項目のアルファです。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "Lambda 2 of the remaining items when this item is removed from the scale."
-msgstr ""
+msgstr "この項目を尺度から除いたときの、残りの項目のラムダ2です。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "Split-half coefficient of the remaining items when this item is removed from "
 "the scale."
-msgstr ""
+msgstr "この項目を尺度から除いたときの、残りの項目の折半係数です。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Correlation of each item with the sum of the remaining items."
-msgstr ""
+msgstr "各項目と、残りの項目の合計との相関です。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "Control the method used to construct confidence intervals for reliability "
 "coefficients, variance, and SD."
-msgstr ""
+msgstr "信頼性係数・分散・SDの信頼区間を求める方法を指定します。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "Analytic intervals use normal-theory standard errors (van der Ark, 2024). "
 "Bootstrapped intervals use percentile resampling."
 msgstr ""
+"解析的な区間は正規分布に基づく標準誤差を用います(van der Ark, 2024)。"
+"ブートストラップによる区間はパーセンタイル法による再標本抽出を用います。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "Number of bootstrap replications. Higher values yield more stable interval "
 "estimates."
-msgstr ""
+msgstr "ブートストラップの反復回数です。値を大きくすると区間の推定が安定します。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "Non-parametric bootstrap resamples the data; parametric bootstrap samples "
 "from a multivariate normal with the estimated parameters."
 msgstr ""
+"ノンパラメトリックなブートストラップはデータを再標本抽出します。"
+"パラメトリックなブートストラップは、推定されたパラメータを持つ多変量正規分布"
+"から標本抽出します。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "Chi-square-based intervals assume normality; non-parametric intervals use a "
 "two-step bootstrap procedure (van der Ark, 2024)."
 msgstr ""
+"カイ二乗に基づく区間は正規性を仮定します。ノンパラメトリックな区間は2段階の"
+"ブートストラップの手続きを用います(van der Ark, 2024)。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "CFA fits the single-factor model via confirmatory factor analysis; PFA uses "
 "principal factor analysis."
 msgstr ""
+"CFAは確認的因子分析によって1因子モデルをあてはめます。PFAは主因子分析を用いま"
+"す。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "Chi-square test, RMSEA, SRMR and other fit indices for the single-factor "
 "model underlying omega."
 msgstr ""
+"オメガの基礎となる1因子モデルについての、カイ二乗検定、RMSEA、SRMR、そのほか"
+"の適合度指数です。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Table of standardized loadings from the single-factor model."
-msgstr ""
+msgstr "1因子モデルから得られる標準化された負荷量の表です。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "Unstandardized coefficients use the raw covariance matrix; standardized use "
 "the correlation matrix."
-msgstr ""
+msgstr "標準化しない係数は生の共分散行列を、標準化する係数は相関行列を使います。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
 "Pairwise uses all available observations per covariance pair; listwise "
 "deletes any row with a missing value."
 msgstr ""
+"ペアごとの場合は共分散の対ごとに利用できる観測をすべて使います。リストワイズ"
+"の場合は欠測値がある行を取り除きます。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid "Set a random seed to reproduce the same bootstrap results across runs."
 msgstr ""
+"実行のたびに同じブートストラップの結果が再現されるように、乱数のシードを設定"
+"します。"
 
 msgctxt "UnidimensionalReliabilityFrequentist|"
 msgid ""
@@ -1571,3 +1599,6 @@ msgid ""
 "reduces file size but may slow down re-running the analysis, because samples "
 "are precomputed and cached for speed."
 msgstr ""
+"チェックすると、ブートストラップのサンプルは出力ファイルに保存されません。"
+"ファイルサイズは小さくなりますが、サンプルは高速化のためにあらかじめ計算して"
+"キャッシュされているので、分析をやり直すときに時間がかかることがあります。"
