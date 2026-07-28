@@ -204,7 +204,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   stateContainer[["scaleTable"]] <- scaleTable
 
   if (!ready) {
-    scaleTable$addFootnote(gettext("Please assign at least two factors with two items each."))
+    scaleTable$addFootnote(gettext("Please assign at least two factors with at least two items each."))
     return()
   }
   if (!is.null(model[["error"]])) {
