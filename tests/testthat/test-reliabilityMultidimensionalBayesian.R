@@ -134,6 +134,18 @@ test_that("Omega-if-item-deleted produces a populated item table", {
   expect_true(all(is.finite(omtDropped)))                              # every item refit succeeded
 })
 
+test_that("Omega-if-item-deleted reports credible intervals bracketing the point estimate", {
+  itemTable <- resultsDel[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
+  for (coefficient in c("omegaT", "omegaH")) {
+    est   <- vapply(itemTable, function(x) x[[coefficient]],                    numeric(1))
+    lower <- vapply(itemTable, function(x) x[[paste0(coefficient, "Lower")]],   numeric(1))
+    upper <- vapply(itemTable, function(x) x[[paste0(coefficient, "Upper")]],   numeric(1))
+    expect_true(all(is.finite(c(lower, upper))), label = coefficient)
+    expect_true(all(lower <= est & est <= upper), label = coefficient)
+    expect_true(all(lower >= 0 & upper <= 1), label = coefficient)
+  }
+})
+
 
 # plots: posterior densities (prior displayed, shaded probability region, fixed x-range),
 # traceplots, and the posterior predictive check. The scale table anchors the chains numerically,

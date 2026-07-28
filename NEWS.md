@@ -17,7 +17,7 @@
 # jaspReliability (development version)
 
 ## Added
-* Added Bayesian Multidimensional Reliability analysis: multidimensional omega coefficients via `Bayesrel::bomegas`, with scale/item tables, model fit, posterior, trace, and posterior predictive check plots ([Issue #1336](https://github.com/jasp-stats/jasp-issues/issues/1336)).
+* Added Bayesian Multidimensional Reliability analysis: multidimensional omega coefficients via `Bayesrel::bomegas`, with scale/item tables, model fit, posterior, trace, and posterior predictive check plots ([Issue #1336](https://github.com/jasp-stats/jasp-issues/issues/1336)). The item table reports a point estimate and credible interval for both if-item-dropped omegas, and the prior on the item and structural loadings has a variance scale in addition to a mean. Requires Bayesrel >= 0.7.9.
 * Dispersal prior now wired through Bayesrel prior samplers (replaces deprecated `fitCutoffNull`).
 
 ## Changed

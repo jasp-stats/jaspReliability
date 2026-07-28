@@ -121,7 +121,8 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   R0 <- if (correlated) NA else options[["igScaleGFactor"]]
 
   jaspBase::.setSeedJASP(options)
-  startProgressbar(options[["chains"]] * options[["samples"]])
+  startProgressbar(options[["chains"]] * options[["samples"]],
+                   label = gettext("Sampling the posterior distribution of the omega coefficients"))
 
   fit <- try(Bayesrel::bomegas(
     data       = as.matrix(dataset),
@@ -136,9 +137,11 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
     a0         = options[["igShapeManifest"]],
     b0         = options[["igScaleManifest"]],
     l0         = options[["loadMeanManifest"]],
+    A0         = options[["loadScaleManifest"]],
     c0         = options[["igShapeLatent"]],
     d0         = options[["igScaleLatent"]],
     beta0      = options[["loadMeanLatent"]],
+    B0         = options[["loadScaleLatent"]],
     p0         = p0,
     R0         = R0,
     param.out  = FALSE,   # only omega_t/omega_h/implCovs are used; TRUE also crashes bi-factor in Bayesrel <= 0.7.8
@@ -256,14 +259,28 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
     return()
 
   itemTable <- createJaspTable(gettext("Bayesian Individual Item Reliability Statistics"))
-  itemTable$dependOn(options = c("itemDeletedOmegaT", "itemDeletedOmegaH", "itemRestCorrelation", "pointEstimate"))
+  itemTable$dependOn(options = c("itemDeletedOmegaT", "itemDeletedOmegaH", "itemRestCorrelation", "pointEstimate",
+                                 "ciLevel"))
   itemTable$position <- 2
+
+  pointEstimate <- if (options[["pointEstimate"]] == "mean") gettext("Posterior mean") else gettext("Posterior median")
+  cred          <- format(100 * options[["ciLevel"]], digits = 3, drop0trailing = TRUE)
+
+  # point estimate + credible interval per omega, mirroring the unidimensional Bayesian item table;
+  # the item-rest correlation is a plug-in statistic, not a posterior, so it gets no interval
+  addOmegaColumns <- function(prefix, overtitle) {
+    itemTable$addColumnInfo(name = prefix,                 title = pointEstimate, type = "number", overtitle = overtitle)
+    itemTable$addColumnInfo(name = paste0(prefix, "Lower"),
+                            title = gettextf("Lower %s%% CI", cred), type = "number", overtitle = overtitle)
+    itemTable$addColumnInfo(name = paste0(prefix, "Upper"),
+                            title = gettextf("Upper %s%% CI", cred), type = "number", overtitle = overtitle)
+  }
 
   itemTable$addColumnInfo(name = "item", title = gettext("Item"), type = "string")
   if (showOmegaT)
-    itemTable$addColumnInfo(name = "omegaT", title = gettext("McDonald's ωₜ (if item dropped)"), type = "number")
+    addOmegaColumns("omegaT", gettext("McDonald's ωₜ (if item dropped)"))
   if (showOmegaH)
-    itemTable$addColumnInfo(name = "omegaH", title = gettext("McDonald's ωₕ (if item dropped)"), type = "number")
+    addOmegaColumns("omegaH", gettext("McDonald's ωₕ (if item dropped)"))
   if (showRest)
     itemTable$addColumnInfo(name = "itemRestCorrelation", title = gettext("Item-rest correlation"), type = "number")
 
@@ -281,10 +298,28 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
 
   footnote <- ""
   if (showOmegaT || showOmegaH) {
-    del <- .multiDimItemDeletedOmega(jaspResults, dataset, options, ready, allItems)
-    if (showOmegaT) df$omegaT <- del[["omtDel"]]
-    if (showOmegaH) df$omegaH <- del[["omhDel"]]
-    if (anyNA(c(if (showOmegaT) del[["omtDel"]], if (showOmegaH) del[["omhDel"]])))
+    del      <- .multiDimItemDeletedOmega(jaspResults, dataset, options, ready, allItems)
+    pointFun <- .getPointEstFun(options[["pointEstimate"]])
+    ciValue  <- options[["ciLevel"]]
+
+    # summarise the cached chains at display time, so switching point estimate or CI level costs no refit
+    summarizeChains <- function(chains) {
+      if (is.null(chains))
+        return(c(NA_real_, NA_real_, NA_real_))
+      cred <- coda::HPDinterval(coda::mcmc(chains), prob = ciValue)
+      c(pointFun(chains), cred[1], cred[2])
+    }
+    addOmegaData <- function(df, prefix, chainList) {
+      summaries <- vapply(chainList, summarizeChains, numeric(3))
+      df[[prefix]]                  <- summaries[1, ]
+      df[[paste0(prefix, "Lower")]] <- summaries[2, ]
+      df[[paste0(prefix, "Upper")]] <- summaries[3, ]
+      df
+    }
+
+    if (showOmegaT) df <- addOmegaData(df, "omegaT", del[["omtChains"]])
+    if (showOmegaH) df <- addOmegaData(df, "omegaH", del[["omhChains"]])
+    if (anyNA(c(if (showOmegaT) df[["omegaT"]], if (showOmegaH) df[["omegaH"]])))
       footnote <- gettext("Empty cells indicate that dropping the item would leave a factor with fewer than two items.")
   }
   if (showRest) {
@@ -315,14 +350,13 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
     return(sc[["itemDeletedObj"]]$object)
 
   k          <- length(allItems)
-  omtDel     <- rep(NA_real_, k)
-  omhDel     <- rep(NA_real_, k)
+  omtChains  <- vector("list", k)
+  omhChains  <- vector("list", k)
   correlated <- options[["modelType"]] == "correlated"
   facs       <- options[["factors"]]
   missing    <- if (options[["naAction"]] == "listwise") "listwise" else "impute"
-  pointFun   <- .getPointEstFun(options[["pointEstimate"]])
 
-  startProgressbar(k)
+  startProgressbar(k, label = gettext("Computing item statistics (refitting the model once per item)"))
   for (i in seq_len(k)) {
     item    <- allItems[i]
     reduced <- lapply(facs, function(f) setdiff(unlist(f[["indicators"]]), item))
@@ -347,20 +381,24 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
       n.iter   = options[["samples"]], n.burnin = options[["burnin"]], n.chains = options[["chains"]],
       thin     = options[["thinning"]], interval = options[["ciLevel"]], missing = missing,
       a0       = options[["igShapeManifest"]], b0 = options[["igScaleManifest"]], l0 = options[["loadMeanManifest"]],
+      A0       = options[["loadScaleManifest"]],
       c0       = options[["igShapeLatent"]], d0 = options[["igScaleLatent"]], beta0 = options[["loadMeanLatent"]],
+      B0       = options[["loadScaleLatent"]],
       p0       = p0, R0 = R0, param.out = FALSE, callback = function(){}, disableMcmcCheck = TRUE
     ), silent = TRUE)
 
     if (!inherits(fitRed, "try-error")) {
-      omtDel[i] <- pointFun(as.vector(fitRed[["omega_t"]][["chains"]]))
+      omtChains[[i]] <- as.vector(fitRed[["omega_t"]][["chains"]])
       if (!correlated)
-        omhDel[i] <- pointFun(as.vector(fitRed[["omega_h"]][["chains"]]))
+        omhChains[[i]] <- as.vector(fitRed[["omega_h"]][["chains"]])
     }
     progressbarTick()
   }
 
-  out <- list(omtDel = omtDel, omhDel = omhDel)
-  sc[["itemDeletedObj"]] <- createJaspState(out, dependencies = c("itemDeletedOmegaT", "itemDeletedOmegaH", "pointEstimate"))
+  # the chains are cached rather than a point estimate, so the point-estimate type and CI level are
+  # display-time choices that do not trigger k additional model refits
+  out <- list(omtChains = omtChains, omhChains = omhChains)
+  sc[["itemDeletedObj"]] <- createJaspState(out, dependencies = c("itemDeletedOmegaT", "itemDeletedOmegaH"))
   return(out)
 }
 

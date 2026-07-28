@@ -367,6 +367,18 @@ Form
 					max:			10
 					fieldWidth: 	40
 				}
+				DoubleField
+				{
+					name:			"loadScaleManifest"
+					label:			qsTr("variance scale")
+					info:			qsTr("Scales the variance of the normal prior on the item factor loadings. The prior is conditional on the item residual variance, so a loading has prior standard deviation sqrt(residual variance x variance scale); larger values mean a less informative prior.")
+					defaultValue:	1
+					min:			0
+					inclusive:		JASP.MaxOnly
+					max:			100
+					decimals:		2
+					fieldWidth: 	40
+				}
 			}
 		}
 
@@ -412,6 +424,18 @@ Form
 					defaultValue:	0
 					min:			-10
 					max:			10
+					fieldWidth: 	40
+				}
+				DoubleField
+				{
+					name:			"loadScaleLatent"
+					label:			qsTr("variance scale")
+					info:			qsTr("Scales the variance of the normal prior on the structural loadings of the group factors on the general factor. Larger values mean a less informative prior.")
+					defaultValue:	2.5
+					min:			0
+					inclusive:		JASP.MaxOnly
+					max:			100
+					decimals:		2
 					fieldWidth: 	40
 				}
 			}
