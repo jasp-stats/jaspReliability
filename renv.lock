@@ -19,11 +19,11 @@
   "Packages": {
     "Bayesrel": {
       "Package": "Bayesrel",
-      "Version": "0.7.8.9000",
-      "Source": "Local",
+      "Version": "0.7.9",
+      "Source": "GitHub",
       "Type": "Package",
       "Title": "Bayesian Reliability Estimation",
-      "Date": "2025-07-05",
+      "Date": "2026-07-28",
       "Authors@R": "c(person(\"Julius M.\", \"Pfadt\", email = \"julius.pfadt@gmail.com\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-0758-5502\")), person(\"Don\", \"van den Bergh\", role = c(\"aut\"), comment = c(ORCID = \"0000-0002-9838-7308\")),  person(\"Joris\", \"Goosen\",  role = c(\"aut\")) )",
       "Description": "Functionality for reliability estimates. For 'unidimensional' tests: Coefficient alpha, 'Guttman's' lambda-2/-4/-6, the Greatest lower bound and coefficient omega_u ('unidimensional') in a Bayesian and a frequentist version.  For multidimensional tests: omega_t (total) and omega_h (hierarchical).  The results include confidence and credible intervals, the  probability of a coefficient being larger than a cutoff,  and a check for the factor models, necessary for the omega coefficients.  The method for the Bayesian 'unidimensional' estimates, except for omega_u,  is sampling from the posterior inverse 'Wishart' for the  covariance matrix based measures (see 'Murphy', 2007,  <https://groups.seas.harvard.edu/courses/cs281/papers/murphy-2007.pdf>.  The Bayesian omegas (u, t, and h) are obtained by  'Gibbs' sampling from the conditional posterior distributions of  (1) the single factor model, (2) the second-order factor model, (3) the bi-factor model,  (4) the correlated factor model ('Lee', 2007, <doi:10.1002/9780470024737>).",
       "URL": "https://github.com/juliuspfadt/Bayesrel",
@@ -59,8 +59,12 @@
       ],
       "Author": "Julius M. Pfadt [aut, cre] (ORCID: <https://orcid.org/0000-0002-0758-5502>), Don van den Bergh [aut] (ORCID: <https://orcid.org/0000-0002-9838-7308>), Joris Goosen [aut]",
       "Maintainer": "Julius M. Pfadt <julius.pfadt@gmail.com>",
-      "RemoteType": "local",
-      "RemoteUrl": "~/Packages/Bayesrel"
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "juliuspfadt",
+      "RemoteRepo": "Bayesrel",
+      "RemoteRef": "master",
+      "RemoteSha": "fae36db5334a253799c4b8a683cb6d917b79cee7"
     },
     "DBI": {
       "Package": "DBI",
@@ -2624,8 +2628,7 @@
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspBase",
       "RemoteRef": "master",
-      "RemoteSha": "f1944101ee749e3fcd605defca2e014ade4b3534",
-      "Remotes": "jasp-stats/jaspGraphs"
+      "RemoteSha": "f1944101ee749e3fcd605defca2e014ade4b3534"
     },
     "jaspGraphs": {
       "Package": "jaspGraphs",

@@ -12,7 +12,7 @@ Encoding: UTF-8
 Depends:
   R (>= 3.5.0)
 Imports:
-  Bayesrel,
+  Bayesrel (>= 0.7.9),
   coda,
   ggplot2,
   ggridges,
@@ -25,6 +25,7 @@ Imports:
   psych,
   mirt
 Remotes:
+  juliuspfadt/Bayesrel,
   jasp-stats/jaspBase,
   jasp-stats/jaspGraphs
 Suggests:
