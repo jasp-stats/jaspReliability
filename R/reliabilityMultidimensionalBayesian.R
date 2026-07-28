@@ -7,8 +7,8 @@
   "factors", "reverseScaledItems", "modelType",
   "samples", "burnin", "thinning", "chains",
   "setSeed", "seed", "naAction", "samplesSavingDisabled",
-  "igShapeManifest", "igScaleManifest", "loadMeanManifest",
-  "igShapeLatent", "igScaleLatent", "loadMeanLatent",
+  "igShapeManifest", "igScaleManifest", "loadMeanManifest", "loadScaleManifest",
+  "igShapeLatent", "igScaleLatent", "loadMeanLatent", "loadScaleLatent",
   "igShapeGFactor", "igScaleGFactor", "latentCorDf"
 )
 
