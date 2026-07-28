@@ -53,6 +53,14 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
 }
 
 # a multidimensional model needs at least two factors with at least two items each
+# an item assigned to more than one factor is a cross-loading; Bayesrel samples these for the
+# second-order and correlated models, but stops for the bi-factor model
+.multiDimHasCrossLoadings <- function(options) {
+  items <- unlist(lapply(options[["factors"]], function(f) unlist(f[["indicators"]])), use.names = FALSE)
+  return(anyDuplicated(items) > 0L)
+}
+
+
 .multiDimReady <- function(options) {
   facs <- options[["factors"]]
   if (length(facs) < 2)
@@ -106,6 +114,12 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
 
   if (!ready)
     return(model)
+
+  # caught here rather than by Bayesrel's own stop(), so the message is translated and actionable
+  if (options[["modelType"]] == "biFactor" && .multiDimHasCrossLoadings(options)) {
+    model[["error"]] <- gettext("The bi-factor model does not support items that load on more than one factor. Assign each item to a single factor, or select the second-order or correlated-factors model.")
+    return(model)
+  }
 
   modelSyntax <- .multiDimBuildModel(options)
   missing     <- if (options[["naAction"]] == "listwise") "listwise" else "impute"

@@ -288,3 +288,16 @@ test_that("Reverse-scaled item: item-rest correlations match and footnote is sho
   footnotes <- vapply(itemTable[["footnotes"]], function(f) f[["text"]], character(1))
   expect_true(any(grepl("reverse", footnotes, ignore.case = TRUE)))
 })
+
+
+# cross-loadings with the bi-factor model. Sampling of cross-loaded items is already covered by the
+# main fixture at the top of this file (Question_12 loads on both factors); Bayesrel refuses them for
+# the bi-factor model, and the analysis reports that before the sampler is started.
+test_that("Cross-loaded item is rejected by the bi-factor model with a clear error", {
+  opts <- options
+  opts$modelType <- "biFactor"
+  set.seed(1)
+  res <- runAnalysis("reliabilityMultidimensionalBayesian", "Reliability.csv", opts, makeTests = FALSE)
+  scaleTable <- res[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]]
+  expect_match(scaleTable[["error"]][["errorMessage"]], "bi-factor model does not support")
+})

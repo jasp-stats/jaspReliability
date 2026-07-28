@@ -31,7 +31,8 @@ Form
 		name: "factors"
 		initNumberFactors: 2
 		allowedColumns: ["scale"]
-		info: qsTr("Assign the items to their factors. The analysis requires at least two factors with at least two items each.")
+		keepAvailableVariables: true
+		info: qsTr("Assign the items to their factors. The analysis requires at least two factors with at least two items each. An item may be assigned to more than one factor (cross-loading); the bi-factor model does not support cross-loadings.")
 	}
 
 	DropDown
