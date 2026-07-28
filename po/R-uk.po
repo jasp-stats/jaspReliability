@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.96.4\n"
-"POT-Creation-Date: 2026-04-25 04:21\n"
+"POT-Creation-Date: 2026-07-18 04:23\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -15,6 +15,17 @@ msgstr ""
 msgid "Bland-Altman Plots"
 msgstr ""
 
+msgid ""
+"Bland-Altman plots of the mean vs. difference for each variable pair, with "
+"mean difference and limits of agreement."
+msgstr ""
+
+msgid ""
+"Scatter plot of mean vs. difference of the two measurements. The middle "
+"dashed line is the mean difference (bias); the outer dashed lines are the "
+"limits of agreement (±1.96 SD)."
+msgstr ""
+
 msgid "Please provide another variable"
 msgstr ""
 
@@ -22,6 +33,17 @@ msgid "Plotting not possible: %s"
 msgstr ""
 
 msgid "Bland-Altman Tables"
+msgstr ""
+
+msgid ""
+"Summary statistics for each pair: bias (mean difference), limits of "
+"agreement, and optional confidence intervals."
+msgstr ""
+
+msgid ""
+"Mean difference (bias), lower and upper limits of agreement for this pair. "
+"If confidence intervals are requested, uncertainty bounds for each limit are "
+"also shown."
 msgstr ""
 
 msgid "Bias & Limits"
@@ -51,31 +73,37 @@ msgstr ""
 msgid "Intraclass Correlation"
 msgstr ""
 
+msgid ""
+"Intraclass correlation coefficients (ICC) with optional confidence intervals "
+"for assessing absolute agreement or consistency among raters."
+msgstr ""
+
 msgid "Type"
 msgstr ""
 
 msgid "Point Estimate"
 msgstr ""
 
-msgid "%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout & Fleiss (1979)."
+msgid ""
+"%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout "
+"& Fleiss (1979)."
 msgstr ""
 
 msgid "Please select at least 2 columns"
 msgstr ""
 
-msgid "Cohen's kappa"
+msgid "Agreement Coefficient"
 msgstr ""
 
-msgid "Ratings"
+msgid ""
+"Empty placeholder table shown while no agreement coefficient is selected; "
+"check a coefficient to obtain results."
 msgstr ""
 
-msgid "kappa"
+msgid "Coefficient"
 msgstr ""
 
-msgid "%1$i subjects/items and %2$i raters/measurements."
-msgstr ""
-
-msgid "%1$s Based on pairwise complete cases."
+msgid "Estimate"
 msgstr ""
 
 msgid "SE"
@@ -84,16 +112,120 @@ msgstr ""
 msgid "Lower"
 msgstr ""
 
+msgid "Upper"
+msgstr ""
+
+msgid "Check one of the coefficients to start the analysis."
+msgstr ""
+
 msgid "%s%% CI"
 msgstr ""
 
-msgid "Upper"
+msgid ""
+"%s requires a common ordinal scale, but the declared category orders of the "
+"raters are contradictory or do not determine a unique order. Ensure all "
+"raters use the same ordered categories."
+msgstr ""
+
+msgid ""
+"With raters in rows, all subject/item columns must have the same measurement "
+"type. The data mix categorical and continuous columns; change the column "
+"types so they match."
+msgstr ""
+
+msgid "Krippendorff's alpha requires at least 2 raters/measurements."
+msgstr ""
+
+msgid ""
+"Krippendorff's alpha with an interval or ratio method requires numeric "
+"ratings. Use the nominal or ordinal method, or recode the data."
+msgstr ""
+
+msgid ""
+"Krippendorff's alpha with the ratio method requires non-negative ratings."
+msgstr ""
+
+msgid "Krippendorff's alpha with the ordinal method"
+msgstr ""
+
+msgid ""
+"Krippendorff's alpha cannot be computed: the data contain infinite values."
+msgstr ""
+
+msgid ""
+"Krippendorff's alpha cannot be computed: no subject/item was rated by at "
+"least 2 raters (no pairable observations)."
+msgstr ""
+
+msgid ""
+"Krippendorff's alpha is not estimable: the pairable ratings do not vary."
+msgstr ""
+
+msgid "Cohen's kappa"
+msgstr ""
+
+msgid ""
+"Cohen's kappa: chance-corrected agreement between exactly two raters. Ranges "
+"from -1 (worse than chance) to 1 (perfect agreement)."
+msgstr ""
+
+msgid "Ratings"
+msgstr ""
+
+msgid "kappa"
+msgstr ""
+
+msgid ""
+"Cohen's kappa requires nominal or ordinal variables. Remove scale variables "
+"or change their type."
+msgstr ""
+
+msgid ""
+"Weighted Cohen's kappa requires ordinal variables. Remove nominal variables "
+"or change their type."
+msgstr ""
+
+msgid "Cohen's kappa requires at least 2 raters/measurements."
+msgstr ""
+
+msgid "Weighted Cohen's kappa"
+msgstr ""
+
+msgid "fewer than 3 jointly rated subjects/items"
+msgstr ""
+
+msgid "the ratings do not vary"
+msgstr ""
+
+msgid "the coefficient is not estimable"
+msgstr ""
+
+msgid "Cohen's kappa could not be computed for any rater pair: %s."
+msgstr ""
+
+msgid "Some rater pairs could not be computed:"
+msgstr ""
+
+msgid ". They are excluded from the average kappa."
+msgstr ""
+
+msgid "Note:"
+msgstr ""
+
+msgid "%1$i subjects/items and %2$i raters/measurements."
+msgstr ""
+
+msgid "%1$s Based on pairwise complete cases."
+msgstr ""
+
+msgid "n"
 msgstr ""
 
 msgid "Confidence intervals are asymptotic."
 msgstr ""
 
-msgid "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
+msgid ""
+"If there are only 2 levels, weighted kappa is equal to unweighted kappa."
 msgstr ""
 
 msgid "Cohen's kappa requires at least 3 subjects/items."
@@ -102,25 +234,132 @@ msgstr ""
 msgid "Fleiss' kappa"
 msgstr ""
 
-msgid "Fleiss' kappa requires at least 3 subjects/items. Check whether raters are in columns or rows."
+msgid ""
+"Fleiss' kappa: generalization of Cohen's kappa for two or more raters "
+"assigning subjects to nominal categories."
+msgstr ""
+
+msgid ""
+"Fleiss' kappa requires nominal or ordinal variables. Remove scale variables "
+"or change their type."
 msgstr ""
 
 msgid "Fleiss' kappa requires at least 2 raters/measurements."
 msgstr ""
 
+msgid ""
+"Fleiss' kappa requires at least 3 complete subjects/items (rows without "
+"missing ratings). Check whether raters are in columns or rows."
+msgstr ""
+
+msgid ""
+"Fleiss' kappa is not estimable: all ratings fall into a single category."
+msgstr ""
+
 msgid "%1$s Based on listwise complete cases."
+msgstr ""
+
+msgid "Krippendorff's alpha"
+msgstr ""
+
+msgid ""
+"Krippendorff's alpha: reliability coefficient applicable to any number of "
+"raters, any scale level (nominal/ordinal/interval/ratio), and incomplete "
+"data."
 msgstr ""
 
 msgid "Method"
 msgstr ""
 
-msgid "For the Lord generalized method, the test could not be split in equally sized parts with more than 1 item per part. Consider adding or removing items."
+msgid "Krippendorff's alpha is not estimable for these data."
 msgstr ""
 
-msgid "The Lord, Keats, and Lord generalized method are only available for binary data."
+msgid ""
+"%1$i of %2$i bootstrap samples could not be computed and were excluded from "
+"the CI."
+msgstr ""
+
+msgid "Kendall's W"
+msgstr ""
+
+msgid ""
+"Kendall's coefficient of concordance W: measures agreement of rankings "
+"across multiple raters. Ranges from 0 (no agreement) to 1 (perfect "
+"concordance). Significance is assessed with the large-sample chi-square test "
+"and the F test, which performs better for small samples."
+msgstr ""
+
+msgid "Chi-square test"
+msgstr ""
+
+msgid "F test"
+msgstr ""
+
+msgid ""
+"Kendall's W requires ordinal or scale variables. Remove nominal variables."
+msgstr ""
+
+msgid "Kendall's W requires at least 2 raters/measurements."
+msgstr ""
+
+msgid ""
+"Kendall's W requires at least 2 complete subjects/items (rows without "
+"missing ratings)."
+msgstr ""
+
+msgid "Kendall's W cannot be computed: the data contain infinite values."
+msgstr ""
+
+msgid "Kendall's W is not estimable: the rankings do not vary."
+msgstr ""
+
+msgid ""
+"Bootstrap CIs are only available with the tie correction enabled: resampling "
+"with replacement introduces ties, which distort the uncorrected coefficient."
+msgstr ""
+
+msgid "Confidence intervals are based on bootstrap."
+msgstr ""
+
+msgid "Chi-square test is valid for large samples only."
+msgstr ""
+
+msgid "The F test is undefined for perfect concordance (W = 1)."
+msgstr ""
+
+msgid ""
+"The F test is not available for this design: it requires n - 1 - 2/m > 0 (n "
+"= subjects/items, m = raters)."
+msgstr ""
+
+msgid ""
+"Ties are present in the ratings, so the uncorrected coefficient may be "
+"inaccurate. Consider enabling the tie correction."
+msgstr ""
+
+msgid "Warning:"
+msgstr ""
+
+msgid ""
+"For the Lord generalized method, the test could not be split in equally "
+"sized parts with more than 1 item per part. Consider adding or removing "
+"items."
+msgstr ""
+
+msgid "Standard error of measurement results for the selected methods."
+msgstr ""
+
+msgid ""
+"The Lord, Keats, and Lord generalized method are only available for binary "
+"data."
 msgstr ""
 
 msgid "Standard Error of Measurement"
+msgstr ""
+
+msgid ""
+"Conditional standard error of measurement (SEM) for each sum score using the "
+"selected method(s). The unconditional SEM is also shown."
 msgstr ""
 
 msgid "Sum Score"
@@ -135,19 +374,35 @@ msgstr ""
 msgid "%1$s The unconditional SEM value equals %2$1.3f."
 msgstr ""
 
-msgid "%1$s Estimating the %2$s method failed. If possible, you might try changing the method's parameters."
+msgid ""
+"%1$s Estimating the %2$s method failed. If possible, you might try changing "
+"the method's parameters."
 msgstr ""
 
 msgid "Sum Score CI Table"
 msgstr ""
 
-msgid "Estimating the %s method failed. If possible, you might try changing the method's parameters."
+msgid ""
+"Confidence intervals for the true score at each sum score level, computed "
+"from the conditional SEM."
+msgstr ""
+
+msgid ""
+"Estimating the %s method failed. If possible, you might try changing the "
+"method's parameters."
 msgstr ""
 
 msgid "Histogram of Counts per Sum Score Group"
 msgstr ""
 
+msgid "Distribution of participants across sum score groups."
+msgstr ""
+
 msgid "Point Plots"
+msgstr ""
+
+msgid ""
+"Conditional SEM plotted as a function of sum score for each selected method."
 msgstr ""
 
 msgid "SEM"
@@ -156,7 +411,17 @@ msgstr ""
 msgid "Combined Plot"
 msgstr ""
 
+msgid ""
+"Overlay of all selected methods' conditional SEM across the full range of "
+"sum scores."
+msgstr ""
+
 msgid "Sum Score CI Plots"
+msgstr ""
+
+msgid ""
+"True-score confidence interval plotted against sum score for each selected "
+"method."
 msgstr ""
 
 msgid "True Score Estimate"
@@ -183,25 +448,36 @@ msgstr ""
 msgid "%s Of the observations, pairwise complete cases were used."
 msgstr ""
 
-msgid "Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
+msgid ""
+"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
+"lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
+"Options'"
 msgstr ""
 
-msgid "Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed."
+msgid ""
+"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
+"lambda6, glb] failed."
 msgstr ""
 
-msgid "Sampling the posterior factor model for omega failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
+msgid ""
+"Sampling the posterior factor model for omega failed. Try changing to "
+"'Exclude cases listwise' in 'Advanced Options'"
 msgstr ""
 
-msgid "Sampling the posterior null model failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
+msgid ""
+"Sampling the posterior null model failed. Try changing to 'Exclude cases "
+"listwise' in 'Advanced Options'"
 msgstr ""
 
 msgid "Bayesian Scale Reliability Statistics"
 msgstr ""
 
-msgid "Posterior %s"
+msgid ""
+"Bayesian posterior estimates and credible intervals for all selected scale "
+"reliability coefficients."
 msgstr ""
 
-msgid "Coefficient"
+msgid "Posterior %s"
 msgstr ""
 
 msgid "R-hat"
@@ -213,19 +489,34 @@ msgstr ""
 msgid "Bayesian Individual Item Reliability Statistics"
 msgstr ""
 
+msgid ""
+"Bayesian item-level reliability: posterior estimates of the scale "
+"coefficient if each item were dropped, and item-rest correlations."
+msgstr ""
+
 msgid "Item"
 msgstr ""
 
 msgid "%s (if item dropped)"
 msgstr ""
 
-msgid "%s Please enter at least 3 variables for the if item dropped statistics."
+msgid ""
+"%s Please enter at least 3 variables for the if item dropped statistics."
 msgstr ""
 
-msgid "The bounds you entered have been rearranged in increasing order to provide meaningful results."
+msgid ""
+"The bounds you entered have been rearranged in increasing order to provide "
+"meaningful results."
 msgstr ""
 
-msgid "Probability that Reliability Coefficient is Larger than %1$.2f and Smaller than %2$.2f"
+msgid ""
+"Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
+"than %2$.2f"
+msgstr ""
+
+msgid ""
+"Posterior and prior probability that each reliability coefficient falls "
+"within the specified interval."
 msgstr ""
 
 msgid "Probability"
@@ -240,7 +531,8 @@ msgstr ""
 msgid "Fit Measures for the Single-Factor Model"
 msgstr ""
 
-msgid "Estimate"
+msgid ""
+"Bayesian fit indices for the single-factor model underlying McDonald's omega."
 msgstr ""
 
 msgid "%s lower bound"
@@ -249,10 +541,20 @@ msgstr ""
 msgid "%s upper bound"
 msgstr ""
 
-msgid "'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller than\n                         the corresponding cutoff and the probabilities that the B-CFI/TLI are larger than the\n                         corresponding cutoff."
+msgid ""
+"'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
+"than\n"
+"                         the corresponding cutoff and the probabilities that "
+"the B-CFI/TLI are larger than the\n"
+"                         corresponding cutoff."
 msgstr ""
 
 msgid "Standardized Loadings of the Single-Factor Model"
+msgstr ""
+
+msgid ""
+"Posterior estimates of standardized factor loadings from the single-factor "
+"model."
 msgstr ""
 
 msgid "Standardized loading"
@@ -261,10 +563,21 @@ msgstr ""
 msgid "Posterior Plots"
 msgstr ""
 
+msgid ""
+"Posterior density plots for each selected reliability coefficient, with "
+"optional prior overlay and shading of the posterior probability region; the "
+"credible interval is shown as a separate error bar."
+msgstr ""
+
 msgid "Density"
 msgstr ""
 
 msgid "If Item Dropped Posterior Plots"
+msgstr ""
+
+msgid ""
+"Ridgeline plots showing the posterior distribution of each reliability "
+"coefficient when each item is dropped."
 msgstr ""
 
 msgid "Please enter at least 3 variables for the if item dropped plot"
@@ -282,7 +595,21 @@ msgstr ""
 msgid "Eigenvalue No."
 msgstr ""
 
+msgid "Posterior Predictive Check Omega"
+msgstr ""
+
+msgid ""
+"Posterior predictive check: observed eigenvalues of the covariance matrix "
+"compared against the model-implied posterior distribution to assess single-"
+"factor model fit."
+msgstr ""
+
 msgid "Convergence Traceplot"
+msgstr ""
+
+msgid ""
+"Traceplots of MCMC samples per chain over iterations to assess sampler "
+"convergence and mixing."
 msgstr ""
 
 msgid "Iterations"
@@ -294,25 +621,39 @@ msgstr ""
 msgid "%1$s%2$s"
 msgstr ""
 
-msgid "Omega calculation with CFA failed.\n                                                    Try changing to PFA in 'Advanced Options'."
+msgid ""
+"Omega calculation with CFA failed.\n"
+"                                                    Try changing to PFA in "
+"'Advanced Options'."
 msgstr ""
 
-msgid "Omega bootstrapped interval calculation with CFA failed.\n                                                        Try changing to PFA in 'Advanced Options'."
+msgid ""
+"Omega bootstrapped interval calculation with CFA failed.\n"
+"                                                        Try changing to PFA "
+"in 'Advanced Options'."
 msgstr ""
 
 msgid "Omega calculation with PFA failed."
 msgstr ""
 
-msgid "The analytic confidence interval is not available for coefficient omega obtained with PFA. Change to 'Bootstrapped' in Advanced Options."
+msgid ""
+"The analytic confidence interval is not available for coefficient omega "
+"obtained with PFA. Change to 'Bootstrapped' in Advanced Options."
 msgstr ""
 
 msgid "Omega interval calculation with PFA failed."
 msgstr ""
 
-msgid "The analytic confidence interval is not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'."
+msgid ""
+"The analytic confidence interval is not available for coefficient alpha/"
+"lambda2 when data contain missings and pairwise complete observations are "
+"used. Try changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
 
-msgid "The analytic confidence interval is not available for the average interitem correlation when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'."
+msgid ""
+"The analytic confidence interval is not available for the average interitem "
+"correlation when data contain missings and pairwise complete observations "
+"are used. Try changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
 
 msgid "Omega item dropped statistics with CFA failed."
@@ -321,10 +662,18 @@ msgstr ""
 msgid "Omega item dropped statistics with PFA failed."
 msgstr ""
 
-msgid "The analytic confidence interval not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'."
+msgid ""
+"The analytic confidence interval not available for coefficient alpha/lambda2 "
+"when data contain missings and pairwise complete observations are used. Try "
+"changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
 
 msgid "Frequentist Scale Reliability Statistics"
+msgstr ""
+
+msgid ""
+"Frequentist point estimates, standard errors, and confidence intervals for "
+"all selected scale reliability coefficients."
 msgstr ""
 
 msgid "Std. Error"
@@ -333,7 +682,17 @@ msgstr ""
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr ""
 
+msgid ""
+"Item-level reliability: for each item, the scale reliability coefficient if "
+"that item were dropped, and the item-rest correlation."
+msgstr ""
+
 msgid "Fit Measures of Single Factor Model Fit"
+msgstr ""
+
+msgid ""
+"Fit indices of the single-factor model underlying McDonald's omega, "
+"including chi-square, RMSEA, and SRMR."
 msgstr ""
 
 msgid "Fit measure"
@@ -342,7 +701,15 @@ msgstr ""
 msgid "Value"
 msgstr ""
 
-msgid "Too few MCMC samples will remain after the removal of the burnin samples and thinning,\n                     please increase No.samples."
+msgid ""
+"Standardized factor loadings from the single-factor model used to estimate "
+"McDonald's omega."
+msgstr ""
+
+msgid ""
+"Too few MCMC samples will remain after the removal of the burnin samples and "
+"thinning,\n"
+"                     please increase No.samples."
 msgstr ""
 
 msgid "%1$sVariables %2$s and %3$s correlated perfectly."

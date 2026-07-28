@@ -32,6 +32,7 @@ Form
 			name: 			"variables"
 			title: 			qsTr("Variables")
 			allowedColumns: ["scale"]
+			info:			qsTr("Rating variables to include. Each variable is one rater; each row is a subject being rated.")
 		}
 	}
 
@@ -42,6 +43,7 @@ Form
 		{
 			title: qsTr("Each subject is rated by...")
 			name: "iccType"
+			info:  qsTr("Determines the ICC model. ICC(1): each subject rated by a different random rater. ICC(2): all subjects rated by the same random sample of raters. ICC(3): all subjects rated by the same fixed raters. See Shrout & Fleiss (1979).")
 
 			RadioButton
 			{
@@ -70,6 +72,7 @@ Form
 			name:   	"averagedRating"
 			label:  	qsTr("Ratings are averaged")
 			checked: 	false
+			info:		qsTr("When ratings are averaged across raters, the k-rater version of the selected ICC is computed (e.g. ICC(2,k) instead of ICC(2,1)) per Shrout & Fleiss (1979). Averaging generally raises the reliability estimate.")
 		}
 	}
 
@@ -79,6 +82,7 @@ Form
 		label:				qsTr("Confidence Interval")
 		checked: 			true
 		childrenOnSameRow: 	true
+		info:				qsTr("Report a confidence interval for the ICC estimate based on the F-distribution.")
 		CIField
 		{
 			name:			"ciLevel"

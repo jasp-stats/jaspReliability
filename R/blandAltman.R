@@ -30,6 +30,7 @@ blandAltman <- function(jaspResults, dataset, options) {
 
   if (is.null(jaspResults[["plotsBlandAltman"]])) {
     jaspResults[["plotsBlandAltman"]] <- createJaspContainer(gettext("Bland-Altman Plots"))
+    jaspResults[["plotsBlandAltman"]]$info <- gettext("Bland-Altman plots of the mean vs. difference for each variable pair, with mean difference and limits of agreement.")
     jaspResults[["plotsBlandAltman"]]$dependOn(c("ci", "ciShading", "ciLevel", "ciShadingWithColour"))
     subcontainer <- jaspResults[["plotsBlandAltman"]]
   } else {
@@ -41,6 +42,7 @@ blandAltman <- function(jaspResults, dataset, options) {
     if (!is.null(subcontainer[[title]]))
       next
     blandAltmanPlots <- createJaspPlot(title = title, width = 600, height = 420)
+    blandAltmanPlots$info <- gettext("Scatter plot of mean vs. difference of the two measurements. The middle dashed line is the mean difference (bias); the outer dashed lines are the limits of agreement (\u00b11.96 SD).")
     blandAltmanPlots$dependOn(optionContainsValue = list(pairs = pair))
     subcontainer[[title]] <- blandAltmanPlots
 
@@ -124,6 +126,7 @@ blandAltman <- function(jaspResults, dataset, options) {
 
   if (is.null(jaspResults[["tabBlandAltman"]])) {
     jaspResults[["tabBlandAltman"]] <- createJaspContainer(gettext("Bland-Altman Tables"))
+    jaspResults[["tabBlandAltman"]]$info <- gettext("Summary statistics for each pair: bias (mean difference), limits of agreement, and optional confidence intervals.")
     jaspResults[["tabBlandAltman"]]$dependOn(c("blandAltmanTable", "ci", "ciLevel"))
     subcontainer <- jaspResults[["tabBlandAltman"]]
   } else {
@@ -136,6 +139,7 @@ blandAltman <- function(jaspResults, dataset, options) {
       if (!is.null(subcontainer[[title]]))
         next
       tablesBlandAltman <- createJaspTable(title = title)
+      tablesBlandAltman$info <- gettext("Mean difference (bias), lower and upper limits of agreement for this pair. If confidence intervals are requested, uncertainty bounds for each limit are also shown.")
       tablesBlandAltman$dependOn(optionContainsValue = list(pairs = pair))
       tablesBlandAltman$addColumnInfo(name = "names", title = gettext("Bias & Limits"), type = "string")
       tablesBlandAltman$addColumnInfo(name = "agree", title = gettext("Point Value"), type = "number")

@@ -452,7 +452,6 @@ Upgrades
 			from:	"disableSampleSave"
 			to:		"samplesSavingDisabled"
 		}
-
 	}
 
 	Upgrade
@@ -739,22 +738,38 @@ Upgrades
 			from:	"pointEst"
 			to:		"pointEstimate"
 		}
-
 	}
 
 	Upgrade
 	{
+		// applies to files saved with fromVersion OR LOWER (Desktop picks the closest
+		// step at or above the file's version), so fromVersion must be the LAST released
+		// version that still had the old option names, not the first
+		functionName: "raterAgreement"
+		fromVersion:  "0.96.4"
+		toVersion:    "0.97.1"
+
+		ChangeRename
+		{
+			from: "krippendorffsAlphaBootstrapSamplesForCI"
+			to:   "bootstrapSamples"
+		}
+	}
+
+	Upgrade
+	{
+		// fromVersion is the LAST released version that still used the old function name
 		functionName: 		"unidimensionalReliabilityFrequentist"
 		newFunctionName:	"reliabilityUnidimensionalFrequentist"
-		fromVersion:		"0.17.0"
-		toVersion:			"0.97.0"
+		fromVersion:		"0.97.1"
+		toVersion:			"0.97.2"
 	}
 
 	Upgrade
 	{
 		functionName: 		"unidimensionalReliabilityBayesian"
 		newFunctionName:	"reliabilityUnidimensionalBayesian"
-		fromVersion:		"0.17.0"
-		toVersion:			"0.97.0"
+		fromVersion:		"0.97.1"
+		toVersion:			"0.97.2"
 	}
 }

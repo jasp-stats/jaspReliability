@@ -2619,6 +2619,7 @@
       ],
       "Config/testthat/edition": "3",
       "RemoteType": "github",
+      "Remotes": "jasp-stats/jaspGraphs",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspBase",

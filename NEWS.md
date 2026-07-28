@@ -28,6 +28,28 @@
 * Fixed bi-factor model crash caused by `param.out = TRUE` in `Bayesrel::bomegas`.
 * Fixed missing `dependOn` declarations for point-estimate option on scale table and `latentCorDf` in base container.
 * Fixed untranslated point-estimate column title in scale/item tables.
+* Rater Agreement: declared factor level order is now authoritative for weighted Cohen's kappa and ordinal Krippendorff's alpha even when the labels look numeric (e.g. levels "1","3","2" declaring low < medium < high); numeric sorting is only used for columns with no declared order. Contradictory numeric-looking declared orders across raters now show the common-scale error instead of being silently sorted.
+* Rater Agreement: pairwise weighted Cohen's kappa now uses the full declared common scale for every rater pair, so a pair that never observes an interior category still gets that category's correct distance/weight instead of a rescaled subset.
+* Rater Agreement: Kendall's W (table and bootstrap CI) now rejects raters-in-rows data whose merged ordinal scale is ambiguous, matching the existing policy for weighted Cohen's kappa and ordinal Krippendorff's alpha; previously the result depended on the order of the subject columns.
+
+---
+
+# jaspReliability 0.97.1
+
+## Added
+* Rater Agreement: added Kendall's W coefficient with bootstrap CI support.
+* Rater Agreement: added the F test for Kendall's W alongside the chi-square test ([Issue #2151](https://github.com/jasp-stats/jasp-issues/issues/2151)).
+
+## Fixed
+* Rater Agreement: declared ordinal level order is now respected (Kendall's W, Krippendorff's alpha, weighted Cohen's kappa), including with raters in rows and when raters use different subsets of the categories; validation runs on the analyzed (complete/pairwise) data; degenerate inputs (all-missing, constant ratings, single category, one rater) show clear errors instead of failing or reporting invalid results.
+* Rater Agreement: Krippendorff's alpha is validated on the ratings that actually enter a coincidence (subjects rated at least twice); previously such data could report a non-estimable coefficient together with a bootstrap confidence interval.
+* Rater Agreement: Fleiss' kappa standard errors are computed from the Fleiss, Nee & Landis (1979) formulas instead of being reconstructed from rounded output.
+
+## Changed
+* Rater Agreement: grouped bootstrap samples, CI level, and seed into an "Advanced Options" section; removed pre-checked defaults for all coefficients; added placeholder table prompting users to select a coefficient when variables are assigned.
+* Rater Agreement: the tie correction for Kendall's W is enabled by default, and bootstrap confidence intervals are only available for the tie-corrected coefficient, because resampling with replacement introduces ties.
+* Rater Agreement: weighted Cohen's kappa and ordinal Krippendorff's alpha require the raters to share one ordinal scale. When the declared category orders are contradictory or do not determine a unique order, an error is shown instead of an order-dependent result.
+* Rater Agreement: Cohen's kappa validates and reports each rater pair on its own pairwise-complete data. Pairs with fewer than three jointly rated subjects, without variation, or with a non-estimable coefficient are excluded from the average kappa and listed in a note. Pair rows are ordered V1-V2, V1-V3, V1-V4, ...
 
 ---
 

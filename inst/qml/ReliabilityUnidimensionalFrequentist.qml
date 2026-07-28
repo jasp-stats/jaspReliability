@@ -33,6 +33,7 @@ Form
 			name: 			"variables"
 			title: 			qsTr("Variables")
 			allowedColumns: ["scale"]
+			info:			qsTr("Items/variables to include in the reliability analysis. Must be scale variables.")
 		}
 	}
 
@@ -43,13 +44,14 @@ Form
 		Group
 		{
 			title: qsTr("Scale Statistics")
-
+			info:  qsTr("Reliability coefficients and descriptive statistics computed for the full scale.")
 
 			CIField
 			{
 				name:			"ciLevel";
 				label:			qsTr("Confidence interval");
 				defaultValue:	95;
+				info:			qsTr("Coverage of the confidence intervals for scale reliability statistics.")
 			}
 			
 
@@ -59,6 +61,7 @@ Form
 				name:		"scaleOmega"
 				label:		qsTr("McDonald's ω")
 				checked:	true
+				info:		qsTr("McDonald's omega for unidimensional data based on the single-factor model. The denominator uses model-implied total variance.")
 			}
 
 			CheckBox
@@ -66,6 +69,7 @@ Form
 				id: 	alpha
 				name: 	"scaleAlpha";
 				label: 	qsTr("Cronbach's α");
+				info:	qsTr("Cronbach's alpha. For binary items this equals KR-20.")
 			}
 
 			CheckBox
@@ -73,6 +77,7 @@ Form
 				id: 	lambda2
 				name: 	"scaleLambda2";
 				label: 	qsTr("Guttman's λ2");
+				info:	qsTr("Guttman's lambda 2, a lower bound for reliability.")
 			}
 
 			CheckBox
@@ -80,9 +85,10 @@ Form
 				id: 	splithalf
 				name: 	"scaleSplithalf";
 				label: 	qsTr("Split-half coefficient");
+				info:	qsTr("Splits items into two halves (odd/even by default). Unstandardized: Flanagan-Rulon coefficient; Standardized: Spearman-Brown coefficient.")
 			}
 
-			CheckBox { name: "averageInterItemCorrelation";	label: qsTr("Average interitem correlation")}
+			CheckBox { name: "averageInterItemCorrelation";	label: qsTr("Average interitem correlation"); info: qsTr("Mean of all pairwise Pearson correlations between items.")}
 
 			RowLayout {
 				CheckBox { name: "scaleMean";		label: qsTr("Mean");			id: mean		}
@@ -95,6 +101,7 @@ Form
 				indent:		true
 				enabled:	mean.checked || sd.checked || variance.checked
 				name:		"meanSdScoresMethod"
+				info:		qsTr("Whether the mean, variance, and SD are based on sum scores or mean scores across items.")
 
 				RadioButton { value: "sumScores";	label: qsTr("of participants' sum scores"); checked: true}
 				RadioButton { value: "meanScores";	label: qsTr("of participants' mean scores")}
@@ -105,12 +112,14 @@ Form
 		Group
 		{
 			title: qsTr("Individual Item Statistics")
+			info:  qsTr("Reliability coefficients and descriptive statistics per item, including what-if statistics when that item is removed.")
 
 			CIField
 			{
 				name: 			"itemCiLevel";
 				label: 			qsTr("Confidence interval");
 				defaultValue: 	95
+				info:			qsTr("Coverage of the confidence intervals for item-level statistics.")
 			}
 
 			CheckBox
@@ -118,6 +127,7 @@ Form
 				name: 		"itemDeletedOmega";
 				label: 		qsTr("McDonald's ω  (if item dropped)");
 				enabled: 	omega.checked
+				info:		qsTr("Omega of the remaining items when this item is removed from the scale.")
 			}
 
 			CheckBox
@@ -125,6 +135,7 @@ Form
 				name: 		"itemDeletedAlpha";
 				label: 		qsTr("Cronbach's α (if item dropped)");
 				enabled: 	alpha.checked
+				info:		qsTr("Alpha of the remaining items when this item is removed from the scale.")
 			}
 
 			CheckBox
@@ -132,6 +143,7 @@ Form
 				name: 		"itemDeletedLambda2";
 				label: 		qsTr("Guttman's λ2 (if item dropped)");
 				enabled: 	lambda2.checked
+				info:		qsTr("Lambda 2 of the remaining items when this item is removed from the scale.")
 			}
 
 			CheckBox
@@ -139,9 +151,10 @@ Form
 				name: 		"itemDeletedSplithalf";
 				label: 		qsTr("Split-half coefficient (if item dropped)");
 				enabled: 	splithalf.checked
+				info:		qsTr("Split-half coefficient of the remaining items when this item is removed from the scale.")
 			}
 			
-			CheckBox { name: "itemRestCorrelation";	label: qsTr("Item-rest correlation")		}
+			CheckBox { name: "itemRestCorrelation";	label: qsTr("Item-rest correlation"); info: qsTr("Correlation of each item with the sum of the remaining items.")}
 			RowLayout {
 				CheckBox { name: "itemMean";			label: qsTr("Mean")							}
 				CheckBox { name: "itemVar";			label: qsTr("Variance")			}
@@ -175,11 +188,13 @@ Form
 		{
 			Layout.rowSpan: 2
 			title: qsTr("Confidence intervals")
+			info:  qsTr("Control the method used to construct confidence intervals for reliability coefficients, variance, and SD.")
 			RadioButtonGroup
 			{
 				title: qsTr("Reliability coefficients")
 				name:		"intervalMethod"
 				id: intervalMethod
+				info:	qsTr("Analytic intervals use normal-theory standard errors (van der Ark, 2024). Bootstrapped intervals use percentile resampling.")
 				RadioButton
 				{
 					value: 		"analytic"
@@ -199,12 +214,14 @@ Form
 						fieldWidth: 	50
 						min: 			100
 						max: 			1e7
+						info:			qsTr("Number of bootstrap replications. Higher values yield more stable interval estimates.")
 					}
 
 					RadioButtonGroup
 					{
 						title:		""
 						name:		"bootstrapType"
+						info:		qsTr("Non-parametric bootstrap resamples the data; parametric bootstrap samples from a multivariate normal with the estimated parameters.")
 
 						RadioButton {value: "nonParametric"; label: qsTr("Non-parametric bootstrap"); checked: true}
 						RadioButton {value: "parametric"; label: qsTr("Parametric bootstrap")}
@@ -215,6 +232,7 @@ Form
 			{
 				title : qsTr("Variance and SD")
 				name:		"intervalMethodVar"
+				info:		qsTr("Chi-square-based intervals assume normality; non-parametric intervals use a two-step bootstrap procedure (van der Ark, 2024).")
 				RadioButton
 				{
 					value: 		"chisq"
@@ -236,6 +254,7 @@ Form
 			name: 		"omegaEstimationMethod"
 			enabled: 	omega.checked
 			id: omegaEst
+			info:		qsTr("CFA fits the single-factor model via confirmatory factor analysis; PFA uses principal factor analysis.")
 
 			RadioButton
 			{
@@ -247,6 +266,7 @@ Form
 				{
 					name: 		"omegaFitMeasures"
 					label: 		qsTr("Single factor model fit")
+					info:		qsTr("Chi-square test, RMSEA, SRMR and other fit indices for the single-factor model underlying omega.")
 				}
 			}
 			
@@ -260,12 +280,14 @@ Form
 			{
 				name:		"standardizedLoadings"
 				label:		qsTr("Standardized factor loadings");
+				info:		qsTr("Table of standardized loadings from the single-factor model.")
 			}
 		}
 
 		Group
 		{
 			title: 		qsTr("Coefficients")
+			info:		qsTr("Unstandardized coefficients use the raw covariance matrix; standardized use the correlation matrix.")
 
 			RadioButtonGroup
  			{
@@ -281,6 +303,7 @@ Form
 		{
 				title: 	qsTr("Missing Values")
 				name: 	"naAction"
+				info:	qsTr("Pairwise uses all available observations per covariance pair; listwise deletes any row with a missing value.")
 
 				RadioButton { value: "pairwise"; label: qsTr("Pairwise"); checked: true}
 				RadioButton { value: "listwise"; label: qsTr("Delete listwise")}
@@ -289,6 +312,7 @@ Form
 		Group
 		{
 			title: qsTr("Repeatability")
+			info:  qsTr("Set a random seed to reproduce the same bootstrap results across runs.")
 
 			CheckBox
 			{
@@ -312,19 +336,12 @@ Form
 		{
 			title: qsTr("Samples")
 
-			RowLayout
+			CheckBox
 			{
-				CheckBox
-				{
-					name:				"samplesSavingDisabled"
-					label:				qsTr("Do not save samples")
-					checked:			false
-				}
-				HelpButton
-				{
-					toolTip: 			qsTr("Click to learn more about saving the samples.")
-					helpPage:			"toolTip/sampleSavingFreq"
-				}
+				name:				"samplesSavingDisabled"
+				label:				qsTr("Do not save samples")
+				checked:			false
+				info:				qsTr("When checked, bootstrap samples are not stored in the output file. This reduces file size but may slow down re-running the analysis, because samples are precomputed and cached for speed.")
 			}
 		}
 

@@ -32,6 +32,7 @@ Form
 			title:			qsTr("Variables")
 			allowedColumns:	["scale"]
 			id:				vars
+			info:			qsTr("Items/variables to include in the reliability analysis. Must be scale variables.")
 		}
 	}
 
@@ -42,12 +43,14 @@ Form
 		Group
 		{
 			title: qsTr("Scale Statistics")
+			info:  qsTr("Reliability coefficients and descriptive statistics computed for the full scale.")
 
 			CIField
 			{
 				name:			"scaleCiLevel";
 				label:			qsTr("Credible interval");
 				defaultValue:	95
+				info:			qsTr("Width of the credible interval for scale reliability statistics.")
 			}
 
 			CheckBox
@@ -56,6 +59,7 @@ Form
 				name:		"scaleOmega"
 				label:		qsTr("McDonald's ω")
 				checked:	true
+				info:		qsTr("McDonald's omega for unidimensional data based on the single-factor model.")
 			}
 
 			CheckBox
@@ -63,6 +67,7 @@ Form
 				id:		alpha
 				name:	"scaleAlpha";
 				label:	qsTr("Cronbach's α");
+				info:	qsTr("Cronbach's alpha. For binary items this equals KR-20.")
 			}
 
 			CheckBox
@@ -70,6 +75,7 @@ Form
 				id:		lambda2
 				name:	"scaleLambda2";
 				label:	qsTr("Guttman's λ2");
+				info:	qsTr("Guttman's lambda 2, a lower bound for reliability.")
 			}
 
 			CheckBox
@@ -77,9 +83,10 @@ Form
 				id:		splithalf
 				name:	"scaleSplithalf";
 				label:	qsTr("Split-half coefficient");
+				info:	qsTr("Splits items into two halves (odd/even by default). Unstandardized: Flanagan-Rulon; Standardized: Spearman-Brown.")
 			}
 
-			CheckBox { name: "averageInterItemCorrelation";	label: qsTr("Average interitem correlation")	}
+			CheckBox { name: "averageInterItemCorrelation";	label: qsTr("Average interitem correlation"); info: qsTr("Mean of all pairwise Pearson correlations between items.") }
 
 			RowLayout {
 				CheckBox { name: "scaleMean";	label: qsTr("Mean");	id: mean}
@@ -91,6 +98,7 @@ Form
 				indent:		true
 				enabled:	mean.checked || sd.checked || variance.checked
 				name:		"meanSdScoresMethod"
+				info:		qsTr("Whether the mean, variance, and SD are based on sum scores or mean scores across items.")
 
 				RadioButton { value: "sumScores";	label: qsTr("of participants' sum scores"); checked: true}
 				RadioButton { value: "meanScores";	label: qsTr("of participants' mean scores")}
@@ -101,12 +109,14 @@ Form
 		Group
 		{
 			title: qsTr("Individual Item Statistics")
+			info:  qsTr("Reliability coefficients and descriptive statistics per item, including posterior distributions when that item is removed.")
 
 			CIField
 			{
 				name: 			"itemCiLevel";
 				label: 			qsTr("Credible interval");
 				defaultValue: 	95
+				info:			qsTr("Width of the credible interval for item-level statistics.")
 			}
 
 			CheckBox
@@ -115,6 +125,7 @@ Form
 				name: 		"itemDeletedOmega";
 				label: 		qsTr("McDonald's ω (if item dropped)");
 				enabled: 	omega.checked
+				info:		qsTr("Posterior distribution of omega for the remaining items when this item is removed.")
 			}
 
 			CheckBox
@@ -123,6 +134,7 @@ Form
 				name: 		"itemDeletedAlpha";
 				label: 		qsTr("Cronbach's α (if item dropped)");
 				enabled: 	alpha.checked
+				info:		qsTr("Posterior distribution of alpha for the remaining items when this item is removed.")
 			}
 
 			CheckBox
@@ -131,6 +143,7 @@ Form
 				name: 		"itemDeletedLambda2";
 				label: 		qsTr("Guttman's λ2 (if item dropped)");
 				enabled: 	lambda2.checked
+				info:		qsTr("Posterior distribution of lambda 2 for the remaining items when this item is removed.")
 			}
 
 			CheckBox
@@ -139,6 +152,7 @@ Form
 				name: 		"itemDeletedSplithalf";
 				label: 		qsTr("Split-half coefficient (if item dropped)");
 				enabled: 	splithalf.checked
+				info:		qsTr("Posterior distribution of the split-half coefficient for the remaining items when this item is removed.")
 			}
 
 			CheckBox
@@ -147,12 +161,14 @@ Form
 				name: 		"itemDeletedPlot";
 				label: 		qsTr("If item dropped plot");
 				enabled: 	omegaItem.checked || alphaItem.checked || lambda2Item.checked || splithalfItem.checked
+				info:		qsTr("Displays posterior densities of the reliability of the remaining items when each item is dropped.")
 
 				CheckBox
 				{
 					name: 		"itemDeletedPlotOrdered";
 					label: 		qsTr("Order items");
 					enabled: 	itemPlot.checked
+					info:		qsTr("Sort the densities by how much removing an item changes the posterior (by mean, KL-divergence, or KS-distance).")
 
 					RadioButtonGroup
 					{
@@ -166,7 +182,7 @@ Form
 				}
 			}
 
-			CheckBox { name: "itemRestCorrelation";				label: qsTr("Item-rest correlation")			}
+			CheckBox { name: "itemRestCorrelation";				label: qsTr("Item-rest correlation"); info: qsTr("Correlation of each item with the sum of the remaining items.") }
 			RowLayout {
 				CheckBox { name: "itemMean";						label: qsTr("Mean")								}
 				CheckBox { name: "itemVar";						label: qsTr("Variance")								}
@@ -182,17 +198,20 @@ Form
 				name: 	"posteriorPlot";
 				label: 	qsTr("Plot Posteriors");
 				id:		postPlot
+				info:	qsTr("Display posterior density plots for the selected reliability coefficients.")
 
 				CheckBox
 				{
 					name: 	"posteriorPlotFixedRange";
 					label: 	qsTr("Fix range to 0-1")
+					info:	qsTr("Fix the x-axis of the posterior plots to [0, 1] for easier comparison between coefficients.")
 				}
 
 				CheckBox
 				{
 					name: 	"posteriorPlotPriorDisplayed";
 					label: 	qsTr("Display Priors")
+					info:	qsTr("Add the prior distribution to the posterior density plot.")
 				}
 
 			}
@@ -207,6 +226,7 @@ Form
 				name:				"probabilityTable"
 				label:				qsTr("Probability for:")
 				childrenOnSameRow:	true
+				info:				qsTr("Report the prior and posterior probability that a reliability coefficient falls within the specified interval.")
 
 				RowLayout
 				{
@@ -244,6 +264,7 @@ Form
 				indent:		true
 				label:		qsTr("Shade posterior region in plot");
 				enabled:	probTable.checked & postPlot.checked
+				info:		qsTr("Shade the posterior region corresponding to the probability interval in the density plot.")
 				Layout.leftMargin:	childControlsArea.anchors.leftMargin
 			}
 		}
@@ -256,6 +277,7 @@ Form
 		Group
 		{
 			title: qsTr("MCMC parameters");
+			info:  qsTr("Parameters controlling the MCMC sampler used to estimate the posterior distributions.")
 
 			IntegerField
 			{
@@ -265,6 +287,7 @@ Form
 				fieldWidth: 	100
 				min: 			100
 				max: 			1e7
+				info:			qsTr("Total number of MCMC iterations per chain, including burn-in. The number of retained posterior samples per chain is ceiling((samples - burn-in) / thinning).")
 			}
 
 			IntegerField
@@ -275,6 +298,7 @@ Form
 				fieldWidth: 	100
 				min: 			1
 				max:			1e6
+				info:			qsTr("Initial samples discarded while the chain converges to the posterior.")
 			}
 
 			IntegerField
@@ -285,6 +309,7 @@ Form
 				fieldWidth: 	100
 				min: 			1
 				max: 			1e5
+				info:			qsTr("Keep every k-th sample to reduce autocorrelation. A value of 1 keeps all samples.")
 			}
 
 			IntegerField
@@ -295,21 +320,24 @@ Form
 				fieldWidth: 	100
 				min: 			2
 				max: 			100
+				info:			qsTr("Number of independent MCMC chains. Multiple chains enable R-hat convergence diagnostics.")
 			}
 		}
 
 		Group
 		{
 			title: qsTr("Diagnostics")
+			info:  qsTr("MCMC convergence diagnostics to assess whether the sampler has converged to the posterior.")
 
-			CheckBox {	name: "rHat";									label: qsTr("R-hat");		}
-			CheckBox {	name: "tracePlot";						label: qsTr("Traceplots");	}
-			CheckBox {	name: "effectiveSampleSize"; 	label: qsTr("ESS")}
+			CheckBox {	name: "rHat";							label: qsTr("R-hat");		info: qsTr("Potential scale reduction factor. Values close to 1 (< 1.1) indicate convergence across chains.")}
+			CheckBox {	name: "tracePlot";					label: qsTr("Traceplots");	info: qsTr("Plot of sampled values per chain over iterations. Well-mixed chains indicate convergence.")}
+			CheckBox {	name: "effectiveSampleSize"; 	label: qsTr("ESS");			info: qsTr("Effective sample size: number of independent posterior samples after accounting for autocorrelation.")}
 		}
 
 		Group
 		{
 			title: qsTr("Repeatability")
+			info:  qsTr("Set a random seed to reproduce identical posterior samples across runs.")
 
 			CheckBox
 			{
@@ -335,9 +363,10 @@ Form
 
 			CheckBox
 			{
-				name:				"samplesSavingDisabled"
-				label:				qsTr("Disable saving samples")
-				checked:			false
+				name:			"samplesSavingDisabled"
+				label:			qsTr("Disable saving samples")
+				checked:		false
+				info:			qsTr("When checked, MCMC samples are not stored in the output file. Reduces file size but may slow down re-running the analysis, because samples are precomputed and cached for speed.")
 			}
 
 		}
@@ -368,6 +397,7 @@ Form
 		Group
 		{
 			title: qsTr("CTT-Coefficients (α, λ2)")
+			info:  qsTr("The prior on alpha, lambda 2, and the split-half is induced by an inverse Wishart prior on the covariance matrix.")
 
 			FormulaField
 			{
@@ -377,6 +407,7 @@ Form
 				min:			0
 				max:			100
 				fieldWidth: 	40
+				info:			qsTr("Precision values on the diagonal of the inverse Wishart scaling matrix.")
 			}
 			DoubleField
 			{
@@ -386,12 +417,14 @@ Form
 				min:			vars.count
 				max:			vars.count + 100
 				fieldWidth: 	40
+				info:			qsTr("Degrees of freedom of the inverse Wishart prior. Minimum equals the number of items.")
 			}
 
 		}
 		Group
 		{
 			title: qsTr("McDonald's ω")
+			info:  qsTr("The prior on omega is induced by an inverse gamma on residual variances and a normal prior on factor loadings.")
 
 			RowLayout
 			{
@@ -406,6 +439,7 @@ Form
 					min:			0
 					max:			100
 					fieldWidth: 	40
+					info:			qsTr("Shape parameter of the inverse gamma prior on residual variances.")
 				}
 
 
@@ -417,6 +451,7 @@ Form
 					min:			0
 					max:			100
 					fieldWidth: 	40
+					info:			qsTr("Scale parameter of the inverse gamma prior on residual variances.")
 				}
 			}
 			RowLayout
@@ -432,6 +467,7 @@ Form
 					min:			-10
 					max:			10
 					fieldWidth: 	40
+					info:			qsTr("Mean of the normal prior on factor loadings.")
 				}
 			}
 
@@ -448,6 +484,7 @@ Form
 			RadioButtonGroup
 			{
 				name: 	"naAction"
+				info:	qsTr("Bayesian imputation treats missing values as unknown parameters sampled from the posterior; listwise deletion removes any row with a missing value.")
 
 				RadioButton { value: "imputation";	label: qsTr("Bayesian imputation"); checked: true	}
 				RadioButton { value: "listwise";	label: qsTr("Exclude cases listwise")				}
@@ -458,15 +495,18 @@ Form
 		{
 			title: qsTr("McDonald's ω Estimation")
 			enabled: omega.checked
+			info:  qsTr("Options for fitting the single-factor model underlying McDonald's omega.")
 			CheckBox
 			{
 				name:		"omegaPosteriorPredictiveCheck"
 				label:		qsTr("Posterior predictive check");
+				info:		qsTr("Graphical check for single-factor model fit: eigenvalues of the observed covariance matrix are compared against the model-implied posterior distribution.")
 			}
 			CheckBox
 			{
 				name:		"omegaFitMeasures"
 				label:		qsTr("Fit measures");
+				info:		qsTr("Bayesian fit indices (B-LR, B-RMSEA, B-CFI, B-TLI) for the single-factor model with probability statements relative to cutoffs.")
 
 				CIField
 				{
@@ -500,6 +540,7 @@ Form
 			{
 				name:		"standardizedLoadings"
 				label:		qsTr("Standardized factor loadings");
+				info:		qsTr("Table of standardized loadings from the single-factor model (posterior mean or median).")
 			}
 		}
 
@@ -509,6 +550,7 @@ Form
 			{
 				title: qsTr("Coefficients")
 				name: "coefficientType"
+				info:  qsTr("Unstandardized uses the covariance matrix; standardized uses the correlation matrix. Standardized alpha is contested in the literature.")
 
 				RadioButton{ value: "unstandardized"; label: qsTr("Unstandardized"); checked: true }
 				RadioButton{ value: "standardized";	label: qsTr("Standardized");
@@ -522,6 +564,7 @@ Form
 			{
 				name: "pointEstimate"
 				title: qsTr("Posterior Point Estimate")
+				info:  qsTr("Whether to report the posterior mean or median as the point estimate in the tables.")
 				RadioButton{ value: "mean";		label: qsTr("Mean"); checked: true	}
 				RadioButton{ value: "median";	label: qsTr("Median")				}
 			}
