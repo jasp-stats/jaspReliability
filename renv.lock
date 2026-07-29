@@ -20,7 +20,7 @@
     "Bayesrel": {
       "Package": "Bayesrel",
       "Version": "0.7.9",
-      "Source": "GitHub",
+      "Source": "Repository",
       "Type": "Package",
       "Title": "Bayesian Reliability Estimation",
       "Date": "2026-07-28",
@@ -59,12 +59,8 @@
       ],
       "Author": "Julius M. Pfadt [aut, cre] (ORCID: <https://orcid.org/0000-0002-0758-5502>), Don van den Bergh [aut] (ORCID: <https://orcid.org/0000-0002-9838-7308>), Joris Goosen [aut]",
       "Maintainer": "Julius M. Pfadt <julius.pfadt@gmail.com>",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "juliuspfadt",
-      "RemoteRepo": "Bayesrel",
-      "RemoteRef": "master",
-      "RemoteSha": "fae36db5334a253799c4b8a683cb6d917b79cee7"
+      "NeedsCompilation": "yes",
+      "Repository": "CRAN"
     },
     "DBI": {
       "Package": "DBI",
