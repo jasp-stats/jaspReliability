@@ -1,6 +1,5 @@
-#' @importFrom jaspBase createJaspContainer createJaspHtml createJaspPlot createJaspState createJaspTable
-#' progressbarTick startProgressbar
-#' @importFrom stats cor cov median complete.cases
+#' @importFrom jaspBase createJaspContainer createJaspHtml createJaspPlot createJaspState createJaspTable progressbarTick startProgressbar
+#' @importFrom stats cor cov median sd complete.cases
 
 # Dependencies that invalidate the fitted model (and therefore everything downstream).
 .multiDimBaseDependencies <- c(
@@ -11,6 +10,10 @@
   "igShapeLatent", "igScaleLatent", "loadMeanLatent", "loadScaleLatent",
   "igShapeGFactor", "igScaleGFactor", "latentCorDf"
 )
+
+# translated coefficient labels shared by tables and plots
+.multiDimOmegaTLabel <- function() gettext(.multiDimOmegaTLabel())
+.multiDimOmegaHLabel <- function() gettext("McDonald's ωₕ")
 
 #' @export
 reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
@@ -236,7 +239,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   }
 
   # always display all coefficients; McDonald's omega_h exists only for the non-correlated models
-  rows[[length(rows) + 1L]] <- addCoefRow("McDonald's ωₜ", fit[["omega_t"]][["chains"]])
+  rows[[length(rows) + 1L]] <- addCoefRow(.multiDimOmegaTLabel(), fit[["omega_t"]][["chains"]])
 
   if (correlated) {
     footnote <- gettext("McDonald's ωₕ is shown only for the second-order and bi-factor models, not the correlated-factors model.")
@@ -456,7 +459,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
     samp <- as.vector(chains)
     mean(samp > low) - mean(samp > high)
   }
-  rows[[length(rows) + 1L]] <- list(coefficient = "McDonald's ωₜ", posterior = probInRange(fit[["omega_t"]][["chains"]]))
+  rows[[length(rows) + 1L]] <- list(coefficient = .multiDimOmegaTLabel(), posterior = probInRange(fit[["omega_t"]][["chains"]]))
   if (options[["modelType"]] != "correlated")
     rows[[length(rows) + 1L]] <- list(coefficient = "McDonald's ωₕ", posterior = probInRange(fit[["omega_h"]][["chains"]]))
 
@@ -552,7 +555,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   }
 
   coefs <- list()
-  coefs[["omegaT"]] <- list(chains = fit[["omega_t"]][["chains"]], label = "McDonald's ωₜ")
+  coefs[["omegaT"]] <- list(chains = fit[["omega_t"]][["chains"]], label = .multiDimOmegaTLabel())
   if (options[["modelType"]] != "correlated")
     coefs[["omegaH"]] <- list(chains = fit[["omega_h"]][["chains"]], label = "McDonald's ωₕ")
 
@@ -606,7 +609,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
 
   fit   <- model[["fit"]]
   coefs <- list()
-  coefs[["omegaT"]] <- list(chains = fit[["omega_t"]][["chains"]], label = "McDonald's ωₜ")
+  coefs[["omegaT"]] <- list(chains = fit[["omega_t"]][["chains"]], label = .multiDimOmegaTLabel())
   if (options[["modelType"]] != "correlated")
     coefs[["omegaH"]] <- list(chains = fit[["omega_h"]][["chains"]], label = "McDonald's ωₕ")
 
