@@ -12,7 +12,7 @@
 )
 
 # translated coefficient labels shared by tables and plots
-.multiDimOmegaTLabel <- function() gettext(.multiDimOmegaTLabel())
+.multiDimOmegaTLabel <- function() gettext("McDonald's ωₜ")
 .multiDimOmegaHLabel <- function() gettext("McDonald's ωₕ")
 
 #' @export
@@ -244,7 +244,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   if (correlated) {
     footnote <- gettext("McDonald's ωₕ is shown only for the second-order and bi-factor models, not the correlated-factors model.")
   } else {
-    rows[[length(rows) + 1L]] <- addCoefRow("McDonald's ωₕ", fit[["omega_h"]][["chains"]])
+    rows[[length(rows) + 1L]] <- addCoefRow(.multiDimOmegaHLabel(), fit[["omega_h"]][["chains"]])
   }
 
   pairwise <- options[["naAction"]] != "listwise"
@@ -461,7 +461,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   }
   rows[[length(rows) + 1L]] <- list(coefficient = .multiDimOmegaTLabel(), posterior = probInRange(fit[["omega_t"]][["chains"]]))
   if (options[["modelType"]] != "correlated")
-    rows[[length(rows) + 1L]] <- list(coefficient = "McDonald's ωₕ", posterior = probInRange(fit[["omega_h"]][["chains"]]))
+    rows[[length(rows) + 1L]] <- list(coefficient = .multiDimOmegaHLabel(), posterior = probInRange(fit[["omega_h"]][["chains"]]))
 
   if (length(rows) > 0L)
     probabilityTable$setData(do.call(rbind.data.frame, c(rows, stringsAsFactors = FALSE)))
@@ -557,7 +557,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   coefs <- list()
   coefs[["omegaT"]] <- list(chains = fit[["omega_t"]][["chains"]], label = .multiDimOmegaTLabel())
   if (options[["modelType"]] != "correlated")
-    coefs[["omegaH"]] <- list(chains = fit[["omega_h"]][["chains"]], label = "McDonald's ωₕ")
+    coefs[["omegaH"]] <- list(chains = fit[["omega_h"]][["chains"]], label = .multiDimOmegaHLabel())
 
   # prior samples of the omegas, drawn with the same prior parameterization as the Gibbs sampler
   priorSamples <- NULL
@@ -611,7 +611,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   coefs <- list()
   coefs[["omegaT"]] <- list(chains = fit[["omega_t"]][["chains"]], label = .multiDimOmegaTLabel())
   if (options[["modelType"]] != "correlated")
-    coefs[["omegaH"]] <- list(chains = fit[["omega_h"]][["chains"]], label = "McDonald's ωₕ")
+    coefs[["omegaH"]] <- list(chains = fit[["omega_h"]][["chains"]], label = .multiDimOmegaHLabel())
 
   for (nm in names(coefs)) {
     p <- .makeTracePlot(list(samp = coefs[[nm]][["chains"]]), coefs[[nm]][["label"]])
