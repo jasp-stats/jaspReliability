@@ -251,8 +251,10 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   cc <- cor(dataset, use = if (pairwise) "pairwise.complete.obs" else "complete.obs")
   rows[[length(rows) + 1L]] <- addStatRow(gettext("Average interitem correlation"), mean(cc[lower.tri(cc)]))
 
-  scores <- if (options[["meanSdScoresMethod"]] == "sumScores")
-    rowSums(dataset, na.rm = TRUE) else rowMeans(dataset, na.rm = TRUE)
+  # listwise deletion: descriptive scale scores must use the same complete cases as the fit
+  scoreData <- if (pairwise) dataset else dataset[complete.cases(dataset), , drop = FALSE]
+  scores    <- if (options[["meanSdScoresMethod"]] == "sumScores")
+    rowSums(scoreData, na.rm = TRUE) else rowMeans(scoreData, na.rm = TRUE)
   rows[[length(rows) + 1L]] <- addStatRow(gettext("Mean"), mean(scores))
   rows[[length(rows) + 1L]] <- addStatRow(gettext("SD"), sd(scores))
 

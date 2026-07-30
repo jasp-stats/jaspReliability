@@ -247,8 +247,8 @@ test_that("Missing data with listwise deletion: scale table matches", {
     list("McDonald's <unicode><unicode>", 0.563750589461712, 0.000541705738093422,
          0.919261583745341, "McDonald's <unicode><unicode>", 0.27518219902584,
          3.25887297714518e-05, 0.694773241637106, "Average interitem correlation",
-         0.115180274099673, "", "", "Mean", 5.54108024245, "", "", "SD",
-         20.3923746243839, "", ""))
+         0.115180274099673, "", "", "Mean", 8.21151657631428, "", "", "SD",
+         23.8940400508469, "", ""))
 })
 
 
