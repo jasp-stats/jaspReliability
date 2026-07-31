@@ -25,7 +25,7 @@ Imports:
   psych,
   mirt
 Remotes:
-  jasp-stats/jaspBase@f1944101ee749e3fcd605defca2e014ade4b3534,
+  jasp-stats/jaspBase,
   jasp-stats/jaspGraphs
 Suggests:
     testthat (>= 3.0.0)
