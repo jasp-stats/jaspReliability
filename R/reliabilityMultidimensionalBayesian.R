@@ -95,6 +95,14 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   return(jaspResults[["stateContainer"]])
 }
 
+# descriptive statistics computed outside the sampler (scale scores, item-rest correlations) must
+# use the same rows as the fit: complete cases under listwise deletion, everything otherwise
+.multiDimAnalysisData <- function(dataset, options) {
+  if (options[["naAction"]] != "listwise")
+    return(dataset)
+  return(dataset[complete.cases(dataset), , drop = FALSE])
+}
+
 .multiDimPointEst <- function(chains, pointEstimate) {
   .getPointEstFun(pointEstimate)(as.vector(chains))
 }
@@ -251,8 +259,7 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   cc <- cor(dataset, use = if (pairwise) "pairwise.complete.obs" else "complete.obs")
   rows[[length(rows) + 1L]] <- addStatRow(gettext("Average interitem correlation"), mean(cc[lower.tri(cc)]))
 
-  # listwise deletion: descriptive scale scores must use the same complete cases as the fit
-  scoreData <- if (pairwise) dataset else dataset[complete.cases(dataset), , drop = FALSE]
+  scoreData <- .multiDimAnalysisData(dataset, options)
   scores    <- if (options[["meanSdScoresMethod"]] == "sumScores")
     rowSums(scoreData, na.rm = TRUE) else rowMeans(scoreData, na.rm = TRUE)
   rows[[length(rows) + 1L]] <- addStatRow(gettext("Mean"), mean(scores))
@@ -342,9 +349,10 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
       footnote <- gettext("Empty cells indicate that dropping the item would leave a factor with fewer than two items.")
   }
   if (showRest) {
+    restData <- .multiDimAnalysisData(dataset, options)
     df$itemRestCorrelation <- vapply(seq_along(allItems), function(i) {
-      rest <- rowSums(dataset[, -i, drop = FALSE], na.rm = TRUE)
-      cor(dataset[, i], rest, use = "pairwise.complete.obs")
+      rest <- rowSums(restData[, -i, drop = FALSE], na.rm = TRUE)
+      cor(restData[, i], rest, use = "pairwise.complete.obs")
     }, numeric(1))
   }
 

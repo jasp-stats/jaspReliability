@@ -223,6 +223,7 @@ optionsMiss$burnin  <- 30
 optionsMiss$chains  <- 2
 optionsMiss$setSeed <- TRUE
 optionsMiss$seed    <- 1
+optionsMiss$itemRestCorrelation <- TRUE
 optionsMiss$naAction <- "imputation"
 set.seed(1)
 resultsMissImp <- runAnalysis("reliabilityMultidimensionalBayesian", "test.csv", optionsMiss, makeTests = FALSE)
@@ -237,6 +238,14 @@ test_that("Missing data with Bayesian imputation: scale table matches", {
          20.3923746243839, "", ""))
 })
 
+# imputation keeps all rows, so item-rest correlations use pairwise complete observations
+test_that("Missing data with Bayesian imputation: item-rest correlations match", {
+  table <- resultsMissImp[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+    list("contNormal", -0.109440767266664, "contcor1", 0.00472160500708882,
+         "contcor2", 0.0422940370884689, "debMiss30", -0.122450817493202))
+})
+
 optionsMiss$naAction <- "listwise"
 set.seed(1)
 resultsMissLw <- runAnalysis("reliabilityMultidimensionalBayesian", "test.csv", optionsMiss, makeTests = FALSE)
@@ -249,6 +258,15 @@ test_that("Missing data with listwise deletion: scale table matches", {
          3.25887297714518e-05, 0.694773241637106, "Average interitem correlation",
          0.115180274099673, "", "", "Mean", 8.21151657631428, "", "", "SD",
          23.8940400508469, "", ""))
+})
+
+# listwise deletion must restrict the item-rest correlations to the complete cases the fit used,
+# so these differ from the pairwise values above (70 of 100 rows are complete)
+test_that("Missing data with listwise deletion: item-rest correlations use complete cases", {
+  table <- resultsMissLw[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+    list("contNormal", -0.153547377551663, "contcor1", -0.0553604988574586,
+         "contcor2", 0.033074200678642, "debMiss30", -0.122450817493202))
 })
 
 
