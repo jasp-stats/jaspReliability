@@ -247,6 +247,7 @@ test_that("Missing data with Bayesian imputation: item-rest correlations match",
 })
 
 optionsMiss$naAction <- "listwise"
+optionsMiss$posteriorPredictiveCheck <- TRUE
 set.seed(1)
 resultsMissLw <- runAnalysis("reliabilityMultidimensionalBayesian", "test.csv", optionsMiss, makeTests = FALSE)
 
@@ -267,6 +268,48 @@ test_that("Missing data with listwise deletion: item-rest correlations use compl
   jaspTools::expect_equal_tables(table,
     list("contNormal", -0.153547377551663, "contcor1", -0.0553604988574586,
          "contcor2", 0.033074200678642, "debMiss30", -0.122450817493202))
+})
+
+# the synthetic datasets in the PPC must have as many rows as the fit had complete cases (70, not
+# 100); simulating with the full row count shrinks the eigenvalue bands by roughly 15%
+test_that("Missing data with listwise deletion: posterior predictive check uses the complete-case n", {
+  plotName <- resultsMissLw[["results"]][["stateContainer"]][["collection"]][["stateContainer_ppcPlot"]][["data"]]
+  ppcFrame <- resultsMissLw[["state"]][["figures"]][[plotName]][["obj"]][["data"]]
+  expect_equal(ppcFrame[["eigen_value"]],
+               c(579.201872609291, 1.71880320289344, 1.20706696531347, 0.293018153611386))
+  expect_equal(ppcFrame[["eigen_sim_low"]],
+               c(371.578866898854, 1.05942659277699, 0.741965436972952, 0.486848523306179))
+  expect_equal(ppcFrame[["eigen_sim_up"]],
+               c(836.927650710798, 2.08658774538687, 1.35100742373142, 1.00129862123668))
+})
+
+# listwise deletion can leave too few rows to analyse even when every column on its own has enough
+# observations, so the data checks must run on the complete cases rather than on all rows
+test_that("Listwise deletion with too few complete cases is rejected", {
+  optionsFew <- analysisOptions("reliabilityMultidimensionalBayesian")
+  optionsFew$factors <- list(
+    list(indicators = c("i1", "i2"), name = "Factor1", title = "Factor 1"),
+    list(indicators = c("i3", "i4"), name = "Factor2", title = "Factor 2")
+  )
+  optionsFew$samples  <- 60
+  optionsFew$burnin   <- 20
+  optionsFew$chains   <- 2
+  optionsFew$setSeed  <- TRUE
+  optionsFew$seed     <- 1
+  optionsFew$naAction <- "listwise"
+
+  set.seed(7)
+  n  <- 30
+  dt <- data.frame(i1 = rnorm(n), i2 = rnorm(n), i3 = rnorm(n), i4 = rnorm(n))
+  dt$i1[1:10]  <- NA   # every column keeps at least 20 observations,
+  dt$i2[11:18] <- NA   # but only two rows are complete
+  dt$i3[19:24] <- NA
+  dt$i4[25:28] <- NA
+  expect_equal(sum(complete.cases(dt)), 2)
+
+  resultsFew <- runAnalysis("reliabilityMultidimensionalBayesian", dt, optionsFew, makeTests = FALSE)
+  expect_equal(resultsFew[["status"]], "validationError")
+  expect_match(resultsFew[["results"]][["errorMessage"]], "Number of observations")
 })
 
 

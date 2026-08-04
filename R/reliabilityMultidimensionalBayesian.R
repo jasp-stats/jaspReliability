@@ -29,7 +29,9 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
     dataset <- dataset[, allItems, drop = FALSE]
     if (length(options[["reverseScaledItems"]]) > 0L)
       dataset <- .reverseScoreItems(dataset, optTmp)
-    .checkErrors(dataset, optTmp, Bayes = TRUE)
+    # under listwise deletion the model sees only the complete cases, so the observation and
+    # variance checks must be evaluated on those rows rather than on the full dataset
+    .checkErrors(.multiDimAnalysisData(dataset, options), optTmp, Bayes = TRUE)
   }
 
   model <- .multiDimComputeModel(jaspResults, dataset, options, ready, allItems)
@@ -653,9 +655,12 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
 
   implCovs <- model[["fit"]][["implCovs"]]
   pairwise <- options[["naAction"]] != "listwise"
-  cdat     <- cov(dataset, use = if (pairwise) "pairwise.complete.obs" else "complete.obs")
+  # the synthetic datasets must match the sample the model was fitted on, otherwise the simulated
+  # eigenvalue bands are too narrow; mirrors the n.data branch in Bayesrel::multiFit
+  ppcData  <- .multiDimAnalysisData(dataset, options)
+  cdat     <- cov(ppcData, use = if (pairwise) "pairwise.complete.obs" else "complete.obs")
   k        <- ncol(cdat)
-  n        <- nrow(dataset)
+  n        <- nrow(ppcData)
   nsamp    <- dim(implCovs)[1]
 
   eeImpl <- matrix(0, nsamp, k)
