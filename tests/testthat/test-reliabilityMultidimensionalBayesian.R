@@ -312,6 +312,67 @@ test_that("Listwise deletion with too few complete cases is rejected", {
   expect_match(resultsFew[["results"]][["errorMessage"]], "Number of observations")
 })
 
+# a factor with a single indicator is under-identified; the model must not be handed to Bayesrel,
+# which would stop with an opaque "invalid 'n' argument"
+test_that("A factor with only one indicator leaves the analysis not ready", {
+  optionsOne <- analysisOptions("reliabilityMultidimensionalBayesian")
+  optionsOne$factors <- list(
+    list(indicators = c("Question_01", "Question_02"), name = "Factor1", title = "Factor 1"),
+    list(indicators = c("Question_03", "Question_04"), name = "Factor2", title = "Factor 2"),
+    list(indicators = c("Question_05"),                name = "Factor3", title = "Factor 3")
+  )
+  optionsOne$samples <- 60
+  optionsOne$burnin  <- 20
+  optionsOne$chains  <- 2
+  optionsOne$setSeed <- TRUE
+  optionsOne$seed    <- 1
+
+  resultsOne <- runAnalysis("reliabilityMultidimensionalBayesian", "Reliability.csv", optionsOne,
+                            makeTests = FALSE)
+  expect_equal(resultsOne[["status"]], "complete")
+
+  scaleTable <- resultsOne[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]]
+  expect_null(scaleTable[["error"]])
+  footnotes <- vapply(scaleTable[["footnotes"]], function(f) f[["text"]], character(1))
+  expect_true(any(grepl("at least two factors with at least two items", footnotes)))
+})
+
+# with pairwise deletion the covariance matrix need not be positive semi-definite, so an observed
+# eigenvalue can be negative; the y-axis must still show it instead of clipping it away
+test_that("Posterior predictive check keeps observed eigenvalues inside the plot range", {
+  optionsNeg <- analysisOptions("reliabilityMultidimensionalBayesian")
+  optionsNeg$factors <- list(
+    list(indicators = c("i1", "i2"), name = "Factor1", title = "Factor 1"),
+    list(indicators = c("i3", "i4"), name = "Factor2", title = "Factor 2")
+  )
+  optionsNeg$samples  <- 200
+  optionsNeg$burnin   <- 50
+  optionsNeg$chains   <- 2
+  optionsNeg$setSeed  <- TRUE
+  optionsNeg$seed     <- 1
+  optionsNeg$naAction <- "imputation"
+  optionsNeg$posteriorPredictiveCheck <- TRUE
+
+  set.seed(2)
+  n  <- 80
+  a  <- rnorm(n)
+  dt <- data.frame(i1 =  a + rnorm(n, sd = .3), i2 =  a + rnorm(n, sd = .3),
+                   i3 = -a + rnorm(n, sd = .3), i4 =  a + rnorm(n, sd = .3))
+  dt$i1[1:20]  <- NA   # staggered missingness, so no two columns share the same respondents
+  dt$i2[21:40] <- NA
+  dt$i3[41:55] <- NA
+  dt$i4[56:70] <- NA
+
+  resultsNeg <- runAnalysis("reliabilityMultidimensionalBayesian", dt, optionsNeg, makeTests = FALSE)
+  plotName   <- resultsNeg[["results"]][["stateContainer"]][["collection"]][["stateContainer_ppcPlot"]][["data"]]
+  ppcPlot    <- resultsNeg[["state"]][["figures"]][[plotName]][["obj"]]
+  ppcFrame   <- ppcPlot[["data"]]
+
+  expect_lt(min(ppcFrame[["eigen_value"]]), 0)   # the case that used to be clipped at zero
+  yLimits <- ggplot2::layer_scales(ppcPlot)$y$get_limits()
+  expect_true(all(ppcFrame[["eigen_value"]] >= yLimits[1] & ppcFrame[["eigen_value"]] <= yLimits[2]))
+})
+
 
 # reverse-scaled items: Question_02 is recoded before the analysis and flagged in a footnote
 optionsRev <- analysisOptions("reliabilityMultidimensionalBayesian")

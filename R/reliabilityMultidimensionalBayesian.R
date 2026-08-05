@@ -66,12 +66,15 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
 }
 
 
+# every factor that ends up in the model syntax needs at least two indicators: a factor with a
+# single item is under-identified and makes Bayesrel stop with an opaque "invalid 'n' argument".
+# Empty factors are ignored, since .multiDimBuildModel leaves them out of the syntax.
 .multiDimReady <- function(options) {
-  facs <- options[["factors"]]
-  if (length(facs) < 2)
+  sizes <- vapply(options[["factors"]], function(f) length(unlist(f[["indicators"]])), integer(1))
+  sizes <- sizes[sizes > 0L]
+  if (length(sizes) < 2L)
     return(FALSE)
-  nWithTwo <- sum(vapply(facs, function(f) length(unlist(f[["indicators"]])) >= 2L, logical(1)))
-  return(nWithTwo >= 2L)
+  return(all(sizes >= 2L))
 }
 
 # build the lavaan-style group-factor model syntax used by Bayesrel::bomegas
@@ -673,7 +676,10 @@ reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
   eframe$eigen_sim_low <- apply(eeImpl, 2, quantile, prob = .025)
   eframe$eigen_sim_up  <- apply(eeImpl, 2, quantile, prob = .975)
 
-  yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(0, max(eframe$eigen_sim_up)))
+  # the observed eigenvalues must stay inside the axis range: an observed value outside the
+  # simulated envelope is exactly the misfit the check is meant to reveal, and ggplot would drop it
+  yBreaks <- jaspGraphs::getPrettyAxisBreaks(
+    c(min(0, eframe$eigen_value, eframe$eigen_sim_low), max(eframe$eigen_value, eframe$eigen_sim_up)))
 
   g <- ggplot2::ggplot(eframe, mapping = ggplot2::aes(x = number, y = eigen_value)) +
     ggplot2::geom_errorbar(ggplot2::aes(ymin = eigen_sim_low, ymax = eigen_sim_up), color = "grey55",
