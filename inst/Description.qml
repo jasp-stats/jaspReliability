@@ -49,6 +49,11 @@ Description
 		qml: 	"StandardErrorOfMeasurement.qml"
 		func: 	"standardErrorOfMeasurement"
 	}
+	Analysis
+	{
+		title:	qsTr("Classical Test Theory")
+		func:	"classicalTestTheory"
+	}
 
 	Separator {}
 
