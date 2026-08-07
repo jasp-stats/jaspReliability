@@ -81,8 +81,10 @@ unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
                       gettext("Item-rest correlation"), gettext("Mean"), gettext("Variance"), gettext("SD")),
       coefficients = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB2", gettext("Split-half coefficient"),
                        gettext("Item-rest correlation")),
-      plots = list(expression("McDonald\'s"~omega), expression("Cronbach\'s"~alpha), expression("Guttman\'s"~lambda[2]),
-                   gettext("Split-half coefficient")),
+      # plain unicode, not expression(): plotmath cannot be serialized to plotly, so expressions
+      # would make the interactive version of every greek-labelled plot fail to convert
+      plots = c("McDonald's \u03C9", "Cronbach's \u03B1", "Guttman's \u03BB\u2082",
+                gettext("Split-half coefficient")),
       plotsNoGreek = c("omega", "alpha", "lambda2", "splithalf")
     )
 
