@@ -216,7 +216,13 @@ Form
 		{
 			height: 150
 			AvailableVariablesList { name: "normalScaledItems";	 title: qsTr("Normal-Scaled Items"); source: factors.name }
-			AssignedVariablesList {  name: "reverseScaledItems"; title: qsTr("Reverse-Scaled Items"); info: qsTr("Items assigned here are recoded (reverse-scored) before the analysis.") }
+			AssignedVariablesList 
+			{  
+				name: "reverseScaledItems"; 
+				title: qsTr("Reverse-Scaled Items"); 
+				info: qsTr("Items assigned here are recoded (reverse-scored) before the analysis."); 
+				allowedColumns: ["scale"]
+			}
 		}
 	}
 
