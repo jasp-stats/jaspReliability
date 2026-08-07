@@ -207,107 +207,6 @@ Form
 
 	
 
-	Section
-	{
-		title: qsTr("MCMC options")
-
-		Group
-		{
-			title: qsTr("MCMC parameters");
-
-			IntegerField
-			{
-				id:				noSamples
-				name: 			"samples"
-				label: 			qsTr("No. samples")
-				defaultValue: 	2000
-				info: 			qsTr("Total number of MCMC samples per chain, including burn-in.")
-				fieldWidth: 	60
-				min: 			100
-				max: 			1e7
-			}
-
-			IntegerField
-			{
-				id:				noBurnin
-				name: 			"burnin"
-				label: 			qsTr("No. burnin samples")
-				defaultValue: 	200
-				info: 			qsTr("Initial samples discarded while the chain converges to the posterior.")
-				fieldWidth: 	60
-				min: 			1
-				max:			1e6
-			}
-
-			IntegerField
-			{
-				id:				noThin
-				name: 			"thinning"
-				label: 			qsTr("Thinning")
-				defaultValue: 	1
-				info: 			qsTr("Keep every k-th sample to reduce autocorrelation. A value of 1 keeps all samples.")
-				fieldWidth: 	40
-				min: 			1
-				max: 			1e5
-			}
-
-			IntegerField
-			{
-				name: 			"chains"
-				label: 			qsTr("No. chains")
-				defaultValue: 	3
-				info: 			qsTr("Number of independent MCMC chains. Multiple chains enable R-hat convergence diagnostics.")
-				fieldWidth: 	40
-				min: 			2
-				max: 			100
-			}
-		}
-
-		Group
-		{
-			title: qsTr("Diagnostics")
-
-			CheckBox {	name: "rHat";		label: qsTr("R-hat");		info: qsTr("Potential scale reduction factor. Values close to 1 (< 1.1) indicate convergence across chains.")	}
-			CheckBox {	name: "tracePlot";	label: qsTr("Traceplots");	info: qsTr("Plot of sampled values per chain over iterations. Well-mixed chains indicate convergence.")	}
-		}
-
-		Group
-		{
-			title: qsTr("Repeatability")
-
-			CheckBox
-			{
-				name: 				"setSeed"
-				label: 				qsTr("Set seed")
-				childrenOnSameRow: 	true
-				info: 				qsTr("Fix the random number generator seed to make the MCMC results reproducible.")
-
-				IntegerField
-				{
-					name: 			"seed"
-					label: 			""
-					defaultValue: 	1234
-					fieldWidth: 	100
-					min: 			1
-					max: 			1e9
-				}
-			}
-		}
-
-		Group
-		{
-			title: qsTr("Samples")
-
-			CheckBox
-			{
-				name:				"samplesSavingDisabled"
-				label:				qsTr("Disable saving samples")
-				checked:			false
-				info:				qsTr("When checked, MCMC samples are not stored in the output file. Reduces file size but re-running the analysis or changing options requires resampling.")
-			}
-
-		}
-	}
 
 	Section
 	{
@@ -493,10 +392,112 @@ Form
 
 	Section
 	{
+		title: qsTr("MCMC Options")
+
+		Group
+		{
+			title: qsTr("MCMC parameters");
+
+			IntegerField
+			{
+				id:				noSamples
+				name: 			"samples"
+				label: 			qsTr("No. samples")
+				defaultValue: 	2000
+				info: 			qsTr("Total number of MCMC samples per chain, including burn-in.")
+				fieldWidth: 	60
+				min: 			100
+				max: 			1e7
+			}
+
+			IntegerField
+			{
+				id:				noBurnin
+				name: 			"burnin"
+				label: 			qsTr("No. burnin samples")
+				defaultValue: 	200
+				info: 			qsTr("Initial samples discarded while the chain converges to the posterior.")
+				fieldWidth: 	60
+				min: 			1
+				max:			1e6
+			}
+
+			IntegerField
+			{
+				id:				noThin
+				name: 			"thinning"
+				label: 			qsTr("Thinning")
+				defaultValue: 	1
+				info: 			qsTr("Keep every k-th sample to reduce autocorrelation. A value of 1 keeps all samples.")
+				fieldWidth: 	40
+				min: 			1
+				max: 			1e5
+			}
+
+			IntegerField
+			{
+				name: 			"chains"
+				label: 			qsTr("No. chains")
+				defaultValue: 	3
+				info: 			qsTr("Number of independent MCMC chains. Multiple chains enable R-hat convergence diagnostics.")
+				fieldWidth: 	40
+				min: 			2
+				max: 			100
+			}
+		}
+
+		Group
+		{
+			title: qsTr("Diagnostics")
+
+			CheckBox {	name: "rHat";		label: qsTr("R-hat");		info: qsTr("Potential scale reduction factor. Values close to 1 (< 1.1) indicate convergence across chains.")	}
+			CheckBox {	name: "tracePlot";	label: qsTr("Traceplots");	info: qsTr("Plot of sampled values per chain over iterations. Well-mixed chains indicate convergence.")	}
+		}
+
+		Group
+		{
+			title: qsTr("Repeatability")
+
+			CheckBox
+			{
+				name: 				"setSeed"
+				label: 				qsTr("Set seed")
+				childrenOnSameRow: 	true
+				info: 				qsTr("Fix the random number generator seed to make the MCMC results reproducible.")
+
+				IntegerField
+				{
+					name: 			"seed"
+					label: 			""
+					defaultValue: 	1234
+					fieldWidth: 	100
+					min: 			1
+					max: 			1e9
+				}
+			}
+		}
+
+		Group
+		{
+			title: qsTr("Samples")
+
+			CheckBox
+			{
+				name:				"samplesSavingDisabled"
+				label:				qsTr("Disable saving samples")
+				checked:			false
+				info:				qsTr("When checked, MCMC samples are not stored in the output file. Reduces file size but re-running the analysis or changing options requires resampling.")
+			}
+
+		}
+	}
+
+	Section
+	{
 		title: qsTr("Advanced Options")
 		Group
 		{
-			title: qsTr("")
+			title: ""
 
 			RadioButtonGroup
 			{
@@ -513,7 +514,7 @@ Form
 			title: qsTr("Missing Values")
 			RadioButtonGroup
 			{
-				title: 	qsTr("")
+				title: 	""
 				name: 	"naAction"
 				info: 	qsTr("Bayesian imputation treats missing values as unknown parameters sampled from the posterior; listwise deletion removes any row with a missing value.")
 
