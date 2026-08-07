@@ -1,6 +1,6 @@
 
 #' @export
-unidimensionalReliabilityFrequentist <- function(jaspResults, dataset, options) {
+reliabilityUnidimensionalFrequentist <- function(jaspResults, dataset, options) {
 
 
   # check for listwise deletion

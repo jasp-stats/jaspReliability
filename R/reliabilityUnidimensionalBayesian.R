@@ -1,11 +1,10 @@
 
-#' @importFrom jaspBase createJaspContainer createJaspHtml createJaspPlot createJaspQmlSource createJaspState createJaspTable
-#' progressbarTick .quitAnalysis .readDataSetToEnd startProgressbar
+#' @importFrom jaspBase createJaspContainer createJaspHtml createJaspPlot createJaspQmlSource createJaspState createJaspTable progressbarTick .quitAnalysis .readDataSetToEnd startProgressbar
 
 #' @importFrom stats approxfun cor cov cov2cor density integrate median na.omit pnorm qchisq qnorm quantile rgamma rnorm sd var
 
 #' @export
-unidimensionalReliabilityBayesian <- function(jaspResults, dataset, options) {
+reliabilityUnidimensionalBayesian <- function(jaspResults, dataset, options) {
 
   options <- jaspBase::.parseAndStoreFormulaOptions(jaspResults, options, "inverseWishartPriorScale")
 
