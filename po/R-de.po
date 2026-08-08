@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2026-07-18 04:23\n"
+"POT-Creation-Date: 2026-08-08 03:52\n"
 "PO-Revision-Date: 2026-08-04 08:21+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -353,113 +353,138 @@ msgstr ""
 msgid "Warning:"
 msgstr ""
 
-msgid ""
-"For the Lord generalized method, the test could not be split in equally "
-"sized parts with more than 1 item per part. Consider adding or removing "
-"items."
+msgid "McDonald's ωₜ"
 msgstr ""
 
-msgid "Standard error of measurement results for the selected methods."
+msgid "McDonald's ωₕ"
 msgstr ""
 
 msgid ""
-"The Lord, Keats, and Lord generalized method are only available for binary "
-"data."
+"The bi-factor model does not support items that load on more than one "
+"factor. Assign each item to a single factor, or select the second-order or "
+"correlated-factors model."
 msgstr ""
 
-msgid "Standard Error of Measurement"
-msgstr "Standardfehler der Messung"
-
-msgid ""
-"Conditional standard error of measurement (SEM) for each sum score using the "
-"selected method(s). The unconditional SEM is also shown."
+msgid "Sampling the posterior distribution of the omega coefficients"
 msgstr ""
 
-msgid "Sum Score"
-msgstr ""
-
-msgid "Unconditional SEM"
-msgstr ""
-
-msgid "Counts"
-msgstr "Häufigkeiten"
-
-msgid "%1$s The unconditional SEM value equals %2$1.3f."
-msgstr ""
-
-msgid ""
-"%1$s Estimating the %2$s method failed. If possible, you might try changing "
-"the method's parameters."
-msgstr ""
-"%1$s Schätzung der %2$s-Methode fehlgeschlagen. Wenn möglich, versuchen Sie, "
-"die Methodenparameter zu ändern."
-
-msgid "Sum Score CI Table"
-msgstr ""
-
-msgid ""
-"Confidence intervals for the true score at each sum score level, computed "
-"from the conditional SEM."
-msgstr ""
-
-msgid ""
-"Estimating the %s method failed. If possible, you might try changing the "
-"method's parameters."
-msgstr ""
-"Schätzung der %s-Methode ist fehlgeschlagen. Wenn möglich, können Sie "
-"versuchen, die Methodenparameter zu ändern."
-
-msgid "Histogram of Counts per Sum Score Group"
-msgstr ""
-
-msgid "Distribution of participants across sum score groups."
-msgstr ""
-
-msgid "Point Plots"
-msgstr "Punkt-Diagramme"
-
-msgid ""
-"Conditional SEM plotted as a function of sum score for each selected method."
-msgstr ""
+msgid "Bayesian Scale Reliability Statistics"
+msgstr "Bayessche Skala-Reliabilitätsstatistiken"
 
 #, fuzzy
-msgid "SEM"
-msgstr "SEM"
-
-msgid "Combined Plot"
-msgstr "Kombiniertes Diagramm"
-
-msgid ""
-"Overlay of all selected methods' conditional SEM across the full range of "
-"sum scores."
-msgstr ""
-
-msgid "Sum Score CI Plots"
-msgstr ""
-
-msgid ""
-"True-score confidence interval plotted against sum score for each selected "
-"method."
-msgstr ""
+msgid "Posterior mean"
+msgstr "Posterior Mittelwert"
 
 #, fuzzy
-msgid "True Score Estimate"
-msgstr "Punktschätzung"
+msgid "Posterior median"
+msgstr "Posterior Mittelwert"
 
-msgid "Split-half coefficient"
+msgid "R-hat"
+msgstr "R-Dach"
+
+msgid "Please assign at least two factors with at least two items each."
 msgstr ""
 
-msgid "Item-rest correlation"
-msgstr "Item-Rest-Korrelation"
+msgid ""
+"McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
+"the correlated-factors model."
+msgstr ""
+
+msgid "Average interitem correlation"
+msgstr "Mittlere inter-Item Korrelation"
 
 msgid "Mean"
 msgstr "Mittelwert"
 
-msgid "Variance"
-msgstr "Varianz"
-
 msgid "SD"
 msgstr "SD"
+
+msgid "Bayesian Individual Item Reliability Statistics"
+msgstr "Bayessche Einzelitem-Reliabilitätsstatistiken"
+
+msgid "Item"
+msgstr "Item"
+
+#, fuzzy
+msgid "McDonald's ωₜ (if item dropped)"
+msgstr "%s (falls Item ausgelassen)"
+
+#, fuzzy
+msgid "McDonald's ωₕ (if item dropped)"
+msgstr "%s (falls Item ausgelassen)"
+
+msgid "Item-rest correlation"
+msgstr "Item-Rest-Korrelation"
+
+msgid ""
+"Empty cells indicate that dropping the item would leave a factor with fewer "
+"than two items."
+msgstr ""
+
+msgid "Computing item statistics (refitting the model once per item)"
+msgstr ""
+
+msgid ""
+"The bounds you entered have been rearranged in increasing order to provide "
+"meaningful results."
+msgstr ""
+"Die von Dir eingegebenen Grenzen wurden in aufsteigender Reihenfolge neu "
+"geordnet, um aussagekräftige Ergebnisse zu erhalten."
+
+msgid ""
+"Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
+"than %2$.2f"
+msgstr ""
+"Wahrscheinlichkeit, dass der Reliabilitätskoeffizient größer ist als %1$.2f "
+"und kleiner als %2$.2f"
+
+msgid "Posterior"
+msgstr "Posterior"
+
+msgid "Probability"
+msgstr "Wahrscheinlichkeit"
+
+#, fuzzy
+msgid "Fit Measures of the Factor Model"
+msgstr "Anpassungsmaße des Einzelfaktor-Modells"
+
+msgid "Point estimate"
+msgstr "Punktschätzung"
+
+msgid "%s lower bound"
+msgstr "%s untere Grenze"
+
+msgid "%s upper bound"
+msgstr "%s obere Grenze"
+
+msgid "Relative to cutoff"
+msgstr "Relativ zum Cutoff"
+
+msgid ""
+"'Relative to cutoff' denotes the posterior probability that the B-RMSEA is "
+"smaller than the cutoff of %.2f."
+msgstr ""
+
+msgid "Posterior Plots"
+msgstr "Posterior-Diagramme"
+
+msgid "Convergence Traceplot"
+msgstr "Konvergenz-Verlaufsdiagramm"
+
+msgid "Posterior Predictive Check"
+msgstr ""
+
+msgid "Eigenvalue"
+msgstr "Eigenwert"
+
+msgid "Eigenvalue No."
+msgstr "Eigenwert Nr."
+
+msgid "Split-half coefficient"
+msgstr ""
+
+msgid "Variance"
+msgstr "Varianz"
 
 msgid "%1$s Of the observations, %2$1.f complete cases were used."
 msgstr "%1$s der Beobachtungen, es wurden %2$1.f vollständige Fälle verwendet."
@@ -498,9 +523,6 @@ msgstr ""
 "Die Stichprobe des Posterior-Nullmodells schlug fehl. Versuchen Sie, auf "
 "'Fälle listenweise ausschließen' in den 'Weiteren Optionen' zu wechseln"
 
-msgid "Bayesian Scale Reliability Statistics"
-msgstr "Bayessche Skala-Reliabilitätsstatistiken"
-
 msgid ""
 "Bayesian posterior estimates and credible intervals for all selected scale "
 "reliability coefficients."
@@ -509,22 +531,13 @@ msgstr ""
 msgid "Posterior %s"
 msgstr "Posterior %s"
 
-msgid "R-hat"
-msgstr "R-Dach"
-
 msgid "ESS"
 msgstr ""
-
-msgid "Bayesian Individual Item Reliability Statistics"
-msgstr "Bayessche Einzelitem-Reliabilitätsstatistiken"
 
 msgid ""
 "Bayesian item-level reliability: posterior estimates of the scale "
 "coefficient if each item were dropped, and item-rest correlations."
 msgstr ""
-
-msgid "Item"
-msgstr "Item"
 
 msgid "%s (if item dropped)"
 msgstr "%s (falls Item ausgelassen)"
@@ -536,32 +549,12 @@ msgstr ""
 "ein."
 
 msgid ""
-"The bounds you entered have been rearranged in increasing order to provide "
-"meaningful results."
-msgstr ""
-"Die von Dir eingegebenen Grenzen wurden in aufsteigender Reihenfolge neu "
-"geordnet, um aussagekräftige Ergebnisse zu erhalten."
-
-msgid ""
-"Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
-"than %2$.2f"
-msgstr ""
-"Wahrscheinlichkeit, dass der Reliabilitätskoeffizient größer ist als %1$.2f "
-"und kleiner als %2$.2f"
-
-msgid ""
 "Posterior and prior probability that each reliability coefficient falls "
 "within the specified interval."
 msgstr ""
 
-msgid "Probability"
-msgstr "Wahrscheinlichkeit"
-
 msgid "Prior"
 msgstr "Prior"
-
-msgid "Posterior"
-msgstr "Posterior"
 
 msgid "Fit Measures for the Single-Factor Model"
 msgstr "Anpassungsmaße des Einzelfaktor-Modells"
@@ -569,12 +562,6 @@ msgstr "Anpassungsmaße des Einzelfaktor-Modells"
 msgid ""
 "Bayesian fit indices for the single-factor model underlying McDonald's omega."
 msgstr ""
-
-msgid "%s lower bound"
-msgstr "%s untere Grenze"
-
-msgid "%s upper bound"
-msgstr "%s obere Grenze"
 
 msgid ""
 "'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
@@ -601,9 +588,6 @@ msgstr ""
 
 msgid "Standardized loading"
 msgstr "Standardisierte Ladung"
-
-msgid "Posterior Plots"
-msgstr "Posterior-Diagramme"
 
 msgid ""
 "Posterior density plots for each selected reliability coefficient, with "
@@ -633,12 +617,6 @@ msgstr ""
 msgid "Item Dropped"
 msgstr "Item ausgelassen"
 
-msgid "Eigenvalue"
-msgstr "Eigenwert"
-
-msgid "Eigenvalue No."
-msgstr "Eigenwert Nr."
-
 msgid "Posterior Predictive Check Omega"
 msgstr ""
 
@@ -648,9 +626,6 @@ msgid ""
 "factor model fit."
 msgstr ""
 
-msgid "Convergence Traceplot"
-msgstr "Konvergenz-Verlaufsdiagramm"
-
 msgid ""
 "Traceplots of MCMC samples per chain over iterations to assess sampler "
 "convergence and mixing."
@@ -658,9 +633,6 @@ msgstr ""
 
 msgid "Iterations"
 msgstr "Iterationen"
-
-msgid "Average interitem correlation"
-msgstr "Mittlere inter-Item Korrelation"
 
 msgid "%1$s%2$s"
 msgstr "%1$s%2$s"
@@ -774,6 +746,99 @@ msgid "Please enter at least 2 variables to do an analysis."
 msgstr ""
 "Bitte geben Sie mindestens 2 Variablen ein, um eine Analyse durchzuführen."
 
+msgid ""
+"For the Lord generalized method, the test could not be split in equally "
+"sized parts with more than 1 item per part. Consider adding or removing "
+"items."
+msgstr ""
+
+msgid "Standard error of measurement results for the selected methods."
+msgstr ""
+
+msgid ""
+"The Lord, Keats, and Lord generalized method are only available for binary "
+"data."
+msgstr ""
+
+msgid "Standard Error of Measurement"
+msgstr "Standardfehler der Messung"
+
+msgid ""
+"Conditional standard error of measurement (SEM) for each sum score using the "
+"selected method(s). The unconditional SEM is also shown."
+msgstr ""
+
+msgid "Sum Score"
+msgstr ""
+
+msgid "Unconditional SEM"
+msgstr ""
+
+msgid "Counts"
+msgstr "Häufigkeiten"
+
+msgid "%1$s The unconditional SEM value equals %2$1.3f."
+msgstr ""
+
+msgid ""
+"%1$s Estimating the %2$s method failed. If possible, you might try changing "
+"the method's parameters."
+msgstr ""
+"%1$s Schätzung der %2$s-Methode fehlgeschlagen. Wenn möglich, versuchen Sie, "
+"die Methodenparameter zu ändern."
+
+msgid "Sum Score CI Table"
+msgstr ""
+
+msgid ""
+"Confidence intervals for the true score at each sum score level, computed "
+"from the conditional SEM."
+msgstr ""
+
+msgid ""
+"Estimating the %s method failed. If possible, you might try changing the "
+"method's parameters."
+msgstr ""
+"Schätzung der %s-Methode ist fehlgeschlagen. Wenn möglich, können Sie "
+"versuchen, die Methodenparameter zu ändern."
+
+msgid "Histogram of Counts per Sum Score Group"
+msgstr ""
+
+msgid "Distribution of participants across sum score groups."
+msgstr ""
+
+msgid "Point Plots"
+msgstr "Punkt-Diagramme"
+
+msgid ""
+"Conditional SEM plotted as a function of sum score for each selected method."
+msgstr ""
+
+#, fuzzy
+msgid "SEM"
+msgstr "SEM"
+
+msgid "Combined Plot"
+msgstr "Kombiniertes Diagramm"
+
+msgid ""
+"Overlay of all selected methods' conditional SEM across the full range of "
+"sum scores."
+msgstr ""
+
+msgid "Sum Score CI Plots"
+msgstr ""
+
+msgid ""
+"True-score confidence interval plotted against sum score for each selected "
+"method."
+msgstr ""
+
+#, fuzzy
+msgid "True Score Estimate"
+msgstr "Punktschätzung"
+
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
 msgstr[0] "Das folgende Item korrelierte negativ mit der Skala: %s. "
@@ -805,9 +870,6 @@ msgstr[1] "Die folgenden Items wurden umgekehrt kodiert: %s. "
 #~ msgid "Lambda6 interval calculation failed."
 #~ msgstr "Lambda6-Intervallberechnung fehlgeschlagen."
 
-#~ msgid "Point estimate"
-#~ msgstr "Punktschätzung"
-
 #~ msgid "If item dropped"
 #~ msgstr "Falls Item ausgelassen"
 
@@ -823,12 +885,6 @@ msgstr[1] "Die folgenden Items wurden umgekehrt kodiert: %s. "
 
 #~ msgid "%s"
 #~ msgstr "%s"
-
-#~ msgid "Relative to cutoff"
-#~ msgstr "Relativ zum Cutoff"
-
-#~ msgid "Posterior Mean"
-#~ msgstr "Posterior Mittelwert"
 
 #~ msgid ""
 #~ "Omega calculation with CFA failed. Try changing to PFA in Advanced Options"

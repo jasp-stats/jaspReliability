@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
-"POT-Creation-Date: 2026-07-18 04:23\n"
+"POT-Creation-Date: 2026-08-08 03:52\n"
 "PO-Revision-Date: 2026-08-01 04:31+0000\n"
 "Last-Translator: Koji Kosugi <kosugitti@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -150,9 +150,9 @@ msgid ""
 "type. The data mix categorical and continuous columns; change the column "
 "types so they match."
 msgstr ""
-"評定者を行に置く場合、対象・項目の列はすべて同じ測定の型である必要があります"
-"。データにカテゴリカルな列と連続の列が混在しています。列の型を揃えてください"
-"。"
+"評定者を行に置く場合、対象・項目の列はすべて同じ測定の型である必要がありま"
+"す。データにカテゴリカルな列と連続の列が混在しています。列の型を揃えてくださ"
+"い。"
 
 msgid "Krippendorff's alpha requires at least 2 raters/measurements."
 msgstr "クリッペンドルフのαには、少なくとも2名の評定者/測定が必要です。"
@@ -166,14 +166,16 @@ msgstr ""
 
 msgid ""
 "Krippendorff's alpha with the ratio method requires non-negative ratings."
-msgstr "比率の方法でクリッペンドルフのαを求めるには、評定が非負である必要があります。"
+msgstr ""
+"比率の方法でクリッペンドルフのαを求めるには、評定が非負である必要があります。"
 
 msgid "Krippendorff's alpha with the ordinal method"
 msgstr "順序の方法によるクリッペンドルフのα"
 
 msgid ""
 "Krippendorff's alpha cannot be computed: the data contain infinite values."
-msgstr "クリッペンドルフのαを計算できません。データに無限大の値が含まれています。"
+msgstr ""
+"クリッペンドルフのαを計算できません。データに無限大の値が含まれています。"
 
 msgid ""
 "Krippendorff's alpha cannot be computed: no subject/item was rated by at "
@@ -184,7 +186,8 @@ msgstr ""
 
 msgid ""
 "Krippendorff's alpha is not estimable: the pairable ratings do not vary."
-msgstr "クリッペンドルフのαを推定できません。対にできる評定に変動がありません。"
+msgstr ""
+"クリッペンドルフのαを推定できません。対にできる評定に変動がありません。"
 
 msgid "Cohen's kappa"
 msgstr "コーエンのκ"
@@ -291,7 +294,8 @@ msgstr ""
 
 msgid ""
 "Fleiss' kappa is not estimable: all ratings fall into a single category."
-msgstr "Fleiss' kappa を推定できません。すべての評定が1つのカテゴリに集中しています。"
+msgstr ""
+"Fleiss' kappa を推定できません。すべての評定が1つのカテゴリに集中しています。"
 
 msgid "%1$s Based on listwise complete cases."
 msgstr "%1$s リストワイズで完全なケースにもとづきます。"
@@ -341,7 +345,8 @@ msgstr "F検定"
 
 msgid ""
 "Kendall's W requires ordinal or scale variables. Remove nominal variables."
-msgstr "ケンドールのWには順序変数または尺度変数が必要です。名義変数を外してください。"
+msgstr ""
+"ケンドールのWには順序変数または尺度変数が必要です。名義変数を外してください。"
 
 msgid "Kendall's W requires at least 2 raters/measurements."
 msgstr "ケンドールのWには、少なくとも2名の評定者/測定が必要です。"
@@ -349,7 +354,8 @@ msgstr "ケンドールのWには、少なくとも2名の評定者/測定が必
 msgid ""
 "Kendall's W requires at least 2 complete subjects/items (rows without "
 "missing ratings)."
-msgstr "ケンドールのWには、評定に欠測のない完全な対象・項目が少なくとも2件必要です。"
+msgstr ""
+"ケンドールのWには、評定に欠測のない完全な対象・項目が少なくとも2件必要です。"
 
 msgid "Kendall's W cannot be computed: the data contain infinite values."
 msgstr "ケンドールのWを計算できません。データに無限大の値が含まれています。"
@@ -389,6 +395,420 @@ msgstr ""
 
 msgid "Warning:"
 msgstr "警告:"
+
+msgid "McDonald's ωₜ"
+msgstr ""
+
+msgid "McDonald's ωₕ"
+msgstr ""
+
+msgid ""
+"The bi-factor model does not support items that load on more than one "
+"factor. Assign each item to a single factor, or select the second-order or "
+"correlated-factors model."
+msgstr ""
+
+#, fuzzy
+msgid "Sampling the posterior distribution of the omega coefficients"
+msgstr ""
+"各項目を除いたときの信頼性係数の事後分布を示すリッジラインプロットです。"
+
+msgid "Bayesian Scale Reliability Statistics"
+msgstr "ベイジアン尺度信頼性統計"
+
+#, fuzzy
+msgid "Posterior mean"
+msgstr "事後平均"
+
+#, fuzzy
+msgid "Posterior median"
+msgstr "事後平均"
+
+msgid "R-hat"
+msgstr "R-hat"
+
+msgid "Please assign at least two factors with at least two items each."
+msgstr ""
+
+msgid ""
+"McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
+"the correlated-factors model."
+msgstr ""
+
+msgid "Average interitem correlation"
+msgstr "平均項目間相関"
+
+msgid "Mean"
+msgstr "平均値"
+
+msgid "SD"
+msgstr "SD"
+
+msgid "Bayesian Individual Item Reliability Statistics"
+msgstr "ベイジアン個別項目信頼性統計"
+
+msgid "Item"
+msgstr "項目"
+
+#, fuzzy
+msgid "McDonald's ωₜ (if item dropped)"
+msgstr "%s (項目が削除された場合)"
+
+#, fuzzy
+msgid "McDonald's ωₕ (if item dropped)"
+msgstr "%s (項目が削除された場合)"
+
+msgid "Item-rest correlation"
+msgstr "I-R相関"
+
+msgid ""
+"Empty cells indicate that dropping the item would leave a factor with fewer "
+"than two items."
+msgstr ""
+
+msgid "Computing item statistics (refitting the model once per item)"
+msgstr ""
+
+msgid ""
+"The bounds you entered have been rearranged in increasing order to provide "
+"meaningful results."
+msgstr ""
+"入力した境界は、意味のある結果を提供するために昇順で再配置されています."
+
+msgid ""
+"Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
+"than %2$.2f"
+msgstr "信頼性係数が %1$.2f より大きく %2$.2f より小さい確率"
+
+msgid "Posterior"
+msgstr "事後分布"
+
+msgid "Probability"
+msgstr "確率"
+
+#, fuzzy
+msgid "Fit Measures of the Factor Model"
+msgstr "単一因子モデルの適合度指標"
+
+msgid "Point estimate"
+msgstr "点推定値"
+
+msgid "%s lower bound"
+msgstr "%s 下限"
+
+msgid "%s upper bound"
+msgstr "%s 上限"
+
+msgid "Relative to cutoff"
+msgstr "カットオフに対して"
+
+msgid ""
+"'Relative to cutoff' denotes the posterior probability that the B-RMSEA is "
+"smaller than the cutoff of %.2f."
+msgstr ""
+
+msgid "Posterior Plots"
+msgstr "事後分布プロット"
+
+msgid "Convergence Traceplot"
+msgstr "収束トレースプロット"
+
+#, fuzzy
+msgid "Posterior Predictive Check"
+msgstr "オメガの事後予測チェック"
+
+msgid "Eigenvalue"
+msgstr "固有値"
+
+msgid "Eigenvalue No."
+msgstr "固有値 No."
+
+msgid "Split-half coefficient"
+msgstr "折半係数"
+
+msgid "Variance"
+msgstr "分散"
+
+msgid "%1$s Of the observations, %2$1.f complete cases were used."
+msgstr "観測値%1$s のうち、%2$1.f完全なケースが使用されました."
+
+msgid "%s Of the observations, pairwise complete cases were used."
+msgstr "観測値%s のうち、ペアワイズ処理された完全なケースが使用されました."
+
+msgid ""
+"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
+"lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
+"Options'"
+msgstr ""
+"[alpha、lambda2、lambda6、glb]のいずれかの事後共分散行列のサンプリングに失敗"
+"しました。 '詳細オプション'で'ケースをリストワイズで除外'に変更してみてくださ"
+"い"
+
+msgid ""
+"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
+"lambda6, glb] failed."
+msgstr ""
+"[alpha、lambda2、lambda6、glb]のいずれかの事後共分散行列のサンプリングに失敗"
+"しました。 '詳細オプション'で'ケースをリストワイズで除外'に変更してみてくださ"
+"い."
+
+msgid ""
+"Sampling the posterior factor model for omega failed. Try changing to "
+"'Exclude cases listwise' in 'Advanced Options'"
+msgstr ""
+"オメガの事後因子モデルのサンプリングに失敗しました. '詳細オプションで'ケース"
+"をリストワイズで除外'に変更してみてください"
+
+msgid ""
+"Sampling the posterior null model failed. Try changing to 'Exclude cases "
+"listwise' in 'Advanced Options'"
+msgstr ""
+"事後ナルモデルのサンプリングに失敗しました. '詳細オプション'で'ケースをリスト"
+"ワイズで除外'に変更してみてください"
+
+msgid ""
+"Bayesian posterior estimates and credible intervals for all selected scale "
+"reliability coefficients."
+msgstr ""
+"選択したすべての尺度の信頼性係数について、ベイズによる事後推定値と信用区間で"
+"す。"
+
+msgid "Posterior %s"
+msgstr "事後%s"
+
+msgid "ESS"
+msgstr "ESS"
+
+msgid ""
+"Bayesian item-level reliability: posterior estimates of the scale "
+"coefficient if each item were dropped, and item-rest correlations."
+msgstr ""
+"項目ごとのベイズによる信頼性です。各項目を除いたときの尺度の係数の事後推定値"
+"と、I-R相関を示します。"
+
+msgid "%s (if item dropped)"
+msgstr "%s (項目が削除された場合)"
+
+msgid ""
+"%s Please enter at least 3 variables for the if item dropped statistics."
+msgstr ""
+"%s 項目が削除された統計の場合は、少なくとも 3 つの変数を入力してください。"
+
+msgid ""
+"Posterior and prior probability that each reliability coefficient falls "
+"within the specified interval."
+msgstr "各信頼性係数が指定した区間に入る事後確率と事前確率です。"
+
+msgid "Prior"
+msgstr "事前分布"
+
+msgid "Fit Measures for the Single-Factor Model"
+msgstr "単一因子モデルの適合度指標"
+
+msgid ""
+"Bayesian fit indices for the single-factor model underlying McDonald's omega."
+msgstr ""
+"マクドナルドのオメガの基礎となる1因子モデルについての、ベイズ的な適合度指数で"
+"す。"
+
+msgid ""
+"'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
+"than\n"
+"                         the corresponding cutoff and the probabilities that "
+"the B-CFI/TLI are larger than the\n"
+"                         corresponding cutoff."
+msgstr ""
+"'カットオフに対して'-列は、B-RMSEAが対応するカットオフよりも小さい確率を示"
+"し\n"
+"                         B-CFI / TLIが対応するカットオフよりも\n"
+"                         大きい確率を表しています."
+
+msgid "Standardized Loadings of the Single-Factor Model"
+msgstr "単一因子モデルの標準化負荷量"
+
+msgid ""
+"Posterior estimates of standardized factor loadings from the single-factor "
+"model."
+msgstr "単一因子モデルの標準化負荷量"
+
+msgid "Standardized loading"
+msgstr "標準化負荷量"
+
+msgid ""
+"Posterior density plots for each selected reliability coefficient, with "
+"optional prior overlay and shading of the posterior probability region; the "
+"credible interval is shown as a separate error bar."
+msgstr ""
+"選択した信頼性係数ごとの事後密度のプロットです。必要に応じて事前分布を重ね、"
+"事後確率の領域に網かけをします。信用区間は別のエラーバーで示されます。"
+
+msgid "Density"
+msgstr "密度"
+
+msgid "If Item Dropped Posterior Plots"
+msgstr "項目除外したときの事後プロット"
+
+msgid ""
+"Ridgeline plots showing the posterior distribution of each reliability "
+"coefficient when each item is dropped."
+msgstr ""
+"各項目を除いたときの信頼性係数の事後分布を示すリッジラインプロットです。"
+
+msgid "Please enter at least 3 variables for the if item dropped plot"
+msgstr "項目除外したときのプロットでは、少なくとも3つの変数を入力してください"
+
+msgid "KLD ordering failed because two variables have perfect correlation"
+msgstr ""
+"2つの変数が完全に相関しているため、KLD(KL-ダイバージェンス)順序付けは失敗した"
+
+msgid "Item Dropped"
+msgstr "項目を除外"
+
+msgid "Posterior Predictive Check Omega"
+msgstr "オメガの事後予測チェック"
+
+msgid ""
+"Posterior predictive check: observed eigenvalues of the covariance matrix "
+"compared against the model-implied posterior distribution to assess single-"
+"factor model fit."
+msgstr ""
+"事後予測チェックです。1因子モデルの適合を評価するために、観測された共分散行列"
+"の固有値を、モデルから導かれる事後分布と比べます。"
+
+msgid ""
+"Traceplots of MCMC samples per chain over iterations to assess sampler "
+"convergence and mixing."
+msgstr ""
+"サンプラーの収束と混合を評価するための、反復にわたるチェインごとのMCMCサンプ"
+"ルのトレースプロットです。"
+
+msgid "Iterations"
+msgstr "イテレーション"
+
+msgid "%1$s%2$s"
+msgstr "%1$s%2$s"
+
+msgid ""
+"Omega calculation with CFA failed.\n"
+"                                                    Try changing to PFA in "
+"'Advanced Options'."
+msgstr ""
+"CFAによるオメガ計算が失敗しました.\n"
+"                                                    詳細オプションでPFAに変更"
+"してみてください"
+
+msgid ""
+"Omega bootstrapped interval calculation with CFA failed.\n"
+"                                                        Try changing to PFA "
+"in 'Advanced Options'."
+msgstr ""
+"CFAによるオメガのブートストラップ区間計算に失敗しました。\n"
+"                                                            '詳細オプショ"
+"ン'でPFAに変更してみてください"
+
+msgid "Omega calculation with PFA failed."
+msgstr "PFAによるオメガの計算は失敗しました."
+
+msgid ""
+"The analytic confidence interval is not available for coefficient omega "
+"obtained with PFA. Change to 'Bootstrapped' in Advanced Options."
+msgstr ""
+"PFAで求めた係数オメガについては、解析的な信頼区間を利用できません。詳細オプ"
+"ションで「ブートストラップ」に変更してください。"
+
+msgid "Omega interval calculation with PFA failed."
+msgstr "PFAによるオメガの区間計算に失敗しました."
+
+msgid ""
+"The analytic confidence interval is not available for coefficient alpha/"
+"lambda2 when data contain missings and pairwise complete observations are "
+"used. Try changing to 'Delete listwise' within 'Advanced Options'."
+msgstr ""
+"データに欠測があり、ペアごとに完全な観測を使う場合、係数アルファ・ラムダ2につ"
+"いて解析的な信頼区間を利用できません。詳細オプションで「リストワイズで削除」"
+"に変更してみてください。"
+
+msgid ""
+"The analytic confidence interval is not available for the average interitem "
+"correlation when data contain missings and pairwise complete observations "
+"are used. Try changing to 'Delete listwise' within 'Advanced Options'."
+msgstr ""
+"データに欠測があり、ペアごとに完全な観測を使う場合、平均項目間相関について解"
+"析的な信頼区間を利用できません。詳細オプションで「リストワイズで削除」に変更"
+"してみてください。"
+
+msgid "Omega item dropped statistics with CFA failed."
+msgstr "CFAによる項目を除外したオメガ統計量の算出できませんでした."
+
+msgid "Omega item dropped statistics with PFA failed."
+msgstr "PFAによる項目を除外したオメガ統計量の算出できませんでした."
+
+msgid ""
+"The analytic confidence interval not available for coefficient alpha/lambda2 "
+"when data contain missings and pairwise complete observations are used. Try "
+"changing to 'Delete listwise' within 'Advanced Options'."
+msgstr ""
+"データに欠測があり、ペアごとに完全な観測を使う場合、係数アルファ・ラムダ2につ"
+"いて解析的な信頼区間を利用できません。詳細オプションで「リストワイズで削除」"
+"に変更してみてください。"
+
+msgid "Frequentist Scale Reliability Statistics"
+msgstr "頻度論的尺度信頼性統計"
+
+msgid ""
+"Frequentist point estimates, standard errors, and confidence intervals for "
+"all selected scale reliability coefficients."
+msgstr ""
+"選択したすべての尺度の信頼性係数について、頻度論の点推定値、標準誤差、信頼区"
+"間です。"
+
+msgid "Std. Error"
+msgstr "標準誤差"
+
+msgid "Frequentist Individual Item Reliability Statistics"
+msgstr "頻度論的個別項目信頼性統計"
+
+msgid ""
+"Item-level reliability: for each item, the scale reliability coefficient if "
+"that item were dropped, and the item-rest correlation."
+msgstr ""
+"項目ごとの信頼性です。各項目について、その項目を除いたときの尺度の信頼性係数"
+"と、I-R相関を示します。"
+
+msgid "Fit Measures of Single Factor Model Fit"
+msgstr "単一因子モデルの適合度指標"
+
+msgid ""
+"Fit indices of the single-factor model underlying McDonald's omega, "
+"including chi-square, RMSEA, and SRMR."
+msgstr ""
+"マクドナルドのオメガの基礎となる1因子モデルの適合度指数です。カイ二乗、"
+"RMSEA、SRMRを含みます。"
+
+msgid "Fit measure"
+msgstr "適合度指標"
+
+msgid "Value"
+msgstr "値"
+
+msgid ""
+"Standardized factor loadings from the single-factor model used to estimate "
+"McDonald's omega."
+msgstr "単一因子モデルの標準化負荷量"
+
+msgid ""
+"Too few MCMC samples will remain after the removal of the burnin samples and "
+"thinning,\n"
+"                     please increase No.samples."
+msgstr ""
+"バーンインサンプルの除去と間引き後のMCMCサンプルが少なすぎます。\n"
+"                     MCMCサンプルを増やしてください."
+
+msgid "%1$sVariables %2$s and %3$s correlated perfectly."
+msgstr "%1$s変数 %2$s と %3$s は完全に相関しています。"
+
+msgid "Please enter at least 2 variables to do an analysis."
+msgstr "分析を行うためには、少なくとも2つの変数を入力してください"
 
 msgid ""
 "For the Lord generalized method, the test could not be split in equally "
@@ -461,7 +881,8 @@ msgstr "点プロット"
 
 msgid ""
 "Conditional SEM plotted as a function of sum score for each selected method."
-msgstr "選択した方法ごとに、合計得点の関数として条件つきSEMをプロットしたものです。"
+msgstr ""
+"選択した方法ごとに、合計得点の関数として条件つきSEMをプロットしたものです。"
 
 msgid "SEM"
 msgstr "標準誤差"
@@ -482,355 +903,11 @@ msgstr "合計得点の信頼区間のプロット"
 msgid ""
 "True-score confidence interval plotted against sum score for each selected "
 "method."
-msgstr "選択した方法ごとに、合計得点に対して真値の信頼区間をプロットしたものです。"
+msgstr ""
+"選択した方法ごとに、合計得点に対して真値の信頼区間をプロットしたものです。"
 
 msgid "True Score Estimate"
 msgstr "真の得点の推定値"
-
-msgid "Split-half coefficient"
-msgstr "折半係数"
-
-msgid "Item-rest correlation"
-msgstr "I-R相関"
-
-msgid "Mean"
-msgstr "平均値"
-
-msgid "Variance"
-msgstr "分散"
-
-msgid "SD"
-msgstr "SD"
-
-msgid "%1$s Of the observations, %2$1.f complete cases were used."
-msgstr "観測値%1$s のうち、%2$1.f完全なケースが使用されました."
-
-msgid "%s Of the observations, pairwise complete cases were used."
-msgstr "観測値%s のうち、ペアワイズ処理された完全なケースが使用されました."
-
-msgid ""
-"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
-"lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
-"Options'"
-msgstr ""
-"[alpha、lambda2、lambda6、glb]のいずれかの事後共分散行列のサンプリングに失敗"
-"しました。 '詳細オプション'で'ケースをリストワイズで除外'に変更してみてくださ"
-"い"
-
-msgid ""
-"Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
-"lambda6, glb] failed."
-msgstr ""
-"[alpha、lambda2、lambda6、glb]のいずれかの事後共分散行列のサンプリングに失敗"
-"しました。 '詳細オプション'で'ケースをリストワイズで除外'に変更してみてくださ"
-"い."
-
-msgid ""
-"Sampling the posterior factor model for omega failed. Try changing to "
-"'Exclude cases listwise' in 'Advanced Options'"
-msgstr ""
-"オメガの事後因子モデルのサンプリングに失敗しました. '詳細オプションで'ケース"
-"をリストワイズで除外'に変更してみてください"
-
-msgid ""
-"Sampling the posterior null model failed. Try changing to 'Exclude cases "
-"listwise' in 'Advanced Options'"
-msgstr ""
-"事後ナルモデルのサンプリングに失敗しました. '詳細オプション'で'ケースをリスト"
-"ワイズで除外'に変更してみてください"
-
-msgid "Bayesian Scale Reliability Statistics"
-msgstr "ベイジアン尺度信頼性統計"
-
-msgid ""
-"Bayesian posterior estimates and credible intervals for all selected scale "
-"reliability coefficients."
-msgstr ""
-"選択したすべての尺度の信頼性係数について、ベイズによる事後推定値と信用区間で"
-"す。"
-
-msgid "Posterior %s"
-msgstr "事後%s"
-
-msgid "R-hat"
-msgstr "R-hat"
-
-msgid "ESS"
-msgstr "ESS"
-
-msgid "Bayesian Individual Item Reliability Statistics"
-msgstr "ベイジアン個別項目信頼性統計"
-
-msgid ""
-"Bayesian item-level reliability: posterior estimates of the scale "
-"coefficient if each item were dropped, and item-rest correlations."
-msgstr ""
-"項目ごとのベイズによる信頼性です。各項目を除いたときの尺度の係数の事後推定値"
-"と、I-R相関を示します。"
-
-msgid "Item"
-msgstr "項目"
-
-msgid "%s (if item dropped)"
-msgstr "%s (項目が削除された場合)"
-
-msgid ""
-"%s Please enter at least 3 variables for the if item dropped statistics."
-msgstr ""
-"%s 項目が削除された統計の場合は、少なくとも 3 つの変数を入力してください。"
-
-msgid ""
-"The bounds you entered have been rearranged in increasing order to provide "
-"meaningful results."
-msgstr ""
-"入力した境界は、意味のある結果を提供するために昇順で再配置されています."
-
-msgid ""
-"Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
-"than %2$.2f"
-msgstr "信頼性係数が %1$.2f より大きく %2$.2f より小さい確率"
-
-msgid ""
-"Posterior and prior probability that each reliability coefficient falls "
-"within the specified interval."
-msgstr "各信頼性係数が指定した区間に入る事後確率と事前確率です。"
-
-msgid "Probability"
-msgstr "確率"
-
-msgid "Prior"
-msgstr "事前分布"
-
-msgid "Posterior"
-msgstr "事後分布"
-
-msgid "Fit Measures for the Single-Factor Model"
-msgstr "単一因子モデルの適合度指標"
-
-msgid ""
-"Bayesian fit indices for the single-factor model underlying McDonald's omega."
-msgstr ""
-"マクドナルドのオメガの基礎となる1因子モデルについての、ベイズ的な適合度指数で"
-"す。"
-
-msgid "%s lower bound"
-msgstr "%s 下限"
-
-msgid "%s upper bound"
-msgstr "%s 上限"
-
-msgid ""
-"'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
-"than\n"
-"                         the corresponding cutoff and the probabilities that "
-"the B-CFI/TLI are larger than the\n"
-"                         corresponding cutoff."
-msgstr ""
-"'カットオフに対して'-列は、B-RMSEAが対応するカットオフよりも小さい確率を示"
-"し\n"
-"                         B-CFI / TLIが対応するカットオフよりも\n"
-"                         大きい確率を表しています."
-
-msgid "Standardized Loadings of the Single-Factor Model"
-msgstr "単一因子モデルの標準化負荷量"
-
-msgid ""
-"Posterior estimates of standardized factor loadings from the single-factor "
-"model."
-msgstr "単一因子モデルの標準化負荷量"
-
-msgid "Standardized loading"
-msgstr "標準化負荷量"
-
-msgid "Posterior Plots"
-msgstr "事後分布プロット"
-
-msgid ""
-"Posterior density plots for each selected reliability coefficient, with "
-"optional prior overlay and shading of the posterior probability region; the "
-"credible interval is shown as a separate error bar."
-msgstr ""
-"選択した信頼性係数ごとの事後密度のプロットです。必要に応じて事前分布を重ね、"
-"事後確率の領域に網かけをします。信用区間は別のエラーバーで示されます。"
-
-msgid "Density"
-msgstr "密度"
-
-msgid "If Item Dropped Posterior Plots"
-msgstr "項目除外したときの事後プロット"
-
-msgid ""
-"Ridgeline plots showing the posterior distribution of each reliability "
-"coefficient when each item is dropped."
-msgstr "各項目を除いたときの信頼性係数の事後分布を示すリッジラインプロットです。"
-
-msgid "Please enter at least 3 variables for the if item dropped plot"
-msgstr "項目除外したときのプロットでは、少なくとも3つの変数を入力してください"
-
-msgid "KLD ordering failed because two variables have perfect correlation"
-msgstr ""
-"2つの変数が完全に相関しているため、KLD(KL-ダイバージェンス)順序付けは失敗した"
-
-msgid "Item Dropped"
-msgstr "項目を除外"
-
-msgid "Eigenvalue"
-msgstr "固有値"
-
-msgid "Eigenvalue No."
-msgstr "固有値 No."
-
-msgid "Posterior Predictive Check Omega"
-msgstr "オメガの事後予測チェック"
-
-msgid ""
-"Posterior predictive check: observed eigenvalues of the covariance matrix "
-"compared against the model-implied posterior distribution to assess single-"
-"factor model fit."
-msgstr ""
-"事後予測チェックです。1因子モデルの適合を評価するために、観測された共分散行列"
-"の固有値を、モデルから導かれる事後分布と比べます。"
-
-msgid "Convergence Traceplot"
-msgstr "収束トレースプロット"
-
-msgid ""
-"Traceplots of MCMC samples per chain over iterations to assess sampler "
-"convergence and mixing."
-msgstr ""
-"サンプラーの収束と混合を評価するための、反復にわたるチェインごとのMCMC"
-"サンプルのトレースプロットです。"
-
-msgid "Iterations"
-msgstr "イテレーション"
-
-msgid "Average interitem correlation"
-msgstr "平均項目間相関"
-
-msgid "%1$s%2$s"
-msgstr "%1$s%2$s"
-
-msgid ""
-"Omega calculation with CFA failed.\n"
-"                                                    Try changing to PFA in "
-"'Advanced Options'."
-msgstr ""
-"CFAによるオメガ計算が失敗しました.\n"
-"                                                    詳細オプションでPFAに変更"
-"してみてください"
-
-msgid ""
-"Omega bootstrapped interval calculation with CFA failed.\n"
-"                                                        Try changing to PFA "
-"in 'Advanced Options'."
-msgstr ""
-"CFAによるオメガのブートストラップ区間計算に失敗しました。\n"
-"                                                            '詳細"
-"オプション'でPFAに変更してみてください"
-
-msgid "Omega calculation with PFA failed."
-msgstr "PFAによるオメガの計算は失敗しました."
-
-msgid ""
-"The analytic confidence interval is not available for coefficient omega "
-"obtained with PFA. Change to 'Bootstrapped' in Advanced Options."
-msgstr ""
-"PFAで求めた係数オメガについては、解析的な信頼区間を利用できません。詳細"
-"オプションで「ブートストラップ」に変更してください。"
-
-msgid "Omega interval calculation with PFA failed."
-msgstr "PFAによるオメガの区間計算に失敗しました."
-
-msgid ""
-"The analytic confidence interval is not available for coefficient alpha/"
-"lambda2 when data contain missings and pairwise complete observations are "
-"used. Try changing to 'Delete listwise' within 'Advanced Options'."
-msgstr ""
-"データに欠測があり、ペアごとに完全な観測を使う場合、係数アルファ・ラムダ2につ"
-"いて解析的な信頼区間を利用できません。詳細オプションで「リストワイズで削除」"
-"に変更してみてください。"
-
-msgid ""
-"The analytic confidence interval is not available for the average interitem "
-"correlation when data contain missings and pairwise complete observations "
-"are used. Try changing to 'Delete listwise' within 'Advanced Options'."
-msgstr ""
-"データに欠測があり、ペアごとに完全な観測を使う場合、平均項目間相関について解"
-"析的な信頼区間を利用できません。詳細オプションで「リストワイズで削除」に変更"
-"してみてください。"
-
-msgid "Omega item dropped statistics with CFA failed."
-msgstr "CFAによる項目を除外したオメガ統計量の算出できませんでした."
-
-msgid "Omega item dropped statistics with PFA failed."
-msgstr "PFAによる項目を除外したオメガ統計量の算出できませんでした."
-
-msgid ""
-"The analytic confidence interval not available for coefficient alpha/lambda2 "
-"when data contain missings and pairwise complete observations are used. Try "
-"changing to 'Delete listwise' within 'Advanced Options'."
-msgstr ""
-"データに欠測があり、ペアごとに完全な観測を使う場合、係数アルファ・ラムダ2につ"
-"いて解析的な信頼区間を利用できません。詳細オプションで「リストワイズで削除」"
-"に変更してみてください。"
-
-msgid "Frequentist Scale Reliability Statistics"
-msgstr "頻度論的尺度信頼性統計"
-
-msgid ""
-"Frequentist point estimates, standard errors, and confidence intervals for "
-"all selected scale reliability coefficients."
-msgstr ""
-"選択したすべての尺度の信頼性係数について、頻度論の点推定値、標準誤差、信頼区"
-"間です。"
-
-msgid "Std. Error"
-msgstr "標準誤差"
-
-msgid "Frequentist Individual Item Reliability Statistics"
-msgstr "頻度論的個別項目信頼性統計"
-
-msgid ""
-"Item-level reliability: for each item, the scale reliability coefficient if "
-"that item were dropped, and the item-rest correlation."
-msgstr ""
-"項目ごとの信頼性です。各項目について、その項目を除いたときの尺度の信頼性係数"
-"と、I-R相関を示します。"
-
-msgid "Fit Measures of Single Factor Model Fit"
-msgstr "単一因子モデルの適合度指標"
-
-msgid ""
-"Fit indices of the single-factor model underlying McDonald's omega, "
-"including chi-square, RMSEA, and SRMR."
-msgstr ""
-"マクドナルドのオメガの基礎となる1因子モデルの適合度指数です。カイ二乗、RMSEA"
-"、SRMRを含みます。"
-
-msgid "Fit measure"
-msgstr "適合度指標"
-
-msgid "Value"
-msgstr "値"
-
-msgid ""
-"Standardized factor loadings from the single-factor model used to estimate "
-"McDonald's omega."
-msgstr "単一因子モデルの標準化負荷量"
-
-msgid ""
-"Too few MCMC samples will remain after the removal of the burnin samples and "
-"thinning,\n"
-"                     please increase No.samples."
-msgstr ""
-"バーンインサンプルの除去と間引き後のMCMCサンプルが少なすぎます。\n"
-"                     MCMCサンプルを増やしてください."
-
-msgid "%1$sVariables %2$s and %3$s correlated perfectly."
-msgstr "%1$s変数 %2$s と %3$s は完全に相関しています。"
-
-msgid "Please enter at least 2 variables to do an analysis."
-msgstr "分析を行うためには、少なくとも2つの変数を入力してください"
 
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
@@ -861,9 +938,6 @@ msgstr[0] "次の項目は逆転処理されました: %s. "
 #~ msgid "Lambda6 interval calculation failed."
 #~ msgstr "Lambda6の区間計算に失敗しました."
 
-#~ msgid "Point estimate"
-#~ msgstr "点推定値"
-
 #~ msgid "If item dropped"
 #~ msgstr "もし項目が除外された場合"
 
@@ -872,9 +946,3 @@ msgstr[0] "次の項目は逆転処理されました: %s. "
 
 #~ msgid "%s"
 #~ msgstr "%s"
-
-#~ msgid "Relative to cutoff"
-#~ msgstr "カットオフに対して"
-
-#~ msgid "Posterior Mean"
-#~ msgstr "事後平均"

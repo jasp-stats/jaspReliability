@@ -128,374 +128,6 @@ msgctxt "RaterAgreement|"
 msgid "Ratio"
 msgstr "Razão"
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Variables"
-msgstr "Variáveis"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Analysis"
-msgstr "Análise"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Scale Statistics"
-msgstr "Estatísticas de escala"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Credible interval"
-msgstr "Intervalo credível"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Guttman's λ2"
-msgstr "λ2 de Guttman"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Average interitem correlation"
-msgstr "Correlação média entre itens"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Mean"
-msgstr "Média"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "SD"
-msgstr "DP"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "of participants' sum scores"
-msgstr "das pontuações da soma dos participantes"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "of participants' mean scores"
-msgstr "da média dos escores dos participantes"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Individual Item Statistics"
-msgstr "Estatísticas de itens individuais"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Guttman's λ2 (if item dropped)"
-msgstr "λ2 de Guttman (se o item for descartado)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "If item dropped plot"
-msgstr "Se o item cair no gráfico"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Order items"
-msgstr "Ordenar itens"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Order items by mean"
-msgstr "Ordenar itens por média"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Order items by KL-divergence"
-msgstr "Ordenar itens pela divergência de KL"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Order items by KS-distance"
-msgstr "Ordenar itens pela distância KS"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Item-rest correlation"
-msgstr "Correlação item-resto"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Plot Posteriors"
-msgstr "Plotar Posteriores"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Fix range to 0-1"
-msgstr "Fixar intervalo em 0-1"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Display Priors"
-msgstr "Exibir anteriores"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Probability for:"
-msgstr "Probabilidade para:"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "< Reliability <"
-msgstr "< Confiabilidade <"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Shade posterior region in plot"
-msgstr "Sombrear a região posterior no gráfico"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Convergence"
-msgstr "Convergência"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "MCMC parameters"
-msgstr "Parâmetros MCMC"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "No. samples"
-msgstr "N° de amostras"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "No. burnin samples"
-msgstr "N° de amostras burnin"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Thinning"
-msgstr "Estreitamento"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "No. chains"
-msgstr "N° de cadeias"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Diagnostics"
-msgstr "Diagnóstico"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "R-hat"
-msgstr "R-hat"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Traceplots"
-msgstr "Gráficos de traço"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Repeatability"
-msgstr "Repetibilidade"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Set seed"
-msgstr "Definir semente"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Samples"
-msgstr "Amostras"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Disable saving samples"
-msgstr "Desabilitar o salvamento das amostras"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Reverse-Scaled Items"
-msgstr "Itens de escala inversa"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Normal-Scaled Items"
-msgstr "Itens de escala normal"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Priors"
-msgstr "Anteriores"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Inverse Wishart scale"
-msgstr "Escala Wishart inversa"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Inverse Wishart df"
-msgstr "gl Wishart Inverso"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Inverse gamma:"
-msgstr "Gama inversa:"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "shape"
-msgstr "forma"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "scale"
-msgstr "escala"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Normal:"
-msgstr "Normal:"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "mean"
-msgstr "média"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Advanced Options"
-msgstr "Opções Avançadas"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Missing Values"
-msgstr "Valores Ausentes"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Bayesian imputation"
-msgstr "imputação Bayesiana"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Exclude cases listwise"
-msgstr "Excluir casos em lista"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Posterior predictive check"
-msgstr "Verificação preditiva posterior"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Fit measures"
-msgstr "Medidas de ajuste"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "p(RMSEA <"
-msgstr "p(REQMA <"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid ")"
-msgstr ")"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "p(CFI/TLI >"
-msgstr "p(IAC/ITL >"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Standardized factor loadings"
-msgstr "Cargas fatoriais padronizadas"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Coefficients"
-msgstr "Coeficientes"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Unstandardized"
-msgstr "Não padronizado"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Standardized"
-msgstr "Padronizado"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Posterior Point Estimate"
-msgstr "Estimativa de Ponto Posterior"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Median"
-msgstr "Mediana"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Variables"
-msgstr "Variáveis"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Analysis"
-msgstr "Análise"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Scale Statistics"
-msgstr "Estatísticas de escala"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Guttman's λ2"
-msgstr "λ2 de Guttman"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Average interitem correlation"
-msgstr "Média das correlações entre itens"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Mean"
-msgstr "Média"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "SD"
-msgstr "DP"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "of participants' sum scores"
-msgstr "da soma dos escores dos participantes"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "of participants' mean scores"
-msgstr "da média dos escores dos participantes"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Individual Item Statistics"
-msgstr "Estatísticas individuais por item"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Guttman's λ2 (if item dropped)"
-msgstr "λ2 de Guttman (excluindo esse item)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Item-rest correlation"
-msgstr "Correlação item-resto"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Reverse-Scaled Items"
-msgstr "Itens de escala inversa"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Normal-Scaled Items"
-msgstr "Itens de escala normal"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Advanced Options"
-msgstr "Opções Avançadas"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Missing Values"
-msgstr "Valores Ausentes"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "No. of bootstrap samples"
-msgstr "N° de amostras de bootstrap"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Non-parametric bootstrap"
-msgstr "Bootstrap não paramétrico"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Parametric bootstrap"
-msgstr "Bootstrap paramétrico"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "CFA"
-msgstr "AFC"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Single factor model fit"
-msgstr "Ajuste de modelo de fator único"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Analytic interval"
-msgstr "Intervalo analítico"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Bootstrapped interval"
-msgstr "Intervalo de Bootstrap"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "PFA"
-msgstr "PFA"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Unstandardized"
-msgstr "Não padronizado"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Standardized"
-msgstr "Padronizado"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Repeatability"
-msgstr "Repetibilidade"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Set seed"
-msgstr "Definir semente"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Samples"
-msgstr "Amostras"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Do not save samples"
-msgstr "Não salvar as amostras"
-
 msgctxt "RaterAgreement|"
 msgid "Data Structure"
 msgstr "Estrutura de Dados"
@@ -511,14 +143,6 @@ msgstr "Os avaliadores estão em linhas"
 msgctxt "RaterAgreement|"
 msgid "No. of bootstrap samples for CI"
 msgstr "N° de amostras de bootstrap para o IC"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "ESS"
-msgstr "SQE"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Standardized factor loadings"
-msgstr "Cargas fatoriais padronizadas"
 
 msgctxt "RaterAgreement|"
 msgid "Quadratic weights"
@@ -616,70 +240,6 @@ msgctxt "StandardErrorOfMeasurement|"
 msgid "Display cutoff score"
 msgstr "Exibir pontuação de corte"
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Split-half coefficient"
-msgstr "Coeficiente de divisão pela metade"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Variance"
-msgstr "Variância"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Split-half coefficient (if item dropped)"
-msgstr "Coeficiente de divisão pela metade (se o item for eliminado)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "CTT-Coefficients (α, λ2)"
-msgstr "Coeficientes CTT (α, λ2)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Confidence interval"
-msgstr "Intervalo de confiança"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Split-half coefficient"
-msgstr "Coeficiente de divisão em metades"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Variance"
-msgstr "Variância"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Split-half coefficient (if item dropped)"
-msgstr "Coeficiente de divisão pela metade (se o item for eliminado)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Confidence intervals"
-msgstr "Intervalos de confiança"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Reliability coefficients"
-msgstr "Coeficientes de confiabilidade"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Variance and SD"
-msgstr "Variância e DP"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Chisq-based"
-msgstr "Baseado em Chi-quad"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Non-parametric"
-msgstr "Não paramétrico"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Coefficients"
-msgstr "Coeficientes"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Pairwise"
-msgstr "Em pares"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Delete listwise"
-msgstr "Deletar em lista"
-
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Split-Test Methods"
 msgstr "Métodos de Teste de Divisão"
@@ -703,46 +263,6 @@ msgstr "Confiabilidade Bayesiana"
 msgctxt "StandardErrorOfMeasurement|"
 msgid "Lord generalized"
 msgstr "Generalizado de Lord"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω"
-msgstr "ω de McDonald"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Cronbach's α"
-msgstr "α de Cronbach"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω (if item dropped)"
-msgstr "ω de McDonald (com item eliminado)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Cronbach's α (if item dropped)"
-msgstr "α de Cronbach (com item eliminado)"
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "McDonald's ω Estimation"
-msgstr "Estimativa de ω de McDonald"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "McDonald's ω"
-msgstr "ω de McDonald"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Cronbach's α"
-msgstr "α de Cronbach"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "McDonald's ω  (if item dropped)"
-msgstr "ω de McDonald  (com item eliminado)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "Cronbach's α (if item dropped)"
-msgstr "α de Cronbach (com item eliminado)"
-
-msgctxt "UnidimensionalReliabilityFrequentist|"
-msgid "McDonald's ω Estimation"
-msgstr "Estimativa de ω de McDonald"
 
 msgctxt "BlandAltman|"
 msgid ""
@@ -1064,410 +584,1513 @@ msgctxt "StandardErrorOfMeasurement|"
 msgid "Add a horizontal reference line at the specified cut score."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+msgctxt "Description|"
+msgid "Bayesian Multidimensional Reliability"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Multidimensional Reliability"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
-"Items/variables to include in the reliability analysis. Must be scale "
-"variables."
+"Assign the items to their factors. The analysis requires at least two "
+"factors with at least two items each. An item may be assigned to more than "
+"one factor (cross-loading); the bi-factor model does not support cross-"
+"loadings."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Model"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Second-order"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Bi-factor"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Correlated factors"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
-"Reliability coefficients and descriptive statistics computed for the full "
-"scale."
+"The factor model used to estimate the reliability coefficients. McDonald's "
+"ω_h (general/group-common reliability) is only available for the second-"
+"order and bi-factor models."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Width of the credible interval for scale reliability statistics."
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Analysis"
+msgstr "Análise"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Credible interval"
+msgstr "Intervalo credível"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Width of the credible interval for the reliability coefficients."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Mean and standard deviation of"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
-"McDonald's omega for unidimensional data based on the single-factor model."
+"Whether the mean and standard deviation in the scale table are based on "
+"participants' sum scores or mean scores across items."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Cronbach's alpha. For binary items this equals KR-20."
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "participants' sum scores"
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Guttman's lambda 2, a lower bound for reliability."
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "participants' mean scores"
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Item statistics"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "McDonald's ω_t (if item dropped)"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
-"Splits items into two halves (odd/even by default). Unstandardized: Flanagan-"
-"Rulon; Standardized: Spearman-Brown."
+"Posterior point estimate of ω_t for the remaining items when this item is "
+"dropped. The model is refit once per item."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Mean of all pairwise Pearson correlations between items."
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "McDonald's ω_h (if item dropped)"
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
-"Whether the mean, variance, and SD are based on sum scores or mean scores "
-"across items."
+"Posterior point estimate of ω_h for the remaining items when this item is "
+"dropped. Not available for the correlated-factors model."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Item-rest correlation"
+msgstr "Correlação item-resto"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
-"Reliability coefficients and descriptive statistics per item, including "
-"posterior distributions when that item is removed."
+"Pearson correlation between each item and the sum of the remaining items."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Width of the credible interval for item-level statistics."
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Plot Posteriors"
+msgstr "Plotar Posteriores"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Display posterior density plots for the reliability coefficients."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid ""
-"Posterior distribution of omega for the remaining items when this item is "
-"removed."
-msgstr ""
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Fix range to 0-1"
+msgstr "Fixar intervalo em 0-1"
 
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid ""
-"Posterior distribution of alpha for the remaining items when this item is "
-"removed."
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid ""
-"Posterior distribution of lambda 2 for the remaining items when this item is "
-"removed."
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid ""
-"Posterior distribution of the split-half coefficient for the remaining items "
-"when this item is removed."
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid ""
-"Displays posterior densities of the reliability of the remaining items when "
-"each item is dropped."
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid ""
-"Sort the densities by how much removing an item changes the posterior (by "
-"mean, KL-divergence, or KS-distance)."
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid "Correlation of each item with the sum of the remaining items."
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
-msgid ""
-"Display posterior density plots for the selected reliability coefficients."
-msgstr ""
-
-msgctxt "UnidimensionalReliabilityBayesian|"
+msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Fix the x-axis of the posterior plots to [0, 1] for easier comparison "
 "between coefficients."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Display Priors"
+msgstr "Exibir anteriores"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Add the prior distribution to the posterior density plot."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Probability for:"
+msgstr "Probabilidade para:"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
-"Report the prior and posterior probability that a reliability coefficient "
-"falls within the specified interval."
+"Report the posterior probability that a reliability coefficient falls within "
+"the specified interval."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Lower bound of the reliability interval."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "< Reliability <"
+msgstr "< Confiabilidade <"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Upper bound of the reliability interval."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Shade posterior region in plot"
+msgstr "Sombrear a região posterior no gráfico"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Shade the posterior region corresponding to the probability interval in the "
 "density plot."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Model fit"
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Posterior predictive check"
+msgstr "Verificação preditiva posterior"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Graphical check of factor model fit: eigenvalues of the observed covariance "
+"matrix are compared against the model-implied posterior distribution."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Fit measures"
+msgstr "Medidas de ajuste"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Bayesian fit measures for the factor model: B-LR, B-SRMR, and B-RMSEA with a "
+"posterior probability relative to the cutoff."
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Width of the credible interval for the fit measures."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "p(RMSEA <"
+msgstr "p(REQMA <"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Cutoff for the posterior probability that the B-RMSEA is below this value."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ")"
+msgstr ")"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Reverse-Scaled Items"
+msgstr "Itens de escala inversa"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Normal-Scaled Items"
+msgstr "Itens de escala normal"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Items assigned here are recoded (reverse-scored) before the analysis."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Priors"
+msgstr "Anteriores"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Measurement level"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Priors on the measurement-level parameters: item residual variances and item "
+"factor loadings."
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Residual variances: Inverse gamma"
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "shape"
+msgstr "forma"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Shape parameter of the inverse gamma prior on the item residual variances."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "scale"
+msgstr "escala"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Scale parameter of the inverse gamma prior on the item residual variances."
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Loadings: Normal"
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "mean"
+msgstr "média"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Mean of the normal prior on the item factor loadings."
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "variance scaling"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Scales the variance of the normal prior on the item factor loadings. The "
+"prior is conditional on the item residual variance, so a loading has prior "
+"standard deviation sqrt(residual variance x variance scaling); larger values "
+"mean a less informative prior."
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Structural level"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Priors on the structural parameters of the second-order and bi-factor "
+"models: latent residual variances, structural loadings, and the general "
+"factor variance."
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Shape parameter of the inverse gamma prior on the latent residual variances."
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Scale parameter of the inverse gamma prior on the latent residual variances."
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Mean of the normal prior on the structural loadings of the group factors on "
+"the general factor."
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Scales the variance of the normal prior on the structural loadings of the "
+"group factors on the general factor. Larger values mean a less informative "
+"prior."
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Factor variance: Inverse gamma"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Shape parameter of the inverse gamma prior on the general factor variance."
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Scale parameter of the inverse gamma prior on the general factor variance."
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Latent correlations"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Correlation matrix: Inverse-Wishart"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "degrees of freedom"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Degrees of freedom of the inverse Wishart prior on the latent correlation "
+"matrix. Values below the number of factors are raised to the number of "
+"factors to keep the prior proper."
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "MCMC Options"
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "MCMC parameters"
+msgstr "Parâmetros MCMC"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "No. samples"
+msgstr "N° de amostras"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Total number of MCMC samples per chain, including burn-in."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "No. burnin samples"
+msgstr "N° de amostras burnin"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Initial samples discarded while the chain converges to the posterior."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Thinning"
+msgstr "Estreitamento"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Keep every k-th sample to reduce autocorrelation. A value of 1 keeps all "
+"samples."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "No. chains"
+msgstr "N° de cadeias"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Number of independent MCMC chains. Multiple chains enable R-hat convergence "
+"diagnostics."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Diagnostics"
+msgstr "Diagnóstico"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "R-hat"
+msgstr "R-hat"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Potential scale reduction factor. Values close to 1 (< 1.1) indicate "
+"convergence across chains."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Traceplots"
+msgstr "Gráficos de traço"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Plot of sampled values per chain over iterations. Well-mixed chains indicate "
+"convergence."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Repeatability"
+msgstr "Repetibilidade"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Set seed"
+msgstr "Definir semente"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Fix the random number generator seed to make the MCMC results reproducible."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Samples"
+msgstr "Amostras"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Disable saving samples"
+msgstr "Desabilitar o salvamento das amostras"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"When checked, MCMC samples are not stored in the output file. Reduces file "
+"size but re-running the analysis or changing options requires resampling."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Advanced Options"
+msgstr "Opções Avançadas"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Posterior Point Estimate"
+msgstr "Estimativa de Ponto Posterior"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Whether to report the posterior mean or median as the point estimate in the "
+"tables."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Mean"
+msgstr "Média"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Median"
+msgstr "Mediana"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Missing Values"
+msgstr "Valores Ausentes"
+
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid ""
+"Bayesian imputation treats missing values as unknown parameters sampled from "
+"the posterior; listwise deletion removes any row with a missing value."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Bayesian imputation"
+msgstr "imputação Bayesiana"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalBayesian|"
+msgid "Exclude cases listwise"
+msgstr "Excluir casos em lista"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Variables"
+msgstr "Variáveis"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"Items/variables to include in the reliability analysis. Must be scale "
+"variables."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Analysis"
+msgstr "Análise"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Scale Statistics"
+msgstr "Estatísticas de escala"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"Reliability coefficients and descriptive statistics computed for the full "
+"scale."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Credible interval"
+msgstr "Intervalo credível"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Width of the credible interval for scale reliability statistics."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "McDonald's ω"
+msgstr "ω de McDonald"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"McDonald's omega for unidimensional data based on the single-factor model."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Cronbach's α"
+msgstr "α de Cronbach"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Cronbach's alpha. For binary items this equals KR-20."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Guttman's λ2"
+msgstr "λ2 de Guttman"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Guttman's lambda 2, a lower bound for reliability."
+msgstr ""
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Split-half coefficient"
+msgstr ""
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"Splits items into two halves (odd/even by default). Unstandardized: Flanagan-"
+"Rulon; Standardized: Spearman-Brown."
+msgstr ""
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Average interitem correlation"
+msgstr ""
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Mean of all pairwise Pearson correlations between items."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Mean"
+msgstr "Média"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Variance"
+msgstr "Variância"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "SD"
+msgstr "DP"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"Whether the mean, variance, and SD are based on sum scores or mean scores "
+"across items."
+msgstr ""
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "of participants' sum scores"
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "of participants' mean scores"
+msgstr "da média dos escores dos participantes"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Individual Item Statistics"
+msgstr ""
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"Reliability coefficients and descriptive statistics per item, including "
+"posterior distributions when that item is removed."
+msgstr ""
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Width of the credible interval for item-level statistics."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "McDonald's ω (if item dropped)"
+msgstr "ω de McDonald (com item eliminado)"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"Posterior distribution of omega for the remaining items when this item is "
+"removed."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Cronbach's α (if item dropped)"
+msgstr "α de Cronbach (com item eliminado)"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"Posterior distribution of alpha for the remaining items when this item is "
+"removed."
+msgstr ""
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Guttman's λ2 (if item dropped)"
+msgstr ""
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"Posterior distribution of lambda 2 for the remaining items when this item is "
+"removed."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Split-half coefficient (if item dropped)"
+msgstr "Coeficiente de divisão pela metade (se o item for eliminado)"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"Posterior distribution of the split-half coefficient for the remaining items "
+"when this item is removed."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "If item dropped plot"
+msgstr "Se o item cair no gráfico"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"Displays posterior densities of the reliability of the remaining items when "
+"each item is dropped."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Order items"
+msgstr "Ordenar itens"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"Sort the densities by how much removing an item changes the posterior (by "
+"mean, KL-divergence, or KS-distance)."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Order items by mean"
+msgstr "Ordenar itens por média"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Order items by KL-divergence"
+msgstr "Ordenar itens pela divergência de KL"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Order items by KS-distance"
+msgstr "Ordenar itens pela distância KS"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Item-rest correlation"
+msgstr "Correlação item-resto"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Correlation of each item with the sum of the remaining items."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Plot Posteriors"
+msgstr "Plotar Posteriores"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"Display posterior density plots for the selected reliability coefficients."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Fix range to 0-1"
+msgstr "Fixar intervalo em 0-1"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"Fix the x-axis of the posterior plots to [0, 1] for easier comparison "
+"between coefficients."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Display Priors"
+msgstr "Exibir anteriores"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Add the prior distribution to the posterior density plot."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Probability for:"
+msgstr "Probabilidade para:"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"Report the prior and posterior probability that a reliability coefficient "
+"falls within the specified interval."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "< Reliability <"
+msgstr "< Confiabilidade <"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Shade posterior region in plot"
+msgstr "Sombrear a região posterior no gráfico"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ""
+"Shade the posterior region corresponding to the probability interval in the "
+"density plot."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Convergence"
+msgstr "Convergência"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "MCMC parameters"
+msgstr "Parâmetros MCMC"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Parameters controlling the MCMC sampler used to estimate the posterior "
 "distributions."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "No. samples"
+msgstr "N° de amostras"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Total number of MCMC iterations per chain, including burn-in. The number of "
 "retained posterior samples per chain is ceiling((samples - burn-in) / "
 "thinning)."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "No. burnin samples"
+msgstr "N° de amostras burnin"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Initial samples discarded while the chain converges to the posterior."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Thinning"
+msgstr "Estreitamento"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Keep every k-th sample to reduce autocorrelation. A value of 1 keeps all "
 "samples."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "No. chains"
+msgstr "N° de cadeias"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Number of independent MCMC chains. Multiple chains enable R-hat convergence "
 "diagnostics."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Diagnostics"
+msgstr "Diagnóstico"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "MCMC convergence diagnostics to assess whether the sampler has converged to "
 "the posterior."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "R-hat"
+msgstr "R-hat"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Potential scale reduction factor. Values close to 1 (< 1.1) indicate "
 "convergence across chains."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Traceplots"
+msgstr "Gráficos de traço"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Plot of sampled values per chain over iterations. Well-mixed chains indicate "
 "convergence."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "ESS"
+msgstr "SQE"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Effective sample size: number of independent posterior samples after "
 "accounting for autocorrelation."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Repeatability"
+msgstr "Repetibilidade"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Set a random seed to reproduce identical posterior samples across runs."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Set seed"
+msgstr "Definir semente"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Samples"
+msgstr "Amostras"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Disable saving samples"
+msgstr "Desabilitar o salvamento das amostras"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "When checked, MCMC samples are not stored in the output file. Reduces file "
 "size but may slow down re-running the analysis, because samples are "
 "precomputed and cached for speed."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Reverse-Scaled Items"
+msgstr "Itens de escala inversa"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Normal-Scaled Items"
+msgstr "Itens de escala normal"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Priors"
+msgstr "Anteriores"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "CTT-Coefficients (α, λ2)"
+msgstr "Coeficientes CTT (α, λ2)"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "The prior on alpha, lambda 2, and the split-half is induced by an inverse "
 "Wishart prior on the covariance matrix."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Inverse Wishart scale"
+msgstr "Escala Wishart inversa"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Precision values on the diagonal of the inverse Wishart scaling matrix."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Inverse Wishart df"
+msgstr "gl Wishart Inverso"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Degrees of freedom of the inverse Wishart prior. Minimum equals the number "
 "of items."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "The prior on omega is induced by an inverse gamma on residual variances and "
 "a normal prior on factor loadings."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Inverse gamma:"
+msgstr "Gama inversa:"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "shape"
+msgstr "forma"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Shape parameter of the inverse gamma prior on residual variances."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "scale"
+msgstr "escala"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Scale parameter of the inverse gamma prior on residual variances."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Normal:"
+msgstr "Normal:"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "mean"
+msgstr "média"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Mean of the normal prior on factor loadings."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Advanced Options"
+msgstr "Opções Avançadas"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Missing Values"
+msgstr "Valores Ausentes"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Bayesian imputation treats missing values as unknown parameters sampled from "
 "the posterior; listwise deletion removes any row with a missing value."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Bayesian imputation"
+msgstr "imputação Bayesiana"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Exclude cases listwise"
+msgstr "Excluir casos em lista"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "McDonald's ω Estimation"
+msgstr "Estimativa de ω de McDonald"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Options for fitting the single-factor model underlying McDonald's omega."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Posterior predictive check"
+msgstr "Verificação preditiva posterior"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Graphical check for single-factor model fit: eigenvalues of the observed "
 "covariance matrix are compared against the model-implied posterior "
 "distribution."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Fit measures"
+msgstr "Medidas de ajuste"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Bayesian fit indices (B-LR, B-RMSEA, B-CFI, B-TLI) for the single-factor "
 "model with probability statements relative to cutoffs."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "p(RMSEA <"
+msgstr "p(REQMA <"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid ")"
+msgstr ")"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "p(CFI/TLI >"
+msgstr "p(IAC/ITL >"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Standardized factor loadings"
+msgstr "Cargas fatoriais padronizadas"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Table of standardized loadings from the single-factor model (posterior mean "
 "or median)."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Coefficients"
+msgstr "Coeficientes"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Unstandardized uses the covariance matrix; standardized uses the correlation "
 "matrix. Standardized alpha is contested in the literature."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityBayesian|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Unstandardized"
+msgstr "Não padronizado"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Standardized"
+msgstr "Padronizado"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Posterior Point Estimate"
+msgstr "Estimativa de Ponto Posterior"
+
+msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Whether to report the posterior mean or median as the point estimate in the "
 "tables."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalBayesian|"
+msgid "Median"
+msgstr "Mediana"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Variables"
+msgstr "Variáveis"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "Items/variables to include in the reliability analysis. Must be scale "
 "variables."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Analysis"
+msgstr "Análise"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Scale Statistics"
+msgstr "Estatísticas de escala"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "Reliability coefficients and descriptive statistics computed for the full "
 "scale."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Confidence interval"
+msgstr "Intervalo de confiança"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Coverage of the confidence intervals for scale reliability statistics."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "McDonald's ω"
+msgstr "ω de McDonald"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "McDonald's omega for unidimensional data based on the single-factor model. "
 "The denominator uses model-implied total variance."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Cronbach's α"
+msgstr "α de Cronbach"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Cronbach's alpha. For binary items this equals KR-20."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Guttman's λ2"
+msgstr "λ2 de Guttman"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Guttman's lambda 2, a lower bound for reliability."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Split-half coefficient"
+msgstr ""
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "Splits items into two halves (odd/even by default). Unstandardized: Flanagan-"
 "Rulon coefficient; Standardized: Spearman-Brown coefficient."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Average interitem correlation"
+msgstr ""
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Mean of all pairwise Pearson correlations between items."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Mean"
+msgstr "Média"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Variance"
+msgstr "Variância"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "SD"
+msgstr "DP"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "Whether the mean, variance, and SD are based on sum scores or mean scores "
 "across items."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "of participants' sum scores"
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "of participants' mean scores"
+msgstr "da média dos escores dos participantes"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Individual Item Statistics"
+msgstr ""
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "Reliability coefficients and descriptive statistics per item, including what-"
 "if statistics when that item is removed."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Coverage of the confidence intervals for item-level statistics."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "McDonald's ω  (if item dropped)"
+msgstr "ω de McDonald  (com item eliminado)"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Omega of the remaining items when this item is removed from the scale."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Cronbach's α (if item dropped)"
+msgstr "α de Cronbach (com item eliminado)"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Alpha of the remaining items when this item is removed from the scale."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Guttman's λ2 (if item dropped)"
+msgstr ""
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "Lambda 2 of the remaining items when this item is removed from the scale."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Split-half coefficient (if item dropped)"
+msgstr "Coeficiente de divisão pela metade (se o item for eliminado)"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "Split-half coefficient of the remaining items when this item is removed from "
 "the scale."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Item-rest correlation"
+msgstr "Correlação item-resto"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Correlation of each item with the sum of the remaining items."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Reverse-Scaled Items"
+msgstr "Itens de escala inversa"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Normal-Scaled Items"
+msgstr "Itens de escala normal"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Advanced Options"
+msgstr "Opções Avançadas"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Confidence intervals"
+msgstr "Intervalos de confiança"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "Control the method used to construct confidence intervals for reliability "
 "coefficients, variance, and SD."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Reliability coefficients"
+msgstr "Coeficientes de confiabilidade"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "Analytic intervals use normal-theory standard errors (van der Ark, 2024). "
 "Bootstrapped intervals use percentile resampling."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Analytic interval"
+msgstr "Intervalo analítico"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Bootstrapped interval"
+msgstr "Intervalo de Bootstrap"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "No. of bootstrap samples"
+msgstr "N° de amostras de bootstrap"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "Number of bootstrap replications. Higher values yield more stable interval "
 "estimates."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "Non-parametric bootstrap resamples the data; parametric bootstrap samples "
 "from a multivariate normal with the estimated parameters."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Non-parametric bootstrap"
+msgstr "Bootstrap não paramétrico"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Parametric bootstrap"
+msgstr "Bootstrap paramétrico"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Variance and SD"
+msgstr "Variância e DP"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "Chi-square-based intervals assume normality; non-parametric intervals use a "
 "two-step bootstrap procedure (van der Ark, 2024)."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Chisq-based"
+msgstr "Baseado em Chi-quad"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Non-parametric"
+msgstr "Não paramétrico"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "McDonald's ω Estimation"
+msgstr "Estimativa de ω de McDonald"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "CFA fits the single-factor model via confirmatory factor analysis; PFA uses "
 "principal factor analysis."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "CFA"
+msgstr "AFC"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Single factor model fit"
+msgstr "Ajuste de modelo de fator único"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "Chi-square test, RMSEA, SRMR and other fit indices for the single-factor "
 "model underlying omega."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "PFA"
+msgstr "PFA"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Standardized factor loadings"
+msgstr "Cargas fatoriais padronizadas"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Table of standardized loadings from the single-factor model."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Coefficients"
+msgstr "Coeficientes"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "Unstandardized coefficients use the raw covariance matrix; standardized use "
 "the correlation matrix."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Unstandardized"
+msgstr "Não padronizado"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Standardized"
+msgstr "Padronizado"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Missing Values"
+msgstr "Valores Ausentes"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "Pairwise uses all available observations per covariance pair; listwise "
 "deletes any row with a missing value."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Pairwise"
+msgstr "Em pares"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Delete listwise"
+msgstr "Deletar em lista"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Repeatability"
+msgstr "Repetibilidade"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Set a random seed to reproduce the same bootstrap results across runs."
 msgstr ""
 
-msgctxt "UnidimensionalReliabilityFrequentist|"
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Set seed"
+msgstr "Definir semente"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Samples"
+msgstr "Amostras"
+
+#, fuzzy
+msgctxt "ReliabilityUnidimensionalFrequentist|"
+msgid "Do not save samples"
+msgstr "Não salvar as amostras"
+
+msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid ""
 "When checked, bootstrap samples are not stored in the output file. This "
 "reduces file size but may slow down re-running the analysis, because samples "
