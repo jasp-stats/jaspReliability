@@ -19,13 +19,13 @@ msgstr "Bland-Altman 图"
 msgid ""
 "Bland-Altman plots of the mean vs. difference for each variable pair, with "
 "mean difference and limits of agreement."
-msgstr ""
+msgstr "每对变量的均值与差值之 Bland-Altman 图，包含平均差和一致性界限。"
 
 msgid ""
 "Scatter plot of mean vs. difference of the two measurements. The middle "
 "dashed line is the mean difference (bias); the outer dashed lines are the "
 "limits of agreement (±1.96 SD)."
-msgstr ""
+msgstr "两次测量均值与差值的散点图。中间虚线为平均差（偏倚）；外侧虚线为一致性界限（±1.96 SD）。"
 
 msgid "Please provide another variable"
 msgstr "请提供另一个变量"
@@ -39,13 +39,13 @@ msgstr "Bland-Altman 表"
 msgid ""
 "Summary statistics for each pair: bias (mean difference), limits of "
 "agreement, and optional confidence intervals."
-msgstr ""
+msgstr "每对的汇总统计量：偏倚（平均差）、一致性界限，以及可选的置信区间。"
 
 msgid ""
 "Mean difference (bias), lower and upper limits of agreement for this pair. "
 "If confidence intervals are requested, uncertainty bounds for each limit are "
 "also shown."
-msgstr ""
+msgstr "该对的平均差（偏倚）以及一致性界限的上限和下限。若请求置信区间，还将显示每个界限的不确定性边界。"
 
 msgid "Bias & Limits"
 msgstr "偏倚和限制"
@@ -77,7 +77,7 @@ msgstr "组内相关性"
 msgid ""
 "Intraclass correlation coefficients (ICC) with optional confidence intervals "
 "for assessing absolute agreement or consistency among raters."
-msgstr ""
+msgstr "组内相关系数（ICC），含可选的置信区间，用于评估评分者之间的绝对一致性或一致性。"
 
 msgid "Type"
 msgstr "类型"
@@ -88,21 +88,21 @@ msgstr "点估计"
 msgid ""
 "%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout "
 "& Fleiss (1979)."
-msgstr ""
+msgstr "%1$s 名被试和 %2$s 名评分者/测量值。ICC 类型依据 Shrout & Fleiss (1979)。"
 
 msgid "Please select at least 2 columns"
 msgstr "请选择至少2个变量"
 
 msgid "Agreement Coefficient"
-msgstr ""
+msgstr "一致性系数"
 
 msgid ""
 "Empty placeholder table shown while no agreement coefficient is selected; "
 "check a coefficient to obtain results."
-msgstr ""
+msgstr "未选择一致性系数时显示的空占位表；勾选某个系数即可获得结果。"
 
 msgid "Coefficient"
-msgstr ""
+msgstr "系数"
 
 msgid "Estimate"
 msgstr "估计"
@@ -117,7 +117,7 @@ msgid "Upper"
 msgstr "上界"
 
 msgid "Check one of the coefficients to start the analysis."
-msgstr ""
+msgstr "勾选其中一个系数以开始分析。"
 
 msgid "%s%% CI"
 msgstr "%s%% 置信区间"
@@ -126,13 +126,13 @@ msgid ""
 "%s requires a common ordinal scale, but the declared category orders of the "
 "raters are contradictory or do not determine a unique order. Ensure all "
 "raters use the same ordered categories."
-msgstr ""
+msgstr "%s 需要共同的顺序量表，但评分者声明的类别顺序相互矛盾或无法确定唯一顺序。请确保所有评分者使用相同的类别顺序。"
 
 msgid ""
 "With raters in rows, all subject/item columns must have the same measurement "
 "type. The data mix categorical and continuous columns; change the column "
 "types so they match."
-msgstr ""
+msgstr "当评分者位于行中时，所有被试/项目列必须具有相同的测量类型。数据混用了类别列和连续列；请更改列类型使其一致。"
 
 #, fuzzy
 msgid "Krippendorff's alpha requires at least 2 raters/measurements."
@@ -141,27 +141,27 @@ msgstr "%1$i 个被试/项目和 %2$i 个评分者/测量值。"
 msgid ""
 "Krippendorff's alpha with an interval or ratio method requires numeric "
 "ratings. Use the nominal or ordinal method, or recode the data."
-msgstr ""
+msgstr "使用等距或比率方法的 Krippendorff's alpha 需要数值型评分。请使用定类或定序方法，或对数据进行重新编码。"
 
 msgid ""
 "Krippendorff's alpha with the ratio method requires non-negative ratings."
-msgstr ""
+msgstr "使用比率方法的 Krippendorff's alpha 需要非负评分。"
 
 msgid "Krippendorff's alpha with the ordinal method"
-msgstr ""
+msgstr "使用定序方法的 Krippendorff's alpha"
 
 msgid ""
 "Krippendorff's alpha cannot be computed: the data contain infinite values."
-msgstr ""
+msgstr "无法计算 Krippendorff's alpha：数据包含无穷大值。"
 
 msgid ""
 "Krippendorff's alpha cannot be computed: no subject/item was rated by at "
 "least 2 raters (no pairable observations)."
-msgstr ""
+msgstr "无法计算 Krippendorff's alpha：没有任何被试/项目被至少 2 名评分者评分（没有可配对的观测）。"
 
 msgid ""
 "Krippendorff's alpha is not estimable: the pairable ratings do not vary."
-msgstr ""
+msgstr "Krippendorff's alpha 不可估计：可配对的评分没有变化。"
 
 #, fuzzy
 msgid "Cohen's kappa"
@@ -170,10 +170,10 @@ msgstr "Cohen's %s kappa"
 msgid ""
 "Cohen's kappa: chance-corrected agreement between exactly two raters. Ranges "
 "from -1 (worse than chance) to 1 (perfect agreement)."
-msgstr ""
+msgstr "Cohen's kappa：恰好在两名评分者之间进行机会校正的一致性。取值范围从 -1（比随机差）到 1（完全一致）。"
 
 msgid "Ratings"
-msgstr ""
+msgstr "评分"
 
 #, fuzzy
 msgid "kappa"
@@ -182,12 +182,12 @@ msgstr "%s kappa"
 msgid ""
 "Cohen's kappa requires nominal or ordinal variables. Remove scale variables "
 "or change their type."
-msgstr ""
+msgstr "Cohen's kappa 需要定类或定序变量。请删除连续变量或更改其类型。"
 
 msgid ""
 "Weighted Cohen's kappa requires ordinal variables. Remove nominal variables "
 "or change their type."
-msgstr ""
+msgstr "加权 Cohen's kappa 需要定序变量。请删除定类变量或更改其类型。"
 
 #, fuzzy
 msgid "Cohen's kappa requires at least 2 raters/measurements."
@@ -198,34 +198,34 @@ msgid "Weighted Cohen's kappa"
 msgstr "Cohen's %s kappa"
 
 msgid "fewer than 3 jointly rated subjects/items"
-msgstr ""
+msgstr "被共同评分的被试/项目少于 3 个"
 
 msgid "the ratings do not vary"
-msgstr ""
+msgstr "评分没有变化"
 
 msgid "the coefficient is not estimable"
-msgstr ""
+msgstr "该系数不可估计"
 
 msgid "Cohen's kappa could not be computed for any rater pair: %s."
-msgstr ""
+msgstr "无法为任何评分者对计算 Cohen's kappa：%s。"
 
 msgid "Some rater pairs could not be computed:"
-msgstr ""
+msgstr "某些评分者对无法计算："
 
 msgid ". They are excluded from the average kappa."
-msgstr ""
+msgstr "。它们被排除在平均 kappa 之外。"
 
 msgid "Note:"
-msgstr ""
+msgstr "注意："
 
 msgid "%1$i subjects/items and %2$i raters/measurements."
 msgstr "%1$i 个被试/项目和 %2$i 个评分者/测量值。"
 
 msgid "%1$s Based on pairwise complete cases."
-msgstr ""
+msgstr "%1$s 基于成对完整案例。"
 
 msgid "n"
-msgstr ""
+msgstr "n"
 
 msgid "Confidence intervals are asymptotic."
 msgstr "置信区间是渐近的。"
@@ -235,7 +235,7 @@ msgid ""
 msgstr "如果只有 2 个水平，加权 kappa 等于未加权 kappa。"
 
 msgid "Cohen's kappa requires at least 3 subjects/items."
-msgstr ""
+msgstr "Cohen's kappa 至少需要 3 个被试/项目。"
 
 msgid "Fleiss' kappa"
 msgstr "Fleiss' kappa"
@@ -243,12 +243,12 @@ msgstr "Fleiss' kappa"
 msgid ""
 "Fleiss' kappa: generalization of Cohen's kappa for two or more raters "
 "assigning subjects to nominal categories."
-msgstr ""
+msgstr "Fleiss' kappa：Cohen's kappa 的推广，适用于两名或更多评分者将被试分配到定类类别。"
 
 msgid ""
 "Fleiss' kappa requires nominal or ordinal variables. Remove scale variables "
 "or change their type."
-msgstr ""
+msgstr "Fleiss' kappa 需要定类或定序变量。请删除连续变量或更改其类型。"
 
 #, fuzzy
 msgid "Fleiss' kappa requires at least 2 raters/measurements."
@@ -257,54 +257,54 @@ msgstr "%1$i 个被试/项目和 %2$i 个评分者/测量值。"
 msgid ""
 "Fleiss' kappa requires at least 3 complete subjects/items (rows without "
 "missing ratings). Check whether raters are in columns or rows."
-msgstr ""
+msgstr "Fleiss' kappa 至少需要 3 个完整的被试/项目（无缺失评分的行）。请检查评分者是位于列中还是行中。"
 
 msgid ""
 "Fleiss' kappa is not estimable: all ratings fall into a single category."
-msgstr ""
+msgstr "Fleiss' kappa 不可估计：所有评分都落入单一类别。"
 
 msgid "%1$s Based on listwise complete cases."
-msgstr ""
+msgstr "%1$s 基于列表式删除依完整案例。"
 
 msgid "Krippendorff's alpha"
-msgstr ""
+msgstr "Krippendorff's alpha"
 
 msgid ""
 "Krippendorff's alpha: reliability coefficient applicable to any number of "
 "raters, any scale level (nominal/ordinal/interval/ratio), and incomplete "
 "data."
-msgstr ""
+msgstr "Krippendorff's alpha：适用于任意数量的评分者、任意量表水平（定类/定序/等距/比率）以及不完整数据的信度系数。"
 
 msgid "Method"
-msgstr ""
+msgstr "方法"
 
 msgid "Krippendorff's alpha is not estimable for these data."
-msgstr ""
+msgstr "对于这些数据，Krippendorff's alpha 不可估计。"
 
 msgid ""
 "%1$i of %2$i bootstrap samples could not be computed and were excluded from "
 "the CI."
-msgstr ""
+msgstr "%1$i 个（共 %2$i 个）bootstrap 样本无法计算，已从置信区间中排除。"
 
 msgid "Kendall's W"
-msgstr ""
+msgstr "Kendall's W"
 
 msgid ""
 "Kendall's coefficient of concordance W: measures agreement of rankings "
 "across multiple raters. Ranges from 0 (no agreement) to 1 (perfect "
 "concordance). Significance is assessed with the large-sample chi-square test "
 "and the F test, which performs better for small samples."
-msgstr ""
+msgstr "Kendall's W 协同系数：衡量多名评分者之间排序的一致性。取值范围从 0（完全不一致）到 1（完全协同）。显著性通过大样本卡方检验和 F 检验进行评估，其中 F 检验在小样本时表现更好。"
 
 msgid "Chi-square test"
-msgstr ""
+msgstr "卡方检验"
 
 msgid "F test"
-msgstr ""
+msgstr "F 检验"
 
 msgid ""
 "Kendall's W requires ordinal or scale variables. Remove nominal variables."
-msgstr ""
+msgstr "Kendall's W 需要定序或连续变量。请删除定类变量。"
 
 #, fuzzy
 msgid "Kendall's W requires at least 2 raters/measurements."
@@ -313,59 +313,59 @@ msgstr "%1$i 个被试/项目和 %2$i 个评分者/测量值。"
 msgid ""
 "Kendall's W requires at least 2 complete subjects/items (rows without "
 "missing ratings)."
-msgstr ""
+msgstr "Kendall's W 至少需要 2 个完整的被试/项目（无缺失评分的行）。"
 
 msgid "Kendall's W cannot be computed: the data contain infinite values."
-msgstr ""
+msgstr "无法计算 Kendall's W：数据包含无穷大值。"
 
 msgid "Kendall's W is not estimable: the rankings do not vary."
-msgstr ""
+msgstr "Kendall's W 不可估计：排序没有变化。"
 
 msgid ""
 "Bootstrap CIs are only available with the tie correction enabled: resampling "
 "with replacement introduces ties, which distort the uncorrected coefficient."
-msgstr ""
+msgstr "仅当启用并列校正时才提供 bootstrap 置信区间：有放回重抽样会引入并列，从而扭曲未校正的系数。"
 
 #, fuzzy
 msgid "Confidence intervals are based on bootstrap."
 msgstr "置信区间是渐近的。"
 
 msgid "Chi-square test is valid for large samples only."
-msgstr ""
+msgstr "卡方检验仅适用于大样本。"
 
 msgid "The F test is undefined for perfect concordance (W = 1)."
-msgstr ""
+msgstr "对于完全协同（W = 1），F 检验未定义。"
 
 msgid ""
 "The F test is not available for this design: it requires n - 1 - 2/m > 0 (n "
 "= subjects/items, m = raters)."
-msgstr ""
+msgstr "此设计不提供 F 检验：它需要 n - 1 - 2/m > 0（n = 被试/项目，m = 评分者）。"
 
 msgid ""
 "Ties are present in the ratings, so the uncorrected coefficient may be "
 "inaccurate. Consider enabling the tie correction."
-msgstr ""
+msgstr "评分中存在并列值，因此未校正的系数可能不准确。请考虑启用并列校正。"
 
 msgid "Warning:"
-msgstr ""
+msgstr "警告："
 
 msgid "McDonald's ωₜ"
-msgstr ""
+msgstr "McDonald's ωₜ"
 
 msgid "McDonald's ωₕ"
-msgstr ""
+msgstr "McDonald's ωₕ"
 
 msgid ""
 "The bi-factor model does not support items that load on more than one "
 "factor. Assign each item to a single factor, or select the second-order or "
 "correlated-factors model."
-msgstr ""
+msgstr "双因子模型不支持在同一项上加载多个因子的项目。请将每个项目分配给单一因子，或选择二阶因子或相关因子模型。"
 
 msgid "Sampling the posterior distribution of the omega coefficients"
-msgstr ""
+msgstr "对 omega 系数的后验分布进行抽样"
 
 msgid "Bayesian Scale Reliability Statistics"
-msgstr ""
+msgstr "贝叶斯量表信度统计量"
 
 #, fuzzy
 msgid "Posterior mean"
@@ -376,18 +376,18 @@ msgid "Posterior median"
 msgstr "后验"
 
 msgid "R-hat"
-msgstr ""
+msgstr "R-hat"
 
 msgid "Please assign at least two factors with at least two items each."
-msgstr ""
+msgstr "请至少分配两个因子，每个因子至少包含两个项目。"
 
 msgid ""
 "McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
 "the correlated-factors model."
-msgstr ""
+msgstr "McDonald's ωₕ 仅针对二阶因子和双因子模型显示，不针对相关因子模型显示。"
 
 msgid "Average interitem correlation"
-msgstr ""
+msgstr "平均项目间相关"
 
 msgid "Mean"
 msgstr "均值"
@@ -396,150 +396,150 @@ msgid "SD"
 msgstr "标准差"
 
 msgid "Bayesian Individual Item Reliability Statistics"
-msgstr ""
+msgstr "贝叶斯单项目信度统计量"
 
 msgid "Item"
-msgstr ""
+msgstr "项目"
 
 msgid "McDonald's ωₜ (if item dropped)"
-msgstr ""
+msgstr "McDonald's ωₜ（删除项目时）"
 
 msgid "McDonald's ωₕ (if item dropped)"
-msgstr ""
+msgstr "McDonald's ωₕ（删除项目时）"
 
 msgid "Item-rest correlation"
-msgstr ""
+msgstr "项目-余量表相关"
 
 msgid ""
 "Empty cells indicate that dropping the item would leave a factor with fewer "
 "than two items."
-msgstr ""
+msgstr "空单元格表示删除该项目将导致某个因子所含项目少于两个。"
 
 msgid "Computing item statistics (refitting the model once per item)"
-msgstr ""
+msgstr "正在计算项目统计量（对每个项目重新拟合一次模型）"
 
 msgid ""
 "The bounds you entered have been rearranged in increasing order to provide "
 "meaningful results."
-msgstr ""
+msgstr "为提供有意义的结果，您输入的界限已按递增顺序重新排列。"
 
 msgid ""
 "Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
 "than %2$.2f"
-msgstr ""
+msgstr "信度系数大于 %1$.2f 且小于 %2$.2f 的概率"
 
 msgid "Posterior"
 msgstr "后验"
 
 msgid "Probability"
-msgstr ""
+msgstr "概率"
 
 msgid "Fit Measures of the Factor Model"
-msgstr ""
+msgstr "因子模型的拟合指标"
 
 #, fuzzy
 msgid "Point estimate"
 msgstr "点估计"
 
 msgid "%s lower bound"
-msgstr ""
+msgstr "%s 下界"
 
 msgid "%s upper bound"
-msgstr ""
+msgstr "%s 上界"
 
 msgid "Relative to cutoff"
-msgstr ""
+msgstr "相对临界值"
 
 msgid ""
 "'Relative to cutoff' denotes the posterior probability that the B-RMSEA is "
 "smaller than the cutoff of %.2f."
-msgstr ""
+msgstr "“相对临界值”表示 B-RMSEA 小于临界值 %.2f 的后验概率。"
 
 msgid "Posterior Plots"
-msgstr ""
+msgstr "后验图"
 
 msgid "Convergence Traceplot"
-msgstr ""
+msgstr "收敛迹线图"
 
 msgid "Posterior Predictive Check"
-msgstr ""
+msgstr "后验预测检验"
 
 msgid "Eigenvalue"
-msgstr ""
+msgstr "特征值"
 
 msgid "Eigenvalue No."
-msgstr ""
+msgstr "特征值编号"
 
 msgid "Split-half coefficient"
-msgstr ""
+msgstr "分半系数"
 
 msgid "Variance"
 msgstr "方差"
 
 msgid "%1$s Of the observations, %2$1.f complete cases were used."
-msgstr ""
+msgstr "%1$s 在所有观测中使用了 %2$1.f 个完整案例。"
 
 msgid "%s Of the observations, pairwise complete cases were used."
-msgstr ""
+msgstr "%s 在所有观测中使用了成对完整案例。"
 
 msgid ""
 "Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
 "lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
 "Options'"
-msgstr ""
+msgstr "对 [alpha、lambda2、lambda6、glb] 之一的后验协方差矩阵进行抽样失败。请尝试在“高级选项”中更改为“按列表删除案例”"
 
 msgid ""
 "Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
 "lambda6, glb] failed."
-msgstr ""
+msgstr "对 [alpha、lambda2、lambda6、glb] 之一的后验协方差矩阵进行抽样失败。"
 
 msgid ""
 "Sampling the posterior factor model for omega failed. Try changing to "
 "'Exclude cases listwise' in 'Advanced Options'"
-msgstr ""
+msgstr "对 omega 的后验因子模型进行抽样失败。请尝试在“高级选项”中更改为“按列表删除案例”"
 
 msgid ""
 "Sampling the posterior null model failed. Try changing to 'Exclude cases "
 "listwise' in 'Advanced Options'"
-msgstr ""
+msgstr "对后验零模型进行抽样失败。请尝试在“高级选项”中更改为“按列表删除案例”"
 
 msgid ""
 "Bayesian posterior estimates and credible intervals for all selected scale "
 "reliability coefficients."
-msgstr ""
+msgstr "所有选定量表信度系数的贝叶斯后验估计和可信区间。"
 
 msgid "Posterior %s"
-msgstr ""
+msgstr "后验 %s"
 
 msgid "ESS"
-msgstr ""
+msgstr "ESS"
 
 msgid ""
 "Bayesian item-level reliability: posterior estimates of the scale "
 "coefficient if each item were dropped, and item-rest correlations."
-msgstr ""
+msgstr "贝叶斯项目层面信度：删除每个项目时的量表系数后验估计，以及项目-余量表相关。"
 
 msgid "%s (if item dropped)"
-msgstr ""
+msgstr "%s（删除项目时）"
 
 msgid ""
 "%s Please enter at least 3 variables for the if item dropped statistics."
-msgstr ""
+msgstr "%s 请在“删除项目时”统计量中至少输入 3 个变量。"
 
 msgid ""
 "Posterior and prior probability that each reliability coefficient falls "
 "within the specified interval."
-msgstr ""
+msgstr "每个信度系数落入指定区间的后验概率和先验概率。"
 
 msgid "Prior"
 msgstr "先验"
 
 msgid "Fit Measures for the Single-Factor Model"
-msgstr ""
+msgstr "单因子模型的拟合指标"
 
 msgid ""
 "Bayesian fit indices for the single-factor model underlying McDonald's omega."
-msgstr ""
+msgstr "McDonald's omega 所基于的单因子模型的贝叶斯拟合指数。"
 
 msgid ""
 "'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
@@ -547,141 +547,145 @@ msgid ""
 "                         the corresponding cutoff and the probabilities that "
 "the B-CFI/TLI are larger than the\n"
 "                         corresponding cutoff."
-msgstr ""
+msgstr "“相对临界值”行表示 B-RMSEA 小于\n"
+"                        对应临界值的概率，以及 B-CFI/TLI 大于\n"
+"                        对应临界值的概率。"
 
 msgid "Standardized Loadings of the Single-Factor Model"
-msgstr ""
+msgstr "单因子模型的标准负荷"
 
 msgid ""
 "Posterior estimates of standardized factor loadings from the single-factor "
 "model."
-msgstr ""
+msgstr "来自单因子模型的标准因子负荷的后验估计。"
 
 msgid "Standardized loading"
-msgstr ""
+msgstr "标准负荷"
 
 msgid ""
 "Posterior density plots for each selected reliability coefficient, with "
 "optional prior overlay and shading of the posterior probability region; the "
 "credible interval is shown as a separate error bar."
-msgstr ""
+msgstr "每个选定的信度系数的后验密度图，包含可选的先验叠加和对后验概率区间的阴影，可信区间以单独误差线显示。"
 
 msgid "Density"
-msgstr ""
+msgstr "密度"
 
 msgid "If Item Dropped Posterior Plots"
-msgstr ""
+msgstr "删除项目时的后验图"
 
 msgid ""
 "Ridgeline plots showing the posterior distribution of each reliability "
 "coefficient when each item is dropped."
-msgstr ""
+msgstr "展示删除每个项目时各信度系数后验分布的脊线图。"
 
 msgid "Please enter at least 3 variables for the if item dropped plot"
-msgstr ""
+msgstr "请在“删除项目时”图中至少输入 3 个变量"
 
 msgid "KLD ordering failed because two variables have perfect correlation"
-msgstr ""
+msgstr "由于两个变量完全相关，KLD 排序失败"
 
 msgid "Item Dropped"
-msgstr ""
+msgstr "已删除项目"
 
 msgid "Posterior Predictive Check Omega"
-msgstr ""
+msgstr "omega 的后验预测检验"
 
 msgid ""
 "Posterior predictive check: observed eigenvalues of the covariance matrix "
 "compared against the model-implied posterior distribution to assess single-"
 "factor model fit."
-msgstr ""
+msgstr "后验预测检验：将协方差矩阵的观测特征值与模型隐含的后验分布进行比较，以评估单因子模型的拟合。"
 
 msgid ""
 "Traceplots of MCMC samples per chain over iterations to assess sampler "
 "convergence and mixing."
-msgstr ""
+msgstr "各链 MCMC 样本随迭代次数的迹线图，用于评估抽样器的收敛和混合。"
 
 msgid "Iterations"
-msgstr ""
+msgstr "迭代次数"
 
 msgid "%1$s%2$s"
-msgstr ""
+msgstr "%1$s%2$s"
 
 msgid ""
 "Omega calculation with CFA failed.\n"
 "                                                    Try changing to PFA in "
 "'Advanced Options'."
-msgstr ""
+msgstr "使用 CFA 计算 omega 失败。\n"
+"                                                    请尝试在“高级选项”中更改为 PFA。"
 
 msgid ""
 "Omega bootstrapped interval calculation with CFA failed.\n"
 "                                                        Try changing to PFA "
 "in 'Advanced Options'."
-msgstr ""
+msgstr "使用 CFA 计算 omega 的 bootstrap 区间失败。\n"
+"                                                        请尝试在“高级选项”中更改为 PFA。"
 
 msgid "Omega calculation with PFA failed."
-msgstr ""
+msgstr "使用 PFA 计算 omega 失败。"
 
 msgid ""
 "The analytic confidence interval is not available for coefficient omega "
 "obtained with PFA. Change to 'Bootstrapped' in Advanced Options."
-msgstr ""
+msgstr "解析置信区间不适用于通过 PFA 得到的 omega 系数。请在“高级选项”中更改为“bootstrap”。"
 
 msgid "Omega interval calculation with PFA failed."
-msgstr ""
+msgstr "使用 PFA 计算 omega 区间失败。"
 
 msgid ""
 "The analytic confidence interval is not available for coefficient alpha/"
 "lambda2 when data contain missings and pairwise complete observations are "
 "used. Try changing to 'Delete listwise' within 'Advanced Options'."
-msgstr ""
+msgstr "当数据包含缺失值且使用成对完整观测时，解析置信区间不适用于 alpha/lambda2 系数。请尝试在“高级选项”中更改为“按列表删除”。"
 
 msgid ""
 "The analytic confidence interval is not available for the average interitem "
 "correlation when data contain missings and pairwise complete observations "
 "are used. Try changing to 'Delete listwise' within 'Advanced Options'."
-msgstr ""
+msgstr "当数据包含缺失值且使用成对完整观测时，解析置信区间不适用于平均项目间相关。请尝试在“高级选项”中更改为“按列表删除”。"
 
 msgid "Omega item dropped statistics with CFA failed."
-msgstr ""
+msgstr "使用 CFA 计算删除项目时的 omega 统计量失败。"
 
 msgid "Omega item dropped statistics with PFA failed."
-msgstr ""
+msgstr "使用 PFA 计算删除项目时的 omega 统计量失败。"
 
 msgid ""
 "The analytic confidence interval not available for coefficient alpha/lambda2 "
 "when data contain missings and pairwise complete observations are used. Try "
 "changing to 'Delete listwise' within 'Advanced Options'."
-msgstr ""
+msgstr "当数据包含缺失值且使用成对完整观测时，解析置信区间不适用于 alpha/lambda2 系数。请尝试在“高级选项”中更改为“按列表删除”。"
 
 msgid "Frequentist Scale Reliability Statistics"
-msgstr ""
+msgstr "频率学量表信度统计量"
 
 msgid ""
 "Frequentist point estimates, standard errors, and confidence intervals for "
 "all selected scale reliability coefficients."
-msgstr ""
+msgstr "所有选定量表信度系数的频率学点估计、标准误和置信区间。"
 
 msgid "Std. Error"
 msgstr "标准误"
 
 msgid "Frequentist Individual Item Reliability Statistics"
-msgstr ""
+msgstr "频率学单项目信度统计量"
 
 msgid ""
 "Item-level reliability: for each item, the scale reliability coefficient if "
 "that item were dropped, and the item-rest correlation."
-msgstr ""
+msgstr "项目层面信度：对每个项目，计算删除该项目时的量表信度系数以及项目-余量表相关。"
 
 msgid "Fit Measures of Single Factor Model Fit"
-msgstr ""
+msgstr "单因子模型拟合指标"
 
 msgid ""
 "Fit indices of the single-factor model underlying McDonald's omega, "
 "including chi-square, RMSEA, and SRMR."
-msgstr ""
+msgstr "McDonald's omega 所基于的单因子模型的拟合指数，包括卡方、RMSEA 和 SRMR。"
 
 msgid "Fit measure"
-msgstr ""
+msgstr "拟合指标"
 
 msgid "Value"
 msgstr "值"
@@ -689,77 +693,78 @@ msgstr "值"
 msgid ""
 "Standardized factor loadings from the single-factor model used to estimate "
 "McDonald's omega."
-msgstr ""
+msgstr "用于估计 McDonald's omega 的单因子模型的标准因子负荷。"
 
 msgid ""
 "Too few MCMC samples will remain after the removal of the burnin samples and "
 "thinning,\n"
 "                     please increase No.samples."
-msgstr ""
+msgstr "在移除 burnin 样本并进行抽稀后，所余 MCMC 样本过少，\n"
+"                     请增加样本数量。"
 
 msgid "%1$sVariables %2$s and %3$s correlated perfectly."
-msgstr ""
+msgstr "%1$s变量 %2$s 和 %3$s 完全相关。"
 
 msgid "Please enter at least 2 variables to do an analysis."
-msgstr ""
+msgstr "请至少输入 2 个变量以进行分析。"
 
 msgid ""
 "For the Lord generalized method, the test could not be split in equally "
 "sized parts with more than 1 item per part. Consider adding or removing "
 "items."
-msgstr ""
+msgstr "对于 Lord 广义方法，无法将测验划分为每个部分含多于 1 个项目的等大小部分。请考虑添加或删除项目。"
 
 msgid "Standard error of measurement results for the selected methods."
-msgstr ""
+msgstr "所选方法的测量标准误结果。"
 
 msgid ""
 "The Lord, Keats, and Lord generalized method are only available for binary "
 "data."
-msgstr ""
+msgstr "Lord、Keats 和 Lord 广义方法仅适用于二分类数据。"
 
 msgid "Standard Error of Measurement"
-msgstr ""
+msgstr "测量标准误"
 
 msgid ""
 "Conditional standard error of measurement (SEM) for each sum score using the "
 "selected method(s). The unconditional SEM is also shown."
-msgstr ""
+msgstr "使用所选方法得到的每个总分得分的有条件测量标准误（SEM）。同时显示无条件 SEM。"
 
 msgid "Sum Score"
-msgstr ""
+msgstr "总分得分"
 
 msgid "Unconditional SEM"
-msgstr ""
+msgstr "无条件 SEM"
 
 msgid "Counts"
-msgstr ""
+msgstr "计数"
 
 msgid "%1$s The unconditional SEM value equals %2$1.3f."
-msgstr ""
+msgstr "%1$s 无条件 SEM 值等于 %2$1.3f。"
 
 msgid ""
 "%1$s Estimating the %2$s method failed. If possible, you might try changing "
 "the method's parameters."
-msgstr ""
+msgstr "%1$s 估计 %2$s 方法失败。如果可能，您可以尝试更改该方法的参数。"
 
 msgid "Sum Score CI Table"
-msgstr ""
+msgstr "总分得分置信区间表"
 
 msgid ""
 "Confidence intervals for the true score at each sum score level, computed "
 "from the conditional SEM."
-msgstr ""
+msgstr "由条件 SEM 计算的每个总分得分水平下真实分数的置信区间。"
 
 msgid ""
 "Estimating the %s method failed. If possible, you might try changing the "
 "method's parameters."
-msgstr ""
+msgstr "估计 %s 方法失败。如果可能，您可以尝试更改该方法的参数。"
 
 msgid "Histogram of Counts per Sum Score Group"
-msgstr ""
+msgstr "每个总分得分组的计数的直方图"
 
 msgid "Distribution of participants across sum score groups."
-msgstr ""
+msgstr "参与者在各总分得分组之间的分布。"
 
 #, fuzzy
 msgid "Point Plots"
@@ -767,7 +772,7 @@ msgstr "点值"
 
 msgid ""
 "Conditional SEM plotted as a function of sum score for each selected method."
-msgstr ""
+msgstr "每个所选方法的条件 SEM 随总分得分变化的曲线图。"
 
 #, fuzzy
 msgid "SEM"
@@ -780,15 +785,15 @@ msgstr "点值"
 msgid ""
 "Overlay of all selected methods' conditional SEM across the full range of "
 "sum scores."
-msgstr ""
+msgstr "在所有所选方法的全部总分得分范围内叠加的条件 SEM。"
 
 msgid "Sum Score CI Plots"
-msgstr ""
+msgstr "总分得分置信区间图"
 
 msgid ""
 "True-score confidence interval plotted against sum score for each selected "
 "method."
-msgstr ""
+msgstr "每个所选方法的真实分数置信区间随总分得分变化的曲线图。"
 
 #, fuzzy
 msgid "True Score Estimate"
@@ -796,13 +801,13 @@ msgstr "点估计"
 
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "以下项目与量表呈负相关：%s。 "
+msgstr[1] "以下项目与量表呈负相关：%s。 "
 
 msgid "The following item was reverse scaled: %s. "
 msgid_plural "The following items were reverse scaled: %s. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "以下项目已被反向计分：%s。 "
+msgstr[1] "以下项目已被反向计分：%s。 "
 
 #~ msgid "Greatest Lower Bound"
 #~ msgstr "最大下界"
