@@ -184,7 +184,7 @@ msgid ""
 msgstr "Krippendorff's α 無法估計：可配對的評分資料沒有變異。"
 
 msgid "Cohen's kappa"
-msgstr ""
+msgstr "Cohen's kappa"
 
 msgid ""
 "Cohen's kappa: chance-corrected agreement between exactly two raters. Ranges "
@@ -197,7 +197,7 @@ msgid "Ratings"
 msgstr "評分"
 
 msgid "kappa"
-msgstr ""
+msgstr "kappa"
 
 msgid ""
 "Cohen's kappa requires nominal or ordinal variables. Remove scale variables "
@@ -244,7 +244,7 @@ msgid "%1$s Based on pairwise complete cases."
 msgstr "從 %s 的觀察值中，以配對完整的個案進行分析。"
 
 msgid "n"
-msgstr ""
+msgstr "n"
 
 msgid "Confidence intervals are asymptotic."
 msgstr "置信區間為漸近式。"
@@ -257,7 +257,7 @@ msgid "Cohen's kappa requires at least 3 subjects/items."
 msgstr "Cohen's kappa 至少需要 3 個受試者/題項。"
 
 msgid "Fleiss' kappa"
-msgstr ""
+msgstr "Fleiss' kappa"
 
 msgid ""
 "Fleiss' kappa: generalization of Cohen's kappa for two or more raters "
@@ -288,7 +288,7 @@ msgid "%1$s Based on listwise complete cases."
 msgstr "從 %s 的觀察值中，以配對完整的個案進行分析。"
 
 msgid "Krippendorff's alpha"
-msgstr ""
+msgstr "Krippendorff's alpha"
 
 msgid ""
 "Krippendorff's alpha: reliability coefficient applicable to any number of "
@@ -310,7 +310,7 @@ msgid ""
 msgstr "%2$i 個 bootstrap 樣本中有 %1$i 個無法計算，並已從信賴區間中排除。"
 
 msgid "Kendall's W"
-msgstr ""
+msgstr "Kendall's W"
 
 msgid ""
 "Kendall's coefficient of concordance W: measures agreement of rankings "
@@ -380,16 +380,16 @@ msgid "Warning:"
 msgstr "警告："
 
 msgid "McDonald's ωₜ"
-msgstr ""
+msgstr "McDonald's ωₜ"
 
 msgid "McDonald's ωₕ"
-msgstr ""
+msgstr "McDonald's ωₕ"
 
 msgid ""
 "The bi-factor model does not support items that load on more than one "
 "factor. Assign each item to a single factor, or select the second-order or "
 "correlated-factors model."
-msgstr ""
+msgstr "此雙因子模型不支援同時載荷於多個因子的題項。請將每個題項指派到單一因子，或選取二階或相關因子模型。"
 
 #, fuzzy
 msgid "Sampling the posterior distribution of the omega coefficients"
@@ -407,15 +407,15 @@ msgid "Posterior median"
 msgstr "事前平均數"
 
 msgid "R-hat"
-msgstr ""
+msgstr "R-hat"
 
 msgid "Please assign at least two factors with at least two items each."
-msgstr ""
+msgstr "請分配至少兩個因子，每個因子至少包含兩個題項。"
 
 msgid ""
 "McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
 "the correlated-factors model."
-msgstr ""
+msgstr "McDonald's ωₕ 僅在二階與雙因子模型下顯示，而非相關因子模型。"
 
 msgid "Average interitem correlation"
 msgstr "平均題項間的相關"
@@ -446,10 +446,10 @@ msgstr "此題項與其它所有題項之相關"
 msgid ""
 "Empty cells indicate that dropping the item would leave a factor with fewer "
 "than two items."
-msgstr ""
+msgstr "空白儲存格表示刪除該題項後，因子將少於兩個題項。"
 
 msgid "Computing item statistics (refitting the model once per item)"
-msgstr ""
+msgstr "正在計算題項統計量（每次略去一個題項重新配適模型）"
 
 msgid ""
 "The bounds you entered have been rearranged in increasing order to provide "
@@ -481,12 +481,12 @@ msgid "%s upper bound"
 msgstr "%s 上界"
 
 msgid "Relative to cutoff"
-msgstr ""
+msgstr "相對於臨界值"
 
 msgid ""
 "'Relative to cutoff' denotes the posterior probability that the B-RMSEA is "
 "smaller than the cutoff of %.2f."
-msgstr ""
+msgstr "「相對於臨界值」表示 B-RMSEA 小於臨界值 %.2f 的後驗機率。"
 
 msgid "Posterior Plots"
 msgstr "事後機率圖"
@@ -549,7 +549,7 @@ msgid "Posterior %s"
 msgstr "事後機率 %s"
 
 msgid "ESS"
-msgstr ""
+msgstr "ESS"
 
 msgid ""
 "Bayesian item-level reliability: posterior estimates of the scale "
@@ -652,7 +652,7 @@ msgid "Iterations"
 msgstr "迭代"
 
 msgid "%1$s%2$s"
-msgstr ""
+msgstr "%1$s%2$s"
 
 msgid ""
 "Omega calculation with CFA failed.\n"
