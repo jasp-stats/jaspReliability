@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
 "POT-Creation-Date: 2026-08-08 03:52\n"
-"PO-Revision-Date: 2026-08-01 04:31+0000\n"
+"PO-Revision-Date: 2026-08-13 01:51+0000\n"
 "Last-Translator: Koji Kosugi <kosugitti@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/ja/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 msgid "Bland-Altman Plots"
 msgstr "Bland-Altman プロット"
@@ -397,43 +397,43 @@ msgid "Warning:"
 msgstr "警告:"
 
 msgid "McDonald's ωₜ"
-msgstr ""
+msgstr "マクドナルドのωₜ"
 
 msgid "McDonald's ωₕ"
-msgstr ""
+msgstr "マクドナルドのωₕ"
 
 msgid ""
 "The bi-factor model does not support items that load on more than one "
 "factor. Assign each item to a single factor, or select the second-order or "
 "correlated-factors model."
 msgstr ""
+"双因子モデルは、2つ以上の因子に負荷する項目に対応していません。各項目を1つの"
+"因子に割り当てるか、二次因子モデルか相関因子モデルを選んでください。"
 
-#, fuzzy
 msgid "Sampling the posterior distribution of the omega coefficients"
-msgstr ""
-"各項目を除いたときの信頼性係数の事後分布を示すリッジラインプロットです。"
+msgstr "オメガ係数の事後分布をサンプリングしています"
 
 msgid "Bayesian Scale Reliability Statistics"
 msgstr "ベイジアン尺度信頼性統計"
 
-#, fuzzy
 msgid "Posterior mean"
 msgstr "事後平均"
 
-#, fuzzy
 msgid "Posterior median"
-msgstr "事後平均"
+msgstr "事後中央値"
 
 msgid "R-hat"
 msgstr "R-hat"
 
 msgid "Please assign at least two factors with at least two items each."
-msgstr ""
+msgstr "因子を2つ以上、それぞれに項目を2つ以上割り当ててください。"
 
 msgid ""
 "McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
 "the correlated-factors model."
 msgstr ""
+"マクドナルドのωₕは、二次因子モデルと双因子モデルでのみ表示されます。相関因子"
+"モデルでは表示されません。"
 
 msgid "Average interitem correlation"
 msgstr "平均項目間相関"
@@ -450,13 +450,11 @@ msgstr "ベイジアン個別項目信頼性統計"
 msgid "Item"
 msgstr "項目"
 
-#, fuzzy
 msgid "McDonald's ωₜ (if item dropped)"
-msgstr "%s (項目が削除された場合)"
+msgstr "マクドナルドのωₜ(項目を除いた場合)"
 
-#, fuzzy
 msgid "McDonald's ωₕ (if item dropped)"
-msgstr "%s (項目が削除された場合)"
+msgstr "マクドナルドのωₕ(項目を除いた場合)"
 
 msgid "Item-rest correlation"
 msgstr "I-R相関"
@@ -464,10 +462,10 @@ msgstr "I-R相関"
 msgid ""
 "Empty cells indicate that dropping the item would leave a factor with fewer "
 "than two items."
-msgstr ""
+msgstr "空欄は、その項目を除くと因子に含まれる項目が2つ未満になることを示します。"
 
 msgid "Computing item statistics (refitting the model once per item)"
-msgstr ""
+msgstr "項目統計量を計算しています(項目ごとにモデルを再推定しています)"
 
 msgid ""
 "The bounds you entered have been rearranged in increasing order to provide "
@@ -486,9 +484,8 @@ msgstr "事後分布"
 msgid "Probability"
 msgstr "確率"
 
-#, fuzzy
 msgid "Fit Measures of the Factor Model"
-msgstr "単一因子モデルの適合度指標"
+msgstr "因子モデルの適合度指標"
 
 msgid "Point estimate"
 msgstr "点推定値"
@@ -506,6 +503,8 @@ msgid ""
 "'Relative to cutoff' denotes the posterior probability that the B-RMSEA is "
 "smaller than the cutoff of %.2f."
 msgstr ""
+"'カットオフに対して'は、B-RMSEAがカットオフ %.2f より小さくなる事後確率を示し"
+"ます。"
 
 msgid "Posterior Plots"
 msgstr "事後分布プロット"
@@ -513,9 +512,8 @@ msgstr "事後分布プロット"
 msgid "Convergence Traceplot"
 msgstr "収束トレースプロット"
 
-#, fuzzy
 msgid "Posterior Predictive Check"
-msgstr "オメガの事後予測チェック"
+msgstr "事後予測チェック"
 
 msgid "Eigenvalue"
 msgstr "固有値"
