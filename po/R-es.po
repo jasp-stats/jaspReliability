@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
 "POT-Creation-Date: 2026-08-08 03:52\n"
-"PO-Revision-Date: 2026-08-13 01:51+0000\n"
+"PO-Revision-Date: 2026-08-14 09:51+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/es/>\n"
@@ -432,22 +432,17 @@ msgstr ""
 "factor. Asigne cada elemento a un único factor, o elija el modelo de segundo "
 "orden o el de factores correlacionados."
 
-#, fuzzy
 msgid "Sampling the posterior distribution of the omega coefficients"
-msgstr ""
-"Gráficos de líneas de reborde que muestran la distribución posterior de cada "
-"coeficiente de fiabilidad cuando se quita cada elemento."
+msgstr "Muestreo de la distribución posterior de los coeficientes Omega"
 
 msgid "Bayesian Scale Reliability Statistics"
 msgstr "Estadísticos bayesianos de fiabilidad de escala"
 
-#, fuzzy
 msgid "Posterior mean"
 msgstr "Media Posterior"
 
-#, fuzzy
 msgid "Posterior median"
-msgstr "Media Posterior"
+msgstr "Mediana Posterior"
 
 msgid "R-hat"
 msgstr "R-circunflejo"
@@ -478,13 +473,11 @@ msgstr "Estadísticos bayesianos de fiabilidad de elementos individuales"
 msgid "Item"
 msgstr "Ítem"
 
-#, fuzzy
 msgid "McDonald's ωₜ (if item dropped)"
-msgstr "%s (al quitar elemento)"
+msgstr "ωₜ de McDonald (al quitar el elemento)"
 
-#, fuzzy
 msgid "McDonald's ωₕ (if item dropped)"
-msgstr "%s (al quitar elemento)"
+msgstr "ωₕ de McDonald (al quitar el elemento)"
 
 msgid "Item-rest correlation"
 msgstr "Correlación del elemento con el resto"
@@ -521,9 +514,8 @@ msgstr "Posterior"
 msgid "Probability"
 msgstr "Probabilidad"
 
-#, fuzzy
 msgid "Fit Measures of the Factor Model"
-msgstr "Medidas de Ajuste del Modelo de Factor Único"
+msgstr "Medidas de ajuste del modelo de factores"
 
 msgid "Point estimate"
 msgstr "Estimación por punto"
