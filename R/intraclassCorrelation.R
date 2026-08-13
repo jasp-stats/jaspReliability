@@ -16,7 +16,7 @@
 #
 
 #' @export
-intraclassCorrelation <- function(jaspResults, dataset, options) {
+intraclassCorrelationInternal <- function(jaspResults, dataset, options) {
 
   jaspResults[["table"]] <- .handleIntraclassCorrelation(dataset, options)
 

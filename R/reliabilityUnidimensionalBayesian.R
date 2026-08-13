@@ -4,7 +4,7 @@
 #' @importFrom stats approxfun cor cov cov2cor density integrate median na.omit pnorm qchisq qnorm quantile rgamma rnorm sd var
 
 #' @export
-reliabilityUnidimensionalBayesian <- function(jaspResults, dataset, options) {
+reliabilityUnidimensionalBayesianInternal <- function(jaspResults, dataset, options) {
 
   options <- jaspBase::.parseAndStoreFormulaOptions(jaspResults, options, "inverseWishartPriorScale")
 
