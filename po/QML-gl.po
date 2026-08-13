@@ -3,10 +3,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Language: gl_ES\n"
 "X-Source-Language: C\n"
 "X-Qt-Contexts: true\n"
+"PO-Revision-Date: 2026-08-13 01:51+0000\n"
+"Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
+"Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/gl/>\n"
+"Language: gl\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 msgctxt "Description|"
 msgid "Reliability"
@@ -688,11 +694,11 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Bayesian Multidimensional Reliability"
-msgstr ""
+msgstr "Fiabilidade baiesiana multidimensional"
 
 msgctxt "Description|"
 msgid "Multidimensional Reliability"
-msgstr ""
+msgstr "Fiabilidade multidimensional"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
@@ -701,22 +707,26 @@ msgid ""
 "one factor (cross-loading); the bi-factor model does not support cross-"
 "loadings."
 msgstr ""
+"Asignar os elementos aos seus factores. A análise require cando menos dous "
+"factores con dous elementos cada un, cando menos. Un elemento pódese asignar "
+"a máis dun factor (carga cruzada); o modelo bifactorial non admite cargas "
+"cruzadas."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Second-order"
-msgstr ""
+msgstr "Segunda orde"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Bi-factor"
-msgstr ""
+msgstr "Bifactorial"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Correlated factors"
-msgstr ""
+msgstr "Factores correlacionados"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
@@ -724,13 +734,14 @@ msgid ""
 "ω_h (general/group-common reliability) is only available for the second-"
 "order and bi-factor models."
 msgstr ""
+"O modelo factorial utilizado para estimar os coeficientes de fiabilidade. O "
+"ω_h de McDonald (fiabilidade común xeral/grupo) está só dispoñible para os "
+"modelos de segunda orde e bifactorial."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Analysis"
 msgstr "Análise"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Credible interval"
 msgstr "Intervalo de credibilidade"
@@ -738,50 +749,57 @@ msgstr "Intervalo de credibilidade"
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Width of the credible interval for the reliability coefficients."
 msgstr ""
+"Ancho do intervalo de credibilidade para os coeficientes de fiabilidade."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Mean and standard deviation of"
-msgstr ""
+msgstr "Media e desvío padrón de"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Whether the mean and standard deviation in the scale table are based on "
 "participants' sum scores or mean scores across items."
 msgstr ""
+"Se a media e o desvío padrón na táboa de escalas se basean nas puntuacións "
+"de suma dos participantes ou nas puntuacións medias entre elementos."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "participants' sum scores"
-msgstr ""
+msgstr "puntuacións de suma dos participantes"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "participants' mean scores"
-msgstr ""
+msgstr "puntuacións medias de elementos"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Item statistics"
-msgstr ""
+msgstr "Estatísticos de elementos"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "McDonald's ω_t (if item dropped)"
-msgstr ""
+msgstr "ω_t de McDonald (ao eliminar elementos)"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Posterior point estimate of ω_t for the remaining items when this item is "
 "dropped. The model is refit once per item."
 msgstr ""
+"Estimación posterior puntual de ω_t para os elementos que quedan cando ese "
+"elemento se elimina. O modelo vólvese axustar cada vez por elemento."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "McDonald's ω_h (if item dropped)"
-msgstr ""
+msgstr "ω_h de McDonald (ao eliminar elementos)"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Posterior point estimate of ω_h for the remaining items when this item is "
 "dropped. Not available for the correlated-factors model."
 msgstr ""
+"Estimación posterior puntual de ω_h para os elementos que quedan cando ese "
+"elemento se elimina. Non dispoñible para o modelo de factores "
+"correlacionados."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Item-rest correlation"
 msgstr "Correlación do elemento co resto"
@@ -790,22 +808,22 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Pearson correlation between each item and the sum of the remaining items."
 msgstr ""
+"Correlación de Pearson entre cada elemento e a suma dos elementos que quedan."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Plot Posteriors"
-msgstr "Representar Posteriores"
+msgstr "Debuxar Posteriores"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Display posterior density plots for the reliability coefficients."
 msgstr ""
+"Presentar as gráficas de densidade posterior para os coeficientes de "
+"fiabilidade."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Fix range to 0-1"
 msgstr "Fixar o rango en 0-1"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Fix the x-axis of the posterior plots to [0, 1] for easier comparison "
@@ -814,17 +832,14 @@ msgstr ""
 "Fixar o eixe X das gráficas das posteriores en [0, 1] para unha comparación "
 "entre coeficientes máis doada."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Display Priors"
 msgstr "Presentar Previas"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Add the prior distribution to the posterior density plot."
 msgstr "Engadir a distribución previa á gráfica da densidade posterior."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Probability for:"
 msgstr "Probabilidade para:"
@@ -834,26 +849,25 @@ msgid ""
 "Report the posterior probability that a reliability coefficient falls within "
 "the specified interval."
 msgstr ""
+"Informar da probabilidade posterior de que un coeficiente de fiabilidade "
+"cadre dentro do intervalo especificado."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Lower bound of the reliability interval."
-msgstr ""
+msgstr "Límite inferior do intervalo de fiabilidade."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "< Reliability <"
 msgstr "< Fiabilidade <"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Upper bound of the reliability interval."
-msgstr ""
+msgstr "Límite superior do intervalo de fiabilidade."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Shade posterior region in plot"
 msgstr "Sombrear a rexión posterior na gráfica"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Shade the posterior region corresponding to the probability interval in the "
@@ -864,9 +878,8 @@ msgstr ""
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Model fit"
-msgstr ""
+msgstr "Axuste do modelo"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Posterior predictive check"
 msgstr "Comprobación preditiva posterior"
@@ -876,8 +889,10 @@ msgid ""
 "Graphical check of factor model fit: eigenvalues of the observed covariance "
 "matrix are compared against the model-implied posterior distribution."
 msgstr ""
+"Comprobación gráfica do axuste do modelo factorial: Os autovalores da matriz "
+"de covarianzas observadas compáranse coa distribución posterior do modelo "
+"implicado."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Fit measures"
 msgstr "Medidas de axuste"
@@ -887,12 +902,13 @@ msgid ""
 "Bayesian fit measures for the factor model: B-LR, B-SRMR, and B-RMSEA with a "
 "posterior probability relative to the cutoff."
 msgstr ""
+"Medidas baiesianas de axuste para o modelo factorial: B-RV, B-RECMS e B-"
+"REACM cunha probabilidade posterior relativa ao punto de corte."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Width of the credible interval for the fit measures."
-msgstr ""
+msgstr "Ancho do intervalo de credibilidade para as medidas de axuste."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "p(RMSEA <"
 msgstr "p(REACM <"
@@ -901,18 +917,17 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Cutoff for the posterior probability that the B-RMSEA is below this value."
 msgstr ""
+"Punto de corte para a probabilidade posterior de que B-REACM estea por "
+"debaixo dese valor."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ")"
 msgstr ")"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Reverse-Scaled Items"
 msgstr "Elementos a Escala Invertida"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Normal-Scaled Items"
 msgstr "Elementos a Escala Normal"
@@ -920,27 +935,29 @@ msgstr "Elementos a Escala Normal"
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Items assigned here are recoded (reverse-scored) before the analysis."
 msgstr ""
+"Os elementos asignados aquí vólvense codificar (puntuacións invertidas) "
+"antes da análise."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Priors"
 msgstr "Previas"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Measurement level"
-msgstr ""
+msgstr "Nivel de medición"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Priors on the measurement-level parameters: item residual variances and item "
 "factor loadings."
 msgstr ""
+"Previas sobre os parámetros dos niveis de medición: Varianzas dos erros dos "
+"elementos e cargas dos factores dos elementos."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Residual variances: Inverse gamma"
-msgstr ""
+msgstr "Varianzas dos erros: Gamma Inversa"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "shape"
 msgstr "Forma"
@@ -949,8 +966,9 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Shape parameter of the inverse gamma prior on the item residual variances."
 msgstr ""
+"Parámetro de forma da previa Gamma Inversa sobre as varianzas dos erros dos "
+"elementos."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "scale"
 msgstr "Escala"
@@ -959,23 +977,24 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Scale parameter of the inverse gamma prior on the item residual variances."
 msgstr ""
+"Parámetro de escala da previa Gamma Inversa sobre as varianzas dos erros dos "
+"elementos."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Loadings: Normal"
-msgstr ""
+msgstr "Cargas: Normal"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "mean"
 msgstr "media"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Mean of the normal prior on the item factor loadings."
-msgstr ""
+msgstr "Media da previa Normal sobre as cargas dos factores dos elementos."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "variance scaling"
-msgstr ""
+msgstr "Escalado da varianza"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
@@ -984,10 +1003,15 @@ msgid ""
 "standard deviation sqrt(residual variance x variance scaling); larger values "
 "mean a less informative prior."
 msgstr ""
+"Escala a varianza da previa Normal sobre as cargas dos factores dos "
+"elementos. A previa está condicionada á varianza dos erros dos elementos; "
+"así, unha carga ten un desvío padrón da previa igual á raíz(varianza dos "
+"erros x escalado da varianza); os valores máis grandes significan unha "
+"previa menos informativa."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Structural level"
-msgstr ""
+msgstr "Nivel estrutural"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
@@ -995,22 +1019,31 @@ msgid ""
 "models: latent residual variances, structural loadings, and the general "
 "factor variance."
 msgstr ""
+"Previas sobre os parámetros estruturais dos modelos de segunda orde e "
+"bifactorial: Varianzas latentes dos erros, cargas estruturais e varianza "
+"xeral dos factores."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Shape parameter of the inverse gamma prior on the latent residual variances."
 msgstr ""
+"Parámetro de forma da previa Gamma Inversa sobre as varianzas latentes dos "
+"erros."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Scale parameter of the inverse gamma prior on the latent residual variances."
 msgstr ""
+"Parámetro de escala da previa Gamma Inversa sobre as varianzas latentes dos "
+"erros."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Mean of the normal prior on the structural loadings of the group factors on "
 "the general factor."
 msgstr ""
+"Media da previa Normal sobre as cargas estruturais dos factores dos grupos, "
+"sobre o factor xeral."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
@@ -1018,32 +1051,39 @@ msgid ""
 "group factors on the general factor. Larger values mean a less informative "
 "prior."
 msgstr ""
+"Escala a varianza da previa Normal sobre as cargas estruturais dos factores "
+"dos grupos, sobre o factor xeral. Os valores máis grandes significan unha "
+"previa menos informativa."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Factor variance: Inverse gamma"
-msgstr ""
+msgstr "Varianza dos factores: Gamma Inversa"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Shape parameter of the inverse gamma prior on the general factor variance."
 msgstr ""
+"Parámetro de forma da previa Gamma Inversa sobre a varianza xeral dos "
+"factores."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Scale parameter of the inverse gamma prior on the general factor variance."
 msgstr ""
+"Parámetro de escala da previa Gamma Inversa sobre a varianza xeral dos "
+"factores."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Latent correlations"
-msgstr ""
+msgstr "Correlacións latentes"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Correlation matrix: Inverse-Wishart"
-msgstr ""
+msgstr "Matriz de correlacións: Wishart Inversa"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "degrees of freedom"
-msgstr ""
+msgstr "Graos de liberdade"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
@@ -1051,41 +1091,38 @@ msgid ""
 "matrix. Values below the number of factors are raised to the number of "
 "factors to keep the prior proper."
 msgstr ""
+"Graos de liberdade da previa Wishart Inversa sobre a matriz de correlacións "
+"latentes. Valores por debaixo do número de factores auméntanse ata ese "
+"número de factores para manter a previa axeitada."
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "MCMC Options"
-msgstr ""
+msgstr "Opcións de MCMC"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "MCMC parameters"
 msgstr "Parámetros de MCMC"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "No. samples"
 msgstr "Nº mostras"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Total number of MCMC samples per chain, including burn-in."
-msgstr ""
+msgstr "Número total de mostras de MCMC por cadea, incluíndo o quecemento."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "No. burnin samples"
 msgstr "Nº mostras de quecemento"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Initial samples discarded while the chain converges to the posterior."
 msgstr "Mostras iniciais descartadas mentres a cadea converxe á posterior."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Thinning"
 msgstr "Rareo"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Keep every k-th sample to reduce autocorrelation. A value of 1 keeps all "
@@ -1094,12 +1131,10 @@ msgstr ""
 "Conservar cada mostra k-ésima para reducir a autocorrelación. Un valor de 1 "
 "conserva tódalas mostras."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "No. chains"
 msgstr "Nº cadeas"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Number of independent MCMC chains. Multiple chains enable R-hat convergence "
@@ -1108,17 +1143,14 @@ msgstr ""
 "Número de cadeas independentes MCMC. Múltiples cadeas permiten os "
 "diagnósticos de R-circunflexo da converxencia."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Diagnostics"
 msgstr "Diagnósticos"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "R-hat"
 msgstr "R-circunflexo"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Potential scale reduction factor. Values close to 1 (< 1.1) indicate "
@@ -1127,12 +1159,10 @@ msgstr ""
 "Factor potencial de reducción da escala. Valores próximos a 1 (< 1.1) "
 "indican converxencia entre as cadeas."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Traceplots"
 msgstr "Gráficas de trazado"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Plot of sampled values per chain over iterations. Well-mixed chains indicate "
@@ -1141,12 +1171,10 @@ msgstr ""
 "Gráfica dos valores da mostraxe por cadea durante as iteracións. Cadeas ben "
 "combinadas indican converxencia."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Repeatability"
 msgstr "Repetibilidade"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Set seed"
 msgstr "Establecer a semente"
@@ -1155,13 +1183,13 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Fix the random number generator seed to make the MCMC results reproducible."
 msgstr ""
+"Fixar a semente do xerador de números aleatorios para facer repetibles os "
+"resultados de MCMC."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Samples"
 msgstr "Mostras"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Disable saving samples"
 msgstr "Inhabilitar a gravación de mostras"
@@ -1171,18 +1199,18 @@ msgid ""
 "When checked, MCMC samples are not stored in the output file. Reduces file "
 "size but re-running the analysis or changing options requires resampling."
 msgstr ""
+"Cando se marca, as mostras de MCMC non se gardan no ficheiro de resultados. "
+"Reduce o tamaño do ficheiro pero volver executar a análise ou trocar as "
+"opcións requiren volver facer a mostraxe."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Advanced Options"
 msgstr "Opcións Avanzadas"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Posterior Point Estimate"
-msgstr "Estimación por Punto Posterior"
+msgstr "Estimación posterior por punto"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Whether to report the posterior mean or median as the point estimate in the "
@@ -1191,22 +1219,18 @@ msgstr ""
 "Se informar da media ou mediana posterior como a estimación por punto, nas "
 "táboas."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Mean"
 msgstr "Media"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Median"
 msgstr "Mediana"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Missing Values"
 msgstr "Valores ausentes"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
 "Bayesian imputation treats missing values as unknown parameters sampled from "
@@ -1216,22 +1240,18 @@ msgstr ""
 "descoñecidos resultado da mostraxe da posterior; a eliminación por lista "
 "quita calquera fila con algún valor ausente."
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Bayesian imputation"
 msgstr "Imputación baiesiana"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Exclude cases listwise"
 msgstr "Excluír casos segundo a lista"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Variables"
 msgstr "Variables"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Items/variables to include in the reliability analysis. Must be scale "
@@ -1240,17 +1260,14 @@ msgstr ""
 "Elementos/variables a incluír na análise de fiabilidade. As variables deben "
 "ser de escala."
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Analysis"
 msgstr "Análise"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Scale Statistics"
 msgstr "Estatísticos de Escala"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "Reliability coefficients and descriptive statistics computed for the full "
@@ -1259,24 +1276,20 @@ msgstr ""
 "Coeficientes de fiabilidade e estatísticos descritivos calculados para a "
 "escala completa."
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Credible interval"
 msgstr "Intervalo de credibilidade"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Width of the credible interval for scale reliability statistics."
 msgstr ""
 "Ancho do intervalo de credibilidade para os estatísticos de escala de "
 "fiabilidade."
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "McDonald's ω"
 msgstr "ω de McDonald"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
 "McDonald's omega for unidimensional data based on the single-factor model."
@@ -1284,27 +1297,22 @@ msgstr ""
 "Omega de McDonald para datos unidimensionais baseada no modelo cun único "
 "factor."
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Cronbach's α"
 msgstr "α de Cronbach"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Cronbach's alpha. For binary items this equals KR-20."
 msgstr "Alfa de Cronbach. Para elementos binarios isto é igual a KR-20."
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Guttman's λ2"
 msgstr "λ2 de Guttman"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Guttman's lambda 2, a lower bound for reliability."
-msgstr "Lambda 2 de Guttman, un límite inferior para a fiabilidade."
+msgstr "Lambda 2 de Guttman. Un límite inferior para a fiabilidade."
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Split-half coefficient"
 msgstr "Coeficiente de división en metades"
@@ -1492,10 +1500,9 @@ msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Correlation of each item with the sum of the remaining items."
 msgstr "Correlación de cada elemento coa suma dos elementos que quedan."
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Plot Posteriors"
-msgstr "Representar Posteriores"
+msgstr "Debuxar Posteriores"
 
 #, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
@@ -1960,10 +1967,9 @@ msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Standardized"
 msgstr "Tipificado"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Posterior Point Estimate"
-msgstr "Estimación por Punto Posterior"
+msgstr "Estimación posterior por punto"
 
 #, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
@@ -2053,12 +2059,10 @@ msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Guttman's λ2"
 msgstr "λ2 de Guttman"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Guttman's lambda 2, a lower bound for reliability."
-msgstr "Lambda 2 de Guttman, un límite inferior para a fiabilidade."
+msgstr "Lambda 2 de Guttman. Un límite inferior para a fiabilidade."
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Split-half coefficient"
 msgstr "Coeficiente de división en metades"
