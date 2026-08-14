@@ -262,3 +262,30 @@ test_that("Frequentist Scale Reliability Statistics table results match", {
                                  list("Guttman's <unicode>2", 0.60068713700511, 0.483142517715655, 0.0599728465505652,
                                       0.718231756294564))
 })
+
+
+# omega CFA fit fails (Heywood case, V1/V2 near-perfectly correlated) while other coefficients are
+# selected -- used to crash with "replacement has 2 rows, data has 3" (jasp-issues#4477)
+options <- analysisOptions("reliabilityUnidimensionalFrequentist")
+options$scaleOmega <- TRUE
+options$scaleAlpha <- TRUE
+options$averageInterItemCorrelation <- TRUE
+options$hiddenScaleThreshold <- 10
+options$variables <- c("V1", "V2", "V3")
+set.seed(1)
+results <- runAnalysis("reliabilityUnidimensionalFrequentist", testthat::test_path("reliabilityOmegaHeywood.csv"),
+                       options, makeTests = F)
+
+test_that("Analysis does not crash when omega CFA fit fails alongside other coefficients", {
+  expect_identical(results$status, "complete")
+})
+
+test_that("Frequentist Scale Reliability Statistics table shows NA omega row instead of crashing", {
+  table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list("McDonald's <unicode>", "", "", "", "",
+                                      "Cronbach's <unicode>", -0.00457894213966403, -1.17517541836121,
+                                      0.597254074796816, 1.16601753408189,
+                                      "Average interitem correlation", -0.00992751206887806,
+                                      -0.400238736783369, 0.199142039238076, 0.380383712645613))
+})
