@@ -20,8 +20,6 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import JASP.Controls 
-import JASP.Theme	
-import JASP.Widgets 
 
 Form
 {
@@ -150,7 +148,7 @@ Form
 
 			Item
 			{
-				width:	shadePlots.width + Theme.subOptionOffset
+				width:	shadePlots.width + jaspTheme.subOptionOffset
 				height: shadePlots.height
 
 				CheckBox
@@ -161,7 +159,7 @@ Form
 					label:		qsTr("Shade posterior region in plot");
 					info:		qsTr("Shade the posterior region corresponding to the probability interval in the density plot.")
 					enabled:	probTable.checked & postPlot.checked
-					x:			Theme.subOptionOffset
+					x:		jaspTheme.subOptionOffset
 				}
 			}
 		}

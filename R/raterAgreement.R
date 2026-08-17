@@ -16,7 +16,7 @@
 #
 
 #' @export
-raterAgreement <- function(jaspResults, dataset, options) {
+raterAgreementInternal <- function(jaspResults, dataset, options) {
 
   ready <- length(options[["variables"]]) > 1
 

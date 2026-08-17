@@ -6,7 +6,7 @@ Description
 	title		: qsTr("Reliability")
 	description	: qsTr("Quantify the reliability of test scores")
 	icon		: "reliability_icon_classic.svg"
-	hasWrappers:  false
+	hasWrappers:  true
 	preloadData: true
 	
 	GroupTitle

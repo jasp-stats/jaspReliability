@@ -16,7 +16,7 @@
 .multiDimOmegaHLabel <- function() gettext("McDonald's ωₕ")
 
 #' @export
-reliabilityMultidimensionalBayesian <- function(jaspResults, dataset, options) {
+reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, options) {
 
   allItems <- .multiDimGetItems(options)
   ready    <- .multiDimReady(options)

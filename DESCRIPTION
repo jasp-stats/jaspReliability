@@ -1,7 +1,7 @@
 Package: jaspReliability
 Type: Package
 Title: Reliability Module for JASP
-Version: 0.97.2
+Version: 0.98.1
 Date: 2026-06-13
 Author: JASP Team
 Website: https://github.com/jasp-stats/Reliability
@@ -30,4 +30,4 @@ Remotes:
 Suggests:
     testthat (>= 3.0.0)
 Roxygen: list(markdown = TRUE)
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.0
