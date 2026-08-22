@@ -6,6 +6,12 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Language: id\n"
 "X-Qt-Contexts: true\n"
+"PO-Revision-Date: 2026-08-22 00:51+0000\n"
+"Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/id/>\n"
+"Language: id\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 msgctxt "Description|"
 msgid "Reliability"
@@ -268,22 +274,29 @@ msgid ""
 "Pairs of scale variables to compare. Each pair produces a Bland-Altman plot "
 "of the mean versus the difference between measurements."
 msgstr ""
+"Pasangan variabel skala untuk membandingkan. Setiap pasangan memproduksikan "
+"diagram Bland-Altman dari rerata versus perbedaan antara pengukuran."
 
 msgctxt "BlandAltman|"
 msgid ""
 "Display confidence intervals around the mean difference and its upper and "
 "lower limits of agreement in the plot."
 msgstr ""
+"Tampilkan interval kepercayaan sekitar perbedaan rerata dan batas atas dan "
+"bawah dari perjanjiannya di diagram."
 
 msgctxt "BlandAltman|"
 msgid ""
 "Shade the confidence interval regions around the mean difference and limits "
 "of agreement."
 msgstr ""
+"Arsirkan wilayah interval kepercayaan sekitar perbedaan rerata dan batas "
+"perjanjian."
 
 msgctxt "BlandAltman|"
 msgid "Use colour (rather than grey) to fill the shaded confidence regions."
 msgstr ""
+"Gunakan warna (dari pada abu-abu) untuk mengisi wilayah kepercayaan diarsir."
 
 msgctxt "BlandAltman|"
 msgid ""
@@ -418,7 +431,6 @@ msgid ""
 "Generalises Cohen's kappa to multiple raters."
 msgstr ""
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Advanced Options"
 msgstr "Opsi Lanjutan"
@@ -427,7 +439,6 @@ msgctxt "RaterAgreement|"
 msgid "Options for confidence intervals and bootstrap settings."
 msgstr ""
 
-#, fuzzy
 msgctxt "RaterAgreement|"
 msgid "Confidence interval"
 msgstr "Interval kepercayaan"
@@ -622,12 +633,10 @@ msgid ""
 "order and bi-factor models."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Analysis"
 msgstr "Analisis"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Credible interval"
 msgstr "Interval kredibel"
@@ -678,7 +687,6 @@ msgid ""
 "dropped. Not available for the correlated-factors model."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Item-rest correlation"
 msgstr "Korelasi sisa-item"
@@ -688,7 +696,6 @@ msgid ""
 "Pearson correlation between each item and the sum of the remaining items."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Plot Posteriors"
 msgstr "Posterior Diagram"
@@ -697,7 +704,6 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Display posterior density plots for the reliability coefficients."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Fix range to 0-1"
 msgstr "Perbaiki rentang ke 0-1"
@@ -708,7 +714,6 @@ msgid ""
 "between coefficients."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Display Priors"
 msgstr "Tampilkan Priori"
@@ -717,7 +722,6 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Add the prior distribution to the posterior density plot."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Probability for:"
 msgstr "Probabilitas untuk:"
@@ -732,7 +736,6 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Lower bound of the reliability interval."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "< Reliability <"
 msgstr "< Keandalan <"
@@ -741,7 +744,6 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Upper bound of the reliability interval."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Shade posterior region in plot"
 msgstr "Wilayah posterior arsir di diagram"
@@ -756,7 +758,6 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Model fit"
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Posterior predictive check"
 msgstr "Pemeriksaan prediktif posterior"
@@ -767,10 +768,9 @@ msgid ""
 "matrix are compared against the model-implied posterior distribution."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Fit measures"
-msgstr "Pengukuran sesuai"
+msgstr "Sesuaikan pengukuran"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
@@ -782,7 +782,6 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Width of the credible interval for the fit measures."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "p(RMSEA <"
 msgstr "p(RMSEA <"
@@ -792,17 +791,14 @@ msgid ""
 "Cutoff for the posterior probability that the B-RMSEA is below this value."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ")"
 msgstr ")"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Reverse-Scaled Items"
 msgstr "Item Terskala-Balik"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Normal-Scaled Items"
 msgstr "Item Terskala-Normal"
@@ -811,7 +807,6 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Items assigned here are recoded (reverse-scored) before the analysis."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Priors"
 msgstr "Priori"
@@ -830,7 +825,6 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Residual variances: Inverse gamma"
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "shape"
 msgstr "bentuk"
@@ -840,7 +834,6 @@ msgid ""
 "Shape parameter of the inverse gamma prior on the item residual variances."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "scale"
 msgstr "skala"
@@ -854,7 +847,6 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Loadings: Normal"
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "mean"
 msgstr "rerata"
@@ -946,12 +938,10 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "MCMC Options"
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "MCMC parameters"
 msgstr "Parameter MCMC"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "No. samples"
 msgstr "Jml. sampel"
@@ -960,7 +950,6 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Total number of MCMC samples per chain, including burn-in."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "No. burnin samples"
 msgstr "Jml. sampel burnin"
@@ -969,7 +958,6 @@ msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Initial samples discarded while the chain converges to the posterior."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Thinning"
 msgstr "Penipisan"
@@ -980,7 +968,6 @@ msgid ""
 "samples."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "No. chains"
 msgstr "Jml. rantai"
@@ -991,12 +978,10 @@ msgid ""
 "diagnostics."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Diagnostics"
 msgstr "Diagnostik"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "R-hat"
 msgstr "R-hat"
@@ -1007,7 +992,6 @@ msgid ""
 "convergence across chains."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Traceplots"
 msgstr "Diagram lacak"
@@ -1018,12 +1002,10 @@ msgid ""
 "convergence."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Repeatability"
 msgstr "Perulangan"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Set seed"
 msgstr "Atur benih"
@@ -1033,12 +1015,10 @@ msgid ""
 "Fix the random number generator seed to make the MCMC results reproducible."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Samples"
 msgstr "Sampel"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Disable saving samples"
 msgstr "Nonaktifkan menyimpan sampel"
@@ -1049,12 +1029,10 @@ msgid ""
 "size but re-running the analysis or changing options requires resampling."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Advanced Options"
 msgstr "Opsi Lanjutan"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Posterior Point Estimate"
 msgstr "Estimasi Titik Posterior"
@@ -1065,17 +1043,14 @@ msgid ""
 "tables."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Mean"
 msgstr "Rerata"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Median"
 msgstr "Median"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Missing Values"
 msgstr "Nilai Hilang"
@@ -1086,17 +1061,14 @@ msgid ""
 "the posterior; listwise deletion removes any row with a missing value."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Bayesian imputation"
 msgstr "Imputasi Bayes"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Exclude cases listwise"
 msgstr "Kecualikan kasus berdaftar"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Variables"
 msgstr "Variabel"
@@ -1107,12 +1079,10 @@ msgid ""
 "variables."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Analysis"
 msgstr "Analisis"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Scale Statistics"
 msgstr "Statistik Skala"
@@ -1123,7 +1093,6 @@ msgid ""
 "scale."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Credible interval"
 msgstr "Interval kredibel"
@@ -1132,7 +1101,6 @@ msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Width of the credible interval for scale reliability statistics."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "McDonald's ω"
 msgstr "ω McDonald"
@@ -1142,7 +1110,6 @@ msgid ""
 "McDonald's omega for unidimensional data based on the single-factor model."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Cronbach's α"
 msgstr "α Cronbach"
@@ -1151,7 +1118,6 @@ msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Cronbach's alpha. For binary items this equals KR-20."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Guttman's λ2"
 msgstr "λ2 Guttman"
@@ -1160,7 +1126,6 @@ msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Guttman's lambda 2, a lower bound for reliability."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Split-half coefficient"
 msgstr "Koefisien terpisah-setengah"
@@ -1171,7 +1136,6 @@ msgid ""
 "Rulon; Standardized: Spearman-Brown."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Average interitem correlation"
 msgstr "Korelasi interitem rata-rata"
@@ -1180,17 +1144,14 @@ msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Mean of all pairwise Pearson correlations between items."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Mean"
 msgstr "Rerata"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Variance"
 msgstr "Varians"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "SD"
 msgstr "SD"
@@ -1201,17 +1162,14 @@ msgid ""
 "across items."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "of participants' sum scores"
 msgstr "dari skor jumlah peserta"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "of participants' mean scores"
 msgstr "dari skor rerata peserta"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Individual Item Statistics"
 msgstr "Statistik Item Individu"
@@ -1226,7 +1184,6 @@ msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Width of the credible interval for item-level statistics."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "McDonald's ω (if item dropped)"
 msgstr "ω McDonald (jika item dihapus)"
@@ -1237,7 +1194,6 @@ msgid ""
 "removed."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Cronbach's α (if item dropped)"
 msgstr "α Cronbach (jika item dihapus)"
@@ -1248,7 +1204,6 @@ msgid ""
 "removed."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Guttman's λ2 (if item dropped)"
 msgstr "λ2 Guttman (jika item dihapus)"
@@ -1259,7 +1214,6 @@ msgid ""
 "removed."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Split-half coefficient (if item dropped)"
 msgstr "Koefisien terpisah-setengah (jika item dihapus)"
@@ -1270,7 +1224,6 @@ msgid ""
 "when this item is removed."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "If item dropped plot"
 msgstr "Diagram jika item dihapus"
@@ -1281,7 +1234,6 @@ msgid ""
 "each item is dropped."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Order items"
 msgstr "Item urutan"
@@ -1292,22 +1244,18 @@ msgid ""
 "mean, KL-divergence, or KS-distance)."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Order items by mean"
 msgstr "Item urutan berdasarkan rerata"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Order items by KL-divergence"
 msgstr "Item urutan berdasarkan divergensi-KL"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Order items by KS-distance"
 msgstr "Item urutan berdasarkan jarak-KL"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Item-rest correlation"
 msgstr "Korelasi sisa-item"
@@ -1316,7 +1264,6 @@ msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Correlation of each item with the sum of the remaining items."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Plot Posteriors"
 msgstr "Posterior Diagram"
@@ -1326,7 +1273,6 @@ msgid ""
 "Display posterior density plots for the selected reliability coefficients."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Fix range to 0-1"
 msgstr "Perbaiki rentang ke 0-1"
@@ -1337,7 +1283,6 @@ msgid ""
 "between coefficients."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Display Priors"
 msgstr "Tampilkan Priori"
@@ -1346,7 +1291,6 @@ msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Add the prior distribution to the posterior density plot."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Probability for:"
 msgstr "Probabilitas untuk:"
@@ -1357,12 +1301,10 @@ msgid ""
 "falls within the specified interval."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "< Reliability <"
 msgstr "< Keandalan <"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Shade posterior region in plot"
 msgstr "Wilayah posterior arsir di diagram"
@@ -1373,12 +1315,10 @@ msgid ""
 "density plot."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Convergence"
 msgstr "Konvergensi"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "MCMC parameters"
 msgstr "Parameter MCMC"
@@ -1389,7 +1329,6 @@ msgid ""
 "distributions."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "No. samples"
 msgstr "Jml. sampel"
@@ -1401,7 +1340,6 @@ msgid ""
 "thinning)."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "No. burnin samples"
 msgstr "Jml. sampel burnin"
@@ -1410,7 +1348,6 @@ msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Initial samples discarded while the chain converges to the posterior."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Thinning"
 msgstr "Penipisan"
@@ -1421,7 +1358,6 @@ msgid ""
 "samples."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "No. chains"
 msgstr "Jml. rantai"
@@ -1432,7 +1368,6 @@ msgid ""
 "diagnostics."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Diagnostics"
 msgstr "Diagnostik"
@@ -1443,7 +1378,6 @@ msgid ""
 "the posterior."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "R-hat"
 msgstr "R-hat"
@@ -1454,7 +1388,6 @@ msgid ""
 "convergence across chains."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Traceplots"
 msgstr "Diagram lacak"
@@ -1465,7 +1398,6 @@ msgid ""
 "convergence."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "ESS"
 msgstr "ESS"
@@ -1476,7 +1408,6 @@ msgid ""
 "accounting for autocorrelation."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Repeatability"
 msgstr "Perulangan"
@@ -1485,17 +1416,14 @@ msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Set a random seed to reproduce identical posterior samples across runs."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Set seed"
 msgstr "Atur benih"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Samples"
 msgstr "Sampel"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Disable saving samples"
 msgstr "Nonaktifkan menyimpan sampel"
@@ -1507,22 +1435,18 @@ msgid ""
 "precomputed and cached for speed."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Reverse-Scaled Items"
 msgstr "Item Terskala-Balik"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Normal-Scaled Items"
 msgstr "Item Terskala-Normal"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Priors"
 msgstr "Priori"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "CTT-Coefficients (α, λ2)"
 msgstr "Koefisien-CTT (α, λ2)"
@@ -1533,7 +1457,6 @@ msgid ""
 "Wishart prior on the covariance matrix."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Inverse Wishart scale"
 msgstr "Skala Wishart terbalik"
@@ -1542,7 +1465,6 @@ msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Precision values on the diagonal of the inverse Wishart scaling matrix."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Inverse Wishart df"
 msgstr "Df Wishart terbalik"
@@ -1559,12 +1481,10 @@ msgid ""
 "a normal prior on factor loadings."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Inverse gamma:"
 msgstr "Gamma terbalik:"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "shape"
 msgstr "bentuk"
@@ -1573,7 +1493,6 @@ msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Shape parameter of the inverse gamma prior on residual variances."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "scale"
 msgstr "skala"
@@ -1582,12 +1501,10 @@ msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Scale parameter of the inverse gamma prior on residual variances."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Normal:"
 msgstr "Normal:"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "mean"
 msgstr "rerata"
@@ -1596,12 +1513,10 @@ msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Mean of the normal prior on factor loadings."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Advanced Options"
 msgstr "Opsi Lanjutan"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Missing Values"
 msgstr "Nilai Hilang"
@@ -1612,17 +1527,14 @@ msgid ""
 "the posterior; listwise deletion removes any row with a missing value."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Bayesian imputation"
 msgstr "Imputasi Bayes"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Exclude cases listwise"
 msgstr "Kecualikan kasus berdaftar"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "McDonald's ω Estimation"
 msgstr "Estimasi ω McDonald"
@@ -1632,7 +1544,6 @@ msgid ""
 "Options for fitting the single-factor model underlying McDonald's omega."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Posterior predictive check"
 msgstr "Pemeriksaan prediktif posterior"
@@ -1644,10 +1555,9 @@ msgid ""
 "distribution."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Fit measures"
-msgstr "Pengukuran sesuai"
+msgstr "Sesuaikan pengukuran"
 
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ""
@@ -1655,22 +1565,18 @@ msgid ""
 "model with probability statements relative to cutoffs."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "p(RMSEA <"
 msgstr "p(RMSEA <"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid ")"
 msgstr ")"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "p(CFI/TLI >"
 msgstr "p(CFI/TLI >"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Standardized factor loadings"
 msgstr "Pemuatan faktor terstandardisasi"
@@ -1681,7 +1587,6 @@ msgid ""
 "or median)."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Coefficients"
 msgstr "Koefisien"
@@ -1692,17 +1597,14 @@ msgid ""
 "matrix. Standardized alpha is contested in the literature."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Unstandardized"
 msgstr "Tidak terstandardisasi"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Standardized"
 msgstr "Terstandardisasi"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Posterior Point Estimate"
 msgstr "Estimasi Titik Posterior"
@@ -1713,12 +1615,10 @@ msgid ""
 "tables."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Median"
 msgstr "Median"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Variables"
 msgstr "Variabel"
@@ -1729,12 +1629,10 @@ msgid ""
 "variables."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Analysis"
 msgstr "Analisis"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Scale Statistics"
 msgstr "Statistik Skala"
@@ -1745,7 +1643,6 @@ msgid ""
 "scale."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Confidence interval"
 msgstr "Interval kepercayaan"
@@ -1754,7 +1651,6 @@ msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Coverage of the confidence intervals for scale reliability statistics."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "McDonald's ω"
 msgstr "ω McDonald"
@@ -1765,7 +1661,6 @@ msgid ""
 "The denominator uses model-implied total variance."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Cronbach's α"
 msgstr "α Cronbach"
@@ -1774,7 +1669,6 @@ msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Cronbach's alpha. For binary items this equals KR-20."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Guttman's λ2"
 msgstr "λ2 Guttman"
@@ -1783,7 +1677,6 @@ msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Guttman's lambda 2, a lower bound for reliability."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Split-half coefficient"
 msgstr "Koefisien terpisah-setengah"
@@ -1794,7 +1687,6 @@ msgid ""
 "Rulon coefficient; Standardized: Spearman-Brown coefficient."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Average interitem correlation"
 msgstr "Korelasi interitem rata-rata"
@@ -1803,17 +1695,14 @@ msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Mean of all pairwise Pearson correlations between items."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Mean"
 msgstr "Rerata"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Variance"
 msgstr "Varians"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "SD"
 msgstr "SD"
@@ -1824,17 +1713,14 @@ msgid ""
 "across items."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "of participants' sum scores"
 msgstr "dari skor jumlah peserta"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "of participants' mean scores"
 msgstr "dari skor rerata peserta"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Individual Item Statistics"
 msgstr "Statistik Item Individu"
@@ -1849,7 +1735,6 @@ msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Coverage of the confidence intervals for item-level statistics."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "McDonald's ω  (if item dropped)"
 msgstr "ω McDonald  (jika item dihapus)"
@@ -1858,7 +1743,6 @@ msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Omega of the remaining items when this item is removed from the scale."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Cronbach's α (if item dropped)"
 msgstr "α Cronbach (jika item dihapus)"
@@ -1867,7 +1751,6 @@ msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Alpha of the remaining items when this item is removed from the scale."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Guttman's λ2 (if item dropped)"
 msgstr "λ2 Guttman (jika item dihapus)"
@@ -1877,7 +1760,6 @@ msgid ""
 "Lambda 2 of the remaining items when this item is removed from the scale."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Split-half coefficient (if item dropped)"
 msgstr "Koefisien terpisah-setengah (jika item dihapus)"
@@ -1888,7 +1770,6 @@ msgid ""
 "the scale."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Item-rest correlation"
 msgstr "Korelasi sisa-item"
@@ -1897,22 +1778,18 @@ msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Correlation of each item with the sum of the remaining items."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Reverse-Scaled Items"
 msgstr "Item Terskala-Balik"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Normal-Scaled Items"
 msgstr "Item Terskala-Normal"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Advanced Options"
 msgstr "Opsi Lanjutan"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Confidence intervals"
 msgstr "Interval kepercayaan"
@@ -1923,7 +1800,6 @@ msgid ""
 "coefficients, variance, and SD."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Reliability coefficients"
 msgstr "Koefisien keandalan"
@@ -1934,17 +1810,14 @@ msgid ""
 "Bootstrapped intervals use percentile resampling."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Analytic interval"
 msgstr "Interval analitis"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Bootstrapped interval"
 msgstr "Interval terbootstrap"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "No. of bootstrap samples"
 msgstr "Jml. sampel bootstrap"
@@ -1961,17 +1834,14 @@ msgid ""
 "from a multivariate normal with the estimated parameters."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Non-parametric bootstrap"
 msgstr "Bootstrap non-parametris"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Parametric bootstrap"
 msgstr "Bootstrap parametris"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Variance and SD"
 msgstr "Varians dan SD"
@@ -1982,17 +1852,14 @@ msgid ""
 "two-step bootstrap procedure (van der Ark, 2024)."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Chisq-based"
 msgstr "Berbasis-Chisq"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Non-parametric"
 msgstr "Non-parametris"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "McDonald's ω Estimation"
 msgstr "Estimasi ω McDonald"
@@ -2003,12 +1870,10 @@ msgid ""
 "principal factor analysis."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "CFA"
 msgstr "CFA"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Single factor model fit"
 msgstr "Penyesuaian model satu faktor"
@@ -2019,12 +1884,10 @@ msgid ""
 "model underlying omega."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "PFA"
 msgstr "PFA"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Standardized factor loadings"
 msgstr "Pemuatan faktor terstandardisasi"
@@ -2033,7 +1896,6 @@ msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Table of standardized loadings from the single-factor model."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Coefficients"
 msgstr "Koefisien"
@@ -2044,17 +1906,14 @@ msgid ""
 "the correlation matrix."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Unstandardized"
 msgstr "Tidak terstandardisasi"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Standardized"
 msgstr "Terstandardisasi"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Missing Values"
 msgstr "Nilai Hilang"
@@ -2065,17 +1924,14 @@ msgid ""
 "deletes any row with a missing value."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Pairwise"
 msgstr "Berpasangan"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Delete listwise"
 msgstr "Hapus daftar"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Repeatability"
 msgstr "Perulangan"
@@ -2084,17 +1940,14 @@ msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Set a random seed to reproduce the same bootstrap results across runs."
 msgstr ""
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Set seed"
 msgstr "Atur benih"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Samples"
 msgstr "Sampel"
 
-#, fuzzy
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Do not save samples"
 msgstr "Jangan simpan sampel"
