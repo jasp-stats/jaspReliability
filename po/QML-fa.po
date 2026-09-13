@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-09-13 08:34+0000\n"
-"Last-Translator: sdel4030 <sdel4030@gmail.com>\n"
+"PO-Revision-Date: 2026-09-14 02:28+0000\n"
+"Last-Translator: Sohrab Delshad <sdel4030@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-qml/fa/>\n"
 "Language: fa\n"
@@ -18,7 +18,7 @@ msgstr "پایایی"
 
 msgctxt "Description|"
 msgid "Classical"
-msgstr "Classical"
+msgstr "کلاسیک"
 
 msgctxt "Description|"
 msgid "Intraclass Correlation"
