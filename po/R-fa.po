@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.96.4\n"
 "POT-Creation-Date: 2026-08-08 03:52\n"
-"PO-Revision-Date: 2026-09-14 02:25+0000\n"
+"PO-Revision-Date: 2026-09-15 03:56+0000\n"
 "Last-Translator: Sohrab Delshad <sdel4030@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/fa/>\n"
@@ -31,7 +31,7 @@ msgid "Please provide another variable"
 msgstr ""
 
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "رسم نمودار امکان‌پذیر نیست: %s"
 
 msgid "Bland-Altman Tables"
 msgstr ""
@@ -108,7 +108,7 @@ msgid "Estimate"
 msgstr "برآورد"
 
 msgid "SE"
-msgstr "خطای استاندارد (SE)"
+msgstr "خطای معیار"
 
 msgid "Lower"
 msgstr "پایین"
@@ -220,7 +220,7 @@ msgid "%1$s Based on pairwise complete cases."
 msgstr ""
 
 msgid "n"
-msgstr ""
+msgstr "n"
 
 msgid "Confidence intervals are asymptotic."
 msgstr ""
@@ -420,7 +420,7 @@ msgid ""
 msgstr ""
 
 msgid "Posterior"
-msgstr ""
+msgstr "پسین"
 
 msgid "Probability"
 msgstr "احتمال"
@@ -429,7 +429,7 @@ msgid "Fit Measures of the Factor Model"
 msgstr ""
 
 msgid "Point estimate"
-msgstr ""
+msgstr "برآورد نقطه‌ای"
 
 msgid "%s lower bound"
 msgstr ""
@@ -464,7 +464,7 @@ msgid "Split-half coefficient"
 msgstr ""
 
 msgid "Variance"
-msgstr ""
+msgstr "واریانس"
 
 msgid "%1$s Of the observations, %2$1.f complete cases were used."
 msgstr ""
@@ -522,7 +522,7 @@ msgid ""
 msgstr ""
 
 msgid "Prior"
-msgstr ""
+msgstr "پیشین"
 
 msgid "Fit Measures for the Single-Factor Model"
 msgstr ""
@@ -722,7 +722,7 @@ msgid "Unconditional SEM"
 msgstr ""
 
 msgid "Counts"
-msgstr ""
+msgstr "شمارش‌ها"
 
 msgid "%1$s The unconditional SEM value equals %2$1.3f."
 msgstr ""
