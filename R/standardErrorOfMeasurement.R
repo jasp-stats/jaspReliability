@@ -246,6 +246,10 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
           footnote <- gettextf("%1$s Estimating the %2$s method failed. If possible, you might try changing the method's parameters.", footnote, selected[[i]][["name"]])
         }
       }
+
+      if (.semAnyZeroSem(jaspResults, options)) {
+        footnote <- gettextf("%1$s A conditional SEM of zero means that all respondents in that score group gave identical item responses, which typically happens at the lowest and highest possible sum score; it does not indicate perfect measurement precision.", footnote)
+      }
     }
   }
 
@@ -286,6 +290,10 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
       if (all(is.na(ciData[, paste0("lower", method[i])])) && all(is.na(ciData[, paste0("upper", method[i])]))) {
         ciTable$addFootnote(gettextf("Estimating the %s method failed. If possible, you might try changing the method's parameters.", selected[[i]][["name"]]))
       }
+    }
+
+    if (.semAnyZeroSem(jaspResults, options)) {
+      ciTable$addFootnote(gettext("No confidence interval is reported where the conditional SEM equals zero, that is, where all respondents in that score group gave identical item responses."))
     }
   }
 
@@ -590,9 +598,15 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
   S <- prep$S
 
   out <- .semPrepareOutMatrix(ncol(X), nc, scoresObj)
+  # Emons (2023), Eq. 12: the general form of the ANOVA method, which also holds when
+  # adjacent score groups were merged to reach the minimum group size. The second term
+  # removes the true-score variance that a merged group carries; it vanishes for a
+  # single score group because the sum score is constant there.
   fun <- function(X, ind, cc) {
     nit <- ncol(X)
-    return(sqrt(nit / (nit - 1) * sum(diag(cov(X[ind, ])))))
+    Z <- X[ind, , drop = FALSE]
+    # equals nit * MS(items x persons) and is therefore never negative
+    return(sqrt(max(0, nit / (nit - 1) * sum(diag(cov(Z))) - var(rowSums(Z)) / (nit - 1))))
   }
   out <- .semComputeWithCaseMin(out, S, caseMin, X, fun)
 
@@ -864,11 +878,35 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
   zValueTable <- qnorm(1 - (1 - ciLevelTable) / 2)
   zValuePlots <- qnorm(1 - (1 - ciLevelPlots) / 2)
   for (i in 1:nrow(out)) {
+    # a conditional SEM of exactly zero means that everyone in the score group gave the
+    # same item responses, which happens at the lowest and highest possible sum score;
+    # the zero-width interval that follows would suggest perfect precision, so we leave
+    # the bounds missing instead (see Emons, 2023)
+    if (is.na(out[i, 2]) || out[i, 2] == 0) next
     cis[i, ] <- c(scores[i] - zValueTable * out[i, 2], scores[i] + zValueTable * out[i, 2],
                    scores[i] - zValuePlots * out[i, 2], scores[i] + zValuePlots * out[i, 2])
   }
 
   return(cis)
+}
+
+#' this function checks whether any of the selected methods yields a conditional SEM of
+#' exactly zero, which is the case when all respondents in a score group gave identical
+#' item responses; the tables then carry an explanatory footnote
+.semAnyZeroSem <- function(jaspResults, options) {
+
+  selected <- options[["selected"]]
+  if (length(selected) == 0) return(FALSE)
+
+  method <- names(selected)
+  for (i in seq_along(selected)) {
+    out <- jaspResults[["semMainContainer"]][[paste0(method[i], "State")]]$object
+    if (is.null(out)) next
+    if (!is.null(names(out))) out <- out$binned # then we have IRT
+    if (any(out[, 2] == 0, na.rm = TRUE)) return(TRUE)
+  }
+
+  return(FALSE)
 }
 
 #' this might be the most important function :-
