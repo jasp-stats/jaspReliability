@@ -834,6 +834,7 @@ reliabilityUnidimensionalFrequentistInternal <- function(jaspResults, dataset, o
           out[["error"]][["scaleOmega"]] <- gettext("Omega calculation with CFA failed.
                                                     Try changing to PFA in 'Advanced Options'. ")
           out[["est"]][["scaleOmega"]] <- NA
+          out[["se"]][["scaleOmega"]] <- NA
           out[["conf"]][["scaleOmega"]] <- c(NA, NA)
         } else {
           out[["fit"]][["scaleOmega"]] <- omegaO[["indices"]]
@@ -870,6 +871,8 @@ reliabilityUnidimensionalFrequentistInternal <- function(jaspResults, dataset, o
         if (is.na(omOut[["om"]])) {
           out[["error"]][["scaleOmega"]] <- gettext("Omega calculation with PFA failed. ")
           out[["est"]][["scaleOmega"]] <- NA
+          out[["se"]][["scaleOmega"]] <- NA
+          out[["conf"]][["scaleOmega"]] <- c(NA, NA)
         } else {
           if (options[["intervalMethod"]] == "analytic") {
             out[["conf"]][["scaleOmega"]] <- c(NA, NA)
