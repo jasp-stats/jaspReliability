@@ -107,16 +107,29 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
 .multiDimFreqOmegaTLabel <- function() gettext("McDonald's ωₜ")
 .multiDimFreqOmegaHLabel <- function() gettext("McDonald's ωₕ")
 
+# shown alongside omega_h when the general factor is not identified. The likelihood is flat along
+# the direction that separates the two structural loadings, so the estimate is one arbitrary point
+# on that ridge and no standard error exists for it.
+.multiDimFreqOmegaHNotIdentifiedNote <- function() {
+  return(gettext("McDonald's ωₕ is not identified with two group factors: the loadings of the general factor are determined only up to their product, so the estimate is an arbitrary point of a flat likelihood and should not be interpreted. Assign the items to at least three group factors, or select the bi-factor model. McDonald's ωₜ is unaffected."))
+}
+
 # footnotes derived from the state of the fitted model; these are the conditions under which
 # lavaan still returns numbers that should not be read as ordinary estimates
-.multiDimFreqDiagnosticsFootnotes <- function(model) {
+.multiDimFreqDiagnosticsFootnotes <- function(model, options) {
   diagnostics <- model[["fit"]][["diagnostics"]]
   if (is.null(diagnostics))
     return(character(0))
 
   notes <- character(0)
-  if (!diagnostics[["se.available"]] && model[["intervalMethod"]] == "analytic")
-    notes <- c(notes, gettext("Standard errors could not be computed, so no confidence intervals are reported. The factor model is probably not identified."))
+  if (!diagnostics[["se.available"]] && model[["intervalMethod"]] == "analytic") {
+    # when the general factor is known to be unidentified, that footnote already names the cause,
+    # so this one only reports the consequence instead of guessing at it a second time
+    notes <- c(notes, if (.multiDimGeneralFactorUnidentified(options))
+      gettext("Standard errors could not be computed for this model, so no confidence intervals are reported.")
+    else
+      gettext("Standard errors could not be computed, so no confidence intervals are reported. The factor model is probably not identified."))
+  }
   if (!diagnostics[["admissible"]])
     notes <- c(notes, gettext("The factor model solution is inadmissible, for example because of a negative variance estimate. The coefficients may fall outside the interval [0, 1]."))
 
@@ -309,12 +322,14 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
   rows[[length(rows) + 1L]] <- addCoefRow(.multiDimFreqOmegaTLabel(), "omegaT",
                                           fit[["omega_t"]][["est"]], fit[["omega_t"]][["conf"]])
 
-  footnotes <- .multiDimFreqDiagnosticsFootnotes(model)
-  if (correlated) {
-    footnotes <- c(footnotes, gettext("McDonald's ωₕ is shown only for the second-order and bi-factor models, not the correlated-factors model."))
-  } else {
+  footnotes <- .multiDimFreqDiagnosticsFootnotes(model, options)
+  if (.multiDimHasOmegaH(options)) {
     rows[[length(rows) + 1L]] <- addCoefRow(.multiDimFreqOmegaHLabel(), "omegaH",
                                             fit[["omega_h"]][["est"]], fit[["omega_h"]][["conf"]])
+    if (.multiDimGeneralFactorUnidentified(options))
+      footnotes <- c(footnotes, .multiDimFreqOmegaHNotIdentifiedNote())
+  } else {
+    footnotes <- c(footnotes, .multiDimOmegaHFootnote(options))
   }
 
   scoreData <- .multiDimFreqAnalysisData(dataset, options)
@@ -345,7 +360,7 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
 .multiDimFreqItemTable <- function(jaspResults, dataset, model, options, ready, allItems) {
 
   showOmegaT <- options[["itemDeletedOmegaT"]]
-  showOmegaH <- options[["itemDeletedOmegaH"]] && options[["modelType"]] != "correlated"
+  showOmegaH <- options[["itemDeletedOmegaH"]] && .multiDimHasOmegaH(options)
   showRest   <- options[["itemRestCorrelation"]]
   if (!(showOmegaT || showOmegaH || showRest) ||
       !is.null(.getStateContainerMDF(jaspResults)[["itemTable"]]$object))
@@ -448,7 +463,7 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
     stringsAsFactors = FALSE
   ))
 
-  for (note in .multiDimFreqDiagnosticsFootnotes(model))
+  for (note in .multiDimFreqDiagnosticsFootnotes(model, options))
     fitTable$addFootnote(note)
 
   return()
@@ -520,7 +535,7 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
       stringsAsFactors = FALSE
     ))
 
-  for (note in .multiDimFreqDiagnosticsFootnotes(model))
+  for (note in .multiDimFreqDiagnosticsFootnotes(model, options))
     itemTable$addFootnote(note)
 
   return()

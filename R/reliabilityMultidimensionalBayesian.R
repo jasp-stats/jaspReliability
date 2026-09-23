@@ -77,6 +77,38 @@ reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, op
   return(all(sizes >= 2L))
 }
 
+# The general factor of the second-order model is identified only through the correlations among
+# the group factors: n group factors give n structural loadings but only n(n-1)/2 correlations, so
+# with two group factors the loadings are determined up to their product alone. McDonald's omega_h
+# is a function of the loadings individually, so it carries no information and is withheld;
+# omega_t does not depend on the split and is unaffected.
+# The two frameworks fail differently, which is why this is checked on the model rather than on the
+# fit: the frequentist fit cannot invert the information matrix and reports no standard errors,
+# whereas the Gibbs sampler returns an ordinary-looking posterior that follows the prior rather
+# than the data. Neither is recognisable as a non-result from the output alone.
+.multiDimGeneralFactorUnidentified <- function(options) {
+  if (options[["modelType"]] != "secondOrder")
+    return(FALSE)
+  nFactors <- sum(vapply(options[["factors"]], function(f) length(unlist(f[["indicators"]])) > 0L, logical(1)))
+  return(nFactors < 3L)
+}
+
+# whether McDonald's omega_h exists at all for the model the user selected
+.multiDimHasOmegaH <- function(options) {
+  return(options[["modelType"]] != "correlated")
+}
+
+# the reason omega_h is absent, for the footnote on the scale table
+.multiDimOmegaHFootnote <- function(options) {
+  return(gettext("McDonald's ωₕ is shown only for the second-order and bi-factor models, not the correlated-factors model."))
+}
+
+# shown alongside omega_h when the general factor is not identified. A proper prior still yields a
+# proper posterior, so the coefficient and its credible interval look like any other result.
+.multiDimOmegaHNotIdentifiedNote <- function() {
+  return(gettext("McDonald's ωₕ is not identified with two group factors: the loadings of the general factor are determined only up to their product, so the posterior follows the prior rather than the data and the coefficient should not be interpreted. Assign the items to at least three group factors, or select the bi-factor model. McDonald's ωₜ is unaffected."))
+}
+
 # build the lavaan-style group-factor model syntax used by Bayesrel::bomegas
 .multiDimBuildModel <- function(options) {
   facs  <- options[["factors"]]
@@ -251,13 +283,15 @@ reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, op
     row
   }
 
-  # always display all coefficients; McDonald's omega_h exists only for the non-correlated models
+  # omega_t is always available; omega_h needs a general factor that the model actually identifies
   rows[[length(rows) + 1L]] <- addCoefRow(.multiDimOmegaTLabel(), fit[["omega_t"]][["chains"]])
 
-  if (correlated) {
-    footnote <- gettext("McDonald's ωₕ is shown only for the second-order and bi-factor models, not the correlated-factors model.")
-  } else {
+  if (.multiDimHasOmegaH(options)) {
     rows[[length(rows) + 1L]] <- addCoefRow(.multiDimOmegaHLabel(), fit[["omega_h"]][["chains"]])
+    if (.multiDimGeneralFactorUnidentified(options))
+      footnote <- .multiDimOmegaHNotIdentifiedNote()
+  } else {
+    footnote <- .multiDimOmegaHFootnote(options)
   }
 
   pairwise <- options[["naAction"]] != "listwise"
@@ -283,7 +317,7 @@ reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, op
 .multiDimItemTable <- function(jaspResults, dataset, model, options, ready, allItems) {
 
   showOmegaT <- options[["itemDeletedOmegaT"]]
-  showOmegaH <- options[["itemDeletedOmegaH"]] && options[["modelType"]] != "correlated"
+  showOmegaH <- options[["itemDeletedOmegaH"]] && .multiDimHasOmegaH(options)
   showRest   <- options[["itemRestCorrelation"]]
   if (!(showOmegaT || showOmegaH || showRest) ||
       !is.null(.getStateContainerMD(jaspResults)[["itemTable"]]$object))
@@ -475,7 +509,7 @@ reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, op
     mean(samp > low) - mean(samp > high)
   }
   rows[[length(rows) + 1L]] <- list(coefficient = .multiDimOmegaTLabel(), posterior = probInRange(fit[["omega_t"]][["chains"]]))
-  if (options[["modelType"]] != "correlated")
+  if (.multiDimHasOmegaH(options))
     rows[[length(rows) + 1L]] <- list(coefficient = .multiDimOmegaHLabel(), posterior = probInRange(fit[["omega_h"]][["chains"]]))
 
   if (length(rows) > 0L)
@@ -571,7 +605,7 @@ reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, op
 
   coefs <- list()
   coefs[["omegaT"]] <- list(chains = fit[["omega_t"]][["chains"]], label = .multiDimOmegaTLabel())
-  if (options[["modelType"]] != "correlated")
+  if (.multiDimHasOmegaH(options))
     coefs[["omegaH"]] <- list(chains = fit[["omega_h"]][["chains"]], label = .multiDimOmegaHLabel())
 
   # prior samples of the omegas, drawn with the same prior parameterization as the Gibbs sampler
@@ -625,7 +659,7 @@ reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, op
   fit   <- model[["fit"]]
   coefs <- list()
   coefs[["omegaT"]] <- list(chains = fit[["omega_t"]][["chains"]], label = .multiDimOmegaTLabel())
-  if (options[["modelType"]] != "correlated")
+  if (.multiDimHasOmegaH(options))
     coefs[["omegaH"]] <- list(chains = fit[["omega_h"]][["chains"]], label = .multiDimOmegaHLabel())
 
   for (nm in names(coefs)) {

@@ -85,7 +85,7 @@ resultsTwo <- runAnalysis("reliabilityMultidimensionalFrequentist", testthat::te
 
 test_that("Unidentified second-order model reports no confidence interval", {
   scaleTable <- resultsTwo[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]]
-  omegaRows  <- Filter(function(x) grepl("ω", x[["coefficient"]]), scaleTable[["data"]])
+  omegaRows <- Filter(function(x) grepl("ω", x[["coefficient"]]), scaleTable[["data"]])
 
   expect_equal(length(omegaRows), 2)
   for (row in omegaRows) {
@@ -93,7 +93,9 @@ test_that("Unidentified second-order model reports no confidence interval", {
     expect_true(isBlank(row[["lower"]]))                            # interval is withheld
     expect_true(isBlank(row[["upper"]]))
   }
-  expect_true(length(scaleTable[["footnotes"]]) >= 1)
+
+  notes <- paste(vapply(scaleTable[["footnotes"]], function(x) x[["text"]], character(1)), collapse = " ")
+  expect_true(grepl("no confidence intervals", notes))
 })
 
 
@@ -162,4 +164,29 @@ test_that("Bootstrapped interval brackets the point estimate", {
   expect_equal(omegaRow[["estimate"]], 0.864287, tolerance = 1e-4)
   expect_true(omegaRow[["lower"]] < omegaRow[["estimate"]])
   expect_true(omegaRow[["upper"]] > omegaRow[["estimate"]])
+})
+
+
+# The second-order model with two group factors identifies the loadings of the general factor only
+# up to their product, so omega_h is an arbitrary point of a flat likelihood. It is still reported,
+# with a footnote saying so.
+test_that("Second-order model with two group factors warns that omega_h is not identified", {
+  scaleTable   <- resultsTwo[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]]
+  coefficients <- vapply(scaleTable[["data"]], function(x) x[["coefficient"]], character(1))
+
+  expect_true(any(grepl("ωₕ", coefficients)))
+  expect_true(any(grepl("ωₜ", coefficients)))
+
+  notes <- paste(vapply(scaleTable[["footnotes"]], function(x) x[["text"]], character(1)), collapse = " ")
+  expect_true(grepl("not identified with two group factors", notes))
+})
+
+test_that("Three group factors drop the identification warning", {
+  optionsThree <- optionsTwo
+  optionsThree$factors <- uppsFactors[1:3]
+  resultsThree <- runAnalysis("reliabilityMultidimensionalFrequentist", testthat::test_path("upps.csv"),
+                              optionsThree, makeTests = FALSE)
+  scaleTable <- resultsThree[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]]
+  notes      <- paste(vapply(scaleTable[["footnotes"]], function(x) x[["text"]], character(1)), collapse = " ")
+  expect_false(grepl("not identified with two group factors", notes))
 })
