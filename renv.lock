@@ -19,13 +19,13 @@
   "Packages": {
     "Bayesrel": {
       "Package": "Bayesrel",
-      "Version": "0.7.9",
+      "Version": "0.8.0",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Bayesian Reliability Estimation",
-      "Date": "2026-07-28",
+      "Date": "2026-09-23",
       "Authors@R": "c(person(\"Julius M.\", \"Pfadt\", email = \"julius.pfadt@gmail.com\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-0758-5502\")), person(\"Don\", \"van den Bergh\", role = c(\"aut\"), comment = c(ORCID = \"0000-0002-9838-7308\")),  person(\"Joris\", \"Goosen\",  role = c(\"aut\")) )",
-      "Description": "Functionality for reliability estimates. For 'unidimensional' tests: Coefficient alpha, 'Guttman's' lambda-2/-4/-6, the Greatest lower bound and coefficient omega_u ('unidimensional') in a Bayesian and a frequentist version.  For multidimensional tests: omega_t (total) and omega_h (hierarchical).  The results include confidence and credible intervals, the  probability of a coefficient being larger than a cutoff,  and a check for the factor models, necessary for the omega coefficients.  The method for the Bayesian 'unidimensional' estimates, except for omega_u,  is sampling from the posterior inverse 'Wishart' for the  covariance matrix based measures (see 'Murphy', 2007,  <https://groups.seas.harvard.edu/courses/cs281/papers/murphy-2007.pdf>.  The Bayesian omegas (u, t, and h) are obtained by  'Gibbs' sampling from the conditional posterior distributions of  (1) the single factor model, (2) the second-order factor model, (3) the bi-factor model,  (4) the correlated factor model ('Lee', 2007, <doi:10.1002/9780470024737>).",
+      "Description": "Functionality for reliability estimates. For 'unidimensional' tests: Coefficient alpha, 'Guttman's' lambda-2/-4/-6, the Greatest lower bound and coefficient omega_u ('unidimensional') in a Bayesian and a frequentist version.  For multidimensional tests: omega_t (total) and omega_h (hierarchical).  The results include confidence and credible intervals, the  probability of a coefficient being larger than a cutoff,  and a check for the factor models, necessary for the omega coefficients.  The method for the Bayesian 'unidimensional' estimates, except for omega_u,  is sampling from the posterior inverse 'Wishart' for the  covariance matrix based measures (see 'Murphy', 2007,  <https://groups.seas.harvard.edu/courses/cs281/papers/murphy-2007.pdf>). The Bayesian omegas (u, t, and h) are obtained by  'Gibbs' sampling from the conditional posterior distributions of  (1) the single factor model, (2) the second-order factor model, (3) the bi-factor model,  (4) the correlated factor model ('Lee', 2007, <doi:10.1002/9780470024737>).",
       "URL": "https://github.com/juliuspfadt/Bayesrel",
       "BugReports": "https://github.com/juliuspfadt/Bayesrel/issues",
       "License": "GPL-3",
@@ -48,18 +48,16 @@
         "RcppArmadillo"
       ],
       "RdMacros": "Rdpack",
-      "RoxygenNote": "7.3.2",
       "Depends": [
         "R (>= 2.10)"
       ],
       "Suggests": [
-        "knitr",
-        "rmarkdown",
         "tinytest"
       ],
+      "RoxygenNote": "7.3.3",
+      "NeedsCompilation": "yes",
       "Author": "Julius M. Pfadt [aut, cre] (ORCID: <https://orcid.org/0000-0002-0758-5502>), Don van den Bergh [aut] (ORCID: <https://orcid.org/0000-0002-9838-7308>), Joris Goosen [aut]",
       "Maintainer": "Julius M. Pfadt <julius.pfadt@gmail.com>",
-      "NeedsCompilation": "yes",
       "Repository": "CRAN"
     },
     "DBI": {
