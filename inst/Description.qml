@@ -24,6 +24,14 @@ Description
 
 	Analysis
 	{
+		title: 	qsTr("Multidimensional Reliability")
+		menu: 	qsTr("Multidimensional Reliability")
+		qml: 	"ReliabilityMultidimensionalFrequentist.qml"
+		func: 	"reliabilityMultidimensionalFrequentist"
+	}
+
+	Analysis
+	{
 		title:	qsTr("Intraclass Correlation")
 		qml: 	"IntraclassCorrelation.qml"
 		func: 	"intraclassCorrelation"
