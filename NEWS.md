@@ -26,6 +26,7 @@
 * Renamed unidimensional reliability analyses: `unidimensionalReliabilityFrequentist` -> `reliabilityUnidimensionalFrequentist`, `unidimensionalReliabilityBayesian` -> `reliabilityUnidimensionalBayesian` (upgrade mappings added).
 
 ## Fixed
+* Multidimensional Reliability (Bayesian and frequentist): the second-order model with two group factors identifies the loadings of the general factor only up to their product, so McDonald's omega_h carries no information about the data. A footnote now says so. Previously the Bayesian analysis reported a credible interval that looked like any other result while following the prior rather than the data, and the frequentist analysis reported a zero-width confidence interval. Omega_t is unaffected.
 * Multidimensional Reliability: a factor model that did not converge is now reported as an error instead of plausible-looking coefficients, a solution without standard errors gets no confidence interval instead of a zero-width one, and an inadmissible solution is flagged in a footnote. This relies on the diagnostics added in Bayesrel 0.8.0.
 * Fixed bi-factor model crash caused by `param.out = TRUE` in `Bayesrel::bomegas`.
 * Fixed missing `dependOn` declarations for point-estimate option on scale table and `latentCorDf` in base container.
