@@ -178,7 +178,7 @@ test_that("Second-order model with two group factors warns that omega_h is not i
   expect_true(any(grepl("ωₜ", coefficients)))
 
   notes <- paste(vapply(scaleTable[["footnotes"]], function(x) x[["text"]], character(1)), collapse = " ")
-  expect_true(grepl("not identified with two group factors", notes))
+  expect_true(grepl("up to their product", notes))
 })
 
 test_that("Three group factors drop the identification warning", {
@@ -188,5 +188,5 @@ test_that("Three group factors drop the identification warning", {
                               optionsThree, makeTests = FALSE)
   scaleTable <- resultsThree[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]]
   notes      <- paste(vapply(scaleTable[["footnotes"]], function(x) x[["text"]], character(1)), collapse = " ")
-  expect_false(grepl("not identified with two group factors", notes))
+  expect_false(grepl("up to their product", notes))
 })

@@ -106,7 +106,7 @@ reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, op
 # shown alongside omega_h when the general factor is not identified. A proper prior still yields a
 # proper posterior, so the coefficient and its credible interval look like any other result.
 .multiDimOmegaHNotIdentifiedNote <- function() {
-  return(gettext("McDonald's ωₕ is not identified with two group factors: the loadings of the general factor are determined only up to their product, so the posterior follows the prior rather than the data and the coefficient should not be interpreted. Assign the items to at least three group factors, or select the bi-factor model. McDonald's ωₜ is unaffected."))
+  return(gettext("McDonald's ωₕ is not identified with only two group factors: the loadings of the general factor are determined only up to their product, so the value shown reflects the prior rather than the data. Assign the items to at least three group factors, or choose the bi-factor model. McDonald's ωₜ is unaffected."))
 }
 
 # build the lavaan-style group-factor model syntax used by Bayesrel::bomegas
