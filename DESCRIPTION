@@ -25,7 +25,6 @@ Imports:
   psych,
   mirt
 Remotes:
-  juliuspfadt/Bayesrel,
   jasp-stats/jaspBase,
   jasp-stats/jaspGraphs
 Suggests:
