@@ -111,7 +111,7 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
 # the direction that separates the two structural loadings, so the estimate is one arbitrary point
 # on that ridge and no standard error exists for it.
 .multiDimFreqOmegaHNotIdentifiedNote <- function() {
-  return(gettext("McDonald's ωₕ is not identified with two group factors: the loadings of the general factor are determined only up to their product, so the estimate is an arbitrary point of a flat likelihood and should not be interpreted. Assign the items to at least three group factors, or select the bi-factor model. McDonald's ωₜ is unaffected."))
+  return(gettext("McDonald's ωₕ is not identified with only two group factors: the loadings of the general factor are determined only up to their product, so the value shown is arbitrary and has no confidence interval. Assign the items to at least three group factors, or choose the bi-factor model. McDonald's ωₜ is unaffected."))
 }
 
 # footnotes derived from the state of the fitted model; these are the conditions under which
