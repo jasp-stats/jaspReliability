@@ -423,3 +423,50 @@ test_that("Cross-loaded item is rejected by the bi-factor model with a clear err
   scaleTable <- res[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]]
   expect_match(scaleTable[["error"]][["errorMessage"]], "bi-factor model does not support")
 })
+
+
+# The second-order model with two group factors identifies the general factor's loadings only up
+# to their product. A proper prior still yields a proper posterior for omega_h, so the coefficient
+# looks like an ordinary result while being driven by the prior rather than the data; it is
+# therefore withheld from every output element, as in the frequentist analysis.
+optionsUnid <- analysisOptions("reliabilityMultidimensionalBayesian")
+optionsUnid$factors <- list(
+  list(indicators = paste0("Question_", sprintf("%02d", 1:5)),  name = "Factor1", title = "Factor 1"),
+  list(indicators = paste0("Question_", sprintf("%02d", 6:10)), name = "Factor2", title = "Factor 2"))
+optionsUnid$modelType        <- "secondOrder"
+optionsUnid$samples          <- 200
+optionsUnid$burnin           <- 50
+optionsUnid$chains           <- 2
+optionsUnid$setSeed          <- TRUE
+optionsUnid$seed             <- 1
+optionsUnid$probabilityTable <- TRUE
+optionsUnid$posteriorPlot    <- TRUE
+optionsUnid$tracePlot        <- TRUE
+set.seed(1)
+resultsUnid <- runAnalysis("reliabilityMultidimensionalBayesian", "Reliability.csv", optionsUnid,
+                           makeTests = FALSE)
+
+test_that("Second-order model with two group factors warns that omega_h is not identified", {
+  collection   <- resultsUnid[["results"]][["stateContainer"]][["collection"]]
+  scaleTable   <- collection[["stateContainer_scaleTable"]]
+  coefficients <- vapply(scaleTable[["data"]], function(x) x[["coefficient"]], character(1))
+
+  # the coefficient is still reported; the footnote is what says it follows the prior, not the data
+  expect_true(any(grepl("ωₕ", coefficients)))
+  expect_true(any(grepl("ωₜ", coefficients)))
+
+  notes <- paste(vapply(scaleTable[["footnotes"]], function(x) x[["text"]], character(1)), collapse = " ")
+  expect_true(grepl("not identified with two group factors", notes))
+})
+
+test_that("Three group factors drop the identification warning", {
+  optionsIdent <- optionsUnid
+  optionsIdent$factors <- c(optionsUnid$factors, list(
+    list(indicators = paste0("Question_", sprintf("%02d", 11:15)), name = "Factor3", title = "Factor 3")))
+  set.seed(1)
+  resultsIdent <- runAnalysis("reliabilityMultidimensionalBayesian", "Reliability.csv", optionsIdent,
+                              makeTests = FALSE)
+  scaleTable <- resultsIdent[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]]
+  notes      <- paste(vapply(scaleTable[["footnotes"]], function(x) x[["text"]], character(1)), collapse = " ")
+  expect_false(grepl("not identified with two group factors", notes))
+})
