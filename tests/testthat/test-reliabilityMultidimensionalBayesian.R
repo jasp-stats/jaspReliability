@@ -1,4 +1,7 @@
 
+# JASP serializes an NA numeric cell as an empty string, so blank cells are tested for that
+isBlank <- function(value) is.null(value) || identical(value, "") || (is.numeric(value) && is.na(value))
+
 # 3-factor second-order model on the Reliability example data, with one crossloading
 # item (Question_08 loads on both Factor 1 and Factor 2). Three group factors rather than two,
 # because the second-order model identifies the general factor only from the correlations among
@@ -156,8 +159,9 @@ test_that("Omega-if-item-deleted reports credible intervals bracketing the point
 # traceplots, and the posterior predictive check. The scale table anchors the chains numerically,
 # so a plot snapshot failure with a passing table points at rendering, not sampling.
 # This block keeps two group factors: it tests rendering rather than the coefficients, and the
-# snapshots stay comparable across changes to the analysis. The omega_h drawn here is the
-# unidentified one, which is fine for a rendering check but must not be read as an estimate.
+# snapshots stay comparable across changes to the analysis. With two group factors omega_h is
+# unidentified and therefore not drawn, so only the omega_t plots are tested here; the omega_h
+# plots are tested further down on three group factors.
 optionsPlots <- analysisOptions("reliabilityMultidimensionalBayesian")
 optionsPlots$factors <- list(
   list(indicators = paste0("Question_", sprintf("%02d", 1:4)), name = "Factor1", title = "Factor 1"),
@@ -182,10 +186,9 @@ test_that("Bayesian Scale Reliability Statistics table anchors the plot run", {
   table <- resultsPlots[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
     list("McDonald's <unicode><unicode>", 0.578143408799999, 0.556397832369372,
-         0.59545593378841, "McDonald's <unicode><unicode>", 0.483847464320034,
-         0.456430592167667, 0.505980528973344, "Average interitem correlation",
-         0.101362519780686, "", "", "Mean", 19.4791909762738, "", "",
-         "SD", 3.57246477368688, "", ""))
+         0.59545593378841, "McDonald's <unicode><unicode>", "", "", "",
+         "Average interitem correlation", 0.101362519780686, "", "", "Mean",
+         19.4791909762738, "", "", "SD", 3.57246477368688, "", ""))
 })
 
 test_that("Posterior plot omega_t matches", {
@@ -194,22 +197,30 @@ test_that("Posterior plot omega_t matches", {
   jaspTools::expect_equal_plots(testPlot, "posterior-omega-t")
 })
 
-test_that("Posterior plot omega_h matches", {
-  plotName <- resultsPlots[["results"]][["stateContainer"]][["collection"]][["stateContainer_posteriorPlots"]][["collection"]][["stateContainer_posteriorPlots_omegaH"]][["data"]]
-  testPlot <- resultsPlots[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "posterior-omega-h")
-})
-
 test_that("Traceplot omega_t matches", {
   plotName <- resultsPlots[["results"]][["stateContainer"]][["collection"]][["stateContainer_tracePlots"]][["collection"]][["stateContainer_tracePlots_omegaT"]][["data"]]
   testPlot <- resultsPlots[["state"]][["figures"]][[plotName]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "trace-omega-t")
 })
 
+# omega_h is drawn once the general factor is identified, i.e. from three group factors on
+optionsPlotsH <- optionsPlots
+optionsPlotsH$factors <- c(optionsPlots$factors, list(
+  list(indicators = paste0("Question_", sprintf("%02d", 9:12)), name = "Factor3", title = "Factor 3")))
+optionsPlotsH$posteriorPredictiveCheck <- FALSE
+set.seed(1)
+resultsPlotsH <- runAnalysis("reliabilityMultidimensionalBayesian", "Reliability.csv", optionsPlotsH, makeTests = FALSE)
+
+test_that("Posterior plot omega_h matches", {
+  plotName <- resultsPlotsH[["results"]][["stateContainer"]][["collection"]][["stateContainer_posteriorPlots"]][["collection"]][["stateContainer_posteriorPlots_omegaH"]][["data"]]
+  testPlot <- resultsPlotsH[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "posterior-omega-h-three-factors")
+})
+
 test_that("Traceplot omega_h matches", {
-  plotName <- resultsPlots[["results"]][["stateContainer"]][["collection"]][["stateContainer_tracePlots"]][["collection"]][["stateContainer_tracePlots_omegaH"]][["data"]]
-  testPlot <- resultsPlots[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "trace-omega-h")
+  plotName <- resultsPlotsH[["results"]][["stateContainer"]][["collection"]][["stateContainer_tracePlots"]][["collection"]][["stateContainer_tracePlots_omegaH"]][["data"]]
+  testPlot <- resultsPlotsH[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "trace-omega-h-three-factors")
 })
 
 test_that("Posterior predictive check plot matches", {
@@ -444,8 +455,10 @@ test_that("Cross-loaded item is rejected by the bi-factor model with a clear err
 
 # The second-order model with two group factors identifies the general factor's loadings only up
 # to their product. A proper prior still yields a proper posterior for omega_h, so the coefficient
-# looks like an ordinary result while being driven by the prior rather than the data; it is
-# therefore withheld from every output element, as in the frequentist analysis.
+# would look like an ordinary result while being driven by the prior rather than the data; it is
+# therefore left empty in every output element, as in the frequentist analysis. Only the scale
+# table keeps the omega_h row, with a footnote saying why; the probability and item tables leave
+# its cells empty, and the posterior and trace plots are not drawn.
 optionsUnid <- analysisOptions("reliabilityMultidimensionalBayesian")
 optionsUnid$factors <- list(
   list(indicators = paste0("Question_", sprintf("%02d", 1:5)),  name = "Factor1", title = "Factor 1"),
@@ -459,21 +472,46 @@ optionsUnid$seed             <- 1
 optionsUnid$probabilityTable <- TRUE
 optionsUnid$posteriorPlot    <- TRUE
 optionsUnid$tracePlot        <- TRUE
+optionsUnid$itemDeletedOmegaT <- TRUE
+optionsUnid$itemDeletedOmegaH <- TRUE
 set.seed(1)
 resultsUnid <- runAnalysis("reliabilityMultidimensionalBayesian", "Reliability.csv", optionsUnid,
                            makeTests = FALSE)
+collectionUnid <- resultsUnid[["results"]][["stateContainer"]][["collection"]]
 
-test_that("Second-order model with two group factors warns that omega_h is not identified", {
-  collection   <- resultsUnid[["results"]][["stateContainer"]][["collection"]]
-  scaleTable   <- collection[["stateContainer_scaleTable"]]
+test_that("Second-order model with two group factors leaves omega_h empty and says why", {
+  scaleTable   <- collectionUnid[["stateContainer_scaleTable"]]
   coefficients <- vapply(scaleTable[["data"]], function(x) x[["coefficient"]], character(1))
 
-  # the coefficient is still reported; the footnote is what says it follows the prior, not the data
-  expect_true(any(grepl("ωₕ", coefficients)))
   expect_true(any(grepl("ωₜ", coefficients)))
+  omegaH <- Filter(function(x) grepl("ωₕ", x[["coefficient"]]), scaleTable[["data"]])
+  expect_equal(length(omegaH), 1)
+  for (cell in c("estimate", "lower", "upper"))
+    expect_true(isBlank(omegaH[[1]][[cell]]))
 
   notes <- paste(vapply(scaleTable[["footnotes"]], function(x) x[["text"]], character(1)), collapse = " ")
   expect_true(grepl("up to their product", notes))
+})
+
+test_that("Unidentified omega_h stays empty in the other outputs, without further footnotes", {
+  probTable <- collectionUnid[["stateContainer_probabilityTable"]]
+  expect_true(isBlank(Filter(function(x) grepl("ωₕ", x[["coefficient"]]), probTable[["data"]])[[1]][["posterior"]]))
+  expect_true(all(vapply(Filter(function(x) grepl("ωₜ", x[["coefficient"]]), probTable[["data"]]),
+                         function(x) is.finite(x[["posterior"]]), logical(1))))
+
+  itemTable <- collectionUnid[["stateContainer_itemTable"]]
+  expect_true(all(vapply(itemTable[["data"]], function(x) isBlank(x[["omegaH"]]), logical(1))))
+  expect_true(all(vapply(itemTable[["data"]], function(x) is.finite(x[["omegaT"]]), logical(1))))
+
+  notes <- paste(vapply(c(probTable[["footnotes"]], itemTable[["footnotes"]]), function(x) x[["text"]], character(1)),
+                 collapse = " ")
+  expect_false(grepl("Empty cells", notes))
+  expect_false(grepl("up to their product", notes))
+
+  for (plots in c("stateContainer_posteriorPlots", "stateContainer_tracePlots")) {
+    plotNames <- names(collectionUnid[[plots]][["collection"]])
+    expect_equal(plotNames, paste0(plots, "_omegaT"))
+  }
 })
 
 test_that("Three group factors drop the identification warning", {

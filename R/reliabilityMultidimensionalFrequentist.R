@@ -3,14 +3,22 @@
 
 # Dependencies that invalidate the fitted model (and therefore everything downstream).
 # ciLevel is included because the Wald interval is produced by the fit itself; refitting is cheap.
+# fitMeasures is included because the fit measures are computed by the fit, not at display time.
 .multiDimFreqBaseDependencies <- c(
-  "factors", "reverseScaledItems", "modelType", "naAction", "ciLevel",
+  "factors", "reverseScaledItems", "modelType", "naAction", "ciLevel", "fitMeasures",
   "intervalMethod", "bootstrapSamples", "setSeed", "seed", "samplesSavingDisabled"
 )
 
-# the bootstrap samples are reused across confidence levels, so they are kept outside the state
-# container and depend on everything above except ciLevel
-.multiDimFreqBootDependencies <- setdiff(.multiDimFreqBaseDependencies, "ciLevel")
+# the bootstrap samples are reused across confidence levels, and the resamples are fitted without
+# fit measures, so they are kept outside the state container and depend on everything above except
+# ciLevel and fitMeasures
+.multiDimFreqBootDependencies <- setdiff(.multiDimFreqBaseDependencies, c("ciLevel", "fitMeasures"))
+
+# the if-item-dropped refits yield omega_t and omega_h together, and neither the interval settings nor
+# the fit measures enter them, so they are cached outside the state container on the options that
+# change the refits only. The two if-item-dropped checkboxes are deliberately absent: they only choose
+# which of the cached columns is shown.
+.multiDimFreqItemDeletedDependencies <- c("factors", "reverseScaledItems", "modelType", "naAction")
 
 #' @export
 reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset, options) {
@@ -106,13 +114,6 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
 
 .multiDimFreqOmegaTLabel <- function() gettext("McDonald's ωₜ")
 .multiDimFreqOmegaHLabel <- function() gettext("McDonald's ωₕ")
-
-# shown alongside omega_h when the general factor is not identified. The likelihood is flat along
-# the direction that separates the two structural loadings, so the estimate is one arbitrary point
-# on that ridge and no standard error exists for it.
-.multiDimFreqOmegaHNotIdentifiedNote <- function() {
-  return(gettext("McDonald's ωₕ is not identified with only two group factors: the loadings of the general factor are determined only up to their product, so the value shown is arbitrary and has no confidence interval. Assign the items to at least three group factors, or choose the bi-factor model. McDonald's ωₜ is unaffected."))
-}
 
 # footnotes derived from the state of the fitted model; these are the conditions under which
 # lavaan still returns numbers that should not be read as ordinary estimates
@@ -230,12 +231,10 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
 # factor(s). Items whose removal would leave a factor with fewer than two indicators are skipped.
 .multiDimFreqItemDeleted <- function(jaspResults, dataset, options, allItems) {
 
-  stateContainer <- .getStateContainerMDF(jaspResults)
-  if (!is.null(stateContainer[["itemDeletedObj"]]$object))
-    return(stateContainer[["itemDeletedObj"]]$object)
+  if (!is.null(jaspResults[["itemDeletedObj"]]$object))
+    return(jaspResults[["itemDeletedObj"]]$object)
 
   k          <- length(allItems)
-  correlated <- options[["modelType"]] == "correlated"
   omegaT     <- rep(NA_real_, k)
   omegaH     <- rep(NA_real_, k)
 
@@ -252,14 +251,16 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
 
     if (!inherits(fitReduced, "try-error") && isTRUE(fitReduced[["diagnostics"]][["converged"]])) {
       omegaT[i] <- fitReduced[["omega_t"]][["est"]]
-      if (!correlated)
+      if (.multiDimOmegaHEstimable(options))
         omegaH[i] <- fitReduced[["omega_h"]][["est"]]
     }
     progressbarTick()
   }
 
   out <- list(omegaT = omegaT, omegaH = omegaH)
-  stateContainer[["itemDeletedObj"]] <- createJaspState(out, dependencies = c("itemDeletedOmegaT", "itemDeletedOmegaH"))
+  itemState <- createJaspState(out)
+  itemState$dependOn(options = .multiDimFreqItemDeletedDependencies)
+  jaspResults[["itemDeletedObj"]] <- itemState
 
   return(out)
 }
@@ -322,12 +323,14 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
   rows[[length(rows) + 1L]] <- addCoefRow(.multiDimFreqOmegaTLabel(), "omegaT",
                                           fit[["omega_t"]][["est"]], fit[["omega_t"]][["conf"]])
 
+  # omega_h of an unidentified general factor keeps its row but is left empty
   footnotes <- .multiDimFreqDiagnosticsFootnotes(model, options)
-  if (.multiDimHasOmegaH(options)) {
+  if (.multiDimOmegaHEstimable(options)) {
     rows[[length(rows) + 1L]] <- addCoefRow(.multiDimFreqOmegaHLabel(), "omegaH",
                                             fit[["omega_h"]][["est"]], fit[["omega_h"]][["conf"]])
-    if (.multiDimGeneralFactorUnidentified(options))
-      footnotes <- c(footnotes, .multiDimFreqOmegaHNotIdentifiedNote())
+  } else if (.multiDimHasOmegaH(options)) {
+    rows[[length(rows) + 1L]] <- addStatRow(.multiDimFreqOmegaHLabel(), NA_real_)
+    footnotes <- c(footnotes, .multiDimOmegaHNotIdentifiedNote())
   } else {
     footnotes <- c(footnotes, .multiDimOmegaHFootnote(options))
   }
@@ -395,7 +398,8 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
     deleted <- .multiDimFreqItemDeleted(jaspResults, dataset, options, allItems)
     if (showOmegaT) df[["omegaT"]] <- deleted[["omegaT"]]
     if (showOmegaH) df[["omegaH"]] <- deleted[["omegaH"]]
-    if (anyNA(c(if (showOmegaT) df[["omegaT"]], if (showOmegaH) df[["omegaH"]])))
+    # the omega_h column of an unidentified model is empty for a different reason, given on the scale table
+    if (anyNA(c(if (showOmegaT) df[["omegaT"]], if (showOmegaH && .multiDimOmegaHEstimable(options)) df[["omegaH"]])))
       footnotes <- c(footnotes, gettext("Empty cells indicate that the model could not be estimated without this item, for instance because a factor would be left with fewer than two items."))
     footnotes <- c(footnotes, gettext("No confidence intervals are reported for the if-item-dropped coefficients."))
   }
