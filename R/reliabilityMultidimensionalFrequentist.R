@@ -451,10 +451,12 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
                   "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "rmsea.pvalue", "aic", "bic")
   srmrNames  <- c("usrmr", "usrmr.ci.lower", "usrmr.ci.upper", "usrmr.closefit.pvalue")
 
+  # lavaan fixes both interval levels at 90%, so the label is literal; the percent sign has to be
+  # escaped as %% inside gettextf(), because gettext() must not carry one
   labels <- c(gettext("χ²"), gettext("df"), gettext("p"), gettext("CFI"), gettext("TLI"),
-              gettext("RMSEA"), gettext("RMSEA 90% CI lower"), gettext("RMSEA 90% CI upper"),
+              gettext("RMSEA"), gettextf("RMSEA 90%% CI lower"), gettextf("RMSEA 90%% CI upper"),
               gettext("RMSEA p-value"), gettext("AIC"), gettext("BIC"),
-              gettext("SRMR"), gettext("SRMR 90% CI lower"), gettext("SRMR 90% CI upper"),
+              gettext("SRMR"), gettextf("SRMR 90%% CI lower"), gettextf("SRMR 90%% CI upper"),
               gettext("SRMR p-value"))
 
   fitTable$setData(data.frame(
