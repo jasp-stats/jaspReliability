@@ -197,9 +197,12 @@ test_that("Item table leaves omega_h empty for the unidentified model without an
   expect_false(grepl("up to their product", notes))
 })
 
+# Urgency, Premeditation and Sensation, not the first three factors: with Perseverance the third
+# general-factor loading sits on the boundary at 1 (residual variance ~ 0), which leaves no standard
+# errors and lets convergence depend on the platform. Here every loading is well inside (max 0.57).
 test_that("Three group factors report omega_h and drop the identification footnote", {
   optionsThree <- optionsTwo
-  optionsThree$factors <- uppsFactors[1:3]
+  optionsThree$factors <- uppsFactors[c(1, 2, 4)]
   resultsThree <- runAnalysis("reliabilityMultidimensionalFrequentist", testthat::test_path("upps.csv"),
                               optionsThree, makeTests = FALSE)
   scaleTable <- resultsThree[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]]
