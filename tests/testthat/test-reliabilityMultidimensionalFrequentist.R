@@ -131,6 +131,32 @@ test_that("Bi-factor model rejects cross-loadings with an actionable message", {
 })
 
 
+# A model the optimizer never reached must not be readable, so non-convergence is an error on every
+# table rather than a footnote. Convergence cannot be forced through the data, since it differs by
+# platform, so the fit is replaced by one whose diagnostics report that it did not converge.
+test_that("A non-converged factor model is reported as an error on every table", {
+  testthat::local_mocked_bindings(
+    .multiDimFreqFit = function(...) list(diagnostics = list(converged = FALSE, admissible = TRUE, se.available = TRUE)),
+    .package = "jaspReliability")
+
+  optionsNc <- analysisOptions("reliabilityMultidimensionalFrequentist")
+  optionsNc$factors           <- uppsFactors
+  optionsNc$modelType         <- "secondOrder"
+  optionsNc$naAction          <- "listwise"
+  optionsNc$itemDeletedOmegaT <- TRUE
+  optionsNc$fitMeasures       <- TRUE
+  resultsNc <- runAnalysis("reliabilityMultidimensionalFrequentist", testthat::test_path("upps.csv"),
+                           optionsNc, makeTests = FALSE)
+
+  collection <- resultsNc[["results"]][["stateContainer"]][["collection"]]
+  for (table in c("stateContainer_scaleTable", "stateContainer_itemTable", "stateContainer_fitTable")) {
+    expect_equal(collection[[table]][["status"]], "error", label = table)
+    expect_true(grepl("did not converge", collection[[table]][["error"]][["errorMessage"]]), label = table)
+    expect_equal(length(collection[[table]][["data"]]), 0, label = table)   # no coefficients are shown
+  }
+})
+
+
 # Fewer than two usable factors is not an analysis: the table prompts instead of erroring
 optionsEmpty <- analysisOptions("reliabilityMultidimensionalFrequentist")
 optionsEmpty$factors <- list(
