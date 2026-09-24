@@ -2653,6 +2653,48 @@
       "RemoteRef": "master",
       "RemoteSha": "55ab6bcd2e3828fc923a9bdf513c50a06da3d6ad"
     },
+    "jaspTools": {
+      "Package": "jaspTools",
+      "Version": "0.20.1",
+      "Source": "GitHub",
+      "Type": "Package",
+      "Title": "Helps Preview and Debug JASP Analyses",
+      "Authors@R": "c( person(\"Tim\", \"de Jong\", role = \"aut\"), person(\"Don\", \"van den Bergh\", role = c(\"ctb\", \"cre\"), email = \"d.vandenbergh@uva.nl\"), person(\"František\", \"Bartoš\", role = \"ctb\"))",
+      "Maintainer": "Don van den Bergh <d.vandenbergh@uva.nl>",
+      "Description": "This package assists JASP developers when writing R code. It removes the necessity of building JASP every time a change is made. Rather, analyses can be called directly in R and be debugged interactively.",
+      "License": "GNU General Public License",
+      "Encoding": "UTF-8",
+      "LazyData": "true",
+      "Imports": [
+        "archive (>= 1.1.6)",
+        "cli",
+        "data.table",
+        "DBI",
+        "httr",
+        "jsonlite",
+        "lifecycle",
+        "pkgload",
+        "remotes",
+        "rjson",
+        "RSQLite",
+        "stringi",
+        "stringr",
+        "testthat (>= 3.2.2)",
+        "vdiffr (>= 1.0.7)"
+      ],
+      "Suggests": [
+        "ggplot2"
+      ],
+      "RoxygenNote": "7.3.3",
+      "Roxygen": "list(markdown = TRUE)",
+      "Author": "Tim de Jong [aut], Don van den Bergh [ctb, cre], František Bartoš [ctb]",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "jasp-stats",
+      "RemoteRepo": "jaspTools",
+      "RemoteRef": "master",
+      "RemoteSha": "55ab6bcd2e3828fc923a9bdf513c50a06da3d6ad"
+    },
     "jquerylib": {
       "Package": "jquerylib",
       "Version": "0.1.4",

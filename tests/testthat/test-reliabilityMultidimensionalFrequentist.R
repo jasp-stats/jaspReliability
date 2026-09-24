@@ -75,11 +75,13 @@ test_that("Loadings tables match the fitted model", {
 
 # The second-order model with two group factors is not identified: the general factor has one
 # loading per group factor, but the group factors supply only a single correlation. lavaan then
-# cannot compute standard errors, so no interval may be reported.
+# cannot compute standard errors, so no interval may be reported, and omega_h is left empty.
 optionsTwo <- analysisOptions("reliabilityMultidimensionalFrequentist")
-optionsTwo$factors   <- uppsFactors[1:2]
-optionsTwo$modelType <- "secondOrder"
-optionsTwo$naAction  <- "listwise"
+optionsTwo$factors           <- uppsFactors[1:2]
+optionsTwo$modelType         <- "secondOrder"
+optionsTwo$naAction          <- "listwise"
+optionsTwo$itemDeletedOmegaT <- TRUE
+optionsTwo$itemDeletedOmegaH <- TRUE
 resultsTwo <- runAnalysis("reliabilityMultidimensionalFrequentist", testthat::test_path("upps.csv"),
                           optionsTwo, makeTests = FALSE)
 
@@ -88,11 +90,10 @@ test_that("Unidentified second-order model reports no confidence interval", {
   omegaRows <- Filter(function(x) grepl("ω", x[["coefficient"]]), scaleTable[["data"]])
 
   expect_equal(length(omegaRows), 2)
-  for (row in omegaRows) {
-    expect_true(is.finite(row[["estimate"]]))                       # point estimate is kept
-    expect_true(isBlank(row[["lower"]]))                            # interval is withheld
-    expect_true(isBlank(row[["upper"]]))
-  }
+  omegaT <- Filter(function(x) grepl("ωₜ", x[["coefficient"]]), omegaRows)[[1]]
+  expect_true(is.finite(omegaT[["estimate"]]))                      # point estimate is kept
+  expect_true(isBlank(omegaT[["lower"]]))                           # interval is withheld
+  expect_true(isBlank(omegaT[["upper"]]))
 
   notes <- paste(vapply(scaleTable[["footnotes"]], function(x) x[["text"]], character(1)), collapse = " ")
   expect_true(grepl("no confidence intervals", notes))
@@ -168,25 +169,42 @@ test_that("Bootstrapped interval brackets the point estimate", {
 
 
 # The second-order model with two group factors identifies the loadings of the general factor only
-# up to their product, so omega_h is an arbitrary point of a flat likelihood. It is still reported,
-# with a footnote saying so.
-test_that("Second-order model with two group factors warns that omega_h is not identified", {
+# up to their product, so omega_h is an arbitrary point of a flat likelihood. Its row stays in the
+# scale table with empty cells and the footnote saying why; the item table leaves it empty without
+# a footnote of its own.
+test_that("Second-order model with two group factors leaves omega_h empty and says why", {
   scaleTable   <- resultsTwo[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]]
   coefficients <- vapply(scaleTable[["data"]], function(x) x[["coefficient"]], character(1))
 
-  expect_true(any(grepl("ωₕ", coefficients)))
   expect_true(any(grepl("ωₜ", coefficients)))
+  omegaH <- Filter(function(x) grepl("ωₕ", x[["coefficient"]]), scaleTable[["data"]])
+  expect_equal(length(omegaH), 1)
+  expect_true(isBlank(omegaH[[1]][["estimate"]]))
+  expect_true(isBlank(omegaH[[1]][["lower"]]))
+  expect_true(isBlank(omegaH[[1]][["upper"]]))
 
   notes <- paste(vapply(scaleTable[["footnotes"]], function(x) x[["text"]], character(1)), collapse = " ")
   expect_true(grepl("up to their product", notes))
 })
 
-test_that("Three group factors drop the identification warning", {
+test_that("Item table leaves omega_h empty for the unidentified model without an extra footnote", {
+  itemTable <- resultsTwo[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]]
+  expect_true(all(vapply(itemTable[["data"]], function(x) isBlank(x[["omegaH"]]), logical(1))))
+  expect_true(all(vapply(itemTable[["data"]], function(x) is.finite(x[["omegaT"]]), logical(1))))
+
+  notes <- paste(vapply(itemTable[["footnotes"]], function(x) x[["text"]], character(1)), collapse = " ")
+  expect_false(grepl("Empty cells", notes))
+  expect_false(grepl("up to their product", notes))
+})
+
+test_that("Three group factors report omega_h and drop the identification footnote", {
   optionsThree <- optionsTwo
   optionsThree$factors <- uppsFactors[1:3]
   resultsThree <- runAnalysis("reliabilityMultidimensionalFrequentist", testthat::test_path("upps.csv"),
                               optionsThree, makeTests = FALSE)
   scaleTable <- resultsThree[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]]
+  omegaH     <- Filter(function(x) grepl("ωₕ", x[["coefficient"]]), scaleTable[["data"]])[[1]]
   notes      <- paste(vapply(scaleTable[["footnotes"]], function(x) x[["text"]], character(1)), collapse = " ")
+  expect_true(is.finite(omegaH[["estimate"]]))
   expect_false(grepl("up to their product", notes))
 })

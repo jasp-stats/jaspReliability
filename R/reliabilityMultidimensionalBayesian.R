@@ -98,15 +98,22 @@ reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, op
   return(options[["modelType"]] != "correlated")
 }
 
+# whether McDonald's omega_h has a value to report: the model has a general factor and identifies it.
+# Where it does not, the omega_h cells stay empty and only the scale table says why.
+.multiDimOmegaHEstimable <- function(options) {
+  return(.multiDimHasOmegaH(options) && !.multiDimGeneralFactorUnidentified(options))
+}
+
 # the reason omega_h is absent, for the footnote on the scale table
 .multiDimOmegaHFootnote <- function(options) {
   return(gettext("McDonald's ωₕ is shown only for the second-order and bi-factor models, not the correlated-factors model."))
 }
 
-# shown alongside omega_h when the general factor is not identified. A proper prior still yields a
-# proper posterior, so the coefficient and its credible interval look like any other result.
+# footnote on the scale table where omega_h is left empty because the general factor is not identified.
+# Shared by both frameworks: the Gibbs sampler would return an ordinary-looking posterior that follows
+# the prior, and lavaan an arbitrary point with no standard error, so neither value is worth showing.
 .multiDimOmegaHNotIdentifiedNote <- function() {
-  return(gettext("McDonald's ωₕ is not identified with only two group factors: the loadings of the general factor are determined only up to their product, so the value shown reflects the prior rather than the data. Assign the items to at least three group factors, or choose the bi-factor model. McDonald's ωₜ is unaffected."))
+  return(gettext("McDonald's ωₕ is not reported because it is not identified with only two group factors: the loadings of the general factor are determined only up to their product, so the data carry no information about it. Assign the items to at least three group factors, or choose the bi-factor model. McDonald's ωₜ is unaffected."))
 }
 
 # build the lavaan-style group-factor model syntax used by Bayesrel::bomegas
@@ -283,13 +290,15 @@ reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, op
     row
   }
 
-  # omega_t is always available; omega_h needs a general factor that the model actually identifies
+  # omega_t is always available; omega_h needs a general factor that the model actually identifies,
+  # otherwise its row is kept but left empty
   rows[[length(rows) + 1L]] <- addCoefRow(.multiDimOmegaTLabel(), fit[["omega_t"]][["chains"]])
 
-  if (.multiDimHasOmegaH(options)) {
+  if (.multiDimOmegaHEstimable(options)) {
     rows[[length(rows) + 1L]] <- addCoefRow(.multiDimOmegaHLabel(), fit[["omega_h"]][["chains"]])
-    if (.multiDimGeneralFactorUnidentified(options))
-      footnote <- .multiDimOmegaHNotIdentifiedNote()
+  } else if (.multiDimHasOmegaH(options)) {
+    rows[[length(rows) + 1L]] <- addStatRow(.multiDimOmegaHLabel(), NA_real_)
+    footnote <- .multiDimOmegaHNotIdentifiedNote()
   } else {
     footnote <- .multiDimOmegaHFootnote(options)
   }
@@ -384,7 +393,8 @@ reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, op
 
     if (showOmegaT) df <- addOmegaData(df, "omegaT", del[["omtChains"]])
     if (showOmegaH) df <- addOmegaData(df, "omegaH", del[["omhChains"]])
-    if (anyNA(c(if (showOmegaT) df[["omegaT"]], if (showOmegaH) df[["omegaH"]])))
+    # the omega_h columns of an unidentified model are empty for a different reason, given on the scale table
+    if (anyNA(c(if (showOmegaT) df[["omegaT"]], if (showOmegaH && .multiDimOmegaHEstimable(options)) df[["omegaH"]])))
       footnote <- gettext("Empty cells indicate that dropping the item would leave a factor with fewer than two items.")
   }
   if (showRest) {
@@ -455,16 +465,18 @@ reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, op
 
     if (!inherits(fitRed, "try-error")) {
       omtChains[[i]] <- as.vector(fitRed[["omega_t"]][["chains"]])
-      if (!correlated)
+      if (.multiDimOmegaHEstimable(options))
         omhChains[[i]] <- as.vector(fitRed[["omega_h"]][["chains"]])
     }
     progressbarTick()
   }
 
   # the chains are cached rather than a point estimate, so the point-estimate type and CI level are
-  # display-time choices that do not trigger k additional model refits
+  # display-time choices that do not trigger k additional model refits. Every refit yields both omegas,
+  # so the state depends on the container's model options only: the two if-item-dropped checkboxes
+  # merely choose which columns are shown and must not invalidate the refits.
   out <- list(omtChains = omtChains, omhChains = omhChains)
-  sc[["itemDeletedObj"]] <- createJaspState(out, dependencies = c("itemDeletedOmegaT", "itemDeletedOmegaH"))
+  sc[["itemDeletedObj"]] <- createJaspState(out)
   return(out)
 }
 
@@ -510,7 +522,8 @@ reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, op
   }
   rows[[length(rows) + 1L]] <- list(coefficient = .multiDimOmegaTLabel(), posterior = probInRange(fit[["omega_t"]][["chains"]]))
   if (.multiDimHasOmegaH(options))
-    rows[[length(rows) + 1L]] <- list(coefficient = .multiDimOmegaHLabel(), posterior = probInRange(fit[["omega_h"]][["chains"]]))
+    rows[[length(rows) + 1L]] <- list(coefficient = .multiDimOmegaHLabel(),
+                                      posterior = if (.multiDimOmegaHEstimable(options)) probInRange(fit[["omega_h"]][["chains"]]) else NA_real_)
 
   if (length(rows) > 0L)
     probabilityTable$setData(do.call(rbind.data.frame, c(rows, stringsAsFactors = FALSE)))
@@ -605,7 +618,7 @@ reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, op
 
   coefs <- list()
   coefs[["omegaT"]] <- list(chains = fit[["omega_t"]][["chains"]], label = .multiDimOmegaTLabel())
-  if (.multiDimHasOmegaH(options))
+  if (.multiDimOmegaHEstimable(options))
     coefs[["omegaH"]] <- list(chains = fit[["omega_h"]][["chains"]], label = .multiDimOmegaHLabel())
 
   # prior samples of the omegas, drawn with the same prior parameterization as the Gibbs sampler
@@ -659,7 +672,7 @@ reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, op
   fit   <- model[["fit"]]
   coefs <- list()
   coefs[["omegaT"]] <- list(chains = fit[["omega_t"]][["chains"]], label = .multiDimOmegaTLabel())
-  if (.multiDimHasOmegaH(options))
+  if (.multiDimOmegaHEstimable(options))
     coefs[["omegaH"]] <- list(chains = fit[["omega_h"]][["chains"]], label = .multiDimOmegaHLabel())
 
   for (nm in names(coefs)) {
