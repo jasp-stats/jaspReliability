@@ -17,6 +17,7 @@
 # jaspReliability (development version)
 
 ## Added
+* Added Bayesian Rater Agreement analysis: Bayesian Cohen's kappa (unweighted and weighted) and Fleiss' kappa (category proportions pooled over both raters) for every rater pair, computed from a Dirichlet posterior on the pair's agreement table. Reports the posterior mean, HPD credible interval, observed and chance agreement, and posterior density plots.
 * Added Bayesian Multidimensional Reliability analysis: multidimensional omega coefficients via `Bayesrel::bomegas`, with scale/item tables, model fit, posterior, trace, and posterior predictive check plots ([Issue #1336](https://github.com/jasp-stats/jasp-issues/issues/1336)). The item table reports a point estimate and credible interval for both if-item-dropped omegas, and the prior on the item and structural loadings has a variance scale in addition to a mean. Requires Bayesrel >= 0.7.9.
 * Dispersal prior now wired through Bayesrel prior samplers (replaces deprecated `fitCutoffNull`).
 
