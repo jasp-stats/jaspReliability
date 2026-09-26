@@ -70,6 +70,13 @@ raterAgreementBayesianInternal <- function(jaspResults, dataset, options) {
   return(gettext("Cohen's kappa"))
 }
 
+.raterAgreementBayesianCitations <- function() {
+  return(c(
+    "Calle-Alonso, F., & Pérez Sánchez, C. J. (2015). A Monte Carlo-based Bayesian approach for measuring agreement in a qualitative scale. Applied Psychological Measurement, 39(3), 189-207. DOI: 10.1177/0146621614554080",
+    "Pfadt, J. M., Bartoš, F., Godmann, H. R., et al. (2026). A methodological metamorphosis: The rapid rise of Bayesian inference and open science practices in psychology. PsyArXiv. DOI: 10.31234/osf.io/ck3js_v2"
+  ))
+}
+
 .raterAgreementBayesianSampleDependencies <- function(coefficient) {
   dependencies <- c("variables", "variables.types", "dataStructure", coefficient,
                     "dirichletPriorConcentration", "samples", "setSeed", "seed")
@@ -207,6 +214,7 @@ raterAgreementBayesianInternal <- function(jaspResults, dataset, options) {
   }
   jaspTable$position <- if (coefficient == "cohensKappa") 1 else 2
   jaspTable$dependOn(c(.raterAgreementBayesianSampleDependencies(coefficient), "ci", "ciLevel", "observedAndChanceAgreement"))
+  jaspTable$addCitation(.raterAgreementBayesianCitations())
   jaspResults[[coefficient]] <- jaspTable
 
   jaspTable$addColumnInfo(name = "ratings", title = gettext("Ratings"), type = "string")

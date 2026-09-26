@@ -22,6 +22,16 @@ import QtQuick.Layouts
 
 Form
 {
+	info: qsTr("Bayesian Rater Agreement estimates the chance-corrected agreement between raters who assign subjects to nominal or ordinal categories. For every rater pair, the cell probabilities of the pair's agreement table get a Dirichlet posterior, and Cohen's kappa or Fleiss' kappa is computed from every posterior draw (Calle-Alonso & Pérez Sánchez, 2015; Pfadt et al., 2026).")
+	infoBottom: "## " + qsTr("References") + "\n"
+				+	"- Calle-Alonso, F., & Pérez Sánchez, C. J. (2015). A Monte Carlo-based Bayesian approach for measuring agreement in a qualitative scale. *Applied Psychological Measurement, 39*(3), 189–207. https://doi.org/10.1177/0146621614554080" + "\n"
+				+	"- Pfadt, J. M., Bartoš, F., Godmann, H. R., et al. (2026). A methodological metamorphosis: The rapid rise of Bayesian inference and open science practices in psychology. *PsyArXiv*. https://doi.org/10.31234/osf.io/ck3js_v2" + "\n"
+				+ "\n---\n"
+				+ "## " + qsTr("R Packages") + "\n"
+				+	"- coda\n"
+				+	"- ggplot2\n"
+				+	"- jaspGraphs\n"
+
 	VariablesForm
 	{
 		height: 300

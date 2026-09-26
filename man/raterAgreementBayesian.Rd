@@ -68,5 +68,5 @@ Defaults to \code{FALSE}.}
 }}
 }
 \description{
-Bayesian Rater Agreement
+Bayesian Rater Agreement estimates the chance-corrected agreement between raters who assign subjects to nominal or ordinal categories. For every rater pair, the cell probabilities of the pair's agreement table get a Dirichlet posterior, and Cohen's kappa or Fleiss' kappa is computed from every posterior draw (Calle-Alonso & Pérez Sánchez, 2015; Pfadt et al., 2026).
 }
