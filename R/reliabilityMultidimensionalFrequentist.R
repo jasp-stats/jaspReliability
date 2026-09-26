@@ -61,10 +61,12 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
 }
 
 # descriptive statistics computed outside the factor model (scale scores, item-rest correlations)
-# must use the same rows as the fit: complete cases under listwise deletion, everything under FIML
+# must use the same rows as the fit: complete cases under listwise deletion, and under FIML every
+# row with at least one observed item (a respondent missing on all items contributes nothing to
+# FIML either, but would otherwise turn rowMeans()/rowSums() into NaN or a silent zero score)
 .multiDimFreqAnalysisData <- function(dataset, options) {
   if (options[["naAction"]] != "listwise")
-    return(dataset)
+    return(dataset[rowSums(!is.na(dataset)) > 0L, , drop = FALSE])
   return(dataset[complete.cases(dataset), , drop = FALSE])
 }
 
@@ -234,6 +236,10 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
   if (!is.null(jaspResults[["itemDeletedObj"]]$object))
     return(jaspResults[["itemDeletedObj"]]$object)
 
+  # under listwise deletion the full model drops any row missing on any of the k items; without
+  # this, a row missing only the dropped item would re-enter its refit, changing the sample along
+  # with the item and making the comparison meaningless
+  dataset    <- .multiDimFreqAnalysisData(dataset, options)
   k          <- length(allItems)
   omegaT     <- rep(NA_real_, k)
   omegaH     <- rep(NA_real_, k)
@@ -476,6 +482,25 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
 }
 
 
+# Bayesrel copies its "specific" loadings matrix into item rows positionally, assuming each
+# factor's items appear in the model syntax in the same order as their column position in the
+# data. A cross-loaded item that is not listed first in a factor's indicator list breaks that
+# assumption, silently mislabelling other items' loadings as this item's. Looking the loadings up
+# by item and factor name in the fitted lavaan object directly sidesteps the mismatch.
+.multiDimFreqSpecificLoadings <- function(model, options, allItems, nFactors) {
+  std          <- lavaan::parameterEstimates(model[["fit"]][["lavaan.fit"]], standardized = TRUE)
+  factorLabels <- paste0(if (options[["modelType"]] == "biFactor") "s" else "f", seq_len(nFactors))
+
+  specific <- matrix(NA_real_, length(allItems), nFactors, dimnames = list(allItems, NULL))
+  for (i in seq_len(nFactors)) {
+    rows           <- std[["op"]] == "=~" & std[["lhs"]] == factorLabels[i]
+    loadingsByItem <- setNames(std[["std.all"]][rows], std[["rhs"]][rows])
+    specific[names(loadingsByItem), i] <- loadingsByItem
+  }
+  return(specific)
+}
+
+
 .multiDimFreqLoadingsTable <- function(jaspResults, model, options, ready, allItems) {
 
   if (!options[["standardizedLoadings"]] ||
@@ -520,24 +545,21 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
   }
 
   loadings <- model[["fit"]][["loadings"]]
-  specific <- loadings[["specific"]]
+  specific <- .multiDimFreqSpecificLoadings(model, options, allItems, length(titles))
 
   df <- data.frame(item = jaspBase::decodeColNames(allItems), stringsAsFactors = FALSE)
   if (biFactor)
     df[["general"]] <- loadings[["general"]]
-  for (i in seq_along(titles)) {
-    # an item that does not load on a factor gets an empty cell rather than a zero, which would
-    # read as an estimated loading of zero
-    column <- specific[, i]
-    column[column == 0] <- NA_real_
-    df[[paste0("factor", i)]] <- column
-  }
+  for (i in seq_along(titles))
+    df[[paste0("factor", i)]] <- specific[, i]
   itemTable$setData(df)
 
   if (secondOrder)
     loadingsContainer[["factorLoadings"]]$setData(data.frame(
       factor  = titles,
-      loading = loadings[["general"]],
+      # a general factor identified only up to the product of its loadings has no individual
+      # loading worth reporting; the scale table's footnote already explains why
+      loading = if (.multiDimGeneralFactorUnidentified(options)) NA_real_ else loadings[["general"]],
       stringsAsFactors = FALSE
     ))
 
