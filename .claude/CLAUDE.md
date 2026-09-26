@@ -89,7 +89,7 @@ testAnalysis("AnalysisName")
 options <- jaspTools::analysisOptions("AnalysisName")
 options$someOption <- value
 set.seed(1)
-results <- jaspTools::runAnalysis("AnalysisName", "debug.csv", options)
+results <- jaspTools::runAnalysis("AnalysisName", "debug.csv", options, view = FALSE)
 ```
 
 **From a .jasp example file:**
@@ -99,7 +99,7 @@ opts     <- jaspTools::analysisOptions(jaspFile)
 dataset  <- jaspTools::extractDatasetFromJASPFile(jaspFile)
 encoded  <- jaspTools:::encodeOptionsAndDataset(opts, dataset)
 set.seed(1)
-results  <- jaspTools::runAnalysis("AnalysisName", encoded$dataset, encoded$options, encodedDataset = TRUE)
+results  <- jaspTools::runAnalysis("AnalysisName", encoded$dataset, encoded$options, encodedDataset = TRUE, view = FALSE)
 ```
 
 The encoding step is required because JASP internally encodes variable names and options to resolve ambiguities (e.g., same variable used with different types).
