@@ -71,5 +71,12 @@ Description
 		qml: 	"ReliabilityMultidimensionalBayesian.qml"
 		func: 	"reliabilityMultidimensionalBayesian"
 	}
+	Analysis
+	{
+		title: 	qsTr("Bayesian Rater Agreement")
+		menu: 	qsTr("Rater Agreement")
+		qml: 	"RaterAgreementBayesian.qml"
+		func: 	"raterAgreementBayesian"
+	}
 
 }
