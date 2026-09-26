@@ -237,3 +237,88 @@ test_that("Three group factors report omega_h and drop the identification footno
   expect_true(is.finite(omegaH[["estimate"]]))
   expect_false(grepl("up to their product", notes))
 })
+
+
+# Bayesrel fills its loadings matrix in model-syntax order but reads it in data-row order, which
+# differ once a cross-loaded item is listed after the items of a later factor. The loadings must
+# instead follow the item, so they are compared against lavaan's own standardized solution.
+test_that("Cross-loaded item appended to a factor keeps every loading on its own item", {
+  optionsCl <- analysisOptions("reliabilityMultidimensionalFrequentist")
+  optionsCl$factors <- uppsFactors
+  optionsCl$factors[[2]]$indicators <- c(optionsCl$factors[[2]]$indicators, "U17_r")
+  optionsCl$modelType            <- "correlated"
+  optionsCl$naAction             <- "listwise"
+  optionsCl$standardizedLoadings <- TRUE
+  resultsCl <- runAnalysis("reliabilityMultidimensionalFrequentist", testthat::test_path("upps.csv"),
+                           optionsCl, makeTests = FALSE)
+
+  itemTable <- resultsCl[["results"]][["stateContainer"]][["collection"]][["stateContainer_loadingsContainer"]][["collection"]][["stateContainer_loadingsContainer_itemLoadings"]][["data"]]
+  loadingOf <- function(item, factor) Filter(function(x) x[["item"]] == item, itemTable)[[1]][[factor]]
+
+  expect_equal(loadingOf("U17_r", "factor2"), 0.036039, tolerance = 1e-4)   # the cross-loading itself
+  expect_equal(loadingOf("U17_r", "factor1"), 0.591404, tolerance = 1e-4)   # its primary loading
+  expect_equal(loadingOf("U4",    "factor2"), 0.632917, tolerance = 1e-4)   # not shifted onto a neighbour
+  expect_equal(loadingOf("U14",   "factor2"), 0.694644, tolerance = 1e-4)
+  expect_true(isBlank(loadingOf("U4", "factor1")))
+})
+
+# With two group factors only the product of the general-factor loadings is identified, so the
+# individual loadings are as arbitrary as omega_h and are left empty as well
+test_that("Unidentified general-factor loadings are left empty", {
+  optionsLd <- optionsTwo
+  optionsLd$standardizedLoadings <- TRUE
+  resultsLd <- runAnalysis("reliabilityMultidimensionalFrequentist", testthat::test_path("upps.csv"),
+                           optionsLd, makeTests = FALSE)
+  factorTable <- resultsLd[["results"]][["stateContainer"]][["collection"]][["stateContainer_loadingsContainer"]][["collection"]][["stateContainer_loadingsContainer_factorLoadings"]][["data"]]
+  expect_equal(length(factorTable), 2)
+  expect_true(all(vapply(factorTable, function(x) isBlank(x[["loading"]]), logical(1))))
+})
+
+# Under listwise deletion an item-deleted refit must use the respondents of the full model. Rows
+# missing only the dropped item would otherwise re-enter its refit, so both the item and the sample
+# would change and the omega if item dropped could not be compared with the full model's.
+test_that("Item-deleted refits keep the full model's listwise sample", {
+  uppsData  <- read.csv(testthat::test_path("upps.csv"))
+  uppsItems <- unlist(lapply(uppsFactors, function(f) f[["indicators"]]))
+  complete  <- which(complete.cases(uppsData[, uppsItems]))
+  highest   <- intersect(order(rowSums(uppsData[, uppsItems]), decreasing = TRUE), complete)[1:80]
+  uppsData[highest, "U17_r"] <- NA
+
+  optionsId <- analysisOptions("reliabilityMultidimensionalFrequentist")
+  optionsId$factors           <- uppsFactors
+  optionsId$modelType         <- "secondOrder"
+  optionsId$naAction          <- "listwise"
+  optionsId$itemDeletedOmegaT <- TRUE
+  resultsId <- runAnalysis("reliabilityMultidimensionalFrequentist", uppsData, optionsId, makeTests = FALSE)
+
+  itemTable <- resultsId[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
+  droppedU17 <- Filter(function(x) x[["item"]] == "U17_r", itemTable)[[1]][["omegaT"]]
+  # refitting on all 443 respondents that are complete without U17_r would give 0.860033
+  expect_equal(droppedU17, 0.7472325, tolerance = 1e-4)
+})
+
+# FIML ignores a respondent without any observed item, so the descriptive statistics computed
+# outside the model must ignore it too rather than turning it into NaN or a zero sum score
+test_that("An entirely missing row does not distort the FIML descriptive statistics", {
+  uppsData  <- read.csv(testthat::test_path("upps.csv"))
+  uppsItems <- unlist(lapply(uppsFactors, function(f) f[["indicators"]]))
+  emptyRow  <- uppsData[1, , drop = FALSE]
+  emptyRow[, uppsItems] <- NA
+  withEmpty <- rbind(uppsData, emptyRow)
+
+  meanSd <- function(dataset, method) {
+    optionsFiml <- analysisOptions("reliabilityMultidimensionalFrequentist")
+    optionsFiml$factors            <- uppsFactors
+    optionsFiml$modelType          <- "secondOrder"
+    optionsFiml$naAction           <- "fiml"
+    optionsFiml$meanSdScoresMethod <- method
+    res   <- runAnalysis("reliabilityMultidimensionalFrequentist", dataset, optionsFiml, makeTests = FALSE)
+    table <- res[["results"]][["stateContainer"]][["collection"]][["stateContainer_scaleTable"]][["data"]]
+    vapply(c("Mean", "SD"), function(label) Filter(function(x) x[["coefficient"]] == label, table)[[1]][["estimate"]], numeric(1))
+  }
+
+  for (method in c("meanScores", "sumScores")) {
+    expect_true(all(is.finite(meanSd(withEmpty, method))), label = method)
+    expect_equal(meanSd(withEmpty, method), meanSd(uppsData, method), label = method)
+  }
+})
