@@ -6,7 +6,7 @@
 \usage{
 reliabilityUnidimensionalBayesian(
   data = NULL,
-  version = "0.97.1",
+  version = "1",
   averageInterItemCorrelation = FALSE,
   burnin = 50,
   chains = 3,
@@ -116,14 +116,14 @@ Defaults to \code{FALSE}.}
 
 \item{meanSdScoresMethod, }{Whether the mean, variance, and SD are based on sum scores or mean scores across items.
 \itemize{
-\item \code{"meanScores"}
 \item \code{"sumScores"}
+\item \code{"meanScores"}
 }}
 
 \item{naAction, }{Bayesian imputation treats missing values as unknown parameters sampled from the posterior; listwise deletion removes any row with a missing value.
 \itemize{
-\item \code{"listwise"}
 \item \code{"imputation"}
+\item \code{"listwise"}
 }}
 
 \item{normalPriorMean, }{Mean of the normal prior on factor loadings.}

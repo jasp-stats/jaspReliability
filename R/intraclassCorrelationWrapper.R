@@ -25,15 +25,14 @@
 #'    Defaults to \code{TRUE}.
 #' @param iccType, Determines the ICC model. ICC(1): each subject rated by a different random rater. ICC(2): all subjects rated by the same random sample of raters. ICC(3): all subjects rated by the same fixed raters. See Shrout & Fleiss (1979).
 #' \itemize{
-#'   \item \code{"icc3"}
 #'   \item \code{"icc1"}
 #'   \item \code{"icc2"}
+#'   \item \code{"icc3"}
 #' }
 #' @param variables, Rating variables to include. Each variable is one rater; each row is a subject being rated.
-#' @export
 intraclassCorrelation <- function(
           data = NULL,
-          version = "0.97.1",
+          version = "1",
           averagedRating = FALSE,
           ci = TRUE,
           ciLevel = 0.95,

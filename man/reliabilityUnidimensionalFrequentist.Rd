@@ -6,7 +6,7 @@
 \usage{
 reliabilityUnidimensionalFrequentist(
   data = NULL,
-  version = "0.97.1",
+  version = "1",
   averageInterItemCorrelation = FALSE,
   bootstrapSamples = 1000,
   bootstrapType = "nonParametric",
@@ -53,22 +53,22 @@ Defaults to \code{FALSE}.}
 
 \item{bootstrapType, }{Non-parametric bootstrap resamples the data; parametric bootstrap samples from a multivariate normal with the estimated parameters.
 \itemize{
-\item \code{"parametric"}
 \item \code{"nonParametric"}
+\item \code{"parametric"}
 }}
 
 \item{ciLevel, }{Coverage of the confidence intervals for scale reliability statistics.}
 
 \item{intervalMethod, }{Analytic intervals use normal-theory standard errors (van der Ark, 2024). Bootstrapped intervals use percentile resampling.
 \itemize{
-\item \code{"bootstrapped"}
 \item \code{"analytic"}
+\item \code{"bootstrapped"}
 }}
 
 \item{intervalMethodVar, }{Chi-square-based intervals assume normality; non-parametric intervals use a two-step bootstrap procedure (van der Ark, 2024).
 \itemize{
-\item \code{"twostep"}
 \item \code{"chisq"}
+\item \code{"twostep"}
 }}
 
 \item{itemCiLevel, }{Coverage of the confidence intervals for item-level statistics.}
@@ -90,8 +90,8 @@ Defaults to \code{FALSE}.}
 
 \item{meanSdScoresMethod, }{Whether the mean, variance, and SD are based on sum scores or mean scores across items.
 \itemize{
-\item \code{"meanScores"}
 \item \code{"sumScores"}
+\item \code{"meanScores"}
 }}
 
 \item{naAction, }{Pairwise uses all available observations per covariance pair; listwise deletes any row with a missing value.

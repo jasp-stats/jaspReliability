@@ -57,10 +57,9 @@
 #' @param userReliability, Override the reliability estimate used for the unconditional SEM and the Keats method.
 #'    Defaults to \code{FALSE}.
 #' @param variables, Items to include in the SEM analysis. Must be ordinally or nominally scaled (dichotomous or polytomous).
-#' @export
 standardErrorOfMeasurement <- function(
           data = NULL,
-          version = "0.97.1",
+          version = "1",
           anova = FALSE,
           ciLevelPlots = 0.95,
           ciLevelTable = 0.95,

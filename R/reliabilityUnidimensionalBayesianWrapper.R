@@ -51,13 +51,13 @@
 #'    Defaults to \code{FALSE}.
 #' @param meanSdScoresMethod, Whether the mean, variance, and SD are based on sum scores or mean scores across items.
 #' \itemize{
-#'   \item \code{"meanScores"}
 #'   \item \code{"sumScores"}
+#'   \item \code{"meanScores"}
 #' }
 #' @param naAction, Bayesian imputation treats missing values as unknown parameters sampled from the posterior; listwise deletion removes any row with a missing value.
 #' \itemize{
-#'   \item \code{"listwise"}
 #'   \item \code{"imputation"}
+#'   \item \code{"listwise"}
 #' }
 #' @param normalPriorMean, Mean of the normal prior on factor loadings.
 #' @param omegaFitMeasures, Bayesian fit indices (B-LR, B-RMSEA, B-CFI, B-TLI) for the single-factor model with probability statements relative to cutoffs.
@@ -99,10 +99,9 @@
 #' @param tracePlot, Plot of sampled values per chain over iterations. Well-mixed chains indicate convergence.
 #'    Defaults to \code{FALSE}.
 #' @param variables, Items/variables to include in the reliability analysis. Must be scale variables.
-#' @export
 reliabilityUnidimensionalBayesian <- function(
           data = NULL,
-          version = "0.97.1",
+          version = "1",
           averageInterItemCorrelation = FALSE,
           burnin = 50,
           chains = 3,
