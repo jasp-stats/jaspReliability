@@ -161,7 +161,7 @@ jaspTools::expect_equal_tables(table_data,
 
 ```r
 # Run analysis
-results <- jaspTools::runAnalysis("AnalysisName", dataset, options)
+results <- jaspTools::runAnalysis("AnalysisName", dataset, options, view = FALSE)
 
 # Check status
 results$status  # "complete" or "fatalError"

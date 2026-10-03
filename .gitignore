@@ -57,3 +57,6 @@ _processedLockFile.lock
 
 # machine-local MCP server config (see .claude/CLAUDE.md)
 .mcp.json
+
+# jaspTools plot-test artifacts (only the .svg snapshots are tracked)
+tests/testthat/_snaps/**/reference_plotobject/
