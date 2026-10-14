@@ -16,7 +16,7 @@
 #
 
 #' @export
-standardErrorOfMeasurement <- function(jaspResults, dataset, options) {
+standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
 
   ready <- length(options[["variables"]]) > 1
 

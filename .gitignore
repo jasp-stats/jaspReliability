@@ -54,3 +54,6 @@ Rproj.user
 .Rproj.user
 _processedLockFile.lock
 .positai
+
+# machine-local MCP server config (see .claude/CLAUDE.md)
+.mcp.json

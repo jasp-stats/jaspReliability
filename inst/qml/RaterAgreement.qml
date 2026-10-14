@@ -18,6 +18,7 @@
 
 import QtQuick
 import JASP.Controls
+import QtQuick.Layouts
 
 Form
 {
@@ -34,32 +35,30 @@ Form
 			allowedColumns: ["nominal", "ordinal", "scale"]
 			info:			qsTr("Rating variables to include. Whether a variable represents a rater or a subject/item depends on the data structure setting.")
 		}
-
-		RadioButtonGroup
-		{
-			name: "dataStructure"
-			title: qsTr("Data Structure")
-			columns: 2
-			info: qsTr("Specify whether raters are arranged in columns (default) or rows in the dataset.")
-			RadioButton
-			{
-				name:    "ratersInColumns"
-				label:   qsTr("Raters are in columns")
-				checked: true
-				info:    qsTr("Each column is one rater and each row is one subject or item being rated.")
-			}
-
-			RadioButton
-			{
-				name:  "ratersInRows"
-				label: qsTr("Raters are in rows")
-				info:  qsTr("Each row is one rater and each column is one subject or item being rated.")
-			}
-		}
 	}
 
+	RadioButtonGroup
+	{
+		Layout.columnSpan: 2
+		name: "dataStructure"
+		title: qsTr("Data Structure")
+		columns: 2
+		info: qsTr("Specify whether raters are arranged in columns (default) or rows in the dataset.")
+		RadioButton
+		{
+			name:    "ratersInColumns"
+			label:   qsTr("Raters are in columns")
+			checked: true
+			info:    qsTr("Each column is one rater and each row is one subject or item being rated.")
+		}
 
-
+		RadioButton
+		{
+			name:  "ratersInRows"
+			label: qsTr("Raters are in rows")
+			info:  qsTr("Each row is one rater and each column is one subject or item being rated.")
+		}
+	}
 
 	CheckBox
 	{

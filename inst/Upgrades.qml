@@ -755,4 +755,21 @@ Upgrades
 			to:   "bootstrapSamples"
 		}
 	}
+
+	Upgrade
+	{
+		// fromVersion is the LAST released version that still used the old function name
+		functionName: 		"unidimensionalReliabilityFrequentist"
+		newFunctionName:	"reliabilityUnidimensionalFrequentist"
+		fromVersion:		"0.97.1"
+		toVersion:			"0.97.2"
+	}
+
+	Upgrade
+	{
+		functionName: 		"unidimensionalReliabilityBayesian"
+		newFunctionName:	"reliabilityUnidimensionalBayesian"
+		fromVersion:		"0.97.1"
+		toVersion:			"0.97.2"
+	}
 }

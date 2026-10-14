@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #' @export
-blandAltman <- function(jaspResults, dataset, options) {
+blandAltmanInternal <- function(jaspResults, dataset, options) {
 
   .blandAltmanPlots(jaspResults, dataset, options)
   .blandAltmanTable(jaspResults, dataset, options)

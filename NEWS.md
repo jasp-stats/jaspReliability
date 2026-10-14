@@ -16,11 +16,21 @@
 
 # jaspReliability (development version)
 
+## Added
+* Added Bayesian Multidimensional Reliability analysis: multidimensional omega coefficients via `Bayesrel::bomegas`, with scale/item tables, model fit, posterior, trace, and posterior predictive check plots ([Issue #1336](https://github.com/jasp-stats/jasp-issues/issues/1336)). The item table reports a point estimate and credible interval for both if-item-dropped omegas, and the prior on the item and structural loadings has a variance scale in addition to a mean. Requires Bayesrel >= 0.7.9.
+* Dispersal prior now wired through Bayesrel prior samplers (replaces deprecated `fitCutoffNull`).
+
+## Changed
+* Aligned multidimensional option names with unidimensional counterparts for consistency.
+* Renamed unidimensional reliability analyses: `unidimensionalReliabilityFrequentist` -> `reliabilityUnidimensionalFrequentist`, `unidimensionalReliabilityBayesian` -> `reliabilityUnidimensionalBayesian` (upgrade mappings added).
+
 ## Fixed
+* Fixed bi-factor model crash caused by `param.out = TRUE` in `Bayesrel::bomegas`.
+* Fixed missing `dependOn` declarations for point-estimate option on scale table and `latentCorDf` in base container.
+* Fixed untranslated point-estimate column title in scale/item tables.
 * Rater Agreement: declared factor level order is now authoritative for weighted Cohen's kappa and ordinal Krippendorff's alpha even when the labels look numeric (e.g. levels "1","3","2" declaring low < medium < high); numeric sorting is only used for columns with no declared order. Contradictory numeric-looking declared orders across raters now show the common-scale error instead of being silently sorted.
 * Rater Agreement: pairwise weighted Cohen's kappa now uses the full declared common scale for every rater pair, so a pair that never observes an interior category still gets that category's correct distance/weight instead of a rescaled subset.
 * Rater Agreement: Kendall's W (table and bootstrap CI) now rejects raters-in-rows data whose merged ordinal scale is ambiguous, matching the existing policy for weighted Cohen's kappa and ordinal Krippendorff's alpha; previously the result depended on the order of the subject columns.
-
 
 ---
 

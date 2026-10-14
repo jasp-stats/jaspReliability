@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.19.2\n"
-"POT-Creation-Date: 2026-07-18 04:23\n"
+"POT-Creation-Date: 2026-08-08 03:52\n"
 "PO-Revision-Date: 2025-12-31 12:02+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/jasp/"
@@ -351,114 +351,137 @@ msgstr ""
 msgid "Warning:"
 msgstr ""
 
-msgid ""
-"For the Lord generalized method, the test could not be split in equally "
-"sized parts with more than 1 item per part. Consider adding or removing "
-"items."
+msgid "McDonald's ωₜ"
 msgstr ""
-"இறைவன் பொதுமைப்படுத்தப்பட்ட முறையில், சோதனையை ஒரு பகுதிக்கு 1 உருப்படிக்கு மேல் கொண்ட "
-"சம அளவிலான பகுதிகளாகப் பிரிக்க முடியாது. பொருட்களைச் சேர்ப்பது அல்லது அகற்றுவது பற்றி "
-"சிந்தியுங்கள்."
 
-msgid "Standard error of measurement results for the selected methods."
+msgid "McDonald's ωₕ"
 msgstr ""
 
 msgid ""
-"The Lord, Keats, and Lord generalized method are only available for binary "
-"data."
-msgstr "இறைவன், கீட்ச் மற்றும் லார்ட்ச் கலவை முறை பைனரி தரவுகளுக்கு மட்டுமே கிடைக்கின்றன."
-
-msgid "Standard Error of Measurement"
-msgstr "அளவீட்டின் நிலையான பிழை"
-
-msgid ""
-"Conditional standard error of measurement (SEM) for each sum score using the "
-"selected method(s). The unconditional SEM is also shown."
+"The bi-factor model does not support items that load on more than one "
+"factor. Assign each item to a single factor, or select the second-order or "
+"correlated-factors model."
 msgstr ""
 
-msgid "Sum Score"
-msgstr "தொகை மதிப்பெண்"
-
-msgid "Unconditional SEM"
-msgstr "நிபந்தனையற்ற SEM"
-
-msgid "Counts"
-msgstr "எண்ணுகிறது"
-
-msgid "%1$s The unconditional SEM value equals %2$1.3f."
-msgstr "%1$s நிபந்தனையற்ற SEM மதிப்பு %2$1.3f க்கு சமம்."
-
-msgid ""
-"%1$s Estimating the %2$s method failed. If possible, you might try changing "
-"the method's parameters."
+msgid "Sampling the posterior distribution of the omega coefficients"
 msgstr ""
-"%1$s மதிப்பீட்டு %2$s முறை தோல்வியடைந்தது. முடிந்தால், நீங்கள் முறையின் அளவுருக்களை மாற்ற "
-"முயற்சி செய்யலாம்."
 
-msgid "Sum Score CI Table"
-msgstr "தொகை மதிப்பெண் தொஒ அட்டவணை"
+msgid "Bayesian Scale Reliability Statistics"
+msgstr "பேய்சியன் அளவிலான நம்பகத்தன்மை புள்ளிவிவரங்கள்"
 
-msgid ""
-"Confidence intervals for the true score at each sum score level, computed "
-"from the conditional SEM."
+#, fuzzy
+msgid "Posterior mean"
+msgstr "பின்புறம்"
+
+#, fuzzy
+msgid "Posterior median"
+msgstr "பின்புறம்"
+
+msgid "R-hat"
+msgstr "ஆர்-தொப்பி"
+
+msgid "Please assign at least two factors with at least two items each."
 msgstr ""
 
 msgid ""
-"Estimating the %s method failed. If possible, you might try changing the "
-"method's parameters."
-msgstr ""
-"%s முறையை மதிப்பிடுவது தோல்வியடைந்தது. முடிந்தால், நீங்கள் முறையின் அளவுருக்களை மாற்ற "
-"முயற்சி செய்யலாம்."
-
-msgid "Histogram of Counts per Sum Score Group"
-msgstr "தொகை மதிப்பெண் குழுவிற்கு எண்ணிக்கையின் இச்டோகிராம்"
-
-msgid "Distribution of participants across sum score groups."
+"McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
+"the correlated-factors model."
 msgstr ""
 
-msgid "Point Plots"
-msgstr "புள்ளி அடுக்கு"
-
-msgid ""
-"Conditional SEM plotted as a function of sum score for each selected method."
-msgstr ""
-
-msgid "SEM"
-msgstr "WHO"
-
-msgid "Combined Plot"
-msgstr "ஒருங்கிணைந்த சூழ்ச்சி"
-
-msgid ""
-"Overlay of all selected methods' conditional SEM across the full range of "
-"sum scores."
-msgstr ""
-
-msgid "Sum Score CI Plots"
-msgstr "தொகை மதிப்பெண் தொஒ அடுக்கு"
-
-msgid ""
-"True-score confidence interval plotted against sum score for each selected "
-"method."
-msgstr ""
-
-msgid "True Score Estimate"
-msgstr "உண்மையான மதிப்பெண் மதிப்பீடு"
-
-msgid "Split-half coefficient"
-msgstr "பிளவு-பாதி குணகம்"
-
-msgid "Item-rest correlation"
-msgstr "உருப்படி-ஓய்வு தொடர்பு"
+msgid "Average interitem correlation"
+msgstr "சராசரி இடைக்கால தொடர்பு"
 
 msgid "Mean"
 msgstr "இடை, சராசரி"
 
-msgid "Variance"
-msgstr "மாறுபாட்டெண்"
-
 msgid "SD"
 msgstr "எச்டி"
+
+msgid "Bayesian Individual Item Reliability Statistics"
+msgstr "பேய்சியன் தனிப்பட்ட உருப்படி நம்பகத்தன்மை புள்ளிவிவரங்கள்"
+
+msgid "Item"
+msgstr "உருப்படி"
+
+#, fuzzy
+msgid "McDonald's ωₜ (if item dropped)"
+msgstr "%s (உருப்படி கைவிடப்பட்டால்)"
+
+#, fuzzy
+msgid "McDonald's ωₕ (if item dropped)"
+msgstr "%s (உருப்படி கைவிடப்பட்டால்)"
+
+msgid "Item-rest correlation"
+msgstr "உருப்படி-ஓய்வு தொடர்பு"
+
+msgid ""
+"Empty cells indicate that dropping the item would leave a factor with fewer "
+"than two items."
+msgstr ""
+
+msgid "Computing item statistics (refitting the model once per item)"
+msgstr ""
+
+msgid ""
+"The bounds you entered have been rearranged in increasing order to provide "
+"meaningful results."
+msgstr ""
+"நீங்கள் உள்ளிட்ட எல்லைகள் அர்த்தமுள்ள முடிவுகளை வழங்குவதற்கான வரிசையை அதிகரிப்பதில் "
+"மறுசீரமைக்கப்பட்டுள்ளன."
+
+msgid ""
+"Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
+"than %2$.2f"
+msgstr "நம்பகத்தன்மை குணகம் %1$.2f ஐ விடப் பெரியது மற்றும் %2$.2f ஐ விடச் சிறியது"
+
+msgid "Posterior"
+msgstr "பின்புறம்"
+
+msgid "Probability"
+msgstr "நிகழ்தகவு"
+
+#, fuzzy
+msgid "Fit Measures of the Factor Model"
+msgstr "ஒற்றை காரணி மாதிரிக்கான பொருத்தமான நடவடிக்கைகள்"
+
+#, fuzzy
+msgid "Point estimate"
+msgstr "புள்ளி மதிப்பீடு"
+
+msgid "%s lower bound"
+msgstr "%s குறைந்த எல்லை"
+
+msgid "%s upper bound"
+msgstr "%s மேல் பிணைப்பு"
+
+msgid "Relative to cutoff"
+msgstr ""
+
+msgid ""
+"'Relative to cutoff' denotes the posterior probability that the B-RMSEA is "
+"smaller than the cutoff of %.2f."
+msgstr ""
+
+msgid "Posterior Plots"
+msgstr "பின்புற அடுக்குகள்"
+
+msgid "Convergence Traceplot"
+msgstr "கன்வர்சென்ச் ட்ரேச்ப்ளாட்"
+
+msgid "Posterior Predictive Check"
+msgstr ""
+
+msgid "Eigenvalue"
+msgstr "ஈசென்வெல்யூ"
+
+msgid "Eigenvalue No."
+msgstr "ஈசென்வெல்யூ எண்."
+
+msgid "Split-half coefficient"
+msgstr "பிளவு-பாதி குணகம்"
+
+msgid "Variance"
+msgstr "மாறுபாட்டெண்"
 
 msgid "%1$s Of the observations, %2$1.f complete cases were used."
 msgstr "அவதானிப்புகளின் %1$s, %2$1.f முழுமையான வழக்குகள் பயன்படுத்தப்பட்டன."
@@ -496,9 +519,6 @@ msgstr ""
 "பின்புற சுழிய மாதிரியை மாதிரி செய்வது தோல்வியடைந்தது. 'மேம்பட்ட விருப்பங்களில்' "
 "'நிகழ்வுகளை பட்டியலிடுவதை' மாற்ற முயற்சிக்கவும்"
 
-msgid "Bayesian Scale Reliability Statistics"
-msgstr "பேய்சியன் அளவிலான நம்பகத்தன்மை புள்ளிவிவரங்கள்"
-
 msgid ""
 "Bayesian posterior estimates and credible intervals for all selected scale "
 "reliability coefficients."
@@ -507,22 +527,13 @@ msgstr ""
 msgid "Posterior %s"
 msgstr "பின்புற %s"
 
-msgid "R-hat"
-msgstr "ஆர்-தொப்பி"
-
 msgid "ESS"
 msgstr "எச்"
-
-msgid "Bayesian Individual Item Reliability Statistics"
-msgstr "பேய்சியன் தனிப்பட்ட உருப்படி நம்பகத்தன்மை புள்ளிவிவரங்கள்"
 
 msgid ""
 "Bayesian item-level reliability: posterior estimates of the scale "
 "coefficient if each item were dropped, and item-rest correlations."
 msgstr ""
-
-msgid "Item"
-msgstr "உருப்படி"
 
 msgid "%s (if item dropped)"
 msgstr "%s (உருப்படி கைவிடப்பட்டால்)"
@@ -532,30 +543,12 @@ msgid ""
 msgstr "%s உருப்படி கைவிடப்பட்ட புள்ளிவிவரங்களுக்கு குறைந்தது 3 மாறிகள் உள்ளிடவும்."
 
 msgid ""
-"The bounds you entered have been rearranged in increasing order to provide "
-"meaningful results."
-msgstr ""
-"நீங்கள் உள்ளிட்ட எல்லைகள் அர்த்தமுள்ள முடிவுகளை வழங்குவதற்கான வரிசையை அதிகரிப்பதில் "
-"மறுசீரமைக்கப்பட்டுள்ளன."
-
-msgid ""
-"Probability that Reliability Coefficient is Larger than %1$.2f and Smaller "
-"than %2$.2f"
-msgstr "நம்பகத்தன்மை குணகம் %1$.2f ஐ விடப் பெரியது மற்றும் %2$.2f ஐ விடச் சிறியது"
-
-msgid ""
 "Posterior and prior probability that each reliability coefficient falls "
 "within the specified interval."
 msgstr ""
 
-msgid "Probability"
-msgstr "நிகழ்தகவு"
-
 msgid "Prior"
 msgstr "முன்"
-
-msgid "Posterior"
-msgstr "பின்புறம்"
 
 msgid "Fit Measures for the Single-Factor Model"
 msgstr "ஒற்றை காரணி மாதிரிக்கான பொருத்தமான நடவடிக்கைகள்"
@@ -563,12 +556,6 @@ msgstr "ஒற்றை காரணி மாதிரிக்கான பொ
 msgid ""
 "Bayesian fit indices for the single-factor model underlying McDonald's omega."
 msgstr ""
-
-msgid "%s lower bound"
-msgstr "%s குறைந்த எல்லை"
-
-msgid "%s upper bound"
-msgstr "%s மேல் பிணைப்பு"
 
 msgid ""
 "'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller "
@@ -593,9 +580,6 @@ msgstr "ஒற்றை காரணி மாதிரியின் தரப
 
 msgid "Standardized loading"
 msgstr "தரப்படுத்தப்பட்ட ஏற்றுதல்"
-
-msgid "Posterior Plots"
-msgstr "பின்புற அடுக்குகள்"
 
 msgid ""
 "Posterior density plots for each selected reliability coefficient, with "
@@ -625,12 +609,6 @@ msgstr ""
 msgid "Item Dropped"
 msgstr "உருப்படி கைவிடப்பட்டது"
 
-msgid "Eigenvalue"
-msgstr "ஈசென்வெல்யூ"
-
-msgid "Eigenvalue No."
-msgstr "ஈசென்வெல்யூ எண்."
-
 msgid "Posterior Predictive Check Omega"
 msgstr ""
 
@@ -640,9 +618,6 @@ msgid ""
 "factor model fit."
 msgstr ""
 
-msgid "Convergence Traceplot"
-msgstr "கன்வர்சென்ச் ட்ரேச்ப்ளாட்"
-
 msgid ""
 "Traceplots of MCMC samples per chain over iterations to assess sampler "
 "convergence and mixing."
@@ -650,9 +625,6 @@ msgstr ""
 
 msgid "Iterations"
 msgstr "மறு செய்கைகள்"
-
-msgid "Average interitem correlation"
-msgstr "சராசரி இடைக்கால தொடர்பு"
 
 msgid "%1$s%2$s"
 msgstr "%1$s%2$s"
@@ -773,6 +745,100 @@ msgstr "%1$sமாறிகள் %2$s மற்றும் %3$s சரிய�
 
 msgid "Please enter at least 2 variables to do an analysis."
 msgstr "பகுப்பாய்வு செய்ய குறைந்தது 2 மாறிகள் உள்ளிடவும்."
+
+msgid ""
+"For the Lord generalized method, the test could not be split in equally "
+"sized parts with more than 1 item per part. Consider adding or removing "
+"items."
+msgstr ""
+"இறைவன் பொதுமைப்படுத்தப்பட்ட முறையில், சோதனையை ஒரு பகுதிக்கு 1 உருப்படிக்கு மேல் கொண்ட "
+"சம அளவிலான பகுதிகளாகப் பிரிக்க முடியாது. பொருட்களைச் சேர்ப்பது அல்லது அகற்றுவது பற்றி "
+"சிந்தியுங்கள்."
+
+msgid "Standard error of measurement results for the selected methods."
+msgstr ""
+
+msgid ""
+"The Lord, Keats, and Lord generalized method are only available for binary "
+"data."
+msgstr "இறைவன், கீட்ச் மற்றும் லார்ட்ச் கலவை முறை பைனரி தரவுகளுக்கு மட்டுமே கிடைக்கின்றன."
+
+msgid "Standard Error of Measurement"
+msgstr "அளவீட்டின் நிலையான பிழை"
+
+msgid ""
+"Conditional standard error of measurement (SEM) for each sum score using the "
+"selected method(s). The unconditional SEM is also shown."
+msgstr ""
+
+msgid "Sum Score"
+msgstr "தொகை மதிப்பெண்"
+
+msgid "Unconditional SEM"
+msgstr "நிபந்தனையற்ற SEM"
+
+msgid "Counts"
+msgstr "எண்ணுகிறது"
+
+msgid "%1$s The unconditional SEM value equals %2$1.3f."
+msgstr "%1$s நிபந்தனையற்ற SEM மதிப்பு %2$1.3f க்கு சமம்."
+
+msgid ""
+"%1$s Estimating the %2$s method failed. If possible, you might try changing "
+"the method's parameters."
+msgstr ""
+"%1$s மதிப்பீட்டு %2$s முறை தோல்வியடைந்தது. முடிந்தால், நீங்கள் முறையின் அளவுருக்களை மாற்ற "
+"முயற்சி செய்யலாம்."
+
+msgid "Sum Score CI Table"
+msgstr "தொகை மதிப்பெண் தொஒ அட்டவணை"
+
+msgid ""
+"Confidence intervals for the true score at each sum score level, computed "
+"from the conditional SEM."
+msgstr ""
+
+msgid ""
+"Estimating the %s method failed. If possible, you might try changing the "
+"method's parameters."
+msgstr ""
+"%s முறையை மதிப்பிடுவது தோல்வியடைந்தது. முடிந்தால், நீங்கள் முறையின் அளவுருக்களை மாற்ற "
+"முயற்சி செய்யலாம்."
+
+msgid "Histogram of Counts per Sum Score Group"
+msgstr "தொகை மதிப்பெண் குழுவிற்கு எண்ணிக்கையின் இச்டோகிராம்"
+
+msgid "Distribution of participants across sum score groups."
+msgstr ""
+
+msgid "Point Plots"
+msgstr "புள்ளி அடுக்கு"
+
+msgid ""
+"Conditional SEM plotted as a function of sum score for each selected method."
+msgstr ""
+
+msgid "SEM"
+msgstr "WHO"
+
+msgid "Combined Plot"
+msgstr "ஒருங்கிணைந்த சூழ்ச்சி"
+
+msgid ""
+"Overlay of all selected methods' conditional SEM across the full range of "
+"sum scores."
+msgstr ""
+
+msgid "Sum Score CI Plots"
+msgstr "தொகை மதிப்பெண் தொஒ அடுக்கு"
+
+msgid ""
+"True-score confidence interval plotted against sum score for each selected "
+"method."
+msgstr ""
+
+msgid "True Score Estimate"
+msgstr "உண்மையான மதிப்பெண் மதிப்பீடு"
 
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
