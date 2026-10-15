@@ -37,7 +37,7 @@ Form
 			maxLevels: 50
 			minNumericLevels: 2
 			id: variables
-			info: qsTr("Items to include in the SEM analysis. Must be ordinally or nominally scaled (dichotomous or polytomous).")
+			info: qsTr("Items to include in the SEM analysis. Must be numerically coded (e.g., 0/1 or 1-5), dichotomous or polytomous. Ordinal and nominal variables are accepted, but text labels are not.")
 			onCountChanged:
 			{
 				var newValues = []
