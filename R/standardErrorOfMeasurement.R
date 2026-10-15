@@ -129,7 +129,7 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
   if (!ready) return()
 
   .hasErrors(dataset = dataset,
-             type = c('missingValues', "variance", "infinity", "variance"),
+             type = c('missingValues', "variance", "infinity"),
              missingValues.target = options$variables,
              exitAnalysisIfErrors = TRUE)
 
