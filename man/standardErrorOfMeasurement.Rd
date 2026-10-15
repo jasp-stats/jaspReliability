@@ -96,7 +96,7 @@ Defaults to \code{FALSE}.}
 \item{userReliability, }{Override the reliability estimate used for the unconditional SEM and the Keats method.
 Defaults to \code{FALSE}.}
 
-\item{variables, }{Items to include in the SEM analysis. Must be ordinally or nominally scaled (dichotomous or polytomous).}
+\item{variables, }{Items to include in the SEM analysis. Must be numerically coded (e.g., 0/1 or 1-5), dichotomous or polytomous. Ordinal variables with text labels are also accepted and are coded 1, 2, 3, ... in the order of their levels, which must be the same for all of them; nominal variables must be numerically coded.}
 }
 \description{
 Standard Error of Measurement

@@ -186,3 +186,72 @@ test_that("ANOVA method reduces to the unconditional SEM when all scores form on
   expect_equal(length(anovaSem), 1)
   expect_equal(anovaSem, semAlpha, tolerance = 1e-6)
 })
+
+
+# text labels: ordinal items with text labels are coded 1, 2, 3, ... in the order of their
+# declared levels (not the alphabetical one), so the result must equal the numerically coded data
+asrmNumeric <- read.csv(testthat::test_path("asrm.csv"), fileEncoding = "UTF-8-BOM")
+textLevels  <- c("never", "rarely", "sometimes", "often", "always") # alphabetical order differs
+asrmText    <- as.data.frame(lapply(asrmNumeric, function(x) factor(textLevels[x], levels = textLevels)))
+
+textOptions <- modifyList(options, list(minimumGroupSize = 10, thorndike = TRUE))
+
+coefficientsOf <- function(results) {
+  results[["results"]][["semMainContainer"]][["collection"]][["semMainContainer_coefficientTable"]][["data"]]
+}
+
+test_that("Ordinal items with text labels are coded by the order of their levels", {
+  resultsNumeric <- runAnalysis("standardErrorOfMeasurement", dataset = asrmNumeric, options = textOptions, makeTests = FALSE)
+  resultsText    <- runAnalysis("standardErrorOfMeasurement", dataset = asrmText, options = textOptions, makeTests = FALSE)
+
+  expect_identical(resultsText[["status"]], "complete")
+  expect_equal(coefficientsOf(resultsText), coefficientsOf(resultsNumeric))
+})
+
+test_that("Nominal items with text labels give an error that points to the ordinal type", {
+  nominalOptions <- modifyList(textOptions, list(variables.types = rep("nominal", 5)))
+  results <- runAnalysis("standardErrorOfMeasurement", dataset = asrmText, options = nominalOptions, makeTests = FALSE)
+
+  expect_identical(results[["status"]], "validationError")
+  expect_match(results[["results"]][["errorMessage"]], "not ordinal")
+})
+
+test_that("Items that mix numeric and text labels give an error", {
+  asrmMixed <- asrmText
+  asrmMixed[[1]] <- factor(ifelse(as.character(asrmText[[1]]) == "often", "4", as.character(asrmText[[1]])),
+                           levels = c("never", "rarely", "sometimes", "4", "always"))
+  results <- runAnalysis("standardErrorOfMeasurement", dataset = asrmMixed, options = textOptions, makeTests = FALSE)
+
+  expect_identical(results[["status"]], "validationError")
+  expect_match(results[["results"]][["errorMessage"]], "mix numeric and text labels")
+})
+
+test_that("Levels that JASP drops because they are unused do not shift the codes of an item", {
+  # nobody answers "never" on item 1 (and nobody "always" on item 3, which is already so in the data)
+  numericDropped <- asrmNumeric
+  numericDropped[[1]][numericDropped[[1]] == 1] <- 2
+  textDropped <- as.data.frame(lapply(numericDropped, function(x) droplevels(factor(textLevels[x], levels = textLevels))))
+  expect_false(identical(levels(textDropped[[1]]), levels(textDropped[[2]])))
+
+  resultsNumeric <- runAnalysis("standardErrorOfMeasurement", dataset = numericDropped, options = textOptions, makeTests = FALSE)
+  resultsText    <- runAnalysis("standardErrorOfMeasurement", dataset = textDropped, options = textOptions, makeTests = FALSE)
+
+  expect_identical(resultsText[["status"]], "complete")
+  expect_equal(coefficientsOf(resultsText), coefficientsOf(resultsNumeric))
+})
+
+test_that("Text-labelled ordinal items without one common order of levels give an error", {
+  # item 1 never uses "rarely", item 2 never uses "sometimes", and no other item carries the full
+  # order: the relative order of "rarely" and "sometimes" is not determined
+  asrmAmbiguous <- data.frame(
+    asrm_1 = factor(c("never", "sometimes", "sometimes", "sometimes", "always")[asrmNumeric[[1]]],
+                    levels = c("never", "sometimes", "always")),
+    asrm_2 = factor(c("never", "rarely", "rarely", "rarely", "always")[asrmNumeric[[2]]],
+                    levels = c("never", "rarely", "always"))
+  )
+  ambiguousOptions <- modifyList(textOptions, list(variables = c("asrm_1", "asrm_2"), variables.types = c("ordinal", "ordinal")))
+  results <- runAnalysis("standardErrorOfMeasurement", dataset = asrmAmbiguous, options = ambiguousOptions, makeTests = FALSE)
+
+  expect_identical(results[["status"]], "validationError")
+  expect_match(results[["results"]][["errorMessage"]], "common order of levels")
+})

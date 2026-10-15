@@ -35,9 +35,9 @@ Form
 			allowedColumns: ["nominal", "ordinal"]
 			allowTypeChange: true
 			maxLevels: 50
-			minNumericLevels: 2
+			minLevels: 2
 			id: variables
-			info: qsTr("Items to include in the SEM analysis. Must be numerically coded (e.g., 0/1 or 1-5), dichotomous or polytomous. Ordinal and nominal variables are accepted, but text labels are not.")
+			info: qsTr("Items to include in the SEM analysis. Must be numerically coded (e.g., 0/1 or 1-5), dichotomous or polytomous. Ordinal variables with text labels are also accepted and are coded 1, 2, 3, ... in the order of their levels, which must be the same for all of them; nominal variables must be numerically coded.")
 			onCountChanged:
 			{
 				var newValues = []

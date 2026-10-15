@@ -56,12 +56,69 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
 
   dataset <- dataset[complete.cases(dataset), ]
 
-  # functions work only with numeric data
-  dataset <- as.data.frame(lapply(dataset, function(x) as.numeric(as.character(x))))
-
   # dataset columns are by default ordered alphabetically (why???), so we change the order
-  if (length(options$variables) > 0)
+  if (length(options[["variables"]]) > 0)
     dataset <- dataset[, options[["variables"]]]
+
+  # functions work only with numeric data
+  types <- options[["variables.types"]]
+  if (length(types) != ncol(dataset))
+    types <- rep("nominal", ncol(dataset))
+
+  return(.semCodeItems(dataset, types))
+}
+
+# Numerically coded items keep their label values. Ordinal items with only text labels are
+# coded 1, 2, 3, ... in the order of their levels (the declared factor order, which JASP
+# passes on, and not the alphabetical one), one order for all of them. Nominal items with
+# text labels and items that mix numeric and text labels cannot be converted.
+.semCodeItems <- function(dataset, types) {
+
+  textOrdinal    <- character(0)
+  textNotOrdinal <- character(0)
+  mixedLabels    <- character(0)
+
+  for (i in seq_along(dataset)) {
+    x             <- dataset[[i]]
+    numericLabels <- suppressWarnings(as.numeric(as.character(x)))
+
+    if (!anyNA(numericLabels)) {
+      dataset[[i]] <- numericLabels
+    } else if (!all(is.na(numericLabels))) {
+      mixedLabels <- c(mixedLabels, names(dataset)[i])
+    } else if (types[i] == "ordinal" && is.factor(x)) {
+      textOrdinal <- c(textOrdinal, names(dataset)[i])
+    } else {
+      textNotOrdinal <- c(textNotOrdinal, names(dataset)[i])
+    }
+  }
+
+  messages <- character(0)
+
+  # The codes follow one level order that is shared by all text-labelled items. JASP drops
+  # levels that are unused in the data, so the position of a level within an item alone could
+  # be shifted against the other items (e.g. an item nobody answered "never" to).
+  if (length(textOrdinal) > 0) {
+    shared <- .raterAgreementUnionLevels(dataset[textOrdinal])
+    if (shared[["ordered"]]) {
+      for (name in textOrdinal)
+        dataset[[name]] <- as.numeric(factor(as.character(dataset[[name]]), levels = shared[["levels"]]))
+    } else {
+      messages <- c(messages, gettext("The ordinal variables with text labels do not share one common order of levels, so their levels cannot be coded. Make sure that they all use the same ordered levels."))
+    }
+  }
+
+  if (length(textNotOrdinal) > 0)
+    messages <- c(messages, gettextf("Text labels are only supported for ordinal variables, whose levels are then coded 1, 2, 3, ... in their order. The following variables have text labels but are not ordinal: %1$s. Change their type to ordinal or recode them to numbers.",
+                                     paste(jaspBase::decodeColNames(textNotOrdinal), collapse = ", ")))
+  if (length(mixedLabels) > 0)
+    messages <- c(messages, gettextf("The following variables mix numeric and text labels, so they cannot be converted to numbers: %1$s. Recode them so that all labels are numbers or all are text.",
+                                     paste(jaspBase::decodeColNames(mixedLabels), collapse = ", ")))
+
+  if (length(messages) > 0)
+    .quitAnalysis(paste(messages, collapse = " "))
+
+  rownames(dataset) <- NULL # complete.cases() left gaps; the former as.data.frame(lapply()) reset them
 
   return(dataset)
 }
