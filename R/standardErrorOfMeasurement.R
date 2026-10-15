@@ -755,7 +755,10 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
   outOrdered <- outDt[order(outDt[, 1], decreasing = FALSE), ]
   uniqueOutOrdered <- unique(outOrdered)
   irtBinned <- approx(uniqueOutOrdered[, 1], uniqueOutOrdered[, 2], xout = discScores)$y
-  # take the value from the continous sems for the smallest latent trait value
+  # sum scores outside the range of the expected sum scores (the curve never reaches the lowest and
+  # highest possible score) take the SEM at the nearest end of the latent trait scale
+  irtBinned[discScores < min(uniqueOutOrdered[, 1])] <- uniqueOutOrdered[1, 2]
+  irtBinned[discScores > max(uniqueOutOrdered[, 1])] <- uniqueOutOrdered[nrow(uniqueOutOrdered), 2]
   irtBinned[is.na(irtBinned)] <- uniqueOutOrdered[1, 2]
   outBinned <- data.frame(scores = discScores, sem = irtBinned)
 

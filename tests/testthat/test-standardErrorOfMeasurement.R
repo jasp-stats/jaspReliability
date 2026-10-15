@@ -96,7 +96,7 @@ test_that("Standard error of measurement table results match", {
                                      18.0, 0.76104647303067507, 0.9151894370278959, 1.0, 0.84852813742385702, 1,
                                      56.0, 0.84058341505800005, 1.0567697356551156, 1.1547005383792515, 1.2955969390869324, 2,
                                      69.0, 0.81285834219580733, 0.9151894370278959, 1.0, 1.0, 3,
-                                     50.0, 0.49433301750863673, 0.0, 0.0, 0.0, 4))
+                                     50.0, 0.199948272704165, 0.0, 0.0, 0.0, 4))
   options("jaspRoundToPrecision" = NULL)
 })
 
@@ -320,4 +320,16 @@ test_that("Nominal items with two text labels but different label pairs give the
 
   expect_identical(results[["status"]], "validationError")
   expect_match(results[["results"]][["errorMessage"]], "common order of levels")
+})
+
+test_that("IRT method does not depend on the direction in which dichotomous items are coded", {
+  irtSems <- function(data) {
+    results <- runAnalysis("standardErrorOfMeasurement", dataset = data,
+                           options = modifyList(binomialOptions, list(lord = FALSE, keats = FALSE, lord2 = FALSE)), makeTests = FALSE)
+    vapply(coefficientsOf(results), function(row) row[["irt"]], numeric(1))
+  }
+  # every item flipped: the same respondents, only the sum score is mirrored, so the SEM at the
+  # lowest and the highest sum score must swap places as well
+  # (mirt fits the two data sets separately, so they agree to its convergence tolerance only)
+  expect_equal(irtSems(binaryItems), rev(irtSems(1 - binaryItems)), tolerance = 1e-4)
 })
