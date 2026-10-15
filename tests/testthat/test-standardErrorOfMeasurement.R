@@ -302,3 +302,22 @@ test_that("IRT method gives the same SEM for polytomous items whatever the lowes
   # same answers, coded 1-5 and 0-4: the SEM must belong to the same respondents
   expect_equal(irtSems(asrmNumeric), irtSems(asrmNumeric - 1))
 })
+
+test_that("Nominal items with exactly two text labels are accepted and coded by the order of their levels", {
+  binaryText <- as.data.frame(lapply(binaryItems, function(x) factor(c("no", "yes")[x + 1], levels = c("no", "yes"))))
+  expect_equal(binomialSems(binaryText, types = rep("nominal", 4)), binomialReference)
+})
+
+test_that("Nominal items with two text labels but different label pairs give the common-order error", {
+  # "no"/"yes" next to "false"/"true": nothing says which label of one pair goes with which of the other
+  mixedPairs <- data.frame(
+    a = factor(c("no", "yes")[binaryItems[[1]] + 1], levels = c("no", "yes")),
+    b = factor(c("false", "true")[binaryItems[[2]] + 1], levels = c("false", "true")),
+    c = factor(c("no", "yes")[binaryItems[[3]] + 1], levels = c("no", "yes")),
+    d = factor(c("false", "true")[binaryItems[[4]] + 1], levels = c("false", "true")))
+  pairOptions <- modifyList(binomialOptions, list(variables = colnames(mixedPairs), variables.types = rep("nominal", 4)))
+  results <- runAnalysis("standardErrorOfMeasurement", dataset = mixedPairs, options = pairOptions, makeTests = FALSE)
+
+  expect_identical(results[["status"]], "validationError")
+  expect_match(results[["results"]][["errorMessage"]], "common order of levels")
+})

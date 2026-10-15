@@ -70,8 +70,9 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
 
 # Numerically coded items keep their label values. Ordinal items with only text labels are
 # coded 1, 2, 3, ... in the order of their levels (the declared factor order, which JASP
-# passes on, and not the alphabetical one), one order for all of them. Nominal items with
-# text labels and items that mix numeric and text labels cannot be converted.
+# passes on, and not the alphabetical one), one order for all of them. The same holds for
+# nominal items with two text labels. Other nominal items with text labels and items that
+# mix numeric and text labels cannot be converted.
 .semCodeItems <- function(dataset, types) {
 
   textOrdinal    <- character(0)
@@ -86,7 +87,9 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
       dataset[[i]] <- numericLabels
     } else if (!all(is.na(numericLabels))) {
       mixedLabels <- c(mixedLabels, names(dataset)[i])
-    } else if (types[i] == "ordinal" && is.factor(x)) {
+    } else if (is.factor(x) && (types[i] == "ordinal" || nlevels(x) == 2)) {
+      # with two levels the order only decides which label is coded 1 and which 2, which mirrors
+      # the scale; so nominal items with two text labels are fine as well
       textOrdinal <- c(textOrdinal, names(dataset)[i])
     } else {
       textNotOrdinal <- c(textNotOrdinal, names(dataset)[i])
@@ -109,7 +112,7 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
   }
 
   if (length(textNotOrdinal) > 0)
-    messages <- c(messages, gettextf("Text labels are only supported for ordinal variables, whose levels are then coded 1, 2, 3, ... in their order. The following variables have text labels but are not ordinal: %1$s. Change their type to ordinal or recode them to numbers.",
+    messages <- c(messages, gettextf("Text labels are only supported for ordinal variables and for nominal variables with two levels; their levels are then coded 1, 2, 3, ... in their order. The following variables have text labels but are not ordinal and do not have two levels: %1$s. Change their type to ordinal or recode them to numbers.",
                                      paste(jaspBase::decodeColNames(textNotOrdinal), collapse = ", ")))
   if (length(mixedLabels) > 0)
     messages <- c(messages, gettextf("The following variables mix numeric and text labels, so they cannot be converted to numbers: %1$s. Recode them so that all labels are numbers or all are text.",
