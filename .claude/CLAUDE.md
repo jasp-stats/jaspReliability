@@ -46,6 +46,15 @@ Use these R-specific tools instead of Bash when possible:
 
 **Use Claude Code native tools** (Read, Edit, Write, Glob, Grep, Bash) for file editing, git operations, and file search -- they are faster than MCP equivalents.
 
+## JASP Desktop via JASP-RPC
+
+When something needs to run in real JASP (QML behaviour, column types, the data JASP passes to R, a user-reported bug), **try to hook into JASP Desktop first**; fall back to jaspTools only if it is not reachable.
+
+- **Check:** `POST http://127.0.0.1:48164/rpc` with `{"jsonrpc":"2.0","id":1,"method":"ping"}` returns `pong`. It is plain HTTP, so call it with `curl`/Python from Bash (it is not an MCP tool). If unreachable, ask the user to enable *Advanced > Remote control > Enable JASP-RPC server* (IP and port are shown there).
+- **Methods (JSON-RPC 2.0):** `modules_list`, `data_load`, `data_info`, `analysis_create`, `analysis_run`, `analysis_results`, `get_analyses_state`, `rpc_discover` (full list in `jasp-desktop/Resources/JASP_RPC.json`). Column types are set through the option itself, e.g. `"variables": {"types": ["ordinal", ...], "value": ["x1", ...]}`.
+- **Installed module only:** JASP runs the module installed in JASP, not the working tree. For working-tree changes the user must install this folder as a developer module in JASP (not `renv::install(".")`). `analysis_create` returns `optionMeta`, which shows the current QML `info` text, so you can confirm it is the right build.
+- **It changes the user's workspace:** `data_load` and `analysis_create` replace/add things in their open JASP and there is no close/delete method. Ask before the first such call and report which analyses you left open.
+
 ## Working Effectively
 
 ### Session Setup (done by user)
