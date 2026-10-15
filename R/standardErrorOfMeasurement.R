@@ -248,7 +248,7 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
       }
 
       if (.semAnyZeroSem(jaspResults, options)) {
-        footnote <- gettextf("%1$s A conditional SEM of zero means that all respondents in that score group gave identical item responses, which typically happens at the lowest and highest possible sum score; it does not indicate perfect measurement precision.", footnote)
+        footnote <- gettextf("%1$s A conditional SEM of zero means that no variation was observed within that score group, which typically happens at the lowest and highest possible sum score; it does not indicate perfect measurement precision.", footnote)
       }
     }
   }
@@ -293,7 +293,7 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
     }
 
     if (.semAnyZeroSem(jaspResults, options)) {
-      ciTable$addFootnote(gettext("No confidence interval is reported where the conditional SEM equals zero, that is, where all respondents in that score group gave identical item responses."))
+      ciTable$addFootnote(gettext("No confidence interval is reported where the conditional SEM equals zero."))
     }
   }
 
@@ -878,8 +878,8 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
   zValueTable <- qnorm(1 - (1 - ciLevelTable) / 2)
   zValuePlots <- qnorm(1 - (1 - ciLevelPlots) / 2)
   for (i in 1:nrow(out)) {
-    # a conditional SEM of exactly zero means that everyone in the score group gave the
-    # same item responses, which happens at the lowest and highest possible sum score;
+    # a conditional SEM of exactly zero means that no variation was observed within the
+    # score group, which typically happens at the lowest and highest possible sum score;
     # the zero-width interval that follows would suggest perfect precision, so we leave
     # the bounds missing instead (see Emons, 2023)
     if (is.na(out[i, 2]) || out[i, 2] == 0) next
@@ -891,8 +891,8 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
 }
 
 #' this function checks whether any of the selected methods yields a conditional SEM of
-#' exactly zero, which is the case when all respondents in a score group gave identical
-#' item responses; the tables then carry an explanatory footnote
+#' exactly zero, that is, no variation was observed within a score group; the tables
+#' then carry an explanatory footnote
 .semAnyZeroSem <- function(jaspResults, options) {
 
   selected <- options[["selected"]]
