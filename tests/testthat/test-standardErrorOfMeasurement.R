@@ -41,31 +41,31 @@ results <- runAnalysis("standardErrorOfMeasurement", dataset = testthat::test_pa
 test_that("Standard Error of Measurement table results match", {
   table <- results[["results"]][["semMainContainer"]][["collection"]][["semMainContainer_coefficientTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(1.29559693908693, 3, 1.33767168953407, 1.42871788954944, 0.810972506211268,
+                                 list(1.29559693908693, 3, 1.33767168953407, 0.229854412468377, 0.810972506211268,
                                   5, 0.925820099772551, 1.29559693908693, 0, 1.33767168953407,
-                                  1.49703106451467, 1.07055114141815, 6, 0.925820099772551, 1.29559693908693,
-                                  2, 1.33767168953407, 1.54510894064619, 1.23298708781765, 7,
-                                  0.925820099772551, 1.29559693908693, 4, 1.33767168953407, 1.53986972817388,
+                                  0.982935317522817, 1.07055114141815, 6, 0.925820099772551, 1.29559693908693,
+                                  2, 1.33767168953407, 1.266173971192005, 1.23298708781765, 7,
+                                  0.925820099772551, 1.29559693908693, 4, 1.33767168953407, 1.383637134534919,
                                   1.34041735804632, 8, 0.925820099772551, 1.29559693908693, 6,
-                                  1.33767168953407, 1.51867216206909, 1.41137323284577, 9, 0.925820099772551,
-                                  1.15961069747436, 7, 1.13338336703573, 1.52424619129158, 1.45689201232324,
+                                  1.33767168953407, 1.406286664699453, 1.41137323284577, 9, 0.925820099772551,
+                                  1.15961069747436, 7, 1.13338336703573, 1.428717889549439, 1.45689201232324,
                                   10, 0.866025403784439, 1.15961069747436, 5, 1.13338336703573,
-                                  1.52355237480235, 1.48489344540488, 11, 0.866025403784439, 1.70538363230486,
-                                  7, 1.70918401391582, 1.48885399722353, 1.50186786343546, 12,
-                                  1.64189930669738, 1.70538363230486, 9, 1.70918401391582, 1.44988865277463,
+                                  1.497031064514674, 1.48489344540488, 11, 0.866025403784439, 1.70538363230486,
+                                  7, 1.70918401391582, 1.545108940646190, 1.50186786343546, 12,
+                                  1.64189930669738, 1.70538363230486, 9, 1.70918401391582, 1.539869728173880,
                                   1.5136512119818, 13, 1.64189930669738, 1.62117399689396, 13,
-                                  1.60299994073407, 1.46250310836316, 1.52578416955645, 14, 1.53589529557661,
-                                  1.43811745632331, 11, 1.41939979368434, 1.47211242437288, 1.54361561010075,
+                                  1.60299994073407, 1.518672162069087, 1.52578416955645, 14, 1.53589529557661,
+                                  1.43811745632331, 11, 1.41939979368434, 1.524246191291583, 1.54361561010075,
                                   15, 1.57249078621379, 1.65968233543213, 6, 1.62928079660054,
-                                  1.40088808515865, 1.57221038715823, 16, 1.84390889145858, 1.65968233543213,
-                                  1, 1.62928079660054, 1.22842056165, 1.61611151602076, 17, 1.84390889145858,
-                                  1.65968233543213, 2, 1.62928079660054, 0.961775139235806, 1.67903900932886,
+                                  1.523552374802350, 1.57221038715823, 16, 1.84390889145858, 1.65968233543213,
+                                  1, 1.62928079660054, 1.488853997223532, 1.61611151602076, 17, 1.84390889145858,
+                                  1.65968233543213, 2, 1.62928079660054, 1.449888652774629, 1.67903900932886,
                                   18, 1.84390889145858, 1.65968233543213, 1, 1.62928079660054,
-                                  0.229854412468377, 1.76363892004825, 19, 1.84390889145858, 1.65968233543213,
-                                  0, 1.62928079660054, 0.229854412468377, 1.87138377130906, 20,
-                                  1.84390889145858, 1.65968233543213, 0, 1.62928079660054, 0.229854412468377,
+                                  1.462503108363163, 1.76363892004825, 19, 1.84390889145858, 1.65968233543213,
+                                  0, 1.62928079660054, 1.472112424372880, 1.87138377130906, 20,
+                                  1.84390889145858, 1.65968233543213, 0, 1.62928079660054, 1.400888085158652,
                                   2.00265997698042, 21, 1.84390889145858, 1.65968233543213, 1,
-                                  1.62928079660054, 0.229854412468377, 2.1569982806834, 22, 1.84390889145858
+                                  1.62928079660054, 1.228420561649999, 2.1569982806834, 22, 1.84390889145858
                                  ))
 })
 
@@ -254,4 +254,51 @@ test_that("Text-labelled ordinal items without one common order of levels give a
 
   expect_identical(results[["status"]], "validationError")
   expect_match(results[["results"]][["errorMessage"]], "common order of levels")
+})
+
+
+# binomial methods: Lord, Keats and Lord generalized treat the sum score as the number of correct
+# responses, so they need 0/1 items, and the IRT method puts its SEM on a scale that starts at 0.
+# Other codes of dichotomous items (1/2, text labels coded 1, 2) must give the same SEM as 0/1
+# coding, on the scale of the original sum score.
+binaryItems     <- read.csv(testthat::test_path("binaryTestDt.csv"), fileEncoding = "UTF-8-BOM")[, 1:4]
+binomialOptions <- modifyList(options, list(anova = FALSE, thorndike = FALSE, lord = TRUE, keats = TRUE, lord2 = TRUE, irt = TRUE,
+                                            lord2NumberOfSplits = "2", minimumGroupSize = 10,
+                                            variables = colnames(binaryItems)))
+
+binomialSems <- function(data, types = rep("nominal", 4), onlyObserved = FALSE) {
+  results <- runAnalysis("standardErrorOfMeasurement", dataset = data,
+                         options = modifyList(binomialOptions, list(variables.types = types)), makeTests = FALSE)
+  rows <- coefficientsOf(results)
+  if (onlyObserved) # codes with gaps between the sum scores add empty score rows
+    rows <- Filter(function(row) row[["counts"]] > 0, rows)
+  do.call(rbind, lapply(rows, function(row) unlist(row[c("lord", "keats", "lord2", "irt")])))
+}
+
+binomialReference <- binomialSems(binaryItems)
+
+test_that("Binomial methods give the same SEM for items coded 1/2 as for items coded 0/1", {
+  expect_false(anyNA(binomialReference))
+  expect_equal(binomialSems(binaryItems + 1), binomialReference)
+})
+
+test_that("Binomial methods give the same SEM for dichotomous items with text labels", {
+  binaryText <- as.data.frame(lapply(binaryItems, function(x) factor(c("no", "yes")[x + 1], levels = c("no", "yes"))))
+  expect_equal(binomialSems(binaryText, types = rep("ordinal", 4)), binomialReference)
+})
+
+test_that("Binomial methods scale the SEM with the distance between the two item values", {
+  observed <- c("lord", "keats", "irt")
+  expect_equal(binomialSems(binaryItems * 2, onlyObserved = TRUE)[, observed],
+               2 * binomialReference[, observed])
+})
+
+test_that("IRT method gives the same SEM for polytomous items whatever the lowest code is", {
+  irtOptions  <- modifyList(textOptions, list(anova = FALSE, thorndike = FALSE, irt = TRUE))
+  irtSems <- function(data) {
+    results <- runAnalysis("standardErrorOfMeasurement", dataset = data, options = irtOptions, makeTests = FALSE)
+    vapply(coefficientsOf(results), function(row) row[["irt"]], numeric(1))
+  }
+  # same answers, coded 1-5 and 0-4: the SEM must belong to the same respondents
+  expect_equal(irtSems(asrmNumeric), irtSems(asrmNumeric - 1))
 })

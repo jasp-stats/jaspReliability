@@ -735,6 +735,15 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
       outIRT[i, 2] <- sqrt(sum(unlist(devPr)))
     }
   }
+  # mirt codes the categories of every item from 0 at a distance of 1, so the expected sum scores
+  # start at 0. The observed sum scores start at the sum of the item minima (and, for dichotomous
+  # items, advance in steps of the distance between the two values), so the IRT results are
+  # moved onto the scale of the observed sum scores before they are read off at those scores.
+  scoreShift <- sum(apply(X, 2, min))
+  scoreStep  <- if (nc == 2) max(X) - min(X) else 1
+  outIRT[, 1] <- scoreShift + scoreStep * outIRT[, 1]
+  outIRT[, 2] <- scoreStep * outIRT[, 2]
+
   colnames(outIRT) <- c("scores", "sem")
   discScores <- scores
 
@@ -753,37 +762,54 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
 
 }
 
-.semLord <- function(nit, scoresObj) {
-  x <- scoresObj$scores
-  out_binom <- sqrt((x) * (nit - (x)) / (nit - 1))
-  return(cbind(x, out_binom))
+# The binomial methods (Lord, Keats, Lord generalized) treat the sum score as the number of
+# correct responses, which only holds for items coded 0/1. The two values of dichotomous items
+# can be coded otherwise (1/2, or text labels coded 1, 2), so the items are recoded to 0/1
+# first; the SEM is on the scale of the original sum score, hence it is rescaled by the
+# distance between the two values. For 0/1 data nothing changes.
+.semBinaryCodes <- function(X) {
+  lo <- min(X)
+  hi <- max(X)
+  return(list(X     = (X - lo) / (hi - lo),
+              shift = ncol(X) * lo,   # sum score of a respondent who answered "0" on all items
+              step  = hi - lo))       # sum score distance between two adjacent numbers correct
+}
+
+.semLord <- function(X, scoresObj) {
+  bin <- .semBinaryCodes(X)
+  nit <- ncol(X)
+  x <- (scoresObj$scores - bin$shift) / bin$step # number of correct responses
+  out_binom <- bin$step * sqrt(x * (nit - x) / (nit - 1))
+  return(cbind(scoresObj$scores, out_binom))
 }
 
 .semKeats <- function(X, options, scoresObj) {
 
+  bin <- .semBinaryCodes(X)
   nit <- ncol(X)
-  x <- scoresObj$scores
-  S <- rowSums(X)
+  x <- (scoresObj$scores - bin$shift) / bin$step # number of correct responses
+  S <- rowSums(bin$X)
   KR21 <- nit / (nit - 1) * (1 - (mean(S) * (nit - mean(S))) / (nit * var(S)))
   if (options[["userReliability"]]) {
     rel <- options[["reliabilityValue"]]
   } else {
-    rel <- Bayesrel:::applyalpha(cov(X))
+    rel <- Bayesrel:::applyalpha(cov(bin$X))
   }
   correction <- (1 - rel) / (1 - KR21)
-  ou_binom2 <- sqrt((x) * (nit - (x)) / (nit - 1) * correction)
+  ou_binom2 <- bin$step * sqrt(x * (nit - x) / (nit - 1) * correction)
 
-  return(cbind(x, ou_binom2))
+  return(cbind(scoresObj$scores, ou_binom2))
 }
 
 # X = dataset, K = number of splits, counts = counts per score group
 .semLord2 <- function(X, K, scoresObj, caseMin) {
 
   nc <- 2
+  bin <- .semBinaryCodes(X)
   prep <- .semPrepareSumScores(X, K)
-  partSUMS <- prep$partSUMS
-  S <- prep$S
+  S <- prep$S # original sum scores, they identify the score groups
   cc <- prep$cc
+  partSUMS <- .semPrepareSumScores(bin$X, K)$partSUMS # number of correct responses per test part
 
   out <- .semPrepareOutMatrix(ncol(X), nc, scoresObj)
 
@@ -793,6 +819,7 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
     return(ret)
   }
   out <- .semComputeWithCaseMin(out, S, caseMin, partSUMS, fun, cc)
+  out[, "sem"] <- bin$step * out[, "sem"]
 
   return(out)
 
@@ -992,7 +1019,7 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
                dependencies = "irt"),
     lord = switch(as.character(nc),
                   "2" = list(name = "Lord",
-                             funString = ".semLord(ncol(dataset), scrs)",
+                             funString = ".semLord(dataset, scrs)",
                              dependencies = "lord"),
                   list(name = NA,
                        funString = NA,
