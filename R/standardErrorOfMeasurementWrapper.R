@@ -56,7 +56,7 @@
 #'    Defaults to \code{FALSE}.
 #' @param userReliability, Override the reliability estimate used for the unconditional SEM and the Keats method.
 #'    Defaults to \code{FALSE}.
-#' @param variables, Items to include in the SEM analysis. Must be numerically coded (e.g., 0/1 or 1-5), dichotomous or polytomous. Ordinal variables with text labels are also accepted and are coded 1, 2, 3, ... in the order of their levels, which must be the same for all of them; nominal variables must be numerically coded, or have exactly two text labels.
+#' @param variables, Items to include in the SEM analysis. Must be numerically coded (e.g., 0/1 or 1-5), dichotomous or polytomous. Variables with text labels must be relabeled with numbers in the label editor of the Data tab.
 #' @export
 standardErrorOfMeasurement <- function(
           data = NULL,

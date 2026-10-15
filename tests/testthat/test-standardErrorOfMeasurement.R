@@ -188,79 +188,39 @@ test_that("ANOVA method reduces to the unconditional SEM when all scores form on
 })
 
 
-# text labels: ordinal items with text labels are coded 1, 2, 3, ... in the order of their
-# declared levels (not the alphabetical one), so the result must equal the numerically coded data
+# the items must be numerically coded; items with text labels give an error that says how to fix it
 asrmNumeric <- read.csv(testthat::test_path("asrm.csv"), fileEncoding = "UTF-8-BOM")
-textLevels  <- c("never", "rarely", "sometimes", "often", "always") # alphabetical order differs
-asrmText    <- as.data.frame(lapply(asrmNumeric, function(x) factor(textLevels[x], levels = textLevels)))
-
-textOptions <- modifyList(options, list(minimumGroupSize = 10, thorndike = TRUE))
+semOptions  <- modifyList(options, list(minimumGroupSize = 10, thorndike = TRUE))
 
 coefficientsOf <- function(results) {
   results[["results"]][["semMainContainer"]][["collection"]][["semMainContainer_coefficientTable"]][["data"]]
 }
 
-test_that("Ordinal items with text labels are coded by the order of their levels", {
-  resultsNumeric <- runAnalysis("standardErrorOfMeasurement", dataset = asrmNumeric, options = textOptions, makeTests = FALSE)
-  resultsText    <- runAnalysis("standardErrorOfMeasurement", dataset = asrmText, options = textOptions, makeTests = FALSE)
-
-  expect_identical(resultsText[["status"]], "complete")
-  expect_equal(coefficientsOf(resultsText), coefficientsOf(resultsNumeric))
-})
-
-test_that("Nominal items with text labels give an error that points to the ordinal type", {
-  nominalOptions <- modifyList(textOptions, list(variables.types = rep("nominal", 5)))
-  results <- runAnalysis("standardErrorOfMeasurement", dataset = asrmText, options = nominalOptions, makeTests = FALSE)
+test_that("Items with text labels give an error that says how to fix it", {
+  textLevels <- c("never", "rarely", "sometimes", "often", "always")
+  asrmText   <- as.data.frame(lapply(asrmNumeric, function(x) factor(textLevels[x], levels = textLevels)))
+  results <- runAnalysis("standardErrorOfMeasurement", dataset = asrmText, options = semOptions, makeTests = FALSE)
 
   expect_identical(results[["status"]], "validationError")
-  expect_match(results[["results"]][["errorMessage"]], "not ordinal")
+  expect_match(results[["results"]][["errorMessage"]], "label editor")
+  expect_match(results[["results"]][["errorMessage"]], "asrm_1")
 })
 
-test_that("Items that mix numeric and text labels give an error", {
-  asrmMixed <- asrmText
-  asrmMixed[[1]] <- factor(ifelse(as.character(asrmText[[1]]) == "often", "4", as.character(asrmText[[1]])),
-                           levels = c("never", "rarely", "sometimes", "4", "always"))
-  results <- runAnalysis("standardErrorOfMeasurement", dataset = asrmMixed, options = textOptions, makeTests = FALSE)
+test_that("Only the items with text labels are named in the error", {
+  asrmMixed <- asrmNumeric
+  asrmMixed[[2]] <- factor(c("low", "mid", "high", "higher", "highest")[asrmMixed[[2]]])
+  results <- runAnalysis("standardErrorOfMeasurement", dataset = asrmMixed, options = semOptions, makeTests = FALSE)
 
   expect_identical(results[["status"]], "validationError")
-  expect_match(results[["results"]][["errorMessage"]], "mix numeric and text labels")
-})
-
-test_that("Levels that JASP drops because they are unused do not shift the codes of an item", {
-  # nobody answers "never" on item 1 (and nobody "always" on item 3, which is already so in the data)
-  numericDropped <- asrmNumeric
-  numericDropped[[1]][numericDropped[[1]] == 1] <- 2
-  textDropped <- as.data.frame(lapply(numericDropped, function(x) droplevels(factor(textLevels[x], levels = textLevels))))
-  expect_false(identical(levels(textDropped[[1]]), levels(textDropped[[2]])))
-
-  resultsNumeric <- runAnalysis("standardErrorOfMeasurement", dataset = numericDropped, options = textOptions, makeTests = FALSE)
-  resultsText    <- runAnalysis("standardErrorOfMeasurement", dataset = textDropped, options = textOptions, makeTests = FALSE)
-
-  expect_identical(resultsText[["status"]], "complete")
-  expect_equal(coefficientsOf(resultsText), coefficientsOf(resultsNumeric))
-})
-
-test_that("Text-labelled ordinal items without one common order of levels give an error", {
-  # item 1 never uses "rarely", item 2 never uses "sometimes", and no other item carries the full
-  # order: the relative order of "rarely" and "sometimes" is not determined
-  asrmAmbiguous <- data.frame(
-    asrm_1 = factor(c("never", "sometimes", "sometimes", "sometimes", "always")[asrmNumeric[[1]]],
-                    levels = c("never", "sometimes", "always")),
-    asrm_2 = factor(c("never", "rarely", "rarely", "rarely", "always")[asrmNumeric[[2]]],
-                    levels = c("never", "rarely", "always"))
-  )
-  ambiguousOptions <- modifyList(textOptions, list(variables = c("asrm_1", "asrm_2"), variables.types = c("ordinal", "ordinal")))
-  results <- runAnalysis("standardErrorOfMeasurement", dataset = asrmAmbiguous, options = ambiguousOptions, makeTests = FALSE)
-
-  expect_identical(results[["status"]], "validationError")
-  expect_match(results[["results"]][["errorMessage"]], "common order of levels")
+  expect_match(results[["results"]][["errorMessage"]], "asrm_2")
+  expect_false(grepl("asrm_1", results[["results"]][["errorMessage"]]))
 })
 
 
 # binomial methods: Lord, Keats and Lord generalized treat the sum score as the number of correct
 # responses, so they need 0/1 items, and the IRT method puts its SEM on a scale that starts at 0.
-# Other codes of dichotomous items (1/2, text labels coded 1, 2) must give the same SEM as 0/1
-# coding, on the scale of the original sum score.
+# Other codes of dichotomous items (e.g. 1/2) must give the same SEM as 0/1 coding, on the scale
+# of the original sum score.
 binaryItems     <- read.csv(testthat::test_path("binaryTestDt.csv"), fileEncoding = "UTF-8-BOM")[, 1:4]
 binomialOptions <- modifyList(options, list(anova = FALSE, thorndike = FALSE, lord = TRUE, keats = TRUE, lord2 = TRUE, irt = TRUE,
                                             lord2NumberOfSplits = "2", minimumGroupSize = 10,
@@ -282,11 +242,6 @@ test_that("Binomial methods give the same SEM for items coded 1/2 as for items c
   expect_equal(binomialSems(binaryItems + 1), binomialReference)
 })
 
-test_that("Binomial methods give the same SEM for dichotomous items with text labels", {
-  binaryText <- as.data.frame(lapply(binaryItems, function(x) factor(c("no", "yes")[x + 1], levels = c("no", "yes"))))
-  expect_equal(binomialSems(binaryText, types = rep("ordinal", 4)), binomialReference)
-})
-
 test_that("Binomial methods scale the SEM with the distance between the two item values", {
   observed <- c("lord", "keats", "irt")
   expect_equal(binomialSems(binaryItems * 2, onlyObserved = TRUE)[, observed],
@@ -294,32 +249,13 @@ test_that("Binomial methods scale the SEM with the distance between the two item
 })
 
 test_that("IRT method gives the same SEM for polytomous items whatever the lowest code is", {
-  irtOptions  <- modifyList(textOptions, list(anova = FALSE, thorndike = FALSE, irt = TRUE))
+  irtOptions  <- modifyList(semOptions, list(anova = FALSE, thorndike = FALSE, irt = TRUE))
   irtSems <- function(data) {
     results <- runAnalysis("standardErrorOfMeasurement", dataset = data, options = irtOptions, makeTests = FALSE)
     vapply(coefficientsOf(results), function(row) row[["irt"]], numeric(1))
   }
   # same answers, coded 1-5 and 0-4: the SEM must belong to the same respondents
   expect_equal(irtSems(asrmNumeric), irtSems(asrmNumeric - 1))
-})
-
-test_that("Nominal items with exactly two text labels are accepted and coded by the order of their levels", {
-  binaryText <- as.data.frame(lapply(binaryItems, function(x) factor(c("no", "yes")[x + 1], levels = c("no", "yes"))))
-  expect_equal(binomialSems(binaryText, types = rep("nominal", 4)), binomialReference)
-})
-
-test_that("Nominal items with two text labels but different label pairs give the common-order error", {
-  # "no"/"yes" next to "false"/"true": nothing says which label of one pair goes with which of the other
-  mixedPairs <- data.frame(
-    a = factor(c("no", "yes")[binaryItems[[1]] + 1], levels = c("no", "yes")),
-    b = factor(c("false", "true")[binaryItems[[2]] + 1], levels = c("false", "true")),
-    c = factor(c("no", "yes")[binaryItems[[3]] + 1], levels = c("no", "yes")),
-    d = factor(c("false", "true")[binaryItems[[4]] + 1], levels = c("false", "true")))
-  pairOptions <- modifyList(binomialOptions, list(variables = colnames(mixedPairs), variables.types = rep("nominal", 4)))
-  results <- runAnalysis("standardErrorOfMeasurement", dataset = mixedPairs, options = pairOptions, makeTests = FALSE)
-
-  expect_identical(results[["status"]], "validationError")
-  expect_match(results[["results"]][["errorMessage"]], "common order of levels")
 })
 
 test_that("IRT method does not depend on the direction in which dichotomous items are coded", {

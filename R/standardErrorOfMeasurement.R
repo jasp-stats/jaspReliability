@@ -60,68 +60,15 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
   if (length(options[["variables"]]) > 0)
     dataset <- dataset[, options[["variables"]]]
 
-  # functions work only with numeric data
-  types <- options[["variables.types"]]
-  if (length(types) != ncol(dataset))
-    types <- rep("nominal", ncol(dataset))
-
-  return(.semCodeItems(dataset, types))
-}
-
-# Numerically coded items keep their label values. Ordinal items with only text labels are
-# coded 1, 2, 3, ... in the order of their levels (the declared factor order, which JASP
-# passes on, and not the alphabetical one), one order for all of them. The same holds for
-# nominal items with two text labels. Other nominal items with text labels and items that
-# mix numeric and text labels cannot be converted.
-.semCodeItems <- function(dataset, types) {
-
-  textOrdinal    <- character(0)
-  textNotOrdinal <- character(0)
-  mixedLabels    <- character(0)
-
-  for (i in seq_along(dataset)) {
-    x             <- dataset[[i]]
-    numericLabels <- suppressWarnings(as.numeric(as.character(x)))
-
-    if (!anyNA(numericLabels)) {
-      dataset[[i]] <- numericLabels
-    } else if (!all(is.na(numericLabels))) {
-      mixedLabels <- c(mixedLabels, names(dataset)[i])
-    } else if (is.factor(x) && (types[i] == "ordinal" || nlevels(x) == 2)) {
-      # with two levels the order only decides which label is coded 1 and which 2, which mirrors
-      # the scale; so nominal items with two text labels are fine as well
-      textOrdinal <- c(textOrdinal, names(dataset)[i])
-    } else {
-      textNotOrdinal <- c(textNotOrdinal, names(dataset)[i])
-    }
+  # functions work only with numeric data: the labels of the items have to be numbers
+  numericLabels <- lapply(dataset, function(x) suppressWarnings(as.numeric(as.character(x))))
+  notNumeric    <- vapply(numericLabels, anyNA, logical(1))
+  if (any(notNumeric)) {
+    .quitAnalysis(gettextf("The following variables have labels that are not numbers: %1$s. The items must be numerically coded (e.g., 0/1 or 1-5). Please change the labels to numbers in the label editor of the Data tab, or recode the variables.",
+                           paste(jaspBase::decodeColNames(names(dataset)[notNumeric]), collapse = ", ")))
   }
 
-  messages <- character(0)
-
-  # The codes follow one level order that is shared by all text-labelled items. JASP drops
-  # levels that are unused in the data, so the position of a level within an item alone could
-  # be shifted against the other items (e.g. an item nobody answered "never" to).
-  if (length(textOrdinal) > 0) {
-    shared <- .raterAgreementUnionLevels(dataset[textOrdinal])
-    if (shared[["ordered"]]) {
-      for (name in textOrdinal)
-        dataset[[name]] <- as.numeric(factor(as.character(dataset[[name]]), levels = shared[["levels"]]))
-    } else {
-      messages <- c(messages, gettext("The ordinal variables with text labels do not share one common order of levels, so their levels cannot be coded. Make sure that they all use the same ordered levels."))
-    }
-  }
-
-  if (length(textNotOrdinal) > 0)
-    messages <- c(messages, gettextf("Text labels are only supported for ordinal variables and for nominal variables with two levels; their levels are then coded 1, 2, 3, ... in their order. The following variables have text labels but are not ordinal and do not have two levels: %1$s. Change their type to ordinal or recode them to numbers.",
-                                     paste(jaspBase::decodeColNames(textNotOrdinal), collapse = ", ")))
-  if (length(mixedLabels) > 0)
-    messages <- c(messages, gettextf("The following variables mix numeric and text labels, so they cannot be converted to numbers: %1$s. Recode them so that all labels are numbers or all are text.",
-                                     paste(jaspBase::decodeColNames(mixedLabels), collapse = ", ")))
-
-  if (length(messages) > 0)
-    .quitAnalysis(paste(messages, collapse = " "))
-
-  rownames(dataset) <- NULL # complete.cases() left gaps; the former as.data.frame(lapply()) reset them
+  dataset <- as.data.frame(numericLabels)
 
   return(dataset)
 }
@@ -770,7 +717,7 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
 
 # The binomial methods (Lord, Keats, Lord generalized) treat the sum score as the number of
 # correct responses, which only holds for items coded 0/1. The two values of dichotomous items
-# can be coded otherwise (1/2, or text labels coded 1, 2), so the items are recoded to 0/1
+# can be coded otherwise (e.g. 1/2), so the items are recoded to 0/1
 # first; the SEM is on the scale of the original sum score, hence it is rescaled by the
 # distance between the two values. For 0/1 data nothing changes.
 .semBinaryCodes <- function(X) {
