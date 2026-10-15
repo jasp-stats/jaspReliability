@@ -37,7 +37,7 @@ Form
 			maxLevels: 50
 			minLevels: 2
 			id: variables
-			info: qsTr("Items to include in the SEM analysis. Must be numerically coded (e.g., 0/1 or 1-5), dichotomous or polytomous. Variables with text labels must be relabeled with numbers in the label editor of the Data tab.")
+			info: qsTr("Items to include in the SEM analysis. Must be numerically coded (e.g., 0/1 or 1-5), dichotomous or polytomous. Binary items must all use the same two numbers. Variables with text labels must be relabeled with numbers in the label editor of the Data tab.")
 			onCountChanged:
 			{
 				var newValues = []

@@ -116,6 +116,9 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
 
   values <- sort(unique(unlist(dataset, use.names = FALSE)))
 
+  if (length(values) == 2 && all(values == c(0, 1)))
+    return(gettextf("The items are dichotomous with the values %1$s and %2$s.", values[1], values[2]))
+
   if (length(values) == 2)
     return(gettextf("The items are dichotomous with the values %1$s and %2$s; where the method needs 0/1 items, %1$s is treated as 0 and %2$s as 1.",
                     values[1], values[2]))
@@ -758,9 +761,9 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
 
 # The binomial methods (Lord, Keats, Lord generalized) treat the sum score as the number of
 # correct responses, which only holds for items coded 0/1. The two values of dichotomous items
-# can be coded otherwise (e.g. 1/2), so the items are recoded to 0/1
-# first; the SEM is on the scale of the original sum score, hence it is rescaled by the
-# distance between the two values. For 0/1 data nothing changes.
+# can be coded otherwise (e.g. 1/2), so the items are recoded to 0/1 first. The SEM is on the
+# scale of the original sum score, hence it is rescaled by the distance between the two values.
+# For 0/1 data nothing changes.
 .semBinaryCodes <- function(X) {
   lo <- min(X)
   hi <- max(X)
