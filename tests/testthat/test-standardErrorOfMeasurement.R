@@ -269,3 +269,37 @@ test_that("IRT method does not depend on the direction in which dichotomous item
   # (mirt fits the two data sets separately, so they agree to its convergence tolerance only)
   expect_equal(irtSems(binaryItems), rev(irtSems(1 - binaryItems)), tolerance = 1e-4)
 })
+
+test_that("Binary items that are coded with different numbers give an error", {
+  mixedCodes <- binaryItems
+  mixedCodes[, 3:4] <- mixedCodes[, 3:4] + 1 # items 1 and 2 use 0/1, items 3 and 4 use 1/2
+  results <- runAnalysis("standardErrorOfMeasurement", dataset = mixedCodes, options = binomialOptions, makeTests = FALSE)
+
+  expect_identical(results[["status"]], "validationError")
+  expect_match(results[["results"]][["errorMessage"]], "same two numbers")
+  expect_match(results[["results"]][["errorMessage"]], "V1, V2 \\(values 0, 1\\)")
+  expect_match(results[["results"]][["errorMessage"]], "V3, V4 \\(values 1, 2\\)")
+})
+
+test_that("The table says how the items entered the sum score", {
+  footnotesOf <- function(results) {
+    table <- results[["results"]][["semMainContainer"]][["collection"]][["semMainContainer_coefficientTable"]]
+    paste(vapply(table[["footnotes"]], function(footnote) footnote[["text"]], character(1)), collapse = " ")
+  }
+  polytomous <- runAnalysis("standardErrorOfMeasurement", dataset = asrmNumeric, options = semOptions, makeTests = FALSE)
+  dichotomous <- runAnalysis("standardErrorOfMeasurement", dataset = binaryItems, options = binomialOptions, makeTests = FALSE)
+
+  expect_match(footnotesOf(polytomous), "observed values from 1 to 5")
+  expect_match(footnotesOf(dichotomous), "dichotomous with the values 0 and 1")
+})
+
+test_that("IRT method puts its SEM on the scale of the item values", {
+  irtOptions <- modifyList(semOptions, list(anova = FALSE, thorndike = FALSE, irt = TRUE))
+  irtSems <- function(data) {
+    results <- runAnalysis("standardErrorOfMeasurement", dataset = data, options = irtOptions, makeTests = FALSE)
+    rows <- Filter(function(row) row[["counts"]] > 0, coefficientsOf(results)) # codes with gaps add empty score rows
+    vapply(rows, function(row) row[["irt"]], numeric(1))
+  }
+  # same answers with the labels 2 * x + 3: the sum scores spread out by a factor 2, and so must the SEM
+  expect_equal(irtSems(2 * asrmNumeric + 3), 2 * irtSems(asrmNumeric), tolerance = 1e-6)
+})

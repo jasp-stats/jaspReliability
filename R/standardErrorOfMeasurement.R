@@ -83,9 +83,45 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
              missingValues.target = options$variables,
              exitAnalysisIfErrors = TRUE)
 
+  .semCheckBinaryCoding(dataset)
+
   if (options[["lord2"]] && options[["lord2NumberOfSplits"]] == "") {
     .quitAnalysis(gettext("For the Lord generalized method, the test could not be split in equally sized parts with more than 1 item per part. Consider adding or removing items."))
   }
+}
+
+# Binary items have to be coded with the same two numbers. Otherwise the sum score mixes the
+# codes (and the binomial methods are reported as unavailable although all items are binary).
+.semCheckBinaryCoding <- function(dataset) {
+
+  values <- lapply(dataset, function(x) sort(unique(x)))
+  if (!all(lengths(values) == 2))  # only a check for data in which every item is binary
+    return()
+
+  pairs <- vapply(values, function(v) paste(v, collapse = ", "), character(1))
+  if (length(unique(pairs)) == 1)
+    return()
+
+  groups <- vapply(unique(pairs), function(pair) {
+    gettextf("%1$s (values %2$s)", paste(jaspBase::decodeColNames(names(dataset)[pairs == pair]), collapse = ", "), pair)
+  }, character(1))
+
+  .quitAnalysis(gettextf("The binary items are not coded with the same two numbers: %1$s. Please use the same two numbers for all binary items (e.g., 0 and 1) in the label editor of the Data tab.",
+                         paste(groups, collapse = "; ")))
+}
+
+# A note on how the items entered the sum score: the item values are used as they are coded, and
+# dichotomous items count as 0/1 for the methods that need it (the higher value as 1).
+.semCodingNote <- function(dataset) {
+
+  values <- sort(unique(unlist(dataset, use.names = FALSE)))
+
+  if (length(values) == 2)
+    return(gettextf("The items are dichotomous with the values %1$s and %2$s; where the method needs 0/1 items, %1$s is treated as 0 and %2$s as 1.",
+                    values[1], values[2]))
+
+  return(gettextf("The sum scores are computed from the item values as they are coded (observed values from %1$s to %2$s).",
+                  min(values), max(values)))
 }
 
 # create Main container
@@ -232,6 +268,7 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
       coefficientTable$addColumnInfo(name = "score", title = gettext("Sum Score"), type = "string")
       coefficientTable$addColumnInfo(name = "counts", title = gettext("Counts"), type = "string")
       footnote <- gettextf("%1$s The unconditional SEM value equals %2$1.3f.", footnote, average$est)
+      footnote <- paste(footnote, .semCodingNote(dataset))
       scrs <- jaspResults[["semMainContainer"]][["countsState"]]$object
       counts <- scrs$counts
       dtFill <- data.frame(score = scrs$scores)
@@ -648,16 +685,29 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
     # we dont assume that for binary data items will end up with different number of answering categories
     # that would mean an item with no variance
     bs <- unlist(bs)
+    # the item values are the category scores, so that the expected sum score and its SEM are on the
+    # scale of the observed sum scores: number correct times the distance between the two values,
+    # on top of the sum score when everything was answered with the lower value
+    lo   <- min(X)
+    step <- max(X) - min(X)
     for (i in 1:length(x)) {
-      outIRT[i, 1] <- sum(plogis(as * (x[i] - bs)))
-      outIRT[i, 2] <- sqrt(sum(plogis(as * (x[i] - bs)) * (1 - plogis(as * (x[i] - bs)))))
+      p <- plogis(as * (x[i] - bs))
+      outIRT[i, 1] <- nit * lo + step * sum(p)
+      outIRT[i, 2] <- step * sqrt(sum(p * (1 - p)))
     }
 
   } else {
 
     # prep once
     items <- lapply(1:nit, function(k) mirt::extract.item(res, k))
-    bMulti <- lapply(1:nit, function(k) 0:(ncol(mirt::probtrace(items[[k]], Theta = matrix(0,1,1))) - 1))
+    # The category scores are the values the items are coded with. mirt orders the observed values of
+    # an item and re-maps them to a distance of 1, but the sum score is built from the values
+    # themselves, so using 0, 1, 2, ... here would put the IRT results at the wrong sum scores.
+    bMulti <- lapply(1:nit, function(k) {
+      nCategories <- ncol(mirt::probtrace(items[[k]], Theta = matrix(0, 1, 1)))
+      values      <- sort(unique(X[, k]))
+      if (length(values) == nCategories) values else min(values) + 0:(nCategories - 1)
+    })
 
     for (i in 1:length(x)) {
       Theta <- matrix(x[i], ncol = 1)
@@ -685,15 +735,6 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
       outIRT[i, 2] <- sqrt(sum(unlist(devPr)))
     }
   }
-  # mirt codes the categories of every item from 0 at a distance of 1, so the expected sum scores
-  # start at 0. The observed sum scores start at the sum of the item minima (and, for dichotomous
-  # items, advance in steps of the distance between the two values), so the IRT results are
-  # moved onto the scale of the observed sum scores before they are read off at those scores.
-  scoreShift <- sum(apply(X, 2, min))
-  scoreStep  <- if (nc == 2) max(X) - min(X) else 1
-  outIRT[, 1] <- scoreShift + scoreStep * outIRT[, 1]
-  outIRT[, 2] <- scoreStep * outIRT[, 2]
-
   colnames(outIRT) <- c("scores", "sem")
   discScores <- scores
 
