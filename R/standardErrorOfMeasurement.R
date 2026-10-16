@@ -56,12 +56,19 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
 
   dataset <- dataset[complete.cases(dataset), ]
 
-  # functions work only with numeric data
-  dataset <- as.data.frame(lapply(dataset, function(x) as.numeric(as.character(x))))
-
   # dataset columns are by default ordered alphabetically (why???), so we change the order
-  if (length(options$variables) > 0)
+  if (length(options[["variables"]]) > 0)
     dataset <- dataset[, options[["variables"]]]
+
+  # functions work only with numeric data: the labels of the items have to be numbers
+  numericLabels <- lapply(dataset, function(x) suppressWarnings(as.numeric(as.character(x))))
+  notNumeric    <- vapply(numericLabels, anyNA, logical(1))
+  if (any(notNumeric)) {
+    .quitAnalysis(gettextf("The following variables have labels that are not numbers: %1$s. The items must be numerically coded (e.g., 0/1 or 1-5). Please change the labels to numbers in the label editor of the Data tab, or recode the variables.",
+                           paste(jaspBase::decodeColNames(names(dataset)[notNumeric]), collapse = ", ")))
+  }
+
+  dataset <- as.data.frame(numericLabels)
 
   return(dataset)
 }
@@ -72,13 +79,52 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
   if (!ready) return()
 
   .hasErrors(dataset = dataset,
-             type = c('missingValues', "variance", "infinity", "variance"),
+             type = c('missingValues', "variance", "infinity"),
              missingValues.target = options$variables,
              exitAnalysisIfErrors = TRUE)
+
+  .semCheckBinaryCoding(dataset)
 
   if (options[["lord2"]] && options[["lord2NumberOfSplits"]] == "") {
     .quitAnalysis(gettext("For the Lord generalized method, the test could not be split in equally sized parts with more than 1 item per part. Consider adding or removing items."))
   }
+}
+
+# Binary items have to be coded with the same two numbers. Otherwise the sum score mixes the
+# codes (and the binomial methods are reported as unavailable although all items are binary).
+.semCheckBinaryCoding <- function(dataset) {
+
+  values <- lapply(dataset, function(x) sort(unique(x)))
+  if (!all(lengths(values) == 2))  # only a check for data in which every item is binary
+    return()
+
+  pairs <- vapply(values, function(v) paste(v, collapse = ", "), character(1))
+  if (length(unique(pairs)) == 1)
+    return()
+
+  groups <- vapply(unique(pairs), function(pair) {
+    gettextf("%1$s (values %2$s)", paste(jaspBase::decodeColNames(names(dataset)[pairs == pair]), collapse = ", "), pair)
+  }, character(1))
+
+  .quitAnalysis(gettextf("The binary items are not coded with the same two numbers: %1$s. Please use the same two numbers for all binary items (e.g., 0 and 1) in the label editor of the Data tab.",
+                         paste(groups, collapse = "; ")))
+}
+
+# A note on how the items entered the sum score: the item values are used as they are coded, and
+# dichotomous items count as 0/1 for the methods that need it (the higher value as 1).
+.semCodingNote <- function(dataset) {
+
+  values <- sort(unique(unlist(dataset, use.names = FALSE)))
+
+  if (length(values) == 2 && all(values == c(0, 1)))
+    return(gettextf("The items are dichotomous with the values %1$s and %2$s.", values[1], values[2]))
+
+  if (length(values) == 2)
+    return(gettextf("The items are dichotomous with the values %1$s and %2$s; where the method needs 0/1 items, %1$s is treated as 0 and %2$s as 1.",
+                    values[1], values[2]))
+
+  return(gettextf("The sum scores are computed from the item values as they are coded (observed values from %1$s to %2$s).",
+                  min(values), max(values)))
 }
 
 # create Main container
@@ -225,6 +271,7 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
       coefficientTable$addColumnInfo(name = "score", title = gettext("Sum Score"), type = "string")
       coefficientTable$addColumnInfo(name = "counts", title = gettext("Counts"), type = "string")
       footnote <- gettextf("%1$s The unconditional SEM value equals %2$1.3f.", footnote, average$est)
+      footnote <- paste(footnote, .semCodingNote(dataset))
       scrs <- jaspResults[["semMainContainer"]][["countsState"]]$object
       counts <- scrs$counts
       dtFill <- data.frame(score = scrs$scores)
@@ -245,6 +292,10 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
         if (all(is.na(sem))) {
           footnote <- gettextf("%1$s Estimating the %2$s method failed. If possible, you might try changing the method's parameters.", footnote, selected[[i]][["name"]])
         }
+      }
+
+      if (.semAnyZeroSem(jaspResults, options)) {
+        footnote <- gettextf("%1$s A conditional SEM of zero means that no variation was observed within that score group, which typically happens at the lowest and highest possible sum score; it does not indicate perfect measurement precision.", footnote)
       }
     }
   }
@@ -283,9 +334,17 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
                             overtitle = selected[[i]][["name"]])
       ciTable$addColumnInfo(name = paste0("upper", method[i]), title = gettextf("Upper %s%% CI", ci), type = "number",
                             overtitle = selected[[i]][["name"]])
-      if (all(is.na(ciData[, paste0("lower", method[i])])) && all(is.na(ciData[, paste0("upper", method[i])]))) {
+      # a failed method has no SEM estimates at all; missing CI bounds alone do not tell, because
+      # they are also left out where the conditional SEM is zero
+      out <- jaspResults[["semMainContainer"]][[paste0(method[i], "State")]]$object
+      if (!is.null(names(out))) out <- out$binned # then we have IRT
+      if (is.null(out) || all(is.na(out[, 2]))) {
         ciTable$addFootnote(gettextf("Estimating the %s method failed. If possible, you might try changing the method's parameters.", selected[[i]][["name"]]))
       }
+    }
+
+    if (.semAnyZeroSem(jaspResults, options)) {
+      ciTable$addFootnote(gettext("No confidence interval is reported where the conditional SEM equals zero."))
     }
   }
 
@@ -590,9 +649,15 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
   S <- prep$S
 
   out <- .semPrepareOutMatrix(ncol(X), nc, scoresObj)
+  # Emons (2023), Eq. 12: the general form of the ANOVA method, which also holds when
+  # adjacent score groups were merged to reach the minimum group size. The second term
+  # removes the true-score variance that a merged group carries; it vanishes for a
+  # single score group because the sum score is constant there.
   fun <- function(X, ind, cc) {
     nit <- ncol(X)
-    return(sqrt(nit / (nit - 1) * sum(diag(cov(X[ind, ])))))
+    Z <- X[ind, , drop = FALSE]
+    # equals nit * MS(items x persons) and is therefore never negative
+    return(sqrt(max(0, nit / (nit - 1) * sum(diag(cov(Z))) - var(rowSums(Z)) / (nit - 1))))
   }
   out <- .semComputeWithCaseMin(out, S, caseMin, X, fun)
 
@@ -627,16 +692,29 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
     # we dont assume that for binary data items will end up with different number of answering categories
     # that would mean an item with no variance
     bs <- unlist(bs)
+    # the item values are the category scores, so that the expected sum score and its SEM are on the
+    # scale of the observed sum scores: number correct times the distance between the two values,
+    # on top of the sum score when everything was answered with the lower value
+    lo   <- min(X)
+    step <- max(X) - min(X)
     for (i in 1:length(x)) {
-      outIRT[i, 1] <- sum(plogis(as * (x[i] - bs)))
-      outIRT[i, 2] <- sqrt(sum(plogis(as * (x[i] - bs)) * (1 - plogis(as * (x[i] - bs)))))
+      p <- plogis(as * (x[i] - bs))
+      outIRT[i, 1] <- nit * lo + step * sum(p)
+      outIRT[i, 2] <- step * sqrt(sum(p * (1 - p)))
     }
 
   } else {
 
     # prep once
     items <- lapply(1:nit, function(k) mirt::extract.item(res, k))
-    bMulti <- lapply(1:nit, function(k) 0:(ncol(mirt::probtrace(items[[k]], Theta = matrix(0,1,1))) - 1))
+    # The category scores are the values the items are coded with. mirt orders the observed values of
+    # an item and re-maps them to a distance of 1, but the sum score is built from the values
+    # themselves, so using 0, 1, 2, ... here would put the IRT results at the wrong sum scores.
+    bMulti <- lapply(1:nit, function(k) {
+      nCategories <- ncol(mirt::probtrace(items[[k]], Theta = matrix(0, 1, 1)))
+      values      <- sort(unique(X[, k]))
+      if (length(values) == nCategories) values else min(values) + 0:(nCategories - 1)
+    })
 
     for (i in 1:length(x)) {
       Theta <- matrix(x[i], ncol = 1)
@@ -672,7 +750,10 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
   outOrdered <- outDt[order(outDt[, 1], decreasing = FALSE), ]
   uniqueOutOrdered <- unique(outOrdered)
   irtBinned <- approx(uniqueOutOrdered[, 1], uniqueOutOrdered[, 2], xout = discScores)$y
-  # take the value from the continous sems for the smallest latent trait value
+  # sum scores outside the range of the expected sum scores (the curve never reaches the lowest and
+  # highest possible score) take the SEM at the nearest end of the latent trait scale
+  irtBinned[discScores < min(uniqueOutOrdered[, 1])] <- uniqueOutOrdered[1, 2]
+  irtBinned[discScores > max(uniqueOutOrdered[, 1])] <- uniqueOutOrdered[nrow(uniqueOutOrdered), 2]
   irtBinned[is.na(irtBinned)] <- uniqueOutOrdered[1, 2]
   outBinned <- data.frame(scores = discScores, sem = irtBinned)
 
@@ -682,37 +763,54 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
 
 }
 
-.semLord <- function(nit, scoresObj) {
-  x <- scoresObj$scores
-  out_binom <- sqrt((x) * (nit - (x)) / (nit - 1))
-  return(cbind(x, out_binom))
+# The binomial methods (Lord, Keats, Lord generalized) treat the sum score as the number of
+# correct responses, which only holds for items coded 0/1. The two values of dichotomous items
+# can be coded otherwise (e.g. 1/2), so the items are recoded to 0/1 first. The SEM is on the
+# scale of the original sum score, hence it is rescaled by the distance between the two values.
+# For 0/1 data nothing changes.
+.semBinaryCodes <- function(X) {
+  lo <- min(X)
+  hi <- max(X)
+  return(list(X     = (X - lo) / (hi - lo),
+              shift = ncol(X) * lo,   # sum score of a respondent who answered "0" on all items
+              step  = hi - lo))       # sum score distance between two adjacent numbers correct
+}
+
+.semLord <- function(X, scoresObj) {
+  bin <- .semBinaryCodes(X)
+  nit <- ncol(X)
+  x <- (scoresObj$scores - bin$shift) / bin$step # number of correct responses
+  out_binom <- bin$step * sqrt(x * (nit - x) / (nit - 1))
+  return(cbind(scoresObj$scores, out_binom))
 }
 
 .semKeats <- function(X, options, scoresObj) {
 
+  bin <- .semBinaryCodes(X)
   nit <- ncol(X)
-  x <- scoresObj$scores
-  S <- rowSums(X)
+  x <- (scoresObj$scores - bin$shift) / bin$step # number of correct responses
+  S <- rowSums(bin$X)
   KR21 <- nit / (nit - 1) * (1 - (mean(S) * (nit - mean(S))) / (nit * var(S)))
   if (options[["userReliability"]]) {
     rel <- options[["reliabilityValue"]]
   } else {
-    rel <- Bayesrel:::applyalpha(cov(X))
+    rel <- Bayesrel:::applyalpha(cov(bin$X))
   }
   correction <- (1 - rel) / (1 - KR21)
-  ou_binom2 <- sqrt((x) * (nit - (x)) / (nit - 1) * correction)
+  ou_binom2 <- bin$step * sqrt(x * (nit - x) / (nit - 1) * correction)
 
-  return(cbind(x, ou_binom2))
+  return(cbind(scoresObj$scores, ou_binom2))
 }
 
 # X = dataset, K = number of splits, counts = counts per score group
 .semLord2 <- function(X, K, scoresObj, caseMin) {
 
   nc <- 2
+  bin <- .semBinaryCodes(X)
   prep <- .semPrepareSumScores(X, K)
-  partSUMS <- prep$partSUMS
-  S <- prep$S
+  S <- prep$S # original sum scores, they identify the score groups
   cc <- prep$cc
+  partSUMS <- .semPrepareSumScores(bin$X, K)$partSUMS # number of correct responses per test part
 
   out <- .semPrepareOutMatrix(ncol(X), nc, scoresObj)
 
@@ -722,6 +820,7 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
     return(ret)
   }
   out <- .semComputeWithCaseMin(out, S, caseMin, partSUMS, fun, cc)
+  out[, "sem"] <- bin$step * out[, "sem"]
 
   return(out)
 
@@ -864,11 +963,35 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
   zValueTable <- qnorm(1 - (1 - ciLevelTable) / 2)
   zValuePlots <- qnorm(1 - (1 - ciLevelPlots) / 2)
   for (i in 1:nrow(out)) {
+    # a conditional SEM of exactly zero means that no variation was observed within the
+    # score group, which typically happens at the lowest and highest possible sum score;
+    # the zero-width interval that follows would suggest perfect precision, so we leave
+    # the bounds missing instead (see Emons, 2023)
+    if (is.na(out[i, 2]) || out[i, 2] == 0) next
     cis[i, ] <- c(scores[i] - zValueTable * out[i, 2], scores[i] + zValueTable * out[i, 2],
                    scores[i] - zValuePlots * out[i, 2], scores[i] + zValuePlots * out[i, 2])
   }
 
   return(cis)
+}
+
+#' this function checks whether any of the selected methods yields a conditional SEM of
+#' exactly zero, that is, no variation was observed within a score group; the tables
+#' then carry an explanatory footnote
+.semAnyZeroSem <- function(jaspResults, options) {
+
+  selected <- options[["selected"]]
+  if (length(selected) == 0) return(FALSE)
+
+  method <- names(selected)
+  for (i in seq_along(selected)) {
+    out <- jaspResults[["semMainContainer"]][[paste0(method[i], "State")]]$object
+    if (is.null(out)) next
+    if (!is.null(names(out))) out <- out$binned # then we have IRT
+    if (any(out[, 2] == 0, na.rm = TRUE)) return(TRUE)
+  }
+
+  return(FALSE)
 }
 
 #' this might be the most important function :-
@@ -897,7 +1020,7 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
                dependencies = "irt"),
     lord = switch(as.character(nc),
                   "2" = list(name = "Lord",
-                             funString = ".semLord(ncol(dataset), scrs)",
+                             funString = ".semLord(dataset, scrs)",
                              dependencies = "lord"),
                   list(name = NA,
                        funString = NA,
