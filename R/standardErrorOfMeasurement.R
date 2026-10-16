@@ -334,7 +334,11 @@ standardErrorOfMeasurementInternal <- function(jaspResults, dataset, options) {
                             overtitle = selected[[i]][["name"]])
       ciTable$addColumnInfo(name = paste0("upper", method[i]), title = gettextf("Upper %s%% CI", ci), type = "number",
                             overtitle = selected[[i]][["name"]])
-      if (all(is.na(ciData[, paste0("lower", method[i])])) && all(is.na(ciData[, paste0("upper", method[i])]))) {
+      # a failed method has no SEM estimates at all; missing CI bounds alone do not tell, because
+      # they are also left out where the conditional SEM is zero
+      out <- jaspResults[["semMainContainer"]][[paste0(method[i], "State")]]$object
+      if (!is.null(names(out))) out <- out$binned # then we have IRT
+      if (is.null(out) || all(is.na(out[, 2]))) {
         ciTable$addFootnote(gettextf("Estimating the %s method failed. If possible, you might try changing the method's parameters.", selected[[i]][["name"]]))
       }
     }

@@ -303,3 +303,36 @@ test_that("IRT method puts its SEM on the scale of the item values", {
   # same answers with the labels 2 * x + 3: the sum scores spread out by a factor 2, and so must the SEM
   expect_equal(irtSems(2 * asrmNumeric + 3), 2 * irtSems(asrmNumeric), tolerance = 1e-6)
 })
+
+# a conditional SEM of zero leaves the CI bounds out; that is not an estimation failure
+ciTableFootnotes <- function(results) {
+  table <- results[["results"]][["semMainContainer"]][["collection"]][["semMainContainer_ciTable"]]
+  vapply(table[["footnotes"]], function(footnote) footnote[["text"]], character(1))
+}
+
+test_that("All-zero conditional SEMs do not trigger the estimation failed note in the CI table", {
+  # four identical binary items, half of the respondents answered 0 everywhere and half 1 everywhere
+  allZero <- data.frame(V1 = rep(c(0, 1), each = 20))
+  allZero$V2 <- allZero$V1; allZero$V3 <- allZero$V1; allZero$V4 <- allZero$V1
+  zeroOptions <- modifyList(binomialOptions, list(anova = TRUE, lord = FALSE, keats = FALSE, lord2 = FALSE, irt = FALSE,
+                                                  sumScoreCiTable = TRUE, variables.types = rep("nominal", 4)))
+  results <- runAnalysis("standardErrorOfMeasurement", dataset = allZero, options = zeroOptions, makeTests = FALSE)
+  footnotes <- ciTableFootnotes(results)
+
+  expect_identical(results[["status"]], "complete")
+  expect_true(all(vapply(coefficientsOf(results), function(row) row[["anova"]], numeric(1)) == 0))
+  expect_true(any(grepl("No confidence interval is reported", footnotes)))
+  expect_false(any(grepl("failed", footnotes)))
+})
+
+test_that("The CI table still says when a method failed to produce estimates", {
+  # a polynomial of degree 8 cannot be fitted to the five sum scores of four binary items
+  failOptions <- modifyList(binomialOptions, list(anova = FALSE, lord = FALSE, keats = FALSE, lord2 = FALSE, irt = FALSE,
+                                                  mollenkopfFeldt = TRUE, mollenkopfFeldtNumberOfSplits = "2",
+                                                  mollenkopfFeldtPolyDegree = 8, sumScoreCiTable = TRUE,
+                                                  variables.types = rep("nominal", 4)))
+  results <- runAnalysis("standardErrorOfMeasurement", dataset = binaryItems, options = failOptions, makeTests = FALSE)
+
+  expect_identical(results[["status"]], "complete")
+  expect_true(any(grepl("Mollenkopf-Feldt method failed", ciTableFootnotes(results))))
+})
