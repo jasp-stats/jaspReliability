@@ -50,10 +50,9 @@
 #'   \item \code{"quadratic"}: Penalises larger disagreements quadratically; sensitive to large discrepancies.
 #'   \item \code{"linear"}: Penalises disagreements proportionally to their size.
 #' }
-#' @export
 raterAgreement <- function(
           data = NULL,
-          version = "0.97.1",
+          version = "1",
           bootstrapSamples = 1000,
           ci = TRUE,
           ciLevel = 0.95,

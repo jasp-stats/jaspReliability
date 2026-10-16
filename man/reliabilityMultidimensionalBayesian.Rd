@@ -6,7 +6,7 @@
 \usage{
 reliabilityMultidimensionalBayesian(
   data = NULL,
-  version = "0.97.1",
+  version = "1",
   burnin = 200,
   chains = 3,
   ciLevel = 0.95,
@@ -102,22 +102,22 @@ Defaults to \code{FALSE}.}
 
 \item{meanSdScoresMethod, }{Whether the mean and standard deviation in the scale table are based on participants' sum scores or mean scores across items.
 \itemize{
-\item \code{"meanScores"}
 \item \code{"sumScores"}
+\item \code{"meanScores"}
 }}
 
 \item{modelType, }{The factor model used to estimate the reliability coefficients. McDonald's ω_h (general/group-common reliability) is only available for the second-order and bi-factor models.}
 
 \item{naAction, }{Bayesian imputation treats missing values as unknown parameters sampled from the posterior; listwise deletion removes any row with a missing value.
 \itemize{
-\item \code{"listwise"}
 \item \code{"imputation"}
+\item \code{"listwise"}
 }}
 
 \item{pointEstimate, }{Whether to report the posterior mean or median as the point estimate in the tables.
 \itemize{
-\item \code{"median"}
 \item \code{"mean"}
+\item \code{"median"}
 }}
 
 \item{posteriorPlot, }{Display posterior density plots for the reliability coefficients.

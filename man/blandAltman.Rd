@@ -6,7 +6,7 @@
 \usage{
 blandAltman(
   data = NULL,
-  version = "0.97.1",
+  version = "1",
   blandAltmanTable = FALSE,
   ci = FALSE,
   ciLevel = 0.95,

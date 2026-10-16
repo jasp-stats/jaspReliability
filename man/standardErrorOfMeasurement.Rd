@@ -6,7 +6,7 @@
 \usage{
 standardErrorOfMeasurement(
   data = NULL,
-  version = "0.97.1",
+  version = "1",
   anova = FALSE,
   ciLevelPlots = 0.95,
   ciLevelTable = 0.95,

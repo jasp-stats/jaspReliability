@@ -28,10 +28,9 @@
 #' @param ciShadingWithColour, Use colour (rather than grey) to fill the shaded confidence regions.
 #'    Defaults to \code{FALSE}.
 #' @param pairs, Pairs of scale variables to compare. Each pair produces a Bland-Altman plot of the mean versus the difference between measurements.
-#' @export
 blandAltman <- function(
           data = NULL,
-          version = "0.97.1",
+          version = "1",
           blandAltmanTable = FALSE,
           ci = FALSE,
           ciLevel = 0.95,

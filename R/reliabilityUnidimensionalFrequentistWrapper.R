@@ -24,19 +24,19 @@
 #' @param bootstrapSamples, Number of bootstrap replications. Higher values yield more stable interval estimates.
 #' @param bootstrapType, Non-parametric bootstrap resamples the data; parametric bootstrap samples from a multivariate normal with the estimated parameters.
 #' \itemize{
-#'   \item \code{"parametric"}
 #'   \item \code{"nonParametric"}
+#'   \item \code{"parametric"}
 #' }
 #' @param ciLevel, Coverage of the confidence intervals for scale reliability statistics.
 #' @param intervalMethod, Analytic intervals use normal-theory standard errors (van der Ark, 2024). Bootstrapped intervals use percentile resampling.
 #' \itemize{
-#'   \item \code{"bootstrapped"}
 #'   \item \code{"analytic"}
+#'   \item \code{"bootstrapped"}
 #' }
 #' @param intervalMethodVar, Chi-square-based intervals assume normality; non-parametric intervals use a two-step bootstrap procedure (van der Ark, 2024).
 #' \itemize{
-#'   \item \code{"twostep"}
 #'   \item \code{"chisq"}
+#'   \item \code{"twostep"}
 #' }
 #' @param itemCiLevel, Coverage of the confidence intervals for item-level statistics.
 #' @param itemDeletedAlpha, Alpha of the remaining items when this item is removed from the scale.
@@ -51,8 +51,8 @@
 #'    Defaults to \code{FALSE}.
 #' @param meanSdScoresMethod, Whether the mean, variance, and SD are based on sum scores or mean scores across items.
 #' \itemize{
-#'   \item \code{"meanScores"}
 #'   \item \code{"sumScores"}
+#'   \item \code{"meanScores"}
 #' }
 #' @param naAction, Pairwise uses all available observations per covariance pair; listwise deletes any row with a missing value.
 #' \itemize{
@@ -79,10 +79,9 @@
 #' @param standardizedLoadings, Table of standardized loadings from the single-factor model.
 #'    Defaults to \code{FALSE}.
 #' @param variables, Items/variables to include in the reliability analysis. Must be scale variables.
-#' @export
 reliabilityUnidimensionalFrequentist <- function(
           data = NULL,
-          version = "0.97.1",
+          version = "1",
           averageInterItemCorrelation = FALSE,
           bootstrapSamples = 1000,
           bootstrapType = "nonParametric",

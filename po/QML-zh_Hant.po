@@ -733,7 +733,7 @@ msgstr "刪除此題項後，其餘題項之 ω_h 的後驗點估計值。相關
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid "Item-rest correlation"
-msgstr "題項-總分相關"
+msgstr "題項-其他題項總分相關"
 
 msgctxt "ReliabilityMultidimensionalBayesian|"
 msgid ""
@@ -1405,7 +1405,7 @@ msgstr "以題項 KS-distance 排序"
 
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Item-rest correlation"
-msgstr "題項-總分相關"
+msgstr "題項-其他題項總分相關"
 
 msgctxt "ReliabilityUnidimensionalBayesian|"
 msgid "Correlation of each item with the sum of the remaining items."
@@ -2045,7 +2045,7 @@ msgstr "移除該題項後，剩餘題項的折半信度係數。"
 
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Item-rest correlation"
-msgstr "題項-總分相關"
+msgstr "題項-其他題項總分相關"
 
 msgctxt "ReliabilityUnidimensionalFrequentist|"
 msgid "Correlation of each item with the sum of the remaining items."

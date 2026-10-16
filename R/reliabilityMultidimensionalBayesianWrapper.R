@@ -46,19 +46,19 @@
 #' @param loadScaleManifest, Scales the variance of the normal prior on the item factor loadings. The prior is conditional on the item residual variance, so a loading has prior standard deviation sqrt(residual variance x variance scaling); larger values mean a less informative prior.
 #' @param meanSdScoresMethod, Whether the mean and standard deviation in the scale table are based on participants' sum scores or mean scores across items.
 #' \itemize{
-#'   \item \code{"meanScores"}
 #'   \item \code{"sumScores"}
+#'   \item \code{"meanScores"}
 #' }
 #' @param modelType, The factor model used to estimate the reliability coefficients. McDonald's ω_h (general/group-common reliability) is only available for the second-order and bi-factor models.
 #' @param naAction, Bayesian imputation treats missing values as unknown parameters sampled from the posterior; listwise deletion removes any row with a missing value.
 #' \itemize{
-#'   \item \code{"listwise"}
 #'   \item \code{"imputation"}
+#'   \item \code{"listwise"}
 #' }
 #' @param pointEstimate, Whether to report the posterior mean or median as the point estimate in the tables.
 #' \itemize{
-#'   \item \code{"median"}
 #'   \item \code{"mean"}
+#'   \item \code{"median"}
 #' }
 #' @param posteriorPlot, Display posterior density plots for the reliability coefficients.
 #'    Defaults to \code{FALSE}.
@@ -85,10 +85,9 @@
 #' @param thinning, Keep every k-th sample to reduce autocorrelation. A value of 1 keeps all samples.
 #' @param tracePlot, Plot of sampled values per chain over iterations. Well-mixed chains indicate convergence.
 #'    Defaults to \code{FALSE}.
-#' @export
 reliabilityMultidimensionalBayesian <- function(
           data = NULL,
-          version = "0.97.1",
+          version = "1",
           burnin = 200,
           chains = 3,
           ciLevel = 0.95,
