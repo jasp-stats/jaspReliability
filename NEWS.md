@@ -25,6 +25,7 @@
 * Renamed unidimensional reliability analyses: `unidimensionalReliabilityFrequentist` -> `reliabilityUnidimensionalFrequentist`, `unidimensionalReliabilityBayesian` -> `reliabilityUnidimensionalBayesian` (upgrade mappings added).
 
 ## Fixed
+* Fixed crash in frequentist unidimensional reliability when omega estimation (CFA or PFA) fails and another scale coefficient is also selected ([Issue #4477](https://github.com/jasp-stats/jasp-issues/issues/4477)).
 * Fixed bi-factor model crash caused by `param.out = TRUE` in `Bayesrel::bomegas`.
 * Fixed missing `dependOn` declarations for point-estimate option on scale table and `latentCorDf` in base container.
 * Fixed untranslated point-estimate column title in scale/item tables.
