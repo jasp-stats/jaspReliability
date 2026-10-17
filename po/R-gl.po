@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-08-08 03:52\n"
+"POT-Creation-Date: 2026-10-17 03:35\n"
 "PO-Revision-Date: 2026-08-14 09:51+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
@@ -864,6 +864,12 @@ msgid "Please enter at least 2 variables to do an analysis."
 msgstr "Por favor, para facer unha análise introduce 2 variables, cando menos."
 
 msgid ""
+"The following variables have labels that are not numbers: %1$s. The items "
+"must be numerically coded (e.g., 0/1 or 1-5). Please change the labels to "
+"numbers in the label editor of the Data tab, or recode the variables."
+msgstr ""
+
+msgid ""
 "For the Lord generalized method, the test could not be split in equally "
 "sized parts with more than 1 item per part. Consider adding or removing "
 "items."
@@ -871,6 +877,29 @@ msgstr ""
 "Para o método xeneralizado de Lord, a proba no puido dividirse en partes de "
 "igual tamaño con máis dun elemento por parte. Considera engadir ou eliminar "
 "elementos."
+
+#, fuzzy
+msgid "%1$s (values %2$s)"
+msgstr "%1$s%2$s"
+
+msgid ""
+"The binary items are not coded with the same two numbers: %1$s. Please use "
+"the same two numbers for all binary items (e.g., 0 and 1) in the label "
+"editor of the Data tab."
+msgstr ""
+
+msgid "The items are dichotomous with the values %1$s and %2$s."
+msgstr ""
+
+msgid ""
+"The items are dichotomous with the values %1$s and %2$s; where the method "
+"needs 0/1 items, %1$s is treated as 0 and %2$s as 1."
+msgstr ""
+
+msgid ""
+"The sum scores are computed from the item values as they are coded (observed "
+"values from %1$s to %2$s)."
+msgstr ""
 
 msgid "Standard error of measurement results for the selected methods."
 msgstr "Erro padrón dos resultados da medida para os métodos seleccionados."
@@ -911,6 +940,12 @@ msgstr ""
 "%1$s Fallou a estimación do método %2$s. Se é posible, poderías tratar de "
 "trocar os parámetros do método."
 
+msgid ""
+"%1$s A conditional SEM of zero means that no variation was observed within "
+"that score group, which typically happens at the lowest and highest possible "
+"sum score; it does not indicate perfect measurement precision."
+msgstr ""
+
 msgid "Sum Score CI Table"
 msgstr "Táboa de IC suma de puntuacións"
 
@@ -927,6 +962,10 @@ msgid ""
 msgstr ""
 "Fallou a estimación do método %s. Se é posible, poderías tratar de trocar os "
 "parámetros do método."
+
+msgid ""
+"No confidence interval is reported where the conditional SEM equals zero."
+msgstr ""
 
 msgid "Histogram of Counts per Sum Score Group"
 msgstr "Histograma de recontos por grupo de suma de puntuacións"

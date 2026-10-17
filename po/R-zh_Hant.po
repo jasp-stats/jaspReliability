@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.15.0\n"
-"POT-Creation-Date: 2026-08-08 03:52\n"
+"POT-Creation-Date: 2026-10-17 03:35\n"
 "PO-Revision-Date: 2026-08-06 08:04+0000\n"
 "Last-Translator: 陳正昌 <chencc99@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
@@ -389,7 +389,9 @@ msgid ""
 "The bi-factor model does not support items that load on more than one "
 "factor. Assign each item to a single factor, or select the second-order or "
 "correlated-factors model."
-msgstr "此雙因子模型不支援同時載荷於多個因子的題項。請將每個題項指派到單一因子，或選取二階或相關因子模型。"
+msgstr ""
+"此雙因子模型不支援同時載荷於多個因子的題項。請將每個題項指派到單一因子，或選"
+"取二階或相關因子模型。"
 
 #, fuzzy
 msgid "Sampling the posterior distribution of the omega coefficients"
@@ -770,6 +772,12 @@ msgstr "%1$s變項 %2$s 與變項 %3$s 為完全相關"
 msgid "Please enter at least 2 variables to do an analysis."
 msgstr "請輸入至少 2 個變項。"
 
+msgid ""
+"The following variables have labels that are not numbers: %1$s. The items "
+"must be numerically coded (e.g., 0/1 or 1-5). Please change the labels to "
+"numbers in the label editor of the Data tab, or recode the variables."
+msgstr ""
+
 #, fuzzy
 msgid ""
 "For the Lord generalized method, the test could not be split in equally "
@@ -778,6 +786,29 @@ msgid ""
 msgstr ""
 "對於Lord的複合方法，測試無法分割成大小相等且每個部分包含超過1個項目的部分。請"
 "考慮增加或刪除項目。"
+
+#, fuzzy
+msgid "%1$s (values %2$s)"
+msgstr "%1$s%2$s"
+
+msgid ""
+"The binary items are not coded with the same two numbers: %1$s. Please use "
+"the same two numbers for all binary items (e.g., 0 and 1) in the label "
+"editor of the Data tab."
+msgstr ""
+
+msgid "The items are dichotomous with the values %1$s and %2$s."
+msgstr ""
+
+msgid ""
+"The items are dichotomous with the values %1$s and %2$s; where the method "
+"needs 0/1 items, %1$s is treated as 0 and %2$s as 1."
+msgstr ""
+
+msgid ""
+"The sum scores are computed from the item values as they are coded (observed "
+"values from %1$s to %2$s)."
+msgstr ""
 
 msgid "Standard error of measurement results for the selected methods."
 msgstr "所選方法的測量標準誤結果。"
@@ -815,6 +846,12 @@ msgid ""
 "the method's parameters."
 msgstr "%1$s 估計 %2$s 方法失敗。如果可能，您可以嘗試更改方法的參數。"
 
+msgid ""
+"%1$s A conditional SEM of zero means that no variation was observed within "
+"that score group, which typically happens at the lowest and highest possible "
+"sum score; it does not indicate perfect measurement precision."
+msgstr ""
+
 msgid "Sum Score CI Table"
 msgstr "總分信賴區間表"
 
@@ -827,6 +864,10 @@ msgid ""
 "Estimating the %s method failed. If possible, you might try changing the "
 "method's parameters."
 msgstr "估計 %s 方法失敗。如果可能，您可以嘗試更改方法的參數。"
+
+msgid ""
+"No confidence interval is reported where the conditional SEM equals zero."
+msgstr ""
 
 #, fuzzy
 msgid "Histogram of Counts per Sum Score Group"
