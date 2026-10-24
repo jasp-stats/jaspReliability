@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
 "POT-Creation-Date: 2026-10-17 03:35\n"
-"PO-Revision-Date: 2026-07-22 23:05+0000\n"
-"Last-Translator: 陳正昌 <chencc99@gmail.com>\n"
+"PO-Revision-Date: 2026-10-25 11:51+0000\n"
+"Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspreliability-r/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 
 msgid "Bland-Altman Plots"
 msgstr "Bland-Altman 图"
@@ -118,10 +118,10 @@ msgid "SE"
 msgstr "标准误"
 
 msgid "Lower"
-msgstr "下界"
+msgstr "下限"
 
 msgid "Upper"
-msgstr "上界"
+msgstr "上限"
 
 msgid "Check one of the coefficients to start the analysis."
 msgstr "勾选其中一个系数以开始分析。"
@@ -145,15 +145,14 @@ msgstr ""
 "当评分者位于行中时，所有被试/项目列必须具有相同的测量类型。数据混用了类别列和"
 "连续列；请更改列类型使其一致。"
 
-#, fuzzy
 msgid "Krippendorff's alpha requires at least 2 raters/measurements."
-msgstr "%1$i 个被试/项目和 %2$i 个评分者/测量值。"
+msgstr "Krippendorff's alpha 至少需要 2 名评分者/测量值。"
 
 msgid ""
 "Krippendorff's alpha with an interval or ratio method requires numeric "
 "ratings. Use the nominal or ordinal method, or recode the data."
 msgstr ""
-"使用等距或比率方法的 Krippendorff's alpha 需要数值型评分。请使用定类或定序方"
+"使用等距或比率方法的 Krippendorff's alpha 需要数值型评分。请使用名义或有序方"
 "法，或对数据进行重新编码。"
 
 msgid ""
@@ -161,7 +160,7 @@ msgid ""
 msgstr "使用比率方法的 Krippendorff's alpha 需要非负评分。"
 
 msgid "Krippendorff's alpha with the ordinal method"
-msgstr "使用定序方法的 Krippendorff's alpha"
+msgstr "使用有序方法的 Krippendorff's alpha"
 
 msgid ""
 "Krippendorff's alpha cannot be computed: the data contain infinite values."
@@ -178,9 +177,8 @@ msgid ""
 "Krippendorff's alpha is not estimable: the pairable ratings do not vary."
 msgstr "Krippendorff's alpha 不可估计：可配对的评分没有变化。"
 
-#, fuzzy
 msgid "Cohen's kappa"
-msgstr "Cohen's %s kappa"
+msgstr "Cohen's kappa"
 
 msgid ""
 "Cohen's kappa: chance-corrected agreement between exactly two raters. Ranges "
@@ -192,27 +190,24 @@ msgstr ""
 msgid "Ratings"
 msgstr "评分"
 
-#, fuzzy
 msgid "kappa"
-msgstr "%s kappa"
+msgstr "kappa"
 
 msgid ""
 "Cohen's kappa requires nominal or ordinal variables. Remove scale variables "
 "or change their type."
-msgstr "Cohen's kappa 需要定类或定序变量。请删除连续变量或更改其类型。"
+msgstr "Cohen's kappa 需要名义或有序变量。请删除连续变量或更改其类型。"
 
 msgid ""
 "Weighted Cohen's kappa requires ordinal variables. Remove nominal variables "
 "or change their type."
-msgstr "加权 Cohen's kappa 需要定序变量。请删除定类变量或更改其类型。"
+msgstr "加权 Cohen's kappa 需要有序变量。请删除名义变量或更改其类型。"
 
-#, fuzzy
 msgid "Cohen's kappa requires at least 2 raters/measurements."
-msgstr "%1$i 个被试/项目和 %2$i 个评分者/测量值。"
+msgstr "Cohen's kappa 至少需要 2 名评分者/测量值。"
 
-#, fuzzy
 msgid "Weighted Cohen's kappa"
-msgstr "Cohen's %s kappa"
+msgstr "加权 Cohen's kappa"
 
 msgid "fewer than 3 jointly rated subjects/items"
 msgstr "被共同评分的被试/项目少于 3 个"
@@ -261,17 +256,16 @@ msgid ""
 "Fleiss' kappa: generalization of Cohen's kappa for two or more raters "
 "assigning subjects to nominal categories."
 msgstr ""
-"Fleiss' kappa：Cohen's kappa 的推广，适用于两名或更多评分者将被试分配到定类类"
+"Fleiss' kappa：Cohen's kappa 的推广，适用于两名或更多评分者将被试分配到名义类"
 "别。"
 
 msgid ""
 "Fleiss' kappa requires nominal or ordinal variables. Remove scale variables "
 "or change their type."
-msgstr "Fleiss' kappa 需要定类或定序变量。请删除连续变量或更改其类型。"
+msgstr "Fleiss' kappa 需要名义或有序变量。请删除连续变量或更改其类型。"
 
-#, fuzzy
 msgid "Fleiss' kappa requires at least 2 raters/measurements."
-msgstr "%1$i 个被试/项目和 %2$i 个评分者/测量值。"
+msgstr "Fleiss' kappa 至少需要 2 名评分者/测量值。"
 
 msgid ""
 "Fleiss' kappa requires at least 3 complete subjects/items (rows without "
@@ -295,7 +289,7 @@ msgid ""
 "raters, any scale level (nominal/ordinal/interval/ratio), and incomplete "
 "data."
 msgstr ""
-"Krippendorff's alpha：适用于任意数量的评分者、任意量表水平（定类/定序/等距/比"
+"Krippendorff's alpha：适用于任意数量的评分者、任意量表水平（名义/有序/等距/比"
 "率）以及不完整数据的信度系数。"
 
 msgid "Method"
@@ -330,11 +324,10 @@ msgstr "F 检验"
 
 msgid ""
 "Kendall's W requires ordinal or scale variables. Remove nominal variables."
-msgstr "Kendall's W 需要定序或连续变量。请删除定类变量。"
+msgstr "Kendall's W 需要有序或连续变量。请删除名义变量。"
 
-#, fuzzy
 msgid "Kendall's W requires at least 2 raters/measurements."
-msgstr "%1$i 个被试/项目和 %2$i 个评分者/测量值。"
+msgstr "Kendall's W 至少需要 2 名评分者/测量值。"
 
 msgid ""
 "Kendall's W requires at least 2 complete subjects/items (rows without "
@@ -354,9 +347,8 @@ msgstr ""
 "仅当启用并列校正时才提供 bootstrap 置信区间：有放回重抽样会引入并列，从而扭曲"
 "未校正的系数。"
 
-#, fuzzy
 msgid "Confidence intervals are based on bootstrap."
-msgstr "置信区间是渐近的。"
+msgstr "置信区间基于 Bootstrap。"
 
 msgid "Chi-square test is valid for large samples only."
 msgstr "卡方检验仅适用于大样本。"
@@ -398,13 +390,11 @@ msgstr "对 omega 系数的后验分布进行抽样"
 msgid "Bayesian Scale Reliability Statistics"
 msgstr "贝叶斯量表信度统计量"
 
-#, fuzzy
 msgid "Posterior mean"
-msgstr "后验"
+msgstr "后验均值"
 
-#, fuzzy
 msgid "Posterior median"
-msgstr "后验"
+msgstr "后验中位数"
 
 msgid "R-hat"
 msgstr "R-hat"
@@ -468,7 +458,6 @@ msgstr "概率"
 msgid "Fit Measures of the Factor Model"
 msgstr "因子模型的拟合指标"
 
-#, fuzzy
 msgid "Point estimate"
 msgstr "点估计"
 
@@ -769,6 +758,8 @@ msgid ""
 "must be numerically coded (e.g., 0/1 or 1-5). Please change the labels to "
 "numbers in the label editor of the Data tab, or recode the variables."
 msgstr ""
+"以下变量的标签不是数字：%1$s。项目必须以数字编码（例如 0/1 或 1–5）。请在“数"
+"据”选项卡的标签编辑器中将标签改为数字，或重新编码变量。"
 
 msgid ""
 "For the Lord generalized method, the test could not be split in equally "
@@ -778,28 +769,31 @@ msgstr ""
 "对于 Lord 广义方法，无法将测验划分为每个部分含多于 1 个项目的等大小部分。请考"
 "虑添加或删除项目。"
 
-#, fuzzy
 msgid "%1$s (values %2$s)"
-msgstr "%1$s%2$s"
+msgstr "%1$s（值 %2$s）"
 
 msgid ""
 "The binary items are not coded with the same two numbers: %1$s. Please use "
 "the same two numbers for all binary items (e.g., 0 and 1) in the label "
 "editor of the Data tab."
 msgstr ""
+"二分类项目的编码不是相同的两个数字：%1$s。请在“数据”选项卡的标签编辑器中为所"
+"有二分类项目使用相同的两个数字（例如 0 和 1）。"
 
 msgid "The items are dichotomous with the values %1$s and %2$s."
-msgstr ""
+msgstr "这些项目为二分类，取值为 %1$s 和 %2$s。"
 
 msgid ""
 "The items are dichotomous with the values %1$s and %2$s; where the method "
 "needs 0/1 items, %1$s is treated as 0 and %2$s as 1."
 msgstr ""
+"这些项目为二分类，取值为 %1$s 和 %2$s；在方法需要 0/1 项目时，%1$s 视为 0"
+"，%2$s 视为 1。"
 
 msgid ""
 "The sum scores are computed from the item values as they are coded (observed "
 "values from %1$s to %2$s)."
-msgstr ""
+msgstr "总分根据项目编码后的值计算（观测值从 %1$s 到 %2$s）。"
 
 msgid "Standard error of measurement results for the selected methods."
 msgstr "所选方法的测量标准误结果。"
@@ -840,6 +834,8 @@ msgid ""
 "that score group, which typically happens at the lowest and highest possible "
 "sum score; it does not indicate perfect measurement precision."
 msgstr ""
+"%1$s 条件 SEM 为零表示该分数组内未观察到变异，通常出现在可能的最低和最高总分"
+"处；这并不表示测量精度完美。"
 
 msgid "Sum Score CI Table"
 msgstr "总分得分置信区间表"
@@ -856,7 +852,7 @@ msgstr "估计 %s 方法失败。如果可能，您可以尝试更改该方法�
 
 msgid ""
 "No confidence interval is reported where the conditional SEM equals zero."
-msgstr ""
+msgstr "当条件 SEM 等于零时，不报告置信区间。"
 
 msgid "Histogram of Counts per Sum Score Group"
 msgstr "每个总分得分组的计数的直方图"
@@ -864,21 +860,18 @@ msgstr "每个总分得分组的计数的直方图"
 msgid "Distribution of participants across sum score groups."
 msgstr "参与者在各总分得分组之间的分布。"
 
-#, fuzzy
 msgid "Point Plots"
-msgstr "点值"
+msgstr "点图"
 
 msgid ""
 "Conditional SEM plotted as a function of sum score for each selected method."
 msgstr "每个所选方法的条件 SEM 随总分得分变化的曲线图。"
 
-#, fuzzy
 msgid "SEM"
 msgstr "标准误"
 
-#, fuzzy
 msgid "Combined Plot"
-msgstr "点值"
+msgstr "组合图"
 
 msgid ""
 "Overlay of all selected methods' conditional SEM across the full range of "
@@ -893,9 +886,8 @@ msgid ""
 "method."
 msgstr "每个所选方法的真实分数置信区间随总分得分变化的曲线图。"
 
-#, fuzzy
 msgid "True Score Estimate"
-msgstr "点估计"
+msgstr "真分数估计"
 
 msgid "The following item correlated negatively with the scale: %s. "
 msgid_plural "The following items correlated negatively with the scale: %s. "
