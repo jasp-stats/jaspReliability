@@ -801,7 +801,7 @@ msgstr ""
 "輯器中，為所有二元項目使用相同的兩個數字 (例如 0 和 1)。"
 
 msgid "The items are dichotomous with the values %1$s and %2$s."
-msgstr "這些項目為二分法，其值為 %1s 與 %2$s。"
+msgstr "這些項目為二分法，其值為 %1$s 與 %2$s。"
 
 msgid ""
 "The items are dichotomous with the values %1$s and %2$s; where the method "
