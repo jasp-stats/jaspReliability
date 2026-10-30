@@ -262,3 +262,29 @@ test_that("Frequentist Scale Reliability Statistics table results match", {
                                  list("Guttman's <unicode>2", 0.60068713700511, 0.483142517715655, 0.0599728465505652,
                                       0.718231756294564))
 })
+
+# the analytic SEs use g' VC g without forming the J^2 x J^2 matrix VC; compare with the explicit matrix
+test_that("Analytic SE quadratic form matches the explicit covariance matrix of vec(S)", {
+  quadFormVC <- jaspReliability:::.quadFormVC
+  varCMparts <- jaspReliability:::.varCMparts
+
+  set.seed(1)
+  theta  <- rnorm(150)
+  latent <- sapply(1:5, function(j) 0.7 * theta + rnorm(150, sd = 0.7))
+  ordinal    <- apply(latent, 2, function(x) findInterval(x, c(-1, 0, 1)) + 1)
+  continuous <- latent
+  g <- rnorm(25) # not symmetric, so the transposed term of the normal-theory form is exercised
+
+  # categorical items: VC = G Vn G' - G n n' G' / N
+  parts <- varCMparts(ordinal)
+  n     <- as.vector(parts[["n"]])
+  Vn    <- diag(n) - tcrossprod(n) / sum(n)
+  VC    <- parts[["G"]] %*% Vn %*% t(parts[["G"]]) - parts[["G"]] %*% tcrossprod(n) %*% t(parts[["G"]]) / sum(n)
+  expect_equal(quadFormVC(g, ordinal, scaleThreshold = 10), as.numeric(g %*% VC %*% g), tolerance = 1e-10)
+
+  # continuous items: VC = (I + K) (S %x% S) / (n - 1), K the commutation matrix
+  commutation <- matrix(0, 25, 25)
+  for (i in 1:5) for (j in 1:5) commutation[(i - 1) * 5 + j, (j - 1) * 5 + i] <- 1
+  VC <- (diag(25) + commutation) %*% kronecker(var(continuous), var(continuous)) / (nrow(continuous) - 1)
+  expect_equal(quadFormVC(g, continuous, scaleThreshold = 10), as.numeric(g %*% VC %*% g), tolerance = 1e-10)
+})
