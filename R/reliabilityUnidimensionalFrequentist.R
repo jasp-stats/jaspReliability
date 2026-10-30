@@ -1903,27 +1903,16 @@ reliabilityUnidimensionalFrequentistInternal <- function(jaspResults, dataset, o
 }
 
 # SE of sample lambda-3 (alpha)
-.seLambda3 <- function(X, VC = NULL, eps = 1e-16, scaleThreshold = 10){
+.seLambda3 <- function(X, eps = 1e-16, scaleThreshold = 10){
   J <- ncol(X)
-  return((J / (J - 1)) *.seLambda1(X, VC, scaleThreshold = scaleThreshold))
+  return((J / (J - 1)) *.seLambda1(X, scaleThreshold = scaleThreshold))
 }
 
 
 # SE of sample lambda-1
-.seLambda1 <- function(X, VC = NULL, eps = 1e-16, scaleThreshold){
+.seLambda1 <- function(X, eps = 1e-16, scaleThreshold){
   D <- function(x) diag(as.numeric(x))
   J <- ncol(X)
-  # if(is.null(VC)) VC <- .varCM(X)
-  if (is.null(VC)) {
-    levs <- sapply(as.data.frame(X), function(col) length(unique(col[!is.na(col)])))
-    if (any(levs > scaleThreshold)) {
-      # Continuous/mixed: fast, stable normal-theory VC
-      VC <- .varVCwishart(stats::var(X), nrow(X))
-    } else {
-      # Ordinal: keep your existing categorical VC
-      VC <- .varCM(X)
-    }
-  }
 
   g0 <- vecC <- matrix(var(X))
   e <-  matrix(diag(rep(1, J)), nrow = 1)
@@ -1937,12 +1926,41 @@ reliabilityUnidimensionalFrequentistInternal <- function(jaspResults, dataset, o
   G1 <- D(1/(A1 %*% g0)) %*% A1
   G2 <- D(g2) %*% A2 %*% G1
   G <- A3 %*% G2
-  V <- G %*% VC %*% t(G)
+  V <- .quadFormVC(G, X, scaleThreshold = scaleThreshold)
   return(sqrt(V))
 }
 
-# SE of sample covariance matrix
-.varCM <- function(X, marg = marg.default, eps = 1e-16) {
+# Quadratic form g' VC g, with VC the asymptotic covariance matrix of vec(S), S the sample covariance matrix, and
+# g a gradient (1 x J^2, column-major vec of a J x J matrix). VC is J^2 x J^2 and is never formed: for J = 60 it has
+# 13M entries and products with it dominate the run time. Categorical items use the pattern-count representation,
+# continuous/mixed items the normal-theory (Wishart) form.
+.quadFormVC <- function(g, X, scaleThreshold = 10, use = "everything") {
+  g <- as.vector(g)
+  levs <- sapply(as.data.frame(X), function(col) length(unique(col[!is.na(col)])))
+  if (any(levs > scaleThreshold))
+    return(.quadFormVCwishart(g, stats::var(X, use = use), nrow(X)))
+  return(.quadFormVCcategorical(g, X))
+}
+
+# Categorical items: VC = G Vn G' - G n n' G' / N with Vn = D(n) - n n' / N, so with a = g' G (length K):
+# g' VC g = sum(n a^2) - 2 (a n)^2 / N
+.quadFormVCcategorical <- function(g, X) {
+  parts <- .varCMparts(X)
+  n <- as.vector(parts[["n"]])
+  a <- as.vector(g %*% parts[["G"]])
+  an <- sum(a * n)
+  return(sum(n * a^2) - 2 * an^2 / sum(n))
+}
+
+# Normal theory: VC = (I + K) (S %x% S) / (n - 1), K the commutation matrix. With g = vec(M):
+# g' VC g = sum((M + M') * (S M S)) / (n - 1)
+.quadFormVCwishart <- function(g, Sigma, n) {
+  M <- matrix(g, ncol(Sigma), ncol(Sigma))
+  return(sum((M + t(M)) * (Sigma %*% M %*% Sigma)) / (n - 1L))
+}
+
+# Gradient matrix G (J^2 x K) and pattern counts n (K x 1) of the covariance matrix of vec(S) for categorical items
+.varCMparts <- function(X, eps = 1e-16) {
 
   X2nR <- function(X){
     if (!is.matrix(X)) X <- as.matrix(X)
@@ -2003,24 +2021,12 @@ reliabilityUnidimensionalFrequentistInternal <- function(jaspResults, dataset, o
     }
   }
   dimnames(G) <- list(labG, dimnames(n)[[1]])
-  Vn <- D(n) - n %*% t(n) / sum(n)
-  VC <- G %*% Vn %*% t(G) - (G %*% n %*% t(n) %*% t(G))/sum(n)
-  return(VC)
+  return(list(G = G, n = n))
 }
 
 # SE of sample lambda-2
-.seLambda2 <- function(X, VC = NULL, eps = 1e-16, scaleThreshold = 10) {
+.seLambda2 <- function(X, eps = 1e-16, scaleThreshold = 10) {
   J <- ncol(X)
-  if (is.null(VC)) {
-    levs <- sapply(as.data.frame(X), function(col) length(unique(col[!is.na(col)])))
-    if (any(levs > scaleThreshold)) {
-      # Continuous/mixed: fast, stable normal-theory VC
-      VC <- .varVCwishart(stats::var(X), nrow(X))
-    } else {
-      # Ordinal: keep your existing categorical VC
-      VC <- .varCM(X)
-    }
-  }
 
   C <- var(X)
   C. <- C; diag(C.) <- 0
@@ -2033,7 +2039,7 @@ reliabilityUnidimensionalFrequentistInternal <- function(jaspResults, dataset, o
   e <-  matrix(diag(rep(1, J)), nrow = 1)
   u <-  matrix(1, nrow = 1, ncol = J^2)
   G <- (((C2plusX / C2plus * vecC. + (u - e)) - .lambda2(X)) / Splus)
-  return(sqrt(G %*% VC %*% t(G)))
+  return(sqrt(.quadFormVC(G, X, scaleThreshold = scaleThreshold)))
 }
 
 # Sample lambda-2
@@ -2048,16 +2054,8 @@ reliabilityUnidimensionalFrequentistInternal <- function(jaspResults, dataset, o
 # The average inter-item correlation is r_bar = (1 / (J*(J-1))) * sum_{i!=j} C_ij / sqrt(C_ii * C_jj)
 # where C = Var(X).  The gradient w.r.t. vec(C) is obtained by differentiating each
 # r_ij = C_ij / sqrt(C_ii * C_jj) w.r.t. C_ab and averaging.
-.seAverageInterItemCor <- function(X, VC = NULL, scaleThreshold = 10) {
+.seAverageInterItemCor <- function(X, scaleThreshold = 10) {
   J <- ncol(X)
-  if (is.null(VC)) {
-    levs <- sapply(as.data.frame(X), function(col) length(unique(col[!is.na(col)])))
-    if (any(levs > scaleThreshold)) {
-      VC <- .varVCwishart(stats::var(X), nrow(X))
-    } else {
-      VC <- .varCM(X)
-    }
-  }
 
   C <- var(X)
   R <- cov2cor(C)
@@ -2080,8 +2078,8 @@ reliabilityUnidimensionalFrequentistInternal <- function(jaspResults, dataset, o
 
   # Vectorize: vec(G_mat) as a 1 x J^2 row vector, column-major order matching vec(C)
   G <- matrix(as.vector(Gmat), nrow = 1)
-  V <- G %*% VC %*% t(G)
-  return(sqrt(as.numeric(V)))
+  V <- .quadFormVC(G, X, scaleThreshold = scaleThreshold)
+  return(sqrt(V))
 }
 
 
@@ -2135,20 +2133,11 @@ reliabilityUnidimensionalFrequentistInternal <- function(jaspResults, dataset, o
   return(rsh)
 }
 
-.seSplithalf <- function(X, splits, standardized = FALSE, VC = NULL, scaleThreshold = 10) {
+.seSplithalf <- function(X, splits, standardized = FALSE, scaleThreshold = 10) {
   # Multivariate delta method SE, analogous to .seLambda1 / .seLambda2.
   # Computes the gradient of the split-half coefficient w.r.t. vec(Sigma)
   # and combines with the variance of the sample covariance matrix.
   J <- ncol(X)
-
-  if (is.null(VC)) {
-    levs <- sapply(as.data.frame(X), function(col) length(unique(col[!is.na(col)])))
-    if (any(levs > scaleThreshold)) {
-      VC <- .varVCwishart(stats::var(X, use = "pairwise.complete.obs"), nrow(X))
-    } else {
-      VC <- .varCM(X)
-    }
-  }
 
   C <- var(X, use = "pairwise.complete.obs")
   vecC <- as.vector(C) # J^2 elements, column-major
@@ -2187,8 +2176,8 @@ reliabilityUnidimensionalFrequentistInternal <- function(jaspResults, dataset, o
     G <- matrix(4 * (mAB * S - C_AB * u) / S^2, nrow = 1)
   }
 
-  V <- G %*% VC %*% t(G)
-  return(sqrt(as.numeric(V)))
+  V <- .quadFormVC(G, X, scaleThreshold = scaleThreshold, use = "pairwise.complete.obs")
+  return(sqrt(V))
 }
 
 .seCor <- function(r, n) { # Bonett (2008)
@@ -2205,17 +2194,4 @@ reliabilityUnidimensionalFrequentistInternal <- function(jaspResults, dataset, o
   low <- (exp(2 * zlow) - 1) / (exp(2 * zlow) + 1)
   up <- (exp(2 * zup) - 1) / (exp(2 * zup) + 1)
   return(c(low, up))
-}
-
-.varVCwishart <- function(Sigma, n) {
-  nu <- n - 1L
-  J <- ncol(Sigma)
-  # commutation matrix K
-  idx_row <- as.vector(outer(1:J, 1:J, function(i,j) (i-1L)*J + j))
-  idx_col <- as.vector(outer(1:J, 1:J, function(i,j) (j-1L)*J + i))
-  K <- matrix(0, J*J, J*J)
-  K[cbind(idx_row, idx_col)] <- 1
-  # main expression
-  AA <- kronecker(Sigma, Sigma)
-  ((diag(J*J) + K) %*% AA) / nu
 }
