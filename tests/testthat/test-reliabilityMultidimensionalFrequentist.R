@@ -178,7 +178,7 @@ optionsBoot <- analysisOptions("reliabilityMultidimensionalFrequentist")
 optionsBoot$factors          <- uppsFactors
 optionsBoot$modelType        <- "secondOrder"
 optionsBoot$naAction         <- "listwise"
-optionsBoot$intervalMethod   <- "bootstrapped"
+optionsBoot$ciMethod         <- "bootstrapped"
 optionsBoot$bootstrapSamples <- 100
 optionsBoot$setSeed          <- TRUE
 optionsBoot$seed             <- 1

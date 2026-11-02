@@ -10,10 +10,10 @@ reliabilityMultidimensionalFrequentist(
   version = "0.98.1",
   bootstrapSamples = 1000,
   ciLevel = 0.95,
+  ciMethod = "analytic",
   factors = list(list(indicators = list(), name = "Factor1", title = "Factor 1"),
     list(indicators = list(), name = "Factor2", title = "Factor 2")),
   fitMeasures = FALSE,
-  intervalMethod = "analytic",
   itemDeletedOmegaH = FALSE,
   itemDeletedOmegaT = FALSE,
   itemRestCorrelation = FALSE,
@@ -34,16 +34,16 @@ reliabilityMultidimensionalFrequentist(
 
 \item{ciLevel, }{Coverage of the confidence interval for the reliability coefficients.}
 
-\item{factors, }{Assign the items to their factors. The analysis requires at least two factors with at least two items each. An item may be assigned to more than one factor (cross-loading); the bi-factor model does not support cross-loadings.}
-
-\item{fitMeasures, }{Fit measures of the factor model: chi-square, CFI, TLI, RMSEA, SRMR, AIC and BIC.
-Defaults to \code{FALSE}.}
-
-\item{intervalMethod, }{Analytic intervals are the Wald-type intervals of the factor model. Because omega is a ratio, these intervals are symmetric and can extend beyond zero or one; the bootstrapped interval resamples the data and refits the model, which is slower but does not make that assumption.
+\item{ciMethod, }{Analytic intervals are the Wald-type intervals of the factor model. Because omega is a ratio, these intervals are symmetric and can extend beyond zero or one; the bootstrapped interval resamples the data and refits the model, which is slower but does not make that assumption.
 \itemize{
 \item \code{"analytic"}
 \item \code{"bootstrapped"}
 }}
+
+\item{factors, }{Assign the items to their factors. The analysis requires at least two factors with at least two items each. An item may be assigned to more than one factor (cross-loading); the bi-factor model does not support cross-loadings.}
+
+\item{fitMeasures, }{Fit measures of the factor model: chi-square, CFI, TLI, RMSEA, SRMR, AIC and BIC.
+Defaults to \code{FALSE}.}
 
 \item{itemDeletedOmegaH, }{McDonald's omega_h for the remaining items when this item is dropped. Not available for the correlated-factors model.
 Defaults to \code{FALSE}.}

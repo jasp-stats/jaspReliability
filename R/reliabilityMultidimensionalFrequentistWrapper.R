@@ -21,14 +21,14 @@
 #'
 #' @param bootstrapSamples, Number of bootstrap replications. The factor model is refit for every replication, so higher values take proportionally longer.
 #' @param ciLevel, Coverage of the confidence interval for the reliability coefficients.
-#' @param factors, Assign the items to their factors. The analysis requires at least two factors with at least two items each. An item may be assigned to more than one factor (cross-loading); the bi-factor model does not support cross-loadings.
-#' @param fitMeasures, Fit measures of the factor model: chi-square, CFI, TLI, RMSEA, SRMR, AIC and BIC.
-#'    Defaults to \code{FALSE}.
-#' @param intervalMethod, Analytic intervals are the Wald-type intervals of the factor model. Because omega is a ratio, these intervals are symmetric and can extend beyond zero or one; the bootstrapped interval resamples the data and refits the model, which is slower but does not make that assumption.
+#' @param ciMethod, Analytic intervals are the Wald-type intervals of the factor model. Because omega is a ratio, these intervals are symmetric and can extend beyond zero or one; the bootstrapped interval resamples the data and refits the model, which is slower but does not make that assumption.
 #' \itemize{
 #'   \item \code{"analytic"}
 #'   \item \code{"bootstrapped"}
 #' }
+#' @param factors, Assign the items to their factors. The analysis requires at least two factors with at least two items each. An item may be assigned to more than one factor (cross-loading); the bi-factor model does not support cross-loadings.
+#' @param fitMeasures, Fit measures of the factor model: chi-square, CFI, TLI, RMSEA, SRMR, AIC and BIC.
+#'    Defaults to \code{FALSE}.
 #' @param itemDeletedOmegaH, McDonald's omega_h for the remaining items when this item is dropped. Not available for the correlated-factors model.
 #'    Defaults to \code{FALSE}.
 #' @param itemDeletedOmegaT, McDonald's omega_t for the remaining items when this item is dropped. The model is refit once per item.
@@ -59,9 +59,9 @@ reliabilityMultidimensionalFrequentist <- function(
           version = "0.98.1",
           bootstrapSamples = 1000,
           ciLevel = 0.95,
+          ciMethod = "analytic",
           factors = list(list(indicators = list(), name = "Factor1", title = "Factor 1"), list(indicators = list(), name = "Factor2", title = "Factor 2")),
           fitMeasures = FALSE,
-          intervalMethod = "analytic",
           itemDeletedOmegaH = FALSE,
           itemDeletedOmegaT = FALSE,
           itemRestCorrelation = FALSE,

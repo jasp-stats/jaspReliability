@@ -6,7 +6,7 @@
 # fitMeasures is included because the fit measures are computed by the fit, not at display time.
 .multiDimFreqBaseDependencies <- c(
   "factors", "reverseScaledItems", "modelType", "naAction", "ciLevel", "fitMeasures",
-  "intervalMethod", "bootstrapSamples", "setSeed", "seed", "samplesSavingDisabled"
+  "ciMethod", "bootstrapSamples", "setSeed", "seed", "samplesSavingDisabled"
 )
 
 # the bootstrap samples are reused across confidence levels, and the resamples are fitted without
@@ -125,7 +125,7 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
     return(character(0))
 
   notes <- character(0)
-  if (!diagnostics[["se.available"]] && model[["intervalMethod"]] == "analytic") {
+  if (!diagnostics[["se.available"]] && model[["ciMethod"]] == "analytic") {
     # when the general factor is known to be unidentified, that footnote already names the cause,
     # so this one only reports the consequence instead of guessing at it a second time
     notes <- c(notes, if (.multiDimGeneralFactorUnidentified(options))
@@ -150,7 +150,7 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
   model <- list(modelType      = options[["modelType"]],
                 k              = length(allItems),
                 items          = allItems,
-                intervalMethod = options[["intervalMethod"]])
+                ciMethod = options[["ciMethod"]])
 
   if (!ready)
     return(model)
@@ -189,7 +189,7 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
 # are cached independently of ciLevel, so changing the confidence level only recomputes quantiles.
 .multiDimFreqBootstrap <- function(jaspResults, dataset, options, model, ready) {
 
-  if (options[["intervalMethod"]] != "bootstrapped" || !ready || !is.null(model[["error"]]))
+  if (options[["ciMethod"]] != "bootstrapped" || !ready || !is.null(model[["error"]]))
     return(NULL)
 
   if (!is.null(jaspResults[["bootSamples"]]$object))
@@ -353,7 +353,7 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
 
   scaleTable$setData(do.call(rbind.data.frame, c(rows, stringsAsFactors = FALSE)))
 
-  if (options[["intervalMethod"]] == "bootstrapped" && !is.null(bootSamples)) {
+  if (options[["ciMethod"]] == "bootstrapped" && !is.null(bootSamples)) {
     failed <- sum(is.na(bootSamples[, "omegaT"]))
     if (failed > 0L)
       footnotes <- c(footnotes, gettextf("%1$i of %2$i bootstrap samples did not converge and were excluded from the interval.",

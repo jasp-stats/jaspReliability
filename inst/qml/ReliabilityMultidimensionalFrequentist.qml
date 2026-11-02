@@ -144,8 +144,8 @@ Form
 
 		RadioButtonGroup
 		{
-			name:	"intervalMethod"
-			title:	qsTr("Confidence intervals")
+			name:	"ciMethod"
+			title:	qsTr("Confidence interval method")
 			info:	qsTr("Analytic intervals are the Wald-type intervals of the factor model. Because omega is a ratio, these intervals are symmetric and can extend beyond zero or one; the bootstrapped interval resamples the data and refits the model, which is slower but does not make that assumption.")
 
 			RadioButton
@@ -163,7 +163,7 @@ Form
 				IntegerField
 				{
 					name:			"bootstrapSamples"
-					label:			qsTr("No. of bootstrap samples")
+					label:			qsTr("Bootstrap samples")
 					defaultValue:	1000
 					fieldWidth:		50
 					min:			100
