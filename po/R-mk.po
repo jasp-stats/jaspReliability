@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.96.4\n"
-"POT-Creation-Date: 2026-08-08 03:52\n"
+"POT-Creation-Date: 2026-10-17 03:35\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -691,9 +691,37 @@ msgid "Please enter at least 2 variables to do an analysis."
 msgstr ""
 
 msgid ""
+"The following variables have labels that are not numbers: %1$s. The items "
+"must be numerically coded (e.g., 0/1 or 1-5). Please change the labels to "
+"numbers in the label editor of the Data tab, or recode the variables."
+msgstr ""
+
+msgid ""
 "For the Lord generalized method, the test could not be split in equally "
 "sized parts with more than 1 item per part. Consider adding or removing "
 "items."
+msgstr ""
+
+msgid "%1$s (values %2$s)"
+msgstr ""
+
+msgid ""
+"The binary items are not coded with the same two numbers: %1$s. Please use "
+"the same two numbers for all binary items (e.g., 0 and 1) in the label "
+"editor of the Data tab."
+msgstr ""
+
+msgid "The items are dichotomous with the values %1$s and %2$s."
+msgstr ""
+
+msgid ""
+"The items are dichotomous with the values %1$s and %2$s; where the method "
+"needs 0/1 items, %1$s is treated as 0 and %2$s as 1."
+msgstr ""
+
+msgid ""
+"The sum scores are computed from the item values as they are coded (observed "
+"values from %1$s to %2$s)."
 msgstr ""
 
 msgid "Standard error of measurement results for the selected methods."
@@ -729,6 +757,12 @@ msgid ""
 "the method's parameters."
 msgstr ""
 
+msgid ""
+"%1$s A conditional SEM of zero means that no variation was observed within "
+"that score group, which typically happens at the lowest and highest possible "
+"sum score; it does not indicate perfect measurement precision."
+msgstr ""
+
 msgid "Sum Score CI Table"
 msgstr ""
 
@@ -740,6 +774,10 @@ msgstr ""
 msgid ""
 "Estimating the %s method failed. If possible, you might try changing the "
 "method's parameters."
+msgstr ""
+
+msgid ""
+"No confidence interval is reported where the conditional SEM equals zero."
 msgstr ""
 
 msgid "Histogram of Counts per Sum Score Group"
