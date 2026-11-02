@@ -243,6 +243,9 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
   k          <- length(allItems)
   omegaT     <- rep(NA_real_, k)
   omegaH     <- rep(NA_real_, k)
+  # a converged but inadmissible refit is reported with its estimates and a footnote, as for the
+  # full model; the coefficient's range cannot tell, since an inadmissible solution can lie inside [0, 1]
+  inadmissible <- rep(FALSE, k)
 
   startProgressbar(k, label = gettext("Computing item statistics (refitting the model once per item)"))
 
@@ -256,6 +259,7 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
     fitReduced  <- .multiDimFreqFit(reducedData, options, syntax, FALSE)
 
     if (!inherits(fitReduced, "try-error") && isTRUE(fitReduced[["diagnostics"]][["converged"]])) {
+      inadmissible[i] <- !isTRUE(fitReduced[["diagnostics"]][["admissible"]])
       omegaT[i] <- fitReduced[["omega_t"]][["est"]]
       if (.multiDimOmegaHEstimable(options))
         omegaH[i] <- fitReduced[["omega_h"]][["est"]]
@@ -263,7 +267,7 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
     progressbarTick()
   }
 
-  out <- list(omegaT = omegaT, omegaH = omegaH)
+  out <- list(omegaT = omegaT, omegaH = omegaH, inadmissible = inadmissible)
   itemState <- createJaspState(out)
   itemState$dependOn(options = .multiDimFreqItemDeletedDependencies)
   jaspResults[["itemDeletedObj"]] <- itemState
@@ -408,11 +412,17 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
     if (anyNA(c(if (showOmegaT) df[["omegaT"]], if (showOmegaH && .multiDimOmegaHEstimable(options)) df[["omegaH"]])))
       footnotes <- c(footnotes, gettext("Empty cells indicate that the model could not be estimated without this item, for instance because a factor would be left with fewer than two items."))
     footnotes <- c(footnotes, gettext("No confidence intervals are reported for the if-item-dropped coefficients."))
+    if (any(deleted[["inadmissible"]]))
+      footnotes <- c(footnotes, gettextf("The factor model solution was inadmissible when dropping the following items: %s. These coefficients may fall outside the interval [0, 1].",
+                                         paste(jaspBase::decodeColNames(allItems[deleted[["inadmissible"]]]), collapse = ", ")))
   }
   if (showRest) {
     restData <- .multiDimFreqAnalysisData(dataset, options)
     df[["itemRestCorrelation"]] <- vapply(seq_along(allItems), function(i) {
-      rest <- rowSums(restData[, -i, drop = FALSE], na.rm = TRUE)
+      restItems <- restData[, -i, drop = FALSE]
+      rest <- rowSums(restItems, na.rm = TRUE)
+      # a respondent without any other observed item has no rest score; rowSums would make it 0
+      rest[rowSums(!is.na(restItems)) == 0L] <- NA_real_
       cor(restData[, i], rest, use = "pairwise.complete.obs")
     }, numeric(1))
   }

@@ -322,3 +322,50 @@ test_that("An entirely missing row does not distort the FIML descriptive statist
     expect_equal(meanSd(withEmpty, method), meanSd(uppsData, method), label = method)
   }
 })
+
+# Dropping an item can give a converged but inadmissible refit, with estimates far outside [0, 1]
+# (or, for other items, plausible-looking ones). The estimates are kept, as for the full model,
+# and the item table names the affected items in a footnote.
+test_that("Inadmissible item-deleted refits are named in a footnote", {
+  optionsAd <- analysisOptions("reliabilityMultidimensionalFrequentist")
+  optionsAd$factors           <- uppsFactors
+  optionsAd$modelType         <- "biFactor"
+  optionsAd$naAction          <- "listwise"
+  optionsAd$itemDroppedOmegaT <- TRUE
+  resultsAd <- runAnalysis("reliabilityMultidimensionalFrequentist", testthat::test_path("upps.csv"),
+                           optionsAd, makeTests = FALSE)
+
+  itemTable <- resultsAd[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]]
+  notes <- paste(vapply(itemTable[["footnotes"]], function(x) x[["text"]], character(1)), collapse = " ")
+  expect_true(grepl("inadmissible when dropping", notes))
+  expect_true(grepl("U22_r", notes))
+  expect_true(grepl("U10_r", notes))
+
+  # the coefficients themselves are still reported
+  for (item in c("U22_r", "U10_r"))
+    expect_true(is.finite(Filter(function(x) x[["item"]] == item, itemTable[["data"]])[[1]][["omegaT"]]), label = item)
+})
+
+# A respondent whose only observed item is the target item survives FIML, but has no rest score;
+# rowSums(na.rm = TRUE) used to turn it into a rest score of 0 that entered the correlation
+test_that("Item-rest correlation ignores respondents without any other observed item", {
+  uppsComplete <- na.omit(read.csv(testthat::test_path("upps.csv")))
+  uppsItems    <- unlist(lapply(uppsFactors, function(f) f[["indicators"]]))
+  onlyU17      <- uppsComplete[rep(1, 100), , drop = FALSE]
+  onlyU17[, ]  <- NA_real_
+  onlyU17[, "U17_r"] <- 4
+  sparse <- rbind(uppsComplete, onlyU17)
+
+  optionsRest <- analysisOptions("reliabilityMultidimensionalFrequentist")
+  optionsRest$factors             <- uppsFactors
+  optionsRest$modelType           <- "correlated"
+  optionsRest$naAction            <- "fiml"
+  optionsRest$itemRestCorrelation <- TRUE
+  resultsRest <- runAnalysis("reliabilityMultidimensionalFrequentist", sparse, optionsRest, makeTests = FALSE)
+
+  itemTable <- resultsRest[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
+  restCor   <- Filter(function(x) x[["item"]] == "U17_r", itemTable)[[1]][["itemRestCorrelation"]]
+  expected  <- cor(uppsComplete[["U17_r"]], rowSums(uppsComplete[, setdiff(uppsItems, "U17_r")]))
+  # with the invented zero rest scores the correlation was -0.535
+  expect_equal(restCor, expected, tolerance = 1e-6)
+})
