@@ -21,8 +21,8 @@ reliabilityMultidimensionalBayesian(
   igShapeGFactor = 2,
   igShapeLatent = 2,
   igShapeManifest = 2,
-  itemDeletedOmegaH = FALSE,
-  itemDeletedOmegaT = FALSE,
+  itemDroppedOmegaH = FALSE,
+  itemDroppedOmegaT = FALSE,
   itemRestCorrelation = FALSE,
   latentCorDf = 2,
   loadMeanLatent = 0,
@@ -81,10 +81,10 @@ Defaults to \code{FALSE}.}
 
 \item{igShapeManifest, }{Shape parameter of the inverse gamma prior on the item residual variances.}
 
-\item{itemDeletedOmegaH, }{Posterior point estimate of ω_h for the remaining items when this item is dropped. Not available for the correlated-factors model.
+\item{itemDroppedOmegaH, }{Posterior point estimate of ω_h for the remaining items when this item is dropped. Not available for the correlated-factors model.
 Defaults to \code{FALSE}.}
 
-\item{itemDeletedOmegaT, }{Posterior point estimate of ω_t for the remaining items when this item is dropped. The model is refit once per item.
+\item{itemDroppedOmegaT, }{Posterior point estimate of ω_t for the remaining items when this item is dropped. The model is refit once per item.
 Defaults to \code{FALSE}.}
 
 \item{itemRestCorrelation, }{Pearson correlation between each item and the sum of the remaining items.

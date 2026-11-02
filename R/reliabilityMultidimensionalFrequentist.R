@@ -368,15 +368,15 @@ reliabilityMultidimensionalFrequentistInternal <- function(jaspResults, dataset,
 
 .multiDimFreqItemTable <- function(jaspResults, dataset, model, options, ready, allItems) {
 
-  showOmegaT <- options[["itemDeletedOmegaT"]]
-  showOmegaH <- options[["itemDeletedOmegaH"]] && .multiDimHasOmegaH(options)
+  showOmegaT <- options[["itemDroppedOmegaT"]]
+  showOmegaH <- options[["itemDroppedOmegaH"]] && .multiDimHasOmegaH(options)
   showRest   <- options[["itemRestCorrelation"]]
   if (!(showOmegaT || showOmegaH || showRest) ||
       !is.null(.getStateContainerMDF(jaspResults)[["itemTable"]]$object))
     return()
 
   itemTable <- createJaspTable(gettext("Frequentist Individual Item Reliability Statistics"))
-  itemTable$dependOn(options = c("itemDeletedOmegaT", "itemDeletedOmegaH", "itemRestCorrelation"))
+  itemTable$dependOn(options = c("itemDroppedOmegaT", "itemDroppedOmegaH", "itemRestCorrelation"))
   itemTable$position <- 2
 
   itemTable$addColumnInfo(name = "item", title = gettext("Item"), type = "string")

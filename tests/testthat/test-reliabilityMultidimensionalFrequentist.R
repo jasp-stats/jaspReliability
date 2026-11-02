@@ -18,8 +18,8 @@ options$factors              <- uppsFactors
 options$modelType            <- "secondOrder"
 options$naAction             <- "listwise"
 options$itemRestCorrelation  <- TRUE
-options$itemDeletedOmegaT    <- TRUE
-options$itemDeletedOmegaH    <- TRUE
+options$itemDroppedOmegaT    <- TRUE
+options$itemDroppedOmegaH    <- TRUE
 options$fitMeasures          <- TRUE
 options$standardizedLoadings <- TRUE
 results <- runAnalysis("reliabilityMultidimensionalFrequentist", testthat::test_path("upps.csv"),
@@ -80,8 +80,8 @@ optionsTwo <- analysisOptions("reliabilityMultidimensionalFrequentist")
 optionsTwo$factors           <- uppsFactors[1:2]
 optionsTwo$modelType         <- "secondOrder"
 optionsTwo$naAction          <- "listwise"
-optionsTwo$itemDeletedOmegaT <- TRUE
-optionsTwo$itemDeletedOmegaH <- TRUE
+optionsTwo$itemDroppedOmegaT <- TRUE
+optionsTwo$itemDroppedOmegaH <- TRUE
 resultsTwo <- runAnalysis("reliabilityMultidimensionalFrequentist", testthat::test_path("upps.csv"),
                           optionsTwo, makeTests = FALSE)
 
@@ -143,7 +143,7 @@ test_that("A non-converged factor model is reported as an error on every table",
   optionsNc$factors           <- uppsFactors
   optionsNc$modelType         <- "secondOrder"
   optionsNc$naAction          <- "listwise"
-  optionsNc$itemDeletedOmegaT <- TRUE
+  optionsNc$itemDroppedOmegaT <- TRUE
   optionsNc$fitMeasures       <- TRUE
   resultsNc <- runAnalysis("reliabilityMultidimensionalFrequentist", testthat::test_path("upps.csv"),
                            optionsNc, makeTests = FALSE)
@@ -288,7 +288,7 @@ test_that("Item-deleted refits keep the full model's listwise sample", {
   optionsId$factors           <- uppsFactors
   optionsId$modelType         <- "secondOrder"
   optionsId$naAction          <- "listwise"
-  optionsId$itemDeletedOmegaT <- TRUE
+  optionsId$itemDroppedOmegaT <- TRUE
   resultsId <- runAnalysis("reliabilityMultidimensionalFrequentist", uppsData, optionsId, makeTests = FALSE)
 
   itemTable <- resultsId[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]

@@ -125,8 +125,8 @@ optionsDel$factors <- list(
   list(indicators = paste0("Question_", sprintf("%02d", 7:9)), name = "Factor3", title = "Factor 3")
 )
 optionsDel$modelType        <- "secondOrder"
-optionsDel$itemDeletedOmegaT <- TRUE
-optionsDel$itemDeletedOmegaH <- TRUE
+optionsDel$itemDroppedOmegaT <- TRUE
+optionsDel$itemDroppedOmegaH <- TRUE
 optionsDel$samples <- 100
 optionsDel$burnin  <- 30
 optionsDel$chains  <- 2
@@ -472,8 +472,8 @@ optionsUnid$seed             <- 1
 optionsUnid$probabilityTable <- TRUE
 optionsUnid$posteriorPlot    <- TRUE
 optionsUnid$tracePlot        <- TRUE
-optionsUnid$itemDeletedOmegaT <- TRUE
-optionsUnid$itemDeletedOmegaH <- TRUE
+optionsUnid$itemDroppedOmegaT <- TRUE
+optionsUnid$itemDroppedOmegaH <- TRUE
 set.seed(1)
 resultsUnid <- runAnalysis("reliabilityMultidimensionalBayesian", "Reliability.csv", optionsUnid,
                            makeTests = FALSE)

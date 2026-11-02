@@ -325,15 +325,15 @@ reliabilityMultidimensionalBayesianInternal <- function(jaspResults, dataset, op
 
 .multiDimItemTable <- function(jaspResults, dataset, model, options, ready, allItems) {
 
-  showOmegaT <- options[["itemDeletedOmegaT"]]
-  showOmegaH <- options[["itemDeletedOmegaH"]] && .multiDimHasOmegaH(options)
+  showOmegaT <- options[["itemDroppedOmegaT"]]
+  showOmegaH <- options[["itemDroppedOmegaH"]] && .multiDimHasOmegaH(options)
   showRest   <- options[["itemRestCorrelation"]]
   if (!(showOmegaT || showOmegaH || showRest) ||
       !is.null(.getStateContainerMD(jaspResults)[["itemTable"]]$object))
     return()
 
   itemTable <- createJaspTable(gettext("Bayesian Individual Item Reliability Statistics"))
-  itemTable$dependOn(options = c("itemDeletedOmegaT", "itemDeletedOmegaH", "itemRestCorrelation", "pointEstimate",
+  itemTable$dependOn(options = c("itemDroppedOmegaT", "itemDroppedOmegaH", "itemRestCorrelation", "pointEstimate",
                                  "ciLevel"))
   itemTable$position <- 2
 

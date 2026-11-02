@@ -29,9 +29,9 @@
 #' @param factors, Assign the items to their factors. The analysis requires at least two factors with at least two items each. An item may be assigned to more than one factor (cross-loading); the bi-factor model does not support cross-loadings.
 #' @param fitMeasures, Fit measures of the factor model: chi-square, CFI, TLI, RMSEA, SRMR, AIC and BIC.
 #'    Defaults to \code{FALSE}.
-#' @param itemDeletedOmegaH, McDonald's omega_h for the remaining items when this item is dropped. Not available for the correlated-factors model.
+#' @param itemDroppedOmegaH, McDonald's omega_h for the remaining items when this item is dropped. Not available for the correlated-factors model.
 #'    Defaults to \code{FALSE}.
-#' @param itemDeletedOmegaT, McDonald's omega_t for the remaining items when this item is dropped. The model is refit once per item.
+#' @param itemDroppedOmegaT, McDonald's omega_t for the remaining items when this item is dropped. The model is refit once per item.
 #'    Defaults to \code{FALSE}.
 #' @param itemRestCorrelation, Pearson correlation between each item and the sum of the remaining items.
 #'    Defaults to \code{FALSE}.
@@ -62,8 +62,8 @@ reliabilityMultidimensionalFrequentist <- function(
           ciMethod = "analytic",
           factors = list(list(indicators = list(), name = "Factor1", title = "Factor 1"), list(indicators = list(), name = "Factor2", title = "Factor 2")),
           fitMeasures = FALSE,
-          itemDeletedOmegaH = FALSE,
-          itemDeletedOmegaT = FALSE,
+          itemDroppedOmegaH = FALSE,
+          itemDroppedOmegaT = FALSE,
           itemRestCorrelation = FALSE,
           meanSdScoresMethod = "sumScores",
           modelType = "secondOrder",
