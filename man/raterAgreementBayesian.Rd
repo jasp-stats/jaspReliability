@@ -6,7 +6,7 @@
 \usage{
 raterAgreementBayesian(
   data = NULL,
-  version = "0.97.1",
+  version = "1",
   ci = TRUE,
   ciLevel = 0.95,
   cohensKappa = FALSE,

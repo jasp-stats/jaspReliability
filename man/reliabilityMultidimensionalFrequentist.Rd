@@ -7,7 +7,7 @@
 \usage{
 reliabilityMultidimensionalFrequentist(
   data = NULL,
-  version = "0.98.1",
+  version = "1",
   bootstrapSamples = 1000,
   ciLevel = 0.95,
   ciMethod = "analytic",
@@ -56,11 +56,11 @@ Defaults to \code{FALSE}.}
 
 \item{meanSdScoresMethod, }{Whether the mean and standard deviation in the scale table are based on participants' sum scores or mean scores across items.
 \itemize{
-\item \code{"meanScores"}
 \item \code{"sumScores"}
+\item \code{"meanScores"}
 }}
 
-\item{modelType, }{The factor model used to estimate the reliability coefficients. McDonald's omega_h (general/group-common reliability) is only available for the second-order and bi-factor models.}
+\item{modelType, }{The factor model used to estimate the reliability coefficients. McDonald's ω_h (general/group-common reliability) is only available for the second-order and bi-factor models.}
 
 \item{naAction, }{Full information maximum likelihood uses all available observations; listwise deletion removes any row with a missing value.
 \itemize{
@@ -71,9 +71,6 @@ Defaults to \code{FALSE}.}
 \item{reverseScaledItems, }{Items assigned here are recoded (reverse-scored) before the analysis.}
 
 \item{samplesSavingDisabled, }{When checked, bootstrap samples are not stored in the output file. Reduces file size but changing the confidence level requires resampling.
-Defaults to \code{FALSE}.}
-
-\item{setSeed, }{Fix the random number generator seed to make the bootstrap results reproducible.
 Defaults to \code{FALSE}.}
 
 \item{standardizedLoadings, }{Table of standardized loadings of the items on their group factors. For the bi-factor model the loadings on the general factor are added as a column; for the second-order model the loadings of the group factors on the general factor are shown in a separate table.

@@ -50,10 +50,9 @@
 #'   \item \code{"quadratic"}: Penalises larger disagreements quadratically; sensitive to large discrepancies.
 #'   \item \code{"linear"}: Penalises disagreements proportionally to their size.
 #' }
-#' @export
 raterAgreementBayesian <- function(
           data = NULL,
-          version = "0.97.1",
+          version = "1",
           ci = TRUE,
           ciLevel = 0.95,
           cohensKappa = FALSE,
@@ -71,12 +70,7 @@ raterAgreementBayesian <- function(
           variables = list(types = list(), value = list()),
           weightType = "quadratic") {
 
-   defaultArgCalls <- formals(jaspReliability::raterAgreementBayesian)
-   defaultArgs <- lapply(defaultArgCalls, eval)
-   options <- as.list(match.call())[-1L]
-   options <- lapply(options, eval)
-   defaults <- setdiff(names(defaultArgs), names(options))
-   options[defaults] <- defaultArgs[defaults]
+   options <- mget(names(formals(sys.function())), envir = environment(), inherits = FALSE)
    options[["data"]] <- NULL
    options[["version"]] <- NULL
 
@@ -89,5 +83,7 @@ raterAgreementBayesian <- function(
    for (name in optionsWithFormula) {
       if ((name %in% optionsWithFormula) && inherits(options[[name]], "formula")) options[[name]] = jaspBase::jaspFormula(options[[name]], data)   }
 
+   # Options not given in the call get their default from the form, which can depend on the other options.
+   options <- options[names(options) %in% names(match.call())[-1L]]
    return(jaspBase::runWrappedAnalysis("jaspReliability", "raterAgreementBayesian", "RaterAgreementBayesian.qml", options, version, TRUE))
 }

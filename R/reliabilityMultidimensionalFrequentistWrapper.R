@@ -37,10 +37,10 @@
 #'    Defaults to \code{FALSE}.
 #' @param meanSdScoresMethod, Whether the mean and standard deviation in the scale table are based on participants' sum scores or mean scores across items.
 #' \itemize{
-#'   \item \code{"meanScores"}
 #'   \item \code{"sumScores"}
+#'   \item \code{"meanScores"}
 #' }
-#' @param modelType, The factor model used to estimate the reliability coefficients. McDonald's omega_h (general/group-common reliability) is only available for the second-order and bi-factor models.
+#' @param modelType, The factor model used to estimate the reliability coefficients. McDonald's ω_h (general/group-common reliability) is only available for the second-order and bi-factor models.
 #' @param naAction, Full information maximum likelihood uses all available observations; listwise deletion removes any row with a missing value.
 #' \itemize{
 #'   \item \code{"fiml"}
@@ -49,14 +49,11 @@
 #' @param reverseScaledItems, Items assigned here are recoded (reverse-scored) before the analysis.
 #' @param samplesSavingDisabled, When checked, bootstrap samples are not stored in the output file. Reduces file size but changing the confidence level requires resampling.
 #'    Defaults to \code{FALSE}.
-#' @param setSeed, Fix the random number generator seed to make the bootstrap results reproducible.
-#'    Defaults to \code{FALSE}.
 #' @param standardizedLoadings, Table of standardized loadings of the items on their group factors. For the bi-factor model the loadings on the general factor are added as a column; for the second-order model the loadings of the group factors on the general factor are shown in a separate table.
 #'    Defaults to \code{FALSE}.
-#' @export
 reliabilityMultidimensionalFrequentist <- function(
           data = NULL,
-          version = "0.98.1",
+          version = "1",
           bootstrapSamples = 1000,
           ciLevel = 0.95,
           ciMethod = "analytic",
@@ -76,12 +73,7 @@ reliabilityMultidimensionalFrequentist <- function(
           setSeed = FALSE,
           standardizedLoadings = FALSE) {
 
-   defaultArgCalls <- formals(jaspReliability::reliabilityMultidimensionalFrequentist)
-   defaultArgs <- lapply(defaultArgCalls, eval)
-   options <- as.list(match.call())[-1L]
-   options <- lapply(options, eval)
-   defaults <- setdiff(names(defaultArgs), names(options))
-   options[defaults] <- defaultArgs[defaults]
+   options <- mget(names(formals(sys.function())), envir = environment(), inherits = FALSE)
    options[["data"]] <- NULL
    options[["version"]] <- NULL
 
@@ -94,5 +86,7 @@ reliabilityMultidimensionalFrequentist <- function(
    for (name in optionsWithFormula) {
       if ((name %in% optionsWithFormula) && inherits(options[[name]], "formula")) options[[name]] = jaspBase::jaspFormula(options[[name]], data)   }
 
+   # Options not given in the call get their default from the form, which can depend on the other options.
+   options <- options[names(options) %in% names(match.call())[-1L]]
    return(jaspBase::runWrappedAnalysis("jaspReliability", "reliabilityMultidimensionalFrequentist", "ReliabilityMultidimensionalFrequentist.qml", options, version, TRUE))
 }
