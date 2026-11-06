@@ -72,8 +72,8 @@ Form
 		Group
 		{
 			title: qsTr("Item statistics")
-			CheckBox { name: "itemDeletedOmegaT";	label: qsTr("McDonald's ω_t (if item dropped)"); info: qsTr("Posterior point estimate of ω_t for the remaining items when this item is dropped. The model is refit once per item.") }
-			CheckBox { name: "itemDeletedOmegaH";	label: qsTr("McDonald's ω_h (if item dropped)"); enabled: modelType.currentValue !== "correlated"; info: qsTr("Posterior point estimate of ω_h for the remaining items when this item is dropped. Not available for the correlated-factors model.") }
+			CheckBox { name: "itemDroppedOmegaT";	label: qsTr("McDonald's ω_t (if item dropped)"); info: qsTr("Posterior point estimate of ω_t for the remaining items when this item is dropped. The model is refit once per item.") }
+			CheckBox { name: "itemDroppedOmegaH";	label: qsTr("McDonald's ω_h (if item dropped)"); enabled: modelType.currentValue !== "correlated"; info: qsTr("Posterior point estimate of ω_h for the remaining items when this item is dropped. Not available for the correlated-factors model.") }
 			CheckBox { name: "itemRestCorrelation";	label: qsTr("Item-rest correlation"); info: qsTr("Pearson correlation between each item and the sum of the remaining items.") }
 		}
 

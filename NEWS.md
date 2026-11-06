@@ -18,6 +18,7 @@
 
 ## Added
 * Added Bayesian Rater Agreement analysis: Bayesian Cohen's kappa (unweighted and weighted) and Fleiss' kappa (category proportions pooled over both raters) for every rater pair, computed from a Dirichlet posterior on the pair's agreement table, following Calle-Alonso & Pérez Sánchez (2015, [doi:10.1177/0146621614554080](https://doi.org/10.1177/0146621614554080)) as used in Pfadt et al. (2026, [doi:10.31234/osf.io/ck3js_v2](https://doi.org/10.31234/osf.io/ck3js_v2)). Reports the posterior mean, HPD credible interval, observed and chance agreement, and posterior density plots.
+* Added (frequentist) Multidimensional Reliability analysis: multidimensional omega coefficients via `Bayesrel::omegasCFA`, for the second-order, bi-factor and correlated-factors models, with scale and item tables, model fit measures and standardized loadings. Confidence intervals are Wald-type by default, with an optional percentile bootstrap that refits the model per resample. Requires Bayesrel >= 0.8.0.
 * Added Bayesian Multidimensional Reliability analysis: multidimensional omega coefficients via `Bayesrel::bomegas`, with scale/item tables, model fit, posterior, trace, and posterior predictive check plots ([Issue #1336](https://github.com/jasp-stats/jasp-issues/issues/1336)). The item table reports a point estimate and credible interval for both if-item-dropped omegas, and the prior on the item and structural loadings has a variance scale in addition to a mean. Requires Bayesrel >= 0.7.9.
 * Dispersal prior now wired through Bayesrel prior samplers (replaces deprecated `fitCutoffNull`).
 
@@ -27,6 +28,8 @@
 
 ## Fixed
 * Fixed crash in frequentist unidimensional reliability when omega estimation (CFA or PFA) fails and another scale coefficient is also selected ([Issue #4477](https://github.com/jasp-stats/jasp-issues/issues/4477)).
+* Multidimensional Reliability (Bayesian and frequentist): the second-order model with two group factors identifies the loadings of the general factor only up to their product, so McDonald's omega_h carries no information about the data. It is now left empty in the tables and not plotted, and a footnote on the scale table says why. Previously the Bayesian analysis reported a credible interval that looked like any other result while following the prior rather than the data, and the frequentist analysis reported a zero-width confidence interval. Omega_t is unaffected.
+* Multidimensional Reliability: a factor model that did not converge is now reported as an error instead of plausible-looking coefficients, a solution without standard errors gets no confidence interval instead of a zero-width one, and an inadmissible solution is flagged in a footnote, for the if-item-dropped refits as well, where the footnote names the affected items. This relies on the diagnostics added in Bayesrel 0.8.0.
 * Fixed bi-factor model crash caused by `param.out = TRUE` in `Bayesrel::bomegas`.
 * Fixed missing `dependOn` declarations for point-estimate option on scale table and `latentCorDf` in base container.
 * Fixed untranslated point-estimate column title in scale/item tables.
