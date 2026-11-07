@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2026-10-17 03:35\n"
+"POT-Creation-Date: 2026-11-07 03:27\n"
 "PO-Revision-Date: 2025-12-21 09:00+0000\n"
 "Last-Translator: Wendel Paulo Silvestre <wpsilvestre@ucs.br>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
@@ -356,10 +356,84 @@ msgstr ""
 msgid "Warning:"
 msgstr ""
 
+#, fuzzy
+msgid "Posterior mean"
+msgstr "Media posterior"
+
+#, fuzzy
+msgid "%s requires at least 2 raters/measurements."
+msgstr "O kappa de Cohen requere pelo menos 3 sujeitos/itens."
+
+msgid ""
+"Fleiss' kappa: chance-corrected agreement with the category proportions "
+"pooled over both raters of a pair, for raters that are interchangeable "
+"(e.g., different raters per subject). Summarized by the posterior mean and "
+"credible interval."
+msgstr ""
+
+msgid ""
+"Cohen's kappa: chance-corrected agreement between two raters, with each "
+"rater's own category proportions. Summarized by the posterior mean and "
+"credible interval."
+msgstr ""
+
+msgid "%1$s could not be computed for any rater pair: %2$s."
+msgstr ""
+
+msgid "%s%% Credible Interval"
+msgstr ""
+
+msgid "Observed agreement"
+msgstr ""
+
+msgid "Chance agreement"
+msgstr ""
+
+msgid ""
+"Dirichlet prior with concentration %1$s on each cell of a pair's agreement "
+"table; %2$i posterior samples."
+msgstr ""
+
+msgid "Credible intervals are highest posterior density intervals."
+msgstr ""
+
+msgid ""
+"Chance agreement uses the category proportions pooled over both raters; for "
+"two raters this equals Fleiss' kappa and Scott's pi."
+msgstr ""
+
+msgid ""
+"%i posterior samples with undefined kappa (all probability on a single "
+"category) were excluded."
+msgstr ""
+
+#, fuzzy
+msgid "Posterior Distribution: %s"
+msgstr "%s Posterior"
+
+msgid "The posterior samples do not vary, so their density cannot be plotted."
+msgstr ""
+
+msgid "Density"
+msgstr "Densidade"
+
 msgid "McDonald's ωₜ"
 msgstr ""
 
 msgid "McDonald's ωₕ"
+msgstr ""
+
+msgid ""
+"McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
+"the correlated-factors model."
+msgstr ""
+
+msgid ""
+"McDonald's ωₕ is not reported because it is not identified with only two "
+"group factors: the loadings of the general factor are determined only up to "
+"their product, so the data carry no information about it. Assign the items "
+"to at least three group factors, or choose the bi-factor model. McDonald's "
+"ωₜ is unaffected."
 msgstr ""
 
 msgid ""
@@ -375,10 +449,6 @@ msgid "Bayesian Scale Reliability Statistics"
 msgstr "Estatísticas bayesianas de confiabilidade"
 
 #, fuzzy
-msgid "Posterior mean"
-msgstr "Media posterior"
-
-#, fuzzy
 msgid "Posterior median"
 msgstr "Media posterior"
 
@@ -386,11 +456,6 @@ msgid "R-hat"
 msgstr "R-hat"
 
 msgid "Please assign at least two factors with at least two items each."
-msgstr ""
-
-msgid ""
-"McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
-"the correlated-factors model."
 msgstr ""
 
 msgid "Average interitem correlation"
@@ -482,6 +547,129 @@ msgstr "Autovalor"
 
 msgid "Eigenvalue No."
 msgstr "N.º de valor próprio."
+
+msgid ""
+"Standard errors could not be computed for this model, so no confidence "
+"intervals are reported."
+msgstr ""
+
+msgid ""
+"Standard errors could not be computed, so no confidence intervals are "
+"reported. The factor model is probably not identified."
+msgstr ""
+
+msgid ""
+"The factor model solution is inadmissible, for example because of a negative "
+"variance estimate. The coefficients may fall outside the interval [0, 1]."
+msgstr ""
+
+msgid ""
+"The factor model did not converge, so the coefficients cannot be "
+"interpreted. Consider a different model, or check the items assigned to each "
+"factor."
+msgstr ""
+
+msgid "Bootstrapping the omega coefficients"
+msgstr ""
+
+msgid "Frequentist Scale Reliability Statistics"
+msgstr "Estatísticas de confiabilidade de escala frequentist"
+
+msgid ""
+"%1$i of %2$i bootstrap samples did not converge and were excluded from the "
+"interval."
+msgstr ""
+
+msgid "Frequentist Individual Item Reliability Statistics"
+msgstr "Estatísticas de confiabilidade de itens individuais frequentistas"
+
+msgid ""
+"Empty cells indicate that the model could not be estimated without this "
+"item, for instance because a factor would be left with fewer than two items."
+msgstr ""
+
+msgid ""
+"No confidence intervals are reported for the if-item-dropped coefficients."
+msgstr ""
+
+msgid ""
+"The factor model solution was inadmissible when dropping the following "
+"items: %s. These coefficients may fall outside the interval [0, 1]."
+msgstr ""
+
+msgid "Fit measure"
+msgstr "Medidas de ajuste"
+
+msgid "Value"
+msgstr "Valor"
+
+msgid "The fit measures could not be computed for this factor model."
+msgstr ""
+
+msgid "χ²"
+msgstr ""
+
+msgid "df"
+msgstr ""
+
+msgid "p"
+msgstr ""
+
+msgid "CFI"
+msgstr ""
+
+msgid "TLI"
+msgstr ""
+
+msgid "RMSEA"
+msgstr ""
+
+msgid "RMSEA 90%% CI lower"
+msgstr ""
+
+msgid "RMSEA 90%% CI upper"
+msgstr ""
+
+msgid "RMSEA p-value"
+msgstr ""
+
+msgid "AIC"
+msgstr ""
+
+msgid "BIC"
+msgstr ""
+
+msgid "SRMR"
+msgstr ""
+
+msgid "SRMR 90%% CI lower"
+msgstr ""
+
+msgid "SRMR 90%% CI upper"
+msgstr ""
+
+msgid "SRMR p-value"
+msgstr ""
+
+#, fuzzy
+msgid "Standardized Factor Loadings"
+msgstr "Carga padronizada"
+
+msgid "Item Loadings"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Group Factor Loadings on the General Factor"
+msgstr ""
+
+#, fuzzy
+msgid "Factor"
+msgstr "Fatores"
+
+msgid "Loading"
+msgstr ""
 
 msgid "Split-half coefficient"
 msgstr "Coeficiente de divisão pela metade"
@@ -596,9 +784,6 @@ msgid ""
 "credible interval is shown as a separate error bar."
 msgstr ""
 
-msgid "Density"
-msgstr "Densidade"
-
 msgid "If Item Dropped Posterior Plots"
 msgstr "Gráficos posteriores caso o item seja eliminado"
 
@@ -707,9 +892,6 @@ msgstr ""
 "completas em pares são usadas. Tente alterar para 'Deletar em lista' nas "
 "'Opções Avançadas'."
 
-msgid "Frequentist Scale Reliability Statistics"
-msgstr "Estatísticas de confiabilidade de escala frequentist"
-
 msgid ""
 "Frequentist point estimates, standard errors, and confidence intervals for "
 "all selected scale reliability coefficients."
@@ -717,9 +899,6 @@ msgstr ""
 
 msgid "Std. Error"
 msgstr "Erro Pad."
-
-msgid "Frequentist Individual Item Reliability Statistics"
-msgstr "Estatísticas de confiabilidade de itens individuais frequentistas"
 
 msgid ""
 "Item-level reliability: for each item, the scale reliability coefficient if "
@@ -733,12 +912,6 @@ msgid ""
 "Fit indices of the single-factor model underlying McDonald's omega, "
 "including chi-square, RMSEA, and SRMR."
 msgstr ""
-
-msgid "Fit measure"
-msgstr "Medidas de ajuste"
-
-msgid "Value"
-msgstr "Valor"
 
 #, fuzzy
 msgid ""
@@ -945,7 +1118,3 @@ msgstr[1] "Os seguintes itens foram escalados de forma invertida: %s "
 #~ msgstr ""
 #~ "Calculo de Ômega com CFA falhou. Tente alterar para PFA em 'Opções "
 #~ "Avançadas'"
-
-#, fuzzy
-#~ msgid "Factors"
-#~ msgstr "Fatores"

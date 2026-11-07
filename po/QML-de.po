@@ -2260,3 +2260,514 @@ msgstr ""
 "durchgehend dieselben beiden Zahlen verwendet werden. Variablen mit "
 "Textbezeichnungen müssen neu mit Zahlen beschriftet werden, im "
 "Bezeichnungseditor auf der Daten-Registerkarte."
+
+msgctxt "Description|"
+msgid "Bayesian Rater Agreement"
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Bayesian Rater Agreement estimates the chance-corrected agreement between "
+"raters who assign subjects to nominal or ordinal categories. For every rater "
+"pair, the cell probabilities of the pair's agreement table get a Dirichlet "
+"posterior, and Cohen's kappa or Fleiss' kappa is computed from every "
+"posterior draw (Calle-Alonso & Pérez Sánchez, 2015; Pfadt et al., 2026)."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "References"
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "R Packages"
+msgstr ""
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "All variables available in the dataset."
+msgstr "Alle im Datensatz verfügbaren Variablen."
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Variables"
+msgstr "Variablen"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Rating variables to include. Whether a variable represents a rater or a "
+"subject/item depends on the data structure setting."
+msgstr ""
+"Einzubeziehende Bewertungsvariablen. Ob eine Variable einen Bewerter oder "
+"ein Messobjekt/Item darstellt, hängt von der Datenstruktur-Einstellung ab."
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Data Structure"
+msgstr "Datenstruktur"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Specify whether raters are arranged in columns (default) or rows in the "
+"dataset."
+msgstr ""
+"Geben Sie an, ob Bewerter in Spalten (Standard) oder Zeilen im Datensatz "
+"angeordnet sind."
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Raters are in columns"
+msgstr "Beurteiler sind in Spalten"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Each column is one rater and each row is one subject or item being rated."
+msgstr ""
+"Jede Spalte ist ein Bewerter und jede Zeile ist ein zu bewertendes "
+"Messobjekt oder Item."
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Raters are in rows"
+msgstr "Beurteiler sind in Zeilen"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Each row is one rater and each column is one subject or item being rated."
+msgstr ""
+"Jede Zeile ist ein Bewerter und jede Spalte ist ein zu bewertendes "
+"Messobjekt oder Item."
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Coefficients"
+msgstr "Koeffizienten"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Cohen's kappa"
+msgstr "Cohens Kappa"
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Chance-corrected agreement between two raters, with each rater's own "
+"category proportions. Use it when the same raters rated every subject. With "
+"more than two raters, every rater pair gets its own posterior."
+msgstr ""
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Unweighted kappa treats all disagreements equally. Weighted kappa accounts "
+"for the degree of disagreement and requires ordinal ratings."
+msgstr ""
+"Ungewichtetes Kappa behandelt alle Abweichungen gleich. Gewichtetes Kappa "
+"berücksichtigt das Ausmaß der Abweichung und erfordert ordinale Bewertungen."
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Unweighted"
+msgstr "Ungewichtet"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "All disagreements are treated as equal regardless of their magnitude."
+msgstr "Alle Abweichungen werden unabhängig von ihrem Ausmaß gleich behandelt."
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Weighted"
+msgstr "Gewichtet"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Disagreements are penalised according to their magnitude. Requires ordinal "
+"ratings."
+msgstr ""
+"Abweichungen werden entsprechend ihrem Ausmaß bestraft. Erfordert ordinale "
+"Bewertungen."
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Weighting scheme applied to disagreements between ordinal categories."
+msgstr ""
+"Gewichtungsschema, das auf Abweichungen zwischen ordinalen Kategorien "
+"angewendet wird."
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Quadratic weights"
+msgstr "Quadratische Gewichte"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Penalises larger disagreements quadratically; sensitive to large "
+"discrepancies."
+msgstr ""
+"Bestraft größere Abweichungen quadratisch; empfindlich gegenüber großen "
+"Diskrepanzen."
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Linear weights"
+msgstr "Lineare Gewichte"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Penalises disagreements proportionally to their size."
+msgstr "Bestraft Abweichungen proportional zu ihrer Größe."
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Fleiss' kappa"
+msgstr "Fleiss' Kappa"
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Chance-corrected agreement with the category proportions pooled over both "
+"raters of a pair, so raters are treated as interchangeable. Use it when "
+"different raters rated different subjects. With two raters it equals Fleiss' "
+"kappa and Scott's pi; with more than two raters, every rater pair gets its "
+"own posterior."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Output"
+msgstr ""
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Credible interval"
+msgstr "Glaubwürdigkeitsintervall"
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Report the highest posterior density interval for each agreement coefficient."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Width of the credible interval."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Observed and chance agreement"
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Report the posterior means of the observed agreement and of the agreement "
+"expected by chance, from which kappa is computed."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Posterior plots"
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Plot the posterior density of each coefficient for every rater pair, with "
+"the credible interval shaded."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Prior"
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Prior on the cell probabilities of each rater pair's agreement table."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Dirichlet prior concentration"
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Concentration of the Dirichlet prior on each cell of a rater pair's "
+"agreement table, that is, the number of prior pseudo-observations per cell. "
+"Small values let the data dominate. Larger values pull kappa towards 0, "
+"especially with many categories, because the pseudo-observations also fall "
+"into the disagreement cells."
+msgstr ""
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Advanced Options"
+msgstr "Weitere Optionen"
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Options for the posterior sampling."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "No. of posterior samples"
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Number of draws from the posterior distribution of the cell probabilities. "
+"Higher values give more stable estimates."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Assign the items to their factors. The analysis requires at least two "
+"factors with at least two items each. An item may be assigned to more than "
+"one factor (cross-loading); the bi-factor model does not support cross-"
+"loadings."
+msgstr ""
+"Weisen Sie die Items ihren Faktoren zu. Die Analyse erfordert mindestens "
+"zwei Faktoren mit jeweils mindestens zwei Items. Ein Item kann mehr als "
+"einem Faktor zugeordnet werden (Kreuzladung); das Bi-Faktormodell "
+"unterstützt keine Kreuzladungen."
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Model"
+msgstr "Modell"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Second-order"
+msgstr "Zweitordnung"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Bi-factor"
+msgstr "Bi-Faktor"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Correlated factors"
+msgstr "Korrelierte Faktoren"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"The factor model used to estimate the reliability coefficients. McDonald's "
+"ω_h (general/group-common reliability) is only available for the second-"
+"order and bi-factor models."
+msgstr ""
+"Das Faktormodell, das zur Schätzung der Reliabilitätskoeffizienten verwendet "
+"wird. McDonalds ω_h (generelle/gruppenbezogene Reliabilität) ist nur für die "
+"Zwei-Ebenen- und das Bi-Faktormodell verfügbar."
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Analysis"
+msgstr "Analyse"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Confidence interval"
+msgstr "Konfidenzintervall"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Coverage of the confidence interval for the reliability coefficients."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Mean and standard deviation of"
+msgstr "Mittelwert und Standardabweichung von"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Whether the mean and standard deviation in the scale table are based on "
+"participants' sum scores or mean scores across items."
+msgstr ""
+"Ob Mittelwert und Standardabweichung in der Skala-Tabelle auf den "
+"Summenscores der Teilnehmenden oder auf den Mittelwerten der Scores über die "
+"Items basieren."
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "participants' sum scores"
+msgstr "Summenscores der Teilnehmenden"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "participants' mean scores"
+msgstr "Mittelwertscores der Teilnehmenden"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Item statistics"
+msgstr "Item-Statistiken"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "McDonald's ω_t (if item dropped)"
+msgstr "McDonalds ω_t (falls Item weggelassen)"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"McDonald's omega_t for the remaining items when this item is dropped. The "
+"model is refit once per item."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "McDonald's ω_h (if item dropped)"
+msgstr "McDonalds ω_h (falls Item weggelassen)"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"McDonald's omega_h for the remaining items when this item is dropped. Not "
+"available for the correlated-factors model."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Item-rest correlation"
+msgstr "Item-Rest-Korrelation"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Pearson correlation between each item and the sum of the remaining items."
+msgstr ""
+"Pearson-Korrelation zwischen jedem Item und der Summe der verbleibenden "
+"Items."
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Model fit"
+msgstr "Modellanpassung"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Fit measures"
+msgstr "Anpassungsmaße"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Fit measures of the factor model: chi-square, CFI, TLI, RMSEA, SRMR, AIC and "
+"BIC."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Standardized factor loadings"
+msgstr "Standardisierte Faktorladungen"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Table of standardized loadings of the items on their group factors. For the "
+"bi-factor model the loadings on the general factor are added as a column; "
+"for the second-order model the loadings of the group factors on the general "
+"factor are shown in a separate table."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Reverse-Scaled Items"
+msgstr "Umgekehrt kodierte Items"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Normal-Scaled Items"
+msgstr "Normal kodierte Items"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Items assigned here are recoded (reverse-scored) before the analysis."
+msgstr ""
+"Items, die hier zugewiesen werden, werden vor der Analyse umkodiert "
+"(umgekehrt bewertet)."
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Advanced Options"
+msgstr "Weitere Optionen"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Confidence interval method"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Analytic intervals are the Wald-type intervals of the factor model. Because "
+"omega is a ratio, these intervals are symmetric and can extend beyond zero "
+"or one; the bootstrapped interval resamples the data and refits the model, "
+"which is slower but does not make that assumption."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Analytic interval"
+msgstr "Analytisches Intervall"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Bootstrapped interval"
+msgstr "Bootstrap-Intervall"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Bootstrap samples"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Number of bootstrap replications. The factor model is refit for every "
+"replication, so higher values take proportionally longer."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Missing Values"
+msgstr "Fehlende Werte"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Full information maximum likelihood uses all available observations; "
+"listwise deletion removes any row with a missing value."
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Full information maximum likelihood"
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Exclude cases listwise"
+msgstr "Fälle zeilenweise ausschließen"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Repeatability"
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Set a random seed to reproduce the same bootstrap results across runs."
+msgstr ""
+"Einen Zufallsstartwert setzen, um über Läufe dieselben Bootstrap-Ergebnisse "
+"zu reproduzieren."
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Set seed"
+msgstr "Startwert für Zufallszahlen setzen"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Samples"
+msgstr "Stichproben"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Disable saving samples"
+msgstr "Speichern von Stichproben deaktivieren"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"When checked, bootstrap samples are not stored in the output file. Reduces "
+"file size but changing the confidence level requires resampling."
+msgstr ""

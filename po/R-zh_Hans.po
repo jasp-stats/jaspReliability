@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.17.0\n"
-"POT-Creation-Date: 2026-10-17 03:35\n"
+"POT-Creation-Date: 2026-11-07 03:27\n"
 "PO-Revision-Date: 2026-11-01 08:51+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -370,11 +370,88 @@ msgstr "评分中存在并列值，因此未校正的系数可能不准确。请
 msgid "Warning:"
 msgstr "警告："
 
+msgid "Posterior mean"
+msgstr "后验均值"
+
+#, fuzzy
+msgid "%s requires at least 2 raters/measurements."
+msgstr "Kendall's W 至少需要 2 名评分者/测量值。"
+
+msgid ""
+"Fleiss' kappa: chance-corrected agreement with the category proportions "
+"pooled over both raters of a pair, for raters that are interchangeable "
+"(e.g., different raters per subject). Summarized by the posterior mean and "
+"credible interval."
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Cohen's kappa: chance-corrected agreement between two raters, with each "
+"rater's own category proportions. Summarized by the posterior mean and "
+"credible interval."
+msgstr ""
+"Cohen's kappa：恰好在两名评分者之间进行机会校正的一致性。取值范围从 -1（比随"
+"机差）到 1（完全一致）。"
+
+#, fuzzy
+msgid "%1$s could not be computed for any rater pair: %2$s."
+msgstr "无法为任何评分者对计算 Cohen's kappa：%s。"
+
+msgid "%s%% Credible Interval"
+msgstr ""
+
+msgid "Observed agreement"
+msgstr ""
+
+msgid "Chance agreement"
+msgstr ""
+
+msgid ""
+"Dirichlet prior with concentration %1$s on each cell of a pair's agreement "
+"table; %2$i posterior samples."
+msgstr ""
+
+msgid "Credible intervals are highest posterior density intervals."
+msgstr ""
+
+msgid ""
+"Chance agreement uses the category proportions pooled over both raters; for "
+"two raters this equals Fleiss' kappa and Scott's pi."
+msgstr ""
+
+msgid ""
+"%i posterior samples with undefined kappa (all probability on a single "
+"category) were excluded."
+msgstr ""
+
+#, fuzzy
+msgid "Posterior Distribution: %s"
+msgstr "后验 %s"
+
+msgid "The posterior samples do not vary, so their density cannot be plotted."
+msgstr ""
+
+msgid "Density"
+msgstr "密度"
+
 msgid "McDonald's ωₜ"
 msgstr "McDonald's ωₜ"
 
 msgid "McDonald's ωₕ"
 msgstr "McDonald's ωₕ"
+
+msgid ""
+"McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
+"the correlated-factors model."
+msgstr "McDonald's ωₕ 仅针对二阶因子和双因子模型显示，不针对相关因子模型显示。"
+
+msgid ""
+"McDonald's ωₕ is not reported because it is not identified with only two "
+"group factors: the loadings of the general factor are determined only up to "
+"their product, so the data carry no information about it. Assign the items "
+"to at least three group factors, or choose the bi-factor model. McDonald's "
+"ωₜ is unaffected."
+msgstr ""
 
 msgid ""
 "The bi-factor model does not support items that load on more than one "
@@ -390,9 +467,6 @@ msgstr "对 omega 系数的后验分布进行抽样"
 msgid "Bayesian Scale Reliability Statistics"
 msgstr "贝叶斯量表信度统计量"
 
-msgid "Posterior mean"
-msgstr "后验均值"
-
 msgid "Posterior median"
 msgstr "后验中位数"
 
@@ -401,11 +475,6 @@ msgstr "R-hat"
 
 msgid "Please assign at least two factors with at least two items each."
 msgstr "请至少分配两个因子，每个因子至少包含两个项目。"
-
-msgid ""
-"McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
-"the correlated-factors model."
-msgstr "McDonald's ωₕ 仅针对二阶因子和双因子模型显示，不针对相关因子模型显示。"
 
 msgid "Average interitem correlation"
 msgstr "平均项目间相关"
@@ -490,6 +559,133 @@ msgstr "特征值"
 msgid "Eigenvalue No."
 msgstr "特征值编号"
 
+msgid ""
+"Standard errors could not be computed for this model, so no confidence "
+"intervals are reported."
+msgstr ""
+
+msgid ""
+"Standard errors could not be computed, so no confidence intervals are "
+"reported. The factor model is probably not identified."
+msgstr ""
+
+msgid ""
+"The factor model solution is inadmissible, for example because of a negative "
+"variance estimate. The coefficients may fall outside the interval [0, 1]."
+msgstr ""
+
+msgid ""
+"The factor model did not converge, so the coefficients cannot be "
+"interpreted. Consider a different model, or check the items assigned to each "
+"factor."
+msgstr ""
+
+#, fuzzy
+msgid "Bootstrapping the omega coefficients"
+msgstr "对 omega 系数的后验分布进行抽样"
+
+msgid "Frequentist Scale Reliability Statistics"
+msgstr "频率学量表信度统计量"
+
+#, fuzzy
+msgid ""
+"%1$i of %2$i bootstrap samples did not converge and were excluded from the "
+"interval."
+msgstr "%1$i 个（共 %2$i 个）bootstrap 样本无法计算，已从置信区间中排除。"
+
+msgid "Frequentist Individual Item Reliability Statistics"
+msgstr "频率学单项目信度统计量"
+
+#, fuzzy
+msgid ""
+"Empty cells indicate that the model could not be estimated without this "
+"item, for instance because a factor would be left with fewer than two items."
+msgstr "空单元格表示删除该项目将导致某个因子所含项目少于两个。"
+
+#, fuzzy
+msgid ""
+"No confidence intervals are reported for the if-item-dropped coefficients."
+msgstr "当条件 SEM 等于零时，不报告置信区间。"
+
+msgid ""
+"The factor model solution was inadmissible when dropping the following "
+"items: %s. These coefficients may fall outside the interval [0, 1]."
+msgstr ""
+
+msgid "Fit measure"
+msgstr "拟合指标"
+
+msgid "Value"
+msgstr "值"
+
+#, fuzzy
+msgid "The fit measures could not be computed for this factor model."
+msgstr "无法为任何评分者对计算 Cohen's kappa：%s。"
+
+msgid "χ²"
+msgstr ""
+
+msgid "df"
+msgstr ""
+
+msgid "p"
+msgstr ""
+
+msgid "CFI"
+msgstr ""
+
+msgid "TLI"
+msgstr ""
+
+msgid "RMSEA"
+msgstr ""
+
+msgid "RMSEA 90%% CI lower"
+msgstr ""
+
+msgid "RMSEA 90%% CI upper"
+msgstr ""
+
+msgid "RMSEA p-value"
+msgstr ""
+
+msgid "AIC"
+msgstr ""
+
+msgid "BIC"
+msgstr ""
+
+msgid "SRMR"
+msgstr ""
+
+msgid "SRMR 90%% CI lower"
+msgstr ""
+
+msgid "SRMR 90%% CI upper"
+msgstr ""
+
+msgid "SRMR p-value"
+msgstr ""
+
+#, fuzzy
+msgid "Standardized Factor Loadings"
+msgstr "标准负荷"
+
+msgid "Item Loadings"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Group Factor Loadings on the General Factor"
+msgstr ""
+
+msgid "Factor"
+msgstr ""
+
+msgid "Loading"
+msgstr ""
+
 msgid "Split-half coefficient"
 msgstr "分半系数"
 
@@ -507,8 +703,8 @@ msgid ""
 "lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced "
 "Options'"
 msgstr ""
-"对 [alpha、lambda2、lambda6、glb] 之一的后验协方差矩阵进行抽样失败。请尝试"
-"在“高级选项”中更改为“按列表删除案例”"
+"对 [alpha、lambda2、lambda6、glb] 之一的后验协方差矩阵进行抽样失败。请尝试在"
+"“高级选项”中更改为“按列表删除案例”"
 
 msgid ""
 "Sampling the posterior covariance matrix for either one of [alpha, lambda2, "
@@ -595,9 +791,6 @@ msgid ""
 msgstr ""
 "每个选定的信度系数的后验密度图，包含可选的先验叠加和对后验概率区间的阴影，可"
 "信区间以单独误差线显示。"
-
-msgid "Density"
-msgstr "密度"
 
 msgid "If Item Dropped Posterior Plots"
 msgstr "删除项目时的后验图"
@@ -699,9 +892,6 @@ msgstr ""
 "当数据包含缺失值且使用成对完整观测时，解析置信区间不适用于 alpha/lambda2 系"
 "数。请尝试在“高级选项”中更改为“按列表删除”。"
 
-msgid "Frequentist Scale Reliability Statistics"
-msgstr "频率学量表信度统计量"
-
 msgid ""
 "Frequentist point estimates, standard errors, and confidence intervals for "
 "all selected scale reliability coefficients."
@@ -709,9 +899,6 @@ msgstr "所有选定量表信度系数的频率学点估计、标准误和置信
 
 msgid "Std. Error"
 msgstr "标准误"
-
-msgid "Frequentist Individual Item Reliability Statistics"
-msgstr "频率学单项目信度统计量"
 
 msgid ""
 "Item-level reliability: for each item, the scale reliability coefficient if "
@@ -727,12 +914,6 @@ msgid ""
 "including chi-square, RMSEA, and SRMR."
 msgstr ""
 "McDonald's omega 所基于的单因子模型的拟合指数，包括卡方、RMSEA 和 SRMR。"
-
-msgid "Fit measure"
-msgstr "拟合指标"
-
-msgid "Value"
-msgstr "值"
 
 msgid ""
 "Standardized factor loadings from the single-factor model used to estimate "
@@ -787,8 +968,8 @@ msgid ""
 "The items are dichotomous with the values %1$s and %2$s; where the method "
 "needs 0/1 items, %1$s is treated as 0 and %2$s as 1."
 msgstr ""
-"这些项目为二分类，取值为 %1$s 和 %2$s；在方法需要 0/1 项目时，%1$s 视为 0"
-"，%2$s 视为 1。"
+"这些项目为二分类，取值为 %1$s 和 %2$s；在方法需要 0/1 项目时，%1$s 视为 "
+"0，%2$s 视为 1。"
 
 msgid ""
 "The sum scores are computed from the item values as they are coded (observed "

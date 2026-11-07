@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.96.4\n"
-"POT-Creation-Date: 2026-10-17 03:35\n"
+"POT-Creation-Date: 2026-11-07 03:27\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -340,10 +340,81 @@ msgstr ""
 msgid "Warning:"
 msgstr ""
 
+msgid "Posterior mean"
+msgstr ""
+
+msgid "%s requires at least 2 raters/measurements."
+msgstr ""
+
+msgid ""
+"Fleiss' kappa: chance-corrected agreement with the category proportions "
+"pooled over both raters of a pair, for raters that are interchangeable "
+"(e.g., different raters per subject). Summarized by the posterior mean and "
+"credible interval."
+msgstr ""
+
+msgid ""
+"Cohen's kappa: chance-corrected agreement between two raters, with each "
+"rater's own category proportions. Summarized by the posterior mean and "
+"credible interval."
+msgstr ""
+
+msgid "%1$s could not be computed for any rater pair: %2$s."
+msgstr ""
+
+msgid "%s%% Credible Interval"
+msgstr ""
+
+msgid "Observed agreement"
+msgstr ""
+
+msgid "Chance agreement"
+msgstr ""
+
+msgid ""
+"Dirichlet prior with concentration %1$s on each cell of a pair's agreement "
+"table; %2$i posterior samples."
+msgstr ""
+
+msgid "Credible intervals are highest posterior density intervals."
+msgstr ""
+
+msgid ""
+"Chance agreement uses the category proportions pooled over both raters; for "
+"two raters this equals Fleiss' kappa and Scott's pi."
+msgstr ""
+
+msgid ""
+"%i posterior samples with undefined kappa (all probability on a single "
+"category) were excluded."
+msgstr ""
+
+msgid "Posterior Distribution: %s"
+msgstr ""
+
+msgid "The posterior samples do not vary, so their density cannot be plotted."
+msgstr ""
+
+msgid "Density"
+msgstr ""
+
 msgid "McDonald's ωₜ"
 msgstr ""
 
 msgid "McDonald's ωₕ"
+msgstr ""
+
+msgid ""
+"McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
+"the correlated-factors model."
+msgstr ""
+
+msgid ""
+"McDonald's ωₕ is not reported because it is not identified with only two "
+"group factors: the loadings of the general factor are determined only up to "
+"their product, so the data carry no information about it. Assign the items "
+"to at least three group factors, or choose the bi-factor model. McDonald's "
+"ωₜ is unaffected."
 msgstr ""
 
 msgid ""
@@ -358,9 +429,6 @@ msgstr ""
 msgid "Bayesian Scale Reliability Statistics"
 msgstr ""
 
-msgid "Posterior mean"
-msgstr ""
-
 msgid "Posterior median"
 msgstr ""
 
@@ -368,11 +436,6 @@ msgid "R-hat"
 msgstr ""
 
 msgid "Please assign at least two factors with at least two items each."
-msgstr ""
-
-msgid ""
-"McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
-"the correlated-factors model."
 msgstr ""
 
 msgid "Average interitem correlation"
@@ -456,6 +519,127 @@ msgid "Eigenvalue"
 msgstr ""
 
 msgid "Eigenvalue No."
+msgstr ""
+
+msgid ""
+"Standard errors could not be computed for this model, so no confidence "
+"intervals are reported."
+msgstr ""
+
+msgid ""
+"Standard errors could not be computed, so no confidence intervals are "
+"reported. The factor model is probably not identified."
+msgstr ""
+
+msgid ""
+"The factor model solution is inadmissible, for example because of a negative "
+"variance estimate. The coefficients may fall outside the interval [0, 1]."
+msgstr ""
+
+msgid ""
+"The factor model did not converge, so the coefficients cannot be "
+"interpreted. Consider a different model, or check the items assigned to each "
+"factor."
+msgstr ""
+
+msgid "Bootstrapping the omega coefficients"
+msgstr ""
+
+msgid "Frequentist Scale Reliability Statistics"
+msgstr ""
+
+msgid ""
+"%1$i of %2$i bootstrap samples did not converge and were excluded from the "
+"interval."
+msgstr ""
+
+msgid "Frequentist Individual Item Reliability Statistics"
+msgstr ""
+
+msgid ""
+"Empty cells indicate that the model could not be estimated without this "
+"item, for instance because a factor would be left with fewer than two items."
+msgstr ""
+
+msgid ""
+"No confidence intervals are reported for the if-item-dropped coefficients."
+msgstr ""
+
+msgid ""
+"The factor model solution was inadmissible when dropping the following "
+"items: %s. These coefficients may fall outside the interval [0, 1]."
+msgstr ""
+
+msgid "Fit measure"
+msgstr ""
+
+msgid "Value"
+msgstr ""
+
+msgid "The fit measures could not be computed for this factor model."
+msgstr ""
+
+msgid "χ²"
+msgstr ""
+
+msgid "df"
+msgstr ""
+
+msgid "p"
+msgstr ""
+
+msgid "CFI"
+msgstr ""
+
+msgid "TLI"
+msgstr ""
+
+msgid "RMSEA"
+msgstr ""
+
+msgid "RMSEA 90%% CI lower"
+msgstr ""
+
+msgid "RMSEA 90%% CI upper"
+msgstr ""
+
+msgid "RMSEA p-value"
+msgstr ""
+
+msgid "AIC"
+msgstr ""
+
+msgid "BIC"
+msgstr ""
+
+msgid "SRMR"
+msgstr ""
+
+msgid "SRMR 90%% CI lower"
+msgstr ""
+
+msgid "SRMR 90%% CI upper"
+msgstr ""
+
+msgid "SRMR p-value"
+msgstr ""
+
+msgid "Standardized Factor Loadings"
+msgstr ""
+
+msgid "Item Loadings"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Group Factor Loadings on the General Factor"
+msgstr ""
+
+msgid "Factor"
+msgstr ""
+
+msgid "Loading"
 msgstr ""
 
 msgid "Split-half coefficient"
@@ -554,9 +738,6 @@ msgid ""
 "credible interval is shown as a separate error bar."
 msgstr ""
 
-msgid "Density"
-msgstr ""
-
 msgid "If Item Dropped Posterior Plots"
 msgstr ""
 
@@ -641,18 +822,12 @@ msgid ""
 "changing to 'Delete listwise' within 'Advanced Options'."
 msgstr ""
 
-msgid "Frequentist Scale Reliability Statistics"
-msgstr ""
-
 msgid ""
 "Frequentist point estimates, standard errors, and confidence intervals for "
 "all selected scale reliability coefficients."
 msgstr ""
 
 msgid "Std. Error"
-msgstr ""
-
-msgid "Frequentist Individual Item Reliability Statistics"
 msgstr ""
 
 msgid ""
@@ -666,12 +841,6 @@ msgstr ""
 msgid ""
 "Fit indices of the single-factor model underlying McDonald's omega, "
 "including chi-square, RMSEA, and SRMR."
-msgstr ""
-
-msgid "Fit measure"
-msgstr ""
-
-msgid "Value"
 msgstr ""
 
 msgid ""

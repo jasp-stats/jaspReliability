@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
-"POT-Creation-Date: 2026-10-17 03:35\n"
+"POT-Creation-Date: 2026-11-07 03:27\n"
 "PO-Revision-Date: 2026-10-18 03:51+0000\n"
 "Last-Translator: Koji Kosugi <kosugitti@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -396,11 +396,90 @@ msgstr ""
 msgid "Warning:"
 msgstr "警告:"
 
+msgid "Posterior mean"
+msgstr "事後平均"
+
+#, fuzzy
+msgid "%s requires at least 2 raters/measurements."
+msgstr "ケンドールのWには、少なくとも2名の評定者/測定が必要です。"
+
+msgid ""
+"Fleiss' kappa: chance-corrected agreement with the category proportions "
+"pooled over both raters of a pair, for raters that are interchangeable "
+"(e.g., different raters per subject). Summarized by the posterior mean and "
+"credible interval."
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Cohen's kappa: chance-corrected agreement between two raters, with each "
+"rater's own category proportions. Summarized by the posterior mean and "
+"credible interval."
+msgstr ""
+"Cohen's kappa: ちょうど2人の評定者の間の、偶然を補正した一致です。-1(偶然より"
+"悪い)から1(完全に一致)までの値をとります。"
+
+#, fuzzy
+msgid "%1$s could not be computed for any rater pair: %2$s."
+msgstr "どの評定者の対についても Cohen's kappa を計算できませんでした: %s。"
+
+msgid "%s%% Credible Interval"
+msgstr ""
+
+msgid "Observed agreement"
+msgstr ""
+
+msgid "Chance agreement"
+msgstr ""
+
+msgid ""
+"Dirichlet prior with concentration %1$s on each cell of a pair's agreement "
+"table; %2$i posterior samples."
+msgstr ""
+
+msgid "Credible intervals are highest posterior density intervals."
+msgstr ""
+
+msgid ""
+"Chance agreement uses the category proportions pooled over both raters; for "
+"two raters this equals Fleiss' kappa and Scott's pi."
+msgstr ""
+
+msgid ""
+"%i posterior samples with undefined kappa (all probability on a single "
+"category) were excluded."
+msgstr ""
+
+#, fuzzy
+msgid "Posterior Distribution: %s"
+msgstr "事後%s"
+
+msgid "The posterior samples do not vary, so their density cannot be plotted."
+msgstr ""
+
+msgid "Density"
+msgstr "密度"
+
 msgid "McDonald's ωₜ"
 msgstr "マクドナルドのωₜ"
 
 msgid "McDonald's ωₕ"
 msgstr "マクドナルドのωₕ"
+
+msgid ""
+"McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
+"the correlated-factors model."
+msgstr ""
+"マクドナルドのωₕは、二次因子モデルと双因子モデルでのみ表示されます。相関因子"
+"モデルでは表示されません。"
+
+msgid ""
+"McDonald's ωₕ is not reported because it is not identified with only two "
+"group factors: the loadings of the general factor are determined only up to "
+"their product, so the data carry no information about it. Assign the items "
+"to at least three group factors, or choose the bi-factor model. McDonald's "
+"ωₜ is unaffected."
+msgstr ""
 
 msgid ""
 "The bi-factor model does not support items that load on more than one "
@@ -416,9 +495,6 @@ msgstr "オメガ係数の事後分布をサンプリングしています"
 msgid "Bayesian Scale Reliability Statistics"
 msgstr "ベイジアン尺度信頼性統計"
 
-msgid "Posterior mean"
-msgstr "事後平均"
-
 msgid "Posterior median"
 msgstr "事後中央値"
 
@@ -427,13 +503,6 @@ msgstr "R-hat"
 
 msgid "Please assign at least two factors with at least two items each."
 msgstr "因子を2つ以上、それぞれに項目を2つ以上割り当ててください。"
-
-msgid ""
-"McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
-"the correlated-factors model."
-msgstr ""
-"マクドナルドのωₕは、二次因子モデルと双因子モデルでのみ表示されます。相関因子"
-"モデルでは表示されません。"
 
 msgid "Average interitem correlation"
 msgstr "平均項目間相関"
@@ -521,6 +590,136 @@ msgstr "固有値"
 
 msgid "Eigenvalue No."
 msgstr "固有値 No。"
+
+msgid ""
+"Standard errors could not be computed for this model, so no confidence "
+"intervals are reported."
+msgstr ""
+
+msgid ""
+"Standard errors could not be computed, so no confidence intervals are "
+"reported. The factor model is probably not identified."
+msgstr ""
+
+msgid ""
+"The factor model solution is inadmissible, for example because of a negative "
+"variance estimate. The coefficients may fall outside the interval [0, 1]."
+msgstr ""
+
+msgid ""
+"The factor model did not converge, so the coefficients cannot be "
+"interpreted. Consider a different model, or check the items assigned to each "
+"factor."
+msgstr ""
+
+#, fuzzy
+msgid "Bootstrapping the omega coefficients"
+msgstr "オメガ係数の事後分布をサンプリングしています"
+
+msgid "Frequentist Scale Reliability Statistics"
+msgstr "頻度論的尺度信頼性統計"
+
+#, fuzzy
+msgid ""
+"%1$i of %2$i bootstrap samples did not converge and were excluded from the "
+"interval."
+msgstr ""
+"%2$i 個のブートストラップ標本のうち %1$i 個が計算できず、信頼区間から除かれま"
+"した。"
+
+msgid "Frequentist Individual Item Reliability Statistics"
+msgstr "頻度論的個別項目信頼性統計"
+
+#, fuzzy
+msgid ""
+"Empty cells indicate that the model could not be estimated without this "
+"item, for instance because a factor would be left with fewer than two items."
+msgstr ""
+"空欄は、その項目を除くと因子に含まれる項目が2つ未満になることを示します。"
+
+#, fuzzy
+msgid ""
+"No confidence intervals are reported for the if-item-dropped coefficients."
+msgstr "条件つきSEMが0のところでは信頼区間を報告しません。"
+
+msgid ""
+"The factor model solution was inadmissible when dropping the following "
+"items: %s. These coefficients may fall outside the interval [0, 1]."
+msgstr ""
+
+msgid "Fit measure"
+msgstr "適合度指標"
+
+msgid "Value"
+msgstr "値"
+
+#, fuzzy
+msgid "The fit measures could not be computed for this factor model."
+msgstr "どの評定者の対についても Cohen's kappa を計算できませんでした: %s。"
+
+msgid "χ²"
+msgstr ""
+
+msgid "df"
+msgstr ""
+
+msgid "p"
+msgstr ""
+
+msgid "CFI"
+msgstr ""
+
+msgid "TLI"
+msgstr ""
+
+msgid "RMSEA"
+msgstr ""
+
+msgid "RMSEA 90%% CI lower"
+msgstr ""
+
+msgid "RMSEA 90%% CI upper"
+msgstr ""
+
+msgid "RMSEA p-value"
+msgstr ""
+
+msgid "AIC"
+msgstr ""
+
+msgid "BIC"
+msgstr ""
+
+msgid "SRMR"
+msgstr ""
+
+msgid "SRMR 90%% CI lower"
+msgstr ""
+
+msgid "SRMR 90%% CI upper"
+msgstr ""
+
+msgid "SRMR p-value"
+msgstr ""
+
+#, fuzzy
+msgid "Standardized Factor Loadings"
+msgstr "標準化負荷量"
+
+msgid "Item Loadings"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Group Factor Loadings on the General Factor"
+msgstr ""
+
+msgid "Factor"
+msgstr ""
+
+msgid "Loading"
+msgstr ""
 
 msgid "Split-half coefficient"
 msgstr "折半係数"
@@ -641,9 +840,6 @@ msgstr ""
 "選択した信頼性係数ごとの事後密度のプロットです。必要に応じて事前分布を重ね、"
 "事後確率の領域に網かけをします。信用区間は別のエラーバーで示されます。"
 
-msgid "Density"
-msgstr "密度"
-
 msgid "If Item Dropped Posterior Plots"
 msgstr "項目除外したときの事後プロット"
 
@@ -751,9 +947,6 @@ msgstr ""
 "いて解析的な信頼区間を利用できません。詳細オプションで「リストワイズで削除」"
 "に変更してみてください。"
 
-msgid "Frequentist Scale Reliability Statistics"
-msgstr "頻度論的尺度信頼性統計"
-
 msgid ""
 "Frequentist point estimates, standard errors, and confidence intervals for "
 "all selected scale reliability coefficients."
@@ -763,9 +956,6 @@ msgstr ""
 
 msgid "Std. Error"
 msgstr "標準誤差"
-
-msgid "Frequentist Individual Item Reliability Statistics"
-msgstr "頻度論的個別項目信頼性統計"
 
 msgid ""
 "Item-level reliability: for each item, the scale reliability coefficient if "
@@ -783,12 +973,6 @@ msgid ""
 msgstr ""
 "マクドナルドのオメガの基礎となる1因子モデルの適合度指数です。カイ二乗、"
 "RMSEA、SRMRを含みます。"
-
-msgid "Fit measure"
-msgstr "適合度指標"
-
-msgid "Value"
-msgstr "値"
 
 msgid ""
 "Standardized factor loadings from the single-factor model used to estimate "
@@ -834,9 +1018,8 @@ msgid ""
 "the same two numbers for all binary items (e.g., 0 and 1) in the label "
 "editor of the Data tab."
 msgstr ""
-"2値項目が同じ2つの数値でコード化されていません: %1$s。データタブの"
-"ラベルエディタで、すべての2値項目に同じ2つの数値(例: 0 と 1)を使ってください"
-"。"
+"2値項目が同じ2つの数値でコード化されていません: %1$s。データタブのラベルエ"
+"ディタで、すべての2値項目に同じ2つの数値(例: 0 と 1)を使ってください。"
 
 msgid "The items are dichotomous with the values %1$s and %2$s."
 msgstr "項目は値 %1$s と %2$s の2値です。"

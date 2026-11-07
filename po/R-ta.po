@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.19.2\n"
-"POT-Creation-Date: 2026-10-17 03:35\n"
+"POT-Creation-Date: 2026-11-07 03:27\n"
 "PO-Revision-Date: 2025-12-31 12:02+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/jasp/"
@@ -351,10 +351,84 @@ msgstr ""
 msgid "Warning:"
 msgstr ""
 
+#, fuzzy
+msgid "Posterior mean"
+msgstr "பின்புறம்"
+
+#, fuzzy
+msgid "%s requires at least 2 raters/measurements."
+msgstr "கோஅனின் கப்பாவுக்கு குறைந்தது 3 பாடங்கள்/உருப்படிகள் தேவை."
+
+msgid ""
+"Fleiss' kappa: chance-corrected agreement with the category proportions "
+"pooled over both raters of a pair, for raters that are interchangeable "
+"(e.g., different raters per subject). Summarized by the posterior mean and "
+"credible interval."
+msgstr ""
+
+msgid ""
+"Cohen's kappa: chance-corrected agreement between two raters, with each "
+"rater's own category proportions. Summarized by the posterior mean and "
+"credible interval."
+msgstr ""
+
+msgid "%1$s could not be computed for any rater pair: %2$s."
+msgstr ""
+
+msgid "%s%% Credible Interval"
+msgstr ""
+
+msgid "Observed agreement"
+msgstr ""
+
+msgid "Chance agreement"
+msgstr ""
+
+msgid ""
+"Dirichlet prior with concentration %1$s on each cell of a pair's agreement "
+"table; %2$i posterior samples."
+msgstr ""
+
+msgid "Credible intervals are highest posterior density intervals."
+msgstr ""
+
+msgid ""
+"Chance agreement uses the category proportions pooled over both raters; for "
+"two raters this equals Fleiss' kappa and Scott's pi."
+msgstr ""
+
+msgid ""
+"%i posterior samples with undefined kappa (all probability on a single "
+"category) were excluded."
+msgstr ""
+
+#, fuzzy
+msgid "Posterior Distribution: %s"
+msgstr "பின்புற %s"
+
+msgid "The posterior samples do not vary, so their density cannot be plotted."
+msgstr ""
+
+msgid "Density"
+msgstr "அடர்த்தி"
+
 msgid "McDonald's ωₜ"
 msgstr ""
 
 msgid "McDonald's ωₕ"
+msgstr ""
+
+msgid ""
+"McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
+"the correlated-factors model."
+msgstr ""
+
+msgid ""
+"McDonald's ωₕ is not reported because it is not identified with only two "
+"group factors: the loadings of the general factor are determined only up to "
+"their product, so the data carry no information about it. Assign the items "
+"to at least three group factors, or choose the bi-factor model. McDonald's "
+"ωₜ is unaffected."
 msgstr ""
 
 msgid ""
@@ -370,10 +444,6 @@ msgid "Bayesian Scale Reliability Statistics"
 msgstr "பேய்சியன் அளவிலான நம்பகத்தன்மை புள்ளிவிவரங்கள்"
 
 #, fuzzy
-msgid "Posterior mean"
-msgstr "பின்புறம்"
-
-#, fuzzy
 msgid "Posterior median"
 msgstr "பின்புறம்"
 
@@ -381,11 +451,6 @@ msgid "R-hat"
 msgstr "ஆர்-தொப்பி"
 
 msgid "Please assign at least two factors with at least two items each."
-msgstr ""
-
-msgid ""
-"McDonald's ωₕ is shown only for the second-order and bi-factor models, not "
-"the correlated-factors model."
 msgstr ""
 
 msgid "Average interitem correlation"
@@ -476,6 +541,129 @@ msgstr "ஈசென்வெல்யூ"
 
 msgid "Eigenvalue No."
 msgstr "ஈசென்வெல்யூ எண்."
+
+msgid ""
+"Standard errors could not be computed for this model, so no confidence "
+"intervals are reported."
+msgstr ""
+
+msgid ""
+"Standard errors could not be computed, so no confidence intervals are "
+"reported. The factor model is probably not identified."
+msgstr ""
+
+msgid ""
+"The factor model solution is inadmissible, for example because of a negative "
+"variance estimate. The coefficients may fall outside the interval [0, 1]."
+msgstr ""
+
+msgid ""
+"The factor model did not converge, so the coefficients cannot be "
+"interpreted. Consider a different model, or check the items assigned to each "
+"factor."
+msgstr ""
+
+msgid "Bootstrapping the omega coefficients"
+msgstr ""
+
+msgid "Frequentist Scale Reliability Statistics"
+msgstr "அடிக்கடி அளவிலான நம்பகத்தன்மை புள்ளிவிவரங்கள்"
+
+msgid ""
+"%1$i of %2$i bootstrap samples did not converge and were excluded from the "
+"interval."
+msgstr ""
+
+msgid "Frequentist Individual Item Reliability Statistics"
+msgstr "அடிக்கடி தனிப்பட்ட பொருள் நம்பகத்தன்மை புள்ளிவிவரங்கள்"
+
+msgid ""
+"Empty cells indicate that the model could not be estimated without this "
+"item, for instance because a factor would be left with fewer than two items."
+msgstr ""
+
+#, fuzzy
+msgid ""
+"No confidence intervals are reported for the if-item-dropped coefficients."
+msgstr "உருப்படி-ஓய்வு தொடர்புக்கு பகுப்பாய்வு நம்பிக்கை இடைவெளி கிடைக்கவில்லை."
+
+msgid ""
+"The factor model solution was inadmissible when dropping the following "
+"items: %s. These coefficients may fall outside the interval [0, 1]."
+msgstr ""
+
+msgid "Fit measure"
+msgstr "பொருத்தமான அளவீடு"
+
+msgid "Value"
+msgstr "மதிப்பு"
+
+msgid "The fit measures could not be computed for this factor model."
+msgstr ""
+
+msgid "χ²"
+msgstr ""
+
+msgid "df"
+msgstr ""
+
+msgid "p"
+msgstr ""
+
+msgid "CFI"
+msgstr ""
+
+msgid "TLI"
+msgstr ""
+
+msgid "RMSEA"
+msgstr ""
+
+msgid "RMSEA 90%% CI lower"
+msgstr ""
+
+msgid "RMSEA 90%% CI upper"
+msgstr ""
+
+msgid "RMSEA p-value"
+msgstr ""
+
+msgid "AIC"
+msgstr ""
+
+msgid "BIC"
+msgstr ""
+
+msgid "SRMR"
+msgstr ""
+
+msgid "SRMR 90%% CI lower"
+msgstr ""
+
+msgid "SRMR 90%% CI upper"
+msgstr ""
+
+msgid "SRMR p-value"
+msgstr ""
+
+#, fuzzy
+msgid "Standardized Factor Loadings"
+msgstr "தரப்படுத்தப்பட்ட ஏற்றுதல்"
+
+msgid "Item Loadings"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Group Factor Loadings on the General Factor"
+msgstr ""
+
+msgid "Factor"
+msgstr ""
+
+msgid "Loading"
+msgstr ""
 
 msgid "Split-half coefficient"
 msgstr "பிளவு-பாதி குணகம்"
@@ -587,9 +775,6 @@ msgid ""
 "credible interval is shown as a separate error bar."
 msgstr ""
 
-msgid "Density"
-msgstr "அடர்த்தி"
-
 msgid "If Item Dropped Posterior Plots"
 msgstr "உருப்படி பின்புற அடுக்குகளை கைவிட்டால்"
 
@@ -692,9 +877,6 @@ msgstr ""
 "குணகம் ஆல்பா/லாம்ப்டா 2 க்கு பகுப்பாய்வு நம்பிக்கை இடைவெளி கிடைக்கவில்லை. 'மேம்பட்ட "
 "விருப்பங்களுக்கு'ள்' பட்டியல் திசை நீக்க 'என மாற்ற முயற்சிக்கவும்."
 
-msgid "Frequentist Scale Reliability Statistics"
-msgstr "அடிக்கடி அளவிலான நம்பகத்தன்மை புள்ளிவிவரங்கள்"
-
 msgid ""
 "Frequentist point estimates, standard errors, and confidence intervals for "
 "all selected scale reliability coefficients."
@@ -702,9 +884,6 @@ msgstr ""
 
 msgid "Std. Error"
 msgstr "நிலை. பிழை"
-
-msgid "Frequentist Individual Item Reliability Statistics"
-msgstr "அடிக்கடி தனிப்பட்ட பொருள் நம்பகத்தன்மை புள்ளிவிவரங்கள்"
 
 msgid ""
 "Item-level reliability: for each item, the scale reliability coefficient if "
@@ -718,12 +897,6 @@ msgid ""
 "Fit indices of the single-factor model underlying McDonald's omega, "
 "including chi-square, RMSEA, and SRMR."
 msgstr ""
-
-msgid "Fit measure"
-msgstr "பொருத்தமான அளவீடு"
-
-msgid "Value"
-msgstr "மதிப்பு"
 
 #, fuzzy
 msgid ""
@@ -913,8 +1086,3 @@ msgstr[1] "பின்வரும் உருப்படிகள் தல�
 
 #~ msgid "Calculating the standard error of coefficient lambda2 failed."
 #~ msgstr "குணக லாம்ப்டா 2 இன் நிலையான பிழையைக் கணக்கிடுவது தோல்வியடைந்தது."
-
-#~ msgid ""
-#~ "The analytic confidence interval is not available for the item-rest "
-#~ "correlation."
-#~ msgstr "உருப்படி-ஓய்வு தொடர்புக்கு பகுப்பாய்வு நம்பிக்கை இடைவெளி கிடைக்கவில்லை."

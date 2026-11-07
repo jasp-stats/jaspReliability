@@ -2284,3 +2284,489 @@ msgid ""
 "numbers. Variables with text labels must be relabeled with numbers in the "
 "label editor of the Data tab."
 msgstr ""
+
+msgctxt "Description|"
+msgid "Bayesian Rater Agreement"
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Bayesian Rater Agreement estimates the chance-corrected agreement between "
+"raters who assign subjects to nominal or ordinal categories. For every rater "
+"pair, the cell probabilities of the pair's agreement table get a Dirichlet "
+"posterior, and Cohen's kappa or Fleiss' kappa is computed from every "
+"posterior draw (Calle-Alonso & Pérez Sánchez, 2015; Pfadt et al., 2026)."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "References"
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "R Packages"
+msgstr ""
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "All variables available in the dataset."
+msgstr "資料集中的所有可用變數。"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Variables"
+msgstr "變項"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Rating variables to include. Whether a variable represents a rater or a "
+"subject/item depends on the data structure setting."
+msgstr "要納入的評分變數。變數代表評分者或受評對象/項目，取決於資料結構設定。"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Data Structure"
+msgstr "資料(矩陣)結構"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Specify whether raters are arranged in columns (default) or rows in the "
+"dataset."
+msgstr "指定資料集中評分者的排列方式：評分者位於欄（預設）或列。"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Raters are in columns"
+msgstr "評分者為行"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Each column is one rater and each row is one subject or item being rated."
+msgstr "每一欄代表 1 位評分者，每一列代表 1 位被評分的受試者或項目。"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Raters are in rows"
+msgstr "評分者為列"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Each row is one rater and each column is one subject or item being rated."
+msgstr "每一列代表 1 位評分者，每一欄代表 1 位被評分的受試者或項目。"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Coefficients"
+msgstr "係數"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Cohen's kappa"
+msgstr "Cohen's K 指標"
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Chance-corrected agreement between two raters, with each rater's own "
+"category proportions. Use it when the same raters rated every subject. With "
+"more than two raters, every rater pair gets its own posterior."
+msgstr ""
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Unweighted kappa treats all disagreements equally. Weighted kappa accounts "
+"for the degree of disagreement and requires ordinal ratings."
+msgstr ""
+"未加權 Kappa 將所有不一致視為相同程度。加權 Kappa 會考量不一致的程度，並且需"
+"要使用次序尺度評分資料。"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Unweighted"
+msgstr "未加權"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "All disagreements are treated as equal regardless of their magnitude."
+msgstr "所有不一致情況均視為相同程度，不考量其差異幅度。"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Weighted"
+msgstr "加權"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Disagreements are penalised according to their magnitude. Requires ordinal "
+"ratings."
+msgstr "依據不一致的程度給予不同程度的懲罰。需要使用次序尺度評分資料。"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Weighting scheme applied to disagreements between ordinal categories."
+msgstr "套用於次序類別間不一致情況的加權方式。"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Quadratic weights"
+msgstr "二次(Quadratic)加權"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Penalises larger disagreements quadratically; sensitive to large "
+"discrepancies."
+msgstr "以平方方式懲罰較大的不一致；對於較大的差異較為敏感。"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Linear weights"
+msgstr "線性(Linear)加權"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Penalises disagreements proportionally to their size."
+msgstr "依據不一致的程度比例給予懲罰。"
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Fleiss' kappa"
+msgstr "Fleiss' k(kappa)指標"
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Chance-corrected agreement with the category proportions pooled over both "
+"raters of a pair, so raters are treated as interchangeable. Use it when "
+"different raters rated different subjects. With two raters it equals Fleiss' "
+"kappa and Scott's pi; with more than two raters, every rater pair gets its "
+"own posterior."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Output"
+msgstr ""
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Credible interval"
+msgstr "可信區間"
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Report the highest posterior density interval for each agreement coefficient."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Width of the credible interval."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Observed and chance agreement"
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Report the posterior means of the observed agreement and of the agreement "
+"expected by chance, from which kappa is computed."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Posterior plots"
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Plot the posterior density of each coefficient for every rater pair, with "
+"the credible interval shaded."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Prior"
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Prior on the cell probabilities of each rater pair's agreement table."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Dirichlet prior concentration"
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Concentration of the Dirichlet prior on each cell of a rater pair's "
+"agreement table, that is, the number of prior pseudo-observations per cell. "
+"Small values let the data dominate. Larger values pull kappa towards 0, "
+"especially with many categories, because the pseudo-observations also fall "
+"into the disagreement cells."
+msgstr ""
+
+#, fuzzy
+msgctxt "RaterAgreementBayesian|"
+msgid "Advanced Options"
+msgstr "進階選項"
+
+msgctxt "RaterAgreementBayesian|"
+msgid "Options for the posterior sampling."
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid "No. of posterior samples"
+msgstr ""
+
+msgctxt "RaterAgreementBayesian|"
+msgid ""
+"Number of draws from the posterior distribution of the cell probabilities. "
+"Higher values give more stable estimates."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Assign the items to their factors. The analysis requires at least two "
+"factors with at least two items each. An item may be assigned to more than "
+"one factor (cross-loading); the bi-factor model does not support cross-"
+"loadings."
+msgstr ""
+"將題項指派到其因子。此分析至少需要兩個因子，每個因子至少包含兩個題項。一個題"
+"項可指派至多個因子（交叉負載）；雙因子模型不支援交叉負載。"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Model"
+msgstr "模型"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Second-order"
+msgstr "二階"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Bi-factor"
+msgstr "雙因子"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Correlated factors"
+msgstr "相關因子"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"The factor model used to estimate the reliability coefficients. McDonald's "
+"ω_h (general/group-common reliability) is only available for the second-"
+"order and bi-factor models."
+msgstr ""
+"用於估計信度係數的因子模型。McDonald's ω_h（一般/群組共同信度）僅適用於二階與"
+"雙因子模型。"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Analysis"
+msgstr "分析"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Confidence interval"
+msgstr "信賴區間"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Coverage of the confidence interval for the reliability coefficients."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Mean and standard deviation of"
+msgstr "平均值與標準差"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Whether the mean and standard deviation in the scale table are based on "
+"participants' sum scores or mean scores across items."
+msgstr "量表中的平均值與標準差應基於參與者的總分或各題項之平均分數。"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "participants' sum scores"
+msgstr "參與者的總分"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "participants' mean scores"
+msgstr "參與者的平均分數"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Item statistics"
+msgstr "題項統計量"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "McDonald's ω_t (if item dropped)"
+msgstr "McDonald's ω_t（若刪除此題項）"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"McDonald's omega_t for the remaining items when this item is dropped. The "
+"model is refit once per item."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "McDonald's ω_h (if item dropped)"
+msgstr "McDonald's ω_h（若刪除此題項）"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"McDonald's omega_h for the remaining items when this item is dropped. Not "
+"available for the correlated-factors model."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Item-rest correlation"
+msgstr "題項-其他題項總分相關"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Pearson correlation between each item and the sum of the remaining items."
+msgstr "每個題項與其餘題項總分之間的 Pearson 相關。"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Model fit"
+msgstr "模型配適"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Fit measures"
+msgstr "配適度量數"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Fit measures of the factor model: chi-square, CFI, TLI, RMSEA, SRMR, AIC and "
+"BIC."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Standardized factor loadings"
+msgstr "標準化因素負荷量"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Table of standardized loadings of the items on their group factors. For the "
+"bi-factor model the loadings on the general factor are added as a column; "
+"for the second-order model the loadings of the group factors on the general "
+"factor are shown in a separate table."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Reverse-Scaled Items"
+msgstr "反向題"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Normal-Scaled Items"
+msgstr "正向題"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Items assigned here are recoded (reverse-scored) before the analysis."
+msgstr "指派到此處的題項會在分析前重新編碼（反向計分）。"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Advanced Options"
+msgstr "進階選項"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Confidence interval method"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Analytic intervals are the Wald-type intervals of the factor model. Because "
+"omega is a ratio, these intervals are symmetric and can extend beyond zero "
+"or one; the bootstrapped interval resamples the data and refits the model, "
+"which is slower but does not make that assumption."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Analytic interval"
+msgstr "分析區間"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Bootstrapped interval"
+msgstr "拔靴區間"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Bootstrap samples"
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Number of bootstrap replications. The factor model is refit for every "
+"replication, so higher values take proportionally longer."
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Missing Values"
+msgstr "遺漏值"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"Full information maximum likelihood uses all available observations; "
+"listwise deletion removes any row with a missing value."
+msgstr ""
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Full information maximum likelihood"
+msgstr ""
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Exclude cases listwise"
+msgstr "完全排除法"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Repeatability"
+msgstr "可重複性"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Set a random seed to reproduce the same bootstrap results across runs."
+msgstr "設定隨機種子，以便在不同次分析中重現相同的 Bootstrap 結果。"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Set seed"
+msgstr "設定隨機種子"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Samples"
+msgstr "樣本"
+
+#, fuzzy
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid "Disable saving samples"
+msgstr "不使用節省樣本功能"
+
+msgctxt "ReliabilityMultidimensionalFrequentist|"
+msgid ""
+"When checked, bootstrap samples are not stored in the output file. Reduces "
+"file size but changing the confidence level requires resampling."
+msgstr ""
