@@ -717,16 +717,17 @@ raterAgreementInternal <- function(jaspResults, dataset, options) {
     return(jaspTable)
   }
 
+  # checked before the scale: with a single rater no common order is needed at all
+  if (ncol(dataset) < 2) {
+    jaspTable$setError(gettext("Kendall's W requires at least 2 raters/measurements."))
+    return(jaspTable)
+  }
+
   # raters-in-rows merges all subject columns onto one shared ordinal scale before
   # transposing (.raterAgreementHandleData); every "rater" column then inherits that
   # merge, so an ambiguous common scale makes ranking meaningless and order-dependent
   if (isTRUE(attr(dataset, "levelOrderAmbiguous"))) {
     jaspTable$setError(.raterAgreementAmbiguousOrderMessage(gettext("Kendall's W")))
-    return(jaspTable)
-  }
-
-  if (ncol(dataset) < 2) {
-    jaspTable$setError(gettext("Kendall's W requires at least 2 raters/measurements."))
     return(jaspTable)
   }
 

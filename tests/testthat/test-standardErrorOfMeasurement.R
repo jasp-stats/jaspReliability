@@ -116,7 +116,7 @@ options <- list(.meta = list(variables = list(hasTypes = TRUE,
                 variables = c("V1", "V2", "V3", "V4", "V5"), variables.types = c("nominal",
                                                                                  "nominal", "nominal", "nominal", "nominal"))
 
-results <- runAnalysis("standardErrorOfMeasurement", data = testthat::test_path("binaryTestDt.csv"), options = options, makeTests = F)
+results <- runAnalysis("standardErrorOfMeasurement", dataset = testthat::test_path("binaryTestDt.csv"), options = options, makeTests = F)
 
 
 test_that("Sum Score CI Table results match", {

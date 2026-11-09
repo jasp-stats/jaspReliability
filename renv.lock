@@ -2523,7 +2523,7 @@
     },
     "jaspBase": {
       "Package": "jaspBase",
-      "Version": "0.20.4",
+      "Version": "0.20.5",
       "Source": "GitHub",
       "Type": "Package",
       "Title": "JASP Base",
@@ -2555,6 +2555,7 @@
         "systemfonts",
         "withr"
       ],
+      "Remotes": "jasp-stats/jaspGraphs",
       "RoxygenNote": "7.3.3",
       "Roxygen": "list(markdown = TRUE)",
       "Encoding": "UTF-8",
@@ -2568,11 +2569,11 @@
       ],
       "Config/testthat/edition": "3",
       "RemoteType": "github",
-      "Remotes": "jasp-stats/jaspGraphs",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspBase",
-      "RemoteSha": "74daf64143f4f22d4f0e1b0a8163e6a892873fc8"
+      "RemoteRef": "b60a8ea0e8b377bde7f87ef08ba58b21ba54e15e",
+      "RemoteSha": "b60a8ea0e8b377bde7f87ef08ba58b21ba54e15e"
     },
     "jaspGraphs": {
       "Package": "jaspGraphs",
@@ -2586,6 +2587,9 @@
       "License": "GPL",
       "Encoding": "UTF-8",
       "LazyData": "true",
+      "Depends": [
+        "R (>= 4.1.0)"
+      ],
       "Imports": [
         "cli",
         "ggplot2 (>= 3.0.0)",
@@ -2604,12 +2608,13 @@
         "vdiffr"
       ],
       "Roxygen": "list(markdown = TRUE)",
-      "Config/roxygen2/version": "8.0.0",
+      "Config/roxygen2/version": "8.1.0",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspGraphs",
-      "RemoteSha": "288d2751131ee6ac17362bd89d2ed7d9c0c67c7c"
+      "RemoteRef": "63f791dabf5e1446a445b42e911c2d5d78e0b06e",
+      "RemoteSha": "63f791dabf5e1446a445b42e911c2d5d78e0b06e"
     },
     "jaspTools": {
       "Package": "jaspTools",
@@ -2833,7 +2838,7 @@
     },
     "later": {
       "Package": "later",
-      "Version": "1.4.6",
+      "Version": "1.4.8",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Utilities for Scheduling Functions to Execute Later with Event Loops",

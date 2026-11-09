@@ -10,10 +10,8 @@ test_that("standardErrorOfMeasurement results match", {
   opts <- jaspTools::analysisOptions(jaspFile)
   dataset <- jaspTools::extractDatasetFromJASPFile(jaspFile)
 
-  # Encode and run analysis
-  encoded <- jaspTools:::encodeOptionsAndDataset(opts, dataset)
   set.seed(1)
-  results <- jaspTools::runAnalysis("standardErrorOfMeasurement", encoded$dataset, encoded$options, encodedDataset = TRUE)
+  results <- jaspTools::runAnalysis("standardErrorOfMeasurement", dataset, opts)
 
   plotName <- results[["results"]][["semMainContainer"]][["collection"]][["semMainContainer_ciPlotsContainer"]][["collection"]][["semMainContainer_ciPlotsContainer_anovaPlot"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]

@@ -10,22 +10,20 @@ test_that("reliabilityUnidimensionalBayesian results match", {
   opts <- jaspTools::analysisOptions(jaspFile)
   dataset <- jaspTools::extractDatasetFromJASPFile(jaspFile)
 
-  # Encode and run analysis
-  encoded <- jaspTools:::encodeOptionsAndDataset(opts, dataset)
   set.seed(1)
-  results <- jaspTools::runAnalysis("reliabilityUnidimensionalBayesian", encoded$dataset, encoded$options, encodedDataset = TRUE)
+  results <- jaspTools::runAnalysis("reliabilityUnidimensionalBayesian", dataset, opts)
 
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_itemTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
     list(0.58987759834391, 0.614342019249597, 0.703045796133977, 0.715955981194311,
-     0.796335009943826, 0.808618599153813, "jaspColumn1", 0.606907150313666,
+     0.796335009943826, 0.808618599153813, "asrm_1", 0.606907150313666,
      0.630389241283377, 0.709072993213719, 0.725391162288912, 0.810580370121484,
-     0.819269024306521, "jaspColumn2", 0.689128334512277, 0.708826535712507,
+     0.819269024306521, "asrm_2", 0.689128334512277, 0.708826535712507,
      0.777015008669417, 0.787492448326537, 0.846543601821102, 0.858728964076031,
-     "jaspColumn3", 0.65428181416818, 0.675553141405965, 0.747343941503956,
-     0.759267052305755, 0.834464603163858, 0.847777120079131, "jaspColumn4",
+     "asrm_3", 0.65428181416818, 0.675553141405965, 0.747343941503956,
+     0.759267052305755, 0.834464603163858, 0.847777120079131, "asrm_4",
      0.612152559989754, 0.626104718610868, 0.7120001343938, 0.726470848396046,
-     0.814362060526522, 0.821369974053776, "jaspColumn5"))
+     0.814362060526522, 0.821369974053776, "asrm_5"))
 
   table <- results[["results"]][["stateContainer"]][["collection"]][["stateContainer_probabilityTable"]][["data"]]
   jaspTools::expect_equal_tables(table,

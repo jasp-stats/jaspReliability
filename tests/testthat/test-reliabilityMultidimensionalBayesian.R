@@ -316,7 +316,7 @@ test_that("Listwise deletion with too few complete cases is rejected", {
     list(indicators = c("i1", "i2"), name = "Factor1", title = "Factor 1"),
     list(indicators = c("i3", "i4"), name = "Factor2", title = "Factor 2")
   )
-  optionsFew$samples  <- 60
+  optionsFew$samples  <- 100
   optionsFew$burnin   <- 20
   optionsFew$chains   <- 2
   optionsFew$setSeed  <- TRUE
@@ -346,7 +346,7 @@ test_that("A factor with only one indicator leaves the analysis not ready", {
     list(indicators = c("Question_03", "Question_04"), name = "Factor2", title = "Factor 2"),
     list(indicators = c("Question_05"),                name = "Factor3", title = "Factor 3")
   )
-  optionsOne$samples <- 60
+  optionsOne$samples <- 100
   optionsOne$burnin  <- 20
   optionsOne$chains  <- 2
   optionsOne$setSeed <- TRUE

@@ -10,10 +10,8 @@ test_that("intraclassCorrelation results match", {
   opts <- jaspTools::analysisOptions(jaspFile)
   dataset <- jaspTools::extractDatasetFromJASPFile(jaspFile)
 
-  # Encode and run analysis
-  encoded <- jaspTools:::encodeOptionsAndDataset(opts, dataset)
   set.seed(1)
-  results <- jaspTools::runAnalysis("intraclassCorrelation", encoded$dataset, encoded$options, encodedDataset = TRUE)
+  results <- jaspTools::runAnalysis("intraclassCorrelation", dataset, opts)
 
   table <- results[["results"]][["table"]][["data"]]
   jaspTools::expect_equal_tables(table,
