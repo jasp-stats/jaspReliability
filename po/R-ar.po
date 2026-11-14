@@ -1,0 +1,954 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: jaspReliability 0.98.1\n"
+"POT-Creation-Date: 2026-11-07 03:27\n"
+"PO-Revision-Date: 2026-11-12 10:31+0000\n"
+"Last-Translator: Fahad Mahfouz Al-Subhi "
+"<fahadalsubhi@users.noreply.hosted.weblate.org>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-r/ar/>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 2026.11.2.dev0\n"
+
+msgid "Bland-Altman Plots"
+msgstr "مخططات بلاند–ألتمان"
+
+msgid "Bland-Altman plots of the mean vs. difference for each variable pair, with mean difference and limits of agreement."
+msgstr ""
+"مخططات بلاند–ألتمان للمتوسط مقابل الفرق لكل زوج متغيرات، مع متوسط الفروق "
+"وحدود الاتفاق."
+
+msgid "Scatter plot of mean vs. difference of the two measurements. The middle dashed line is the mean difference (bias); the outer dashed lines are the limits of agreement (±1.96 SD)."
+msgstr ""
+"مخطط تشتت لمتوسط القياسين مقابل الفرق بينهما. يمثل الخط الأوسط المتقطع متوسط "
+"الفرق (التحيز)، ويمثل الخطان الخارجيان المتقطعان حدود الاتفاق (±1.96 SD)."
+
+msgid "Please provide another variable"
+msgstr "يرجى تقديم متغير آخر"
+
+msgid "Plotting not possible: %s"
+msgstr "الرسم غير ممكن: %s"
+
+msgid "Bland-Altman Tables"
+msgstr "جداول بلاند–ألتمان"
+
+msgid "Summary statistics for each pair: bias (mean difference), limits of agreement, and optional confidence intervals."
+msgstr ""
+"إحصاءات موجزة لكل زوج: التحيز (متوسط الفروق)، وحدود الاتفاق، وفترات الثقة "
+"الاختيارية."
+
+msgid "Mean difference (bias), lower and upper limits of agreement for this pair. If confidence intervals are requested, uncertainty bounds for each limit are also shown."
+msgstr ""
+"متوسط الفروق (التحيز) وحدّا الاتفاق الأدنى والأعلى لهذا الزوج. عند طلب فترات "
+"الثقة، تُعرض أيضًا حدود عدم اليقين لكل حد."
+
+msgid "Bias & Limits"
+msgstr "التحيز والحدود"
+
+msgid "Point Value"
+msgstr "قيمة نقطية"
+
+msgid "Mean difference - 1.96 SD"
+msgstr "متوسط الفروق - 1.96 من الانحرافات المعيارية"
+
+msgid "Mean difference + 1.96 SD"
+msgstr "متوسط الفروق + 1.96 من الانحرافات المعيارية"
+
+msgid "Mean difference"
+msgstr "فرق المتوسطين"
+
+msgid "Lower %s%% CI"
+msgstr "الحد السفلي لفترة الثقة %s%%"
+
+msgid "Upper %s%% CI"
+msgstr "الحد العلوي لفترة الثقة %s%%"
+
+msgid "Calculations not possible: %s"
+msgstr "تعذر إجراء الحسابات: %s"
+
+msgid "Intraclass Correlation"
+msgstr "الارتباط داخل الفئة"
+
+msgid "Intraclass correlation coefficients (ICC) with optional confidence intervals for assessing absolute agreement or consistency among raters."
+msgstr ""
+"معاملات الارتباط داخل الفئة (ICC)، مع فترات ثقة اختيارية لتقييم الاتفاق المطلق "
+"أو الاتساق بين المقيّمين."
+
+msgid "Type"
+msgstr "النوع"
+
+msgid "Point Estimate"
+msgstr "التقدير النقطي"
+
+msgid "%1$s subjects and %2$s raters/measurements. ICC type as referenced by Shrout & Fleiss (1979)."
+msgstr ""
+"عدد الأفراد %1$s، وعدد المقيّمين/القياسات %2$s. يُحدَّد نوع معامل الارتباط داخل "
+"الفئة (ICC) وفقًا لتصنيف Shrout & Fleiss (1979)."
+
+msgid "Please select at least 2 columns"
+msgstr "يرجى تحديد ما لا يقل عن 2 من الأعمدة"
+
+msgid "Agreement Coefficient"
+msgstr "معامل الاتفاق"
+
+msgid "Empty placeholder table shown while no agreement coefficient is selected; check a coefficient to obtain results."
+msgstr ""
+"يُعرض جدول مؤقت فارغ ما دام لم يُحدَّد معامل اتفاق. حدد معاملًا للحصول على النتائج."
+
+msgid "Coefficient"
+msgstr "المعامل"
+
+msgid "Estimate"
+msgstr "التقدير"
+
+msgid "SE"
+msgstr "الخطأ المعياري (SE)"
+
+msgid "Lower"
+msgstr "الحد الأدنى"
+
+msgid "Upper"
+msgstr "الحد الأعلى"
+
+msgid "Check one of the coefficients to start the analysis."
+msgstr "حدد أحد المعاملات لبدء التحليل."
+
+msgid "%s%% CI"
+msgstr "فترة الثقة %s%%"
+
+msgid "%s requires a common ordinal scale, but the declared category orders of the raters are contradictory or do not determine a unique order. Ensure all raters use the same ordered categories."
+msgstr ""
+"يتطلب %s مقياسًا رتبيًا مشتركًا، لكن ترتيب فئات المقيّمين المعلن متناقض أو لا "
+"يحدد ترتيبًا فريدًا. تأكد من استخدام جميع المقيّمين الفئات المرتبة نفسها."
+
+msgid "With raters in rows, all subject/item columns must have the same measurement type. The data mix categorical and continuous columns; change the column types so they match."
+msgstr ""
+"عند وضع المقيّمين في الصفوف، يجب أن تتطابق أنواع قياس جميع أعمدة الأفراد/"
+"الفقرات. تتضمن البيانات أعمدة فئوية وأخرى مستمرة؛ غيّر أنواع الأعمدة لتتطابق."
+
+msgid "Krippendorff's alpha requires at least 2 raters/measurements."
+msgstr "يتطلب ألفا لكريبندورف مقيّمين/قياسين على الأقل."
+
+msgid "Krippendorff's alpha with an interval or ratio method requires numeric ratings. Use the nominal or ordinal method, or recode the data."
+msgstr ""
+"يتطلب ألفا لكريبندورف بطريقة القياس الفتري أو النسبي تقديرات عددية. استخدم "
+"الطريقة الاسمية أو الرتبية، أو أعد ترميز البيانات."
+
+msgid "Krippendorff's alpha with the ratio method requires non-negative ratings."
+msgstr "يتطلب ألفا لكريبندورف بطريقة القياس النسبي تقديرات غير سالبة."
+
+msgid "Krippendorff's alpha with the ordinal method"
+msgstr "ألفا كريبندورف بالطريقة الرتبية"
+
+msgid "Krippendorff's alpha cannot be computed: the data contain infinite values."
+msgstr "لا يمكن حساب ألفا لكريبندورف: تحتوي البيانات على قيم لا نهائية."
+
+msgid "Krippendorff's alpha cannot be computed: no subject/item was rated by at least 2 raters (no pairable observations)."
+msgstr ""
+"تعذر حساب ألفا لكريبندورف: لم يُقيَّم أي فرد/فقرة بواسطة مقيّمين اثنين على الأقل "
+"(لا توجد مشاهدات قابلة للإقران)."
+
+msgid "Krippendorff's alpha is not estimable: the pairable ratings do not vary."
+msgstr ""
+"لا يمكن تقدير ألفا لكريبندورف: لا يوجد تباين في التقديرات القابلة للإقران."
+
+msgid "Cohen's kappa"
+msgstr "كابا كوهين"
+
+msgid "Cohen's kappa: chance-corrected agreement between exactly two raters. Ranges from -1 (worse than chance) to 1 (perfect agreement)."
+msgstr ""
+"كابا لكوهين: اتفاق مصحح لأثر الصدفة بين مقيّمين اثنين بالضبط. يتراوح من -1 "
+"(أسوأ من الصدفة) إلى 1 (اتفاق تام)."
+
+msgid "Ratings"
+msgstr "التقييمات"
+
+msgid "kappa"
+msgstr "كابا"
+
+msgid "Cohen's kappa requires nominal or ordinal variables. Remove scale variables or change their type."
+msgstr ""
+"تتطلب كابا لكوهين متغيرات اسمية أو رتبية. أزل المتغيرات الكمية أو غيّر نوعها."
+
+msgid "Weighted Cohen's kappa requires ordinal variables. Remove nominal variables or change their type."
+msgstr ""
+"تتطلب كابا لكوهين المرجحة متغيرات رتبية. أزل المتغيرات الاسمية أو غيّر نوعها."
+
+msgid "Cohen's kappa requires at least 2 raters/measurements."
+msgstr "يتطلب كابا كوهين ما لا يقل عن 2 من المقيّمين/القياسات."
+
+msgid "Weighted Cohen's kappa"
+msgstr "كابا كوهين الموزون"
+
+msgid "fewer than 3 jointly rated subjects/items"
+msgstr "أقل من 3 مفحوصين/بنود خضعوا لتقييم مشترك"
+
+msgid "the ratings do not vary"
+msgstr "لا تختلف التقييمات"
+
+msgid "the coefficient is not estimable"
+msgstr "لا يمكن تقدير المعامل"
+
+msgid "Cohen's kappa could not be computed for any rater pair: %s."
+msgstr "تعذّر حساب كابا كوهين لأي زوج من المقيّمين: %s."
+
+msgid "Some rater pairs could not be computed:"
+msgstr "تعذّر إجراء الحساب لبعض أزواج المقيّمين:"
+
+msgid ". They are excluded from the average kappa."
+msgstr ". تُستبعد هذه الحالات من متوسط كابا."
+
+msgid "Note:"
+msgstr "ملاحظة:"
+
+msgid "%1$i subjects/items and %2$i raters/measurements."
+msgstr "عدد المفحوصين/البنود: %1$i، وعدد المقيّمين/القياسات: %2$i."
+
+msgid "%1$s Based on pairwise complete cases."
+msgstr "%1$s استنادًا إلى الحالات المكتملة لكل زوج من المتغيرات."
+
+msgid "n"
+msgstr "n"
+
+msgid "Confidence intervals are asymptotic."
+msgstr "فترات الثقة تقاربية."
+
+msgid "If there are only 2 levels, weighted kappa is equal to unweighted kappa."
+msgstr "عند وجود مستويين فقط، تساوي كابا المرجحة كابا غير المرجحة."
+
+msgid "Cohen's kappa requires at least 3 subjects/items."
+msgstr "يتطلب كابا كوهين ما لا يقل عن 3 من المفحوصين/البنود."
+
+msgid "Fleiss' kappa"
+msgstr "كابا فلايس"
+
+msgid "Fleiss' kappa: generalization of Cohen's kappa for two or more raters assigning subjects to nominal categories."
+msgstr ""
+"كابا لفلايس: تعميم لكابا لكوهين لمقيّمين اثنين أو أكثر يصنفون الأفراد في فئات "
+"اسمية."
+
+msgid "Fleiss' kappa requires nominal or ordinal variables. Remove scale variables or change their type."
+msgstr ""
+"تتطلب كابا لفلايس متغيرات اسمية أو رتبية. أزل المتغيرات الكمية أو غيّر نوعها."
+
+msgid "Fleiss' kappa requires at least 2 raters/measurements."
+msgstr "يتطلب كابا فلايس ما لا يقل عن 2 من المقيّمين/القياسات."
+
+msgid "Fleiss' kappa requires at least 3 complete subjects/items (rows without missing ratings). Check whether raters are in columns or rows."
+msgstr ""
+"تتطلب كابا لفلايس 3 أفراد/فقرات مكتملة على الأقل (صفوفًا بلا تقديرات مفقودة). "
+"تحقق من ترتيب المقيّمين في الأعمدة أو الصفوف."
+
+msgid "Fleiss' kappa is not estimable: all ratings fall into a single category."
+msgstr "يتعذّر تقدير كابا فلايس: جميع التقييمات تقع في فئة واحدة."
+
+msgid "%1$s Based on listwise complete cases."
+msgstr "%1$s استنادًا إلى الحالات المكتملة في جميع المتغيرات."
+
+msgid "Krippendorff's alpha"
+msgstr "ألفا كريبندورف"
+
+msgid "Krippendorff's alpha: reliability coefficient applicable to any number of raters, any scale level (nominal/ordinal/interval/ratio), and incomplete data."
+msgstr ""
+"ألفا لكريبندورف: معامل ثبات يناسب أي عدد من المقيّمين، وأي مستوى قياس (اسمي/"
+"رتبي/فتري/نسبي)، والبيانات غير المكتملة."
+
+msgid "Method"
+msgstr "الطريقة"
+
+msgid "Krippendorff's alpha is not estimable for these data."
+msgstr "لا يمكن تقدير ألفا لكريبندورف لهذه البيانات."
+
+msgid "%1$i of %2$i bootstrap samples could not be computed and were excluded from the CI."
+msgstr "تعذّر حساب %1$i من أصل %2$i عينة بوتستراب، فاستُبعدت من فترة الثقة."
+
+msgid "Kendall's W"
+msgstr "معامل W لكندال"
+
+msgid "Kendall's coefficient of concordance W: measures agreement of rankings across multiple raters. Ranges from 0 (no agreement) to 1 (perfect concordance). Significance is assessed with the large-sample chi-square test and the F test, which performs better for small samples."
+msgstr ""
+"معامل التوافق W لكندال: يقيس اتفاق الرتب بين مقيّمين متعددين. يتراوح من 0 "
+"(انعدام الاتفاق) إلى 1 (اتفاق تام). تُقيَّم الدلالة باختبار كاي تربيع للعينات "
+"الكبيرة واختبار F، الذي يقدم أداءً أفضل للعينات الصغيرة."
+
+msgid "Chi-square test"
+msgstr "اختبار كاي تربيع"
+
+msgid "F test"
+msgstr "اختبار F"
+
+msgid "Kendall's W requires ordinal or scale variables. Remove nominal variables."
+msgstr "يتطلب W لكندال متغيرات رتبية أو كمية. أزل المتغيرات الاسمية."
+
+msgid "Kendall's W requires at least 2 raters/measurements."
+msgstr "يتطلب W لكندال مقيّمين/قياسين على الأقل."
+
+msgid "Kendall's W requires at least 2 complete subjects/items (rows without missing ratings)."
+msgstr ""
+"يتطلب W لكندال فردين/فقرتين مكتملين على الأقل (صفوفًا بلا تقديرات مفقودة)."
+
+msgid "Kendall's W cannot be computed: the data contain infinite values."
+msgstr "لا يمكن حساب W لـ كندال: البيانات تحتوي على قيم لا نهائية."
+
+msgid "Kendall's W is not estimable: the rankings do not vary."
+msgstr "لا يمكن تقدير W لكندال: لا يوجد تباين في الرتب."
+
+msgid "Bootstrap CIs are only available with the tie correction enabled: resampling with replacement introduces ties, which distort the uncorrected coefficient."
+msgstr ""
+"فترات الثقة بالبوتستراب متاحة فقط عند تفعيل تصحيح التعادلات: إعادة المعاينة "
+"بالإرجاع تُنشئ تعادلات تشوّه المعامل غير المصحح."
+
+msgid "Confidence intervals are based on bootstrap."
+msgstr "تستند فترات الثقة إلى إعادة المعاينة بطريقة بوتستراب."
+
+msgid "Chi-square test is valid for large samples only."
+msgstr "اختبار كاي تربيع صالح للعينات الكبيرة فقط."
+
+msgid "The F test is undefined for perfect concordance (W = 1)."
+msgstr "اختبار F غير معرّف للتطابق الكامل (W = 1)."
+
+msgid "The F test is not available for this design: it requires n - 1 - 2/m > 0 (n = subjects/items, m = raters)."
+msgstr ""
+"اختبار F غير متاح لهذا التصميم: يتطلب n - 1 - 2/m > 0 (حيث n = الأفراد/الفقرات"
+"، وm = المقيّمون)."
+
+msgid "Ties are present in the ratings, so the uncorrected coefficient may be inaccurate. Consider enabling the tie correction."
+msgstr ""
+"توجد قيم متعادلة في التقديرات، لذا قد يكون المعامل غير المصحح غير دقيق. انظر "
+"في تفعيل تصحيح التعادلات."
+
+msgid "Warning:"
+msgstr "تحذير:"
+
+msgid "Posterior mean"
+msgstr "المتوسط البعدي"
+
+msgid "%s requires at least 2 raters/measurements."
+msgstr "يتطلب %s ما لا يقل عن 2 من المقيّمين/القياسات."
+
+msgid "Fleiss' kappa: chance-corrected agreement with the category proportions pooled over both raters of a pair, for raters that are interchangeable (e.g., different raters per subject). Summarized by the posterior mean and credible interval."
+msgstr ""
+"كابا لفلايس: اتفاق مصحح لأثر الصدفة بنسب فئات مجمّعة عبر مقيّمَي كل زوج، للمقيّمين "
+"القابلين للتبادل (مثل مقيّمين مختلفين لكل فرد). يُلخَّص بالمتوسط البعدي وفترة "
+"المصداقية."
+
+msgid "Cohen's kappa: chance-corrected agreement between two raters, with each rater's own category proportions. Summarized by the posterior mean and credible interval."
+msgstr ""
+"كابا لكوهين: اتفاق مصحح لأثر الصدفة بين مقيّمين، باستخدام نسب الفئات الخاصة "
+"بكل منهما. يُلخَّص بالمتوسط البعدي وفترة المصداقية."
+
+msgid "%1$s could not be computed for any rater pair: %2$s."
+msgstr "تعذّر حساب %1$s لأي زوج من المقيّمين: %2$s."
+
+msgid "%s%% Credible Interval"
+msgstr "فترة المصداقية %s%%"
+
+msgid "Observed agreement"
+msgstr "الاتفاق المشاهد"
+
+msgid "Chance agreement"
+msgstr "الاتفاق بالصدفة"
+
+msgid "Dirichlet prior with concentration %1$s on each cell of a pair's agreement table; %2$i posterior samples."
+msgstr ""
+"توزيع ديريشليه قبلي بمعلمة تركيز %1$s لكل خلية من جدول اتفاق الزوج؛ وعدد "
+"العينات البعدية %2$i."
+
+msgid "Credible intervals are highest posterior density intervals."
+msgstr "فترات المصداقية هي فترات الكثافة البعدية الأعلى."
+
+msgid "Chance agreement uses the category proportions pooled over both raters; for two raters this equals Fleiss' kappa and Scott's pi."
+msgstr ""
+"يُحسب الاتفاق المتوقع بالصدفة باستخدام نسب الفئات المجمّعة عبر المقيّمين؛ وعند "
+"وجود مقيّمين اثنين، يطابق المعامل الناتج كابا لفلايس ومعامل بي لسكوت."
+
+msgid "%i posterior samples with undefined kappa (all probability on a single category) were excluded."
+msgstr ""
+"استُبعدت %i من العينات البعدية التي لم تُعرَّف فيها كابا (لتركز الاحتمال كله في "
+"فئة واحدة)."
+
+msgid "Posterior Distribution: %s"
+msgstr "التوزيع البعدي: %s"
+
+msgid "The posterior samples do not vary, so their density cannot be plotted."
+msgstr "العينات البعدية لا تتباين، لذا لا يمكن تخطيط كثافتها."
+
+msgid "Density"
+msgstr "الكثافة"
+
+msgid "McDonald's ωₜ"
+msgstr "ωₜ لماكدونالد"
+
+msgid "McDonald's ωₕ"
+msgstr "ωₕ لماكدونالد"
+
+msgid "McDonald's ωₕ is shown only for the second-order and bi-factor models, not the correlated-factors model."
+msgstr ""
+"يُعرض ωₕ لماكدونالد لنموذج الرتبة الثانية ونموذج العامل العام والعوامل الخاصة "
+"فقط، دون نموذج العوامل المترابطة."
+
+msgid "McDonald's ωₕ is not reported because it is not identified with only two group factors: the loadings of the general factor are determined only up to their product, so the data carry no information about it. Assign the items to at least three group factors, or choose the bi-factor model. McDonald's ωₜ is unaffected."
+msgstr ""
+"لا يُعرض ωₕ لماكدونالد لأنه غير قابل للتعيين عند وجود عاملَي مجموعة فقط؛ فلا "
+"تتحدد تشبعات العامل العام إلا حتى حاصل ضربها، ولا تحمل البيانات معلومات كافية "
+"عنه. أسند الفقرات إلى ثلاثة عوامل مجموعات على الأقل، أو اختر نموذج العامل "
+"العام والعوامل الخاصة. لا يتأثر ωₜ لماكدونالد."
+
+msgid "The bi-factor model does not support items that load on more than one factor. Assign each item to a single factor, or select the second-order or correlated-factors model."
+msgstr ""
+"لا يدعم نموذج العامل العام والعوامل الخاصة فقرات تتشبع على أكثر من عامل خاص "
+"واحد. أسند كل فقرة إلى عامل واحد، أو اختر نموذج الدرجة الثانية أو نموذج "
+"العوامل المترابطة."
+
+msgid "Sampling the posterior distribution of the omega coefficients"
+msgstr "سحب عينات من التوزيع البعدي لمعاملات أوميغا"
+
+msgid "Bayesian Scale Reliability Statistics"
+msgstr "إحصاءات الثبات البايزي للمقياس"
+
+msgid "Posterior median"
+msgstr "الوسيط البعدي"
+
+msgid "R-hat"
+msgstr "R-hat"
+
+msgid "Please assign at least two factors with at least two items each."
+msgstr "يرجى تحديد عاملين على الأقل، مع فقرتين على الأقل لكل عامل."
+
+msgid "Average interitem correlation"
+msgstr "متوسط الارتباط بين الفقرات"
+
+msgid "Mean"
+msgstr "المتوسط"
+
+msgid "SD"
+msgstr "الانحراف المعياري (SD)"
+
+msgid "Bayesian Individual Item Reliability Statistics"
+msgstr "إحصاءات ثبات كل فقرة بالتقدير البايزي"
+
+msgid "Item"
+msgstr "الفقرة"
+
+msgid "McDonald's ωₜ (if item dropped)"
+msgstr "ωₜ لماكدونالد (عند حذف الفقرة)"
+
+msgid "McDonald's ωₕ (if item dropped)"
+msgstr "ωₕ لماكدونالد (عند حذف الفقرة)"
+
+msgid "Item-rest correlation"
+msgstr "ارتباط الفقرة ببقية الفقرات"
+
+msgid "Empty cells indicate that dropping the item would leave a factor with fewer than two items."
+msgstr ""
+"تشير الخلايا الفارغة إلى أن حذف الفقرة سيترك عاملًا يتضمن أقل من فقرتين."
+
+msgid "Computing item statistics (refitting the model once per item)"
+msgstr "جارٍ حساب إحصاءات الفقرات (إعادة ملاءمة النموذج مرة لكل فقرة)"
+
+msgid "The bounds you entered have been rearranged in increasing order to provide meaningful results."
+msgstr "أُعيد ترتيب الحدود التي أدخلتها تصاعديًا للحصول على نتائج ذات معنى."
+
+msgid "Probability that Reliability Coefficient is Larger than %1$.2f and Smaller than %2$.2f"
+msgstr "احتمال أن يكون معامل الثبات أكبر من %1$.2f وأصغر من %2$.2f"
+
+msgid "Posterior"
+msgstr "بعدي"
+
+msgid "Probability"
+msgstr "الاحتمال"
+
+msgid "Fit Measures of the Factor Model"
+msgstr "مقاييس مطابقة نموذج العوامل"
+
+msgid "Point estimate"
+msgstr "التقدير النقطي"
+
+msgid "%s lower bound"
+msgstr "الحد الأدنى %s"
+
+msgid "%s upper bound"
+msgstr "الحد الأعلى %s"
+
+msgid "Relative to cutoff"
+msgstr "بالنسبة إلى القيمة الفاصلة"
+
+msgid "'Relative to cutoff' denotes the posterior probability that the B-RMSEA is smaller than the cutoff of %.2f."
+msgstr ""
+"يشير 'بالنسبة إلى القيمة الفاصلة' إلى الاحتمال البعدي بأن يكون B-RMSEA أصغر "
+"من القيمة الفاصلة %.2f."
+
+msgid "Posterior Plots"
+msgstr "مخططات التوزيع البعدي"
+
+msgid "Convergence Traceplot"
+msgstr "رسم تتبّع التقارب"
+
+msgid "Posterior Predictive Check"
+msgstr "فحص التنبؤ البعدي"
+
+msgid "Eigenvalue"
+msgstr "القيمة الذاتية"
+
+msgid "Eigenvalue No."
+msgstr "رقم القيمة الذاتية"
+
+msgid "Standard errors could not be computed for this model, so no confidence intervals are reported."
+msgstr "تعذر حساب الأخطاء المعيارية لهذا النموذج، لذا لا تُعرض فترات ثقة."
+
+msgid "Standard errors could not be computed, so no confidence intervals are reported. The factor model is probably not identified."
+msgstr ""
+"تعذر حساب الأخطاء المعيارية، لذا لا تُعرض فترات ثقة. يُحتمل أن النموذج العاملي "
+"غير قابل للتعيين."
+
+msgid "The factor model solution is inadmissible, for example because of a negative variance estimate. The coefficients may fall outside the interval [0, 1]."
+msgstr ""
+"حل النموذج العاملي غير مقبول، مثلًا بسبب تقدير تباين سالب. قد تقع المعاملات "
+"خارج الفترة [0, 1]."
+
+msgid "The factor model did not converge, so the coefficients cannot be interpreted. Consider a different model, or check the items assigned to each factor."
+msgstr ""
+"لم يتقارب النموذج العاملي، لذا لا يمكن تفسير المعاملات. انظر في نموذج آخر، أو "
+"تحقق من الفقرات المسندة لكل عامل."
+
+msgid "Bootstrapping the omega coefficients"
+msgstr "تطبيق البوتستراب على معاملات أوميغا"
+
+msgid "Frequentist Scale Reliability Statistics"
+msgstr "إحصاءات ثبات المقياس بالتقدير التكراري"
+
+msgid "%1$i of %2$i bootstrap samples did not converge and were excluded from the interval."
+msgstr "لم تتقارب %1$i من أصل %2$i عينة بوتستراب، فاستُبعدت من الفترة."
+
+msgid "Frequentist Individual Item Reliability Statistics"
+msgstr "إحصاءات ثبات كل فقرة بالتقدير التكراري"
+
+msgid "Empty cells indicate that the model could not be estimated without this item, for instance because a factor would be left with fewer than two items."
+msgstr ""
+"تشير الخلايا الفارغة إلى تعذر تقدير النموذج دون هذه الفقرة، مثل أن يُترك عامل "
+"يتضمن أقل من فقرتين."
+
+msgid "No confidence intervals are reported for the if-item-dropped coefficients."
+msgstr "لا تُعرض فترات الثقة للمعاملات المحسوبة عند حذف الفقرة."
+
+msgid "The factor model solution was inadmissible when dropping the following items: %s. These coefficients may fall outside the interval [0, 1]."
+msgstr ""
+"كان حل النموذج العاملي غير مقبول عند حذف الفقرات التالية: %s. قد تقع هذه "
+"المعاملات خارج الفترة [0, 1]."
+
+msgid "Fit measure"
+msgstr "مقياس المطابقة"
+
+msgid "Value"
+msgstr "القيمة"
+
+msgid "The fit measures could not be computed for this factor model."
+msgstr "تعذر حساب مقاييس المطابقة لهذا النموذج العاملي."
+
+msgid "χ²"
+msgstr "χ²"
+
+msgid "df"
+msgstr "درجات الحرية"
+
+msgid "p"
+msgstr "p"
+
+msgid "CFI"
+msgstr "CFI"
+
+msgid "TLI"
+msgstr "TLI"
+
+msgid "RMSEA"
+msgstr "RMSEA"
+
+msgid "RMSEA 90%% CI lower"
+msgstr "الحد السفلي لفترة الثقة 90%% لـRMSEA"
+
+msgid "RMSEA 90%% CI upper"
+msgstr "الحد العلوي لفترة الثقة 90%% لـRMSEA"
+
+msgid "RMSEA p-value"
+msgstr "قيمة p لـRMSEA"
+
+msgid "AIC"
+msgstr "AIC"
+
+msgid "BIC"
+msgstr "BIC"
+
+msgid "SRMR"
+msgstr "SRMR"
+
+msgid "SRMR 90%% CI lower"
+msgstr "الحد السفلي لفترة الثقة 90%% لـSRMR"
+
+msgid "SRMR 90%% CI upper"
+msgstr "الحد العلوي لفترة الثقة 90%% لـSRMR"
+
+msgid "SRMR p-value"
+msgstr "قيمة p لـSRMR"
+
+msgid "Standardized Factor Loadings"
+msgstr "التشبعات العاملية المعيارية"
+
+msgid "Item Loadings"
+msgstr "تشبعات الفقرات"
+
+msgid "General"
+msgstr "عام"
+
+msgid "Group Factor Loadings on the General Factor"
+msgstr "تشبعات عوامل المجموعات على العامل العام"
+
+msgid "Factor"
+msgstr "العامل"
+
+msgid "Loading"
+msgstr "التشبع"
+
+msgid "Split-half coefficient"
+msgstr "معامل التجزئة النصفية"
+
+msgid "Variance"
+msgstr "التباين"
+
+msgid "%1$s Of the observations, %2$1.f complete cases were used."
+msgstr "%1$s استُخدمت %2$1.f حالة مكتملة من المشاهدات."
+
+msgid "%s Of the observations, pairwise complete cases were used."
+msgstr "%s استُخدمت الحالات المكتملة زوجيًا من المشاهدات."
+
+msgid "Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
+msgstr ""
+"تعذّرت المعاينة من التوزيع البعدي لمصفوفة التغاير لأحد المعاملات [alpha, "
+"lambda2, lambda6, glb]. جرّب اختيار «استبعاد الحالات بالكامل» في «الخيارات "
+"المتقدمة»."
+
+msgid "Sampling the posterior covariance matrix for either one of [alpha, lambda2, lambda6, glb] failed."
+msgstr ""
+"فشل سحب عينات مصفوفة التباين والتغاير البعدية لأحد المعاملات [alpha, lambda2, "
+"lambda6, glb]."
+
+msgid "Sampling the posterior factor model for omega failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
+msgstr ""
+"فشل سحب عينات النموذج العاملي البعدي لأوميغا. جرّب اختيار 'استبعاد الحالات "
+"بالكامل' في 'الخيارات المتقدمة'"
+
+msgid "Sampling the posterior null model failed. Try changing to 'Exclude cases listwise' in 'Advanced Options'"
+msgstr ""
+"فشل سحب عينات النموذج الصفري البعدي. جرّب اختيار 'استبعاد الحالات بالكامل' في "
+"'الخيارات المتقدمة'"
+
+msgid "Bayesian posterior estimates and credible intervals for all selected scale reliability coefficients."
+msgstr ""
+"التقديرات البعدية البايزية وفترات المصداقية لجميع معاملات ثبات المقياس "
+"المحددة."
+
+msgid "Posterior %s"
+msgstr "بعدي %s"
+
+msgid "ESS"
+msgstr "ESS"
+
+msgid "Bayesian item-level reliability: posterior estimates of the scale coefficient if each item were dropped, and item-rest correlations."
+msgstr ""
+"الثبات البايزي على مستوى الفقرة: تقديرات بعدية لمعامل المقياس عند حذف كل فقرة"
+"، وارتباطات الفقرات ببقية المقياس."
+
+msgid "%s (if item dropped)"
+msgstr "%s (عند حذف الفقرة)"
+
+msgid "%s Please enter at least 3 variables for the if item dropped statistics."
+msgstr "%s يرجى إدخال ما لا يقل عن 3 متغيرات لحساب الإحصاءات عند حذف الفقرة."
+
+msgid "Posterior and prior probability that each reliability coefficient falls within the specified interval."
+msgstr "الاحتمالان البعدي والقبلي لوقوع كل معامل ثبات ضمن الفترة المحددة."
+
+msgid "Prior"
+msgstr "قبلي"
+
+msgid "Fit Measures for the Single-Factor Model"
+msgstr "مقاييس مطابقة نموذج العامل الواحد"
+
+msgid "Bayesian fit indices for the single-factor model underlying McDonald's omega."
+msgstr ""
+"مؤشرات المطابقة البايزية لنموذج العامل الواحد الذي يستند إليه أوميغا "
+"ماكدونالد."
+
+msgid "'Relative to cutoff'-row denotes the probability that the B-RMSEA is smaller than\n                         the corresponding cutoff and the probabilities that the B-CFI/TLI are larger than the\n                         corresponding cutoff."
+msgstr ""
+"يشير صف 'بالنسبة إلى القيمة الفاصلة' إلى احتمال أن يكون B-RMSEA أصغر من\n"
+"                         القيمة الفاصلة المقابلة، واحتمالي أن يكون B-CFI/TLI "
+"أكبر من\n"
+"                         القيمة الفاصلة المقابلة."
+
+msgid "Standardized Loadings of the Single-Factor Model"
+msgstr "التشبعات المعيارية لنموذج العامل الواحد"
+
+msgid "Posterior estimates of standardized factor loadings from the single-factor model."
+msgstr "التقديرات البعدية لتشبعات العوامل المعيارية من نموذج العامل الواحد."
+
+msgid "Standardized loading"
+msgstr "التشبع المعياري"
+
+msgid "Posterior density plots for each selected reliability coefficient, with optional prior overlay and shading of the posterior probability region; the credible interval is shown as a separate error bar."
+msgstr ""
+"مخططات الكثافة البعدية لكل معامل ثبات محدد، مع خيار إظهار القبلية متراكبةً "
+"وتظليل منطقة الاحتمال البعدي؛ تُعرض فترة المصداقية كشريط خطأ منفصل."
+
+msgid "If Item Dropped Posterior Plots"
+msgstr "الرسوم البعدية عند حذف الفقرة"
+
+msgid "Ridgeline plots showing the posterior distribution of each reliability coefficient when each item is dropped."
+msgstr ""
+"مخططات تلال الكثافة التي تعرض التوزيع البعدي لكل معامل ثبات عند حذف كل فقرة."
+
+msgid "Please enter at least 3 variables for the if item dropped plot"
+msgstr "يرجى إدخال 3 متغيرات على الأقل لرسم مخطط النتائج عند حذف الفقرة"
+
+msgid "KLD ordering failed because two variables have perfect correlation"
+msgstr "فشل الترتيب بطريقة KLD لوجود ارتباط تام بين متغيرين"
+
+msgid "Item Dropped"
+msgstr "عند حذف الفقرة"
+
+msgid "Posterior Predictive Check Omega"
+msgstr "فحص التنبؤ البعدي لأوميغا"
+
+msgid "Posterior predictive check: observed eigenvalues of the covariance matrix compared against the model-implied posterior distribution to assess single-factor model fit."
+msgstr ""
+"فحص تنبؤي بعدي: مقارنة القيم الذاتية المشاهدة لمصفوفة التباين والتغاير "
+"بالتوزيع البعدي الذي يقتضيه النموذج لتقييم مطابقة نموذج العامل الواحد."
+
+msgid "Traceplots of MCMC samples per chain over iterations to assess sampler convergence and mixing."
+msgstr ""
+"مخططات مسار عينات MCMC لكل سلسلة عبر التكرارات لتقييم تقارب خوارزمية أخذ "
+"العينات وامتزاجها."
+
+msgid "Iterations"
+msgstr "التكرارات الحسابية"
+
+msgid "%1$s%2$s"
+msgstr "%1$s%2$s"
+
+msgid "Omega calculation with CFA failed.\n                                                    Try changing to PFA in 'Advanced Options'."
+msgstr ""
+"فشل حساب أوميغا باستخدام CFA.\n"
+"                                                    جرّب التبديل إلى PFA في "
+"'الخيارات المتقدمة'."
+
+msgid "Omega bootstrapped interval calculation with CFA failed.\n                                                        Try changing to PFA in 'Advanced Options'."
+msgstr ""
+"فشل حساب فترة أوميغا بالبوتستراب باستخدام CFA.\n"
+"                                                        جرّب التبديل إلى PFA "
+"في 'الخيارات المتقدمة'."
+
+msgid "Omega calculation with PFA failed."
+msgstr "فشل حساب أوميغا مع PFA."
+
+msgid "The analytic confidence interval is not available for coefficient omega obtained with PFA. Change to 'Bootstrapped' in Advanced Options."
+msgstr ""
+"فترة الثقة التحليلية غير متاحة لمعامل أوميغا المحسوب باستخدام PFA. اختر "
+"'البوتستراب' في الخيارات المتقدمة."
+
+msgid "Omega interval calculation with PFA failed."
+msgstr "تعذر حساب فترة أوميغا باستخدام PFA."
+
+msgid "The analytic confidence interval is not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'."
+msgstr ""
+"لا تتاح فترة الثقة التحليلية للمعامل ألفا/لامبدا2 عند وجود قيم مفقودة واستخدام "
+"المشاهدات الكاملة على مستوى الأزواج. جرّب اختيار «الحذف الكامل للحالات» في «"
+"الخيارات المتقدمة»."
+
+msgid "The analytic confidence interval is not available for the average interitem correlation when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'."
+msgstr ""
+"لا تتاح فترة الثقة التحليلية لمتوسط الارتباط بين الفقرات عند وجود قيم مفقودة "
+"واستخدام المشاهدات الكاملة على مستوى الأزواج. جرّب اختيار «الحذف الكامل للحالات"
+"» في «الخيارات المتقدمة»."
+
+msgid "Omega item dropped statistics with CFA failed."
+msgstr "فشل حساب إحصاءات أوميغا عند حذف الفقرة باستخدام CFA."
+
+msgid "Omega item dropped statistics with PFA failed."
+msgstr "فشل حساب إحصاءات أوميغا عند حذف الفقرة باستخدام PFA."
+
+msgid "The analytic confidence interval not available for coefficient alpha/lambda2 when data contain missings and pairwise complete observations are used. Try changing to 'Delete listwise' within 'Advanced Options'."
+msgstr ""
+"لا تتاح فترة الثقة التحليلية للمعامل ألفا/لامبدا2 عند وجود قيم مفقودة واستخدام "
+"المشاهدات الكاملة على مستوى الأزواج. جرّب اختيار «الحذف الكامل للحالات» في «"
+"الخيارات المتقدمة»."
+
+msgid "Frequentist point estimates, standard errors, and confidence intervals for all selected scale reliability coefficients."
+msgstr ""
+"التقديرات النقطية التكرارية والأخطاء المعيارية وفترات الثقة لجميع معاملات ثبات "
+"المقياس المحددة."
+
+msgid "Std. Error"
+msgstr "الخطأ المعياري"
+
+msgid "Item-level reliability: for each item, the scale reliability coefficient if that item were dropped, and the item-rest correlation."
+msgstr ""
+"الثبات على مستوى الفقرة: معامل ثبات المقياس عند حذف كل فقرة، وارتباط الفقرة "
+"ببقية المقياس."
+
+msgid "Fit Measures of Single Factor Model Fit"
+msgstr "مقاييس مطابقة نموذج العامل الواحد"
+
+msgid "Fit indices of the single-factor model underlying McDonald's omega, including chi-square, RMSEA, and SRMR."
+msgstr ""
+"مؤشرات مطابقة نموذج العامل الواحد الذي يستند إليه أوميغا لماكدونالد، وتشمل "
+"كاي تربيع وRMSEA وSRMR."
+
+msgid "Standardized factor loadings from the single-factor model used to estimate McDonald's omega."
+msgstr ""
+"التشبعات العاملية المعيارية من نموذج العامل الواحد المستخدم لتقدير أوميغا "
+"لماكدونالد."
+
+msgid "Too few MCMC samples will remain after the removal of the burnin samples and thinning,\n                     please increase No.samples."
+msgstr ""
+"سيتبقى عدد قليل جدًا من عينات MCMC بعد استبعاد عينات التهيئة وتخفيف العينات،\n"
+"                     يرجى زيادة عدد العينات."
+
+msgid "%1$sVariables %2$s and %3$s correlated perfectly."
+msgstr "%1$sالمتغيران %2$s و%3$s مرتبطان ارتباطًا تامًا."
+
+msgid "Please enter at least 2 variables to do an analysis."
+msgstr "يرجى إدخال متغيرين على الأقل لإجراء التحليل."
+
+msgid "The following variables have labels that are not numbers: %1$s. The items must be numerically coded (e.g., 0/1 or 1-5). Please change the labels to numbers in the label editor of the Data tab, or recode the variables."
+msgstr ""
+"للمتغيرات الآتية تسميات غير عددية: %1$s. يجب ترميز الفقرات عدديًا (مثل 0/1 أو "
+"1-5). غيّر التسميات إلى أعداد في محرر التسميات ضمن تبويب البيانات، أو أعد "
+"ترميز المتغيرات."
+
+msgid "For the Lord generalized method, the test could not be split in equally sized parts with more than 1 item per part. Consider adding or removing items."
+msgstr ""
+"تعذر تقسيم الاختبار بطريقة لورد المعممة إلى أجزاء متساوية الحجم، بأكثر من "
+"فقرة لكل جزء. انظر في إضافة فقرات أو حذفها."
+
+msgid "%1$s (values %2$s)"
+msgstr "%1$s (القيم %2$s)"
+
+msgid "The binary items are not coded with the same two numbers: %1$s. Please use the same two numbers for all binary items (e.g., 0 and 1) in the label editor of the Data tab."
+msgstr ""
+"لم تُرمَّز الفقرات الثنائية بالعددين نفسيهما: %1$s. استخدم العددين نفسيهما "
+"لجميع الفقرات الثنائية (مثل 0 و1) في محرر التسميات ضمن تبويب البيانات."
+
+msgid "The items are dichotomous with the values %1$s and %2$s."
+msgstr "الفقرات ثنائية القيم، بالقيمتين %1$s و%2$s."
+
+msgid "The items are dichotomous with the values %1$s and %2$s; where the method needs 0/1 items, %1$s is treated as 0 and %2$s as 1."
+msgstr ""
+"الفقرات ثنائية القيم، بالقيمتين %1$s و%2$s؛ وعندما تتطلب الطريقة فقرات 0/1، "
+"تُعامل %1$s كـ 0 و%2$s كـ 1."
+
+msgid "The sum scores are computed from the item values as they are coded (observed values from %1$s to %2$s)."
+msgstr ""
+"تُحسب الدرجات الكلية من قيم الفقرات كما رُمّزت (قيم مشاهدة من %1$s إلى %2$s)."
+
+msgid "Standard error of measurement results for the selected methods."
+msgstr "نتائج الخطأ المعياري للقياس للطرق المحددة."
+
+msgid "The Lord, Keats, and Lord generalized method are only available for binary data."
+msgstr "طرق لورد وكيتس ولورد المعمّمة متاحة للبيانات الثنائية فقط."
+
+msgid "Standard Error of Measurement"
+msgstr "الخطأ المعياري للقياس"
+
+msgid "Conditional standard error of measurement (SEM) for each sum score using the selected method(s). The unconditional SEM is also shown."
+msgstr ""
+"الخطأ المعياري المشروط للقياس (SEM) لكل درجة كلية بالطرق المحددة. يُعرض أيضًا "
+"الخطأ المعياري غير المشروط للقياس."
+
+msgid "Sum Score"
+msgstr "مجموع الدرجات"
+
+msgid "Unconditional SEM"
+msgstr "الخطأ المعياري للقياس غير المشروط"
+
+msgid "Counts"
+msgstr "الأعداد"
+
+msgid "%1$s The unconditional SEM value equals %2$1.3f."
+msgstr "%1$s قيمة الخطأ المعياري للقياس غير المشروط تساوي %2$1.3f."
+
+msgid "%1$s Estimating the %2$s method failed. If possible, you might try changing the method's parameters."
+msgstr ""
+"%1$s فشل التقدير بطريقة %2$s. يمكنك محاولة تغيير معلمات الطريقة إن أمكن."
+
+msgid "%1$s A conditional SEM of zero means that no variation was observed within that score group, which typically happens at the lowest and highest possible sum score; it does not indicate perfect measurement precision."
+msgstr ""
+"%1$s تعني قيمة صفر للخطأ المعياري المشروط للقياس عدم مشاهدة تباين داخل "
+"مجموعة الدرجات تلك، وهو شائع عند أدنى وأعلى درجة كلية ممكنة؛ ولا تعني دقة "
+"قياس تامة."
+
+msgid "Sum Score CI Table"
+msgstr "جدول فترات الثقة لمجموع الدرجات"
+
+msgid "Confidence intervals for the true score at each sum score level, computed from the conditional SEM."
+msgstr ""
+"فترات الثقة للدرجة الحقيقية عند كل مستوى من الدرجة الكلية، محسوبة من الخطأ "
+"المعياري المشروط للقياس."
+
+msgid "Estimating the %s method failed. If possible, you might try changing the method's parameters."
+msgstr "فشل التقدير بطريقة %s. يمكنك محاولة تغيير معلمات الطريقة إن أمكن."
+
+msgid "No confidence interval is reported where the conditional SEM equals zero."
+msgstr "لا تُعرض فترة ثقة عندما يساوي الخطأ المعياري المشروط للقياس صفرًا."
+
+msgid "Histogram of Counts per Sum Score Group"
+msgstr "مدرج تكراري للتكرارات حسب مجموع الدرجات"
+
+msgid "Distribution of participants across sum score groups."
+msgstr "توزيع المشاركين عبر مجموعات مجموع الدرجات."
+
+msgid "Point Plots"
+msgstr "رسوم النقاط"
+
+msgid "Conditional SEM plotted as a function of sum score for each selected method."
+msgstr "رسم الخطأ المعياري للقياس المشروط بدلالة مجموع الدرجات لكل طريقة محددة."
+
+msgid "SEM"
+msgstr "SEM"
+
+msgid "Combined Plot"
+msgstr "رسم مدمج"
+
+msgid "Overlay of all selected methods' conditional SEM across the full range of sum scores."
+msgstr ""
+"إظهار الخطأ المعياري المشروط للقياس لجميع الطرق المحددة متراكبًا عبر النطاق "
+"الكامل للدرجات الكلية."
+
+msgid "Sum Score CI Plots"
+msgstr "رسوم فترات الثقة لمجموع الدرجات"
+
+msgid "True-score confidence interval plotted against sum score for each selected method."
+msgstr "رسم فترة الثقة للدرجة الحقيقية مقابل الدرجة الكلية لكل طريقة محددة."
+
+msgid "True Score Estimate"
+msgstr "تقدير الدرجة الحقيقية"
+
+msgid "The following item correlated negatively with the scale: %s. "
+msgid_plural "The following items correlated negatively with the scale: %s. "
+msgstr[0] "الفقرات المرتبطة بالمقياس ارتباطًا سالبًا: %s. "
+msgstr[1] "الفقرة المرتبطة بالمقياس ارتباطًا سالبًا: %s. "
+msgstr[2] "الفقرتان المرتبطتان بالمقياس ارتباطًا سالبًا: %s. "
+msgstr[3] "الفقرات المرتبطة بالمقياس ارتباطًا سالبًا: %s. "
+msgstr[4] "الفقرات المرتبطة بالمقياس ارتباطًا سالبًا: %s. "
+msgstr[5] "الفقرات المرتبطة بالمقياس ارتباطًا سالبًا: %s. "
+
+msgid "The following item was reverse scaled: %s. "
+msgid_plural "The following items were reverse scaled: %s. "
+msgstr[0] "الفقرات التي عُكس ترميزها: %s. "
+msgstr[1] "الفقرة التي عُكس ترميزها: %s. "
+msgstr[2] "الفقرتان اللتان عُكس ترميزهما: %s. "
+msgstr[3] "الفقرات التي عُكس ترميزها: %s. "
+msgstr[4] "الفقرات التي عُكس ترميزها: %s. "
+msgstr[5] "الفقرات التي عُكس ترميزها: %s. "

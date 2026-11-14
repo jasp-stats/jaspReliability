@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspReliability 0.1.0\n"
 "POT-Creation-Date: 2026-11-07 03:27\n"
-"PO-Revision-Date: 2026-10-18 03:51+0000\n"
+"PO-Revision-Date: 2026-11-08 05:51+0000\n"
 "Last-Translator: Koji Kosugi <kosugitti@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspreliability-r/ja/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.11.dev0\n"
+"X-Generator: Weblate 2026.11.2.dev0\n"
 
 msgid "Bland-Altman Plots"
 msgstr "Bland-Altman プロット"
@@ -235,13 +235,13 @@ msgid "the coefficient is not estimable"
 msgstr "係数を推定できません"
 
 msgid "Cohen's kappa could not be computed for any rater pair: %s."
-msgstr "どの評定者の対についても Cohen's kappa を計算できませんでした: %s。"
+msgstr "どの評定者の対についても コーエンのκ を計算できませんでした: %s。"
 
 msgid "Some rater pairs could not be computed:"
 msgstr "一部の評定者の対では計算できませんでした:"
 
 msgid ". They are excluded from the average kappa."
-msgstr "。これらは平均のkappaから除かれています。"
+msgstr "。これらは平均のκから除かれています。"
 
 msgid "Note:"
 msgstr "注:"
@@ -263,7 +263,7 @@ msgid ""
 msgstr "もし2水準しかないならば、重み付けカッパと重み無しカッパは等しくなる。"
 
 msgid "Cohen's kappa requires at least 3 subjects/items."
-msgstr "Cohen's kappa には少なくとも3件の対象・項目が必要です。"
+msgstr "コーエンのκ には少なくとも3件の対象・項目が必要です。"
 
 msgid "Fleiss' kappa"
 msgstr "フライスのκ"
@@ -399,9 +399,8 @@ msgstr "警告:"
 msgid "Posterior mean"
 msgstr "事後平均"
 
-#, fuzzy
 msgid "%s requires at least 2 raters/measurements."
-msgstr "ケンドールのWには、少なくとも2名の評定者/測定が必要です。"
+msgstr "%s には、少なくとも2名の評定者/測定が必要です。"
 
 msgid ""
 "Fleiss' kappa: chance-corrected agreement with the category proportions "
@@ -409,53 +408,59 @@ msgid ""
 "(e.g., different raters per subject). Summarized by the posterior mean and "
 "credible interval."
 msgstr ""
+"フライスのκ: 対の両方の評定者でプールしたカテゴリの比率を使う、偶然を補正した"
+"一致です。評定者が交換可能な場合(たとえば対象ごとに評定者が異なる場合)に使い"
+"ます。事後平均と信用区間で要約します。"
 
-#, fuzzy
 msgid ""
 "Cohen's kappa: chance-corrected agreement between two raters, with each "
 "rater's own category proportions. Summarized by the posterior mean and "
 "credible interval."
 msgstr ""
-"Cohen's kappa: ちょうど2人の評定者の間の、偶然を補正した一致です。-1(偶然より"
-"悪い)から1(完全に一致)までの値をとります。"
+"コーエンのκ: 2人の評定者の間の、偶然を補正した一致です。各評定者自身の"
+"カテゴリの比率を使います。事後平均と信用区間で要約します。"
 
-#, fuzzy
 msgid "%1$s could not be computed for any rater pair: %2$s."
-msgstr "どの評定者の対についても Cohen's kappa を計算できませんでした: %s。"
+msgstr "どの評定者の対についても %1$s を計算できませんでした: %2$s。"
 
 msgid "%s%% Credible Interval"
-msgstr ""
+msgstr "%s%% 信用区間"
 
 msgid "Observed agreement"
-msgstr ""
+msgstr "観測一致率"
 
 msgid "Chance agreement"
-msgstr ""
+msgstr "偶然一致率"
 
 msgid ""
 "Dirichlet prior with concentration %1$s on each cell of a pair's agreement "
 "table; %2$i posterior samples."
 msgstr ""
+"対の一致表の各セルに集中度 %1$s のディリクレ事前分布を置いています。事後"
+"サンプル数は %2$i です。"
 
 msgid "Credible intervals are highest posterior density intervals."
-msgstr ""
+msgstr "信用区間は最高事後密度区間です。"
 
 msgid ""
 "Chance agreement uses the category proportions pooled over both raters; for "
 "two raters this equals Fleiss' kappa and Scott's pi."
 msgstr ""
+"偶然一致率は、両方の評定者でプールしたカテゴリの比率を使って求めます。評定者"
+"が2人の場合は フライスのκ や Scott's pi と等しくなります。"
 
 msgid ""
 "%i posterior samples with undefined kappa (all probability on a single "
 "category) were excluded."
 msgstr ""
+"カッパが定義できない事後サンプル(すべての確率が1つのカテゴリに集中したもの) "
+"%i 個を除きました。"
 
-#, fuzzy
 msgid "Posterior Distribution: %s"
-msgstr "事後%s"
+msgstr "事後分布: %s"
 
 msgid "The posterior samples do not vary, so their density cannot be plotted."
-msgstr ""
+msgstr "事後サンプルが変動しないため、密度をプロットできません。"
 
 msgid "Density"
 msgstr "密度"
@@ -480,6 +485,10 @@ msgid ""
 "to at least three group factors, or choose the bi-factor model. McDonald's "
 "ωₜ is unaffected."
 msgstr ""
+"群因子が2つだけでは識別されないため、マクドナルドのωₕは報告しません。一般因子"
+"の負荷量はその積までしか定まらず、データはそれについての情報をもちません。項"
+"目を3つ以上の群因子に割り当てるか、双因子モデルを選んでください。マクドナルド"
+"のωₜには影響しません。"
 
 msgid ""
 "The bi-factor model does not support items that load on more than one "
@@ -594,58 +603,61 @@ msgstr "固有値 No。"
 msgid ""
 "Standard errors could not be computed for this model, so no confidence "
 "intervals are reported."
-msgstr ""
+msgstr "このモデルでは標準誤差を計算できなかったため、信頼区間を報告しません。"
 
 msgid ""
 "Standard errors could not be computed, so no confidence intervals are "
 "reported. The factor model is probably not identified."
 msgstr ""
+"標準誤差を計算できなかったため、信頼区間を報告しません。因子モデルが識別され"
+"ていない可能性があります。"
 
 msgid ""
 "The factor model solution is inadmissible, for example because of a negative "
 "variance estimate. The coefficients may fall outside the interval [0, 1]."
 msgstr ""
+"因子モデルの解が不適解です(たとえば分散の推定値が負になっています)。係数が区"
+"間 [0, 1] の外に出ることがあります。"
 
 msgid ""
 "The factor model did not converge, so the coefficients cannot be "
 "interpreted. Consider a different model, or check the items assigned to each "
 "factor."
 msgstr ""
+"因子モデルが収束しなかったため、係数を解釈できません。別のモデルを検討するか"
+"、各因子に割り当てた項目を確認してください。"
 
-#, fuzzy
 msgid "Bootstrapping the omega coefficients"
-msgstr "オメガ係数の事後分布をサンプリングしています"
+msgstr "オメガ係数をブートストラップしています"
 
 msgid "Frequentist Scale Reliability Statistics"
 msgstr "頻度論的尺度信頼性統計"
 
-#, fuzzy
 msgid ""
 "%1$i of %2$i bootstrap samples did not converge and were excluded from the "
 "interval."
-msgstr ""
-"%2$i 個のブートストラップ標本のうち %1$i 個が計算できず、信頼区間から除かれま"
-"した。"
+msgstr "%2$i 個のブートストラップ標本のうち %1$i 個が収束せず、区間から除かれました。"
 
 msgid "Frequentist Individual Item Reliability Statistics"
 msgstr "頻度論的個別項目信頼性統計"
 
-#, fuzzy
 msgid ""
 "Empty cells indicate that the model could not be estimated without this "
 "item, for instance because a factor would be left with fewer than two items."
 msgstr ""
-"空欄は、その項目を除くと因子に含まれる項目が2つ未満になることを示します。"
+"空欄は、その項目を除くとモデルを推定できなかったことを示します。たとえば、因"
+"子に含まれる項目が2つ未満になる場合です。"
 
-#, fuzzy
 msgid ""
 "No confidence intervals are reported for the if-item-dropped coefficients."
-msgstr "条件つきSEMが0のところでは信頼区間を報告しません。"
+msgstr "項目を除いた場合の係数については、信頼区間を報告しません。"
 
 msgid ""
 "The factor model solution was inadmissible when dropping the following "
 "items: %s. These coefficients may fall outside the interval [0, 1]."
 msgstr ""
+"次の項目を除いたときに因子モデルの解が不適解になりました: %s。これらの係数は"
+"区間 [0, 1] の外に出ることがあります。"
 
 msgid "Fit measure"
 msgstr "適合度指標"
@@ -653,73 +665,71 @@ msgstr "適合度指標"
 msgid "Value"
 msgstr "値"
 
-#, fuzzy
 msgid "The fit measures could not be computed for this factor model."
-msgstr "どの評定者の対についても Cohen's kappa を計算できませんでした: %s。"
+msgstr "この因子モデルについては、適合度指標を計算できませんでした。"
 
 msgid "χ²"
-msgstr ""
+msgstr "χ²"
 
 msgid "df"
-msgstr ""
+msgstr "df"
 
 msgid "p"
-msgstr ""
+msgstr "p"
 
 msgid "CFI"
-msgstr ""
+msgstr "CFI"
 
 msgid "TLI"
-msgstr ""
+msgstr "TLI"
 
 msgid "RMSEA"
-msgstr ""
+msgstr "RMSEA"
 
 msgid "RMSEA 90%% CI lower"
-msgstr ""
+msgstr "RMSEA 90%% CI 下限"
 
 msgid "RMSEA 90%% CI upper"
-msgstr ""
+msgstr "RMSEA 90%% CI 上限"
 
 msgid "RMSEA p-value"
-msgstr ""
+msgstr "RMSEA のp 値"
 
 msgid "AIC"
-msgstr ""
+msgstr "AIC"
 
 msgid "BIC"
-msgstr ""
+msgstr "BIC"
 
 msgid "SRMR"
-msgstr ""
+msgstr "SRMR"
 
 msgid "SRMR 90%% CI lower"
-msgstr ""
+msgstr "SRMR 90%% CI 下限"
 
 msgid "SRMR 90%% CI upper"
-msgstr ""
+msgstr "SRMR 90%% CI 上限"
 
 msgid "SRMR p-value"
-msgstr ""
+msgstr "SRMR のp 値"
 
-#, fuzzy
 msgid "Standardized Factor Loadings"
-msgstr "標準化負荷量"
+msgstr "標準化因子負荷量"
 
 msgid "Item Loadings"
-msgstr ""
+msgstr "項目の負荷量"
 
 msgid "General"
-msgstr ""
+msgstr "一般因子"
 
 msgid "Group Factor Loadings on the General Factor"
-msgstr ""
+msgstr "一般因子に対する群因子の負荷量"
 
 msgid "Factor"
-msgstr ""
+msgstr "因子"
 
 msgid "Loading"
-msgstr ""
+msgstr "負荷量"
 
 msgid "Split-half coefficient"
 msgstr "折半係数"
