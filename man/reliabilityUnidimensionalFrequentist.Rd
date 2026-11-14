@@ -12,7 +12,7 @@ reliabilityUnidimensionalFrequentist(
   bootstrapType = "nonParametric",
   ciLevel = 0.95,
   coefficientType = "unstandardized",
-  hiddenScaleThreshold = 0,
+  hiddenScaleThreshold = 10,
   intervalMethod = "analytic",
   intervalMethodVar = "chisq",
   itemCiLevel = 0.95,
