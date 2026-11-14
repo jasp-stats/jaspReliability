@@ -6,6 +6,12 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Language: ja\n"
 "X-Qt-Contexts: true\n"
+"PO-Revision-Date: 2026-11-08 05:51+0000\n"
+"Last-Translator: Koji Kosugi <kosugitti@users.noreply.hosted.weblate.org>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
+"jaspreliability-qml/ja/>\n"
+"Language: ja\n"
+"X-Generator: Weblate 2026.11.2.dev0\n"
 
 msgctxt "Description|"
 msgid "Reliability"
@@ -89,7 +95,7 @@ msgstr "変数"
 
 msgctxt "RaterAgreement|"
 msgid "Cohen's kappa"
-msgstr "Cohen's kappa"
+msgstr "コーエンのκ"
 
 msgctxt "RaterAgreement|"
 msgid "Unweighted"
@@ -101,7 +107,7 @@ msgstr "重み付け"
 
 msgctxt "RaterAgreement|"
 msgid "Fleiss' kappa"
-msgstr "Fleiss' kappa"
+msgstr "フライスのκ"
 
 msgctxt "RaterAgreement|"
 msgid "Krippendorff's alpha"
@@ -2138,7 +2144,7 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Bayesian Rater Agreement"
-msgstr ""
+msgstr "ベイズ評定者間の一致"
 
 msgctxt "RaterAgreementBayesian|"
 msgid ""
@@ -2148,78 +2154,71 @@ msgid ""
 "posterior, and Cohen's kappa or Fleiss' kappa is computed from every "
 "posterior draw (Calle-Alonso & Pérez Sánchez, 2015; Pfadt et al., 2026)."
 msgstr ""
+"ベイズ評定者間の一致は、対象を名義または順序のカテゴリに割り当てる評定者の間"
+"の、偶然を補正した一致を推定します。評定者の対ごとに、その対の一致表のセル確"
+"率にディリクレ事後分布を与え、事後分布からの各抽出から コーエンのκ または "
+"フライスのκ を計算します(Calle-Alonso & Pérez Sánchez, 2015; Pfadt et al., "
+"2026)。"
 
 msgctxt "RaterAgreementBayesian|"
 msgid "References"
-msgstr ""
+msgstr "文献"
 
 msgctxt "RaterAgreementBayesian|"
 msgid "R Packages"
-msgstr ""
+msgstr "Rパッケージ"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "All variables available in the dataset."
 msgstr "データセットで利用できるすべての変数です。"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "Variables"
 msgstr "変数"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid ""
 "Rating variables to include. Whether a variable represents a rater or a "
 "subject/item depends on the data structure setting."
 msgstr ""
-"含める評定用の変数です。変数が評定者を表すか、評定される対象・項目を表すか"
-"は、データの構造の設定によります。"
+"含める評定用の変数です。変数が評定者を表すか、評定される対象・項目を表すかは"
+"、データの構造の設定によります。"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "Data Structure"
 msgstr "データの構造"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid ""
 "Specify whether raters are arranged in columns (default) or rows in the "
 "dataset."
-msgstr ""
-"データセットで評定者が列に並んでいるか(既定)、行に並んでいるかを指定します。"
+msgstr "データセットで評定者が列に並んでいるか(既定)、行に並んでいるかを指定します。"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "Raters are in columns"
 msgstr "評定者が列"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid ""
 "Each column is one rater and each row is one subject or item being rated."
 msgstr "各列が1人の評定者、各行が評定される1つの対象または項目です。"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "Raters are in rows"
 msgstr "評定者が行"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid ""
 "Each row is one rater and each column is one subject or item being rated."
 msgstr "各行が1人の評定者、各列が評定される1つの対象または項目です。"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "Coefficients"
 msgstr "係数"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "Cohen's kappa"
-msgstr "Cohen's kappa"
+msgstr "コーエンのκ"
 
 msgctxt "RaterAgreementBayesian|"
 msgid ""
@@ -2227,8 +2226,10 @@ msgid ""
 "category proportions. Use it when the same raters rated every subject. With "
 "more than two raters, every rater pair gets its own posterior."
 msgstr ""
+"2人の評定者の間の、偶然を補正した一致です。各評定者自身のカテゴリの比率を使い"
+"ます。同じ評定者がすべての対象を評定した場合に使ってください。評定者が3人以上"
+"の場合は、評定者の対ごとに事後分布が求められます。"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid ""
 "Unweighted kappa treats all disagreements equally. Weighted kappa accounts "
@@ -2237,59 +2238,49 @@ msgstr ""
 "重みなしのkappaは、すべての不一致を同等に扱います。重み付きのkappaは不一致の"
 "程度を考慮し、順序尺度の評定を必要とします。"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "Unweighted"
 msgstr "重みなし"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "All disagreements are treated as equal regardless of their magnitude."
 msgstr "不一致の大きさによらず、すべての不一致を同等に扱います。"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "Weighted"
 msgstr "重み付け"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid ""
 "Disagreements are penalised according to their magnitude. Requires ordinal "
 "ratings."
 msgstr "不一致をその大きさに応じて重く扱います。順序尺度の評定が必要です。"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "Weighting scheme applied to disagreements between ordinal categories."
 msgstr "順序カテゴリ間の不一致に適用する重みづけの方式です。"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "Quadratic weights"
 msgstr "二次の重み"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid ""
 "Penalises larger disagreements quadratically; sensitive to large "
 "discrepancies."
 msgstr "大きな不一致を二次関数的に重く扱います。大きなずれに敏感です。"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "Linear weights"
 msgstr "線形の重み"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "Penalises disagreements proportionally to their size."
 msgstr "不一致をその大きさに比例して重く扱います。"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "Fleiss' kappa"
-msgstr "Fleiss' kappa"
+msgstr "フライスのκ"
 
 msgctxt "RaterAgreementBayesian|"
 msgid ""
@@ -2299,12 +2290,15 @@ msgid ""
 "kappa and Scott's pi; with more than two raters, every rater pair gets its "
 "own posterior."
 msgstr ""
+"対の両方の評定者でプールしたカテゴリの比率を使う、偶然を補正した一致です。評"
+"定者を交換可能なものとして扱います。対象ごとに異なる評定者が評定した場合に使"
+"ってください。評定者が2人の場合は フライスのκ や Scott's pi と等しくなります"
+"。評定者が3人以上の場合は、評定者の対ごとに事後分布が求められます。"
 
 msgctxt "RaterAgreementBayesian|"
 msgid "Output"
-msgstr ""
+msgstr "出力"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "Credible interval"
 msgstr "信用区間"
@@ -2312,43 +2306,45 @@ msgstr "信用区間"
 msgctxt "RaterAgreementBayesian|"
 msgid ""
 "Report the highest posterior density interval for each agreement coefficient."
-msgstr ""
+msgstr "各一致係数について、最高事後密度区間を表示します。"
 
 msgctxt "RaterAgreementBayesian|"
 msgid "Width of the credible interval."
-msgstr ""
+msgstr "信用区間の幅です。"
 
 msgctxt "RaterAgreementBayesian|"
 msgid "Observed and chance agreement"
-msgstr ""
+msgstr "観測一致率と偶然一致率"
 
 msgctxt "RaterAgreementBayesian|"
 msgid ""
 "Report the posterior means of the observed agreement and of the agreement "
 "expected by chance, from which kappa is computed."
 msgstr ""
+"観測一致率と、偶然に期待される一致率の事後平均を表示します。カッパはこの2つか"
+"ら計算されます。"
 
 msgctxt "RaterAgreementBayesian|"
 msgid "Posterior plots"
-msgstr ""
+msgstr "事後分布プロット"
 
 msgctxt "RaterAgreementBayesian|"
 msgid ""
 "Plot the posterior density of each coefficient for every rater pair, with "
 "the credible interval shaded."
-msgstr ""
+msgstr "評定者の対ごとに各係数の事後密度をプロットし、信用区間に網かけをします。"
 
 msgctxt "RaterAgreementBayesian|"
 msgid "Prior"
-msgstr ""
+msgstr "事前分布"
 
 msgctxt "RaterAgreementBayesian|"
 msgid "Prior on the cell probabilities of each rater pair's agreement table."
-msgstr ""
+msgstr "各評定者の対の一致表のセル確率に対する事前分布です。"
 
 msgctxt "RaterAgreementBayesian|"
 msgid "Dirichlet prior concentration"
-msgstr ""
+msgstr "ディリクレ事前分布の集中度"
 
 msgctxt "RaterAgreementBayesian|"
 msgid ""
@@ -2358,27 +2354,29 @@ msgid ""
 "especially with many categories, because the pseudo-observations also fall "
 "into the disagreement cells."
 msgstr ""
+"評定者の対の一致表の各セルに対するディリクレ事前分布の集中度です。つまり、"
+"セルあたりの事前の疑似観測数です。小さい値ではデータが支配的になります。大き"
+"い値ではカッパが0に向かって引き寄せられます。疑似観測は不一致のセルにも入るの"
+"で、カテゴリが多いときに特にこの傾向が強くなります。"
 
-#, fuzzy
 msgctxt "RaterAgreementBayesian|"
 msgid "Advanced Options"
 msgstr "詳細オプション"
 
 msgctxt "RaterAgreementBayesian|"
 msgid "Options for the posterior sampling."
-msgstr ""
+msgstr "事後分布のサンプリングのオプションです。"
 
 msgctxt "RaterAgreementBayesian|"
 msgid "No. of posterior samples"
-msgstr ""
+msgstr "事後サンプル数"
 
 msgctxt "RaterAgreementBayesian|"
 msgid ""
 "Number of draws from the posterior distribution of the cell probabilities. "
 "Higher values give more stable estimates."
-msgstr ""
+msgstr "セル確率の事後分布から抽出する回数です。値を大きくすると推定値が安定します。"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid ""
 "Assign the items to their factors. The analysis requires at least two "
@@ -2390,27 +2388,22 @@ msgstr ""
 "つ以上の項目が必要です。1つの項目を複数の因子に割り当てること(交差負荷)もでき"
 "ますが、双因子モデルは交差負荷に対応していません。"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Model"
 msgstr "モデル"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Second-order"
 msgstr "二次因子"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Bi-factor"
 msgstr "双因子"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Correlated factors"
 msgstr "相関因子"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid ""
 "The factor model used to estimate the reliability coefficients. McDonald's "
@@ -2420,26 +2413,22 @@ msgstr ""
 "信頼性係数の推定に使う因子モデルです。マクドナルドのω_h(一般因子・群共通因子"
 "による信頼性)は、二次因子モデルと双因子モデルでのみ利用できます。"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Analysis"
 msgstr "分析"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Confidence interval"
 msgstr "信頼区間"
 
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Coverage of the confidence interval for the reliability coefficients."
-msgstr ""
+msgstr "信頼性係数についての信頼区間のカバー率です。"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Mean and standard deviation of"
 msgstr "平均と標準偏差の算出元"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid ""
 "Whether the mean and standard deviation in the scale table are based on "
@@ -2448,22 +2437,18 @@ msgstr ""
 "尺度の表に示す平均と標準偏差を、参加者の合計スコアと項目間の平均スコアのどち"
 "らに基づいて求めるかを指定します。"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "participants' sum scores"
 msgstr "参加者の合計スコア"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "participants' mean scores"
 msgstr "参加者の平均スコア"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Item statistics"
 msgstr "項目統計量"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "McDonald's ω_t (if item dropped)"
 msgstr "マクドナルドのω_t(項目を除いた場合)"
@@ -2473,8 +2458,9 @@ msgid ""
 "McDonald's omega_t for the remaining items when this item is dropped. The "
 "model is refit once per item."
 msgstr ""
+"この項目を除いたときの、残りの項目についてのマクドナルドのω_tです。モデルは項"
+"目ごとに再推定されます。"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "McDonald's ω_h (if item dropped)"
 msgstr "マクドナルドのω_h(項目を除いた場合)"
@@ -2484,24 +2470,22 @@ msgid ""
 "McDonald's omega_h for the remaining items when this item is dropped. Not "
 "available for the correlated-factors model."
 msgstr ""
+"この項目を除いたときの、残りの項目についてのマクドナルドのω_hです。相関因子"
+"モデルでは利用できません。"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Item-rest correlation"
 msgstr "I-R相関"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid ""
 "Pearson correlation between each item and the sum of the remaining items."
 msgstr "各項目と、残りの項目の合計とのピアソン相関です。"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Model fit"
 msgstr "モデルのあてはまり"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Fit measures"
 msgstr "適合度指標"
@@ -2511,8 +2495,9 @@ msgid ""
 "Fit measures of the factor model: chi-square, CFI, TLI, RMSEA, SRMR, AIC and "
 "BIC."
 msgstr ""
+"因子モデルの適合度指標です。カイ二乗、CFI、TLI、RMSEA、SRMR、AIC、BICを示しま"
+"す。"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Standardized factor loadings"
 msgstr "標準化因子負荷量"
@@ -2524,30 +2509,29 @@ msgid ""
 "for the second-order model the loadings of the group factors on the general "
 "factor are shown in a separate table."
 msgstr ""
+"項目の群因子に対する標準化負荷量の表です。双因子モデルでは一般因子に対する負"
+"荷量が列として加わります。二次因子モデルでは、一般因子に対する群因子の負荷量"
+"が別の表で示されます。"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Reverse-Scaled Items"
 msgstr "逆転項目"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Normal-Scaled Items"
 msgstr "順行項目"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Items assigned here are recoded (reverse-scored) before the analysis."
 msgstr "ここに割り当てた項目は、分析の前に逆転項目として再コードされます。"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Advanced Options"
 msgstr "詳細オプション"
 
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Confidence interval method"
-msgstr ""
+msgstr "信頼区間の方法"
 
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid ""
@@ -2556,28 +2540,31 @@ msgid ""
 "or one; the bootstrapped interval resamples the data and refits the model, "
 "which is slower but does not make that assumption."
 msgstr ""
+"解析的な区間は、因子モデルのWald型の区間です。オメガは比なので、この区間は対"
+"称で、0や1を超えて広がることがあります。ブートストラップによる区間は、データ"
+"を再標本抽出してモデルを再推定します。時間はかかりますが、この仮定を置きませ"
+"ん。"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Analytic interval"
 msgstr "解析的区間"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Bootstrapped interval"
 msgstr "ブートストラップ区間"
 
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Bootstrap samples"
-msgstr ""
+msgstr "ブートストラップ標本数"
 
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid ""
 "Number of bootstrap replications. The factor model is refit for every "
 "replication, so higher values take proportionally longer."
 msgstr ""
+"ブートストラップの反復回数です。反復のたびに因子モデルを再推定するので、値を"
+"大きくするとそれに比例して時間がかかります。"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Missing Values"
 msgstr "欠損値"
@@ -2587,39 +2574,35 @@ msgid ""
 "Full information maximum likelihood uses all available observations; "
 "listwise deletion removes any row with a missing value."
 msgstr ""
+"完全情報最尤法では利用できる観測をすべて使います。リストワイズ除去では欠測値"
+"がある行を取り除きます。"
 
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Full information maximum likelihood"
-msgstr ""
+msgstr "完全情報最尤法"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Exclude cases listwise"
 msgstr "ケースをリストワイズで除外"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Repeatability"
 msgstr "反復可能性"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Set a random seed to reproduce the same bootstrap results across runs."
 msgstr ""
 "実行のたびに同じブートストラップの結果が再現されるように、乱数のシードを設定"
 "します。"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Set seed"
 msgstr "シードを設定"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Samples"
 msgstr "サンプル"
 
-#, fuzzy
 msgctxt "ReliabilityMultidimensionalFrequentist|"
 msgid "Disable saving samples"
 msgstr "サンプルの保存を無効にする"
@@ -2629,3 +2612,6 @@ msgid ""
 "When checked, bootstrap samples are not stored in the output file. Reduces "
 "file size but changing the confidence level requires resampling."
 msgstr ""
+"チェックすると、ブートストラップ標本は出力ファイルに保存されません。"
+"ファイルサイズは小さくなりますが、信頼水準を変えるときには、あらためて再標本"
+"抽出が必要になります。"
